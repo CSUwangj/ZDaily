@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Coded triangle numbers* in *Rust* and *Minimum Height Trees* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

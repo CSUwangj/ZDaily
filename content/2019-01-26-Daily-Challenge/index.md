@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Truncatable primes* in *Rust* and *Student Attendance Record II* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

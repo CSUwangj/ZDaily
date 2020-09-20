@@ -15,7 +15,7 @@ What I've done today is *Number spiral diagonals* in *Rust* and *Add Binary* in 
 
 BTW, I decided to the change style of problem section~
 
-<!--more-->
+<!-- more -->
 
 # Math
 

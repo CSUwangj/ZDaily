@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Cyclical figurate numbers* in *Rust* and *Binary Tree Cameras* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

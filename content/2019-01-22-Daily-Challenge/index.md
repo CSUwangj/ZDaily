@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Digit cancelling fractions* in *Rust* and *Repeated String Match* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

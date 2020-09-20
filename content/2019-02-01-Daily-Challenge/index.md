@@ -17,7 +17,7 @@ I also spent a few hours at Vidar Team's HGAME2019, and go through Crypto and We
 
 Misc is boring, RE is boring too, PWN is interesting, but DotA2 is more interesting ;D
 
-<!--more-->
+<!-- more -->
 
 # Math
 

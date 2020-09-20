@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Number letter counts* in *Rust* and *Reverse String* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

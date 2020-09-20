@@ -15,7 +15,7 @@ What I've done today is *Simple Pig Latin* in *JavaScript*.
 
 Problem is misleading and description is like shit. Data is poor.
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

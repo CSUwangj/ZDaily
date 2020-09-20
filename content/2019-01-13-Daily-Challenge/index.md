@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Lexicographic permutations* in *Rust* and *Unique Binary Search Trees II* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

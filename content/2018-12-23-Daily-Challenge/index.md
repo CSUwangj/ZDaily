@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Largest prime factor* in *Rust* and *Coin Change* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Moving Zeros To The End* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

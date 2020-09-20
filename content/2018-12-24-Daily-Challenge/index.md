@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Largest palindrome product* in *Rust* and *Remove Duplicates from Sorted Array* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

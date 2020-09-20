@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Maximum path sum I* in *Rust* and *Valid Parenthesis String* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Digit fifth powers* in *Rust* and *Valid Square* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

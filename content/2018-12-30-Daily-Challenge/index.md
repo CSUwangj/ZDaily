@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Summation of primes* in *Rust* and *Best Time to Buy and Sell Stock with Transaction Fee* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

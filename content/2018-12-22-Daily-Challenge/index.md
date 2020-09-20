@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Even Fibonacci numbers* in *Rust* and *K-th Smallest Prime Fraction* in *cpp*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

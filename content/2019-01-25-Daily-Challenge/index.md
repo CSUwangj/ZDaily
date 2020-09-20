@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Double-base palindromes* in *Rust* and *Find Mode in Binary Search Tree* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

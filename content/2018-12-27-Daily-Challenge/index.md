@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *10001st prime* in *Rust* and *Binary Tree Preorder Traversal* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

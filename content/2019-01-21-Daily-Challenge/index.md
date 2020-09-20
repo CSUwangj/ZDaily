@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Pandigital products* in *Rust* and *Candy* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

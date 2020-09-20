@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Pandigital prime* in *Rust* and *Repeated DNA Sequences* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

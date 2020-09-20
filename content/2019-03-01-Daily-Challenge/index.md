@@ -12,7 +12,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 What I've done today is *Create Phone Number* in *JavaScript*.
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

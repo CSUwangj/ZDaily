@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Sum square difference* in *Rust* and *Split Array into Consecutive Subsequences* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

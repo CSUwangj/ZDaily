@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Special Pythagorean triplet* in *Rust* and *Dota2 Senate* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

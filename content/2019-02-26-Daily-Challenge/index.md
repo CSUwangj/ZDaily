@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Vowel Count* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

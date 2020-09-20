@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *XOR decryption* in *Rust* and *Sort List* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

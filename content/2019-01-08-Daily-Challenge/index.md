@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Counting Sundays* in *Rust* and *N-Queens II* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

@@ -15,7 +15,7 @@ What I've done today is *Extract the domain name from a URL* in *JavaScript*.
 
 Problem is misleading and description is like shit. Data is poor.
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

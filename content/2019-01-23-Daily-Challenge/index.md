@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Digit factorials* in *Rust* and *Search a 2D Matrix II* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

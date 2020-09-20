@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Poker hands* in *Rust* and *Minimum Moves to Equal Array Elements* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Triangular, pentagonal, and hexagonal* in *Rust* and *LRU Cache* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

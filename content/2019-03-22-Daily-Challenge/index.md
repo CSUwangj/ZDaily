@@ -12,7 +12,7 @@ archives = [ "archive",]
 +++
 I've complete a linear cryptanalysis attack towards simple a toy SPN cipher, I feel very veryyyyy happy!
 
-<!--more-->
+<!-- more -->
 
 # Steps to follow to finish my attack
 

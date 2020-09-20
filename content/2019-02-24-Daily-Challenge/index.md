@@ -17,7 +17,7 @@ BTW, I found math became more and more difficult, far more than I've expected. I
 
 So there will be only CodeWars after today~
 
-<!--more-->
+<!-- more -->
 
 # Math
 

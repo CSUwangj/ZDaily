@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Where my anagrams at?* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

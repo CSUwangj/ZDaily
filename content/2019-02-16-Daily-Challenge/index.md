@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Spiral primes* in *Rust* and *First Bad Version* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

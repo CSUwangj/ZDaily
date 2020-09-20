@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Power digit sum* in *Rust* and *Swap Adjacent in LR String* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

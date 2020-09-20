@@ -15,7 +15,7 @@ archives = [ "archive",]
 
 What I've done today is *Highly divisible triangular number* in *Rust* and *Same Tree* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

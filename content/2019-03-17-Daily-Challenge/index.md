@@ -15,7 +15,7 @@ What I've done today is *Counting Change Combinations* in *JavaScript*.
 
 DP sucks.
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

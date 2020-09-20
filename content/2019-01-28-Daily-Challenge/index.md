@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Integer right triangles* in *Rust* and *Implement Magic Dictionary* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

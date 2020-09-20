@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Convergents of e* in *Rust* and *Sum of two lowest positive integers* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

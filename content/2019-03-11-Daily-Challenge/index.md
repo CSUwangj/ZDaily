@@ -15,7 +15,7 @@ What I've done today is *A Chain adding function* in *JavaScript*.
 
 Currying is awesome!
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

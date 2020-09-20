@@ -15,7 +15,7 @@ What I've done today is *Champernowne's constant* in *Rust* and *~~Sudoku Solver
 
 I need more practice to write my own Dancing Link is JS.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

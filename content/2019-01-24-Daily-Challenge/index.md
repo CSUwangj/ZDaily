@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Circular primes* in *Rust* and *Super Ugly Number* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

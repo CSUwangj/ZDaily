@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *1000-digit Fibonacci number* in *Rust* and *Best Time to Buy and Sell Stock IV* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

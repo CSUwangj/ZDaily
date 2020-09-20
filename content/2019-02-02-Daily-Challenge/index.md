@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Pentagon numbers* in *Rust* and *Binary Tree Postorder Traversal* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

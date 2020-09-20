@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Large sum* in *Rust* and *Subdomain Visit Count* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

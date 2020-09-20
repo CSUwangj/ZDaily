@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Largest product in a series* in *Rust* and *Magical String* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

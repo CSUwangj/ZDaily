@@ -15,7 +15,7 @@ What I've done today is *Secret Messages* of *Number Theory* and *Course Schedul
 
 Due to the high cost of \[brilliant.org\]'s subscription, and low difficulty, I decide to change to https://projecteuler.net. So again, if there is no source provided, I'm doing challenge with it and https://LeetCode.com
 
-<!--more-->
+<!-- more -->
 
 # Math
 

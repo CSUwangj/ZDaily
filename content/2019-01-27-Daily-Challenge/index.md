@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Pandigital multiples* in *Rust* and *K-th Symbol in Grammar* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

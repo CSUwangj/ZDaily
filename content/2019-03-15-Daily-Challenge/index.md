@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Pete, the baker* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Amicable number* in *Rust* and *Unique Morse Code Words* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

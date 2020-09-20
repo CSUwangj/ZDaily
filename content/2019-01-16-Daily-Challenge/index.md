@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Quadratic primes* in *Rust* and *Longest Absolute File Path* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

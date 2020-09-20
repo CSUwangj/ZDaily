@@ -15,7 +15,7 @@ I've get tired with leetcode, especially meet strange runtime at yesterday. So I
 
 What I've done today is *Odd period square roots* in *Rust* and *Jaden Casing Strings* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

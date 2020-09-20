@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Find the divisors!* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

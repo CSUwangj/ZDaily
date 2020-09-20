@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Distinct powers* in ~~*Oral Calculation*~~*Rust* and *To Lower Case* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

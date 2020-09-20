@@ -12,7 +12,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 What I've done today is *Build a pile of Cubes* in *JavaScript*.
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

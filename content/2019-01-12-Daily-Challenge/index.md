@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Non-abundant sums* in *Rust* and *Word Ladder* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

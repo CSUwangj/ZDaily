@@ -15,7 +15,7 @@ What I've done today is *Binary multiple of 3* in *JavaScript*.
 
 FSM is interesting!
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Longest Collatz sequence* in *Rust* and *Permutation Sequence* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

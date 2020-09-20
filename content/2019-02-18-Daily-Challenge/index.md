@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Prime pair sets* in *Rust* and *Generate Parentheses* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Factorial digit sum* in *Rust* and *Minimum Window Substring* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

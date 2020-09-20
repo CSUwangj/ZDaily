@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Square root convergents* in *Rust* and *Merge Intervals* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

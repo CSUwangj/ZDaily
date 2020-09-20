@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I’ve done today is *Multiples of 3 and 5* in *Rust* and *Max Chunks To Make Sorted* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

@@ -14,7 +14,7 @@ Today I've been reading [A Tutorial on Linear and Differential Cryptanalysis](ht
 
 Still there will be only some casual notes.
 
-<!--more-->
+<!-- more -->
 
 > Linear cryptanalysis tries to take advantage of high probability occurrences of linear expressions involving plaintext bits, ciphertext bits, and subkey bits.
 > 

@@ -18,7 +18,7 @@ TBH I don't know if it's a good enough form as which to record it.
 
 Let's try it~
 
-<!--more-->
+<!-- more -->
 
 - Complexity of an algorithm $A​$ is a function $C_A(n)​$,defined to be the maximum, over all input $I​$ of size at most $n​$, of the cost of running $A​$ on input $I​$ .
 - Complexity estimates depends dramatically on the underlying assumptions.

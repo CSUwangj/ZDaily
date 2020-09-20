@@ -15,7 +15,7 @@ What I've done today is *Last Digits* of *Number Theory* and *Longest Substring 
 
 If no source is provided, then I'm doing these challenge at https://brilliant.org and https://leetcode.com/.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

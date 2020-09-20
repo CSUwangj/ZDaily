@@ -15,7 +15,7 @@ What I've done today is *Strip Comments* in *JavaScript*.
 
 Regex is awesome!
 
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

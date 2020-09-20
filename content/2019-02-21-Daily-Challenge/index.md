@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Powerful digit counts* in *Rust* and *Partition to K Equal Sum Subsets* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

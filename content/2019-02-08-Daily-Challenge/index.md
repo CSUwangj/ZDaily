@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Self powers* in *Rust* and *Summary Ranges* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

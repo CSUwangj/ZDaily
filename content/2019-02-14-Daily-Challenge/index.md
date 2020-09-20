@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Powerful digit sum* in *Rust* and *Restore IP Addresses* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

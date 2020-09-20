@@ -12,7 +12,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 What I've done today is *Find The Parity Outlier* in *JavaScript*.
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

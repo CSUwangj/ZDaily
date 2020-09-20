@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Lattice paths* in *Rust* and *Robot Return to Origin* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

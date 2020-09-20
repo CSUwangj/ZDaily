@@ -12,7 +12,7 @@ archives = [ "archive",]
 +++
 Due to visit of my friend, I spent a lot of time playing with him. It's so relaxing, so I'm not productive this weekend. :D
 
-<!--more-->
+<!-- more -->
 
 I've read [A Tutorial on Linear and Differential Cryptanalysis](https://www.engr.mun.ca/~howard/PAPERS/ldc_tutorial.pdf) back and forth, and figured out what to do with differential cryptanalysis.
 

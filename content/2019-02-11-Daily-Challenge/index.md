@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Combinatoric selections* in *Rust* and *Search in Rotated Sorted Array* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

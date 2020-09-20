@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Reciprocal cycles* in *Rust* and *Open the Lock* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

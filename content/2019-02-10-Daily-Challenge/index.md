@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Permuted multiples* in *Rust* and *Find Minimum in Rotated Sorted Array II* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

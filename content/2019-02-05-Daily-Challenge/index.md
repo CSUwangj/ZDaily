@@ -15,7 +15,7 @@ Happy new year!~
 
 What I've done today is *Distinct primes factors* in *Rust* and *Longest Univalue Path* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 

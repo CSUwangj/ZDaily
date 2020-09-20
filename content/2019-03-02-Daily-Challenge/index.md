@@ -12,7 +12,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 What I've done today is *Valid Braces* in *JavaScript*.
-<!--more-->
+<!-- more -->
 
 # CodeWars
 

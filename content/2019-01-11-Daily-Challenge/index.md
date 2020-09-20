@@ -13,7 +13,7 @@ archives = [ "archive",]
 +++
 What I've done today is *Names scores* in *Rust* and *Optimal Division* in *JavaScript*.
 
-<!--more-->
+<!-- more -->
 
 # Math
 
