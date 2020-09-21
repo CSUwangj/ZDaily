@@ -15,6 +15,8 @@ Because I'm building a website for cryptography learning, I decided to practice 
 
 Today is example on Page 16-17.
 
+<!-- more -->
+
 My answer:
   - zoom in picture so reader do not need to struggle to view it.
   - remove obviously `phone:`
@@ -22,3 +24,5 @@ My answer:
   - use bigger font for subtitle so reader can get it quickly.
   - change the case of `Shakespeare`, so it becomes more conspicuous.
   - there is less spacing between elements so it looks good.
+
+get half of the right answers, reluctantly.
