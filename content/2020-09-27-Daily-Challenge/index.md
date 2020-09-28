@@ -2,6 +2,7 @@
 title = "2020-09-27 Daily-Challenge"
 path = "2020-09-27-Daily-Challenge"
 date = 2019-09-27
+updated = 2019-09-27
 in_search_index = true
 
 [taxonomies]
