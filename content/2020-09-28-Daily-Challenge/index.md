@@ -37,9 +37,7 @@ Please note that the two boxes are considered different. For example, if we have
 
 We want to calculate the probability that the two boxes have the same number of distinct balls.
 
-## Test case
-
-### Example 1:
+**Example 1:**
 
 ```
 Input: balls = [1,1]
@@ -50,7 +48,7 @@ Explanation: Only 2 ways to divide the balls equally:
 In both ways, the number of distinct colors in each box is equal. The probability is 2/2 = 1
 ```
 
-### Example 2:
+**Example 2:**
 
 ```
 Input: balls = [2,1,1]
@@ -63,7 +61,7 @@ We can see that 8 of these 12 possible random distributions have the same number
 Probability is 8/12 = 0.66667
 ```
 
-### Example 3:
+**Example 3:**
 
 ```
 Input: balls = [1,2,1,2]
@@ -72,7 +70,7 @@ Explanation: The set of balls is [1, 2, 2, 3, 4, 4]. It is hard to display all t
 Probability = 108 / 180 = 0.6
 ```
 
-### Example 4:
+**Example 4:**
 
 ```
 Input: balls = [3,2,1]
@@ -81,14 +79,14 @@ Explanation: The set of balls is [1, 1, 1, 2, 2, 3]. It is hard to display all t
 Probability = 18 / 60 = 0.3
 ```
 
-### Example 5:
+**Example 5:**
 
 ```
 Input: balls = [6,6,6,6,6,6]
 Output: 0.90327
 ```
 
-## Constraints:
+**Constraints:**
 
 - `1 <= balls.length <= 8`
 - `1 <= balls[i] <= 6`
