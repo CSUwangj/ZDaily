@@ -19,15 +19,15 @@ Today is an example of *The non-Designer's Design Book* on Page 45 and *As Far f
 
 my answer:
   - first one
-    - [ ] there too many ways of alignment, use unified alignment like left align.
-    - [ ] separate contact information
+    - [F] there too many ways of alignment, use unified alignment like left align.
+    - [HT] separate contact information
   - second one
-    - [ ] there are central align and left align, where central align with multiple midlines. use
-left align and align with less alignments
+    - [F] there are central align and left align, where central align with multiple midlines. use
+left align and align with fewer alignments
     - [HT] remove unnecessary information like `Horseback Riding`、`For more ... ride call:`
     - [HT] remove `Est. 2003`
 
-find differences and think out of improvements is so different, later one is so hard...
+finding differences is so different from thinking about improvements, the later one is so hard...
 
 # As Far from Land as Possible
 
