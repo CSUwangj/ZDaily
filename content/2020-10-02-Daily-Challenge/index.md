@@ -2,7 +2,7 @@
 title = "2020-10-02 Daily-Challenge"
 path = "2020-10-02-Daily-Challenge"
 date = 2020-10-02 03:40:38+08:00
-updated = 2020-10-02 16:36:19+08:00
+updated = 2020-10-02 21:28:13+08:00
 in_search_index = true
 
 [taxonomies]
@@ -12,6 +12,8 @@ archives = [ "archive",]
 +++
 
 Today is an example of *The non-Designer's Design Book* on Page 55 and *Filter Restaurants by Vegan-Friendly, Price and Distance* on [leetcode](https://leetcode.com/problems/filter-restaurants-by-vegan-friendly-price-and-distance/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/559/week-1-october-1st-october-7th/3480/) with `cpp`.
+
+Because of time zone, I decided to do second [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/559/week-1-october-1st-october-7th/3481/).
 
 <!-- more -->
 
@@ -105,7 +107,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge
+# October LeetCoding Challenge1
 
 ## Description
 
@@ -157,6 +159,108 @@ public:
     }
     q.push(t);
     return q.size();
+  }
+};
+```
+
+# October LeetCoding Challenge2
+
+## Description
+
+**Combination Sum**
+
+Given an array of **distinct** integers `candidates` and a target integer `target`, return *a list of all **unique combinations** of* `candidates` *where the chosen numbers sum to* `target`*.* You may return the combinations in **any order**.
+
+The **same** number may be chosen from `candidates` an **unlimited number of times**. Two combinations are unique if the frequency of at least one of the chosen numbers is different.
+
+**Example 1:**
+
+```
+Input: candidates = [2,3,6,7], target = 7
+Output: [[2,2,3],[7]]
+Explanation:
+2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
+7 is a candidate, and 7 = 7.
+These are the only two combinations.
+```
+
+**Example 2:**
+
+```
+Input: candidates = [2,3,5], target = 8
+Output: [[2,2,2,2],[2,3,3],[3,5]]
+```
+
+**Example 3:**
+
+```
+Input: candidates = [2], target = 1
+Output: []
+```
+
+**Example 4:**
+
+```
+Input: candidates = [1], target = 1
+Output: [[1]]
+```
+
+**Example 5:**
+
+```
+Input: candidates = [1], target = 2
+Output: [[1,1]]
+```
+
+**Constraints:**
+
+- `1 <= candidates.length <= 30`
+- `1 <= candidates[i] <= 200`
+- All elements of `candidates` are **distinct**.
+- `1 <= target <= 500`
+
+## Solution
+
+simple DFS
+
+```cpp
+class Solution {
+  int target;
+  int current;
+  int index;
+public:
+  void dfs(vector<vector<int>>& ans, vector<int>& cur, vector<int>& candidates) {
+    if(index == candidates.size() || current >= target) {
+      if(current == target) {
+        ans.push_back(cur);
+      }
+      return;
+    }
+    int cnt = 0;
+    index += 1;
+    dfs(ans, cur, candidates);
+    index -= 1;
+    while(current < target) {
+      current += candidates[index];
+      cur.push_back(candidates[index]);
+      index += 1;
+      cnt += 1;
+      dfs(ans, cur, candidates);
+      index -= 1;
+    }
+    while(cnt) {
+      cur.pop_back();
+      current -= candidates[index];
+      cnt -= 1;
+    }
+  }
+
+  vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<vector<int>> ans;
+    vector<int> tmp;
+    this->target = target;
+    dfs(ans, tmp, candidates);
+    return ans;
   }
 };
 ```
