@@ -6,7 +6,7 @@ updated = 2020-09-30 15:33:42+08:00
 in_search_index = true
 
 [taxonomies]
-tags = ["Design",]
+tags = ["Design", "Algorithm"]
 categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
