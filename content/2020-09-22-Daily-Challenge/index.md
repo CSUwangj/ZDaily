@@ -1,7 +1,7 @@
 +++
 title = "2020-09-22 Daily-Challenge"
 path = "2020-09-22-Daily-Challenge"
-date = 2019-09-22
+date = 2020-09-22
 updated = 2020-09-22T21:35:02+08:00
 in_search_index = true
 
