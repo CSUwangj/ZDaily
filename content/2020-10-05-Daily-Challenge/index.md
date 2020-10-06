@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today is an example of *The non-Designer's Design Book* on bottom of Page 56 and *Range Sum Query - Mutable* on [leetcode](https://leetcode.com/problems/range-sum-query-mutable/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/559/week-1-october-1st-october-7th/3482/) with `cpp`.
+Today is an example of *The non-Designer's Design Book* on bottom of Page 56 and *Range Sum Query - Mutable* on [leetcode](https://leetcode.com/problems/range-sum-query-mutable/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/559/week-1-october-1st-october-7th/3484/) with `cpp`.
 
 BTW, I decided to have Saturday and Sunday as review days, so pressure of review doesn't get me down.
 
@@ -28,7 +28,7 @@ my answer:
 
 shit...
 
-# Reshape the Matrix
+# Range Sum Query - Mutable
 
 ## Description
 Given an integer array *nums*, find the sum of the elements between indices *i* and *j* (*i* ≤ *j*), inclusive.
