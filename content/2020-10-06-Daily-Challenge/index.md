@@ -104,7 +104,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge4
+# October LeetCoding Challenge6
 
 ## Description
 
