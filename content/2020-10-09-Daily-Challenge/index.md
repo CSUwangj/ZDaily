@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today is an example of *The non-Designer's Design Book* on bottom of Page 134 and *Remove Outermost Parentheses* on [leetcode](https://leetcode.com/problems/queries-on-a-permutation-with-key/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/560/week-2-october-8th-october-14th/3489/) with `cpp`.
+Today is an example of *The non-Designer's Design Book* on bottom of Page 82 and *Remove Outermost Parentheses* on [leetcode](https://leetcode.com/problems/queries-on-a-permutation-with-key/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/560/week-2-october-8th-october-14th/3489/) with `cpp`.
 
 <!-- more -->
 
@@ -19,18 +19,13 @@ Today is an example of *The non-Designer's Design Book* on bottom of Page 134 an
 
 my answer:
 
-- first one:
-  - [F] neat left alignment
-  - [F] use divide line insead of `·`
-  - [T] renove useless shape
-  - [HT] increase font size of company name
-  - [T] not using italic font on title
-  - [F] unify font
-- second one:
-  - [T] add black banner for the title and contact information
-  - [F] uing `..` instead of `·`
-  - [T] leave no space on left of image
-  - [T] not uing italic font on title
+- [ ] extract `resume`
+- [ ] left align
+- [ ] change font to interesting fonts
+- [ ] remove border so it looks less restrained
+- [ ] title with bold font and same indent
+- [ ] distance between text and upper、bottom border
+- [ ] title is closer to the corresponding text
 
 # Remove Outermost Parentheses
 
@@ -143,9 +138,9 @@ using UTF8-like encoding, use
 |1	|U+0000|	U+007F|	0xxxxxxx	|  |
 |2	|U+0080|	U+07FF|	1xxxxxxx (except for 11111111)|1xxxxxxx	|
 
-because maximum is $10^4$ which is less than `1111111100000000`, so I use single byte `0xFF` for null node.
+because the maximum is $10^4$ which is less than `1111111100000000`, so I use single byte `0xFF` for null node.
 
-because there is no intersection between code of nodes, so just put encoded nodes in level order.
+because there is no intersection between codes of nodes, so just put encoded nodes in level order.
 
 ``` cpp
 class Codec {
