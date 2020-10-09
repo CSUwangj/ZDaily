@@ -2,7 +2,7 @@
 title = "2020-10-09 Daily-Challenge"
 path = "2020-10-09-Daily-Challenge"
 date = 2020-10-09 01:15:46+08:00
-updated = 2020-10-09 16:10:28+08:00
+updated = 2020-10-09 21:10:52+08:00
 in_search_index = true
 
 [taxonomies]
@@ -19,13 +19,13 @@ Today is an example of *The non-Designer's Design Book* on bottom of Page 82 and
 
 my answer:
 
-- [ ] extract `resume`
-- [ ] left align
-- [ ] change font to interesting fonts
-- [ ] remove border so it looks less restrained
-- [ ] title with bold font and same indent
-- [ ] distance between text and upper、bottom border
-- [ ] title is closer to the corresponding text
+- [F] extract `resume`
+- [T] left align
+- [T] change font to interesting fonts
+- [T] remove border so it looks less restrained
+- [T] title with bold font and same indent
+- [F] distance between text and upper、bottom border
+- [T] title is closer to the corresponding text
 
 # Remove Outermost Parentheses
 
