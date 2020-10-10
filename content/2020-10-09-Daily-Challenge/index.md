@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today is an example of *The non-Designer's Design Book* on bottom of Page 82 and *Remove Outermost Parentheses* on [leetcode](https://leetcode.com/problems/queries-on-a-permutation-with-key/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/560/week-2-october-8th-october-14th/3489/) with `cpp`.
+Today is an example of *The non-Designer's Design Book* on bottom of Page 82 and *Remove Outermost Parentheses* on [leetcode](https://leetcode.com/problems/remove-outermost-parentheses/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/560/week-2-october-8th-october-14th/3489/) with `cpp`.
 
 <!-- more -->
 
