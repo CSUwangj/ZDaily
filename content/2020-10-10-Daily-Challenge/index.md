@@ -15,8 +15,6 @@ Today is Saturday, I gonna review the tasks I've done this week, and finish toda
 
 <!-- more -->
 
-# The non-Designer's Design Book review
-
 # LeetCode review
 
 ##  Range Sum Query - Mutable
@@ -233,10 +231,6 @@ public:
     }
 };
 ```
-
-## Queries on a Permutation With Key
-
-
 
 # October LeetCoding Challenge10
 
