@@ -6,12 +6,12 @@ updated = 2020-10-13 22:56:52+08:00
 in_search_index = true
 
 [taxonomies]
-tags = ["Design", "Algorithm"]
+tags = ["Algorithm"]
 categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today, *The non-Designer's Design Book* seems have no more specific problems, so I finished it(after do the review of this week), I have done *Self Dividing Numbers* on [leetcode](https://leetcode.com/problems/self-dividing-numbers/submissions/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/560/week-2-october-8th-october-14th/3493/) with `cpp`.
+Today, *The non-Designer's Design Book* seems have no more specific problems, so I finished it(after do the review of this week), I have done *Self Dividing Numbers* on [leetcode](https://leetcode.com/problems/self-dividing-numbers/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/560/week-2-october-8th-october-14th/3493/) with `cpp`.
 
 <!-- more -->
 
