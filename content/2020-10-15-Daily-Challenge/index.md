@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done *Count Negative Numbers in a Sorted Matrix* on [leetcode](https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/560/week-2-october-8th-october-14th/3495/) with `cpp`.
+Today I have done *Count Negative Numbers in a Sorted Matrix* on [leetcode](https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/560/week-2-october-8th-october-14th/3496/) with `cpp`.
 
 <!-- more -->
 
