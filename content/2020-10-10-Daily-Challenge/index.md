@@ -17,7 +17,7 @@ Today is Saturday, I gonna review the tasks I've done this week, and finish toda
 
 # LeetCode review
 
-##  Range Sum Query - Mutable
+## Range Sum Query - Mutable
 
 rewrite it with segment tree
 
