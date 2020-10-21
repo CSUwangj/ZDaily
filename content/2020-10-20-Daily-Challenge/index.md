@@ -1,8 +1,8 @@
 +++
 title = "2020-10-20 Daily-Challenge"
 path = "2020-10-20-Daily-Challenge"
-date = 2020-10-20 01:00:33+08:00
-updated = 2020-10-20 21:32:48+08:00
+date = 2020-10-19 01:00:33+08:00
+updated = 2020-10-19 20:56:48+08:00
 in_search_index = true
 
 [taxonomies]
@@ -15,7 +15,7 @@ Today I have done *Ugly Number II* on [leetcode](https://leetcode.com/problems/u
 
 <!-- more -->
 
-# Sudoku Solver
+# Ugly Number II
 
 ## Description
 
@@ -61,6 +61,8 @@ class Solution {
 # October LeetCoding Challenge20
 
 ## Description
+
+**Clone Graph**
 
 Given a reference of a node in a **[connected](https://en.wikipedia.org/wiki/Connectivity_(graph_theory)#Connected_graph)** undirected graph.
 
