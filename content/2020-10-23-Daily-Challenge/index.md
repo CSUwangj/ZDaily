@@ -172,3 +172,50 @@ public:
 ```
 
 ![explanation](./explanation.jpg)
+
+I rewrite it into a ... more ugly version?
+
+
+``` cpp
+class Solution {
+public:
+  bool find132pattern(vector<int> &nums) {
+    if(nums.size() < 3) return false;
+    vector<pair<int, int>> s;
+    int one = 0, three = -1, i = 1, c = 1, pc = 1;
+    while(i < nums.size()) {
+      switch (c) {
+      case 1:
+        if(nums[i] <= nums[i-1]) one = i;
+        else pc = 3;
+        break;
+      case 3:
+        if(nums[i] >= nums[i-1]) {
+          for(auto &p : s) {
+            if(nums[i] > p.first && nums[i] < p.second) {
+              return true;
+            }
+          }
+          three = i;
+        } else {
+          pc = 2;
+        }
+        break;
+      case 2:
+        for(int j = s.size()-1; j >=0 && s[j].second <= nums[three]; --j) {
+          s.pop_back();
+        }
+        s.push_back(make_pair(nums[one], nums[three]));
+        for(auto &p : s) {
+          if(nums[i] > p.first && nums[i] < p.second) return true;
+        }
+        one = i;
+        pc = 1;
+      }
+      i += pc==c;
+      c = pc;
+    }
+    return false;
+  }
+};
+```
