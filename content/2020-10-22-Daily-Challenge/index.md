@@ -148,7 +148,7 @@ Output: 5
 
 ## Solution
 
-nothing to say
+nothing to say.
 
 ``` cpp
 /**
