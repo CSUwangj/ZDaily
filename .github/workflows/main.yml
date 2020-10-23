@@ -29,11 +29,13 @@ jobs:
           BUILD_FLAGS: -o docs
           BUILD_ONLY: true
           TOKEN: ${{ secrets.TOKEN }}
-      - name: build
-        uses: EndBug/add-and-commit@v5 # You can change this to use a specific version
-        with:
-          add: 'docs'
-          author_name: CSUwangj
-          author_email: CSUwangj@protonmail.com
-          message: 'Build from GitHub Actions'
-          TOKEN: ${{ secrets.TOKEN }}
+      - name: commit
+        run: |
+          git config --global user.name "CSUwangj"
+          git config --global user.email "CSUwangj@protonmail.com"
+          git commit -m "Build site at `TZ=Asia/Hong_Kong date --rfc-3339=seconds`"
+        - name: Push changes
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.TOKEN }}
+            branch: master
