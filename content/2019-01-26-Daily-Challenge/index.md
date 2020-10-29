@@ -124,17 +124,17 @@ There is a DP problem.
 
 Let set a array $DP[n][6]$，where：
 
-$$DP[n][0]$$ means no Absent and no Late **at  last of record**,
+$DP[n][0]$ means no Absent and no Late **at  last of record**,
 
-$$DP[n][1]$$ means no Absent and one Late **at  last of record**,
+$DP[n][1]$ means no Absent and one Late **at  last of record**,
 
-$$DP[n][2]$$ means no Absent and two Late **at  last of record**,
+$DP[n][2]$ means no Absent and two Late **at  last of record**,
 
-$$DP[n][3]$$ means one Absent and no Late **at  last of record**,
+$DP[n][3]$ means one Absent and no Late **at  last of record**,
 
-$$DP[n][4]$$ means one Absent and one **at  last of record**,
+$DP[n][4]$ means one Absent and one **at  last of record**,
 
-$$DP[n][5]$$ means one Absent and two **at  last of record**,
+$DP[n][5]$ means one Absent and two **at  last of record**,
 
 so,
 

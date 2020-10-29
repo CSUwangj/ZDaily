@@ -52,7 +52,7 @@ $$n=p_1^{v_1}p_2^{v_2}...p_k^{v_k}$$
 
 Then the number of positive divisors of $n$ is 
 
-$$d(n)=(v_1+1)(v_2+1)...(v_k+1)$$.
+$$d(n)=(v_1+1)(v_2+1)...(v_k+1)$$
 
 If you do not get it, check https://www.math.upenn.edu/~deturck/m170/wk2/numdivisors.html
 
