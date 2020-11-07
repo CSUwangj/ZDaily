@@ -104,7 +104,7 @@ this answer is:
 - color of blue
 - align body and title horizontally
 
-# LeetCode review
+# LeetCode Review
 
 ## Probability of a Two Boxes Having The Same Number of Distinct Balls
 

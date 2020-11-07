@@ -93,7 +93,7 @@ my second answer on Page 82:
 
 seems all write if I write in more detailed manner?
 
-# LeetCode review
+# LeetCode Review
 
 ## Queries on a Permutation With Key
 

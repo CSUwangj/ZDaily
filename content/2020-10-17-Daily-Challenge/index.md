@@ -17,7 +17,7 @@ BTW I decided to write solution directly on website rather than on VSCode when r
 
 <!-- more -->
 
-# LeetCode review
+# LeetCode Review
 
 ## Buddy Strings
 

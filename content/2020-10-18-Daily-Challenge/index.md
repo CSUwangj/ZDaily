@@ -32,7 +32,7 @@ reference answer has three more differences:
 - text block has been widened so the last line of the main text becomes a complete sentence
 - cut off the title in a more suitable position
 
-# LeetCode review
+# LeetCode Review
 
 ## Sort List
 
