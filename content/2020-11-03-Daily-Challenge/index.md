@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done *Next Greater Element I* on [leetcode](https://leetcode.com/problems/next-greater-element-i/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3518/) with `cpp`.
+Today I have done *Next Greater Element I* on [leetcode](https://leetcode.com/problems/next-greater-element-i/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3518/) with `cpp`.
 
 <!-- more -->
 

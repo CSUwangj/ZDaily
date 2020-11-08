@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done *2 Keys Keyboard* on [leetcode](https://leetcode.com/problems/2-keys-keyboard/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3517/) with `cpp`.
+Today I have done *2 Keys Keyboard* on [leetcode](https://leetcode.com/problems/2-keys-keyboard/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3517/) with `cpp`.
 
 <!-- more -->
 

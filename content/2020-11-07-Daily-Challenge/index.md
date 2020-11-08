@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3522/) with `cpp`.
+Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3522/) with `cpp`.
 
 BTW I decided to write solution directly on website rather than on VSCode when reviewing.
 
@@ -257,7 +257,7 @@ Output: 7 -> 8 -> 0 -> 7
 
 ## Solution
 
-parity
+nothing to say
 
 ``` cpp
 /**

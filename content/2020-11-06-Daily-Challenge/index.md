@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done *Bitwise ORs of Subarrays* on [leetcode](https://leetcode.com/problems/bitwise-ors-of-subarrays/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3521/) with `cpp`.
+Today I have done *Bitwise ORs of Subarrays* on [leetcode](https://leetcode.com/problems/bitwise-ors-of-subarrays/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3521/) with `cpp`.
 
 <!-- more -->
 

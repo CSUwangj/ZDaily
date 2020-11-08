@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done *Bulls and Cows* on [leetcode](https://leetcode.com/problems/bulls-and-cows/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3520/) with `cpp`.
+Today I have done *Bulls and Cows* on [leetcode](https://leetcode.com/problems/bulls-and-cows/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3520/) with `cpp`.
 
 <!-- more -->
 

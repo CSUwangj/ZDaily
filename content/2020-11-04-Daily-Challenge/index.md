@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done *Flip Columns For Maximum Number of Equal Rows* on [leetcode](https://leetcode.com/problems/flip-columns-for-maximum-number-of-equal-rows/) and leetcode's [October LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3519/) with `cpp`.
+Today I have done *Flip Columns For Maximum Number of Equal Rows* on [leetcode](https://leetcode.com/problems/flip-columns-for-maximum-number-of-equal-rows/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3519/) with `cpp`.
 
 <!-- more -->
 
