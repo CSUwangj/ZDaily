@@ -46,7 +46,7 @@ class Solution {
 
 ## Clone Graph
 
-more gentle
+more elegant
 
 ``` cpp
 /*
@@ -116,7 +116,7 @@ public:
 
 ## Linked List Components
 
-more gentle
+more elegant
 
 ``` cpp
 /**
@@ -153,7 +153,7 @@ public:
 
 ## Asteroid Collision
 
-more gentle
+more elegant
 
 ``` cpp
 class Solution {

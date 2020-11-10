@@ -91,7 +91,7 @@ public:
 
 ## Add One Row to Tree
 
-more gentle
+more elegant
 
 ``` cpp
 /**

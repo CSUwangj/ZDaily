@@ -31,7 +31,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 ## Solution
 
-I can't come up with a more gentle solution than brute force.
+I can't come up with a more elegant solution than brute force.
 
 ---
 

@@ -147,7 +147,7 @@ public:
 
 ## Insert into a Binary Search Tree
 
-more gentle code
+more elegant code
 
 ``` cpp
 class Solution {

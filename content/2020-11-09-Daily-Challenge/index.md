@@ -166,7 +166,7 @@ Output: 3
 
 ## Solution
 
-not a gentle solution
+not a elegant solution
 
 ``` cpp
 /**

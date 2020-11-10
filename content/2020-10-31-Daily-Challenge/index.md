@@ -147,7 +147,7 @@ public:
 
 ## Find the Closest Palindrome
 
-more gentle but code is not clean enough to make me happy.
+more elegant but code is not clean enough to make me happy.
 
 ``` cpp
 class Solution {

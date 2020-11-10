@@ -108,7 +108,7 @@ this answer is:
 
 ## Probability of a Two Boxes Having The Same Number of Distinct Balls
 
-another DFS with more gentle code and slower speed, more space used.
+another DFS with more elegant code and slower speed, more space used.
 
 ``` cpp
 class Solution {
@@ -197,7 +197,7 @@ public:
 
 ## As Far from Land as Possible
 
-more gentle BFS
+more elegant BFS
 
 ``` cpp
 class Solution {
@@ -248,7 +248,7 @@ public:
 
 ## Reconstruct Original Digits from English
 
-more gentle way
+more elegant way
 
 ``` cpp
 

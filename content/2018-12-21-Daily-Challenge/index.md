@@ -143,7 +143,7 @@ And got 1A.
 
 ![sub](1545314277148.png)
 
-I'm very happy but when I check the solution page I find a more gentle implication.
+I'm very happy but when I check the solution page I find a more elegant implication.
 
 When there is a maintained max indicate the situation, there is no way find a index equal max, but the range \[i: max\] doesn't meet the criteria.
 

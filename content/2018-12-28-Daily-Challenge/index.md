@@ -52,7 +52,7 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
 
 ## Solution
 
-Brute force is most gentle method ;D
+Brute force is most elegant method ;D
 
 ## Implementation
 
