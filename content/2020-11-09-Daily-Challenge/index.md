@@ -125,7 +125,7 @@ public:
 };
 ```
 
-# November LeetCoding Challenge6
+# November LeetCoding Challenge9
 
 **Maximum Difference Between Node and Ancestor**
 
