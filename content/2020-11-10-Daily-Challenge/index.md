@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done *Number of Atoms* on [leetcode](https://leetcode.com/problems/number-of-atoms/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/featured/card/november-leetcoding-challenge/565/week-2-november-8th-november-14th/3525/) with `cpp`.
+Today I have done *Number of Atoms* on [leetcode](https://leetcode.com/problems/number-of-atoms/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/featured/card/november-leetcoding-challenge/565/week-2-november-8th-november-14th/3526/) with `cpp`.
 
 <!-- more -->
 
