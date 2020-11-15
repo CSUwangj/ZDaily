@@ -11,13 +11,15 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today is Saturday, I just finish today's leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/565/week-2-november-8th-november-14th/3530/) with `cpp`.
+Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/565/week-2-november-8th-november-14th/3530/) with `cpp`.
 
 <!-- more -->
 
 # LeetCode Review
 
 ## Powerful Integers
+
+nothing to say
 
 ``` cpp
 class Solution {
@@ -61,6 +63,8 @@ public:
 ```
 
 ## Check If It Is a Good Array
+
+nothing to say
 
 ``` cpp
 class Solution {
@@ -119,6 +123,8 @@ public:
 
 ## Student Attendance Record I
 
+nothing to say
+
 ``` cpp
 class Solution {
 public:
@@ -144,6 +150,8 @@ public:
 
 ## Plus One
 
+nothing to say
+
 ``` cpp
 class Solution {
 public:
@@ -162,6 +170,8 @@ public:
 ```
 
 ## Flipping an Image
+
+just modify input image
 
 ``` cpp
 class Solution {
