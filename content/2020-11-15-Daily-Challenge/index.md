@@ -2,7 +2,7 @@
 title = "2020-11-15 Daily-Challenge"
 path = "2020-11-15-Daily-Challenge"
 date = 2020-11-15 16:42:21+08:00
-updated = 2020-11-15 16:52:21+08:00
+updated = 2020-11-15 21:31:47+08:00
 in_search_index = true
 
 [taxonomies]
@@ -16,6 +16,77 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 <!-- more -->
 
 # LeetCode Review
+
+## Populating Next Right Pointers in Each Node
+
+use `next` pointer we built to achieve the goal
+
+``` cpp
+class Solution {
+public:
+    Node* connect(Node* root) {
+        Node* curLevel = root;
+        while(curLevel) {
+            Node* nextLevel = curLevel->left;
+            Node* curNode = curLevel;
+            while(curNode) {
+                if(curNode->left) curNode->left->next = curNode->right;
+                if(curNode->right) {
+                    if(curNode->next) curNode->right->next = curNode->next->left;
+                    else curNode->right->next = nullptr;
+                }
+                curNode = curNode->next;
+            }
+            curLevel = nextLevel;
+        }
+        return root;
+    }
+};
+```
+
+## Permutations II
+
+handwritting next_permutation
+
+but without optimization
+
+``` cpp
+class Solution {
+    bool next_permutation(vector<int>& nums) {
+        if(nums.size() < 2) return false;
+        int len = nums.size();
+        int a = len - 2;
+        
+        while(a >= 0 && nums[a] >= nums[a+1]) a -= 1;
+        if(a == -1) return false;
+        
+        int minGreater = INT_MAX, b = -1;
+        int i = a+1;
+        while(i < len) {
+            if(nums[i] > nums[a] && nums[i] < minGreater) {
+                b = i;
+                minGreater = nums[i];
+            }
+            i += 1;
+        }
+        
+        swap(nums[a], nums[b]);
+        sort(nums.begin()+a+1, nums.end());
+        return true;
+    }
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> ans{nums};
+        while(next_permutation(nums)) {
+            ans.push_back(nums);
+        }
+        return ans;
+    }
+};
+```
+
+rest one hard problem is great question which need no review(actually my laptop is running out of battery ;P)
 
 # November LeetCoding Challenge15
 
