@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done *Course Schedule IV* on [leetcode](https://leetcode.com/problems/course-schedule-iv/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/566/week-3-november-15th-november-21st/3536/) with `cpp`.
+Today I have done *Course Schedule IV* on [leetcode](https://leetcode.com/problems/course-schedule-iv/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/566/week-3-november-15th-november-21st/3537/) with `cpp`.
 
 <!-- more -->
 
