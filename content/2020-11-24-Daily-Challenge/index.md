@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done *Total Hamming Distance* on [leetcode](https://leetcode.com/problems/total-hamming-distance/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/566/week-3-november-15th-november-21st/3537/) with `cpp`.
+Today I have done *Total Hamming Distance* on [leetcode](https://leetcode.com/problems/total-hamming-distance/) and leetcode's [November LeetCoding Challenge](https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/567/week-4-november-22nd-november-28th/3542/) with `cpp`.
 
 <!-- more -->
 
