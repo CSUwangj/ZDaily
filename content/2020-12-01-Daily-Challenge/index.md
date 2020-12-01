@@ -109,7 +109,7 @@ Output: [6,9,12]
 
 **Constraints:**
 
-- `1 <= s.length <= 104`
+- 1 <= s.length <= $10^4$
 - `s` consists of lower-case English letters.
 - `1 <= words.length <= 5000`
 - `1 <= words[i].length <= 30`
@@ -117,7 +117,15 @@ Output: [6,9,12]
 
 ## Solution
 
-KMP, will explain later, post it first XD
+first of all, we use `s`, `n`, `m` present `length of string`, `amount of words`, `length of words`.
+
+if we know where every possible word begin, we can solve problem easily and quickly, so we should consider how to compute them quickly.
+
+if we use brute force, time complexity is because amount of words is $O(s\times n\times m), worst case there will be about 1e9 times computing so it's not acceptable.
+
+but `n` is small, so if we use KMP to get start positions, time complexity will be $O(m\times max(s, m))$
+
+when we got start positions, problem becomes easy, we just check every start positions if it is a valid start position for substring.
 
 ``` cpp
 class Solution {
