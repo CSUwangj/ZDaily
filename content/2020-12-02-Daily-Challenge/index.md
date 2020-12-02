@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Decrypt String from Alphabet to Integer Mapping]([https://leetcode.com/problems/unique-paths-ii/) and [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/](https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/)) on leetcode and leetcode's [December LeetCoding Challenge](https://leetcode.com/explore/featured/card/december-leetcoding-challenge/569/week-1-december-1st-december-7th/3552/) with `cpp`.
+Today I have done [Decrypt String from Alphabet to Integer Mapping](https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/) on leetcode and leetcode's [December LeetCoding Challenge](https://leetcode.com/explore/featured/card/december-leetcoding-challenge/569/week-1-december-1st-december-7th/3552/) with `cpp`.
 
 <!-- more -->
 
