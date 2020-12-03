@@ -78,7 +78,9 @@ public:
 };
 ```
 
-## Substring with Concatenation of All Words
+# Substring with Concatenation of All Words
+
+## Description
 
 You are given a string `s` and an array of strings `words` of **the same length**. Return all starting indices of substring(s) in `s` that is a concatenation of each word in `words` **exactly once**, **in any order**, and **without any intervening characters**.
 
@@ -121,7 +123,7 @@ first of all, we use `s`, `n`, `m` present `length of string`, `amount of words`
 
 if we know where every possible word begin, we can solve problem easily and quickly, so we should consider how to compute them quickly.
 
-if we use brute force, time complexity is because amount of words is $O(s\times n\times m), worst case there will be about 1e9 times computing so it's not acceptable.
+if we use brute force, time complexity is because amount of words is $O(s\times n\times m)$, worst case there will be about 1e9 times computing so it's not acceptable. 
 
 but `n` is small, so if we use KMP to get start positions, time complexity will be $O(m\times max(s, m))$
 
