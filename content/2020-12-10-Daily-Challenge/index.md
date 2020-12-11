@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Path with Maximum Probability](https://leetcode.com/problems/path-with-maximum-probability/) and [Distinct Subsequences II](https://leetcode.com/problems/distinct-subsequences-ii/) on leetcode and leetcode's [December LeetCoding Challenge](https://leetcode.com/explore/challenge/card/december-leetcoding-challenge/570/week-2-december-8th-december-14th/3560/) with `cpp`.
+Today I have done [Path with Maximum Probability](https://leetcode.com/problems/path-with-maximum-probability/) on leetcode and leetcode's [December LeetCoding Challenge](https://leetcode.com/explore/challenge/card/december-leetcoding-challenge/570/week-2-december-8th-december-14th/3561/) with `cpp`.
 
 <!-- more -->
 
