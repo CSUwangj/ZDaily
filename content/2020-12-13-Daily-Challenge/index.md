@@ -2,7 +2,7 @@
 title = "2020-12-13 Daily-Challenge"
 path = "2020-12-13-Daily-Challenge"
 date = 2020-12-13 17:12:33+08:00
-updated = 2020-12-13 16:42:05+08:00
+updated = 2020-12-13 19:20:24+08:00
 in_search_index = true
 
 [taxonomies]
