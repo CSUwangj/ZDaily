@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Task Scheduler](https://leetcode.com/problems/task-scheduler/) on leetcode and leetcode's [December LeetCoding Challenge](https://leetcode.com/explore/challenge/card/december-leetcoding-challenge/572/week-4-december-22nd-december-28th/3587/) with `cpp`.
+Today I have done [Task Scheduler](https://leetcode.com/problems/task-scheduler/) on leetcode and leetcode's [December LeetCoding Challenge](https://leetcode.com/explore/challenge/card/december-leetcoding-challenge/573/week-4-december-29th-december-31st/3587/) with `cpp`.
 
 <!-- more -->
 

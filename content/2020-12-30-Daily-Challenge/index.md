@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Sort Array By Parity II](https://leetcode.com/problems/sort-array-by-parity-ii/) on leetcode and leetcode's [December LeetCoding Challenge](https://leetcode.com/explore/challenge/card/december-leetcoding-challenge/572/week-4-december-22nd-december-28th/3586/) with `cpp`.
+Today I have done [Sort Array By Parity II](https://leetcode.com/problems/sort-array-by-parity-ii/) on leetcode and leetcode's [December LeetCoding Challenge](https://leetcode.com/explore/challenge/card/december-leetcoding-challenge/573/week-4-december-29th-december-31st/3586/) with `cpp`.
 
 <!-- more -->
 # Sort Array By Parity II
