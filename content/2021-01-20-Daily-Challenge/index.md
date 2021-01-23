@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Count The Repetitions](https://leetcode.com/problems/max-number-of-k-sum-pairs/), [All Possible Full Binary Trees](https://leetcode.com/problems/all-possible-full-binary-trees/) and leetcode's [January LeetCoding Challenge](https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/581/week-3-january-15th-january-21st/3610/) with `cpp`.
+Today I have done [Count The Repetitions](https://leetcode.com/problems/count-the-repetitions/), [All Possible Full Binary Trees](https://leetcode.com/problems/all-possible-full-binary-trees/) and leetcode's [January LeetCoding Challenge](https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/581/week-3-january-15th-january-21st/3610/) with `cpp`.
 
 <!-- more -->
 
