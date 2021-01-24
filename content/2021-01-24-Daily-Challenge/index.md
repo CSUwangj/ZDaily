@@ -13,7 +13,7 @@ archives = [ "archive",]
 
 Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's [January LeetCoding Challenge](https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/582/week-4-january-22nd-january-28th/3615/) with `cpp`.
 
-BTW, I participated in Biweekly Contest 44.
+BTW, I participated in Weekly Contest 225.
 
 <!-- more -->
 
