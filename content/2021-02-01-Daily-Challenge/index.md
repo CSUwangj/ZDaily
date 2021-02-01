@@ -2,7 +2,7 @@
 title = "2021-02-01 Daily-Challenge"
 path = "2021-02-01-Daily-Challenge"
 date = 2021-02-01 18:00:59+08:00
-updated = 2021-02-01 18:54:00+08:00
+updated = 2021-02-01 18:54:06+08:00
 in_search_index = true
 
 [taxonomies]
@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [[Largest Component Size by Common Factor](https://leetcode.com/problems/check-completeness-of-a-binary-tree/)](https://leetcode.com/problems/check-completeness-of-a-binary-tree/) and leetcode's [January LeetCoding Challenge](https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/583/week-5-january-29th-january-31st/3621/) with `cpp`.
+Today I have done [Largest Component Size by Common Factor](https://leetcode.com/problems/check-completeness-of-a-binary-tree/)](https://leetcode.com/problems/check-completeness-of-a-binary-tree/) and leetcode's [January LeetCoding Challenge](https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/583/week-5-january-29th-january-31st/3621/) with `cpp`.
 
 <!-- more -->
 
