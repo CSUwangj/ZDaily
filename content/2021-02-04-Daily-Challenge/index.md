@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Throne Inheritance](https://leetcode.com/problems/throne-inheritance/) and leetcode's [January LeetCoding Challenge](https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/583/week-5-january-29th-january-31st/3623/) with `cpp`.
+Today I have done [Throne Inheritance](https://leetcode.com/problems/throne-inheritance/) and leetcode's [February LeetCoding Challenge](https://leetcode.com/explore/featured/card/february-leetcoding-challenge-2021/584/week-1-february-1st-february-7th/3628/) with `cpp`.
 
 <!-- more -->
 

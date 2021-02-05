@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Count All Possible Route](https://leetcode.com/problems/count-all-possible-routes/) and leetcode's [January LeetCoding Challenge](https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/583/week-5-january-29th-january-31st/3622/) with `cpp`.
+Today I have done [Count All Possible Route](https://leetcode.com/problems/count-all-possible-routes/) and leetcode's [February LeetCoding Challenge](https://leetcode.com/explore/featured/card/february-leetcoding-challenge-2021/584/week-1-february-1st-february-7th/3626/) with `cpp`.
 
 <!-- more -->
 
