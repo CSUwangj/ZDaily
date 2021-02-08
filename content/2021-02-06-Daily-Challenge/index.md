@@ -19,7 +19,7 @@ BTW, I participated in Biweekly Contest 45.
 
 <!-- more -->
 
-# String Compression
+# Wildcard Matching
 
 ## Description
 
