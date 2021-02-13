@@ -2,7 +2,7 @@
 title = "2021-02-13 Daily-Challenge"
 path = "2021-02-13-Daily-Challenge"
 date = 2021-02-13 22:20:59+08:00
-updated = 2021-02-13 22:40:53+08:00
+updated = 2021-02-13 23:29:14+08:00
 in_search_index = true
 
 [taxonomies]
@@ -16,6 +16,58 @@ Today I have done [Find K Pairs with Smallest Sums](https://leetcode.com/problem
 Ops, today is Saturday, I need to review the challenge.
 
 <!-- more -->
+
+# LeetCode Review
+
+## Merge In Between Linked Lists
+
+too easy to review
+
+## Random Point in Non-overlapping Rectangles
+
+too easy to review
+
+## Rotate Image
+
+already done a good work
+
+## Find and Replace Pattern
+
+already done a good work
+
+## Peeking Iterator
+
+with cache
+
+``` cpp
+class PeekingIterator : public Iterator {
+    int num;
+    bool has;
+public:
+	PeekingIterator(const vector<int>& nums) : Iterator(nums) {
+        has = Iterator::hasNext();
+        if(has) num = Iterator::next();
+    }
+	
+    // Returns the next element in the iteration without advancing the iterator.
+	int peek() {
+        return num;
+	}
+	
+	// hasNext() and next() should behave the same as in the Iterator interface.
+	// Override them if needed.
+	int next() {
+        int cur = num;
+        has = Iterator::hasNext();
+        if(has) num = Iterator::next();
+        return cur;
+	}
+	
+    bool hasNext() const {
+        return has;
+    }
+};
+```
 
 # Find K Pairs with Smallest Sums
 
