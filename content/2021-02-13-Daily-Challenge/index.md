@@ -2,7 +2,7 @@
 title = "2021-02-13 Daily-Challenge"
 path = "2021-02-13-Daily-Challenge"
 date = 2021-02-13 22:20:59+08:00
-updated = 2021-02-13 23:29:14+08:00
+updated = 2021-02-13 23:40:04+08:00
 in_search_index = true
 
 [taxonomies]
@@ -65,6 +65,48 @@ public:
 	
     bool hasNext() const {
         return has;
+    }
+};
+```
+
+## Convert BST to Greater Tree
+
+already done a good work
+
+## Copy List with Random Pointer
+
+already reviewed several times
+
+## Valid Anagram
+
+if I need to count unicode, I'd use unordered_map$$
+
+``` cpp
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        vector<int> sc(26);
+        vector<int> tc(26);
+        for(auto c : s) sc[c - 'a'] += 1;
+        for(auto c : t) tc[c - 'a'] += 1;
+        return sc == tc;
+    }
+};
+```
+
+## Number of Steps to Reduce a Number to Zero
+
+``` cpp
+class Solution {
+public:
+    int numberOfSteps (int num) {
+        int answer = 0;
+        while(num) {
+            if(num & 1) num -= 1;
+            else num >>= 1;
+            answer += 1;
+        }
+        return answer;
     }
 };
 ```
