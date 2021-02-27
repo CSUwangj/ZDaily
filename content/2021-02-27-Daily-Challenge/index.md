@@ -2,7 +2,7 @@
 title = "2021-02-27 Daily-Challenge"
 path = "2021-02-27-Daily-Challenge"
 date = 2021-02-27 22:44:36+08:00
-updated = 2021-02-27 22:50:53+08:00
+updated = 2021-02-28 01:02:59+08:00
 in_search_index = true
 
 [taxonomies]
@@ -18,6 +18,101 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 
 # LeetCode Review
 
+## Longest Word in Dictionary through Deleting
+
+``` cpp
+class Solution {
+    bool isSubsequence(string &s, string &d) {
+        int pos = 0;
+        int len = d.length();
+        for(auto c : s) {
+            if(pos == len) break;
+            if(c == d[pos]) pos += 1;
+        }
+        return pos == len;
+    }
+public:
+    string findLongestWord(string s, vector<string>& d) {
+        string answer;
+        for(auto &d : d) {
+            if(d.length() < answer.length() || (d.length() == answer.length() && d >= answer)) continue;
+            if(isSubsequence(s, d)) answer = d;
+        }
+        return answer;
+    }
+};
+```
+
+## Search a 2D Matrix II
+
+``` cpp
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int rows = matrix.size();
+        int cols = matrix.front().size();
+        int row = 0;
+        int col = cols - 1;
+        while(row < rows && col >= 0) {
+            if(matrix[row][col] == target) return true;
+            if(matrix[row][col] > target) {
+                col -= 1;
+            } else {
+                row += 1;
+            }
+        }
+        return false;
+    }
+};
+```
+
+## Score of Parentheses
+
+``` cpp
+class Solution {
+public:
+    int scoreOfParentheses(string S) {
+        int answer = 0;
+        int count = 0;
+        char last = 0;
+        for(auto c : S) {
+            if(c == '(') {
+                count += 1;
+            } else {
+                count -= 1;
+                if(last == '(') answer += (1 << count);
+            }
+            last = c;
+        }
+        return answer;
+    }
+};
+```
+
+## Shortest Unsorted Continuous Subarray
+
+this solution can't be too clean
+
+## Validate Stack Sequences
+
+``` cpp
+class Solution {
+public:
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        int pos = 0;
+        int len = pushed.size();
+        vector<int> st;
+        for(auto i : pushed) {
+            st.push_back(i);
+            while(st.size() && st.back() == popped[pos]) {
+                st.pop_back();
+                pos += 1;
+            }
+        }
+        return st.size() == 0;
+    }
+};
+```
 
 # February LeetCoding Challenge27
 
