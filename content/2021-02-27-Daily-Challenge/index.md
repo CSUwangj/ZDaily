@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today is Sunday, I gonna review the tasks I've done this week, and finish today's leetcode's [February LeetCoding Challenge](https://leetcode.com/explore/challenge/card/february-leetcoding-challenge-2021/587/week-4-february-22nd-february-28th/3654/) with `cpp`.
+Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's [February LeetCoding Challenge](https://leetcode.com/explore/challenge/card/february-leetcoding-challenge-2021/587/week-4-february-22nd-february-28th/3654/) with `cpp`.
 
 
 <!-- more -->
@@ -168,6 +168,8 @@ Output: 1
 
 - $-2^{31} \le dividend, divisor \le 2^{31} - 1$
 - `divisor != 0`
+
+## Solution
 
 ``` cpp
 class Solution {
