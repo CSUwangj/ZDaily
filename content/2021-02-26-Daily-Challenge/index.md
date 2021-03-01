@@ -70,6 +70,8 @@ Output: 3
 - $0 \le bricks \le 10^9$
 - `0 <= ladders <= heights.length`
 
+## Solution
+
 ``` cpp
 class Solution {
 public:
@@ -146,6 +148,8 @@ Explanation: 1 cannot be popped before 2.
 - `0 <= pushed[i], popped[i] < 1000`
 - `pushed` is a permutation of `popped`.
 - `pushed` and `popped` have distinct values.
+
+## Solution
 
 ``` cpp
 class Solution {
