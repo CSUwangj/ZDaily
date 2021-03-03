@@ -11,8 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Accounts Merge
-](https://leetcode.com/problems/accounts-merge/) and leetcode's [March LeetCoding Challenge](https://leetcode.com/explore/featured/card/march-leetcoding-challenge-2021/588/week-1-march-1st-march-7th/3658/) with `cpp`.
+Today I have done [Accounts Merge](https://leetcode.com/problems/accounts-merge/) and leetcode's [March LeetCoding Challenge](https://leetcode.com/explore/featured/card/march-leetcoding-challenge-2021/588/week-1-march-1st-march-7th/3658/) with `cpp`.
 
 <!-- more -->
 
