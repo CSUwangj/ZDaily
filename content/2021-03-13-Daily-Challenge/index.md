@@ -2,7 +2,7 @@
 title = "2021-03-13 Daily-Challenge"
 path = "2021-03-13-Daily-Challenge"
 date = 2021-03-13 15:12:45+08:00
-updated = 2021-03-13 23:36:41+08:00
+updated = 2021-03-14 02:01:41+08:00
 in_search_index = true
 
 [taxonomies]
@@ -216,6 +216,119 @@ public:
 // Status: Accepted
 // Runtime: 188 ms
 // Memory Usage: 46.8 MB
+```
+
+reuse unordered_set
+
+``` cpp
+using Position = pair<char, char>;
+
+constexpr Position position(int pos) {
+  return make_pair(pos / 20, pos % 20);
+}
+
+constexpr int calPos(int row, int col) {
+  return row * 20 + col;
+}
+
+const int moves[4][2] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+class Solution {
+  int rows;
+  int cols;
+  vector<vector<char>> grid;
+  unordered_set<int> vis;
+  queue<int> q;
+  
+  vector<int> checkMap(int boxR, int boxC, int playerR, int playerC) {
+    vis.clear();
+    q.push(calPos(playerR, playerC));
+    vis.insert(calPos(playerR, playerC));
+    int boxPos = calPos(boxR, boxC);
+    vector<int> pushes;
+    while(!q.empty()) {
+      auto [row, col] = position(q.front());
+      q.pop();
+      int diffRow = boxR - row;
+      int diffCol = boxC - col;
+      if(diffRow == 0 && abs(diffCol) == 1 && boxC + diffCol >= 0 && boxC + diffCol < cols && grid[boxR][boxC + diffCol] != '#') {
+        pushes.push_back(diffCol);
+      }
+      if(diffCol == 0 && abs(diffRow) == 1 && boxR + diffRow >= 0 && boxR + diffRow < rows && grid[boxR + diffRow][boxC] != '#') {
+        pushes.push_back(diffRow * 20);
+      }
+      for(int i = 0; i < 4; ++i) {
+        int newRow = row + moves[i][0];
+        int newCol = col + moves[i][1];
+        if(newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols || grid[newRow][newCol] == '#') continue;
+        int newPos = calPos(newRow, newCol);
+        if(vis.count(newPos) || newPos == boxPos) continue;
+        vis.insert(newPos);
+        q.push(newPos);
+      }
+    }
+    return pushes;
+  }
+  
+  constexpr int applyPush(int state, int push) const {
+    int boxPos = state / 400;
+    int newBoxPos = boxPos + push;
+    return newBoxPos * 400 + boxPos;
+  }
+public:
+  int minPushBox(vector<vector<char>>& grid) {
+    rows = grid.size();
+    cols = grid.front().size();
+    unordered_map<int, int> pushes;
+    this->grid = grid;
+    
+    int initState = 0;
+    int targetR = 0;
+    int targetC = 0;
+    for(int i = 0; i < rows; ++i) {
+      for(int j = 0; j < cols; ++j) {
+        if(grid[i][j] == 'T') {
+          targetR = i;
+          targetC = j;
+          grid[i][j] = '.';
+        } else if(grid[i][j] == 'B') {
+          initState += i * 8000 + j * 400;
+          grid[i][j] = '.';
+        } else if(grid[i][j] == 'S') {
+          initState += i * 20 + j;
+          grid[i][j] = '.';
+        }
+      }
+    }
+    queue<int> q;
+    q.push(initState);
+    pushes[initState] = 0;
+    
+    while(!q.empty()) {
+      int state = q.front();
+      int boxR = state / 8000;
+      int boxC = state / 400 % 20;
+      int playerR = state / 20 % 20;
+      int playerC = state % 20;
+      // cout << int(boxR) << ' ' << int(boxC) << ' ' << int(playerR) << ' ' << int(playerC) << endl;
+      q.pop();
+      if(boxR == targetR && boxC == targetC) return pushes[state];
+      auto validPushes = checkMap(boxR, boxC, playerR, playerC);
+      for(auto validPush : validPushes) {
+        int newState = applyPush(state, validPush);
+        if(pushes.count(newState)) continue;
+        pushes[newState] = pushes[state] + 1;
+        q.push(newState);
+      }
+    }
+    return -1;
+  }
+};
+
+// 18 / 18 test cases passed.
+// Status: Accepted
+// Runtime: 176 ms
+// Memory Usage: 30.1 MB
 ```
 
 maybe I need to run some profile to get reason...
