@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Guess Number Higher or Lower](https://leetcode.com/problems/add-to-array-form-of-integer/) and leetcode's [March LeetCoding Challenge](https://leetcode.com/explore/featured/card/march-leetcoding-challenge-2021/588/week-1-march-1st-march-7th/3657/) with `cpp`.
+Today I have done [Guess Number Higher or Lower](https://leetcode.com/problems/guess-number-higher-or-lower/) and leetcode's [March LeetCoding Challenge](https://leetcode.com/explore/challenge/card/march-leetcoding-challenge-2021/589/week-2-march-8th-march-14th/3667/) with `cpp`.
 
 <!-- more -->
 
