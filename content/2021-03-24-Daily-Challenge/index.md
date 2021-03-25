@@ -61,9 +61,9 @@ Output: 0
 
 ## Solution
 
-$reverse(INT\_MIN) < INT\_MIN$
+`reverse(INT_MIN) < INT_MIN`
 
-$reverse(INT\_MAX) > INT\_MAX$
+`reverse(INT_MAX) > INT_MAX`
 
 ``` cpp
 template <class T>
@@ -120,6 +120,8 @@ Output: [24,32,8,12]
 1. `1 <= A.length = B.length <= 10000`
 2. $0 \le A[i] \le 10^9$
 3. $0 \le B[i] \le 10^9$
+
+## Solution
 
 ``` cpp
 class Solution {
