@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Minimum Number of Refueling Stops](https://leetcode.com/problems/minimum-number-of-refueling-stops/) and leetcode's [March LeetCoding Challenge](https://leetcode.com/explore/challenge/card/march-leetcoding-challenge-2021/591/week-4-march-22nd-march-28th/3684/) with `cpp`.
+Today I have done [Minimum Number of Refueling Stops](https://leetcode.com/problems/minimum-number-of-refueling-stops/) and leetcode's [March LeetCoding Challenge](https://leetcode.com/explore/challenge/card/march-leetcoding-challenge-2021/591/week-4-march-22nd-march-28th/3685/) with `cpp`.
 
 <!-- more -->
 
