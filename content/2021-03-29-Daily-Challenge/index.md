@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Search Suggestions System](https://leetcode.com/problems/search-suggestions-system//) and leetcode's [March LeetCoding Challenge](https://leetcode.com/explore/challenge/card/march-leetcoding-challenge-2021/592/week-5-march-29th-march-31st/3689/) with `cpp`.
+Today I have done [Search Suggestions System](https://leetcode.com/problems/search-suggestions-system/) and leetcode's [March LeetCoding Challenge](https://leetcode.com/explore/challenge/card/march-leetcoding-challenge-2021/592/week-5-march-29th-march-31st/3689/) with `cpp`.
 
 <!-- more -->
 
