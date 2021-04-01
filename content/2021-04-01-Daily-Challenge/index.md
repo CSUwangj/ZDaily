@@ -2,7 +2,7 @@
 title = "2021-04-01 Daily-Challenge"
 path = "2021-04-01-Daily-Challenge"
 date = 2021-04-01 16:52:45+08:00
-updated = 2021-04-01 20:43:13+08:00
+updated = 2021-04-02 02:48:39+08:00
 in_search_index = true
 
 [taxonomies]
@@ -242,17 +242,11 @@ Output: false
 
 ## Solution
 
+I found previous solution is wrong before I go to sleep, what a ...
+
+reverse half of the list
+
 ``` cpp
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
   int length(ListNode *head) {
     int len = 0;
@@ -262,21 +256,23 @@ class Solution {
     }
     return len;
   }
-  int count[10] = {0};
 public:
   bool isPalindrome(ListNode* head) {
     int len = length(head);
+    ListNode *newHead = nullptr;
+    ListNode *cur = head;
+    ListNode *prev = nullptr;
     for(int i = 0; i < len / 2; ++i) {
-      count[head->val] += 1;
-      head = head->next;
+      prev = cur;
+      cur = cur->next;
+      prev->next = newHead;
+      newHead = prev;
     }
-    if(len & 1) head = head->next;
+    if(len & 1) cur = cur->next;
     for(int i = 0; i < len / 2; ++i) {
-      count[head->val] -= 1;
-      head = head->next;
-    }
-    for(int i = 0; i < 10; ++i) {
-      if(count[i]) return false;
+      if(cur->val != newHead->val) return false;
+      cur = cur->next;
+      newHead = newHead->next;
     }
     return true;
   }
