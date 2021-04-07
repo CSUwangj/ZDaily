@@ -15,7 +15,7 @@ Today I have done [Surrounded Regions](https://leetcode.com/problems/surrounded-
 
 <!-- more -->
 
-# Number of Students Unable to Eat Lunch
+# Surrounded Regions
 
 ## Description
 
