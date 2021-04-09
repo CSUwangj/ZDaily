@@ -151,7 +151,6 @@ public:
 with raw arrays
 
 ``` cpp
-
 class Solution {
 public:
   int maxEqualFreq(vector<int>& nums) {
