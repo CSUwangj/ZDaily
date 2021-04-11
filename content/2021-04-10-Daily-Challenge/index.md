@@ -13,10 +13,6 @@ archives = [ "archive",]
 
 Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's [April LeetCoding Challenge](https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/594/week-2-april-8th-april-14th/3703/) with `cpp`.
 
-I was busy moving today, hope this post could come soon.
-
-I'm glad to announce that I've done it.
-
 <!-- more -->
 
 # LeetCode Review
