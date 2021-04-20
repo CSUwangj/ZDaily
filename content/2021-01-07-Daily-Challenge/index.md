@@ -19,8 +19,8 @@ Today I have done [Customers Who Never Order](https://leetcode.com/problems/cust
 
 ## Description
 
-<details><summary>SQL Schema</summary><pre><code>
-Create table If Not Exists Customers (Id int, Name varchar(255))
+<details><summary>SQL Schema</summary>
+<pre style="background-color:#2b303b;"><code><span style="color:#c0c5ce;">Create table If Not Exists Customers (Id int, Name varchar(255))
 Create table If Not Exists Orders (Id int, CustomerId int)
 Truncate table Customers
 insert into Customers (Id, Name) values ('1', 'Joe')
@@ -30,7 +30,7 @@ insert into Customers (Id, Name) values ('4', 'Max')
 Truncate table Orders
 insert into Orders (Id, CustomerId) values ('1', '3')
 insert into Orders (Id, CustomerId) values ('2', '1')
-</code></pre>
+</span></code></pre>
 </details>
 
 Suppose that a website contains two tables, the `Customers` table and the `Orders` table. Write a SQL query to find all customers who never order anything.
