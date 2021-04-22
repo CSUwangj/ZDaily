@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Count Items Matching a Rule](https://leetcode.com/problems/count-items-matching-a-rule/)  and leetcode's [April LeetCoding Challenge](https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/595/week-3-april-15th-april-21st/3714/) with `cpp`.
+Today I have done [Count Items Matching a Rule](https://leetcode.com/problems/count-items-matching-a-rule/)  and leetcode's [April LeetCoding Challenge](https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/595/week-3-april-15th-april-21st/3715/) with `cpp`.
 
 <!-- more -->
 
