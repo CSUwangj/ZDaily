@@ -17,6 +17,8 @@ Today is Sunday, I've already finished review, so I just do today's leetcode's [
 
 # December LeetCoding Challenge6
 
+## Description
+
 **Populating Next Right Pointers in Each Node II**
 
 ## Description

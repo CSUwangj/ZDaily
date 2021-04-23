@@ -157,6 +157,8 @@ public:
 
 # January LeetCoding Challenge21
 
+## Description
+
 **Find the Most Competitive Subsequence**
 
 ## Description

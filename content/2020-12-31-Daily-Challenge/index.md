@@ -106,6 +106,8 @@ public:
 
 # December LeetCoding Challenge31
 
+## Description
+
 **Largest Rectangle in Histogram**
 
 ## Description

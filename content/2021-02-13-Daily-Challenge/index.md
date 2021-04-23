@@ -171,6 +171,8 @@ public:
 
 # February LeetCoding Challenge13
 
+## Description
+
 **Shortest Path in Binary Matrix**
 
 ## Description

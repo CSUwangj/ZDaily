@@ -311,6 +311,8 @@ public:
 
 # November LeetCoding Challenge28
 
+## Description
+
 **Sliding Window Maximum**
 
 ## Description

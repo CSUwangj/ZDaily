@@ -74,6 +74,8 @@ public:
 
 # February LeetCoding Challenge24
 
+## Description
+
 **Score of Parentheses**
 
 ## Description

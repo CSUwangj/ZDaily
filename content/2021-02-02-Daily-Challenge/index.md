@@ -141,6 +141,8 @@ public:
 
 # February LeetCoding Challenge2
 
+## Description
+
 **Trim a Binary Search Tree**
 
 ## Description

@@ -142,6 +142,8 @@ public:
 
 # January LeetCoding Challenge1
 
+## Description
+
 **Check Array Formation Through Concatenation**
 
 ## Description

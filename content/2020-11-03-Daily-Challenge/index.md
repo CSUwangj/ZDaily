@@ -81,6 +81,8 @@ public:
 
 # November LeetCoding Challenge3
 
+## Description
+
 **Consecutive Characters**
 
 ## Description

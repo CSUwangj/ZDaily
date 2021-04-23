@@ -103,6 +103,8 @@ public:
 
 # October LeetCoding Challenge27
 
+## Description
+
 **Linked List Cycle II**
 
 ## Description

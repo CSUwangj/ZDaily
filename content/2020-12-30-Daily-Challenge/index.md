@@ -62,6 +62,8 @@ public:
 
 # December LeetCoding Challenge30
 
+## Description
+
 **Game of Life**
 
 ## Description

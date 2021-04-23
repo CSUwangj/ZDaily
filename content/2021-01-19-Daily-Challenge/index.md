@@ -104,6 +104,8 @@ public:
 
 # January LeetCoding Challenge19
 
+## Description
+
 **Longest Palindromic Substring**
 
 ## Description

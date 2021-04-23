@@ -91,6 +91,8 @@ public:
 
 # November LeetCoding Challenge23
 
+## Description
+
 **House Robber III**
 
 ## Description

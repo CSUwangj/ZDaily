@@ -74,6 +74,8 @@ public:
 
 # October LeetCoding Challenge28
 
+## Description
+
 **Summary Ranges**
 
 ## Description

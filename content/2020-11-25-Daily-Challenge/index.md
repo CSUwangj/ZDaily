@@ -77,6 +77,8 @@ public:
 
 # November LeetCoding Challenge25
 
+## Description
+
 **Smallest Integer Divisible by K**
 
 ## Description

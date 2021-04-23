@@ -74,6 +74,8 @@ public:
 
 # December LeetCoding Challenge11
 
+## Description
+
 **Remove Duplicates from Sorted Array II**
 
 ## Description

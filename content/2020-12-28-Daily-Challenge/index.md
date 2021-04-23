@@ -79,6 +79,8 @@ public:
 
 # December LeetCoding Challenge28
 
+## Description
+
 **Reach a Number**
 
 ## Description

@@ -94,6 +94,8 @@ public:
 
 # April LeetCoding challenge6
 
+## Description
+
 **Minimum Operations to Make Array Equal**
 
 In one operation, you can select two indices `x` and `y` where `0 <= x, y < n` and subtract `1` from `arr[x]` and add `1` to `arr[y]` (i.e. perform `arr[x] -=1 `and `arr[y] += 1`). The goal is to make all the elements of the array **equal**. It is **guaranteed** that all the elements of the array can be made equal using some operations.

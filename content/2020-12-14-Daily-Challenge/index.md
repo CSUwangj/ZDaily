@@ -77,6 +77,8 @@ public:
 
 # December LeetCoding Challenge14
 
+## Description
+
 **Palindrome Partitioning**
 
 ## Description

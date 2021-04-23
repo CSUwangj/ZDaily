@@ -86,6 +86,8 @@ public:
 
 # March LeetCoding challenge31
 
+## Description
+
 **Stamping The Sequence**
 
 You want to form a `target` string of **lowercase letters**.

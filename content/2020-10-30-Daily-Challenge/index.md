@@ -87,6 +87,8 @@ public:
 
 # October LeetCoding Challenge30
 
+## Description
+
 **Number of Longest Increasing Subsequence**
 
 ## Description

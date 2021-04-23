@@ -64,6 +64,8 @@ public:
 
 # November LeetCoding Challenge26
 
+## Description
+
 **Longest Substring with At Least K Repeating Characters**
 
 ## Description

@@ -84,6 +84,8 @@ public:
 
 # October LeetCoding Challenge23
 
+## Description
+
 **132 Pattern**
 
 ## Description

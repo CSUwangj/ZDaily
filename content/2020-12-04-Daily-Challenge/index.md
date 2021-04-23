@@ -175,6 +175,8 @@ public:
 
 # December LeetCoding Challenge4
 
+## Description
+
 **The kth Factor of n**
 
 ## Description

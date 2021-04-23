@@ -135,6 +135,8 @@ public:
 
 # January LeetCoding Challenge22
 
+## Description
+
 **Find the Most Competitive Subsequence**
 
 ## Description

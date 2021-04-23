@@ -265,6 +265,8 @@ public:
 
 # January LeetCoding Challenge28
 
+## Description
+
 **Smallest String With A Given Numeric Value**
 
 ## Description

@@ -112,6 +112,8 @@ public:
 
 # December LeetCoding Challenge22
 
+## Description
+
 **Balanced Binary Tree**
 
 ## Description

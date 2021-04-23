@@ -130,6 +130,8 @@ END {
 
 # December LeetCoding Challenge18
 
+## Description
+
 **Increasing Triplet Subsequence**
 
 ## Description

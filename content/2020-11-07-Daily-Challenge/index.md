@@ -237,6 +237,8 @@ public:
 
 # November LeetCoding Challenge7
 
+## Description
+
 **Add Two Numbers II**
 
 ## Description

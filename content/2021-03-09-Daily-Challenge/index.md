@@ -217,6 +217,8 @@ public:
 
 # March LeetCoding Challenge9
 
+## Description
+
 **Remove Palindromic Subsequences**
 
 ## Description

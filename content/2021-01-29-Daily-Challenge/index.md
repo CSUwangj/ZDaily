@@ -272,6 +272,8 @@ public:
 
 # January LeetCoding Challenge29
 
+## Description
+
 **Vertical Order Traversal of a Binary Tree**
 
 ## Description

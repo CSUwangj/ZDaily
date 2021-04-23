@@ -60,6 +60,8 @@ public:
 
 # October LeetCoding Challenge29
 
+## Description
+
 **Maximize Distance to Closest Person**
 
 ## Description

@@ -74,6 +74,8 @@ public:
 
 # December LeetCoding Challenge15
 
+## Description
+
 **Squares of a Sorted Array**
 
 ## Description

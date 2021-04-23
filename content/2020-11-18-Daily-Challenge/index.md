@@ -66,6 +66,8 @@ public:
 
 # November LeetCoding Challenge18
 
+## Description
+
 **Merge Intervals**
 
 ## Description

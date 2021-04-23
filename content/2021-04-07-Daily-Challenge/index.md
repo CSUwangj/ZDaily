@@ -84,6 +84,8 @@ public:
 
 # April LeetCoding challenge7
 
+## Description
+
 **Determine if String Halves Are Alike**
 
 You are given a string `s` of even length. Split this string into two halves of equal lengths, and let `a` be the first half and `b` be the second half.

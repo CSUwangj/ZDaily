@@ -76,6 +76,8 @@ public:
 
 # October LeetCoding Challenge26
 
+## Description
+
 **Champagne Tower**
 
 ## Description

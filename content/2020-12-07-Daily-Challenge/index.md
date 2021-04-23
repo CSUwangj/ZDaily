@@ -99,6 +99,8 @@ public:
 
 # December LeetCoding Challenge7
 
+## Description
+
 **Spiral Matrix II**
 
 ## Description

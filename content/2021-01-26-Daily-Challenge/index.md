@@ -272,6 +272,8 @@ public:
 
 # January LeetCoding Challenge26
 
+## Description
+
 **Path With Minimum Effort**
 
 ## Description

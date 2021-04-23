@@ -194,6 +194,8 @@ public:
 
 # January LeetCoding Challenge14
 
+## Description
+
 **Minimum Operations to Reduce X to Zero**
 
 ## Description

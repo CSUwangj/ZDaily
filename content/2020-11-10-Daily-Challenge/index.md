@@ -133,6 +133,8 @@ public:
 
 # November LeetCoding Challenge10
 
+## Description
+
 **Flipping an Image**
 
 ## Description

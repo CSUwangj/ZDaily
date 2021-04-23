@@ -172,6 +172,8 @@ public:
 
 # January LeetCoding Challenge27
 
+## Description
+
 **Concatenation of Consecutive Binary Numbers**
 
 ## Description

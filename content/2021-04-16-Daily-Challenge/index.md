@@ -119,6 +119,8 @@ public:
 
 # April LeetCoding challenge16
 
+## Description
+
 **Remove All Adjacent Duplicates in String II**
 
 Given a string `s`, a *k* *duplicate removal* consists of choosing `k` adjacent and equal letters from `s` and removing them causing the left and the right side of the deleted substring to concatenate together.

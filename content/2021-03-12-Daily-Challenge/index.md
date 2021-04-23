@@ -129,6 +129,8 @@ public:
 
 # March LeetCoding Challenge12
 
+## Description
+
 **Check If a String Contains All Binary Codes of Size K**
 
 ## Description

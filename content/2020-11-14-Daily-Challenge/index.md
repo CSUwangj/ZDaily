@@ -192,6 +192,8 @@ public:
 
 # November LeetCoding Challenge14
 
+## Description
+
 **Poor Pigs**
 
 ## Description

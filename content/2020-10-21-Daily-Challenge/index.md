@@ -146,6 +146,8 @@ public:
 
 # October LeetCoding Challenge21
 
+## Description
+
 **Asteroid Collision**
 
 ## Description

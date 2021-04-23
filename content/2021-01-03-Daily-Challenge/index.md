@@ -17,6 +17,8 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 
 # January LeetCoding Challenge3
 
+## Description
+
 **Beautiful Arrangement**
 
 ## Description

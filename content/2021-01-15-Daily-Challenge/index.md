@@ -195,6 +195,8 @@ public:
 
 # January LeetCoding Challenge15
 
+## Description
+
 **Get Maximum in Generated Array**
 
 ## Description

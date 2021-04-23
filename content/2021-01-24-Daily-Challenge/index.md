@@ -19,6 +19,8 @@ BTW, I participated in Weekly Contest 225.
 
 # January LeetCoding Challenge24
 
+## Description
+
 **Merge k Sorted Lists**
 
 ## Description

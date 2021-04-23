@@ -115,6 +115,8 @@ public:
 
 # October LeetCoding Challenge22
 
+## Description
+
 **Minimum Depth of Binary Tree**
 
 ## Description

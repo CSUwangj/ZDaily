@@ -85,6 +85,8 @@ public:
 
 # November LeetCoding Challenge4
 
+## Description
+
 **Minimum Height Trees**
 
 ## Description

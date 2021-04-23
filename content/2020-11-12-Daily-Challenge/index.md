@@ -71,6 +71,8 @@ public:
 
 # November LeetCoding Challenge12
 
+## Description
+
 **Permutations II**
 
 ## Description

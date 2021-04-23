@@ -102,6 +102,8 @@ public:
 
 # March LeetCoding challenge26
 
+## Description
+
 **Word Subsets**
 
 We are given two arrays `A` and `B` of words. Each word is a string of lowercase letters.

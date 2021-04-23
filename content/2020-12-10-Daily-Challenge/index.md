@@ -100,6 +100,8 @@ public:
 
 # December LeetCoding Challenge10
 
+## Description
+
 **Valid Mountain Array**
 
 ## Description

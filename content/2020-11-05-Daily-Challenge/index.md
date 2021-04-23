@@ -102,6 +102,8 @@ public:
 
 # November LeetCoding Challenge5
 
+## Description
+
 **Minimum Cost to Move Chips to The Same Position**
 
 ## Description

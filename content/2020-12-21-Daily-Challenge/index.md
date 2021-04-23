@@ -163,6 +163,8 @@ public:
 
 # December LeetCoding Challenge21
 
+## Description
+
 **Smallest Range II**
 
 ## Description

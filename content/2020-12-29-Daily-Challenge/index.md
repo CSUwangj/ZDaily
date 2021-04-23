@@ -95,6 +95,8 @@ public:
 
 # December LeetCoding Challenge29
 
+## Description
+
 **Reach a Number**
 
 ## Description

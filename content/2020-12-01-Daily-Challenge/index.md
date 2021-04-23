@@ -202,6 +202,8 @@ public:
 
 # December LeetCoding Challenge1
 
+## Description
+
 **Maximum Depth of Binary Tree**
 
 ## Description

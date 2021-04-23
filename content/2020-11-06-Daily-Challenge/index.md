@@ -86,6 +86,8 @@ public:
 
 # November LeetCoding Challenge6
 
+## Description
+
 **Find the Smallest Divisor Given a Threshold**
 
 ## Description

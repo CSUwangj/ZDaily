@@ -127,6 +127,8 @@ public:
 
 # November LeetCoding Challenge9
 
+## Description
+
 **Maximum Difference Between Node and Ancestor**
 
 ## Description

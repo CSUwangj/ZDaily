@@ -237,6 +237,8 @@ too easy to review
 
 # March LeetCoding Challenge6
 
+## Description
+
 **Short Encoding of Words**
 
 ## Description

@@ -40,6 +40,8 @@ public:
 
 # December LeetCoding Challenge13
 
+## Description
+
 **Burst Balloons**
 
 ## Description

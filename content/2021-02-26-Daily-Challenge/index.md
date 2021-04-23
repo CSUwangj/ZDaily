@@ -114,6 +114,8 @@ public:
 
 # February LeetCoding Challenge26
 
+## Description
+
 **Validate Stack Sequences**
 
 ## Description

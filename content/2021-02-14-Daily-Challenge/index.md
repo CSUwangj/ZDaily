@@ -50,6 +50,8 @@ public:
 
 # February LeetCoding Challenge14
 
+## Description
+
 **Is Graph Bipartite?**
 
 ## Description

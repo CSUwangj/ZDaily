@@ -149,6 +149,8 @@ public:
 
 # December LeetCoding Challenge9
 
+## Description
+
 **Binary Search Tree Iterator**
 
 ## Description

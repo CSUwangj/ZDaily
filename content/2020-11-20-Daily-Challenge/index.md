@@ -147,6 +147,8 @@ public:
 
 # November LeetCoding Challenge20
 
+## Description
+
 **Search in Rotated Sorted Array II**
 
 ## Description

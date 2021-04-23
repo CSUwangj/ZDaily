@@ -91,6 +91,8 @@ public:
 
 # November LeetCoding Challenge30
 
+## Description
+
 **The Skyline Problem**
 
 ## Description

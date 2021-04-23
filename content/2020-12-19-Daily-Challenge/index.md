@@ -357,6 +357,8 @@ public:
 
 # December LeetCoding Challenge19
 
+## Description
+
 **Cherry Pickup II**
 
 ## Description

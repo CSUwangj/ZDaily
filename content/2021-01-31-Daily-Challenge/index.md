@@ -19,6 +19,8 @@ BTW, I participated in Weekly Contest 226.
 
 # January LeetCoding Challenge31
 
+## Description
+
 **Next Permutation**
 
 ## Description

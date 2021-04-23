@@ -127,6 +127,8 @@ public:
 
 # December LeetCoding Challenge23
 
+## Description
+
 **Next Greater Element III**
 
 ## Description

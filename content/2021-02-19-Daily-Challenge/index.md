@@ -17,6 +17,8 @@ Today I have done leetcode's [February LeetCoding Challenge](https://leetcode.co
 
 # February LeetCoding Challenge19
 
+## Description
+
 **Minimum Remove to Make Valid Parentheses**
 
 ## Description

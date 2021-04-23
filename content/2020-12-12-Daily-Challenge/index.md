@@ -319,6 +319,8 @@ already reviewed
 
 # December LeetCoding Challenge12
 
+## Description
+
 **Smallest Subtree with all the Deepest Nodes**
 
 ## Description

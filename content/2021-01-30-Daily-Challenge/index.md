@@ -438,6 +438,8 @@ public:
 
 # January LeetCoding Challenge30
 
+## Description
+
 **Minimize Deviation in Array**
 
 ## Description

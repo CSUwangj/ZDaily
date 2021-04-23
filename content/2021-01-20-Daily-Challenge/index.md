@@ -155,6 +155,8 @@ public:
 
 # January LeetCoding Challenge20
 
+## Description
+
 **Valid Parentheses**
 
 ## Description

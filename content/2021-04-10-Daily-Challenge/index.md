@@ -88,6 +88,8 @@ public:
 
 # April LeetCoding Challenge10
 
+## Description
+
 **Longest Increasing Path in a Matrix**
 
 ## Description

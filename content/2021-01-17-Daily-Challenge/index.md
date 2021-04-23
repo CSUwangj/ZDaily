@@ -56,6 +56,8 @@ public:
 
 # January LeetCoding Challenge17
 
+## Description
+
 **Count Sorted Vowel Strings**
 
 ## Description

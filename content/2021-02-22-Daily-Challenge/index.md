@@ -125,6 +125,8 @@ BTW if think backforward, problem is just a simple DP...
 
 # February LeetCoding Challenge22
 
+## Description
+
 **Longest Word in Dictionary through Deleting**
 
 ## Description

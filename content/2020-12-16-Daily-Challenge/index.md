@@ -78,6 +78,8 @@ public:
 
 # December LeetCoding Challenge16
 
+## Description
+
 **Validate Binary Search Tree**
 
 ## Description

@@ -93,6 +93,8 @@ public:
 
 # April LeetCoding challenge5
 
+## Description
+
 **Global and Local Inversions**
 
 We have some permutation `A` of `[0, 1, ..., N - 1]`, where `N` is the length of `A`.

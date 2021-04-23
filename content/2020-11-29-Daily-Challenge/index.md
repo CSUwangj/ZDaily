@@ -44,6 +44,8 @@ public:
 
 # November LeetCoding Challenge29
 
+## Description
+
 **Jump Game III**
 
 ## Description

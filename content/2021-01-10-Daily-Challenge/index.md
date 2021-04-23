@@ -67,6 +67,8 @@ public:
 
 # January LeetCoding Challenge10
 
+## Description
+
 **Create Sorted Array through Instructions**
 
 ## Description

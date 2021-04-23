@@ -260,6 +260,8 @@ WHERE Id NOT IN
 
 # January LeetCoding Challenge9
 
+## Description
+
 **Word Ladder**
 
 ## Description
