@@ -11,11 +11,11 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Number Complement](https://leetcode.com/problems/number-complement/description/) and leetcode's [April LeetCoding Challenge](https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/596/week-4-april-22nd-april-28th/3717/) with `cpp`.
+Today I have done [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) and leetcode's [April LeetCoding Challenge](https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/596/week-4-april-22nd-april-28th/3717/) with `cpp`.
 
 <!-- more -->
 
-# Number Complement
+# K Closest Points to Origin
 
 ## Description
 

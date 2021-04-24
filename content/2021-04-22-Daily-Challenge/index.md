@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Decode Ways](https://leetcode.com/problems/count-items-matching-a-rule/), [Decode Ways II](https://leetcode.com/problems/decode-ways-ii/) and leetcode's [April LeetCoding Challenge](https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/596/week-4-april-22nd-april-28th/3717/) with `cpp`.
+Today I have done [Decode Ways](https://leetcode.com/problems/decode-ways/), [Decode Ways II](https://leetcode.com/problems/decode-ways-ii/) and leetcode's [April LeetCoding Challenge](https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/596/week-4-april-22nd-april-28th/3717/) with `cpp`.
 
 <!-- more -->
 
