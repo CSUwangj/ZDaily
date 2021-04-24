@@ -21,8 +21,6 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 
 **Design HashMap**
 
-## Description
-
 Design a HashMap without using any built-in hash table libraries.
 
 To be specific, your design should include these functions:

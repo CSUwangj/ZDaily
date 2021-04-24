@@ -81,8 +81,6 @@ public:
 
 **Populating Next Right Pointers in Each Node**
 
-## Description
-
 You are given a **perfect binary tree** where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
 
 ```

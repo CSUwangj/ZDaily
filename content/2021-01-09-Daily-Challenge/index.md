@@ -264,8 +264,6 @@ WHERE Id NOT IN
 
 **Word Ladder**
 
-## Description
-
 Given two words `beginWord` and `endWord`, and a dictionary `wordList`, return *the length of the shortest transformation sequence from* `beginWord` *to* `endWord`, *such that*:
 
 - Only one letter can be changed at a time.

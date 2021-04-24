@@ -395,8 +395,6 @@ public:
 
 **Design Underground System**
 
-## Description
-
 Implement the `UndergroundSystem` class:
 
 - ```

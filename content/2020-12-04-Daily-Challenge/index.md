@@ -179,8 +179,6 @@ public:
 
 **The kth Factor of n**
 
-## Description
-
 Given two positive integers `n` and `k`.
 
 A factor of an integer `n` is defined as an integer `i` where `n % i == 0`.

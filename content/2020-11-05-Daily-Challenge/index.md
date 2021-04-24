@@ -106,8 +106,6 @@ public:
 
 **Minimum Cost to Move Chips to The Same Position**
 
-## Description
-
 We have `n` chips, where the position of the `ith` chip is `position[i]`.
 
 We need to move all the chips to **the same position**. In one step, we can change the position of the `ith` chip from `position[i]` to:

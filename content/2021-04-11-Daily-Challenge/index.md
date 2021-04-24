@@ -21,8 +21,6 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 
 **Deepest Leaves Sum**
 
-## Description
-
 Given the `root` of a binary tree, return *the sum of values of its deepest leaves*.
 
  

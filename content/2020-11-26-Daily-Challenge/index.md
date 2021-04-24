@@ -68,8 +68,6 @@ public:
 
 **Longest Substring with At Least K Repeating Characters**
 
-## Description
-
 Given a string `s` and an integer `k`, return *the length of the longest substring of* `s` *such that the frequency of each character in this substring is less than or equal to* `k`.
 
 **Example 1:**

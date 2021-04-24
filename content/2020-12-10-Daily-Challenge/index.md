@@ -104,8 +104,6 @@ public:
 
 **Valid Mountain Array**
 
-## Description
-
 Given an array of integers `arr`, return *`true` if and only if it is a valid mountain array*.
 
 Recall that arr is a mountain array if and only if:

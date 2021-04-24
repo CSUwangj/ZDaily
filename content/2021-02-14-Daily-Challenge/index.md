@@ -54,8 +54,6 @@ public:
 
 **Is Graph Bipartite?**
 
-## Description
-
 Given an undirected `graph`, return `true` if and only if it is bipartite.
 
 Recall that a graph is *bipartite* if we can split its set of nodes into two independent subsets A and B, such that every edge in the graph has one node in A and another node in B.

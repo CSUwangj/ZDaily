@@ -21,8 +21,6 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 
 **Remove Nth Node From End of List**
 
-## Description
-
 Given the `head` of a linked list, remove the <code>n<sup>th</sup></code> node from the end of the list and return its head.
 
 **Follow up:** Could you do this in one pass?

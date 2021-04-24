@@ -91,8 +91,6 @@ public:
 
 **Number of Longest Increasing Subsequence**
 
-## Description
-
 Given an integer array `nums`, return *the number of longest increasing subsequences.*
 
 **Example 1:**

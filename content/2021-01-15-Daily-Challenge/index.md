@@ -199,8 +199,6 @@ public:
 
 **Get Maximum in Generated Array**
 
-## Description
-
 You are given an integer `n`. An array `nums` of length `n + 1` is generated in the following way:
 
 - `nums[0] = 0`

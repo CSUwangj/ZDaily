@@ -133,8 +133,6 @@ public:
 
 **Check If a String Contains All Binary Codes of Size K**
 
-## Description
-
 Given a binary string `s` and an integer `k`.
 
 Return *True* if every binary code of length `k` is a substring of `s`. Otherwise, return *False*.

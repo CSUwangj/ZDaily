@@ -241,8 +241,6 @@ too easy to review
 
 **Short Encoding of Words**
 
-## Description
-
 A **valid encoding** of an array of `words` is any reference string `s` and array of indices `indices` such that:
 
 - `words.length == indices.length`

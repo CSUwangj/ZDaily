@@ -21,8 +21,6 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 
 **Beautiful Arrangement**
 
-## Description
-
 Suppose you have `n` integers from `1` to `n`. We define a beautiful arrangement as an array that is constructed by these `n` numbers successfully if one of the following is true for the `ith` position (`1 <= i <= n`) in this array:
 
 - The number at the `ith` position is divisible by `i`.

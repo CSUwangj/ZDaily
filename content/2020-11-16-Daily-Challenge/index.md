@@ -107,8 +107,6 @@ public:
 
 **Longest Mountain in Array**
 
-## Description
-
 Let's call any (contiguous) subarray B (of A) a *mountain* if the following properties hold:
 
 - `B.length >= 3`

@@ -72,8 +72,6 @@ public:
 
 **Insertion Sort List**
 
-## Description
-
 Sort a linked list using insertion sort.
 
 ![img](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif)

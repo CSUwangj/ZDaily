@@ -22,8 +22,6 @@ Today is Saturday, I gonna review the tasks I've done this week, and finish toda
 
 **Reconstruct Original Digits from English**
 
-## Description
-
 Given a **non-empty** string containing an out-of-order English representation of digits `0-9`, output the digits in ascending order.
 
 **Note:**

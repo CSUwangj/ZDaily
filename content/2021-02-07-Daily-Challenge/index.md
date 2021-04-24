@@ -23,8 +23,6 @@ BTW, I participated in Weekly Contest 227, but only get two problems done. If I 
 
 **Shortest Distance to a Character**
 
-## Description
-
 Given a string `s` and a character `c` that occurs in `s`, return *an array of integers `answer` where* `answer.length == s.length` *and* `answer[i]` *is the shortest distance from* `s[i]` *to the character* `c` *in* `s`.
 
  

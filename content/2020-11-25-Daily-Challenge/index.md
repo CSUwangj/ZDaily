@@ -81,8 +81,6 @@ public:
 
 **Smallest Integer Divisible by K**
 
-## Description
-
 Given a positive integer `K`, you need to find the **length** of the **smallest** positive integer `N` such that `N` is divisible by `K`, and `N` only contains the digit `1`.
 
 Return *the **length** of* `N`. If there is no such `N`, return -1.

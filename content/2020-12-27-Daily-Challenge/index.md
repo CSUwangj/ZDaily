@@ -62,8 +62,6 @@ public:
 
 **Jump Game IV**
 
-## Description
-
 Given an array of integers `arr`, you are initially positioned at the first index of the array.
 
 In one step you can jump from index `i` to index:

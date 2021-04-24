@@ -108,8 +108,6 @@ public:
 
 **Longest Palindromic Substring**
 
-## Description
-
 Given a string `s`, return *the longest palindromic substring* in `s`.
 
  

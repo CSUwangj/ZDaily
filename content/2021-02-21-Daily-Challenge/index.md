@@ -21,8 +21,6 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 
 **Broken Calculator**
 
-## Description
-
 On a broken calculator that has a number showing on its display, we can perform two operations:
 
 - **Double**: Multiply the number on the display by 2, or;

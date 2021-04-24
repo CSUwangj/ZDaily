@@ -276,8 +276,6 @@ public:
 
 **Vertical Order Traversal of a Binary Tree**
 
-## Description
-
 Given the `root` of a binary tree, calculate the **vertical order traversal** of the binary tree.
 
 For each node at position `(x, y)`, its left and right children will be at positions `(x - 1, y - 1)` and `(x + 1, y - 1)` respectively.

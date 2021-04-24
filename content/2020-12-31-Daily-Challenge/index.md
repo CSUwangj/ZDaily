@@ -110,8 +110,6 @@ public:
 
 **Largest Rectangle in Histogram**
 
-## Description
-
 Given *n* non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
 
 ![img](https://assets.leetcode.com/uploads/2018/10/12/histogram.png)

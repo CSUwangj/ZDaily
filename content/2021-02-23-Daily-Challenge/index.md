@@ -101,8 +101,6 @@ public:
 
 **Search a 2D Matrix II**
 
-## Description
-
 Write an efficient algorithm that searches for a `target` value in an `m x n` integer `matrix`. The `matrix` has the following properties:
 
 - Integers in each row are sorted in ascending from left to right.
