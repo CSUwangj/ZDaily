@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's [May LeetCoding Challenge](https://leetcode.com/explore/challenge/card/may-leetcoding-challenge-2021/599/week-2-may-8th-may-14th/3743/) with `cpp`.
+Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's [May LeetCoding Challenge](https://leetcode.com/explore/challenge/card/may-leetcoding-challenge-2021/599/week-2-may-8th-may-14th/3744/) with `cpp`.
 
 <!-- more -->
 
