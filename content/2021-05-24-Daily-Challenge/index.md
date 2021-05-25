@@ -104,7 +104,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge25
+# May LeetCoding Challenge24
 
 ## Description
 
