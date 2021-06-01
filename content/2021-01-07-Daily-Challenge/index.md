@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/), [Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/) and leetcode's [January LeetCoding Challenge](https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/579/week-1-january-1st-january-7th/3595/) with `cpp`.
+Today I have done [Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/) with `sql`, [Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/) and leetcode's [January LeetCoding Challenge](https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/579/week-1-january-1st-january-7th/3595/) with `cpp`.
 
 <!-- more -->
 
