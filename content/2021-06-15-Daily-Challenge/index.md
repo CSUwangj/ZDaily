@@ -1,7 +1,7 @@
 +++
-title = "2021-06-14 Daily-Challenge"
-path = "2021-06-14-Daily-Challenge"
-date = 2021-06-14 15:33:44+08:00
+title = "2021-06-15 Daily-Challenge"
+path = "2021-06-15-Daily-Challenge"
+date = 2021-06-15 15:33:44+08:00
 updated = 2021-06-15 21:23:25+08:00
 in_search_index = true
 
