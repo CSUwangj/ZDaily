@@ -64,24 +64,28 @@ Output: 8
 ## Solution
 
 ``` cpp
+const int MOD = 1e9 + 7;
+int ways[2][500];
 class Solution {
-  int answer = INT_MIN;
-  int solve(TreeNode* root) {
-    if(!root) return 0;
-    int maxLeft = solve(root->left);
-    int maxRight = solve(root->right);
-    int val = root->val;
-    if(maxLeft > 0) val += maxLeft;
-    if(maxRight > 0) val += maxRight;
-    answer = max(answer, val);
-    return (maxLeft < 0 && maxRight < 0) ? root->val :
-           maxLeft > maxRight ? root->val + maxLeft :
-                                root->val + maxRight;
-  }
 public:
-  int maxPathSum(TreeNode* root) {
-    solve(root);
-    return answer;
+  int numWays(int steps, int arrLen) {
+    if(arrLen == 1) return 1;
+    memset(ways, 0, sizeof(ways));
+    ways[0][0] = 1;
+    int boundary = min(arrLen, 500);
+    for(int i = 1; i <= steps; ++i) {
+      int parity = i & 1;
+      ways[parity][0] = (ways[!parity][0] + ways[!parity][1]) % MOD;
+      ways[parity][boundary - 1] = (ways[!parity][boundary - 1] + ways[!parity][boundary - 2]) % MOD;
+      for(int j = 1; j < boundary - 1; ++j) {
+        ways[parity][j] = ways[!parity][j - 1];
+        ways[parity][j] += ways[!parity][j];
+        ways[parity][j] %= MOD;
+        ways[parity][j] += ways[!parity][j + 1];
+        ways[parity][j] %= MOD;
+      }
+    }
+    return ways[steps & 1][0];
   }
 };
 ```
