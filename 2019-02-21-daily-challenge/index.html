@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2019-02-21 Daily Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2019-02-21T00:36:02+00:00 title="post created">2019-02-21</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-09-19T20:01:27.631316+00:00 title="post modified">2020-09-19</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>What I've done today is <em>Powerful digit counts</em> in <em>Rust</em> and <em>Partition to K Equal Sum Subsets</em> in <em>JavaScript</em>.</p>
+<span id="continue-reading"></span><h1 id="math">Math</h1>
+<h2 id="problem">Problem</h2>
+<h3 id="powerful-digit-counts">Powerful digit counts</h3>
+<h3 id="problem-63">Problem 63</h3>
+<p>The 5-digit number, 16807=75, is also a fifth power. Similarly, the 9-digit number, 134217728=89, is a ninth power.</p>
+<p>How many <em>n</em>-digit positive integers exist which are also an <em>n</em>th power?</p>
+<h2 id="solution">Solution</h2>
+<p>Knowledge behind this problem is easy to understand but not easy to illustrate, so check my code~</p>
+<h2 id="implementation">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> ans = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">u128</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">10</span><span style="color:#b48ead;">u128 </span><span style="color:#c0c5ce;">{
+        </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> stop = </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">; </span><span style="color:#65737e;">// Don&#39;t stop!
+        </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> exp: </span><span style="color:#b48ead;">u32 </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">; 
+        </span><span style="color:#b48ead;">while </span><span style="color:#c0c5ce;">!stop {
+            </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> len = i.</span><span style="color:#96b5b4;">pow</span><span style="color:#c0c5ce;">(exp).</span><span style="color:#96b5b4;">to_string</span><span style="color:#c0c5ce;">().</span><span style="color:#96b5b4;">len</span><span style="color:#c0c5ce;">();
+            </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> len != exp as </span><span style="color:#b48ead;">usize </span><span style="color:#c0c5ce;">{
+                stop = </span><span style="color:#d08770;">true</span><span style="color:#c0c5ce;">;
+            } </span><span style="color:#b48ead;">else </span><span style="color:#c0c5ce;">{
+                ans += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+            }
+            exp += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+        }
+    }
+    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, ans);
+}
+</span></code></pre><h1 id="algorithm">Algorithm</h1>
+<h2 id="problem-1">Problem</h2>
+<h3 id="698-partition-to-k-equal-sum-subsets">698. Partition to K Equal Sum Subsets</h3>
+<p>Given an array of integers <code>nums</code> and a positive integer <code>k</code>, find whether it's possible to divide this array into <code>k</code> non-empty subsets whose sums are all equal.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [4, 3, 2, 3, 5, 2, 1], k = 4
+Output: True
+Explanation: It&#39;s possible to divide it into 4 subsets (5), (1, 4), (2,3), (2,3) with equal sums.
+</span></code></pre>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>1 &lt;= k &lt;= len(nums) &lt;= 16</code>.</li>
+<li><code>0 &lt; nums[i] &lt; 10000</code>.</li>
+</ul>
+<h2 id="solution-1">Solution</h2>
+<p>JS's sort is just like shit.</p>
+<h2 id="implementation-1">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#65737e;">/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">canPartitionKSubsets </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(nums, k) {
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">sum </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">for </span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">.length; ++</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">) </span><span style="color:#bf616a;">sum</span><span style="color:#c0c5ce;">+=</span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">];
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">part </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">sum</span><span style="color:#c0c5ce;">/</span><span style="color:#bf616a;">k</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">for </span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">.length; ++</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">) </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">] &gt; </span><span style="color:#bf616a;">part</span><span style="color:#c0c5ce;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">sum </span><span style="color:#c0c5ce;">% </span><span style="color:#bf616a;">k </span><span style="color:#c0c5ce;">!== </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">|| </span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">.length &lt; </span><span style="color:#bf616a;">k </span><span style="color:#c0c5ce;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">used </span><span style="color:#c0c5ce;">= </span><span style="color:#ebcb8b;">Array</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">from</span><span style="color:#c0c5ce;">({length:</span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">.length}, x</span><span style="color:#b48ead;">=&gt;</span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">);
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">.length;
+  </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">dfs</span><span style="color:#c0c5ce;">(target, start) {
+    </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">=== </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">target </span><span style="color:#c0c5ce;">=== </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dfs</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">part</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">);
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">start</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">.length; ++</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">) {
+      </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(!</span><span style="color:#bf616a;">used</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">] &amp;&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">] &lt;= </span><span style="color:#bf616a;">target</span><span style="color:#c0c5ce;">) {
+        </span><span style="color:#bf616a;">used</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">] = </span><span style="color:#d08770;">true</span><span style="color:#c0c5ce;">;
+        </span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+        </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">dfs</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">target </span><span style="color:#c0c5ce;">- </span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">], </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#c0c5ce;">;
+        </span><span style="color:#bf616a;">used</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">] = </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+        </span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+      }
+    }
+    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+  })(</span><span style="color:#bf616a;">part</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">);
+};
+
+</span><span style="color:#65737e;">// console.log(canPartitionKSubsets([18,20,39,73,96,99,101,111,114,190,207,295,471,649,700,1037], 4));
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

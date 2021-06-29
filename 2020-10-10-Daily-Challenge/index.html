@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2020-10-10 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2020-10-10T12:17:34+08:00 title="post created">2020-10-10</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-10-10T23:10:04+08:00 title="post modified">2020-10-10</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's <a href="https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/559/week-1-october-1st-october-7th/3490/">October LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
+<h2 id="range-sum-query-mutable">Range Sum Query - Mutable</h2>
+<p>rewrite it with segment tree</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">NumArray </span><span style="color:#eff1f5;">{
+  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; val;
+  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; lazy;
+  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> operation_begin;
+  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> operation_end;
+  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> size;
+  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">build</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">root_index</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> end) {
+      val[root_index] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums[begin];
+    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(begin </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> end) </span><span style="color:#c0c5ce;">&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(nums, root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, begin, mid);
+      </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(nums, root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">, mid</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end);
+      val[root_index] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> val[root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> val[root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+    }
+  }
+  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">pushdown</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">root_index</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lazy[root_index]) {
+      val[root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+= </span><span style="color:#eff1f5;">(count </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> count</span><span style="color:#c0c5ce;">/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">)</span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">lazy[root_index];
+      val[root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+= </span><span style="color:#eff1f5;">(count</span><span style="color:#c0c5ce;">/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">)</span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">lazy[root_index];
+      lazy[root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> lazy[root_index];
+      lazy[root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> lazy[root_index];
+      lazy[root_index] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    }
+  }
+  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">update</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">root_index</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">difference</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(operation_begin </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> begin </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> operation_end </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> end) {
+      val[root_index] </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> difference </span><span style="color:#c0c5ce;">* </span><span style="color:#eff1f5;">(operation_end</span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;">operation_begin</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+      lazy[root_index] </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> difference;
+      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+    }
+    </span><span style="color:#bf616a;">pushdown</span><span style="color:#eff1f5;">(root_index, end</span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;">begin</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(end </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> begin) </span><span style="color:#c0c5ce;">&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(operation_begin </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> mid) </span><span style="color:#bf616a;">update</span><span style="color:#eff1f5;">(root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, begin, mid, difference);
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(operation_end </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> mid) </span><span style="color:#bf616a;">update</span><span style="color:#eff1f5;">(root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">, mid</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end, difference);
+    val[root_index] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> val[root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> val[root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+  }
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">query</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">root_index</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(operation_begin </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> begin </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> operation_end </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> end) {
+      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> val[root_index];
+    }
+    </span><span style="color:#bf616a;">pushdown</span><span style="color:#eff1f5;">(root_index, end</span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;">begin</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(begin </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> end) </span><span style="color:#c0c5ce;">&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(operation_begin </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> mid) ans </span><span style="color:#c0c5ce;">+= </span><span style="color:#bf616a;">query</span><span style="color:#eff1f5;">(root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, begin, mid);
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(operation_end </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> mid) ans </span><span style="color:#c0c5ce;">+= </span><span style="color:#bf616a;">query</span><span style="color:#eff1f5;">(root_index</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">, mid</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end);
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#8fa1b3;">NumArray</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+    val </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">);
+    lazy </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">);
+    size </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(size </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+    </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(nums, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, size);
+  }
+  
+  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">update</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">i</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+    operation_begin </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i;
+    operation_end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> val </span><span style="color:#c0c5ce;">- </span><span style="color:#bf616a;">query</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, size);
+    </span><span style="color:#bf616a;">update</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, size, diff);
+  }
+  
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sumRange</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">i</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">j</span><span style="color:#eff1f5;">) {
+    operation_begin </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i;
+    operation_end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> j;
+    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">query</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, size);
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="complement-of-base-10-integer">Complement of Base 10 Integer</h2>
+<p>not using built-in function</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">bitwiseComplement</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">N</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(val </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> N) {
+      val </span><span style="color:#c0c5ce;">&lt;&lt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    }
+    </span><span style="color:#65737e;">// same with (val-1|1)-N
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> N</span><span style="color:#c0c5ce;">^</span><span style="color:#eff1f5;">(val</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">| </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="distribute-candies-to-people">Distribute Candies to People</h2>
+<p>seems not change much</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">distributeCandies</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">candies</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num_people</span><span style="color:#eff1f5;">) {
+    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(num_people, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> start </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> candies;
+    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> end) {
+      </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(start </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> end) </span><span style="color:#c0c5ce;">&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mid</span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;">mid) </span><span style="color:#c0c5ce;">/ </span><span style="color:#d08770;">2 </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> candies) {
+        end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mid;
+      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+        start </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      }
+    }
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> last_index </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> end</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rounds </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> last_index </span><span style="color:#c0c5ce;">/</span><span style="color:#eff1f5;"> num_people;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> remain </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> last_index </span><span style="color:#c0c5ce;">%</span><span style="color:#eff1f5;"> num_people;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> num_people; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      answer[i] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(i</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#c0c5ce;">* </span><span style="color:#eff1f5;">(last_index</span><span style="color:#c0c5ce;">/</span><span style="color:#eff1f5;">num_people) </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> num_people</span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">(rounds</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">rounds</span><span style="color:#c0c5ce;">/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> remain) {
+        answer[i] </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> i</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> rounds</span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">num_people;
+      }
+    }
+    answer[remain] </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> candies </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> last_index</span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">(last_index</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span style="color:#c0c5ce;">/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="insert-into-a-binary-search-tree">Insert into a Binary Search Tree</h2>
+<p>more elegant code</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+    TreeNode</span><span style="color:#c0c5ce;">* </span><span style="color:#8fa1b3;">insertIntoBST</span><span style="color:#eff1f5;">(TreeNode</span><span style="color:#c0c5ce;">* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(val);
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(val </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) root-&gt;</span><span style="color:#bf616a;">right </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">insertIntoBST</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, val);
+        </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">insertIntoBST</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, val);
+        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+    }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="data-stream-as-disjoint-intervals">Data Stream as Disjoint Intervals</h2>
+<p>I need more practice</p>
+<p>and this solution runs slower</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">SummaryRanges </span><span style="color:#eff1f5;">{
+  set&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; m;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">addNum</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> m.</span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(val, val));
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> new_begin </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> val, new_end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> val;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(it </span><span style="color:#c0c5ce;">!=</span><span style="color:#eff1f5;"> m.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&amp;&amp; </span><span style="color:#eff1f5;">((</span><span style="color:#c0c5ce;">--</span><span style="color:#eff1f5;">it)-&gt;</span><span style="color:#bf616a;">second</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> val)) </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">it;
+    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(it </span><span style="color:#c0c5ce;">!=</span><span style="color:#eff1f5;"> m.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> val</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> it-&gt;</span><span style="color:#bf616a;">first </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> val</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> it-&gt;</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">) {
+      new_begin </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(new_begin, it-&gt;</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">);
+      new_end </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(new_end, it-&gt;</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+      it </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> m.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(it);
+    }
+    m.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(new_begin, new_end));
+  }
+  
+  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">getIntervals</span><span style="color:#eff1f5;">() {
+    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; ans;
+    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; tmp;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> m.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(); it </span><span style="color:#c0c5ce;">!=</span><span style="color:#eff1f5;"> m.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(); </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">it) {
+      tmp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(it-&gt;</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">);
+      tmp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(it-&gt;</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+      ans.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(tmp);
+      tmp.</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+    }
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="rotate-list">Rotate List</h2>
+<p>nothing to say</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">length</span><span style="color:#eff1f5;">(ListNode</span><span style="color:#c0c5ce;">* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+        ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">cur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> head;
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+            cur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+            len </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+        }
+        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+    ListNode</span><span style="color:#c0c5ce;">* </span><span style="color:#8fa1b3;">rotateRight</span><span style="color:#eff1f5;">(ListNode</span><span style="color:#c0c5ce;">* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(head);
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">len </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> k</span><span style="color:#c0c5ce;">%</span><span style="color:#eff1f5;">len </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+        k </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> len</span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;">(k</span><span style="color:#c0c5ce;">%</span><span style="color:#eff1f5;">len);
+        cout </span><span style="color:#c0c5ce;">&lt;&lt;</span><span style="color:#eff1f5;"> k </span><span style="color:#c0c5ce;">&lt;&lt;</span><span style="color:#eff1f5;"> endl;
+        ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">cur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> head, </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">previous;
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(k</span><span style="color:#c0c5ce;">--</span><span style="color:#eff1f5;">) {
+            previous </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> cur;
+            cur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+        }
+        ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">new_head </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> cur;
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) cur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+        cur-&gt;</span><span style="color:#bf616a;">next </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> head;
+        previous-&gt;</span><span style="color:#bf616a;">next </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> new_head;
+    }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h1 id="october-leetcoding-challenge10">October LeetCoding Challenge10</h1>
+<h2 id="description">Description</h2>
+<p><strong>Minimum Number of Arrows to Burst Balloons</strong></p>
+<p>There are some spherical balloons spread in two-dimensional space. For each balloon, provided input is the start and end coordinates of the horizontal diameter. Since it's horizontal, y-coordinates don't matter, and hence the x-coordinates of start and end of the diameter suffice. The start is always smaller than the end.</p>
+<p>An arrow can be shot up exactly vertically from different points along the x-axis. A balloon with <code>xstart</code> and <code>xend</code> bursts by an arrow shot at <code>x</code> if <code>xstart ≤ x ≤ xend</code>. There is no limit to the number of arrows that can be shot. An arrow once shot keeps traveling up infinitely.</p>
+<p>Given an array <code>points</code> where <code>points[i] = [xstart, xend]</code>, return <em>the minimum number of arrows that must be shot to burst all balloons</em>.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: points = [[10,16],[2,8],[1,6],[7,12]]
+Output: 2
+Explanation: One way is to shoot one arrow for example at x = 6 (bursting the balloons [2,8] and [1,6]) and another arrow at x = 11 (bursting the other two balloons).
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: points = [[1,2],[3,4],[5,6],[7,8]]
+Output: 4
+</span></code></pre>
+<p><strong>Example 3:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: points = [[1,2],[2,3],[3,4],[4,5]]
+Output: 2
+</span></code></pre>
+<p><strong>Example 4:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: points = [[1,2]]
+Output: 1
+</span></code></pre>
+<p><strong>Example 5:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: points = [[2,3],[2,3]]
+Output: 1
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>0 &lt;= points.length &lt;= 104</code></li>
+<li><code>points.length == 2</code></li>
+<li><code>-231 &lt;= xstart &lt; xend &lt;= 231 - 1</code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>simple greedy</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findMinArrowShots</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">points</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(points.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), points.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, min_end </span><span style="color:#c0c5ce;">= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> hasBalloon </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> points.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">hasBalloon) {
+        min_end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> points[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+        hasBalloon </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(points[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> min_end) {
+          cnt </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+          hasBalloon </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+          min_end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> points[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+          min_end </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(points[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], min_end);
+        }
+      }
+    }
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(hasBalloon) cnt </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cnt;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

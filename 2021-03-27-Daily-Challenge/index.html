@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2021-03-27 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-03-27T13:00:00+08:00 title="post created">2021-03-27</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-03-27T23:20:29+08:00 title="post modified">2021-03-27</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's <a href="https://leetcode.com/explore/challenge/card/march-leetcoding-challenge-2021/591/week-4-march-22nd-march-28th/3686/">March LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
+<h2 id="minimum-number-of-refueling-stops">Minimum Number of Refueling Stops</h2>
+<p>there's no need to use a large DP array, because maximum amount of fuel is fixed for a test case, so we can use heap to quick get answer.</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minRefuelStops</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">startFuel</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">stations</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(startFuel </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    priority_queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(stations.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), stations.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#eff1f5;">station </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> stations) {
+      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> startFuel </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> station[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) {
+        startFuel </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+        answer </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(startFuel </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+      }
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(startFuel </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> station[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) {
+        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(station[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+        </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      }
+    }
+    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> startFuel </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> target) {
+      startFuel </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+      answer </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    }
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> startFuel </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> target </span><span style="color:#c0c5ce;">? -</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> answer;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="defuse-the-bomb">Defuse the Bomb</h2>
+<p>too easy to review</p>
+<h2 id="reverse-integer">Reverse Integer</h2>
+<p>too easy to review</p>
+<h2 id="water-bottles">Water Bottles</h2>
+<p>too easy to review</p>
+<h2 id="search-insert-position">Search Insert Position</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">searchInsert</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    nums.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(INT_MAX);
+    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> end) {
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(begin </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> end) </span><span style="color:#c0c5ce;">&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[mid] </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> target) {
+        begin </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+        end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mid;
+      }
+    }
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> begin;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="word-subsets">Word Subsets</h2>
+<p>too easy to review</p>
+<h2 id="advantage-shuffle">Advantage Shuffle</h2>
+<p>too easy to review</p>
+<h2 id="vowel-spellchecker">Vowel Spellchecker</h2>
+<p>too easy to review</p>
+<h2 id="3sum-with-multiplicity">3Sum With Multiplicity</h2>
+<p>too easy to review</p>
+<h2 id="pacific-atlantic-water-flow">Pacific Atlantic Water Flow</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">const int</span><span style="color:#c0c5ce;"> moves[</span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">][</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">] = {{</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">}, {</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">}, {</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, -</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">}, {-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">}};
+
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows;
+  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols;
+  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">heights</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">vis</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">row</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">col</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[row][col]) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+    vis[row][col] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> row </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> col </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> rows </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> newRow &lt; </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> newCol &gt;</span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> cols </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> newCol </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(heights[row][col] </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> heights[newRow][newCol]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(heights, vis, newRow, newCol);
+    }
+  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">pacificAtlantic</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">heights</span><span style="color:#eff1f5;">) {
+    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(heights.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+    rows </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    cols </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    vector&lt;vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">visPac</span><span style="color:#eff1f5;">(rows, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;(cols));
+    vector&lt;vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">visAtl</span><span style="color:#eff1f5;">(rows, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;(cols));
+    
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> cols; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(heights, visPac, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i);
+      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(heights, visAtl, rows </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, i);
+    }
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> rows; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(heights, visPac, i, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(heights, visAtl, i, cols </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+    }
+    
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> rows; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> cols; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">j) {
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(visPac[i][j] </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> visAtl[i][j]) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({i, j});
+      }
+    }
+    
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h1 id="march-leetcoding-challenge27">March LeetCoding Challenge27</h1>
+<h2 id="description">Description</h2>
+<p><strong>Palindromic Substrings</strong></p>
+<p>Given a string, your task is to count how many palindromic substrings in this string.</p>
+<p>The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: &quot;abc&quot;
+Output: 3
+Explanation: Three palindromic strings: &quot;a&quot;, &quot;b&quot;, &quot;c&quot;.
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: &quot;aaa&quot;
+Output: 6
+Explanation: Six palindromic strings: &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;aa&quot;, &quot;aa&quot;, &quot;aaa&quot;.
+</span></code></pre>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The input string length won't exceed 1000.</li>
+</ol>
+<h2 id="solution">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">countSubstrings</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">1001</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1001</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> len;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      dp[i][i] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      dp[i][i </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    }
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> l </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; l </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">l) {
+      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> l </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">j) {
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dp[j </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> l </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> s[j] </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> s[j </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> l </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+          dp[j][j </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> l] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+          answer </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+        }
+      }
+    }
+    
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

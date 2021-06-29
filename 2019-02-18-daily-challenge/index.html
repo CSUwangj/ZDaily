@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2019-02-18 Daily Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2019-02-18T00:01:36+00:00 title="post created">2019-02-18</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-09-19T20:01:27.631316+00:00 title="post modified">2020-09-19</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>What I've done today is <em>Prime pair sets</em> in <em>Rust</em> and <em>Generate Parentheses</em> in <em>JavaScript</em>.</p>
+<span id="continue-reading"></span><h1 id="math">Math</h1>
+<h2 id="problem">Problem</h2>
+<h3 id="prime-pair-sets">Prime pair sets</h3>
+<h3 id="problem-60">Problem 60</h3>
+<p>The primes 3, 7, 109, and 673, are quite remarkable. By taking any two primes and concatenating them in any order the result will always be prime. For example, taking 7 and 109, both 7109 and 1097 are prime. The sum of these four primes, 792, represents the lowest sum for a set of four primes with this property.</p>
+<p>Find the lowest sum for a set of five primes for which any two primes concatenate to produce another prime.</p>
+<h2 id="solution">Solution</h2>
+<p>Brute force.</p>
+<h2 id="implementation">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">extern crate</span><span style="color:#c0c5ce;"> primal;
+
+</span><span style="color:#b48ead;">use </span><span style="color:#c0c5ce;">primal::Sieve;
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> sieve: Sieve = Sieve::new(</span><span style="color:#d08770;">1_000_000_000</span><span style="color:#c0c5ce;">);
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> ans = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> found = </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> cur = sieve.</span><span style="color:#96b5b4;">prime_pi</span><span style="color:#c0c5ce;">(</span><span style="color:#d08770;">673</span><span style="color:#c0c5ce;">);
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> buf: [</span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">; </span><span style="color:#d08770;">5</span><span style="color:#c0c5ce;">] = [</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; </span><span style="color:#d08770;">5</span><span style="color:#c0c5ce;">];
+    </span><span style="color:#b48ead;">while </span><span style="color:#c0c5ce;">!found {
+        buf[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">] = sieve.</span><span style="color:#96b5b4;">nth_prime</span><span style="color:#c0c5ce;">(cur);
+        </span><span style="color:#b48ead;">match </span><span style="color:#96b5b4;">dfs</span><span style="color:#c0c5ce;">(</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, cur, &amp;</span><span style="color:#b48ead;">mut</span><span style="color:#c0c5ce;"> buf, &amp;sieve) {
+            </span><span style="color:#d08770;">true </span><span style="color:#c0c5ce;">=&gt; found = </span><span style="color:#d08770;">true</span><span style="color:#c0c5ce;">,
+            </span><span style="color:#d08770;">false </span><span style="color:#c0c5ce;">=&gt; cur += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">,
+        }
+    }
+    println!(&quot;</span><span style="color:#d08770;">{:?}</span><span style="color:#c0c5ce;">&quot;, buf);
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in &amp;buf {
+        ans += i;
+    }
+    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, ans);
+}
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">dfs</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">index</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">buf</span><span style="color:#c0c5ce;">: &amp;</span><span style="color:#b48ead;">mut</span><span style="color:#c0c5ce;"> [</span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">], </span><span style="color:#bf616a;">sieve</span><span style="color:#c0c5ce;">: &amp;Sieve) -&gt; </span><span style="color:#b48ead;">bool </span><span style="color:#c0c5ce;">{
+    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> n == </span><span style="color:#d08770;">5 </span><span style="color:#c0c5ce;">{
+        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#c0c5ce;">;
+    }
+    </span><span style="color:#65737e;">// if n == 4 {
+    //     println!(&quot;{:?}&quot;, buf);
+    // }
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in (</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">..index).</span><span style="color:#96b5b4;">rev</span><span style="color:#c0c5ce;">() {
+        </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> tmp = sieve.</span><span style="color:#96b5b4;">nth_prime</span><span style="color:#c0c5ce;">(i);
+        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">test_it</span><span style="color:#c0c5ce;">(n, tmp, &amp;buf, &amp;sieve) {
+            buf[n] = tmp;
+            </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">dfs</span><span style="color:#c0c5ce;">(n+</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, i, &amp;</span><span style="color:#b48ead;">mut</span><span style="color:#c0c5ce;"> buf, &amp;sieve) {
+                </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true
+            </span><span style="color:#c0c5ce;">}
+        }
+    }
+    </span><span style="color:#d08770;">false
+</span><span style="color:#c0c5ce;">}
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_it</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">index</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">num</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">buf</span><span style="color:#c0c5ce;">: &amp;[</span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">], </span><span style="color:#bf616a;">sieve</span><span style="color:#c0c5ce;">: &amp;Sieve) -&gt; </span><span style="color:#b48ead;">bool </span><span style="color:#c0c5ce;">{
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">..index {
+        </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">!(sieve.</span><span style="color:#96b5b4;">is_prime</span><span style="color:#c0c5ce;">(</span><span style="color:#96b5b4;">append_num</span><span style="color:#c0c5ce;">(num, buf[i]))&amp;&amp;sieve.</span><span style="color:#96b5b4;">is_prime</span><span style="color:#c0c5ce;">(</span><span style="color:#96b5b4;">append_num</span><span style="color:#c0c5ce;">(buf[i], num))) {
+            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+        }
+    }
+    </span><span style="color:#d08770;">true
+</span><span style="color:#c0c5ce;">}
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">append_num</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">left</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">right</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">) -&gt; </span><span style="color:#b48ead;">usize </span><span style="color:#c0c5ce;">{
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> tmp = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;"> right != </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">{
+        tmp = tmp * </span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">+ right % </span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">;
+        right /= </span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">;
+    }
+    </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;"> tmp != </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">{
+        left = left * </span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">+ tmp % </span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">;
+        tmp /= </span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">;
+    }
+    left
+}
+</span></code></pre><h1 id="algorithm">Algorithm</h1>
+<h2 id="problem-1">Problem</h2>
+<h3 id="22-generate-parentheses">22. Generate Parentheses</h3>
+<p>Given <em>n</em> pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</p>
+<p>For example, given <em>n</em> = 3, a solution set is:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">[
+  &quot;((()))&quot;,
+  &quot;(()())&quot;,
+  &quot;(())()&quot;,
+  &quot;()(())&quot;,
+  &quot;()()()&quot;
+]
+</span></code></pre><h2 id="solution-1">Solution</h2>
+<p>Solve it recursively.</p>
+<h2 id="implementation-1">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">var </span><span style="color:#bf616a;">generateParenthesis </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(n) {
+  </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n </span><span style="color:#c0c5ce;">=== </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">) </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">[&quot;&quot;];
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span style="color:#c0c5ce;">= [];
+  </span><span style="color:#b48ead;">for </span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">) {
+    </span><span style="color:#b48ead;">for </span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">of </span><span style="color:#bf616a;">generateParenthesis</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">)) {
+      </span><span style="color:#b48ead;">for </span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">right </span><span style="color:#c0c5ce;">of </span><span style="color:#bf616a;">generateParenthesis</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">-</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">)){
+        </span><span style="color:#bf616a;">ans</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">push</span><span style="color:#c0c5ce;">(`</span><span style="color:#a3be8c;">(</span><span style="color:#c0c5ce;">${</span><span style="color:#bf616a;">left</span><span style="color:#c0c5ce;">}</span><span style="color:#a3be8c;">)</span><span style="color:#c0c5ce;">${</span><span style="color:#bf616a;">right</span><span style="color:#c0c5ce;">}`);
+      }
+    }
+  }
+  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span style="color:#c0c5ce;">;
+};
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

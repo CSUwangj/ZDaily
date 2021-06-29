@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2021-03-21 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-03-21T02:16:32+08:00 title="post created">2021-03-21</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-03-21T22:02:26+08:00 title="post modified">2021-03-21</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today is Sunday, I gonna review the tasks I've done this week, and finish today's leetcode's <a href="https://leetcode.com/explore/challenge/card/march-leetcoding-challenge-2021/590/week-3-march-15th-march-21st/3679/">March LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
+<h2 id="reverse-subarray-to-maximize-array-value">Reverse Subarray To Maximize Array Value</h2>
+<p>image array <code>[..., a, b, ... , c, d, ...]</code> and we reverse <code>[b, ..., c]</code>, array value is only change at pair(a, b) and pair(c, d), which turns into pair(a, c) and pair(b, d). So we want to maximize this change.</p>
+<p>see this image</p>
+<p><img src="./img.jpg" alt="explanation" /></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxValueAfterReverse</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> minMax </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> INT_MAX;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxMin </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> INT_MIN;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> value </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) value </span><span style="color:#c0c5ce;">+= </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[i] </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> nums[i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+    
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      minMax </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(minMax, </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(nums[i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], nums[i]));
+      maxMin </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(maxMin, </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(nums[i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], nums[i]));
+    }
+    
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> change </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">2 </span><span style="color:#c0c5ce;">* </span><span style="color:#eff1f5;">(maxMin </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> minMax);
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      change </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(change, </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> nums[i]) </span><span style="color:#c0c5ce;">- </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[i] </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> nums[i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]));
+    }
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      change </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(change, </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> nums[i]) </span><span style="color:#c0c5ce;">- </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[i] </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> nums[i </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]));
+    }
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> value </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> change;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h1 id="march-leetcoding-challenge21">March LeetCoding Challenge21</h1>
+<h2 id="description">Description</h2>
+<p><strong>Reordered Power of 2</strong></p>
+<p>Starting with a positive integer <code>N</code>, we reorder the digits in any order (including the original order) such that the leading digit is not zero.</p>
+<p>Return <code>true</code> if and only if we can do this in a way such that the resulting number is a power of 2.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: 1
+Output: true
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: 10
+Output: false
+</span></code></pre>
+<p><strong>Example 3:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: 16
+Output: true
+</span></code></pre>
+<p><strong>Example 4:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: 24
+Output: false
+</span></code></pre>
+<p><strong>Example 5:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: 46
+Output: true
+</span></code></pre>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1 &lt;= N &lt;= 10^9</code></li>
+</ol>
+<h2 id="solution">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#65737e;">// sorted powers of 2
+</span><span style="color:#b48ead;">const</span><span style="color:#c0c5ce;"> set&lt;string&gt; st = {&quot;</span><span style="color:#a3be8c;">011237</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">0122579</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">012356789</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">0124</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">0134449</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">0145678</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">01466788</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">0248</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">0368888</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">0469</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">1</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">112234778</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">11266777</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">122446</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">125</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">128</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">1289</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">13468</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">16</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">2</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">224588</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">23</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">23334455</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">234455668</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">23678</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">256</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">35566</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">4</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">46</span><span style="color:#c0c5ce;">&quot;,&quot;</span><span style="color:#a3be8c;">8</span><span style="color:#c0c5ce;">&quot;};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">reorderedPowerOf2</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">N</span><span style="color:#eff1f5;">) {
+    string n </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(N);
+    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(n.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), n.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(n);
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

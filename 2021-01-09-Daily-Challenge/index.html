@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2021-01-09 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-01-09T11:57:46+08:00 title="post created">2021-01-09</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-01-09T20:48:55+08:00 title="post modified">2021-01-09</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today is Saturday, I gonna review the tasks I've done this week, and finish today's leetcode's <a href="https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/580/week-2-january-8th-january-14th/3598/">January LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
+<h2 id="minimum-remove-to-make-valid-parentheses">Minimum Remove to Make Valid Parentheses</h2>
+<p>track of if characters are removed instead of build string,
+inplace edit will be better at speed and space usage, but won't be
+so readable</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+    string </span><span style="color:#8fa1b3;">minRemoveToMakeValid</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+        vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">removed</span><span style="color:#eff1f5;">(len);
+        stack&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; st;
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[i] </span><span style="color:#c0c5ce;">== &#39;</span><span style="color:#a3be8c;">(</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">) {
+                st.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(i);
+            } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(s[i] </span><span style="color:#c0c5ce;">== &#39;</span><span style="color:#a3be8c;">)</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">) {
+                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) removed[i] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+                </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+            }
+        }
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) {
+            removed[st.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">()] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+            st.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+        }
+        string answer;
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">removed[i]) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(s[i]);
+        }
+        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+    }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="partition-list">Partition List</h2>
+<p>use two list</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+    ListNode</span><span style="color:#c0c5ce;">* </span><span style="color:#8fa1b3;">partition</span><span style="color:#eff1f5;">(ListNode</span><span style="color:#c0c5ce;">* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+        ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">lessPart </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+        ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">lessCur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> lessPart;
+        ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">greaterPart </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+        ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">greaterCur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> greaterPart;
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(head-&gt;</span><span style="color:#bf616a;">val </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> x) {
+                lessCur-&gt;</span><span style="color:#bf616a;">next </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> head;
+                lessCur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> lessCur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+                greaterCur-&gt;</span><span style="color:#bf616a;">next </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> head;
+                greaterCur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> greaterCur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+            }
+            head </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+        }
+        lessCur-&gt;</span><span style="color:#bf616a;">next </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> greaterPart-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+        greaterCur-&gt;</span><span style="color:#bf616a;">next </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+        head </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> lessPart-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">delete</span><span style="color:#eff1f5;"> lessPart;
+        </span><span style="color:#b48ead;">delete</span><span style="color:#eff1f5;"> greaterPart;
+        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+    }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List II</h2>
+<p>too easy to review</p>
+<h2 id="minimum-swaps-to-make-sequences-increasing">Minimum Swaps To Make Sequences Increasing</h2>
+<p>dp</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minSwap</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">B</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#b48ead;">int </span><span style="color:#65737e;">/*swap = 1, keep = 0, */</span><span style="color:#eff1f5;">len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(len);
+        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">keep</span><span style="color:#eff1f5;">(len);
+        swap[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(A[i] </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> B[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> B[i] </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> A[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+                swap[i] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> swap[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+                keep[i] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> keep[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+            } </span><span style="color:#b48ead;">else if </span><span style="color:#eff1f5;">(A[i] </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> A[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> B[i] </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> B[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+                swap[i] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> keep[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+                keep[i] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> swap[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+                swap[i] </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(swap[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], keep[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+                keep[i] </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(swap[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], keep[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+            }
+        }
+        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(swap.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">(), keep.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">());
+    }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre>
+<p>dp with operation</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minSwap</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">B</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> swapMove </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, keepMove </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(A[i] </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> B[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> B[i] </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> A[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+                swapMove </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+            } </span><span style="color:#b48ead;">else if </span><span style="color:#eff1f5;">(A[i] </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> A[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> B[i] </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> B[i</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+                </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(swapMove, keepMove);
+                swapMove </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mmin </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(swapMove, keepMove);
+                keepMove </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mmin;
+                swapMove </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mmin </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+            }
+        }
+        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(swapMove, keepMove);
+    }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="kth-missing-positive-number">Kth Missing Positive Number</h2>
+<p>too easy to review</p>
+<h2 id="verbal-arithmetic-puzzle">Verbal Arithmetic Puzzle</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+    </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> mp[</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">];
+    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> leading[</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">};
+    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> used[</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">};
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> resultLength </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    
+    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(vector&lt;string&gt; </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">, string </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#65737e;">// cout &lt;&lt; index &lt;&lt; &#39; &#39; &lt;&lt; pos &lt;&lt; &#39; &#39; &lt;&lt; sum &lt;&lt; endl;
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> resultLength) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> sum </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> words.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp[result[pos]] </span><span style="color:#c0c5ce;">!= -</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> mp[result[pos]] </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> sum</span><span style="color:#c0c5ce;">%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">) {
+                </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, pos</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, sum</span><span style="color:#c0c5ce;">/</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">);
+            }
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp[result[pos]] </span><span style="color:#c0c5ce;">== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(used[sum</span><span style="color:#c0c5ce;">%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">|| </span><span style="color:#eff1f5;">(sum</span><span style="color:#c0c5ce;">%</span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> leading[result[pos]])) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+                mp[result[pos]] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> sum </span><span style="color:#c0c5ce;">% </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+                used[sum</span><span style="color:#c0c5ce;">%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, pos</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, sum</span><span style="color:#c0c5ce;">/</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+                mp[result[pos]] </span><span style="color:#c0c5ce;">= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+                used[sum</span><span style="color:#c0c5ce;">%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+            }
+            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+        }
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> words[index].</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, index</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, pos, sum);
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp[words[index][pos]] </span><span style="color:#c0c5ce;">!= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, index</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, pos, sum</span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;">mp[words[index][pos]]);
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> leading[words[index][pos]]; i </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(used[i]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+            mp[words[index][pos]] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i;
+            used[i] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, index</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, pos, sum</span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;">i)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+            mp[words[index][pos]] </span><span style="color:#c0c5ce;">= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+            used[i] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+        }
+        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isSolvable</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#eff1f5;">word </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> words) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(resultLength </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) resultLength </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">!= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)leading[word[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> word) mp[c] </span><span style="color:#c0c5ce;">= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+            </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(word.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), word.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+        }
+        
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(resultLength </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> result.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+        resultLength </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> result.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">!= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) leading[result[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> result) mp[c] </span><span style="color:#c0c5ce;">= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+        </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), result.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+        
+        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+    }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="check-if-two-string-arrays-are-equivalent">Check If Two String Arrays are Equivalent</h2>
+<p>too easy to review</p>
+<h2 id="thousand-separator">Thousand Separator</h2>
+<p>too easy to review</p>
+<h2 id="intersection-of-two-linked-lists">Intersection of Two Linked Lists</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+    ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#8fa1b3;">getIntersectionNode</span><span style="color:#eff1f5;">(ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#bf616a;">headA</span><span style="color:#eff1f5;">, ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#bf616a;">headB</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">headA </span><span style="color:#c0c5ce;">|| !</span><span style="color:#eff1f5;">headB) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+        ListNode </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">curA </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> headA, </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">curB </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> headB;
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> swapA </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, swapB </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(swapA </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(curA </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> curB </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> curA) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> curA;
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(curA) curA </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> curA-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+            </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">swapA) {
+                    curA </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> headB;
+                    swapA </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+                } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+                    curA </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> headA;
+                    swapA </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+                }
+            }
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(curB) curB </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> curB-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+            </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">swapB) {
+                    curB </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> headA;
+                    swapB </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+                } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+                    curB </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> headB;
+                    swapB </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+                }
+            }
+        }
+        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+    }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h2 id="customers-who-never-order">Customers Who Never Order</h2>
+<p>using parent pointers</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">SELECT</span><span style="color:#c0c5ce;"> Name as Customers </span><span style="color:#b48ead;">FROM</span><span style="color:#c0c5ce;"> Customers
+</span><span style="color:#b48ead;">WHERE</span><span style="color:#c0c5ce;"> Id NOT IN
+(</span><span style="color:#b48ead;">SELECT</span><span style="color:#c0c5ce;"> CustomerId </span><span style="color:#b48ead;">FROM</span><span style="color:#c0c5ce;"> Orders)
+</span></code></pre><h1 id="january-leetcoding-challenge9">January LeetCoding Challenge9</h1>
+<h2 id="description">Description</h2>
+<p><strong>Word Ladder</strong></p>
+<p>Given two words <code>beginWord</code> and <code>endWord</code>, and a dictionary <code>wordList</code>, return <em>the length of the shortest transformation sequence from</em> <code>beginWord</code> <em>to</em> <code>endWord</code>, <em>such that</em>:</p>
+<ul>
+<li>Only one letter can be changed at a time.</li>
+<li>Each transformed word must exist in the word list.</li>
+</ul>
+<p>Return <code>0</code> if there is no such transformation sequence.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]
+Output: 5
+Explanation: As one shortest transformation is &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;, return its length 5.
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]
+Output: 0
+Explanation: The endWord &quot;cog&quot; is not in wordList, therefore no possible transformation.
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= beginWord.length &lt;= 100</code></li>
+<li><code>endWord.length == beginWord.length</code></li>
+<li><code>1 &lt;= wordList.length &lt;= 5000</code></li>
+<li><code>wordList[i].length == beginWord.length</code></li>
+<li><code>beginWord</code>, <code>endWord</code>, and <code>wordList[i]</code> consist of lowercase English letters.</li>
+<li><code>beginWord != endWord</code></li>
+<li>All the strings in <code>wordList</code> are <strong>unique</strong>.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>shortest path/BFS</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+    unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; mp;
+    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; dis;
+    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; neighbors;
+    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">oneTransform</span><span style="color:#eff1f5;">(string </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, string </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) cnt </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> a[i] </span><span style="color:#c0c5ce;">!=</span><span style="color:#eff1f5;"> b[i];
+        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cnt </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">ladderLength</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">beginWord</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">endWord</span><span style="color:#eff1f5;">, vector&lt;string&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">wordList</span><span style="color:#eff1f5;">) {
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> wordList.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) mp[wordList[i]] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i;
+        neighbors.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(len</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">j) {
+                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">oneTransform</span><span style="color:#eff1f5;">(wordList[i], wordList[j])) {
+                    neighbors[i].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(j);
+                    neighbors[j].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+                }
+            }
+        }
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> offset </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">mp.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(beginWord)) {
+            mp[beginWord] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> len;
+            offset </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">oneTransform</span><span style="color:#eff1f5;">(beginWord, wordList[i])) {
+                    neighbors[i].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(len);
+                    neighbors[len].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+                }
+            }
+        }
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">mp.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(endWord)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mp[beginWord], end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mp[endWord];
+        dis[begin] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+        queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(begin);
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+            q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> end) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dis[cur];
+            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> nxt </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> neighbors[cur]) {
+                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dis.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(nxt)) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+                dis[nxt] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> dis[cur] </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+                q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(nxt);
+            }
+        }
+        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

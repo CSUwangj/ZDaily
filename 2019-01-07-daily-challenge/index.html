@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2019-01-07 Daily Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2019-01-07T00:06:14+00:00 title="post created">2019-01-07</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-09-19T20:01:27.62633+00:00 title="post modified">2020-09-19</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>What I've done today is <em>Maximum path sum I</em> in <em>Rust</em> and <em>Valid Parenthesis String</em> in <em>JavaScript</em>.</p>
+<span id="continue-reading"></span><h1 id="math">Math</h1>
+<h2 id="problem">Problem</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Maximum path sum I
+
+Problem 18 
+
+By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
+
+3
+7 4
+2 4 6
+8 5 9 3
+
+That is, 3 + 7 + 4 + 9 = 23.
+
+Find the maximum total from top to bottom of the triangle below:
+
+75
+95 64
+17 47 82
+18 35 87 10
+20 04 82 47 65
+19 01 23 75 03 34
+88 02 77 73 07 63 67
+99 65 04 28 06 16 70 92
+41 41 26 56 83 40 80 70 33
+41 48 72 33 47 32 37 16 94 29
+53 71 44 65 25 43 91 52 97 51 14
+70 11 33 28 77 73 17 78 39 68 17 57
+91 71 52 38 17 14 91 43 58 50 27 29 48
+63 66 04 68 89 53 67 30 73 16 69 87 40 31
+04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
+
+NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
+</span></code></pre><h2 id="solution">Solution</h2>
+<p>DP or recursive method is capable of doing this.</p>
+<h2 id="implementation">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">use </span><span style="color:#c0c5ce;">std::cmp::max;
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> nums = [[</span><span style="color:#d08770;">75</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">95</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">64</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">17</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">47</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">82</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">18</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">35</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">87</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">20</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">82</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">47</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">65</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">19</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">23</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">75</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">34</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">88</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">77</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">73</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">7</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">63</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">67</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">99</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">65</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">28</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">6</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">16</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">70</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">92</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">41</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">41</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">26</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">56</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">83</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">40</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">80</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">70</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">33</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">41</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">48</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">72</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">33</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">47</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">32</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">37</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">16</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">94</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">29</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">53</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">71</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">44</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">65</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">25</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">43</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">91</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">52</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">97</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">51</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">14</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">70</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">11</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">33</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">28</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">77</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">73</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">17</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">78</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">39</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">68</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">17</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">57</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">91</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">71</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">52</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">38</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">17</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">14</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">91</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">43</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">58</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">50</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">27</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">29</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">48</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">63</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">66</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">68</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">89</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">53</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">67</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">30</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">73</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">16</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">69</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">87</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">40</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">31</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">62</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">98</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">27</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">23</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">9</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">70</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">98</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">73</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">93</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">38</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">53</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">60</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">23</span><span style="color:#c0c5ce;">]];
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> mx = [[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, ],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">],
+[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">]];
+    mx[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">][</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">] = nums[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">][</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">];
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">15 </span><span style="color:#c0c5ce;">{
+        </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> j in </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">..i+</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">{
+            </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> j == </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">{
+                mx[i][j] = mx[i-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">][j] + nums[i][j];
+            }</span><span style="color:#b48ead;">else if</span><span style="color:#c0c5ce;"> i == j {
+                mx[i][j] = mx[i-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">][j-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">] + nums[i][j];
+            }</span><span style="color:#b48ead;">else</span><span style="color:#c0c5ce;">{
+                mx[i][j] = </span><span style="color:#96b5b4;">max</span><span style="color:#c0c5ce;">(mx[i-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">][j], mx[i-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">][j-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">]) + nums[i][j];
+            }
+            </span><span style="color:#65737e;">// print!(&quot;{} &quot;, mx[i][j]);
+        </span><span style="color:#c0c5ce;">}
+        </span><span style="color:#65737e;">// println!(&quot;&quot;);
+    </span><span style="color:#c0c5ce;">}
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> ans = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">15 </span><span style="color:#c0c5ce;">{
+        ans = </span><span style="color:#96b5b4;">max</span><span style="color:#c0c5ce;">(ans, mx[</span><span style="color:#d08770;">14</span><span style="color:#c0c5ce;">][i]);
+    }
+    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, ans);
+}
+</span></code></pre><h1 id="algorithm">Algorithm</h1>
+<h2 id="problem-1">Problem</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">678. Valid Parenthesis String
+
+Given a string containing only three types of characters: &#39;(&#39;, &#39;)&#39; and &#39;*&#39;, write a function to check whether this string is valid. We define the validity of a string by these rules:
+
+Any left parenthesis &#39;(&#39; must have a corresponding right parenthesis &#39;)&#39;.
+Any right parenthesis &#39;)&#39; must have a corresponding left parenthesis &#39;(&#39;.
+Left parenthesis &#39;(&#39; must go before the corresponding right parenthesis &#39;)&#39;.
+&#39;*&#39; could be treated as a single right parenthesis &#39;)&#39; or a single left parenthesis &#39;(&#39; or an empty string.
+An empty string is also valid.
+Example 1:
+Input: &quot;()&quot;
+Output: True
+Example 2:
+Input: &quot;(*)&quot;
+Output: True
+Example 3:
+Input: &quot;(*))&quot;
+Output: True
+Note:
+The string size will be in the range [1, 100].
+</span></code></pre><h2 id="solution-1">Solution</h2>
+<p>Simulating a stack is capable for none * parenthesis pairing.</p>
+<p>Invalid parenthesis is '(' doesn't have a corresponding ')' or right more '*', and versa versa.</p>
+<p>Second way is to maintain the smallest and largest possible number of open left brackets after processing the current character in the string.</p>
+<p>Solution page also illustrate a DP approach but with $O(N^3)$ time complexity and $O(N^2)$ space complexity, so I don't want to implement it.</p>
+<h2 id="implementation-1">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#65737e;">/**
+ * @param {string} s
+ * @return {boolean}
+ */
+</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">checkValidString </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(s) {
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">stack </span><span style="color:#c0c5ce;">= [];
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">star </span><span style="color:#c0c5ce;">= [];
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">len </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">s</span><span style="color:#c0c5ce;">.length;
+  </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">len</span><span style="color:#c0c5ce;">; ++</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">){
+    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">s</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">charAt</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">) === &quot;</span><span style="color:#a3be8c;">(</span><span style="color:#c0c5ce;">&quot;){
+      </span><span style="color:#bf616a;">stack</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">push</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">);
+    }</span><span style="color:#b48ead;">else if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">s</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">charAt</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">) === &quot;</span><span style="color:#a3be8c;">)</span><span style="color:#c0c5ce;">&quot;){
+      </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">stack</span><span style="color:#c0c5ce;">.length){
+        </span><span style="color:#bf616a;">stack</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">pop</span><span style="color:#c0c5ce;">();
+      }</span><span style="color:#b48ead;">else if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">star</span><span style="color:#c0c5ce;">.length){
+        </span><span style="color:#bf616a;">star</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">pop</span><span style="color:#c0c5ce;">();
+      }</span><span style="color:#b48ead;">else</span><span style="color:#c0c5ce;">{
+        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+      }
+    }</span><span style="color:#b48ead;">else</span><span style="color:#c0c5ce;">{
+      </span><span style="color:#bf616a;">star</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">push</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">);
+    }
+  }
+  </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">stack</span><span style="color:#c0c5ce;">.length){
+    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">star</span><span style="color:#c0c5ce;">.length &amp;&amp; </span><span style="color:#bf616a;">star</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">star</span><span style="color:#c0c5ce;">.length-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">] &gt; </span><span style="color:#bf616a;">stack</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">stack</span><span style="color:#c0c5ce;">.length-</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">]){
+      </span><span style="color:#bf616a;">stack</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">pop</span><span style="color:#c0c5ce;">();
+      </span><span style="color:#bf616a;">star</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">pop</span><span style="color:#c0c5ce;">();
+    }</span><span style="color:#b48ead;">else</span><span style="color:#c0c5ce;">{
+      </span><span style="color:#b48ead;">break</span><span style="color:#c0c5ce;">;
+    }
+  }
+  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">stack</span><span style="color:#c0c5ce;">.length==</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+};
+</span></code></pre><pre style="background-color:#2b303b;">
+<code><span style="color:#65737e;">/**
+ * @param {string} s
+ * @return {boolean}
+ */
+</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">checkValidString </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(s) {
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">l </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">h </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">len </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">s</span><span style="color:#c0c5ce;">.length;
+  </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">len</span><span style="color:#c0c5ce;">; ++</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">){
+    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">s</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">charAt</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">)==&quot;</span><span style="color:#a3be8c;">(</span><span style="color:#c0c5ce;">&quot;){
+      </span><span style="color:#bf616a;">l </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+      </span><span style="color:#bf616a;">h </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    }</span><span style="color:#b48ead;">else if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">s</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">charAt</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">)==&quot;</span><span style="color:#a3be8c;">)</span><span style="color:#c0c5ce;">&quot;){
+      </span><span style="color:#bf616a;">l </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+      </span><span style="color:#bf616a;">h </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    }</span><span style="color:#b48ead;">else</span><span style="color:#c0c5ce;">{
+      </span><span style="color:#bf616a;">l </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+      </span><span style="color:#bf616a;">h </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    }
+    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">h </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">){
+      </span><span style="color:#b48ead;">break</span><span style="color:#c0c5ce;">;
+    }
+    </span><span style="color:#bf616a;">l </span><span style="color:#c0c5ce;">= Math.</span><span style="color:#96b5b4;">max</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">lo</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">);
+  }
+  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">l </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+};
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

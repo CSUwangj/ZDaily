@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2021-05-28 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-05-28T18:59:26+08:00 title="post created">2021-05-28</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-05-28T23:44:55+08:00 title="post modified">2021-05-28</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today I have done <a href="https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/">Minimum Difficulty of a Job Schedule</a> and leetcode's <a href="https://leetcode.com/explore/challenge/card/may-leetcoding-challenge-2021/601/week-4-may-22nd-may-28th/3758/">May LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="minimum-difficulty-of-a-job-schedule">Minimum Difficulty of a Job Schedule</h1>
+<h2 id="description">Description</h2>
+<p>You want to schedule a list of jobs in <code>d</code> days. Jobs are dependent (i.e To work on the <code>i-th</code> job, you have to finish all the jobs <code>j</code> where <code>0 &lt;= j &lt; i</code>).</p>
+<p>You have to finish <strong>at least</strong> one task every day. The difficulty of a job schedule is the sum of difficulties of each day of the <code>d</code> days. The difficulty of a day is the maximum difficulty of a job done in that day.</p>
+<p>Given an array of integers <code>jobDifficulty</code> and an integer <code>d</code>. The difficulty of the <code>i-th</code> job is <code>jobDifficulty[i]</code>.</p>
+<p>Return <em>the minimum difficulty</em> of a job schedule. If you cannot find a schedule for the jobs return <strong>-1</strong>.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/01/16/untitled.png" alt="img" /></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: jobDifficulty = [6,5,4,3,2,1], d = 2
+Output: 7
+Explanation: First day you can finish the first 5 jobs, total difficulty = 6.
+Second day you can finish the last job, total difficulty = 1.
+The difficulty of the schedule = 6 + 1 = 7 
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: jobDifficulty = [9,9,9], d = 4
+Output: -1
+Explanation: If you finish a job per day you will still have a free day. you cannot find a schedule for the given jobs.
+</span></code></pre>
+<p><strong>Example 3:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: jobDifficulty = [1,1,1], d = 3
+Output: 3
+Explanation: The schedule is one job per day. total difficulty will be 3.
+</span></code></pre>
+<p><strong>Example 4:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: jobDifficulty = [7,1,7,1,7,1], d = 3
+Output: 15
+</span></code></pre>
+<p><strong>Example 5:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: jobDifficulty = [11,111,22,222,33,333,44,444], d = 6
+Output: 843
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= jobDifficulty.length &lt;= 300</code></li>
+<li><code>0 &lt;= jobDifficulty[i] &lt;= 1000</code></li>
+<li><code>1 &lt;= d &lt;= 10</code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>dp, using $dp[i][j]$ represents minimum value by complete<code>j</code> jobs with <code>i + 1</code> days</p>
+<p>when $i = 0$, it's obvious that $dp[i][j] = max(jobDifficulty[0], jobDifficulty[1], ... ,jobDifficulty[j])$.</p>
+<p>when $i &gt; 0$, we first assign $dp[i][j]$ with $dp[i-1][j-1]+jobDifficulty[j]$, then we check if there are some jobs which have less difficulty before meet job with greater difficulty. And we can use monotonic stack accelerate whole process.</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minDifficulty</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">jobDifficulty</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">d</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> jobDifficulty.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> d) </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> d) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">accumulate</span><span style="color:#eff1f5;">(jobDifficulty.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), jobDifficulty.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[d][len];
+    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> jobDifficulty[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][i] </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], jobDifficulty[i]);
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> d; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; monoStack;
+      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i; j </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">j) {
+        dp[i][j] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> dp[i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> jobDifficulty[j];
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> jobDifficulty[monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> jobDifficulty[j]) {
+          dp[i][j] </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[i][j], dp[i][monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> jobDifficulty[monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> jobDifficulty[j]);
+          monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+        }
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+          dp[i][j] </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[i][j], dp[i][monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()]);
+        }
+        monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(j);
+      }
+    }
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[d </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre>
+<p>and some optimization</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minDifficulty</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">jobDifficulty</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">d</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> jobDifficulty.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> d) </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> d) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">accumulate</span><span style="color:#eff1f5;">(jobDifficulty.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), jobDifficulty.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">*</span><span style="color:#bf616a;">max_element</span><span style="color:#eff1f5;">(jobDifficulty.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), jobDifficulty.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][len];
+    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> jobDifficulty[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][i] </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], jobDifficulty[i]);
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> d; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> parity </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; monoStack;
+      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i; j </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">j) {
+        dp[parity][j] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> dp[</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">parity][j </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> jobDifficulty[j];
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> jobDifficulty[monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> jobDifficulty[j]) {
+          dp[parity][j] </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[parity][j], dp[parity][monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> jobDifficulty[monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> jobDifficulty[j]);
+          monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+        }
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+          dp[parity][j] </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[parity][j], dp[parity][monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()]);
+        }
+        monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(j);
+      }
+    }
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">(d</span><span style="color:#c0c5ce;">&amp;</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)][len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Runtime: 4 ms, faster than 99.00% of C++ online submissions for Minimum Difficulty of a Job Schedule.
+// Memory Usage: 7.1 MB, less than 99.47% of C++ online submissions for Minimum Difficulty of a Job Schedule.
+</span></code></pre><h1 id="may-leetcoding-challenge28">May LeetCoding Challenge28</h1>
+<h2 id="description-1">Description</h2>
+<p><strong>Maximum Erasure Value</strong></p>
+<p>You are given an array of positive integers <code>nums</code> and want to erase a subarray containing <strong>unique elements</strong>. The <strong>score</strong> you get by erasing the subarray is equal to the <strong>sum</strong> of its elements.</p>
+<p>Return <em>the <strong>maximum score</strong> you can get by erasing <strong>exactly one</strong> subarray.</em></p>
+<p>An array <code>b</code> is called to be a subarray of <code>a</code> if it forms a contiguous subsequence of <code>a</code>, that is, if it is equal to <code>a[l],a[l+1],...,a[r]</code> for some <code>(l,r)</code>.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [4,2,4,5,6]
+Output: 17
+Explanation: The optimal subarray here is [2,4,5,6].
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [5,2,1,2,5,2,1,2,5]
+Output: 8
+Explanation: The optimal subarray here is [5,2,1] or [1,2,5].
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 10^4</code></li>
+</ul>
+<h2 id="solution-1">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maximumUniqueSubarray</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> vis[</span><span style="color:#d08770;">10001</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">{};
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> start </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; end </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">end) {
+      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(vis[nums[end]]) {
+        vis[nums[start]] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+        sum </span><span style="color:#c0c5ce;">-=</span><span style="color:#eff1f5;"> nums[start];
+        start </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      }
+      vis[nums[end]] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+      sum </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> nums[end];
+      answer </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(sum, answer);
+    }
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2019-01-23 Daily Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2019-01-23T00:46:06+00:00 title="post created">2019-01-23</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-09-19T20:01:27.627328+00:00 title="post modified">2020-09-19</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>What I've done today is <em>Digit factorials</em> in <em>Rust</em> and <em>Search a 2D Matrix II</em> in <em>JavaScript</em>.</p>
+<span id="continue-reading"></span><h1 id="math">Math</h1>
+<h2 id="problem">Problem</h2>
+<h3 id="digit-factorials">Digit factorials</h3>
+<h3 id="problem-34">Problem 34</h3>
+<p>145 is a curious number, as 1! + 4! + 5! = 1 + 24 + 120 = 145.</p>
+<p>Find the sum of all numbers which are equal to the sum of the factorial of their digits.</p>
+<p>Note: as 1! = 1 and 2! = 2 are not sums they are not included.</p>
+<h2 id="solution">Solution</h2>
+<p>Simple DFS is capabel for this problem.</p>
+<p>Because 9!*7 &lt; 9e7, so number limit will be 6.</p>
+<h2 id="implementation">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">use </span><span style="color:#c0c5ce;">std::vec::Vec;
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> ans: Vec&lt;</span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">&gt; = Vec::new();
+    </span><span style="color:#96b5b4;">dfs</span><span style="color:#c0c5ce;">(</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">6</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, &amp;</span><span style="color:#b48ead;">mut</span><span style="color:#c0c5ce;"> ans);
+    ans.</span><span style="color:#96b5b4;">sort</span><span style="color:#c0c5ce;">();
+    ans.</span><span style="color:#96b5b4;">dedup</span><span style="color:#c0c5ce;">();
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> ans_sum = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> num in &amp;ans {
+        println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, num);
+        ans_sum += num;       
+    }
+    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, ans_sum);
+}
+
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">dfs</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">c</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">num</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">sum</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">ans</span><span style="color:#c0c5ce;">: &amp;</span><span style="color:#b48ead;">mut </span><span style="color:#c0c5ce;">Vec&lt;</span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">&gt;){
+    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> sum == num &amp;&amp; sum &gt; </span><span style="color:#d08770;">2 </span><span style="color:#c0c5ce;">{
+        ans.</span><span style="color:#96b5b4;">push</span><span style="color:#c0c5ce;">(num);
+    }
+    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> c &gt; n {
+        </span><span style="color:#b48ead;">return</span><span style="color:#c0c5ce;">;
+    }
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">0</span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">10</span><span style="color:#b48ead;">i64 </span><span style="color:#c0c5ce;">{
+        </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> num == </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">&amp;&amp; i == </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">{
+            </span><span style="color:#b48ead;">continue</span><span style="color:#c0c5ce;">;
+        } </span><span style="color:#b48ead;">else </span><span style="color:#c0c5ce;">{
+            </span><span style="color:#96b5b4;">dfs</span><span style="color:#c0c5ce;">(c+</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, n, num*</span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">+ i, sum + </span><span style="color:#96b5b4;">factorial</span><span style="color:#c0c5ce;">(i), ans);
+        }
+    }
+}
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">factorial</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">) -&gt; </span><span style="color:#b48ead;">i64 </span><span style="color:#c0c5ce;">{
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> tmp = </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> j in </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">..(i+</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">) {
+        tmp *= j;
+    }
+    tmp
+}
+</span></code></pre><h1 id="algorithm">Algorithm</h1>
+<h2 id="problem-1">Problem</h2>
+<h3 id="240-search-a-2d-matrix-ii">240. Search a 2D Matrix II</h3>
+<p>Write an efficient algorithm that searches for a value in an <em>m</em> x <em>n</em> matrix. This matrix has the following properties:</p>
+<ul>
+<li>Integers in each row are sorted in ascending from left to right.</li>
+<li>Integers in each column are sorted in ascending from top to bottom.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<p>Consider the following matrix:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+</span></code></pre>
+<p>Given target = <code>5</code>, return <code>true</code>.</p>
+<p>Given target = <code>20</code>, return <code>false</code>.</p>
+<h2 id="solution-1">Solution</h2>
+<p>Simple simulation.</p>
+<h2 id="implementation-1">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#65737e;">/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">searchMatrix </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(matrix, target) {
+  </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(!</span><span style="color:#bf616a;">matrix</span><span style="color:#c0c5ce;">.length || !</span><span style="color:#bf616a;">matrix</span><span style="color:#c0c5ce;">[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">].length || </span><span style="color:#bf616a;">target </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">matrix</span><span style="color:#c0c5ce;">[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">][</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">row </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">col </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">matrix</span><span style="color:#c0c5ce;">[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">].length - </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">m </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">matrix</span><span style="color:#c0c5ce;">.length;
+  </span><span style="color:#b48ead;">while </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">row </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">m </span><span style="color:#c0c5ce;">&amp;&amp; </span><span style="color:#bf616a;">col </span><span style="color:#c0c5ce;">&gt;= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">) {
+    </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">target </span><span style="color:#c0c5ce;">=== </span><span style="color:#bf616a;">matrix</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">row</span><span style="color:#c0c5ce;">][</span><span style="color:#bf616a;">col</span><span style="color:#c0c5ce;">]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">else if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">target </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">matrix</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">row</span><span style="color:#c0c5ce;">][</span><span style="color:#bf616a;">col</span><span style="color:#c0c5ce;">]) --</span><span style="color:#bf616a;">col</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">else </span><span style="color:#c0c5ce;">++</span><span style="color:#bf616a;">row</span><span style="color:#c0c5ce;">;
+  }
+  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+};
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

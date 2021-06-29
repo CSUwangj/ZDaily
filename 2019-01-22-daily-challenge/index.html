@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2019-01-22 Daily Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2019-01-22T00:03:31+00:00 title="post created">2019-01-22</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-09-19T20:01:27.627328+00:00 title="post modified">2020-09-19</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>What I've done today is <em>Digit cancelling fractions</em> in <em>Rust</em> and <em>Repeated String Match</em> in <em>JavaScript</em>.</p>
+<span id="continue-reading"></span><h1 id="math">Math</h1>
+<h2 id="problem">Problem</h2>
+<h3 id="digit-cancelling-fractions">Digit cancelling fractions</h3>
+<h3 id="problem-33">Problem 33</h3>
+<p>The fraction 49/98 is a curious fraction, as an inexperienced mathematician in attempting to simplify it may incorrectly believe that 49/98 = 4/8, which is correct, is obtained by cancelling the 9s.</p>
+<p>We shall consider fractions like, 30/50 = 3/5, to be trivial examples.</p>
+<p>There are exactly four non-trivial examples of this type of fraction, less than one in value, and containing two digits in the numerator and denominator.</p>
+<p>If the product of these four fractions is given in its lowest common terms, find the value of the denominator.</p>
+<h2 id="solution">Solution</h2>
+<p>Brute force.</p>
+<h2 id="implementation">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> numerator = </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> denominator = </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">9 </span><span style="color:#c0c5ce;">{
+        </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> j in i+</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">{
+            </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> k in </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">{
+                </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(i*</span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">+ k)*j == (k*</span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">+ j)*i {
+                    println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">/</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> = </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">/</span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;,i*</span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">+k,k*</span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">+j,i,j);
+                    numerator *= i;
+                    denominator *= j;
+                }
+            }
+        }
+    }
+    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, denominator/</span><span style="color:#96b5b4;">gcd</span><span style="color:#c0c5ce;">(denominator, numerator));
+}
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">gcd</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">a</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">b</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">) -&gt; </span><span style="color:#b48ead;">usize </span><span style="color:#c0c5ce;">{
+    </span><span style="color:#b48ead;">return if</span><span style="color:#c0c5ce;"> b == </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">{ a } </span><span style="color:#b48ead;">else </span><span style="color:#c0c5ce;">{ </span><span style="color:#96b5b4;">gcd</span><span style="color:#c0c5ce;">(b, a%b) }
+}
+</span></code></pre><h1 id="algorithm">Algorithm</h1>
+<h2 id="problem-1">Problem</h2>
+<h3 id="686-repeated-string-match">686. Repeated String Match</h3>
+<p>Given two strings A and B, find the minimum number of times A has to be repeated such that B is a substring of it. If no such solution, return -1.</p>
+<p>For example, with A = &quot;abcd&quot; and B = &quot;cdabcdab&quot;.</p>
+<p>Return 3, because by repeating A three times (“abcdabcdabcd”), B is a substring of it; and B is not a substring of A repeated two times (&quot;abcdabcd&quot;).</p>
+<p><strong>Note:</strong>
+The length of <code>A</code> and <code>B</code> will be between 1 and 10000.</p>
+<h2 id="solution-1">Solution</h2>
+<p>Nothing to say.</p>
+<h2 id="implementation-1">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#65737e;">/**
+ * @param {string} A
+ * @param {string} B
+ * @return {number}
+ */
+</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">repeatedStringMatch </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(A, B) {
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">nstr </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">A</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">nstr</span><span style="color:#c0c5ce;">.length &lt; </span><span style="color:#ebcb8b;">B</span><span style="color:#c0c5ce;">.length) </span><span style="color:#bf616a;">nstr </span><span style="color:#c0c5ce;">+= </span><span style="color:#bf616a;">A</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">nstr</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">indexOf</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">B</span><span style="color:#c0c5ce;">) !== -</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">? Math.</span><span style="color:#96b5b4;">ceil</span><span style="color:#c0c5ce;">(</span><span style="color:#ebcb8b;">B</span><span style="color:#c0c5ce;">.length/</span><span style="color:#ebcb8b;">A</span><span style="color:#c0c5ce;">.length):((</span><span style="color:#bf616a;">nstr</span><span style="color:#c0c5ce;">+</span><span style="color:#bf616a;">A</span><span style="color:#c0c5ce;">).</span><span style="color:#bf616a;">indexOf</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">B</span><span style="color:#c0c5ce;">) === -</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">? -</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">:Math.</span><span style="color:#96b5b4;">ceil</span><span style="color:#c0c5ce;">(</span><span style="color:#ebcb8b;">B</span><span style="color:#c0c5ce;">.length/</span><span style="color:#ebcb8b;">A</span><span style="color:#c0c5ce;">.length)+</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">);
+};
+
+</span><span style="color:#65737e;">// console.log(repeatedStringMatch(&quot;abcd&quot;,&quot;cdabcdab&quot;));
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

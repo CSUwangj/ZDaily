@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2019-02-16 Daily Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2019-02-16T00:09:22+00:00 title="post created">2019-02-16</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-09-19T20:01:27.631316+00:00 title="post modified">2020-09-19</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>What I've done today is <em>Spiral primes</em> in <em>Rust</em> and <em>First Bad Version</em> in <em>JavaScript</em>.</p>
+<span id="continue-reading"></span><h1 id="math">Math</h1>
+<h2 id="problem">Problem</h2>
+<h3 id="spiral-primes">Spiral primes</h3>
+<h3 id="problem-58">Problem 58</h3>
+<p>Starting with 1 and spiralling anticlockwise in the following way, a square spiral with side length 7 is formed.</p>
+<p><strong>37</strong> 36 35 34 33 32 <strong>31</strong>
+38 <strong>17</strong> 16 15 14 <strong>13</strong> 30
+39 18  <strong>5</strong>  4  <strong>3</strong> 12 29
+40 19  6  1  2 11 28
+41 20  <strong>7</strong>  8  9 10 27
+42 21 22 23 24 25 26
+<strong>43</strong> 44 45 46 47 48 49</p>
+<p>It is interesting to note that the odd squares lie along the bottom right diagonal, 
+but what is more interesting is that 8 out of the 13 numbers lying along both 
+diagonals are prime; that is, a ratio of 8/13 ≈ 62%.</p>
+<p>If one complete new layer is wrapped around the spiral above, a square spiral 
+with side length 9 will be formed. If this process is continued, what is the 
+side length of the square spiral for which the ratio of primes along both diagonals 
+first falls below 10%?</p>
+<h2 id="solution">Solution</h2>
+<p>Nothing to say.</p>
+<h2 id="implementation">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">extern crate</span><span style="color:#c0c5ce;"> primal;
+
+</span><span style="color:#b48ead;">use </span><span style="color:#c0c5ce;">primal::Sieve;
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> sieve: Sieve = Sieve::new(</span><span style="color:#d08770;">1_000_000_000</span><span style="color:#c0c5ce;">);
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> cur: </span><span style="color:#b48ead;">usize </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> spiral: </span><span style="color:#b48ead;">usize </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> prime: </span><span style="color:#b48ead;">usize </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> bound = </span><span style="color:#d08770;">0.1</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> ans: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">loop </span><span style="color:#c0c5ce;">{
+        </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> ratio = prime as </span><span style="color:#b48ead;">f64 </span><span style="color:#c0c5ce;">/ (spiral * </span><span style="color:#d08770;">4 </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">) as </span><span style="color:#b48ead;">f64</span><span style="color:#c0c5ce;">;
+        println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, spiral, ratio);
+        </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> ratio &lt; bound &amp;&amp; spiral != </span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">{
+            ans = spiral * </span><span style="color:#d08770;">2 </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+            </span><span style="color:#b48ead;">break</span><span style="color:#c0c5ce;">;
+        }
+        </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> _i in </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">4 </span><span style="color:#c0c5ce;">{
+            cur += spiral * </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">;
+            </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> sieve.</span><span style="color:#96b5b4;">is_prime</span><span style="color:#c0c5ce;">(cur) {
+                prime += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+            }
+        }
+        spiral += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    }
+    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, ans);
+}
+</span></code></pre><h1 id="algorithm">Algorithm</h1>
+<h2 id="problem-1">Problem</h2>
+<h3 id="278-first-bad-version">278. First Bad Version</h3>
+<p>You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.</p>
+<p>Suppose you have <code>n</code> versions <code>[1, 2, ..., n]</code> and you want to find out the first bad one, which causes all the following ones to be bad.</p>
+<p>You are given an API <code>bool isBadVersion(version)</code> which will return whether <code>version</code> is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.</p>
+<p><strong>Example:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Given n = 5, and version = 4 is the first bad version.
+
+call isBadVersion(3) -&gt; false
+call isBadVersion(5) -&gt; true
+call isBadVersion(4) -&gt; true
+
+Then 4 is the first bad version. 
+</span></code></pre><h2 id="solution-1">Solution</h2>
+<p>Simple binary search.</p>
+<h2 id="implementation-1">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">var </span><span style="color:#bf616a;">solution </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(isBadVersion) {
+  </span><span style="color:#65737e;">/**
+   * @param {integer} n Total versions
+   * @return {integer} The first bad version
+   */
+  </span><span style="color:#b48ead;">return function</span><span style="color:#c0c5ce;">(n) {
+    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">begin </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">end </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">while </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">begin </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#bf616a;">end</span><span style="color:#c0c5ce;">) {
+      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">mid </span><span style="color:#c0c5ce;">= Math.</span><span style="color:#96b5b4;">floor</span><span style="color:#c0c5ce;">((</span><span style="color:#bf616a;">begin</span><span style="color:#c0c5ce;">+</span><span style="color:#bf616a;">end</span><span style="color:#c0c5ce;">)/</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">);
+      </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">isBadVersion</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">mid</span><span style="color:#c0c5ce;">)) </span><span style="color:#bf616a;">end </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">mid</span><span style="color:#c0c5ce;">;
+      </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">begin </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">mid </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    }
+    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">begin</span><span style="color:#c0c5ce;">;
+  };
+};
+</span></code></pre>
+<p><img src="https://csuwangj.github.io/ZDaily/2019-02-16-daily-challenge/09.png" alt="ha" />;D</p>
+
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

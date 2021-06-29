@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2019-01-03 Daily Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2019-01-03T00:04:05+00:00 title="post created">2019-01-03</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-09-19T20:01:27.625333+00:00 title="post modified">2020-09-19</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>What I've done today is <em>Longest Collatz sequence</em> in <em>Rust</em> and <em>Permutation Sequence</em> in <em>JavaScript</em>.</p>
+<span id="continue-reading"></span><h1 id="math">Math</h1>
+<h2 id="problem">Problem</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Longest Collatz sequence
+
+Problem 14 
+
+The following iterative sequence is defined for the set of positive integers:
+
+n → n/2 (n is even)
+n → 3n + 1 (n is odd)
+
+Using the rule above and starting with 13, we generate the following sequence:
+
+13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+
+Which starting number, under one million, produces the longest chain?
+
+NOTE: Once the chain starts the terms are allowed to go above one million.
+</span></code></pre><h2 id="solution">Solution</h2>
+<p>Brute force, and you'll find that every number less than half a million can be get with its double, and therefore in a definitely longer chain.</p>
+<h2 id="implementation">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> ans = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> cnt = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">500_000</span><span style="color:#b48ead;">u64</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">1_000_000</span><span style="color:#b48ead;">u64 </span><span style="color:#c0c5ce;">{
+        </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> tmp = i;
+        </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> tcnt = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+        </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;"> tmp != </span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">{
+            </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> tmp%</span><span style="color:#d08770;">2 </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">{
+                tmp /=</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">;
+            } </span><span style="color:#b48ead;">else </span><span style="color:#c0c5ce;">{
+                tmp = tmp * </span><span style="color:#d08770;">3 </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+            }
+            tcnt += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+        }
+        </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> tcnt &gt; cnt {
+            ans = i;
+            cnt = tcnt;
+        }
+    }
+    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, ans);
+}
+</span></code></pre><h1 id="algorithm">Algorithm</h1>
+<h2 id="problem-1">Problem</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">60. Permutation Sequence
+
+The set [1,2,3,...,n] contains a total of n! unique permutations.
+
+By listing and labeling all of the permutations in order, we get the following sequence for n = 3:
+
+&quot;123&quot;
+&quot;132&quot;
+&quot;213&quot;
+&quot;231&quot;
+&quot;312&quot;
+&quot;321&quot;
+Given n and k, return the kth permutation sequence.
+
+Note:
+
+Given n will be between 1 and 9 inclusive.
+Given k will be between 1 and n! inclusive.
+Example 1:
+
+Input: n = 3, k = 3
+Output: &quot;213&quot;
+Example 2:
+
+Input: n = 4, k = 9
+Output: &quot;2314&quot;
+</span></code></pre><h2 id="solution-1">Solution</h2>
+<p>I'm too tired doing my project to explain it...</p>
+<p>Sry for delay.</p>
+<h2 id="implementation-1">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#65737e;">/**
+ * @param {number} n
+ * @param {number} k
+ * @return {string}
+ */
+</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">getPermutation </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(n, k) {
+  </span><span style="color:#bf616a;">k </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">fac </span><span style="color:#c0c5ce;">= [</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">6</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">24</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">120</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">720</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">5040</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">40320</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">369880</span><span style="color:#c0c5ce;">];
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">used </span><span style="color:#c0c5ce;">= new </span><span style="color:#ebcb8b;">Array</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">);
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">nums </span><span style="color:#c0c5ce;">= new </span><span style="color:#ebcb8b;">Array</span><span style="color:#c0c5ce;">();
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span style="color:#c0c5ce;">= &quot;&quot;;
+  </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">&lt;= </span><span style="color:#bf616a;">n </span><span style="color:#c0c5ce;">; ++</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">){
+    </span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">push</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">);
+  }
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cur </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">n </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">cur </span><span style="color:#c0c5ce;">&gt;= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">) {
+    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">index </span><span style="color:#c0c5ce;">= Math.</span><span style="color:#96b5b4;">floor</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">k</span><span style="color:#c0c5ce;">/</span><span style="color:#bf616a;">fac</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">cur</span><span style="color:#c0c5ce;">]);
+    </span><span style="color:#bf616a;">k </span><span style="color:#c0c5ce;">%= </span><span style="color:#bf616a;">fac</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">cur</span><span style="color:#c0c5ce;">];
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">const </span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">v</span><span style="color:#c0c5ce;">] of </span><span style="color:#bf616a;">nums</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">entries</span><span style="color:#c0c5ce;">()){
+      </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">used</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">] === </span><span style="color:#d08770;">undefined</span><span style="color:#c0c5ce;">){
+        </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">index</span><span style="color:#c0c5ce;">) --</span><span style="color:#bf616a;">index</span><span style="color:#c0c5ce;">;
+        </span><span style="color:#b48ead;">else </span><span style="color:#c0c5ce;">{</span><span style="color:#bf616a;">ans </span><span style="color:#c0c5ce;">+= </span><span style="color:#bf616a;">v</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">used</span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">] = </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">; </span><span style="color:#b48ead;">break</span><span style="color:#c0c5ce;">;}
+      }
+    }
+    --</span><span style="color:#bf616a;">cur</span><span style="color:#c0c5ce;">;
+  }
+  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span style="color:#c0c5ce;">;
+};
+
+</span><span style="color:#65737e;">// console.log(getPermutation(3,3));
+// console.log(getPermutation(4,9));
+
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

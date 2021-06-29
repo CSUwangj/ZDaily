@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2019-01-01 Daily Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2019-01-01T03:50:53+00:00 title="post created">2019-01-01</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-09-19T20:01:27.625333+00:00 title="post modified">2020-09-19</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p><strong>HAPPY NEW YEAR!</strong></p>
+<p>What I've done today is <em>Highly divisible triangular number</em> in <em>Rust</em> and <em>Same Tree</em> in <em>JavaScript</em>.</p>
+<span id="continue-reading"></span><h1 id="math">Math</h1>
+<h2 id="problem">Problem</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Highly divisible triangular number
+
+Problem 12 
+
+The sequence of triangle numbers is generated by adding the natural numbers. So the 7th triangle number would be 1 + 2 + 3 + 4 + 5 + 6 + 7 = 28. The first ten terms would be:
+
+1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...
+
+Let us list the factors of the first seven triangle numbers:
+
+ 1: 1
+ 3: 1,3
+ 6: 1,2,3,6
+10: 1,2,5,10
+15: 1,3,5,15
+21: 1,3,7,21
+28: 1,2,4,7,14,28
+We can see that 28 is the first triangle number to have over five divisors.
+
+What is the value of the first triangle number to have over five hundred divisors?
+</span></code></pre><h2 id="solution">Solution</h2>
+<p>It's easy to understand that if prime factorization of $n$ is given by</p>
+<p>$$n=p_1^{v_1}p_2^{v_2}...p_k^{v_k}$$</p>
+<p>Then the number of positive divisors of $n$ is </p>
+<p>$$d(n)=(v_1+1)(v_2+1)...(v_k+1)$$</p>
+<p>If you do not get it, check https://www.math.upenn.edu/~deturck/m170/wk2/numdivisors.html</p>
+<p>So just factorize triangle numbers and check if it's answer.</p>
+<h2 id="implementation">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">extern crate</span><span style="color:#c0c5ce;"> primal;
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> sieve = primal::Sieve::new(</span><span style="color:#d08770;">14751430</span><span style="color:#c0c5ce;">);
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> ans = </span><span style="color:#d08770;">0</span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">i64</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">10000000</span><span style="color:#b48ead;">i64 </span><span style="color:#c0c5ce;">{
+        ans += i;
+        </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> factors: Vec&lt;(</span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">, </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">)&gt; = </span><span style="color:#b48ead;">match</span><span style="color:#c0c5ce;"> sieve.</span><span style="color:#96b5b4;">factor</span><span style="color:#c0c5ce;">(ans as </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">) {
+            Ok(v) =&gt; v,
+            Err(_) =&gt; Vec::new(),
+        };
+        </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> count = </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+        </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> factor in factors {
+            count *= factor.</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+        }
+        </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> count &gt; </span><span style="color:#d08770;">500 </span><span style="color:#c0c5ce;">{
+            println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, ans);
+            </span><span style="color:#b48ead;">break</span><span style="color:#c0c5ce;">;
+        }
+    }
+}
+
+</span></code></pre><h1 id="algorithm">Algorithm</h1>
+<h2 id="problem-1">Problem</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">100. Same Tree
+
+Given two binary trees, write a function to check if they are the same or not.
+
+Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+
+Example 1:
+
+Input:     1         1
+          / \       / \
+         2   3     2   3
+
+        [1,2,3],   [1,2,3]
+
+Output: true
+Example 2:
+
+Input:     1         1
+          /           \
+         2             2
+
+        [1,2],     [1,null,2]
+
+Output: false
+Example 3:
+
+Input:     1         1
+          / \       / \
+         2   1     1   2
+
+        [1,2,1],   [1,1,2]
+
+Output: false
+</span></code></pre><h2 id="solution-1">Solution</h2>
+<p>I just to lazy to implement it with non-recursive approach. ;P</p>
+<h2 id="implementation-1">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#65737e;">/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">isSameTree </span><span style="color:#c0c5ce;">= (p, q) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#c0c5ce;">{
+  </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(!</span><span style="color:#bf616a;">q</span><span style="color:#c0c5ce;">||!</span><span style="color:#bf616a;">p</span><span style="color:#c0c5ce;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">q</span><span style="color:#c0c5ce;">===</span><span style="color:#bf616a;">p</span><span style="color:#c0c5ce;">;
+  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">isSameTree</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">p</span><span style="color:#c0c5ce;">.left,</span><span style="color:#bf616a;">q</span><span style="color:#c0c5ce;">.left)&amp;&amp;
+    </span><span style="color:#bf616a;">isSameTree</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">p</span><span style="color:#c0c5ce;">.right,</span><span style="color:#bf616a;">q</span><span style="color:#c0c5ce;">.right)&amp;&amp;
+    </span><span style="color:#bf616a;">q</span><span style="color:#c0c5ce;">.val===</span><span style="color:#bf616a;">p</span><span style="color:#c0c5ce;">.val;
+};
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

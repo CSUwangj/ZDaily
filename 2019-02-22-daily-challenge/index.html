@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2019-02-22 Daily Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2019-02-22T18:53:33+00:00 title="post created">2019-02-22</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2020-09-19T20:01:27.631316+00:00 title="post modified">2020-09-19</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>I've get tired with leetcode, especially meet strange runtime at yesterday. So I jumped into codewors and want to learn some fp and ES6 from Space :D</p>
+<p>What I've done today is <em>Odd period square roots</em> in <em>Rust</em> and <em>Jaden Casing Strings</em> in <em>JavaScript</em>.</p>
+<span id="continue-reading"></span><h1 id="math">Math</h1>
+<h2 id="problem">Problem</h2>
+<h3 id="odd-period-square-roots">Odd period square roots</h3>
+<h3 id="problem-64">Problem 64</h3>
+<p>All square roots are periodic when written as continued fractions and can be written in the form:</p>
+<p>{% asset_img 1.png %}</p>
+<p>For example, let us consider √23:</p>
+<p>{% asset_img 2.png %}</p>
+<p>If we continue we would get the following expansion:</p>
+<p>{% asset_img 3.png %}</p>
+<p>The process can be summarised as follows:</p>
+<p>{% asset_img 4.png %}</p>
+<p>It can be seen that the sequence is repeating. For conciseness, we use the notation √23 = [4;(1,3,1,8)], to indicate that the block (1,3,1,8) repeats indefinitely.</p>
+<p>The first ten continued fraction representations of (irrational) square roots are:</p>
+<p>√2=[1;(2)], period=1
+√3=[1;(1,2)], period=2
+√5=[2;(4)], period=1
+√6=[2;(2,4)], period=2
+√7=[2;(1,1,1,4)], period=4
+√8=[2;(1,4)], period=2
+√10=[3;(6)], period=1
+√11=[3;(3,6)], period=2
+√12= [3;(2,6)], period=2
+√13=[3;(1,1,1,1,6)], period=5</p>
+<p>Exactly four continued fractions, for N ≤ 13, have an odd period.</p>
+<p>How many continued fractions for N ≤ 10000 have an odd period?</p>
+<h2 id="solution">Solution</h2>
+<p>I &quot;borrow&quot; something from wikipedia but don't get it known...</p>
+<h2 id="implementation">Implementation</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> ans = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">10001 </span><span style="color:#c0c5ce;">{
+        ans += </span><span style="color:#96b5b4;">get_period</span><span style="color:#c0c5ce;">(i) &amp; </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    }
+    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, ans);
+}
+
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">get_period</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">i32</span><span style="color:#c0c5ce;">) -&gt; </span><span style="color:#b48ead;">i32 </span><span style="color:#c0c5ce;">{
+    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> root = (n as </span><span style="color:#b48ead;">f64</span><span style="color:#c0c5ce;">).</span><span style="color:#96b5b4;">sqrt</span><span style="color:#c0c5ce;">() as </span><span style="color:#b48ead;">i32</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> root * root == n {
+        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    }
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> extra = root;
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> numerator = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> denominator = </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> period = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;"> extra != </span><span style="color:#d08770;">2 </span><span style="color:#c0c5ce;">* root {
+        numerator = denominator * extra - numerator;
+        </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(n - numerator * numerator) % denominator != </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">&amp;&amp; (root + numerator) % denominator != </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">{
+            panic!(&quot;</span><span style="color:#a3be8c;">???</span><span style="color:#c0c5ce;">&quot;);
+        }
+        denominator = (n - numerator * numerator) / denominator;
+        extra = (root + numerator) / denominator;
+        period += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+    }
+    period
+}
+</span></code></pre><h1 id="codewar">Codewar</h1>
+<h2 id="problem-1">Problem</h2>
+<h3 id="jaden-casing-strings">Jaden Casing Strings</h3>
+<ul>
+<li>
+<p>Jaden Smith, the son of Will Smith, is the star of films such as The Karate Kid (2010) and After Earth (2013). Jaden is also known for <a href="https://twitter.com/officialjaden">some of his philosophy that he delivers via Twitter</a>. When writing on Twitter, he is known for almost always capitalizing every word.</p>
+<p>Your task is to convert strings to how they would be written by Jaden Smith. The strings are actual quotes from Jaden Smith, but they are not capitalized in the same way he originally typed them.</p>
+<p>Example:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Not Jaden-Cased: &quot;How can mirrors be real if our eyes aren&#39;t real&quot;
+</span><span style="color:#c0c5ce;">Jaden-Cased:     &quot;How Can Mirrors Be Real If Our Eyes Aren&#39;t Real&quot;
+</span></code></pre>
+<p>Note that the <strong>Java version</strong> expects a return value of null for an empty string or null</p>
+</li>
+</ul>
+<h2 id="solution-1">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#ebcb8b;">String</span><span style="color:#c0c5ce;">.prototype.</span><span style="color:#bf616a;">toJadenCase </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function </span><span style="color:#c0c5ce;">() {
+  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">split</span><span style="color:#c0c5ce;">(&quot; &quot;).</span><span style="color:#bf616a;">map</span><span style="color:#c0c5ce;">(([a, ...i]) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#c0c5ce;">[</span><span style="color:#bf616a;">a</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">toUpperCase</span><span style="color:#c0c5ce;">(), ...</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">].</span><span style="color:#bf616a;">join</span><span style="color:#c0c5ce;">(&quot;&quot;)).</span><span style="color:#bf616a;">join</span><span style="color:#c0c5ce;">(&quot; &quot;);
+};
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

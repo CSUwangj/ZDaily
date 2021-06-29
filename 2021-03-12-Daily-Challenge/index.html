@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2021-03-12 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-03-12T11:03:31+08:00 title="post created">2021-03-12</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-03-12T21:30:02+08:00 title="post modified">2021-03-12</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today I have done <a href="https://leetcode.com/problems/find-servers-that-handled-most-number-of-requests/">Find Servers That Handled Most Number of Requests</a> and leetcode's <a href="https://leetcode.com/explore/challenge/card/march-leetcoding-challenge-2021/589/week-2-march-8th-march-14th/3669/">March LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="find-servers-that-handled-most-number-of-requests">Find Servers That Handled Most Number of Requests</h1>
+<h2 id="description">Description</h2>
+<p>You have <code>k</code> servers numbered from <code>0</code> to <code>k-1</code> that are being used to handle multiple requests simultaneously. Each server has infinite computational capacity but <strong>cannot handle more than one request at a time</strong>. The requests are assigned to servers according to a specific algorithm:</p>
+<ul>
+<li>The <code>ith</code> (0-indexed) request arrives.</li>
+<li>If all servers are busy, the request is dropped (not handled at all).</li>
+<li>If the <code>(i % k)th</code> server is available, assign the request to that server.</li>
+<li>Otherwise, assign the request to the next available server (wrapping around the list of servers and starting from 0 if necessary). For example, if the <code>ith</code> server is busy, try to assign the request to the <code>(i+1)th</code> server, then the <code>(i+2)th</code> server, and so on.</li>
+</ul>
+<p>You are given a <strong>strictly increasing</strong> array <code>arrival</code> of positive integers, where <code>arrival[i]</code> represents the arrival time of the <code>ith</code> request, and another array <code>load</code>, where <code>load[i]</code> represents the load of the <code>ith</code> request (the time it takes to complete). Your goal is to find the <strong>busiest server(s)</strong>. A server is considered <strong>busiest</strong> if it handled the most number of requests successfully among all the servers.</p>
+<p>Return <em>a list containing the IDs (0-indexed) of the <strong>busiest server(s)</strong></em>. You may return the IDs in any order.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/09/08/load-1.png" alt="img" /></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: k = 3, arrival = [1,2,3,4,5], load = [5,2,3,3,3] 
+Output: [1] 
+Explanation:
+All of the servers start out available.
+The first 3 requests are handled by the first 3 servers in order.
+Request 3 comes in. Server 0 is busy, so it&#39;s assigned to the next available server, which is 1.
+Request 4 comes in. It cannot be handled since all servers are busy, so it is dropped.
+Servers 0 and 2 handled one request each, while server 1 handled two requests. Hence server 1 is the busiest server.
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: k = 3, arrival = [1,2,3,4], load = [1,2,1,2]
+Output: [0]
+Explanation:
+The first 3 requests are handled by first 3 servers.
+Request 3 comes in. It is handled by server 0 since the server is available.
+Server 0 handled two requests, while servers 1 and 2 handled one request each. Hence server 0 is the busiest server.
+</span></code></pre>
+<p><strong>Example 3:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: k = 3, arrival = [1,2,3], load = [10,12,11]
+Output: [0,1,2]
+Explanation: Each server handles a single request, so they are all considered the busiest.
+</span></code></pre>
+<p><strong>Example 4:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: k = 3, arrival = [1,2,3,4,8,9,10], load = [5,2,10,3,1,2,2]
+Output: [1]
+</span></code></pre>
+<p><strong>Example 5:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: k = 1, arrival = [1], load = [1]
+Output: [0]
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li>$1 \le k \le 10^5$</li>
+<li>$1 \le arrival.length, load.length \le 10^5$</li>
+<li>$arrival.length == load.length$</li>
+<li>$1 \le arrival[i], load[i] \le 10^9$</li>
+<li><code>arrival</code> is <strong>strictly increasing</strong>.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>writing code on phone is not comfortable, but I finally managed to get AC at first time!</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">busiestServers</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">arrival</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">load</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">using </span><span style="color:#eff1f5;">pii </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> arrival.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; ok;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> k; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) ok.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(i);
+    priority_queue</span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;">pii, vector&lt;pii&gt;, greater&lt;pii&gt;</span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> q;
+    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(k);
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">q.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">first </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> arrival[i]) {
+        ok.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+      }
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(ok.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> ok.</span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(i </span><span style="color:#c0c5ce;">%</span><span style="color:#eff1f5;"> k);
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(it </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> ok.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">? *</span><span style="color:#eff1f5;">(ok.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">()) </span><span style="color:#c0c5ce;">: *</span><span style="color:#eff1f5;">it);
+      ok.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(pos);
+      q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(arrival[i] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> load[i], pos));
+      count[pos] </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    }
+    
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mmax </span><span style="color:#c0c5ce;">= *</span><span style="color:#bf616a;">max_element</span><span style="color:#eff1f5;">(count.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), count.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> k; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(count[i] </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> mmax) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+    }
+    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(answer);
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre><h1 id="march-leetcoding-challenge12">March LeetCoding Challenge12</h1>
+<h2 id="description-1">Description</h2>
+<p><strong>Check If a String Contains All Binary Codes of Size K</strong></p>
+<p>Given a binary string <code>s</code> and an integer <code>k</code>.</p>
+<p>Return <em>True</em> if every binary code of length <code>k</code> is a substring of <code>s</code>. Otherwise, return <em>False</em>.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: s = &quot;00110110&quot;, k = 2
+Output: true
+Explanation: The binary codes of length 2 are &quot;00&quot;, &quot;01&quot;, &quot;10&quot; and &quot;11&quot;. They can be all found as substrings at indicies 0, 1, 3 and 2 respectively.
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: s = &quot;00110&quot;, k = 2
+Output: true
+</span></code></pre>
+<p><strong>Example 3:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: s = &quot;0110&quot;, k = 1
+Output: true
+Explanation: The binary codes of length 1 are &quot;0&quot; and &quot;1&quot;, it is clear that both exist as a substring. 
+</span></code></pre>
+<p><strong>Example 4:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: s = &quot;0110&quot;, k = 2
+Output: false
+Explanation: The binary code &quot;00&quot; is of length 2 and doesn&#39;t exist in the array.
+</span></code></pre>
+<p><strong>Example 5:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: s = &quot;0000000001011100&quot;, k = 4
+Output: false
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 5 * 10^5</code></li>
+<li><code>s</code> consists of 0's and 1's only.</li>
+<li><code>1 &lt;= k &lt;= 20</code></li>
+</ul>
+<h2 id="solution-1">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">hasAllCodes</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">&lt;&lt;</span><span style="color:#eff1f5;"> k) </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> k </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">const int</span><span style="color:#eff1f5;"> MASK </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">&lt;&lt;</span><span style="color:#eff1f5;"> k) </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">has</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">&lt;&lt;</span><span style="color:#eff1f5;"> k);
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> k; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      cur </span><span style="color:#c0c5ce;">&lt;&lt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      cur </span><span style="color:#c0c5ce;">|= </span><span style="color:#eff1f5;">(s[i] </span><span style="color:#c0c5ce;">== &#39;</span><span style="color:#a3be8c;">1</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">);
+    }
+    has[cur] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> k; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      cur </span><span style="color:#c0c5ce;">&lt;&lt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      cur </span><span style="color:#c0c5ce;">|= </span><span style="color:#eff1f5;">(s[i] </span><span style="color:#c0c5ce;">== &#39;</span><span style="color:#a3be8c;">1</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">);
+      cur </span><span style="color:#c0c5ce;">&amp;=</span><span style="color:#eff1f5;"> MASK;
+      has[cur] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+    }
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> b </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> has) </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">b) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+  }
+}</span><span style="color:#c0c5ce;">;
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>
