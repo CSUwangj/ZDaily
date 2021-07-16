@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
+      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa fa-home"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2021-07-16 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-07-16T20:02:50+08:00 title="post created">2021-07-16</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-07-16T23:44:33+08:00 title="post modified">2021-07-16</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today I have done <a href="https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/description/">Sort Items by Groups Respecting Dependencies</a> and leetcode's <a href="https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/610/week-3-july-15th-july-21st/3816/">July LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="sort-items-by-groups-respecting-dependencies">Sort Items by Groups Respecting Dependencies</h1>
+<h2 id="description">Description</h2>
+<p>There are <code>n</code> items each belonging to zero or one of <code>m</code> groups where <code>group[i]</code> is the group that the <code>i</code>-th item belongs to and it's equal to <code>-1</code> if the <code>i</code>-th item belongs to no group. The items and the groups are zero indexed. A group can have no item belonging to it.</p>
+<p>Return a sorted list of the items such that:</p>
+<ul>
+<li>The items that belong to the same group are next to each other in the sorted list.</li>
+<li>There are some relations between these items where <code>beforeItems[i]</code> is a list containing all the items that should come before the <code>i</code>-th item in the sorted array (to the left of the <code>i</code>-th item).</li>
+</ul>
+<p>Return any solution if there is more than one solution and return an <strong>empty list</strong> if there is no solution.</p>
+<p><strong>Example 1:</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2019/09/11/1359_ex1.png" alt="img" /></strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3,6],[],[],[]]
+Output: [6,3,4,1,5,2,0,7]
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3],[],[4],[]]
+Output: []
+Explanation: This is the same as example 1 except that 4 needs to be before 6 in the sorted list.
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= m &lt;= n &lt;= 3 * 10^4</code></li>
+<li><code>group.length == beforeItems.length == n</code></li>
+<li><code>-1 &lt;= group[i] &lt;= m - 1</code></li>
+<li><code>0 &lt;= beforeItems[i].length &lt;= n - 1</code></li>
+<li><code>0 &lt;= beforeItems[i][j] &lt;= n - 1</code></li>
+<li><code>i != beforeItems[i][j]</code></li>
+<li><code>beforeItems[i] </code>does not contain duplicates elements.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>amazing double topological sort</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> groupDegree[</span><span style="color:#d08770;">30000</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">{};
+  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> degree[</span><span style="color:#d08770;">30000</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">{};
+  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; children[</span><span style="color:#d08770;">30000</span><span style="color:#eff1f5;">];
+  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; groupChildren[</span><span style="color:#d08770;">30000</span><span style="color:#eff1f5;">];
+  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; items[</span><span style="color:#d08770;">30000</span><span style="color:#eff1f5;">];
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">sortItems</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">group</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">beforeItems</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#65737e;">// init
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> n; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(group[i] </span><span style="color:#c0c5ce;">== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) group[i] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> m</span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">;
+      items[group[i]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+    }
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> n; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> p </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> beforeItems[i]) {
+        children[p].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+        degree[i] </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(group[p] </span><span style="color:#c0c5ce;">!=</span><span style="color:#eff1f5;"> group[i]) {
+          groupDegree[group[i]] </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+          groupChildren[group[p]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(group[i]);
+        }
+      }
+    }
+
+    </span><span style="color:#65737e;">// topological sort for group
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; groupOrder;
+    queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> m; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">groupDegree[i]) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(i);
+    }
+    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+      groupOrder.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur);
+      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> groupChildren[cur]) {
+        groupDegree[c] </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">groupDegree[c]) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(c);
+      }
+    }
+    </span><span style="color:#65737e;">// cout &lt;&lt; groupOrder &lt;&lt; endl;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(groupOrder.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">!=</span><span style="color:#eff1f5;"> m) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{};
+
+    </span><span style="color:#65737e;">// sort items
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> g </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> groupOrder) {
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> item </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> items[g]) {
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">degree[item]) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(item);
+      }
+      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur);
+        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> children[cur]) {
+          degree[c] </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(group[c] </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> group[cur] </span><span style="color:#c0c5ce;">&amp;&amp; !</span><span style="color:#eff1f5;">degree[c]) {
+            q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(c);
+          }
+        }
+      }
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> sz </span><span style="color:#c0c5ce;">!=</span><span style="color:#eff1f5;"> items[g].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{};
+    }
+
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Accepted
+// 17/17 cases passed (112 ms)
+// Your runtime beats 65.23 % of cpp submissions
+// Your memory usage beats 83.77 % of cpp submissions (41.5 MB)
+</span></code></pre><h1 id="july-leetcoding-challenge16">July LeetCoding Challenge16</h1>
+<h2 id="description-1">Description</h2>
+<p><strong>4Sum</strong></p>
+<p>Given an array <code>nums</code> of <code>n</code> integers, return <em>an array of all the <strong>unique</strong> quadruplets</em> <code>[nums[a], nums[b], nums[c], nums[d]]</code> such that:</p>
+<ul>
+<li><code>0 &lt;= a, b, c, d &lt; n</code></li>
+<li><code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> are <strong>distinct</strong>.</li>
+<li><code>nums[a] + nums[b] + nums[c] + nums[d] == target</code></li>
+</ul>
+<p>You may return the answer in <strong>any order</strong>.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [1,0,-1,0,-2,2], target = 0
+Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [2,2,2,2,2], target = 8
+Output: [[2,2,2,2]]
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 200</code></li>
+	<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>-10<sup>9</sup> &lt;= target &lt;= 10<sup>9</sup></code></li>
+</ul>
+<h2 id="solution-1">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">auto</span><span style="color:#c0c5ce;"> speedup = [](){
+  cin.</span><span style="color:#bf616a;">tie</span><span style="color:#c0c5ce;">(</span><span style="color:#d08770;">nullptr</span><span style="color:#c0c5ce;">);
+  cout.</span><span style="color:#bf616a;">tie</span><span style="color:#c0c5ce;">(</span><span style="color:#d08770;">nullptr</span><span style="color:#c0c5ce;">);
+  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span style="color:#c0c5ce;">(</span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">);
+  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(
+    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">,
+    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">,
+    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">,
+    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">,
+    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rest</span><span style="color:#eff1f5;">,
+    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">count
+  </span><span style="color:#eff1f5;">) {
+    </span><span style="color:#65737e;">// cout &lt;&lt; rest &lt;&lt; &quot; &quot; &lt;&lt; index &lt;&lt; &quot; &quot; &lt;&lt; count &lt;&lt; endl;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">count) {
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">rest) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur);
+      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+    }
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;"> count </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> rest) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> prev </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> INT_MIN;
+    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(index </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len) {
+      index </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">upper_bound</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> index, nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), prev) </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> len) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+      prev </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums[index];
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;"> count </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> rest) {
+        cur.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(prev);
+        </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, cur, nums, index </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, rest </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> prev, count </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+        cur.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+      }
+    }
+  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">fourSum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; tmp;
+    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+    len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, nums, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, target, </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">);
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Accepted
+// 283/283 cases passed (288 ms)
+// Your runtime beats 6.98 % of cpp submissions
+// Your memory usage beats 45.62 % of cpp submissions (13.1 MB)
+</span></code></pre>
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa fw fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa fw fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2021</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>
