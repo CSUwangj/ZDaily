@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/description/)) and leetcode's [July LeetCoding Challenge](https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/610/week-3-july-15th-july-21st/3815/) with `cpp`.
+Today I have done [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/description/) and leetcode's [July LeetCoding Challenge](https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/610/week-3-july-15th-july-21st/3815/) with `cpp`.
 
 <!-- more -->
 
