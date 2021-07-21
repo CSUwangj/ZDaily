@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Invalid Transactions](https://leetcode.com/problems/invalid-transactions/description/) and leetcode's [July LeetCoding Challenge](https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/610/week-3-july-15th-july-21st/3819/) with `cpp`.
+Today I have done [Invalid Transactions](https://leetcode.com/problems/invalid-transactions/description/) and leetcode's [July LeetCoding Challenge](https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/610/week-3-july-15th-july-21st/3820/) with `cpp`.
 
 <!-- more -->
 
@@ -63,6 +63,7 @@ Output: ["bob,50,1200,mtv"]
 - Each `{amount}` consist of digits, and represent an integer between `0` and `2000`.
 
 ## Solution
+
 not elegant nor efficient
 
 ``` cpp
