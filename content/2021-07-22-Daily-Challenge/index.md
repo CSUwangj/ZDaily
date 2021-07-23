@@ -104,7 +104,7 @@ public:
 
 ## Description
 
-** Partition Array into Disjoint Intervals**
+**Partition Array into Disjoint Intervals**
 
 Given an array `nums`, partition it into two (contiguous) subarrays `left` and `right` so that:
 
