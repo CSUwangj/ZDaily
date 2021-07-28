@@ -1,8 +1,8 @@
 +++
 title = "2021-07-28 Daily-Challenge"
 path = "2021-07-28-Daily-Challenge"
-date = 2021-07-28 16:06:01+08:00
-updated = 2021-07-28 16:34:16+08:00
+date = 2021-07-28 15:06:26+08:00
+updated = 2021-07-28 15:48:57+08:00
 in_search_index = true
 
 [taxonomies]
@@ -11,199 +11,179 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Most Visited Sector in a Circular Track](https://leetcode.com/problems/most-visited-sector-in-a-circular-track/description/) and leetcode's [July LeetCoding Challenge](https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/611/week-4-july-22nd-july-28th/3827/) with `cpp`.
+Today I have done [K-diff Pairs in an Array](https://leetcode.com/problems/k-diff-pairs-in-an-array/description/) and leetcode's [July LeetCoding Challenge](https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/611/week-4-july-22nd-july-28th/3829/) with `cpp`.
 
 <!-- more -->
 
-# Most Visited Sector in a Circular Track
+# K-diff Pairs in an Array
 
 ## Description
 
-Given an integer `n` and an integer array `rounds`. We have a circular track which consists of `n` sectors labeled from `1` to `n`. A marathon will be held on this track, the marathon consists of `m` rounds. The `ith` round starts at sector `rounds[i - 1]` and ends at sector `rounds[i]`. For example, round 1 starts at sector `rounds[0]` and ends at sector `rounds[1]`
+Given an array of integers `nums` and an integer `k`, return *the number of **unique** k-diff pairs in the array*.
 
-Return *an array of the most visited sectors* sorted in **ascending** order.
+A **k-diff** pair is an integer pair `(nums[i], nums[j])`, where the following are true:
 
-Notice that you circulate the track in ascending order of sector numbers in the counter-clockwise direction (See the first example).
+- `0 <= i < j < nums.length`
+- `|nums[i] - nums[j]| == k`
+
+**Notice** that `|val|` denotes the absolute value of `val`.
 
  
 
 **Example 1:**
 
-![img](https://assets.leetcode.com/uploads/2020/08/14/tmp.jpg)
-
 ```
-Input: n = 4, rounds = [1,3,1,2]
-Output: [1,2]
-Explanation: The marathon starts at sector 1. The order of the visited sectors is as follows:
-1 --> 2 --> 3 (end of round 1) --> 4 --> 1 (end of round 2) --> 2 (end of round 3 and the marathon)
-We can see that both sectors 1 and 2 are visited twice and they are the most visited sectors. Sectors 3 and 4 are visited only once.
+Input: nums = [3,1,4,1,5], k = 2
+Output: 2
+Explanation: There are two 2-diff pairs in the array, (1, 3) and (3, 5).
+Although we have two 1s in the input, we should only return the number of unique pairs.
 ```
 
 **Example 2:**
 
 ```
-Input: n = 2, rounds = [2,1,2,1,2,1,2,1,2]
-Output: [2]
+Input: nums = [1,2,3,4,5], k = 1
+Output: 4
+Explanation: There are four 1-diff pairs in the array, (1, 2), (2, 3), (3, 4) and (4, 5).
 ```
 
 **Example 3:**
 
 ```
-Input: n = 7, rounds = [1,3,5,7]
-Output: [1,2,3,4,5,6,7]
+Input: nums = [1,3,1,5,4], k = 0
+Output: 1
+Explanation: There is one 0-diff pair in the array, (1, 1).
+```
+
+**Example 4:**
+
+```
+Input: nums = [1,2,4,4,3,3,0,9,2,3], k = 3
+Output: 2
+```
+
+**Example 5:**
+
+```
+Input: nums = [-1,-2,-3], k = 1
+Output: 2
 ```
 
  
 
 **Constraints:**
 
-- `2 <= n <= 100`
-- `1 <= m <= 100`
-- `rounds.length == m + 1`
-- `1 <= rounds[i] <= n`
-- `rounds[i] != rounds[i + 1]` for `0 <= i < m`
+- `1 <= nums.length <= 10^4`
+- `-10^7 <= nums[i] <= 10^7`
+- `0 <= k <= 10^7`
 
 ## Solution
 
 ``` cpp
 class Solution {
 public:
-  vector<int> mostVisited(int n, vector<int>& rounds) {
-    int more = 0;
-    for(int i = 1; i < rounds.size(); ++i) {
-      more += rounds[i] + n - rounds[i - 1]; 
+  int findPairs(vector<int>& nums, int k) {
+    unordered_map<int, int> cnt;
+    for(auto i : nums) {
+      cnt[i] += 1;
     }
-    more %= n;
-    vector<int> answer;
-    int begin = rounds.front();
-    for(int i = 0; i <= more; ++i) {
-      answer.push_back((begin + i + n - 1) % n + 1);
+
+    int answer = 0;
+    for(auto [i, c] : cnt) {
+      if(k) answer += cnt.count(i + k);
+      else answer += c > 1;
     }
-    sort(answer.begin(), answer.end());
     return answer;
   }
 };
 
 // Accepted
-// 204/204 cases passed (4 ms)
-// Your runtime beats 87.2 % of cpp submissions
-// Your memory usage beats 64.24 % of cpp submissions (11.2 MB)
+// 59/59 cases passed (12 ms)
+// Your runtime beats 92.05 % of cpp submissions
+// Your memory usage beats 68.98 % of cpp submissions (13.1 MB)
 ```
 
 # July LeetCoding Challenge28
 
 ## Description
 
-**3Sum Closest**
+**Beautiful Array**
 
-Given an array `nums` of *n* integers and an integer `target`, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
+For some fixed `n`, an array `nums` is *beautiful* if it is a permutation of the integers `1, 2, ..., n`, such that:
+
+For every `i < j`, there is **no** `k` with `i < k < j` such that `nums[k] * 2 = nums[i] + nums[j]`.
+
+Given `n`, return **any** beautiful array `nums`. (It is guaranteed that one exists.)
 
  
 
 **Example 1:**
 
 ```
-Input: nums = [-1,2,1,-4], target = 1
-Output: 2
-Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+Input: n = 4
+Output: [2,1,4,3]
+```
+
+**Example 2:**
+
+```
+Input: n = 5
+Output: [3,1,2,5,4]
 ```
 
  
 
-**Constraints:**
+**Note:**
 
-- `3 <= nums.length <= 10^3`
-- `-10^3 <= nums[i] <= 10^3`
-- `-10^4 <= target <= 10^4`
+- `1 <= n <= 1000`
 
 ## Solution
 
+just construct it
+
 ``` cpp
 class Solution {
 public:
-  int threeSumClosest(vector<int>& nums, int target) {
-    int diff = INT_MAX;
-    int answer = -1;
-    int len = nums.size();
-    sort(nums.begin(), nums.end());
-    for(int i = 0; i < len-2; ++i) {
-      for(int j = i+1; j < len-1; ++j) {
-        if(j != i+1 && nums[j] == nums[j-1]) continue;
-        int tar = target-nums[i]-nums[j], start = j+1, end = len;
-        while(start < end) {
-          int mid = (start + end) / 2;
-          if(nums[mid] > tar) {
-            if(nums[mid] - tar < diff) {
-              diff = nums[mid]-tar;
-              answer = nums[mid] + nums[i] + nums[j];
-            }
-            end = mid;
-          } else {
-            if(tar - nums[mid] < diff) {
-              diff = tar - nums[mid];
-              answer = nums[mid] + nums[i] + nums[j];
-            }
-            start = mid + 1;
-          }
-        }
+  vector<int> beautifulArray(int n) {
+    vector<int> answer{1};
+    vector<int> tmp;
+    while(answer.size() < n) {
+      for(auto i : answer) {
+        if(i * 2 - 1 <= n) tmp.push_back(i * 2 - 1);
       }
+      for(auto i : answer) {
+        if(i * 2 <= n) tmp.push_back(i * 2);
+      }
+      swap(tmp, answer);
+      tmp.clear();
     }
     return answer;
   }
 };
 
 // Accepted
-// 131/131 cases passed (48 ms)
-// Your runtime beats 10.58 % of cpp submissions
-// Your memory usage beats 60.68 % of cpp submissions (9.9 MB)
+// 38/38 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 90.59 % of cpp submissions (6.9 MB)
 ```
 
+or pick right number from ultimate answer list.
+
 ``` cpp
+const int fortyTwo[1000] = {1,513,257,769,129,641,385,897,65,577,321,833,193,705,449,961,33,545,289,801,161,673,417,929,97,609,353,865,225,737,481,993,17,529,273,785,145,657,401,913,81,593,337,849,209,721,465,977,49,561,305,817,177,689,433,945,113,625,369,881,241,753,497,9,521,265,777,137,649,393,905,73,585,329,841,201,713,457,969,41,553,297,809,169,681,425,937,105,617,361,873,233,745,489,25,537,281,793,153,665,409,921,89,601,345,857,217,729,473,985,57,569,313,825,185,697,441,953,121,633,377,889,249,761,505,5,517,261,773,133,645,389,901,69,581,325,837,197,709,453,965,37,549,293,805,165,677,421,933,101,613,357,869,229,741,485,997,21,533,277,789,149,661,405,917,85,597,341,853,213,725,469,981,53,565,309,821,181,693,437,949,117,629,373,885,245,757,501,13,525,269,781,141,653,397,909,77,589,333,845,205,717,461,973,45,557,301,813,173,685,429,941,109,621,365,877,237,749,493,29,541,285,797,157,669,413,925,93,605,349,861,221,733,477,989,61,573,317,829,189,701,445,957,125,637,381,893,253,765,509,3,515,259,771,131,643,387,899,67,579,323,835,195,707,451,963,35,547,291,803,163,675,419,931,99,611,355,867,227,739,483,995,19,531,275,787,147,659,403,915,83,595,339,851,211,723,467,979,51,563,307,819,179,691,435,947,115,627,371,883,243,755,499,11,523,267,779,139,651,395,907,75,587,331,843,203,715,459,971,43,555,299,811,171,683,427,939,107,619,363,875,235,747,491,27,539,283,795,155,667,411,923,91,603,347,859,219,731,475,987,59,571,315,827,187,699,443,955,123,635,379,891,251,763,507,7,519,263,775,135,647,391,903,71,583,327,839,199,711,455,967,39,551,295,807,167,679,423,935,103,615,359,871,231,743,487,999,23,535,279,791,151,663,407,919,87,599,343,855,215,727,471,983,55,567,311,823,183,695,439,951,119,631,375,887,247,759,503,15,527,271,783,143,655,399,911,79,591,335,847,207,719,463,975,47,559,303,815,175,687,431,943,111,623,367,879,239,751,495,31,543,287,799,159,671,415,927,95,607,351,863,223,735,479,991,63,575,319,831,191,703,447,959,127,639,383,895,255,767,511,2,514,258,770,130,642,386,898,66,578,322,834,194,706,450,962,34,546,290,802,162,674,418,930,98,610,354,866,226,738,482,994,18,530,274,786,146,658,402,914,82,594,338,850,210,722,466,978,50,562,306,818,178,690,434,946,114,626,370,882,242,754,498,10,522,266,778,138,650,394,906,74,586,330,842,202,714,458,970,42,554,298,810,170,682,426,938,106,618,362,874,234,746,490,26,538,282,794,154,666,410,922,90,602,346,858,218,730,474,986,58,570,314,826,186,698,442,954,122,634,378,890,250,762,506,6,518,262,774,134,646,390,902,70,582,326,838,198,710,454,966,38,550,294,806,166,678,422,934,102,614,358,870,230,742,486,998,22,534,278,790,150,662,406,918,86,598,342,854,214,726,470,982,54,566,310,822,182,694,438,950,118,630,374,886,246,758,502,14,526,270,782,142,654,398,910,78,590,334,846,206,718,462,974,46,558,302,814,174,686,430,942,110,622,366,878,238,750,494,30,542,286,798,158,670,414,926,94,606,350,862,222,734,478,990,62,574,318,830,190,702,446,958,126,638,382,894,254,766,510,4,516,260,772,132,644,388,900,68,580,324,836,196,708,452,964,36,548,292,804,164,676,420,932,100,612,356,868,228,740,484,996,20,532,276,788,148,660,404,916,84,596,340,852,212,724,468,980,52,564,308,820,180,692,436,948,116,628,372,884,244,756,500,12,524,268,780,140,652,396,908,76,588,332,844,204,716,460,972,44,556,300,812,172,684,428,940,108,620,364,876,236,748,492,28,540,284,796,156,668,412,924,92,604,348,860,220,732,476,988,60,572,316,828,188,700,444,956,124,636,380,892,252,764,508,8,520,264,776,136,648,392,904,72,584,328,840,200,712,456,968,40,552,296,808,168,680,424,936,104,616,360,872,232,744,488,1000,24,536,280,792,152,664,408,920,88,600,344,856,216,728,472,984,56,568,312,824,184,696,440,952,120,632,376,888,248,760,504,16,528,272,784,144,656,400,912,80,592,336,848,208,720,464,976,48,560,304,816,176,688,432,944,112,624,368,880,240,752,496,32,544,288,800,160,672,416,928,96,608,352,864,224,736,480,992,64,576,320,832,192,704,448,960,128,640,384,896,256,768,512};
 class Solution {
 public:
-  int threeSumClosest(vector<int>& nums, int target) {
-    sort(nums.begin(), nums.end());
-    int len = nums.size();
-    if(target <= nums.front() * 3 || len == 3) {
-      return nums[0] + nums[1] + nums[2];
-    }
-    if(target >= nums.back() * 3) {
-      return nums[len - 1] + nums[len - 2] + nums[len - 3];
-    }
-    int diff = INT_MAX;
-    int answer = INT_MIN;
-    for(int i = 0; i < len - 2; ++i) {
-      if(nums[i] + nums[i + 1] + nums[i + 2] - target > diff) {
-        break;
-      }
-      int start = i + 1;
-      int end = len - 1;
-      while(start < end) {
-        int result = nums[i] + nums[start] + nums[end];
-        int d = result - target;
-        if(!d) {
-          return result;
-        } else if(d < 0) {
-          if(diff > -d) {
-            diff = -d;
-            answer = result;
-          }
-          do { start += 1; } while(start < end && nums[start] == nums[start - 1]);
-        } else {
-          if(diff > d) {
-            diff = d;
-            answer = result;
-          }
-          do { end -= 1; } while(start < end && nums[end] == nums[end + 1]);
-        }
-      }
+  vector<int> beautifulArray(int n) {
+    vector<int> answer;
+    for(int i = 0; i < 1000; ++i) {
+      if(fortyTwo[i] <= n) answer.push_back(fortyTwo[i]);
     }
     return answer;
   }
 };
 
 // Accepted
-// 131/131 cases passed (4 ms)
-// Your runtime beats 97.91 % of cpp submissions
-// Your memory usage beats 11.39 % of cpp submissions (10 MB)
+// 38/38 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 97.21 % of cpp submissions (6.7 MB)
 ```
