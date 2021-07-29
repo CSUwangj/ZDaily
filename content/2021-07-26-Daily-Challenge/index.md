@@ -1,8 +1,8 @@
 +++
-title = "2021-07-27 Daily-Challenge"
-path = "2021-07-27-Daily-Challenge"
-date = 2021-07-27 20:03:09+08:00
-updated = 2021-07-27 20:44:40+08:00
+title = "2021-07-26 Daily-Challenge"
+path = "2021-07-26-Daily-Challenge"
+date = 2021-07-26 20:03:09+08:00
+updated = 2021-07-26 20:44:40+08:00
 in_search_index = true
 
 [taxonomies]
