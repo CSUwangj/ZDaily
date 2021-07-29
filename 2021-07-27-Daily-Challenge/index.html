@@ -92,13 +92,13 @@ renderMathInElement(document.body, katex_config);
         <span class="post-meta-divider">|</span>
         <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
         <span class="post-date">Posted on: </span>
-        <time datetime=2021-07-27T20:03:09+08:00 title="post created">2021-07-27</time>
+        <time datetime=2021-07-27T16:06:01+08:00 title="post created">2021-07-27</time>
       
       
         <span class="post-meta-divider">|</span>
         <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
         <span class="modify-date">Posted modified: </span>
-        <time datetime=2021-07-27T20:44:40+08:00 title="post modified">2021-07-27</time>
+        <time datetime=2021-07-27T16:34:16+08:00 title="post modified">2021-07-27</time>
       
       
         <span class="post-meta-divider">|</span>
@@ -111,113 +111,166 @@ renderMathInElement(document.body, katex_config);
       <span class="post-meta-divider">|</span>
     </div>
     <div class="post-body">
-      <p>Today I have done <a href="https://leetcode.com/problems/shuffle-string/description/">Shuffle String</a> and leetcode's <a href="https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/611/week-4-july-22nd-july-28th/3827/">July LeetCoding Challenge</a> with <code>cpp</code>.</p>
-<span id="continue-reading"></span><h1 id="shuffle-string">Shuffle String</h1>
+      <p>Today I have done <a href="https://leetcode.com/problems/most-visited-sector-in-a-circular-track/description/">Most Visited Sector in a Circular Track</a> and leetcode's <a href="https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/611/week-4-july-22nd-july-28th/3828/">July LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="most-visited-sector-in-a-circular-track">Most Visited Sector in a Circular Track</h1>
 <h2 id="description">Description</h2>
-<p>Given a string <code>s</code> and an integer array <code>indices</code> of the <strong>same length</strong>.</p>
-<p>The string <code>s</code> will be shuffled such that the character at the <code>ith</code> position moves to <code>indices[i]</code> in the shuffled string.</p>
-<p>Return <em>the shuffled string</em>.</p>
+<p>Given an integer <code>n</code> and an integer array <code>rounds</code>. We have a circular track which consists of <code>n</code> sectors labeled from <code>1</code> to <code>n</code>. A marathon will be held on this track, the marathon consists of <code>m</code> rounds. The <code>ith</code> round starts at sector <code>rounds[i - 1]</code> and ends at sector <code>rounds[i]</code>. For example, round 1 starts at sector <code>rounds[0]</code> and ends at sector <code>rounds[1]</code></p>
+<p>Return <em>an array of the most visited sectors</em> sorted in <strong>ascending</strong> order.</p>
+<p>Notice that you circulate the track in ascending order of sector numbers in the counter-clockwise direction (See the first example).</p>
 <p><strong>Example 1:</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/07/09/q1.jpg" alt="img" /></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/08/14/tmp.jpg" alt="img" /></p>
 <pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: s = &quot;codeleet&quot;, indices = [4,5,6,7,0,2,1,3]
-Output: &quot;leetcode&quot;
-Explanation: As shown, &quot;codeleet&quot; becomes &quot;leetcode&quot; after shuffling.
+<code><span style="color:#c0c5ce;">Input: n = 4, rounds = [1,3,1,2]
+Output: [1,2]
+Explanation: The marathon starts at sector 1. The order of the visited sectors is as follows:
+1 --&gt; 2 --&gt; 3 (end of round 1) --&gt; 4 --&gt; 1 (end of round 2) --&gt; 2 (end of round 3 and the marathon)
+We can see that both sectors 1 and 2 are visited twice and they are the most visited sectors. Sectors 3 and 4 are visited only once.
 </span></code></pre>
 <p><strong>Example 2:</strong></p>
 <pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: s = &quot;abc&quot;, indices = [0,1,2]
-Output: &quot;abc&quot;
-Explanation: After shuffling, each character remains in its position.
+<code><span style="color:#c0c5ce;">Input: n = 2, rounds = [2,1,2,1,2,1,2,1,2]
+Output: [2]
 </span></code></pre>
 <p><strong>Example 3:</strong></p>
 <pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: s = &quot;aiohn&quot;, indices = [3,1,4,2,0]
-Output: &quot;nihao&quot;
-</span></code></pre>
-<p><strong>Example 4:</strong></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: s = &quot;aaiougrt&quot;, indices = [4,0,2,6,7,3,1,5]
-Output: &quot;arigatou&quot;
-</span></code></pre>
-<p><strong>Example 5:</strong></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: s = &quot;art&quot;, indices = [1,0,2]
-Output: &quot;rat&quot;
+<code><span style="color:#c0c5ce;">Input: n = 7, rounds = [1,3,5,7]
+Output: [1,2,3,4,5,6,7]
 </span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
-<li><code>s.length == indices.length == n</code></li>
-<li><code>1 &lt;= n &lt;= 100</code></li>
-<li><code>s</code> contains only lower-case English letters.</li>
-<li><code>0 &lt;= indices[i] &lt; n</code></li>
-<li>All values of <code>indices</code> are unique (i.e. <code>indices</code> is a permutation of the integers from <code>0</code> to <code>n - 1</code>).</li>
+<li><code>2 &lt;= n &lt;= 100</code></li>
+<li><code>1 &lt;= m &lt;= 100</code></li>
+<li><code>rounds.length == m + 1</code></li>
+<li><code>1 &lt;= rounds[i] &lt;= n</code></li>
+<li><code>rounds[i] != rounds[i + 1]</code> for <code>0 &lt;= i &lt; m</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
 <pre style="background-color:#2b303b;">
 <code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
 </span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
-  string </span><span style="color:#8fa1b3;">restoreString</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">indices</span><span style="color:#eff1f5;">) {
-    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
-    string </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(len, </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">a</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">);
-    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
-      answer[indices[i]] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> s[i];
+  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">mostVisited</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">rounds</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> more </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> rounds.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      more </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> rounds[i] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> n </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> rounds[i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]; 
+    }
+    more </span><span style="color:#c0c5ce;">%=</span><span style="color:#eff1f5;"> n;
+    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> rounds.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> more; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">((begin </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> n </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#c0c5ce;">%</span><span style="color:#eff1f5;"> n </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+    }
+    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Accepted
+// 204/204 cases passed (4 ms)
+// Your runtime beats 87.2 % of cpp submissions
+// Your memory usage beats 64.24 % of cpp submissions (11.2 MB)
+</span></code></pre><h1 id="july-leetcoding-challenge28">July LeetCoding Challenge28</h1>
+<h2 id="description-1">Description</h2>
+<p><strong>3Sum Closest</strong></p>
+<p>Given an array <code>nums</code> of <em>n</em> integers and an integer <code>target</code>, find three integers in <code>nums</code> such that the sum is closest to <code>target</code>. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [-1,2,1,-4], target = 1
+Output: 2
+Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>3 &lt;= nums.length &lt;= 10^3</code></li>
+<li><code>-10^3 &lt;= nums[i] &lt;= 10^3</code></li>
+<li><code>-10^4 &lt;= target &lt;= 10^4</code></li>
+</ul>
+<h2 id="solution-1">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">threeSumClosest</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> INT_MAX;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span style="color:#c0c5ce;">= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">j) {
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(j </span><span style="color:#c0c5ce;">!=</span><span style="color:#eff1f5;"> i</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> nums[j] </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> nums[j</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tar </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> target</span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;">nums[i]</span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;">nums[j], start </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> j</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> len;
+        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> end) {
+          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(start </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> end) </span><span style="color:#c0c5ce;">/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[mid] </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> tar) {
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[mid] </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> tar </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> diff) {
+              diff </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums[mid]</span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;">tar;
+              answer </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums[mid] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[i] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[j];
+            }
+            end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mid;
+          } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(tar </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> nums[mid] </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> diff) {
+              diff </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> tar </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> nums[mid];
+              answer </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums[mid] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[i] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[j];
+            }
+            start </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+          }
+        }
+      }
     }
     </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
   }
 }</span><span style="color:#c0c5ce;">;
 
 </span><span style="color:#65737e;">// Accepted
-// 399/399 cases passed (8 ms)
-// Your runtime beats 73.74 % of cpp submissions
-// Your memory usage beats 74.87 % of cpp submissions (15.2 MB)
-</span></code></pre><h1 id="july-leetcoding-challenge27">July LeetCoding Challenge27</h1>
-<h2 id="description-1">Description</h2>
-<p><strong>Convert Sorted Array to Binary Search Tree</strong></p>
-<p>Given an integer array <code>nums</code> where the elements are sorted in <strong>ascending order</strong>, convert <em>it to a <strong>height-balanced</strong> binary search tree</em>.</p>
-<p>A <strong>height-balanced</strong> binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.</p>
-<p><strong>Example 1:</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/18/btree1.jpg" alt="img" /></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: nums = [-10,-3,0,5,9]
-Output: [0,-3,9,-10,null,5]
-Explanation: [0,-10,5,null,-3,null,9] is also accepted:
-</span></code></pre>
-<p><strong>Example 2:</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/18/btree.jpg" alt="img" /></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: nums = [1,3]
-Output: [3,1]
-Explanation: [1,3] and [3,1] are both a height-balanced BSTs.
-</span></code></pre>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 10^4</code></li>
-<li><code>-10^4 &lt;= nums[i] &lt;= 10^4</code></li>
-<li><code>nums</code> is sorted in a <strong>strictly increasing</strong> order.</li>
-</ul>
-<h2 id="solution-1">Solution</h2>
-<pre style="background-color:#2b303b;">
+// 131/131 cases passed (48 ms)
+// Your runtime beats 10.58 % of cpp submissions
+// Your memory usage beats 60.68 % of cpp submissions (9.9 MB)
+</span></code></pre><pre style="background-color:#2b303b;">
 <code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
-  TreeNode </span><span style="color:#c0c5ce;">*</span><span style="color:#8fa1b3;">construct</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
-    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> end) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
-    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(begin </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> end) </span><span style="color:#c0c5ce;">&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
-    TreeNode </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;">root </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(nums[mid]);
-    root-&gt;</span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">construct</span><span style="color:#eff1f5;">(nums, begin, mid </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
-    root-&gt;</span><span style="color:#bf616a;">right </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">construct</span><span style="color:#eff1f5;">(nums, mid </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end);
-    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
-  }
 </span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
-  TreeNode</span><span style="color:#c0c5ce;">* </span><span style="color:#8fa1b3;">sortedArrayToBST</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">threeSumClosest</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
     </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
-    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">construct</span><span style="color:#eff1f5;">(nums, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(target </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">* </span><span style="color:#d08770;">3 </span><span style="color:#c0c5ce;">||</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) {
+      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+    }
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(target </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">* </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) {
+      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> nums[len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">];
+    }
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> INT_MAX;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> INT_MIN;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[i </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[i </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> target </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> diff) {
+        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+      }
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> start </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> end) {
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums[i] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[start] </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> nums[end];
+        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> d </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> result </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> target;
+        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">d) {
+          </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+        } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(d </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(diff </span><span style="color:#c0c5ce;">&gt; -</span><span style="color:#eff1f5;">d) {
+            diff </span><span style="color:#c0c5ce;">= -</span><span style="color:#eff1f5;">d;
+            answer </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> result;
+          }
+          </span><span style="color:#b48ead;">do </span><span style="color:#eff1f5;">{ start </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; } </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> end </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> nums[start] </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> nums[start </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(diff </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> d) {
+            diff </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> d;
+            answer </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> result;
+          }
+          </span><span style="color:#b48ead;">do </span><span style="color:#eff1f5;">{ end </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; } </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> end </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> nums[end] </span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;"> nums[end </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+        }
+      }
+    }
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
   }
 }</span><span style="color:#c0c5ce;">;
 
 </span><span style="color:#65737e;">// Accepted
-// 31/31 cases passed (8 ms)
-// Your runtime beats 95.55 % of cpp submissions
-// Your memory usage beats 75.67 % of cpp submissions (21.4 MB)
+// 131/131 cases passed (4 ms)
+// Your runtime beats 97.91 % of cpp submissions
+// Your memory usage beats 11.39 % of cpp submissions (10 MB)
 </span></code></pre>
     </div>
   </div>
