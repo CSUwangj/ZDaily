@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/description/) and leetcode's [July LeetCoding Challenge](https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/612/week-5-july-29th-july-31st/3831/) with `cpp`.
+Today I have done [Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/description/) and leetcode's [July LeetCoding Challenge](https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/612/week-5-july-29th-july-31st/3832/) with `cpp`.
 
 <!-- more -->
 
