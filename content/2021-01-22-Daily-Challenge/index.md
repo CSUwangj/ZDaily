@@ -133,7 +133,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge22
+# January LeetCoding Challenge 22
 
 ## Description
 

@@ -90,7 +90,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge10
+# May LeetCoding Challenge 10
 
 ## Description
 

@@ -126,7 +126,7 @@ public:
 
 thus, time complexity and space complexity are both $O(N^2)$
 
-# June LeetCoding Challenge3
+# June LeetCoding Challenge 3
 
 ## Description
 

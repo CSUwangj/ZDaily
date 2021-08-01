@@ -104,7 +104,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge31
+# December LeetCoding Challenge 31
 
 ## Description
 

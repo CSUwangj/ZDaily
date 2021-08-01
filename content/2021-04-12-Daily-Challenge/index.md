@@ -112,7 +112,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge12
+# April LeetCoding challenge 12
 
 ## Description
 

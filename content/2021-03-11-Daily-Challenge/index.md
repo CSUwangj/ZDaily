@@ -74,7 +74,7 @@ public:
 
 ```
 
-# March LeetCoding Challenge11
+# March LeetCoding Challenge 11
 
 ## Description
 

@@ -293,7 +293,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge31
+# October LeetCoding Challenge 31
 
 ## Description
 

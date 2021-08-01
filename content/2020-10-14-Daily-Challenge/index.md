@@ -75,7 +75,7 @@ class Solution {
 };
 ```
 
-# October LeetCoding Challenge14
+# October LeetCoding Challenge 14
 
 ## Description
 

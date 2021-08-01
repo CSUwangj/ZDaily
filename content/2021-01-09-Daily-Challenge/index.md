@@ -258,7 +258,7 @@ WHERE Id NOT IN
 (SELECT CustomerId FROM Orders)
 ```
 
-# January LeetCoding Challenge9
+# January LeetCoding Challenge 9
 
 ## Description
 

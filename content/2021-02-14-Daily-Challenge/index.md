@@ -48,7 +48,7 @@ public:
 };
 ```
 
-# February LeetCoding Challenge14
+# February LeetCoding Challenge 14
 
 ## Description
 

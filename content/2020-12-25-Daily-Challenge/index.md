@@ -200,7 +200,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge25
+# December LeetCoding Challenge 25
 
 ## Description
 

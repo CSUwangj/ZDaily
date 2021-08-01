@@ -337,7 +337,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge15
+# April LeetCoding challenge 15
 
 ## Description
 

@@ -15,7 +15,7 @@ Today is Sunday, I've already finished review, so I just do today's leetcode's [
 
 <!-- more -->
 
-# December LeetCoding Challenge6
+# December LeetCoding Challenge 6
 
 ## Description
 

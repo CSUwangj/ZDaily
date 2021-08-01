@@ -88,7 +88,7 @@ public:
 
 rest one hard problem is great question which need no review(actually my laptop is running out of battery ;P)
 
-# November LeetCoding Challenge15
+# November LeetCoding Challenge 15
 
 ## Description
 

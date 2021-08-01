@@ -108,7 +108,7 @@ public:
 
 trie tree looks great, but actually, cost of reconstructing string is huge.
 
-# March LeetCoding challenge29
+# March LeetCoding challenge 29
 
 ## Description
 

@@ -15,7 +15,7 @@ Today I have done leetcode's [February LeetCoding Challenge](https://leetcode.co
 
 <!-- more -->
 
-# February LeetCoding Challenge16
+# February LeetCoding Challenge 16
 
 ## Description
 

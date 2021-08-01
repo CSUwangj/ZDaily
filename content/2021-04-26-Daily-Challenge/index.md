@@ -104,7 +104,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge26
+# April LeetCoding challenge 26
 
 ## Description
 

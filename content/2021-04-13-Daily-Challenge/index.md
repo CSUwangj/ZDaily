@@ -79,7 +79,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge13
+# April LeetCoding challenge 13
 
 ## Description
 

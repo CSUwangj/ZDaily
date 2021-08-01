@@ -206,7 +206,7 @@ public:
 };
 ```
 
-# November LeetCoding Challenge22
+# November LeetCoding Challenge 22
 
 ## Description
 

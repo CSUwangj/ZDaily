@@ -175,7 +175,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge7
+# January LeetCoding Challenge 7
 
 ## Description
 

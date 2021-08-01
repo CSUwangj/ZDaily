@@ -257,7 +257,7 @@ public:
 };
 ```
 
-# March LeetCoding challenge30
+# March LeetCoding challenge 30
 
 ## Description
 

@@ -84,7 +84,7 @@ public:
 
 ```
 
-# March LeetCoding challenge31
+# March LeetCoding challenge 31
 
 ## Description
 

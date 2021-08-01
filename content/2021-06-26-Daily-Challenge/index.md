@@ -244,7 +244,7 @@ already reviewed several times
 
 became easy when you solved it.
 
-# June LeetCoding Challenge26
+# June LeetCoding Challenge 26
 
 ## Description
 

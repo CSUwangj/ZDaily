@@ -149,7 +149,7 @@ public:
 };
 ```
 
-# July LeetCoding Challenge7
+# July LeetCoding Challenge 7
 
 ## Description
 

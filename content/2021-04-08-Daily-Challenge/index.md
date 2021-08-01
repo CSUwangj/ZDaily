@@ -191,7 +191,7 @@ public:
 // Memory Usage: 40.7 MB
 ```
 
-# April LeetCoding challenge8
+# April LeetCoding challenge 8
 
 ## Description
 

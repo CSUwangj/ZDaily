@@ -103,7 +103,7 @@ int main()
 
 ```
 
-# June LeetCoding Challenge4
+# June LeetCoding Challenge 4
 
 ## Description
 

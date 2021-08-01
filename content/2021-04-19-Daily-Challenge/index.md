@@ -406,7 +406,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge19
+# April LeetCoding challenge 19
 
 ## Description
 

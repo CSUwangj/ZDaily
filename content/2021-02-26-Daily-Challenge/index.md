@@ -112,7 +112,7 @@ public:
 };
 ```
 
-# February LeetCoding Challenge26
+# February LeetCoding Challenge 26
 
 ## Description
 

@@ -123,7 +123,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge2
+# May LeetCoding Challenge 2
 
 ## Description
 

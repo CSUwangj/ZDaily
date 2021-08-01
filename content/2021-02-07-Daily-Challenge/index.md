@@ -17,7 +17,7 @@ BTW, I participated in Weekly Contest 227, but only get two problems done. If I 
 
 <!-- more -->
 
-# February LeetCoding Challenge7
+# February LeetCoding Challenge 7
 
 ## Description
 

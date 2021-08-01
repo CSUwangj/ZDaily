@@ -123,7 +123,7 @@ public:
 };
 ```
 
-# June LeetCoding Challenge11
+# June LeetCoding Challenge 11
 
 ## Description
 

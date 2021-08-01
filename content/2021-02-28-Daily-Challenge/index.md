@@ -139,7 +139,7 @@ public:
 
 ```
 
-# February LeetCoding Challenge28
+# February LeetCoding Challenge 28
 
 ## Description
 

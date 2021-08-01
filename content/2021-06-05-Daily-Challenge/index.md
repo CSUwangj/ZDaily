@@ -53,7 +53,7 @@ too easy to review
 
 too easy to review
 
-# June LeetCoding Challenge5
+# June LeetCoding Challenge 5
 
 ## Description
 

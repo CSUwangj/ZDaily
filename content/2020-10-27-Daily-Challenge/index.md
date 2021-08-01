@@ -101,7 +101,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge27
+# October LeetCoding Challenge 27
 
 ## Description
 

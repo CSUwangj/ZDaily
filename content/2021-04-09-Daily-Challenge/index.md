@@ -102,7 +102,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge9
+# April LeetCoding challenge 9
 
 ## Description
 

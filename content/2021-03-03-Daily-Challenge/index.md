@@ -97,7 +97,7 @@ public:
 };
 ```
 
-# March LeetCoding Challenge3
+# March LeetCoding Challenge 3
 
 ## Description
 

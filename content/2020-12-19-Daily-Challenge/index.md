@@ -355,7 +355,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge19
+# December LeetCoding Challenge 19
 
 ## Description
 

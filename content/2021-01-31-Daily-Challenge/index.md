@@ -17,7 +17,7 @@ BTW, I participated in Weekly Contest 226.
 
 <!-- more -->
 
-# January LeetCoding Challenge31
+# January LeetCoding Challenge 31
 
 ## Description
 

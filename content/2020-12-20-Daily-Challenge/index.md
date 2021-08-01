@@ -15,7 +15,7 @@ Today is Sunday, I gonna finish today's leetcode's [November LeetCoding Challeng
 
 <!-- more -->
 
-# December LeetCoding Challenge20
+# December LeetCoding Challenge 20
 
 ## Description
 

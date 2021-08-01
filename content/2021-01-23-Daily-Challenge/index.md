@@ -328,7 +328,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge23
+# January LeetCoding Challenge 23
 
 ## Description
 

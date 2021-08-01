@@ -176,7 +176,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge27
+# May LeetCoding Challenge 27
 
 ## Description
 

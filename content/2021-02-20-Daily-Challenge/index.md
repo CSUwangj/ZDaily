@@ -189,7 +189,7 @@ public:
 };
 ```
 
-# February LeetCoding Challenge20
+# February LeetCoding Challenge 20
 
 ## Description
 

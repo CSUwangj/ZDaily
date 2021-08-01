@@ -117,7 +117,7 @@ public:
  */
 ```
 
-# April LeetCoding challenge16
+# April LeetCoding challenge 16
 
 ## Description
 

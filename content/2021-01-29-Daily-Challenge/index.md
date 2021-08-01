@@ -270,7 +270,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge29
+# January LeetCoding Challenge 29
 
 ## Description
 

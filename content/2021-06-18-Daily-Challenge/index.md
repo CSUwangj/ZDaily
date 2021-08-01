@@ -102,7 +102,7 @@ public:
 };
 ```
 
-# June LeetCoding Challenge18
+# June LeetCoding Challenge 18
 
 ## Description
 

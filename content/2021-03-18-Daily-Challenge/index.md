@@ -129,7 +129,7 @@ public:
 // Memory Usage: 87.2 MB, less than 100.00% of C++ online submissions for Maximum Score from Performing Multiplication Operations.
 ```
 
-# March LeetCoding Challenge18
+# March LeetCoding Challenge 18
 
 ## Description
 

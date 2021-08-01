@@ -97,7 +97,7 @@ public:
 };
 ```
 
-# November LeetCoding Challenge1
+# November LeetCoding Challenge 1
 
 ## Description
 

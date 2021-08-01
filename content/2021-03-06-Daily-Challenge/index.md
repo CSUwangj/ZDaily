@@ -235,7 +235,7 @@ public:
 
 too easy to review
 
-# March LeetCoding Challenge6
+# March LeetCoding Challenge 6
 
 ## Description
 

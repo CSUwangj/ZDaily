@@ -89,7 +89,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge2
+# December LeetCoding Challenge 2
 
 ## Description
 

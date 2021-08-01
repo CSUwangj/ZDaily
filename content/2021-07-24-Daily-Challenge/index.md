@@ -154,7 +154,7 @@ public:
 
 too easy to review
 
-# July LeetCoding Challenge24
+# July LeetCoding Challenge 24
 
 ## Description
 

@@ -79,7 +79,7 @@ public:
 };
 ```
 
-# June LeetCoding Challenge25
+# June LeetCoding Challenge 25
 
 ## Description
 

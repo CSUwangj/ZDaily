@@ -113,7 +113,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge11
+# January LeetCoding Challenge 11
 
 ## Description
 

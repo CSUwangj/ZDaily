@@ -95,7 +95,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge14
+# April LeetCoding challenge 14
 
 ## Description
 

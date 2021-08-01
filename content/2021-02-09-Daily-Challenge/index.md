@@ -109,7 +109,7 @@ public:
 };
 ```
 
-# February LeetCoding Challenge9
+# February LeetCoding Challenge 9
 
 ## Description
 

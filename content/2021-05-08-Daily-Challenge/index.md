@@ -57,7 +57,7 @@ too easy to review
 
 too easy to review
 
-# May LeetCoding Challenge8
+# May LeetCoding Challenge 8
 
 ## Description
 

@@ -17,7 +17,7 @@ Today I have done leetcode's [May LeetCoding Challenge](https://leetcode.com/exp
 
 <!-- more -->
 
-# May LeetCoding Challenge14
+# May LeetCoding Challenge 14
 
 ## Description
 

@@ -132,7 +132,7 @@ too easy to review
 
 too easy to review
 
-# June LeetCoding Challenge19
+# June LeetCoding Challenge 19
 
 ## Description
 

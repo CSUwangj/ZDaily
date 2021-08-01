@@ -86,7 +86,7 @@ public:
 };
 ```
 
-# February LeetCoding Challenge8
+# February LeetCoding Challenge 8
 
 ## Description
 

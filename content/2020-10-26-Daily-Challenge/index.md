@@ -74,7 +74,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge26
+# October LeetCoding Challenge 26
 
 ## Description
 

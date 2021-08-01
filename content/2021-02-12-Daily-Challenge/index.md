@@ -103,7 +103,7 @@ public:
     
 ```
 
-# February LeetCoding Challenge12
+# February LeetCoding Challenge 12
 
 ## Description
 

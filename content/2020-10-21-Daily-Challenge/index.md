@@ -144,7 +144,7 @@ public:
  */
 ```
 
-# October LeetCoding Challenge21
+# October LeetCoding Challenge 21
 
 ## Description
 

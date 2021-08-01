@@ -75,7 +75,7 @@ public:
 };
 ```
 
-# November LeetCoding Challenge13
+# November LeetCoding Challenge 13
 
 ## Description
 

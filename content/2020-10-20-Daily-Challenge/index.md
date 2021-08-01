@@ -58,7 +58,7 @@ class Solution {
 };
 ```
 
-# October LeetCoding Challenge20
+# October LeetCoding Challenge 20
 
 ## Description
 

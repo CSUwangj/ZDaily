@@ -123,7 +123,7 @@ public:
 
 BTW if think backforward, problem is just a simple DP...
 
-# February LeetCoding Challenge22
+# February LeetCoding Challenge 22
 
 ## Description
 

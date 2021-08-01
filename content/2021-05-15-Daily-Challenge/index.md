@@ -54,7 +54,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge15
+# May LeetCoding Challenge 15
 
 ## Description
 

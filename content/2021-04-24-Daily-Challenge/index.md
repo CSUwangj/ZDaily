@@ -197,7 +197,7 @@ no need to review
 
 too easy to review
 
-# April LeetCoding Challenge24
+# April LeetCoding Challenge 24
 
 ## Description
 

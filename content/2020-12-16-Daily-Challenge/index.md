@@ -76,7 +76,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge16
+# December LeetCoding Challenge 16
 
 ## Description
 

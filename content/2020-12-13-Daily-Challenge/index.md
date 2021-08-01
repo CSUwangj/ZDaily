@@ -38,7 +38,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge13
+# December LeetCoding Challenge 13
 
 ## Description
 

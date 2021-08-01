@@ -133,7 +133,7 @@ public:
 };
 ```
 
-# November LeetCoding Challenge21
+# November LeetCoding Challenge 21
 
 ## Description
 

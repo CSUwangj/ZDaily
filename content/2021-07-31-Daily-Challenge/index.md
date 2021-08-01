@@ -57,7 +57,7 @@ too easy to review
 
 too easy to review
 
-# July LeetCoding Challenge31
+# July LeetCoding Challenge 31
 
 ## Description
 

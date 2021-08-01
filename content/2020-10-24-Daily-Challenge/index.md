@@ -179,7 +179,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge24
+# October LeetCoding Challenge 24
 
 ## Description
 

@@ -125,7 +125,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge23
+# December LeetCoding Challenge 23
 
 ## Description
 

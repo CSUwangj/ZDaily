@@ -83,7 +83,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge5
+# May LeetCoding Challenge 5
 
 ## Description
 

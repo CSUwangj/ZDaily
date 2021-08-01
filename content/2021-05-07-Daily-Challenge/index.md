@@ -70,7 +70,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge7
+# May LeetCoding Challenge 7
 
 ## Description
 

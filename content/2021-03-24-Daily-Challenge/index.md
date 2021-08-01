@@ -89,7 +89,7 @@ public:
 };
 ```
 
-# March LeetCoding challenge24
+# March LeetCoding challenge 24
 
 ## Description
 

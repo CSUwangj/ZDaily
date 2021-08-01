@@ -15,7 +15,7 @@ Today is Saturday, I gonna review the tasks I've done this week, and finish toda
 
 <!-- more -->
 
-# May LeetCoding Challenge23
+# May LeetCoding Challenge 23
 
 ## Description
 

@@ -42,7 +42,7 @@ public:
 };
 ```
 
-# November LeetCoding Challenge29
+# November LeetCoding Challenge 29
 
 ## Description
 

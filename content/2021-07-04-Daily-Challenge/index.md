@@ -15,7 +15,7 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 
 <!-- more -->
 
-# July LeetCoding Challenge4
+# July LeetCoding Challenge 4
 
 ## Description
 

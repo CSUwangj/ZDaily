@@ -114,7 +114,7 @@ public:
 };
 ```
 
-# February LeetCoding Challenge27
+# February LeetCoding Challenge 27
 
 ## Description
 

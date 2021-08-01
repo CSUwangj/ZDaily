@@ -91,7 +91,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge3
+# May LeetCoding Challenge 3
 
 ## Description
 

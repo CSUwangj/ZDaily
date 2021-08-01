@@ -25,7 +25,7 @@ too easy to review
 
 too easy to review
 
-# May LeetCoding Challenge1
+# May LeetCoding Challenge 1
 
 ## Description
 

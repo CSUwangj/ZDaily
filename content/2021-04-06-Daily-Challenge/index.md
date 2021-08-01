@@ -92,7 +92,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge6
+# April LeetCoding challenge 6
 
 ## Description
 

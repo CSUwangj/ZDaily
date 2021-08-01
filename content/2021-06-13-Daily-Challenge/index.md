@@ -95,7 +95,7 @@ public:
 // Memory Usage: 14.1 MB
 ```
 
-# June LeetCoding Challenge13
+# June LeetCoding Challenge 13
 
 ## Description
 

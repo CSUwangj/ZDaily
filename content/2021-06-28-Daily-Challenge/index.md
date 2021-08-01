@@ -90,7 +90,7 @@ public:
 };
 ```
 
-# June LeetCoding Challenge28
+# June LeetCoding Challenge 28
 
 ## Description
 

@@ -93,7 +93,7 @@ too easy to review
 
 too easy to review
 
-# July LeetCoding Challenge10
+# July LeetCoding Challenge 10
 
 ## Description
 

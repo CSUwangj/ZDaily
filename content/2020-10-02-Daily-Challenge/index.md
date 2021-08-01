@@ -107,7 +107,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge1
+# October LeetCoding Challenge 1
 
 ## Description
 
@@ -163,7 +163,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge2
+# October LeetCoding Challenge 2
 
 ## Description
 

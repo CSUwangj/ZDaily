@@ -305,7 +305,7 @@ public:
 // Next challenges:
 ```
 
-# April LeetCoding challenge22
+# April LeetCoding challenge 22
 
 ## Description
 

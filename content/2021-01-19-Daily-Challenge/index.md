@@ -102,7 +102,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge19
+# January LeetCoding Challenge 19
 
 ## Description
 

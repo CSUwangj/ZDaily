@@ -72,7 +72,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge21
+# April LeetCoding challenge 21
 
 ## Description
 

@@ -168,7 +168,7 @@ public:
 // Memory Usage: 62.5 MB, less than 88.79% of C++ online submissions for Find a Value of a Mysterious Function Closest to Target.
 ```
 
-# April LeetCoding Challenge17
+# April LeetCoding Challenge 17
 
 ## Description
 

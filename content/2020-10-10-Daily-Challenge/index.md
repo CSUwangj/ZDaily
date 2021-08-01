@@ -232,7 +232,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge10
+# October LeetCoding Challenge 10
 
 ## Description
 

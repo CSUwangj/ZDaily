@@ -98,7 +98,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge10
+# December LeetCoding Challenge 10
 
 ## Description
 

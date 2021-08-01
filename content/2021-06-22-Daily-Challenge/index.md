@@ -125,7 +125,7 @@ public:
 };
 ```
 
-# June LeetCoding Challenge22
+# June LeetCoding Challenge 22
 
 ## Description
 

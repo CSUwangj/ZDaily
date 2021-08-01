@@ -97,7 +97,7 @@ public:
 // Your memory usage beats 74.87 % of cpp submissions (15.2 MB)
 ```
 
-# July LeetCoding Challenge27
+# July LeetCoding Challenge 27
 
 ## Description
 

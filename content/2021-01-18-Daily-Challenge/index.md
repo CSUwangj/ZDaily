@@ -125,7 +125,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge18
+# January LeetCoding Challenge 18
 
 ## Description
 

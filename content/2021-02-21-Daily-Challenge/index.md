@@ -15,7 +15,7 @@ Today is Sunday, I gonna review the tasks I've done this week, and finish today'
 
 <!-- more -->
 
-# February LeetCoding Challenge21
+# February LeetCoding Challenge 21
 
 ## Description
 

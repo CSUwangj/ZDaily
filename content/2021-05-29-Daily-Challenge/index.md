@@ -88,7 +88,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge29
+# May LeetCoding Challenge 29
 
 ## Description
 

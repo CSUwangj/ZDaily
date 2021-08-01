@@ -99,7 +99,7 @@ public:
 };
 ```
 
-# June LeetCoding Challenge29
+# June LeetCoding Challenge 29
 
 ## Description
 

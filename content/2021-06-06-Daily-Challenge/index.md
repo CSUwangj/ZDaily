@@ -105,7 +105,7 @@ public:
 };
 ```
 
-# June LeetCoding Challenge6
+# June LeetCoding Challenge 6
 
 ## Description
 

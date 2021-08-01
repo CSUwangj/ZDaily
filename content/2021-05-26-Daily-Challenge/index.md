@@ -103,7 +103,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge26
+# May LeetCoding Challenge 26
 
 ## Description
 

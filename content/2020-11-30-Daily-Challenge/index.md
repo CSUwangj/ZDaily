@@ -89,7 +89,7 @@ public:
 
 ```
 
-# November LeetCoding Challenge30
+# November LeetCoding Challenge 30
 
 ## Description
 

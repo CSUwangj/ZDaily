@@ -193,7 +193,7 @@ too easy to review
 
 too easy to review
 
-# April LeetCoding Challenge3
+# April LeetCoding Challenge 3
 
 ## Description
 

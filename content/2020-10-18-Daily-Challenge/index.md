@@ -144,7 +144,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge18
+# October LeetCoding Challenge 18
 
 ## Description
 

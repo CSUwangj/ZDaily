@@ -173,7 +173,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge4
+# December LeetCoding Challenge 4
 
 ## Description
 

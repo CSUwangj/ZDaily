@@ -126,7 +126,7 @@ struct Solution {
 // Your memory usage beats 85.03 % of cpp submissions (9.7 MB)
 ```
 
-# June LeetCoding Challenge20
+# June LeetCoding Challenge 20
 
 ## Description
 

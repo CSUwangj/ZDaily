@@ -193,7 +193,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge15
+# January LeetCoding Challenge 15
 
 ## Description
 

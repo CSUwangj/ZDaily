@@ -203,7 +203,7 @@ public:
 
 ```
 
-# April LeetCoding challenge1
+# April LeetCoding challenge 1
 
 ## Description
 

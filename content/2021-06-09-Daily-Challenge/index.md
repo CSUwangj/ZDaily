@@ -87,7 +87,7 @@ public:
 };
 ```
 
-# June LeetCoding Challenge9
+# June LeetCoding Challenge 9
 
 ## Description
 

@@ -48,7 +48,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge22
+# May LeetCoding Challenge 22
 
 ## Description
 

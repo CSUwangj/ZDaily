@@ -87,7 +87,7 @@ public:
 };
 ```
 
-# July LeetCoding Challenge5
+# July LeetCoding Challenge 5
 
 ## Description
 

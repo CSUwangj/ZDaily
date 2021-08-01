@@ -80,7 +80,7 @@ public:
 };
 ```
 
-# May LeetCoding Challenge25
+# May LeetCoding Challenge 25
 
 ## Description
 

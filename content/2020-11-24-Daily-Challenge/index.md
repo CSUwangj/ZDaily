@@ -90,7 +90,7 @@ public:
 };
 ```
 
-# November LeetCoding Challenge24
+# November LeetCoding Challenge 24
 
 ## Description
 

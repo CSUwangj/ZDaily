@@ -190,7 +190,7 @@ public:
 };
 ```
 
-# November LeetCoding Challenge14
+# November LeetCoding Challenge 14
 
 ## Description
 

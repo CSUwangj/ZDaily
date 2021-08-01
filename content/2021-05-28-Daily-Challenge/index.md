@@ -152,7 +152,7 @@ public:
 // Memory Usage: 7.1 MB, less than 99.47% of C++ online submissions for Minimum Difficulty of a Job Schedule.
 ```
 
-# May LeetCoding Challenge28
+# May LeetCoding Challenge 28
 
 ## Description
 

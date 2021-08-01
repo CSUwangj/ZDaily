@@ -126,7 +126,7 @@ public:
 };
 ```
 
-# July LeetCoding Challenge3
+# July LeetCoding Challenge 3
 
 ## Description
 

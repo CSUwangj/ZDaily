@@ -81,7 +81,7 @@ public:
 
 ```
 
-# June LeetCoding Challenge2
+# June LeetCoding Challenge 2
 
 ## Description
 

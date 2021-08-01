@@ -128,7 +128,7 @@ END {
 }' file.txt
 ```
 
-# December LeetCoding Challenge18
+# December LeetCoding Challenge 18
 
 ## Description
 

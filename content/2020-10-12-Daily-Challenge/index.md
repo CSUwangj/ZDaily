@@ -74,7 +74,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge12
+# October LeetCoding Challenge 12
 
 ## Description
 

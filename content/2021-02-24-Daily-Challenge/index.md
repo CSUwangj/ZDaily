@@ -72,7 +72,7 @@ public:
 };
 ```
 
-# February LeetCoding Challenge24
+# February LeetCoding Challenge 24
 
 ## Description
 

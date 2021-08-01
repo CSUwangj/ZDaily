@@ -65,7 +65,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge10
+# January LeetCoding Challenge 10
 
 ## Description
 

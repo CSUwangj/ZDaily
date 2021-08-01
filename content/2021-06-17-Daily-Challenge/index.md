@@ -91,7 +91,7 @@ public:
 };
 ```
 
-# June LeetCoding Challenge17
+# June LeetCoding Challenge 17
 
 ## Description
 

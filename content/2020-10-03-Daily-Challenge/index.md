@@ -92,7 +92,7 @@ public:
 };
 ```
 
-# October LeetCoding Challenge3
+# October LeetCoding Challenge 3
 
 ## Description
 

@@ -97,7 +97,7 @@ class Solution {
 };
 ```
 
-# October LeetCoding Challenge19
+# October LeetCoding Challenge 19
 
 ## Description
 

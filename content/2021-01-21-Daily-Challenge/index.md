@@ -155,7 +155,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge21
+# January LeetCoding Challenge 21
 
 ## Description
 

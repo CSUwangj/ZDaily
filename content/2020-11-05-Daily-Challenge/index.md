@@ -100,7 +100,7 @@ public:
 };
 ```
 
-# November LeetCoding Challenge5
+# November LeetCoding Challenge 5
 
 ## Description
 

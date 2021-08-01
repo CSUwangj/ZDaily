@@ -96,7 +96,7 @@ public:
 };
 ```
 
-# January LeetCoding Challenge13
+# January LeetCoding Challenge 13
 
 ## Description
 

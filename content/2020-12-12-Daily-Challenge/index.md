@@ -317,7 +317,7 @@ too easy to review
 
 already reviewed
 
-# December LeetCoding Challenge12
+# December LeetCoding Challenge 12
 
 ## Description
 

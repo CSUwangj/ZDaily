@@ -105,7 +105,7 @@ public:
 };
 ```
 
-# July LeetCoding Challenge23
+# July LeetCoding Challenge 23
 
 ## Description
 

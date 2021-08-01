@@ -77,7 +77,7 @@ public:
 };
 ```
 
-# February LeetCoding Challenge25
+# February LeetCoding Challenge 25
 
 ## Description
 

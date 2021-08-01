@@ -17,7 +17,7 @@ BTW, I participated in Weekly Contest 225.
 
 <!-- more -->
 
-# January LeetCoding Challenge24
+# January LeetCoding Challenge 24
 
 ## Description
 

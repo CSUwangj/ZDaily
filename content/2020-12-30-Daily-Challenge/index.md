@@ -60,7 +60,7 @@ public:
 };
 ```
 
-# December LeetCoding Challenge30
+# December LeetCoding Challenge 30
 
 ## Description
 

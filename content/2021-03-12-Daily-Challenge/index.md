@@ -127,7 +127,7 @@ public:
 };
 ```
 
-# March LeetCoding Challenge12
+# March LeetCoding Challenge 12
 
 ## Description
 

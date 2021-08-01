@@ -452,7 +452,7 @@ public:
 };
 ```
 
-# April LeetCoding challenge20
+# April LeetCoding challenge 20
 
 ## Description
 
