@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Magical String](https://leetcode.com/problems/magical-string/description/) and leetcode's [August LeetCoding Challenge](https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/612/week-5-july-29th-july-31st/3832/) with `cpp`.
+Today I have done [Magical String](https://leetcode.com/problems/magical-string/description/) and leetcode's [August LeetCoding Challenge](https://leetcode.com/explore/challenge/card/august-leetcoding-challenge-2021/613/week-1-august-1st-august-7th/3837/) with `cpp`.
 
 <!-- more -->
 
