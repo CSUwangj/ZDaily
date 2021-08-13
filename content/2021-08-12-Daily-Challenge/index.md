@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Delete Leaves With a Given Value](https://leetcode.com/problems/delete-leaves-with-a-given-value/description/) and leetcode's [August LeetCoding Challenge](https://leetcode.com/explore/challenge/card/august-leetcoding-challenge-2021/614/week-2-august-8th-august-14th/3876/) with `cpp`.
+Today I have done [Delete Leaves With a Given Value](https://leetcode.com/problems/delete-leaves-with-a-given-value/description/) and leetcode's [August LeetCoding Challenge](https://leetcode.com/explore/challenge/card/august-leetcoding-challenge-2021/614/week-2-august-8th-august-14th/3887/) with `cpp`.
 
 <!-- more -->
 

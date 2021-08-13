@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Largest Time for Given Digits](https://leetcode.com/problems/largest-time-for-given-digits/description/) and leetcode's [August LeetCoding Challenge](https://leetcode.com/explore/challenge/card/august-leetcoding-challenge-2021/614/week-2-august-8th-august-14th/3876/) with `cpp`.
+Today I have done [Largest Time for Given Digits](https://leetcode.com/problems/largest-time-for-given-digits/description/) and leetcode's [August LeetCoding Challenge](https://leetcode.com/explore/challenge/card/august-leetcoding-challenge-2021/614/week-2-august-8th-august-14th/3877/) with `cpp`.
 
 <!-- more -->
 
