@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/description/) and leetcode's [August LeetCoding Challenge](https://leetcode.com/explore/challenge/card/august-leetcoding-challenge-2021/616/week-4-august-22nd-august-28th/3920/) with `cpp`.
+Today I have done [Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/description/) and leetcode's [August LeetCoding Challenge](https://leetcode.com/explore/challenge/card/august-leetcoding-challenge-2021/616/week-4-august-22nd-august-28th/3921/) with `cpp`.
 
 <!-- more -->
 
