@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done [Minimum Area Rectangle II](https://leetcode.com/problems/minimum-area-rectangle-ii/description/) and leetcode's [September LeetCoding Challenge](https://leetcode.com/explore/challenge/card/august-leetcoding-challenge-2021/617/week-5-august-29th-august-31st/3957/) with `cpp`.
+Today I have done [Minimum Area Rectangle II](https://leetcode.com/problems/minimum-area-rectangle-ii/description/) and leetcode's [September LeetCoding Challenge](https://leetcode.com/explore/featured/card/september-leetcoding-challenge-2021/636/week-1-september-1st-september-7th/3960/) with `cpp`.
 
 <!-- more -->
 
