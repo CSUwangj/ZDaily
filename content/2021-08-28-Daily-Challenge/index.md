@@ -53,7 +53,7 @@ too easy to review
 
 too easy to review
 
-##  Two Sum II - Input array is sorted
+## Two Sum II - Input array is sorted
 
 too easy to review
 
