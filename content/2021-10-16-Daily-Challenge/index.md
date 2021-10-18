@@ -15,7 +15,7 @@ Today I have done leetcode's [October LeetCoding Challenge](https://leetcode.com
 
 <!-- more -->
 
-# October LeetCoding Challenge 15
+# October LeetCoding Challenge 16
 
 ## Description
 
