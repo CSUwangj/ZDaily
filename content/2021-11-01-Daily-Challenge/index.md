@@ -11,11 +11,11 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done leetcode's [December LeetCoding Challenge](https://leetcode.com/problems/surrounded-regions/) with `cpp`.
+Today I have done leetcode's [November LeetCoding Challenge](https://leetcode.com/problems/surrounded-regions/) with `cpp`.
 
 <!-- more -->
 
-# December LeetCoding Challenge 1
+# November LeetCoding Challenge 1
 
 ## Description
 
