@@ -85,19 +85,73 @@ renderMathInElement(document.body, katex_config);
       <main class="content container" name="main">
         <div class="content-wrapper">
           
-  <div class="taxonomies">
-    <h1 class="taxonomies-title">All Categories</h1>
-    <div class="taxonomies-title">
-      There are 1 category(s) in total
+  <div class="post">
+    <h1 class="post-title">2021-11-04 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-11-04T18:03:59+08:00 title="post created">2021-11-04</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-11-04T18:13:19+08:00 title="post modified">2021-11-04</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
     </div>
-    <div class="taxonomies-items">
-      <ul>
-        
-        <li>
-          <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories&#x2F;DailyChallenge&#x2F;">DailyChallenge</a><span class="count">(507)</span>
-        </li>
-        
-      </ul>
+    <div class="post-body">
+      <p>Today I have done leetcode's <a href="https://leetcode.com/problems/sum-of-left-leaves/">November LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="november-leetcoding-challenge-4">November LeetCoding Challenge 4</h1>
+<h2 id="description">Description</h2>
+<p><strong>Sum of Left Leaves</strong></p>
+<p>Given the <code>root</code> of a binary tree, return the sum of all left leaves.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/04/08/leftsum-tree.jpg" alt="img" /></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: root = [3,9,20,null,null,15,7]
+Output: 24
+Explanation: There are two left leaves in the binary tree, with values 9 and 15 respectively.
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: root = [1]
+Output: 0
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>
+<li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sumOfLeftLeaves</span><span style="color:#eff1f5;">(TreeNode</span><span style="color:#c0c5ce;">* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">&amp;&amp; !</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">&amp;&amp; !</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">val </span><span style="color:#c0c5ce;">+ </span><span style="color:#bf616a;">sumOfLeftLeaves</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+    }
+    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">sumOfLeftLeaves</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) </span><span style="color:#c0c5ce;">+ </span><span style="color:#bf616a;">sumOfLeftLeaves</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Accepted
+// 100/100 cases passed (4 ms)
+// Your runtime beats 71.52 % of cpp submissions
+// Your memory usage beats 44.54 % of cpp submissions (13.5 MB)
+</span></code></pre>
     </div>
   </div>
 
