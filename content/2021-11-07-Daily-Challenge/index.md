@@ -15,7 +15,7 @@ Today I have done leetcode's [November LeetCoding Challenge](https://leetcode.co
 
 <!-- more -->
 
-# November LeetCoding Challenge 6
+# November LeetCoding Challenge 7
 
 ## Description
 
