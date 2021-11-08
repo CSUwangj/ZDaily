@@ -85,19 +85,75 @@ renderMathInElement(document.body, katex_config);
       <main class="content container" name="main">
         <div class="content-wrapper">
           
-  <div class="taxonomies">
-    <h1 class="taxonomies-title">All Categories</h1>
-    <div class="taxonomies-title">
-      There are 1 category(s) in total
+  <div class="post">
+    <h1 class="post-title">2021-11-08 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-11-08T20:08:13+08:00 title="post created">2021-11-08</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-11-08T20:18:21+08:00 title="post modified">2021-11-08</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
     </div>
-    <div class="taxonomies-items">
-      <ul>
-        
-        <li>
-          <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories&#x2F;DailyChallenge&#x2F;">DailyChallenge</a><span class="count">(511)</span>
-        </li>
-        
-      </ul>
+    <div class="post-body">
+      <p>Today I have done leetcode's <a href="hhttps://leetcode.com/problems/unique-binary-search-trees">November LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="november-leetcoding-challenge-8">November LeetCoding Challenge 8</h1>
+<h2 id="description">Description</h2>
+<p><strong>Unique Binary Search Trees</strong></p>
+<p>Given an integer <code>n</code>, return *the number of structurally unique **BST'*<em>s (binary search trees) which has exactly</em> <code>n</code> <em>nodes of unique values from</em> <code>1</code> <em>to</em> <code>n</code>.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/18/uniquebstn3.jpg" alt="img" /></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: n = 3
+Output: 5
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: n = 1
+Output: 1
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 19</code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">constexpr auto</span><span style="color:#c0c5ce;"> result = []{
+  array&lt;</span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">20</span><span style="color:#c0c5ce;">&gt; </span><span style="color:#bf616a;">arr</span><span style="color:#c0c5ce;">{</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">};
+  </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;"> i = </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">; i &lt; </span><span style="color:#d08770;">20</span><span style="color:#c0c5ce;">; ++i) {
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;"> j = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; j &lt; i; ++j) {
+      arr[i] += arr[j] * arr[i - j - </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">];
+    }
+  }
+  </span><span style="color:#b48ead;">return</span><span style="color:#c0c5ce;"> arr;
+}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numTrees</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result[n];
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Accepted
+// 19/19 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 64.16 % of cpp submissions (5.9 MB)
+</span></code></pre>
     </div>
   </div>
 
