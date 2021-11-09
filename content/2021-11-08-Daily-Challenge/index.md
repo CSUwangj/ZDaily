@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done leetcode's [November LeetCoding Challenge](hhttps://leetcode.com/problems/unique-binary-search-trees) with `cpp`.
+Today I have done leetcode's [November LeetCoding Challenge](https://leetcode.com/problems/unique-binary-search-trees) with `cpp`.
 
 <!-- more -->
 
