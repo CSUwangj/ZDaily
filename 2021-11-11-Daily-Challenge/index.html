@@ -85,19 +85,88 @@ renderMathInElement(document.body, katex_config);
       <main class="content container" name="main">
         <div class="content-wrapper">
           
-  <div class="taxonomies">
-    <h1 class="taxonomies-title">All Categories</h1>
-    <div class="taxonomies-title">
-      There are 1 category(s) in total
+  <div class="post">
+    <h1 class="post-title">2021-11-11 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-11-11T20:34:54+08:00 title="post created">2021-11-11</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-11-11T20:39:14+08:00 title="post modified">2021-11-11</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
     </div>
-    <div class="taxonomies-items">
-      <ul>
-        
-        <li>
-          <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories&#x2F;DailyChallenge&#x2F;">DailyChallenge</a><span class="count">(514)</span>
-        </li>
-        
-      </ul>
+    <div class="post-body">
+      <p>Today I have done leetcode's <a href="https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/">November LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="november-leetcoding-challenge-11">November LeetCoding Challenge 11</h1>
+<h2 id="description">Description</h2>
+<p><strong>Minimum Value to Get Positive Step by Step Sum</strong></p>
+<p>Given an array of integers <code>nums</code>, you start with an initial <strong>positive</strong> value <em>startValue</em>*.*</p>
+<p>In each iteration, you calculate the step by step sum of <em>startValue</em> plus elements in <code>nums</code> (from left to right).</p>
+<p>Return the minimum <strong>positive</strong> value of <em>startValue</em> such that the step by step sum is never less than 1.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [-3,2,-3,4,2]
+Output: 5
+Explanation: If you choose startValue = 4, in the third iteration your step by step sum is less than 1.
+                step by step sum
+                startValue = 4 | startValue = 5 | nums
+                  (4 -3 ) = 1  | (5 -3 ) = 2    |  -3
+                  (1 +2 ) = 3  | (2 +2 ) = 4    |   2
+                  (3 -3 ) = 0  | (4 -3 ) = 1    |  -3
+                  (0 +4 ) = 4  | (1 +4 ) = 5    |   4
+                  (4 +2 ) = 6  | (5 +2 ) = 7    |   2
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [1,2]
+Output: 1
+Explanation: Minimum start value should be positive. 
+</span></code></pre>
+<p><strong>Example 3:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [1,-2,-3]
+Output: 5
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 100</code></li>
+<li><code>-100 &lt;= nums[i] &lt;= 100</code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minStartValue</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sumRev </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> nums) {
+      sumRev </span><span style="color:#c0c5ce;">-=</span><span style="color:#eff1f5;"> i;
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(answer </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> sumRev) answer </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> sumRev;
+    }
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Accepted
+// 53/53 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 14.12 % of cpp submissions (7.4 MB)
+</span></code></pre>
     </div>
   </div>
 
