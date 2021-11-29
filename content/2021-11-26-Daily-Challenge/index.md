@@ -71,6 +71,8 @@ Output: 0
 - `nums` contains **distinct** values sorted in **ascending** order.
 - `-10^4 <= target <= 10^4`
 
+## Solution
+
 ``` cpp
 auto speedup = [](){
   cin.tie(nullptr);
