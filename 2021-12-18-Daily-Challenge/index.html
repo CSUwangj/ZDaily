@@ -151,7 +151,8 @@ Output: 1
 </ul>
 <h2 id="solution">Solution</h2>
 <pre style="background-color:#2b303b;">
-<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+<code><span style="color:#b48ead;">#define </span><span style="color:#c0c5ce;">MOD </span><span style="color:#d08770;">1000000007
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
   </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">11</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">{};
   </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> nDigits[</span><span style="color:#d08770;">11</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">{};
   </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> digits[</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">{};
@@ -160,17 +161,18 @@ Output: 1
     </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#eff1f5;">d </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> ds) {
       digits[d[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">- &#39;</span><span style="color:#a3be8c;">0</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
     }
-    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> nLen </span><span style="color:#c0c5ce;">= </span><span style="color:#96b5b4;">floor</span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">log10</span><span style="color:#eff1f5;">(n));
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> nLen </span><span style="color:#c0c5ce;">= </span><span style="color:#96b5b4;">floor</span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">log10</span><span style="color:#eff1f5;">(n)) </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
     </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> nLen; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
       nDigits[i] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> n </span><span style="color:#c0c5ce;">% </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
       n </span><span style="color:#c0c5ce;">/= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
     }
     dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
-    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> nLen; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> nLen; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
       </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span style="color:#c0c5ce;">&lt; </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">j) {
         dp[i][j] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> dp[i][j </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
         </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(digits[j]) {
           dp[i][j] </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> dp[i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">];
+          dp[i][j] </span><span style="color:#c0c5ce;">%=</span><span style="color:#eff1f5;"> MOD;
         }
       }
     }
@@ -179,10 +181,15 @@ Output: 1
       answer </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> dp[i][</span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">];
     }
     </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nLen; i ; </span><span style="color:#c0c5ce;">--</span><span style="color:#eff1f5;">i) {
-      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">nDigits[i] </span><span style="color:#c0c5ce;">|| !</span><span style="color:#eff1f5;">dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][nDigits[i] </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">nDigits[i]) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
       answer </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][nDigits[i] </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;"> dp[i </span><span style="color:#c0c5ce;">- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">];
-      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(digits[nDigits[i]]) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">digits[nDigits[i]]) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
     }
+    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> consN </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> nLen; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
+      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">digits[nDigits[i]]) consN </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+    }
+    answer </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> consN;
     </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
   }
 }</span><span style="color:#c0c5ce;">;
