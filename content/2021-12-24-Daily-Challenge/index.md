@@ -41,6 +41,8 @@ Output: [[1,5]]
 Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 ```
 
+**Constraints**
+
 <ul>
 	<li><code>1 &lt;= intervals.length &lt;= 10<sup>4</sup></code></li>
 	<li><code>intervals[i].length == 2</code></li>
