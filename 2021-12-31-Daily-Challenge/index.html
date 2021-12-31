@@ -85,19 +85,79 @@ renderMathInElement(document.body, katex_config);
       <main class="content container" name="main">
         <div class="content-wrapper">
           
-  <div class="taxonomies">
-    <h1 class="taxonomies-title">All Categories</h1>
-    <div class="taxonomies-title">
-      There are 1 category(s) in total
+  <div class="post">
+    <h1 class="post-title">2021-12-31 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2021-12-31T12:23:00+08:00 title="post created">2021-12-31</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2021-12-31T12:25:00+08:00 title="post modified">2021-12-31</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
     </div>
-    <div class="taxonomies-items">
-      <ul>
-        
-        <li>
-          <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories&#x2F;DailyChallenge&#x2F;">DailyChallenge</a><span class="count">(564)</span>
-        </li>
-        
-      </ul>
+    <div class="post-body">
+      <p>Today I have done leetcode's <a href="https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/">December LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="december-leetcoding-challenge-31">December LeetCoding Challenge 31</h1>
+<h2 id="description">Description</h2>
+<p><strong>Maximum Difference Between Node and Ancestor</strong></p>
+<p>Given the <code>root</code> of a binary tree, find the maximum value <code>v</code> for which there exist <strong>different</strong> nodes <code>a</code> and <code>b</code> where <code>v = |a.val - b.val|</code> and <code>a</code> is an ancestor of <code>b</code>.</p>
+<p>A node <code>a</code> is an ancestor of <code>b</code> if either: any child of <code>a</code> is equal to <code>b</code> or any child of <code>a</code> is an ancestor of <code>b</code>.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/09/tmp-tree.jpg" alt="img" /></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: root = [8,3,10,1,6,null,14,null,null,4,7,13]
+Output: 7
+Explanation: We have various ancestor-node differences, some of which are given below :
+|8 - 3| = 5
+|3 - 7| = 4
+|8 - 1| = 7
+|10 - 13| = 3
+Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 7.
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/09/tmp-tree-1.jpg" alt="img" /></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: root = [1,null,2,null,0,3]
+Output: 3
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li>The number of nodes in the tree is in the range <code>[2, 5000]</code>.</li>
+<li><code>0 &lt;= Node.val &lt;= 10^5</code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxAncestorDiff</span><span style="color:#eff1f5;">(TreeNode</span><span style="color:#c0c5ce;">* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">mmin </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> INT_MAX, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">mmax </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> INT_MIN) {
+    </span><span style="color:#65737e;">// root node will not be nullptr by constraints
+    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> mmax </span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;"> mmin;
+    mmin </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(mmin, root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+    mmax </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(mmax, root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">maxAncestorDiff</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, mmin, mmax), </span><span style="color:#bf616a;">maxAncestorDiff</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, mmin, mmax));
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Accepted
+// 27/27 cases passed (4 ms)
+// Your runtime beats 81.69 % of cpp submissions
+// Your memory usage beats 74.27 % of cpp submissions (9.7 MB)
+</span></code></pre>
     </div>
   </div>
 
