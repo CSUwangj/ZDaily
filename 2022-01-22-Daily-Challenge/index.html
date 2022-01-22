@@ -85,19 +85,87 @@ renderMathInElement(document.body, katex_config);
       <main class="content container" name="main">
         <div class="content-wrapper">
           
-  <div class="taxonomies">
-    <h1 class="taxonomies-title">All Categories</h1>
-    <div class="taxonomies-title">
-      There are 1 category(s) in total
+  <div class="post">
+    <h1 class="post-title">2022-01-22 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2022-01-22T13:52:00+08:00 title="post created">2022-01-22</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2022-01-22T13:54:00+08:00 title="post modified">2022-01-22</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
     </div>
-    <div class="taxonomies-items">
-      <ul>
-        
-        <li>
-          <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories&#x2F;DailyChallenge&#x2F;">DailyChallenge</a><span class="count">(586)</span>
-        </li>
-        
-      </ul>
+    <div class="post-body">
+      <p>Today I have done leetcode's <a href="https://leetcode.com/problems/stone-game-vi/">January LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="january-leetcoding-challenge-22">January LeetCoding Challenge 22</h1>
+<h2 id="description">Description</h2>
+<p><strong>Stone Game IV</strong></p>
+<p>Alice and Bob take turns playing a game, with Alice starting first.</p>
+<p>Initially, there are <code>n</code> stones in a pile. On each player's turn, that player makes a <em>move</em> consisting of removing <strong>any</strong> non-zero <strong>square number</strong> of stones in the pile.</p>
+<p>Also, if a player cannot make a move, he/she loses the game.</p>
+<p>Given a positive integer <code>n</code>, return <code>true</code> if and only if Alice wins the game otherwise return <code>false</code>, assuming both players play optimally.</p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: n = 1
+Output: true
+Explanation: Alice can remove 1 stone winning the game because Bob doesn&#39;t have any moves.
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: n = 2
+Output: false
+Explanation: Alice can only remove 1 stone, after that Bob removes the last one winning the game (2 -&gt; 1 -&gt; 0).
+</span></code></pre>
+<p><strong>Example 3:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: n = 4
+Output: true
+Explanation: n is already a perfect square, Alice can win with one move, removing 4 stones (4 -&gt; 0).
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 10^5</code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">constexpr int</span><span style="color:#c0c5ce;"> LIMIT = </span><span style="color:#d08770;">100000</span><span style="color:#c0c5ce;">;
+</span><span style="color:#b48ead;">auto</span><span style="color:#c0c5ce;"> table = [](){
+  array&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#c0c5ce;">, LIMIT + </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">&gt; </span><span style="color:#bf616a;">arr</span><span style="color:#c0c5ce;">{</span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">};
+  </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;"> i = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; i &lt;= LIMIT; ++i) {
+    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(arr[i]) </span><span style="color:#b48ead;">continue</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;"> j = </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">; j * j + i &lt;= LIMIT; ++j) {
+      arr[i + j * j] = </span><span style="color:#d08770;">true</span><span style="color:#c0c5ce;">;
+    }
+  }
+  </span><span style="color:#b48ead;">return</span><span style="color:#c0c5ce;"> arr;
+}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">winnerSquareGame</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> table[n];
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Accepted
+// 72/72 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 93.92 % of cpp submissions (6 MB)
+</span></code></pre>
     </div>
   </div>
 
