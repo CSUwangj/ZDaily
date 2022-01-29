@@ -15,7 +15,7 @@ Today I have done leetcode's [January LeetCoding Challenge](https://leetcode.com
 
 <!-- more -->
 
-# January LeetCoding Challenge 27
+# January LeetCoding Challenge 28
 
 ## Description
 
