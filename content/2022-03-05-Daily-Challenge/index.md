@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done leetcode's [February LeetCoding Challenge](https://leetcode.com/problems/delete-and-earn/) with `cpp`.
+Today I have done leetcode's [March LeetCoding Challenge](https://leetcode.com/problems/delete-and-earn/) with `cpp`.
 
 <!-- more -->
 
