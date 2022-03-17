@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done leetcode's [March LeetCoding Challenge](hhttps://leetcode.com/problems/validate-stack-sequences/) with `cpp`.
+Today I have done leetcode's [March LeetCoding Challenge](https://leetcode.com/problems/validate-stack-sequences/) with `cpp`.
 
 <!-- more -->
 
