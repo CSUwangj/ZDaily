@@ -15,7 +15,7 @@ Today I have done leetcode's [April LeetCoding Challenge](https://leetcode.com/p
 
 <!-- more -->
 
-# April LeetCoding Challenge 1
+# April LeetCoding Challenge 2
 
 ## Description
 
