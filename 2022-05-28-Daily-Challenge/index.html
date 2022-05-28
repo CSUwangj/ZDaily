@@ -85,19 +85,80 @@ renderMathInElement(document.body, katex_config);
       <main class="content container" name="main">
         <div class="content-wrapper">
           
-  <div class="taxonomies">
-    <h1 class="taxonomies-title">All Categories</h1>
-    <div class="taxonomies-title">
-      There are 1 category(s) in total
+  <div class="post">
+    <h1 class="post-title">2022-05-28 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2022-05-28T18:12:00+08:00 title="post created">2022-05-28</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2022-05-28T18:14:00+08:00 title="post modified">2022-05-28</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
     </div>
-    <div class="taxonomies-items">
-      <ul>
-        
-        <li>
-          <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories&#x2F;DailyChallenge&#x2F;">DailyChallenge</a><span class="count">(712)</span>
-        </li>
-        
-      </ul>
+    <div class="post-body">
+      <p>Today I have done leetcode's <a href="https://leetcode.com/problems/missing-number/">May LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="may-leetcoding-challenge-28">May LeetCoding Challenge 28</h1>
+<h2 id="description">Description</h2>
+<p><strong>Missing Number</strong></p>
+<p>Given an array <code>nums</code> containing <code>n</code> distinct numbers in the range <code>[0, n]</code>, return <em>the only number in the range that is missing from the array.</em></p>
+<p><strong>Example 1:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [3,0,1]
+Output: 2
+Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+</span></code></pre>
+<p><strong>Example 2:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [0,1]
+Output: 2
+Explanation: n = 2 since there are 2 numbers, so all numbers are in the range [0,2]. 2 is the missing number in the range since it does not appear in nums.
+</span></code></pre>
+<p><strong>Example 3:</strong></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Input: nums = [9,6,4,2,3,5,7,0,1]
+Output: 8
+Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9]. 8 is the missing number in the range since it does not appear in nums.
+</span></code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>1 &lt;= n &lt;= 104</code></li>
+<li><code>0 &lt;= nums[i] &lt;= n</code></li>
+<li>All the numbers of <code>nums</code> are <strong>unique</strong>.</li>
+</ul>
+<p><strong>Follow up:</strong> Could you implement a solution using only <code>O(1)</code> extra space complexity and <code>O(n)</code> runtime complexity?</p>
+<h2 id="solution">Solution</h2>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">missingNumber</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(len </span><span style="color:#c0c5ce;">+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> nums) sum </span><span style="color:#c0c5ce;">-=</span><span style="color:#eff1f5;"> i;
+    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> sum;
+  }
+}</span><span style="color:#c0c5ce;">;
+
+</span><span style="color:#65737e;">// Accepted
+// 122/122 cases passed (11 ms)
+// Your runtime beats 99.14 % of cpp submissions
+// Your memory usage beats 93.84 % of cpp submissions (17.9 MB)
+</span></code></pre>
     </div>
   </div>
 
