@@ -15,7 +15,7 @@ Today I have done leetcode's [June LeetCoding Challenge](https://leetcode.com/pr
 
 <!-- more -->
 
-# June LeetCoding Challenge 4
+# June LeetCoding Challenge 5
 
 ## Description
 
