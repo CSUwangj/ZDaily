@@ -21,7 +21,7 @@ Today I have done leetcode's [June LeetCoding Challenge](https://leetcode.com/pr
 
 **Search Suggestions System**
 
-DYou are given an array of strings `products` and a string `searchWord`.
+You are given an array of strings `products` and a string `searchWord`.
 
 Design a system that suggests at most three product names from `products` after each character of `searchWord` is typed. Suggested products should have common prefix with `searchWord`. If there are more than three products with a common prefix return the three lexicographically minimums products.
 
