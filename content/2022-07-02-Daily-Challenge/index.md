@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done leetcode's [June LeetCoding Challenge](https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/) with `cpp`.
+Today I have done leetcode's [July LeetCoding Challenge](https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/) with `cpp`.
 
 <!-- more -->
 
