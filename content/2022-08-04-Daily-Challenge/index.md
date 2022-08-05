@@ -1,8 +1,8 @@
 +++
-updated = 2022-08-03 18:14:00+08:00
-title = "2022-08-03 Daily-Challenge"
-path = "2022-08-03-Daily-Challenge"
-date = 2022-08-03 18:12:00+08:00
+updated = 2022-08-04 18:14:00+08:00
+title = "2022-08-04 Daily-Challenge"
+path = "2022-08-04-Daily-Challenge"
+date = 2022-08-04 18:12:00+08:00
 in_search_index = true
 
 [taxonomies]
@@ -11,70 +11,76 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done leetcode's [August LeetCoding Challenge](https://leetcode.com/problems/my-calendar-i/) with `cpp`.
+Today I have done leetcode's [August LeetCoding Challenge](https://leetcode.com/problems/mirror-reflection/) with `cpp`.
 
 <!-- more -->
 
-# August LeetCoding Challenge 3
+# August LeetCoding Challenge 4
 
 ## Description
 
-**My Calendar I**
+**Mirror Reflection**
 
-You are implementing a program to use as your calendar. We can add a new event if adding the event will not cause a **double booking**.
+There is a  special square room with mirrors on each of the four walls. Except for  the southwest corner, there are receptors on each of the remaining  corners, numbered `0`, `1`, and `2`.
 
-A **double booking** happens when two events have some non-empty intersection (i.e., some moment is common to both events.).
+The square room has walls of length `p` and a laser ray from the southwest corner first meets the east wall at a distance `q` from the `0th` receptor.
 
-The event can be represented as a pair of integers `start` and `end` that represents a booking on the half-open interval `[start, end)`, the range of real numbers `x` such that `start <= x < end`.
+Given the two integers `p` and `q`, return *the number of the receptor that the ray meets first*.
 
-Implement the `MyCalendar` class:
-
-- `MyCalendar()` Initializes the calendar object.
-- `boolean book(int start, int end)` Returns `true` if the event can be added to the calendar successfully without causing a **double booking**. Otherwise, return `false` and do not add the event to the calendar.
+The test cases are guaranteed so that the ray will meet a receptor eventually.
 
  
 
 **Example 1:**
 
-```
-Input
-["MyCalendar", "book", "book", "book"]
-[[], [10, 20], [15, 25], [20, 30]]
-Output
-[null, true, false, true]
+![img](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/06/18/reflection.png)
 
-Explanation
-MyCalendar myCalendar = new MyCalendar();
-myCalendar.book(10, 20); // return True
-myCalendar.book(15, 25); // return False, It can not be booked because time 15 is already booked by another event.
-myCalendar.book(20, 30); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.
+```
+Input: p = 2, q = 1
+Output: 2
+Explanation: The ray meets receptor 2 the first time it gets reflected back to the left wall.
+```
+
+**Example 2:**
+
+```
+Input: p = 3, q = 1
+Output: 1
 ```
 
  
 
 **Constraints:**
 
-- `0 <= start < end <= 10&9`
-- At most `1000` calls will be made to `book`.
+- `1 <= q <= p <= 1000`
 
 ## Solution
 
 ``` cpp
-class MyCalendar {
-  set<pair<int, int>> times;
+class Solution {
+  int gcd(int a, int b) {
+    while(b) {
+      int c = a;
+      a = b;
+      b = c % a;
+    }
+    return a;
+  }
 public:
-  MyCalendar(){}
-  
-  bool book(int start, int end) {
-    auto it = times.upper_bound({start, end});
-    if(it != times.end() && it->second < end) return false;
-    times.insert({end, start});
-    return true;
+  int mirrorReflection(int p, int q) {
+    int metY = p*q/gcd(p, q);
+    int metX = metY / q * p;
+    int roundX = metX / p;
+    int roundY = metY / p;
+    
+    if((roundY & roundX & 1) == 1) return 1;
+    if((roundY & 1 == 1)) return 2;
+    return 0;
   }
 };
 
 // Accepted
-// 107/107 cases passed (167 ms)
-// Your runtime beats 51.09 % of cpp submissions
-// Your memory usage beats 31.77 % of cpp submissions (38.9 MB)
+// 69/69 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 62.81 % of cpp submissions (5.9 MB)
 ```
