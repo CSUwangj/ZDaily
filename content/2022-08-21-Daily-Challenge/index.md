@@ -1,0 +1,112 @@
++++
+updated = 2022-08-21 18:14:00+08:00
+title = "2022-08-21 Daily-Challenge"
+path = "2022-08-21-Daily-Challenge"
+date = 2022-08-21 18:12:00+08:00
+in_search_index = true
+
+[taxonomies]
+tags = ["Algorithm"]
+categories = [ "DailyChallenge",]
+archives = [ "archive",]
++++
+
+Today I have done leetcode's [August LeetCoding Challenge](https://leetcode.com/problems/stamping-the-sequence/) with `cpp`.
+
+<!-- more -->
+
+# August LeetCoding Challenge 21
+
+## Description
+
+**Stamping The Sequence**
+
+You are given two strings `stamp` and `target`. Initially, there is a string `s` of length `target.length` with all `s[i] == '?'`.
+
+In one turn, you can place `stamp` over `s` and replace every letter in the `s` with the corresponding letter from `stamp`.
+
+For example, if `stamp = "abc"` and `target = "abcba"`, then `s` is `"?????"` initially. In one turn you can: 	
+
+- place `stamp` at index `0` of `s` to obtain `"abc??"`,
+- place `stamp` at index `1` of `s` to obtain `"?abc?"`, or
+- place `stamp` at index `2` of `s` to obtain `"??abc"`.
+
+​	Note that `stamp` must be fully contained in the boundaries of `s` in order to stamp (i.e., you cannot place `stamp` at index `3` of `s`).
+
+We want to convert `s` to `target` using **at most** `10 * target.length` turns.
+
+Return *an array of the index of the left-most letter being stamped at each turn*. If we cannot obtain `target` from `s` within `10 * target.length` turns, return an empty array.
+
+ 
+
+**Example 1:**
+
+```
+Input: stamp = "abc", target = "ababc"
+Output: [0,2]
+Explanation: Initially s = "?????".
+- Place stamp at index 0 to get "abc??".
+- Place stamp at index 2 to get "ababc".
+[1,0,2] would also be accepted as an answer, as well as some other answers.
+```
+
+**Example 2:**
+
+```
+Input: stamp = "abca", target = "aabcaca"
+Output: [3,0,1]
+Explanation: Initially s = "???????".
+- Place stamp at index 3 to get "???abca".
+- Place stamp at index 0 to get "abcabca".
+- Place stamp at index 1 to get "aabcaca".
+```
+
+ 
+
+**Constraints:**
+
+- `1 <= stamp.length <= target.length <= 1000`
+- `stamp` and `target` consist of lowercase English letters.
+
+## Solution
+
+``` cpp
+class Solution {
+public:
+  vector<int> movesToStamp(string stamp, string target) {
+    int sLen = stamp.length();
+    int tLen = target.length();
+    vector<int> answer;
+    string helper(tLen, '?');
+    bool found = false;
+    do {
+      found = false;
+      for(int i = 0; i <= tLen - sLen; ++i) {
+        bool add = false;
+        int match = 0;
+        for(int j = 0; j < sLen; ++j) {
+          if(helper[i + j] != '?') {
+            match += 1;
+          } else if(stamp[j] == target[i + j]) {
+            match += 1;
+            add = true;
+          }
+        }
+        if(add && match == sLen) {
+          for(int j = 0; j < sLen; ++j) if(helper[i + j] == '?') helper[i + j] = stamp[j];
+          answer.push_back(i);
+          found = true;
+        }
+      }
+    } while(found);
+    if(find(helper.begin(), helper.end(), '?') != helper.end()) return {};
+    reverse(answer.begin(), answer.end());
+    return answer;
+  }
+};
+
+// Accepted
+// 262/262 cases passed (14 ms)
+// Your runtime beats 74.59 % of cpp submissions
+// Your memory usage beats 76.23 % of cpp submissions (7.5 MB)
+```
