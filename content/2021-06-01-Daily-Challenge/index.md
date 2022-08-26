@@ -63,7 +63,7 @@ For the example above, the output should be:
 
 ## Solution
 
-``` mysql
+``` sql
 # Write your MySQL query statement below
 SELECT * FROM cinema
 WHERE (

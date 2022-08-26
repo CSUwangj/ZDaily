@@ -57,7 +57,7 @@ All numbers in the list are positive numbers and the list can be empty.
 
 ## Solution
 
-```jsx
+```js
 function orderWeight(strng) {
   return strng.match(/[^ ]+/gi)
     .map(Number)

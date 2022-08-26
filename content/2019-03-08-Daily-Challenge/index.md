@@ -34,7 +34,7 @@ of values contained within the collection/array are not relevant.
 
 The following are some examples of how this class is used:
 
-``` jsx
+``` js
 var helper = new PaginationHelper(['a','b','c','d','e','f'], 4);
 helper.pageCount(); //should == 2
 helper.itemCount(); //should == 6
@@ -51,7 +51,7 @@ helper.pageIndex(-10); //should == -1
 
 ## Solution
 
-```jsx
+``` js
 // TODO: complete this object/class
 
 // The constructor takes in an array of items and a integer indicating how many
@@ -89,7 +89,7 @@ PaginationHelper.prototype.pageIndex = function(itemIndex) {
 
 
 
-```jsx
+``` js
 // TODO: complete this object/class
 
 // The constructor takes in an array of items and a integer indicating how many
