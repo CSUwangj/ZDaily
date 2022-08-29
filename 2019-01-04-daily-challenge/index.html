@@ -11,12 +11,12 @@
       <title>CSUwangj&#x27;s daily challenge</title>
 
       <!-- CSS -->
-      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
-      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/css/lib/font-awesome.min.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/site.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
       
       <!-- js -->
-      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      <script type="text/javascript" charset="utf-8" src="https://csuwangj.github.io/ZDaily/js/sidebar.js"></script>
       
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
@@ -57,23 +57,23 @@ renderMathInElement(document.body, katex_config);
             <nav class="menu">
               
                 <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
-                  <span><i class="fa fa-home"></i> Home</span>
+                  <span><i class="fa-solid fa-house"></i> Home</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
-                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa-solid fa-user-circle"></i> About</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
-                  <span><i class="fa fa-book"></i> Categories</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa-solid fa-book"></i> Categories</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
-                  <span><i class="fa fa-tags"></i> Tags</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa-solid fa-tags"></i> Tags</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
-                  <span><i class="fa fa-inbox"></i> Archives</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa-solid fa-inbox"></i> Archives</span>
                 </a>
               
               
@@ -90,19 +90,19 @@ renderMathInElement(document.body, katex_config);
     <div class="post-meta">
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar"></i></span>
         <span class="post-date">Posted on: </span>
         <time datetime=2019-01-04T14:50:05+00:00 title="post created">2019-01-04</time>
       
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar-check"></i></span>
         <span class="modify-date">Posted modified: </span>
         <time datetime=2020-09-19T20:01:27.625333+00:00 title="post modified">2020-09-19</time>
       
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-folder"></i></span>
         <span class="in-category">In: </span>
           
             <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
@@ -114,8 +114,7 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Lattice paths</em> in <em>Rust</em> and <em>Robot Return to Origin</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Lattice paths
+<pre><code>Lattice paths
 
 Problem 15 
 
@@ -123,40 +122,39 @@ Starting in the top left corner of a 2×2 grid, and only being able to move to t
 
 
 How many such routes are there through a 20×20 grid?
-</span></code></pre>
+</code></pre>
 <p><img src="https://projecteuler.net/project/images/p015.gif" alt="img" /></p>
 <h2 id="solution">Solution</h2>
 <p>To a $n*n$ grid, the answer is $C_{2n}^{n}$.</p>
 <h2 id="implementation">Implementation</h2>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#b48ead;">extern crate</span><span style="color:#c0c5ce;"> num_bigint;
-</span><span style="color:#b48ead;">extern crate</span><span style="color:#c0c5ce;"> num_traits;
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate num_bigint;
+extern crate num_traits;
 
-</span><span style="color:#b48ead;">use </span><span style="color:#c0c5ce;">num_bigint::{BigUint};
-</span><span style="color:#b48ead;">use </span><span style="color:#c0c5ce;">num_traits::{One};
+use num_bigint::{BigUint};
+use num_traits::{One};
 
-</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
-    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> f1: BigUint = One::one();
-    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">21</span><span style="color:#b48ead;">u32</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">41</span><span style="color:#b48ead;">u32 </span><span style="color:#c0c5ce;">{
-        </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> f2 = BigUint::from(i);
+fn main() {
+    let mut f1: BigUint = One::one();
+    for i in 21u32..41u32 {
+        let f2 = BigUint::from(i);
         f1 = f1 * &amp;f2;
     }
-    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">u32</span><span style="color:#c0c5ce;">..</span><span style="color:#d08770;">21</span><span style="color:#b48ead;">u32 </span><span style="color:#c0c5ce;">{
-        </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> f2 = BigUint::from(i);
-        f1 = f1 / &amp;f2;
+    for i in 1u32..21u32 {
+        let f2 = BigUint::from(i);
+        f1 = f1 &#x2F; &amp;f2;
     }
-    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, f1.</span><span style="color:#96b5b4;">to_str_radix</span><span style="color:#c0c5ce;">(</span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">));
+    println!(&quot;Answer is {}&quot;, f1.to_str_radix(10));
 }
-</span></code></pre><h1 id="algorithm">Algorithm</h1>
+</code></pre>
+<h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">657. Robot Return to Origin
+<pre><code>657. Robot Return to Origin
 
 There is a robot starting at position (0, 0), the origin, on a 2D plane. Given a sequence of its moves, judge if this robot ends up at (0, 0) after it completes its moves.
 
 The move sequence is represented by a string, and the character moves[i] represents its ith move. Valid moves are R (right), L (left), U (up), and D (down). If the robot returns to the origin after it finishes all of its moves, return true. Otherwise, return false.
 
-Note: The way that the robot is &quot;facing&quot; is irrelevant. &quot;R&quot; will always make the robot move to the right once, &quot;L&quot; will always make it move left, etc. Also, assume that the magnitude of the robot&#39;s movement is the same for each move.
+Note: The way that the robot is &quot;facing&quot; is irrelevant. &quot;R&quot; will always make the robot move to the right once, &quot;L&quot; will always make it move left, etc. Also, assume that the magnitude of the robot&#x27;s movement is the same for each move.
 
 Example 1:
 
@@ -170,26 +168,27 @@ Example 2:
 Input: &quot;LL&quot;
 Output: false
 Explanation: The robot moves left twice. It ends up two &quot;moves&quot; to the left of the origin. We return false because it is not at the origin at the end of its moves.
-</span></code></pre><h2 id="solution-1">Solution</h2>
+</code></pre>
+<h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implemtation">Implemtation</h2>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#65737e;">/**
+<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
  * @param {string} moves
  * @return {boolean}
- */
-</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">judgeCircle </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(moves) {
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">up </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
-  </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">of </span><span style="color:#bf616a;">moves</span><span style="color:#c0c5ce;">){
-    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">=== &quot;</span><span style="color:#a3be8c;">L</span><span style="color:#c0c5ce;">&quot;) </span><span style="color:#bf616a;">left</span><span style="color:#c0c5ce;">++;
-    </span><span style="color:#b48ead;">else if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">=== &quot;</span><span style="color:#a3be8c;">R</span><span style="color:#c0c5ce;">&quot;) </span><span style="color:#bf616a;">left</span><span style="color:#c0c5ce;">--;
-    </span><span style="color:#b48ead;">else if</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">=== &quot;</span><span style="color:#a3be8c;">U</span><span style="color:#c0c5ce;">&quot;) </span><span style="color:#bf616a;">up</span><span style="color:#c0c5ce;">++;
-    </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">up</span><span style="color:#c0c5ce;">--;
+ *&#x2F;
+var judgeCircle = function(moves) {
+  let up = 0;
+  let left = 0;
+  for(const i of moves){
+    if(i === &quot;L&quot;) left++;
+    else if(i === &quot;R&quot;) left--;
+    else if(i === &quot;U&quot;) up++;
+    else up--;
   }
-  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">up</span><span style="color:#c0c5ce;">==</span><span style="color:#bf616a;">left</span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#bf616a;">up</span><span style="color:#c0c5ce;">==</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
+  return up==left&amp;&amp;up==0;
 };
-</span></code></pre>
+</code></pre>
+
     </div>
   </div>
 
@@ -201,7 +200,7 @@ Explanation: The robot moves left twice. It ends up two &quot;moves&quot; to the
             <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
               
               <img class="site-author-image" itemprop="image"
-                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                src="https://csuwangj.github.io/ZDaily/img/avatar.png"
                 alt="CSUwangj" />
               
               <p class="site-author-name unselectable">CSUwangj</p>
@@ -217,11 +216,11 @@ Explanation: The robot moves left twice. It ends up two &quot;moves&quot; to the
             <div class="links-of-author">
               
                 <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
-                  <i class="fa fw fa-github"></i>
+                  <i class="fa-brands fa-github"></i>
                 </a>
               
                 <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
-                  <i class="fa fw fa-envelope"></i>
+                  <i class="fa-solid fa-envelope"></i>
                 </a>
               
             </div>
@@ -238,7 +237,7 @@ Explanation: The robot moves left twice. It ends up two &quot;moves&quot; to the
       
         <footer name="footer">
           <div class="copyright">
-            <span item="copyrightYear">© 2018-2021</span>
+            <span item="copyrightYear">© 2018-2022</span>
             <span class="author">CSUwangj</span>
           </div>
           <div class="powered-by">

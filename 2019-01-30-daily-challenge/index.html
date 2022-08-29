@@ -11,12 +11,12 @@
       <title>CSUwangj&#x27;s daily challenge</title>
 
       <!-- CSS -->
-      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
-      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/css/lib/font-awesome.min.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/site.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
       
       <!-- js -->
-      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      <script type="text/javascript" charset="utf-8" src="https://csuwangj.github.io/ZDaily/js/sidebar.js"></script>
       
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
@@ -57,23 +57,23 @@ renderMathInElement(document.body, katex_config);
             <nav class="menu">
               
                 <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
-                  <span><i class="fa fa-home"></i> Home</span>
+                  <span><i class="fa-solid fa-house"></i> Home</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
-                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa-solid fa-user-circle"></i> About</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
-                  <span><i class="fa fa-book"></i> Categories</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa-solid fa-book"></i> Categories</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
-                  <span><i class="fa fa-tags"></i> Tags</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa-solid fa-tags"></i> Tags</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
-                  <span><i class="fa fa-inbox"></i> Archives</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa-solid fa-inbox"></i> Archives</span>
                 </a>
               
               
@@ -90,19 +90,19 @@ renderMathInElement(document.body, katex_config);
     <div class="post-meta">
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar"></i></span>
         <span class="post-date">Posted on: </span>
         <time datetime=2019-01-30T00:06:35+00:00 title="post created">2019-01-30</time>
       
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar-check"></i></span>
         <span class="modify-date">Posted modified: </span>
         <time datetime=2020-09-19T20:01:27.627328+00:00 title="post modified">2020-09-19</time>
       
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-folder"></i></span>
         <span class="in-category">In: </span>
           
             <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
@@ -121,74 +121,74 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>So many pandigital problems...</p>
 <h2 id="implementation">Implementation</h2>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#b48ead;">extern crate</span><span style="color:#c0c5ce;"> primal;
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
 
-</span><span style="color:#b48ead;">use </span><span style="color:#c0c5ce;">primal::StreamingSieve;
-</span><span style="color:#b48ead;">use </span><span style="color:#c0c5ce;">primal::Primes;
+use primal::StreamingSieve;
+use primal::Primes;
 
-</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
-    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> ans = </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">;
-    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> up_bd = StreamingSieve::prime_pi(</span><span style="color:#d08770;">1_000_000_000</span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">);
-    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in Primes::all().</span><span style="color:#96b5b4;">take</span><span style="color:#c0c5ce;">(up_bd) {
-        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">is_pandigital</span><span style="color:#c0c5ce;">(i) {
-            println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, i);
+fn main() {
+    let mut ans = 0;
+    let up_bd = StreamingSieve::prime_pi(1_000_000_000usize);
+    for i in Primes::all().take(up_bd) {
+        if is_pandigital(i) {
+            println!(&quot;{}&quot;, i);
             ans = i;
         }
     }
-    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, ans);
+    println!(&quot;Answer is {}&quot;, ans);
 }
 
-</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">is_pandigital</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">) -&gt; </span><span style="color:#b48ead;">bool </span><span style="color:#c0c5ce;">{
-    </span><span style="color:#65737e;">// println!(&quot;n = {}&quot;, n);
-    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> l = n.</span><span style="color:#96b5b4;">to_string</span><span style="color:#c0c5ce;">().</span><span style="color:#96b5b4;">len</span><span style="color:#c0c5ce;">();
-    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">..(l+</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">) {
-        </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> tmp = n;
-        </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> is_ok = </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
-        </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;"> tmp != </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">{
-            </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> tmp % </span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">== i &amp;&amp; is_ok == </span><span style="color:#d08770;">false </span><span style="color:#c0c5ce;">{
-                is_ok = </span><span style="color:#d08770;">true
-            </span><span style="color:#c0c5ce;">} </span><span style="color:#b48ead;">else if</span><span style="color:#c0c5ce;"> tmp % </span><span style="color:#d08770;">10 </span><span style="color:#c0c5ce;">== i &amp;&amp; is_ok == </span><span style="color:#d08770;">true </span><span style="color:#c0c5ce;">{
-                </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+fn is_pandigital(n: usize) -&gt; bool {
+    &#x2F;&#x2F; println!(&quot;n = {}&quot;, n);
+    let l = n.to_string().len();
+    for i in 1..(l+1) {
+        let mut tmp = n;
+        let mut is_ok = false;
+        while tmp != 0 {
+            if tmp % 10 == i &amp;&amp; is_ok == false {
+                is_ok = true
+            } else if tmp % 10 == i &amp;&amp; is_ok == true {
+                return false;
             }
-            </span><span style="color:#65737e;">// println!(&quot;{}&quot;, tmp);
-</span><span style="color:#c0c5ce;">            tmp /= </span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">;
+            &#x2F;&#x2F; println!(&quot;{}&quot;, tmp);
+            tmp &#x2F;= 10;
         }
-        </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">!is_ok {
-            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">;
+        if !is_ok {
+            return false;
         }
     }
-    </span><span style="color:#d08770;">true
-</span><span style="color:#c0c5ce;">}
-</span></code></pre><h1 id="algorithm">Algorithm</h1>
+    true
+}
+</code></pre>
+<h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="187-repeated-dna-sequences">187. Repeated DNA Sequences</h3>
 <p>All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: &quot;ACGAATTCCG&quot;. When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.</p>
 <p>Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.</p>
 <p><strong>Example:</strong></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: s = &quot;AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT&quot;
+<pre><code>Input: s = &quot;AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT&quot;
 
 Output: [&quot;AAAAACCCCC&quot;, &quot;CCCCCAAAAA&quot;]
-</span></code></pre><h2 id="solution-1">Solution</h2>
+</code></pre>
+<h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#65737e;">/**
+<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
  * @param {string} s
  * @return {string[]}
- */
-</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">findRepeatedDnaSequences </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(s) {
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">set </span><span style="color:#c0c5ce;">= new </span><span style="color:#ebcb8b;">Set</span><span style="color:#c0c5ce;">();
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span style="color:#c0c5ce;">= new </span><span style="color:#ebcb8b;">Set</span><span style="color:#c0c5ce;">();
-  </span><span style="color:#b48ead;">for </span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; </span><span style="color:#bf616a;">i </span><span style="color:#c0c5ce;">&lt;= </span><span style="color:#bf616a;">s</span><span style="color:#c0c5ce;">.length-</span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">; ++</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">) {
-    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">tmp </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">s</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">substr</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">i</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">);
-    </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">set</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">has</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">tmp</span><span style="color:#c0c5ce;">)) </span><span style="color:#bf616a;">ans</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">add</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">tmp</span><span style="color:#c0c5ce;">);
-    </span><span style="color:#bf616a;">set</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">add</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">tmp</span><span style="color:#c0c5ce;">);
+ *&#x2F;
+var findRepeatedDnaSequences = function(s) {
+  let set = new Set();
+  let ans = new Set();
+  for (let i = 0; i &lt;= s.length-10; ++i) {
+    let tmp = s.substr(i, 10);
+    if (set.has(tmp)) ans.add(tmp);
+    set.add(tmp);
   }
-  </span><span style="color:#b48ead;">return </span><span style="color:#ebcb8b;">Array</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">from</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">ans</span><span style="color:#c0c5ce;">);
+  return Array.from(ans);
 };
-</span></code></pre>
+</code></pre>
+
     </div>
   </div>
 
@@ -200,7 +200,7 @@ Output: [&quot;AAAAACCCCC&quot;, &quot;CCCCCAAAAA&quot;]
             <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
               
               <img class="site-author-image" itemprop="image"
-                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                src="https://csuwangj.github.io/ZDaily/img/avatar.png"
                 alt="CSUwangj" />
               
               <p class="site-author-name unselectable">CSUwangj</p>
@@ -216,11 +216,11 @@ Output: [&quot;AAAAACCCCC&quot;, &quot;CCCCCAAAAA&quot;]
             <div class="links-of-author">
               
                 <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
-                  <i class="fa fw fa-github"></i>
+                  <i class="fa-brands fa-github"></i>
                 </a>
               
                 <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
-                  <i class="fa fw fa-envelope"></i>
+                  <i class="fa-solid fa-envelope"></i>
                 </a>
               
             </div>
@@ -237,7 +237,7 @@ Output: [&quot;AAAAACCCCC&quot;, &quot;CCCCCAAAAA&quot;]
       
         <footer name="footer">
           <div class="copyright">
-            <span item="copyrightYear">© 2018-2021</span>
+            <span item="copyrightYear">© 2018-2022</span>
             <span class="author">CSUwangj</span>
           </div>
           <div class="powered-by">

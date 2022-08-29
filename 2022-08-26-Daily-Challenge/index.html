@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/css/lib/font-awesome.min.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https://csuwangj.github.io/ZDaily/js/sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+        <header name="header">
+          <div>
+            <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+            <nav class="menu">
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+                  <span><i class="fa-solid fa-house"></i> Home</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa-solid fa-user-circle"></i> About</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa-solid fa-book"></i> Categories</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa-solid fa-tags"></i> Tags</span>
+                </a>
+              
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa-solid fa-inbox"></i> Archives</span>
+                </a>
+              
+              
+            </nav>
+          </div>
+        </header>
+      
+
+      <main class="content container" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2022-08-26 Daily-Challenge</h1>
+    <div class="post-meta">
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2022-08-26T18:12:00+08:00 title="post created">2022-08-26</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar-check"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2022-08-26T18:14:00+08:00 title="post modified">2022-08-26</time>
+      
+      
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-folder"></i></span>
+        <span class="in-category">In: </span>
+          
+            <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
+          
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today I have done leetcode's <a href="https://leetcode.com/problems/reordered-power-of-2/">August LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="august-leetcoding-challenge-26">August LeetCoding Challenge 26</h1>
+<h2 id="description">Description</h2>
+<p><strong>Reordered Power of 2</strong></p>
+<p>You are given an integer <code>n</code>. We reorder the digits in any order (including the original order) such that the leading digit is not zero.</p>
+<p>Return <code>true</code> <em>if and only if we can do this so that the resulting number is a power of two</em>.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: n = 1
+Output: true
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: n = 10
+Output: false
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 10^9</code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const set&lt;string&gt; st = {&quot;011237&quot;,&quot;0122579&quot;,&quot;012356789&quot;,&quot;0124&quot;,&quot;0134449&quot;,&quot;0145678&quot;,&quot;01466788&quot;,&quot;0248&quot;,&quot;0368888&quot;,&quot;0469&quot;,&quot;1&quot;,&quot;112234778&quot;,&quot;11266777&quot;,&quot;122446&quot;,&quot;125&quot;,&quot;128&quot;,&quot;1289&quot;,&quot;13468&quot;,&quot;16&quot;,&quot;2&quot;,&quot;224588&quot;,&quot;23&quot;,&quot;23334455&quot;,&quot;234455668&quot;,&quot;23678&quot;,&quot;256&quot;,&quot;35566&quot;,&quot;4&quot;,&quot;46&quot;,&quot;8&quot;};
+class Solution {
+public:
+  bool reorderedPowerOf2(int N) {
+    string n = to_string(N);
+    sort(n.begin(), n.end());
+    return st.count(n);
+  }
+};
+
+&#x2F;&#x2F; Accepted
+&#x2F;&#x2F; 136&#x2F;136 cases passed (0 ms)
+&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
+&#x2F;&#x2F; Your memory usage beats 83.9 % of cpp submissions (6 MB)
+</code></pre>
+
+    </div>
+  </div>
+
+        </div>
+
+        
+          <button class="sidebar-toggle" onclick="openSidebar()">O</button>
+          <aside class="sidebar" name="sidebar">
+            <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+              
+              <img class="site-author-image" itemprop="image"
+                src="https://csuwangj.github.io/ZDaily/img/avatar.png"
+                alt="CSUwangj" />
+              
+              <p class="site-author-name unselectable">CSUwangj</p>
+              <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+            </div>
+            <div class="feed-link">
+              
+                <a rel="alternate" type="application/atom+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                  RSS
+                </a>
+              
+            </div>
+            <div class="links-of-author">
+              
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              
+                <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+                  <i class="fa-solid fa-envelope"></i>
+                </a>
+              
+            </div>
+            <div class="links-of-blogroll">
+              
+                <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+              
+            </div>
+          </aside>
+        
+
+      </main>
+
+      
+        <footer name="footer">
+          <div class="copyright">
+            <span item="copyrightYear">© 2018-2022</span>
+            <span class="author">CSUwangj</span>
+          </div>
+          <div class="powered-by">
+            Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+          </div>
+        </footer>
+      
+    </body>
+
+</html>

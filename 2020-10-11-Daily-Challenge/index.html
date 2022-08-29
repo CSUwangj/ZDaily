@@ -11,12 +11,12 @@
       <title>CSUwangj&#x27;s daily challenge</title>
 
       <!-- CSS -->
-      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
-      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/css/lib/font-awesome.min.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/site.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
       
       <!-- js -->
-      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      <script type="text/javascript" charset="utf-8" src="https://csuwangj.github.io/ZDaily/js/sidebar.js"></script>
       
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
@@ -57,23 +57,23 @@ renderMathInElement(document.body, katex_config);
             <nav class="menu">
               
                 <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
-                  <span><i class="fa fa-home"></i> Home</span>
+                  <span><i class="fa-solid fa-house"></i> Home</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
-                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa-solid fa-user-circle"></i> About</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
-                  <span><i class="fa fa-book"></i> Categories</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa-solid fa-book"></i> Categories</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
-                  <span><i class="fa fa-tags"></i> Tags</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa-solid fa-tags"></i> Tags</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
-                  <span><i class="fa fa-inbox"></i> Archives</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa-solid fa-inbox"></i> Archives</span>
                 </a>
               
               
@@ -90,19 +90,19 @@ renderMathInElement(document.body, katex_config);
     <div class="post-meta">
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar"></i></span>
         <span class="post-date">Posted on: </span>
         <time datetime=2020-10-11T02:17:34+08:00 title="post created">2020-10-11</time>
       
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar-check"></i></span>
         <span class="modify-date">Posted modified: </span>
         <time datetime=2020-10-11T19:37:17+08:00 title="post modified">2020-10-11</time>
       
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-folder"></i></span>
         <span class="in-category">In: </span>
           
             <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
@@ -204,150 +204,146 @@ renderMathInElement(document.body, katex_config);
 <h2 id="queries-on-a-permutation-with-key">Queries on a Permutation With Key</h2>
 <p>Get index of number can be transformed into a prefix sum problems, then we only need to know the position of the number and should be able to do a quick add to range of prefix sum. So, we can use a map and a BIT(binary indexed tree) to solve this problem.</p>
 <p>Here comes the trick: imaging that we have a array to compute the prefix sum, which is index of the key, instead of initialize array with size of <code>m</code> and set all values to <code>1</code>, we initialize a array with size of <code>m+queries.size()</code> and, first <code>queries.size()</code> elements set values to <code>0</code> and set reset to <code>1</code>. And we have a hashmap to record the position of number. Then we can transform each query to follow:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">0. get position of query number from map
+<pre><code>0. get position of query number from map
 1. compute the prefix sum of position of query number
 2. put the query number to first position, which is equal to
   - let prifix sum of position minus one
   - let prefix sum of last add one
-</span></code></pre>
+</code></pre>
 <p>check my code for more information</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
-  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">add</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
-    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
-      nums[pos] </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> val;
-      pos </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> pos</span><span style="color:#c0c5ce;">&amp;</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;">pos);
+<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
+  void add(vector&lt;int&gt;&amp; nums, int pos, int val) {
+    while(pos &lt; nums.size()) {
+      nums[pos] += val;
+      pos += pos&amp;(-pos);
     }
   }
 
-  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
-    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ret </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
-    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos) {
-      ret </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> nums[pos];
-      pos </span><span style="color:#c0c5ce;">-=</span><span style="color:#eff1f5;"> pos</span><span style="color:#c0c5ce;">&amp;</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">-</span><span style="color:#eff1f5;">pos);
+  int sum(vector&lt;int&gt;&amp; nums, int pos) {
+    int ret = 0;
+    while(pos) {
+      ret += nums[pos];
+      pos -= pos&amp;(-pos);
     }
-    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ret;
+    return ret;
   }
-</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
-  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">processQueries</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">queries</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">) {
-    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer, </span><span style="color:#bf616a;">bit</span><span style="color:#eff1f5;">(m</span><span style="color:#c0c5ce;">*</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
-    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; h;
-    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> queries.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
-    </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span style="color:#c0c5ce;">&lt;=</span><span style="color:#eff1f5;"> m; </span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">i) {
-      h[i] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> i</span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;">cnt;
-      </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(bit, i</span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;">cnt, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+public:
+  vector&lt;int&gt; processQueries(vector&lt;int&gt;&amp; queries, int m) {
+    vector&lt;int&gt; answer, bit(m*2+1, 0);
+    unordered_map&lt;int, int&gt; h;
+    int cnt = queries.size();
+    for (int i = 1; i &lt;= m; ++i) {
+      h[i] = i+cnt;
+      add(bit, i+cnt, 1);
     }
-    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> q</span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> queries) {
-      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">(bit, h[q])</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
-      </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(bit, h[q], </span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
-      </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(bit, cnt, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
-      h[q] </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> cnt;
-      </span><span style="color:#c0c5ce;">--</span><span style="color:#eff1f5;">cnt;
+    for(int q: queries) {
+      answer.push_back(sum(bit, h[q])-1);
+      add(bit, h[q], -1);
+      add(bit, cnt, 1);
+      h[q] = cnt;
+      --cnt;
     }
-    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+    return answer;
   }
-}</span><span style="color:#c0c5ce;">;
-</span></code></pre>
+};
+</code></pre>
 <p>BTW because <code>queries.size() &lt;= m</code> so we can use <code>2*m+1</code> as size.</p>
 <h2 id="binary-search">Binary Search</h2>
 <p>homemade-binary-search :)</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
-</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
-    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">search</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span style="color:#c0c5ce;">&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
-        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()</span><span style="color:#c0c5ce;">-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
-        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#eff1f5;"> end) {
-            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">(begin </span><span style="color:#c0c5ce;">+</span><span style="color:#eff1f5;"> end) </span><span style="color:#c0c5ce;">&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
-            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[mid] </span><span style="color:#c0c5ce;">&gt;=</span><span style="color:#eff1f5;"> target) {
-                end </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mid;
-            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
-                begin </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> mid</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
+public:
+    int search(vector&lt;int&gt;&amp; nums, int target) {
+        int begin = 0, end = nums.size()-1;
+        while(begin &lt; end) {
+            int mid = (begin + end) &gt;&gt; 1;
+            if(nums[mid] &gt;= target) {
+                end = mid;
+            } else {
+                begin = mid+1;
             }
         }
-        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> nums[begin]</span><span style="color:#c0c5ce;">==</span><span style="color:#eff1f5;">target</span><span style="color:#c0c5ce;">?</span><span style="color:#eff1f5;">begin</span><span style="color:#c0c5ce;">:-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+        return nums[begin]==target?begin:-1;
     }
-}</span><span style="color:#c0c5ce;">;
-</span></code></pre><h2 id="serialize-and-deserialize-bst">Serialize and Deserialize BST</h2>
+};
+</code></pre>
+<h2 id="serialize-and-deserialize-bst">Serialize and Deserialize BST</h2>
 <p>pre-order traversal with human-readable encoding</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Codec </span><span style="color:#eff1f5;">{
-  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">stoi</span><span style="color:#eff1f5;">(string </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
-    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ret </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
-    </span><span style="color:#b48ead;">while </span><span style="color:#eff1f5;">(num.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> end  </span><span style="color:#c0c5ce;">&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(num[end])) {
-      ret </span><span style="color:#c0c5ce;">*= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
-      ret </span><span style="color:#c0c5ce;">+=</span><span style="color:#eff1f5;"> num[end] </span><span style="color:#c0c5ce;">- &#39;</span><span style="color:#a3be8c;">0</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">;
-      end </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Codec {
+  int stoi(string &amp;num, int &amp;end) {
+    int ret = 0;
+    while (num.length() &gt; end  &amp;&amp; isdigit(num[end])) {
+      ret *= 10;
+      ret += num[end] - &#x27;0&#x27;;
+      end += 1;
     }
-    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ret;
+    return ret;
   }
-  TreeNode</span><span style="color:#c0c5ce;">* </span><span style="color:#8fa1b3;">deserialize</span><span style="color:#eff1f5;">(string </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">data</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#c0c5ce;">&amp;</span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
-    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(data[pos] </span><span style="color:#c0c5ce;">== &#39;</span><span style="color:#a3be8c;">n</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">) {
-      pos </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
-      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
+  TreeNode* deserialize(string &amp;data, int &amp;pos) {
+    if(data[pos] == &#x27;n&#x27;) {
+      pos += 2;
+      return NULL;
     }
-    TreeNode</span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;"> root </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">stoi</span><span style="color:#eff1f5;">(data, pos));
-    pos </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
-    root-&gt;</span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">deserialize</span><span style="color:#eff1f5;">(data, pos);
-    root-&gt;</span><span style="color:#bf616a;">right </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">deserialize</span><span style="color:#eff1f5;">(data, pos);
-    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+    TreeNode* root = new TreeNode(stoi(data, pos));
+    pos += 1;
+    root-&gt;left = deserialize(data, pos);
+    root-&gt;right = deserialize(data, pos);
+    return root;
   }
-</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
-  </span><span style="color:#65737e;">// Encodes a tree to a single string.
-</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">serialize</span><span style="color:#eff1f5;">(TreeNode</span><span style="color:#c0c5ce;">* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
-    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">n,</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">;
-    string tmp </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
-    tmp </span><span style="color:#c0c5ce;">+= &quot;</span><span style="color:#a3be8c;">,</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">;
-    tmp </span><span style="color:#c0c5ce;">+= </span><span style="color:#bf616a;">serialize</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
-    tmp </span><span style="color:#c0c5ce;">+= </span><span style="color:#bf616a;">serialize</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
-    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> tmp;
+public:
+  &#x2F;&#x2F; Encodes a tree to a single string.
+  string serialize(TreeNode* root) {
+    if(!root) return &quot;n,&quot;;
+    string tmp = to_string(root-&gt;val);
+    tmp += &quot;,&quot;;
+    tmp += serialize(root-&gt;left);
+    tmp += serialize(root-&gt;right);
+    return tmp;
   }
 
-  </span><span style="color:#65737e;">// Decodes your encoded data to tree.
-</span><span style="color:#eff1f5;">  TreeNode</span><span style="color:#c0c5ce;">* </span><span style="color:#8fa1b3;">deserialize</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">data</span><span style="color:#eff1f5;">) {
-    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(data.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">== </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
-    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;"> data.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
-    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
-    TreeNode</span><span style="color:#c0c5ce;">*</span><span style="color:#eff1f5;"> root </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">stoi</span><span style="color:#eff1f5;">(data, pos));
-    pos </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
-    root-&gt;</span><span style="color:#bf616a;">left </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">deserialize</span><span style="color:#eff1f5;">(data, pos);
-    root-&gt;</span><span style="color:#bf616a;">right </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">deserialize</span><span style="color:#eff1f5;">(data, pos);
-    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+  &#x2F;&#x2F; Decodes your encoded data to tree.
+  TreeNode* deserialize(string data) {
+    if(data.length() == 2) return NULL;
+    int len = data.length();
+    int pos = 0;
+    TreeNode* root = new TreeNode(stoi(data, pos));
+    pos += 1;
+    root-&gt;left = deserialize(data, pos);
+    root-&gt;right = deserialize(data, pos);
+    return root;
   }
-}</span><span style="color:#c0c5ce;">;
-</span></code></pre><h2 id="remove-outermost-parentheses">Remove Outermost Parentheses</h2>
+};
+</code></pre>
+<h2 id="remove-outermost-parentheses">Remove Outermost Parentheses</h2>
 <p>raw concatenation</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
-</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
-    string </span><span style="color:#8fa1b3;">removeOuterParentheses</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">S</span><span style="color:#eff1f5;">) {
-        string answer </span><span style="color:#c0c5ce;">= &quot;&quot;</span><span style="color:#eff1f5;">;
-        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
-        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> c</span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> S) {
-            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span style="color:#c0c5ce;">== &#39;</span><span style="color:#a3be8c;">(</span><span style="color:#c0c5ce;">&#39; &amp;&amp;</span><span style="color:#eff1f5;"> cnt</span><span style="color:#c0c5ce;">++</span><span style="color:#eff1f5;">) {
-                answer </span><span style="color:#c0c5ce;">+= &#39;</span><span style="color:#a3be8c;">(</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">;
-            } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(c </span><span style="color:#c0c5ce;">== &#39;</span><span style="color:#a3be8c;">)</span><span style="color:#c0c5ce;">&#39; &amp;&amp; --</span><span style="color:#eff1f5;">cnt) {
-                answer </span><span style="color:#c0c5ce;">+= &#39;</span><span style="color:#a3be8c;">)</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">;
+<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
+public:
+    string removeOuterParentheses(string S) {
+        string answer = &quot;&quot;;
+        int cnt = 0;
+        for(char c: S) {
+            if(c == &#x27;(&#x27; &amp;&amp; cnt++) {
+                answer += &#x27;(&#x27;;
+            } else if(c == &#x27;)&#x27; &amp;&amp; --cnt) {
+                answer += &#x27;)&#x27;;
             }
         }
-        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+        return answer;
     }
-}</span><span style="color:#c0c5ce;">;
-</span></code></pre><h1 id="october-leetcoding-challenge-11">October LeetCoding Challenge 11</h1>
+};
+</code></pre>
+<h1 id="october-leetcoding-challenge-11">October LeetCoding Challenge 11</h1>
 <h2 id="description">Description</h2>
 <p><strong>Remove Duplicate Letters</strong></p>
 <p>Given a string <code>s</code>, remove duplicate letters so that every letter appears once and only once. You must make sure your result is <strong>the smallest in lexicographical order</strong> among all possible results.</p>
 <p><strong>Note:</strong> This question is the same as 1081: https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/</p>
 <p><strong>Example 1:</strong></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: s = &quot;bcabc&quot;
+<pre><code>Input: s = &quot;bcabc&quot;
 Output: &quot;abc&quot;
-</span></code></pre>
+</code></pre>
 <p><strong>Example 2:</strong></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: s = &quot;cbacdcbc&quot;
+<pre><code>Input: s = &quot;cbacdcbc&quot;
 Output: &quot;acdb&quot;
-</span></code></pre>
+</code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 104</code></li>
@@ -356,33 +352,33 @@ Output: &quot;acdb&quot;
 </ul>
 <h2 id="solution">Solution</h2>
 <p>another greedy</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
-</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
-  string </span><span style="color:#8fa1b3;">removeDuplicateLetters</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
-    map&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cnt;
-    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; used </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;(</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">);
-    string answer </span><span style="color:#c0c5ce;">= &quot;&quot;</span><span style="color:#eff1f5;">;
-    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c</span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> s) {
-      cnt[c] </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
+public:
+  string removeDuplicateLetters(string s) {
+    map&lt;char, int&gt; cnt;
+    vector&lt;bool&gt; used = vector&lt;bool&gt;(128, false);
+    string answer = &quot;&quot;;
+    for(auto c: s) {
+      cnt[c] += 1;
     }
-    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c</span><span style="color:#c0c5ce;">:</span><span style="color:#eff1f5;"> s) {
-      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(used[c]) {
-        cnt[c] </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
-        </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+    for(auto c: s) {
+      if(used[c]) {
+        cnt[c] -= 1;
+        continue;
       }
-      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;"> c </span><span style="color:#c0c5ce;">&amp;&amp;</span><span style="color:#eff1f5;"> cnt[answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()]) {
-        used[answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
-        answer.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+      while(answer.length() &amp;&amp; answer.back() &gt; c &amp;&amp; cnt[answer.back()]) {
+        used[answer.back()] = false;
+        answer.pop_back();
       }
-      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
-      cnt[c] </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
-      used[c] </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+      answer.push_back(c);
+      cnt[c] -= 1;
+      used[c] = true;
     }
-    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+    return answer;
   }
-}</span><span style="color:#c0c5ce;">;
-</span></code></pre>
+};
+</code></pre>
+
     </div>
   </div>
 
@@ -394,7 +390,7 @@ Output: &quot;acdb&quot;
             <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
               
               <img class="site-author-image" itemprop="image"
-                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                src="https://csuwangj.github.io/ZDaily/img/avatar.png"
                 alt="CSUwangj" />
               
               <p class="site-author-name unselectable">CSUwangj</p>
@@ -410,11 +406,11 @@ Output: &quot;acdb&quot;
             <div class="links-of-author">
               
                 <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
-                  <i class="fa fw fa-github"></i>
+                  <i class="fa-brands fa-github"></i>
                 </a>
               
                 <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
-                  <i class="fa fw fa-envelope"></i>
+                  <i class="fa-solid fa-envelope"></i>
                 </a>
               
             </div>
@@ -431,7 +427,7 @@ Output: &quot;acdb&quot;
       
         <footer name="footer">
           <div class="copyright">
-            <span item="copyrightYear">© 2018-2021</span>
+            <span item="copyrightYear">© 2018-2022</span>
             <span class="author">CSUwangj</span>
           </div>
           <div class="powered-by">

@@ -11,12 +11,12 @@
       <title>CSUwangj&#x27;s daily challenge</title>
 
       <!-- CSS -->
-      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;css&#x2F;lib&#x2F;font-awesome.min.css">
-      <link rel="stylesheet" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;site.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/css/lib/font-awesome.min.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/site.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
       
       <!-- js -->
-      <script type="text/javascript" charset="utf-8" src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;js&#x2F;sidebar.js"></script>
+      <script type="text/javascript" charset="utf-8" src="https://csuwangj.github.io/ZDaily/js/sidebar.js"></script>
       
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
@@ -57,23 +57,23 @@ renderMathInElement(document.body, katex_config);
             <nav class="menu">
               
                 <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
-                  <span><i class="fa fa-home"></i> Home</span>
+                  <span><i class="fa-solid fa-house"></i> Home</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;about" class="nav-item-about unselectable">
-                  <span><i class="fa fa-user-circle-o"></i> About</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;about" class="nav-item-about unselectable">
+                  <span><i class="fa-solid fa-user-circle"></i> About</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;categories" class="nav-item-categories unselectable">
-                  <span><i class="fa fa-book"></i> Categories</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories" class="nav-item-categories unselectable">
+                  <span><i class="fa-solid fa-book"></i> Categories</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;tags" class="nav-item-tags unselectable">
-                  <span><i class="fa fa-tags"></i> Tags</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;tags" class="nav-item-tags unselectable">
+                  <span><i class="fa-solid fa-tags"></i> Tags</span>
                 </a>
               
-                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;&#x2F;archives" class="nav-item-archives unselectable">
-                  <span><i class="fa fa-inbox"></i> Archives</span>
+                <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;archives" class="nav-item-archives unselectable">
+                  <span><i class="fa-solid fa-inbox"></i> Archives</span>
                 </a>
               
               
@@ -90,19 +90,19 @@ renderMathInElement(document.body, katex_config);
     <div class="post-meta">
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar"></i></span>
         <span class="post-date">Posted on: </span>
         <time datetime=2019-01-20T00:17:53+00:00 title="post created">2019-01-20</time>
       
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar-check"></i></span>
         <span class="modify-date">Posted modified: </span>
         <time datetime=2020-09-19T20:01:27.62633+00:00 title="post modified">2020-09-19</time>
       
       
         <span class="post-meta-divider">|</span>
-        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <span class="post-meta-item-icon"><i class="fa-solid fa-folder"></i></span>
         <span class="in-category">In: </span>
           
             <a class="category" href="/category/DailyChallenge">DailyChallenge</a>
@@ -128,35 +128,34 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>Use DP to solve it.</p>
 <h2 id="implementation">Implementation</h2>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#b48ead;">use </span><span style="color:#c0c5ce;">std::vec::Vec;
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::vec::Vec;
 
-</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
-    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#96b5b4;">solve</span><span style="color:#c0c5ce;">(</span><span style="color:#d08770;">200</span><span style="color:#c0c5ce;">));
+fn main() {
+    println!(&quot;Answer is {}&quot;, solve(200));
 }
 
-</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">solve</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">) -&gt; </span><span style="color:#b48ead;">i32 </span><span style="color:#c0c5ce;">{
-    </span><span style="color:#b48ead;">let mut</span><span style="color:#c0c5ce;"> arr: Vec&lt;</span><span style="color:#b48ead;">i32</span><span style="color:#c0c5ce;">&gt; = vec![</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">; n + </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">];
-    </span><span style="color:#b48ead;">let</span><span style="color:#c0c5ce;"> coins: [</span><span style="color:#b48ead;">usize</span><span style="color:#c0c5ce;">; </span><span style="color:#d08770;">8</span><span style="color:#c0c5ce;">] = [</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">5</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">20</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">50</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">100</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">200</span><span style="color:#c0c5ce;">];
-    arr[</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">] = </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
-    </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> coin in coins.</span><span style="color:#96b5b4;">iter</span><span style="color:#c0c5ce;">() {
-        </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">*coin &lt;= n {
-            </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> i in *coin..(n+</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">) {
+fn solve(n: usize) -&gt; i32 {
+    let mut arr: Vec&lt;i32&gt; = vec![0; n + 1];
+    let coins: [usize; 8] = [1, 2, 5, 10, 20, 50, 100, 200];
+    arr[0] = 1;
+    for coin in coins.iter() {
+        if *coin &lt;= n {
+            for i in *coin..(n+1) {
                 arr[i] += arr[i - coin];
             }
         }
     }
-    </span><span style="color:#b48ead;">return</span><span style="color:#c0c5ce;"> arr[n];
+    return arr[n];
 }
 
-</span></code></pre><h1 id="algorithm">Algorithm</h1>
+</code></pre>
+<h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="168-excel-sheet-column-title">168. Excel Sheet Column Title</h3>
 <p>Easy</p>
 <p>Given a positive integer, return its corresponding column title as appear in an Excel sheet.</p>
 <p>For example:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">    1 -&gt; A
+<pre><code>    1 -&gt; A
     2 -&gt; B
     3 -&gt; C
     ...
@@ -164,47 +163,45 @@ renderMathInElement(document.body, katex_config);
     27 -&gt; AA
     28 -&gt; AB 
     ...
-</span></code></pre>
+</code></pre>
 <p><strong>Example 1:</strong></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: 1
+<pre><code>Input: 1
 Output: &quot;A&quot;
-</span></code></pre>
+</code></pre>
 <p><strong>Example 2:</strong></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: 28
+<pre><code>Input: 28
 Output: &quot;AB&quot;
-</span></code></pre>
+</code></pre>
 <p><strong>Example 3:</strong></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">Input: 701
+<pre><code>Input: 701
 Output: &quot;ZY&quot;
-</span></code></pre><h2 id="solution-1">Solution</h2>
+</code></pre>
+<h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#65737e;">/**
+<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
  * @param {number} n
  * @return {string}
- */
-</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">convertToTitle </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(n) {
-  </span><span style="color:#bf616a;">n </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">base </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">26</span><span style="color:#c0c5ce;">;
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">len </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span style="color:#c0c5ce;">= &quot;&quot;;
-  </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n </span><span style="color:#c0c5ce;">&gt;= </span><span style="color:#bf616a;">base</span><span style="color:#c0c5ce;">){
-    </span><span style="color:#bf616a;">n </span><span style="color:#c0c5ce;">-= </span><span style="color:#bf616a;">base</span><span style="color:#c0c5ce;">;
-    </span><span style="color:#bf616a;">len </span><span style="color:#c0c5ce;">+= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
-    </span><span style="color:#bf616a;">base </span><span style="color:#c0c5ce;">*= </span><span style="color:#d08770;">26</span><span style="color:#c0c5ce;">;
+ *&#x2F;
+var convertToTitle = function(n) {
+  n -= 1;
+  let base = 26;
+  let len = 1;
+  let ans = &quot;&quot;;
+  while(n &gt;= base){
+    n -= base;
+    len += 1;
+    base *= 26;
   }
-  </span><span style="color:#b48ead;">while</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">len</span><span style="color:#c0c5ce;">){
-    </span><span style="color:#bf616a;">ans </span><span style="color:#c0c5ce;">+= </span><span style="color:#ebcb8b;">String</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">fromCharCode</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">%</span><span style="color:#d08770;">26</span><span style="color:#c0c5ce;">+</span><span style="color:#d08770;">65</span><span style="color:#c0c5ce;">);
-    </span><span style="color:#bf616a;">len </span><span style="color:#c0c5ce;">-= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
-    </span><span style="color:#bf616a;">n </span><span style="color:#c0c5ce;">= Math.</span><span style="color:#96b5b4;">floor</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">n</span><span style="color:#c0c5ce;">/</span><span style="color:#d08770;">26</span><span style="color:#c0c5ce;">);
+  while(len){
+    ans += String.fromCharCode(n%26+65);
+    len -= 1;
+    n = Math.floor(n&#x2F;26);
   }
-  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">split</span><span style="color:#c0c5ce;">(&#39;&#39;).</span><span style="color:#bf616a;">reverse</span><span style="color:#c0c5ce;">().</span><span style="color:#bf616a;">join</span><span style="color:#c0c5ce;">(&#39;&#39;);
+  return ans.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;);
 };
-</span></code></pre>
+</code></pre>
+
     </div>
   </div>
 
@@ -216,7 +213,7 @@ Output: &quot;ZY&quot;
             <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
               
               <img class="site-author-image" itemprop="image"
-                src="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;img&#x2F;avatar.png"
+                src="https://csuwangj.github.io/ZDaily/img/avatar.png"
                 alt="CSUwangj" />
               
               <p class="site-author-name unselectable">CSUwangj</p>
@@ -232,11 +229,11 @@ Output: &quot;ZY&quot;
             <div class="links-of-author">
               
                 <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
-                  <i class="fa fw fa-github"></i>
+                  <i class="fa-brands fa-github"></i>
                 </a>
               
                 <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
-                  <i class="fa fw fa-envelope"></i>
+                  <i class="fa-solid fa-envelope"></i>
                 </a>
               
             </div>
@@ -253,7 +250,7 @@ Output: &quot;ZY&quot;
       
         <footer name="footer">
           <div class="copyright">
-            <span item="copyrightYear">© 2018-2021</span>
+            <span item="copyrightYear">© 2018-2022</span>
             <span class="author">CSUwangj</span>
           </div>
           <div class="powered-by">
