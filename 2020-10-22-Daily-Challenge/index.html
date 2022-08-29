@@ -118,49 +118,49 @@ renderMathInElement(document.body, katex_config);
 <p>Given the root of a binary tree, then value <code>v</code> and depth <code>d</code>, you need to add a row of nodes with value <code>v</code> at the given depth <code>d</code>. The root node is at depth 1.</p>
 <p>The adding rule is: given a positive integer depth <code>d</code>, for each NOT null tree nodes <code>N</code> in depth <code>d-1</code>, create two tree nodes with value <code>v</code> as <code>N's</code> left subtree root and right subtree root. And <code>N's</code> <strong>original left subtree</strong> should be the left subtree of the new left subtree root, its <strong>original right subtree</strong> should be the right subtree of the new right subtree root. If depth <code>d</code> is 1 that means there is no depth d-1 at all, then create a tree node with value <strong>v</strong> as the new root of the whole original tree, and the original tree is the new root's left subtree.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: 
-A binary tree as following:
-       4
-     &#x2F;   \
-    2     6
-   &#x2F; \   &#x2F; 
-  3   1 5   
-
-v = 1
-
-d = 2
-
-Output: 
-       4
-      &#x2F; \
-     1   1
-    &#x2F;     \
-   2       6
-  &#x2F; \     &#x2F; 
- 3   1   5   
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 
+</span><span>A binary tree as following:
+</span><span>       4
+</span><span>     /   \
+</span><span>    2     6
+</span><span>   / \   / 
+</span><span>  3   1 5   
+</span><span>
+</span><span>v = 1
+</span><span>
+</span><span>d = 2
+</span><span>
+</span><span>Output: 
+</span><span>       4
+</span><span>      / \
+</span><span>     1   1
+</span><span>    /     \
+</span><span>   2       6
+</span><span>  / \     / 
+</span><span> 3   1   5   
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: 
-A binary tree as following:
-      4
-     &#x2F;   
-    2    
-   &#x2F; \   
-  3   1    
-
-v = 1
-
-d = 3
-
-Output: 
-      4
-     &#x2F;   
-    2
-   &#x2F; \    
-  1   1
- &#x2F;     \  
-3       1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 
+</span><span>A binary tree as following:
+</span><span>      4
+</span><span>     /   
+</span><span>    2    
+</span><span>   / \   
+</span><span>  3   1    
+</span><span>
+</span><span>v = 1
+</span><span>
+</span><span>d = 3
+</span><span>
+</span><span>Output: 
+</span><span>      4
+</span><span>     /   
+</span><span>    2
+</span><span>   / \    
+</span><span>  1   1
+</span><span> /     \  
+</span><span>3       1
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>The given d is in range [1, maximum depth of the given tree + 1].</li>
@@ -168,33 +168,33 @@ Output:
 </ol>
 <h2 id="solution">Solution</h2>
 <p>recursive solution</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- *&#x2F;
-class Solution {
-    TreeNode* addOneRow(TreeNode* root, int v, int d, TreeNode* left, TreeNode* right) {
-        if(d == 1) {
-            return new TreeNode(v, left, right);
-        }
-        if(!root) return nullptr;
-        root-&gt;left = addOneRow(root-&gt;left, v, d-1, root-&gt;left, nullptr);
-        root-&gt;right = addOneRow(root-&gt;right, v, d-1, nullptr, root-&gt;right);
-        return root;
-    }
-public:
-    TreeNode* addOneRow(TreeNode* root, int v, int d) {
-        return addOneRow(root, v, d, root, nullptr);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * struct TreeNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     TreeNode *left;
+</span><span style="color:#65737e;"> *     TreeNode *right;
+</span><span style="color:#65737e;"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    TreeNode</span><span>* </span><span style="color:#8fa1b3;">addOneRow</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">v</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">d</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(d </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(v, left, right);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">addOneRow</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, v, d</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">addOneRow</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, v, d</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">, root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    TreeNode</span><span>* </span><span style="color:#8fa1b3;">addOneRow</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">v</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">d</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">addOneRow</span><span style="color:#eff1f5;">(root, v, d, root, </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-22">October LeetCoding Challenge 22</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Minimum Depth of Binary Tree</strong></p>
@@ -203,13 +203,13 @@ public:
 <p><strong>Note:</strong> A leaf is a node with no children.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/12/ex_depth.jpg" alt="img" /></p>
-<pre><code>Input: root = [3,9,20,null,null,15,7]
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [3,9,20,null,null,15,7]
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: root = [2,null,3,null,4,null,5,null,6]
-Output: 5
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [2,null,3,null,4,null,5,null,6]
+</span><span>Output: 5
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[0, 105]</code>.</li>
@@ -217,28 +217,28 @@ Output: 5
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- *&#x2F;
-class Solution {
-public:
-    int minDepth(TreeNode* root) {
-        if(!root) return 0;
-        if(!(root-&gt;left) &amp;&amp; !(root-&gt;right)) return 1;
-        if(root-&gt;left &amp;&amp; root-&gt;right) return 1+min(minDepth(root-&gt;left), minDepth(root-&gt;right));
-        if(root-&gt;left) return 1+minDepth(root-&gt;left);
-        return 1+minDepth(root-&gt;right);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * struct TreeNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     TreeNode *left;
+</span><span style="color:#65737e;"> *     TreeNode *right;
+</span><span style="color:#65737e;"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minDepth</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span>+</span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">minDepth</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">minDepth</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span>+</span><span style="color:#bf616a;">minDepth</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span>+</span><span style="color:#bf616a;">minDepth</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

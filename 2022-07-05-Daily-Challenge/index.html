@@ -119,47 +119,47 @@ renderMathInElement(document.body, katex_config);
 <p>Given an unsorted array of integers <code>nums</code>, return <em>the length of the longest consecutive elements sequence.</em></p>
 <p>You must write an algorithm that runs in <code>O(n)</code> time.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [100,4,200,1,3,2]
-Output: 4
-Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [100,4,200,1,3,2]
+</span><span>Output: 4
+</span><span>Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0,3,7,2,5,8,4,6,0,1]
-Output: 9
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,3,7,2,5,8,4,6,0,1]
+</span><span>Output: 9
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= nums.length &lt;= 10^5</code></li>
 <li><code>-10^9 &lt;= nums[i] &lt;= 10^9</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int longestConsecutive(vector&lt;int&gt;&amp; nums) {
-    if(nums.empty()) return 0;
-    sort(nums.begin(), nums.end());
-    nums.resize(unique(nums.begin(), nums.end()) - nums.begin());
-    int cur = nums.front();
-    int len = 0;
-    int answer = 1;
-    for(auto i : nums) {
-      if(i == cur + 1) {
-        len += 1;
-        answer = max(answer, len);
-      } else {
-        len = 1;
-      }
-      cur = i;
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 71&#x2F;71 cases passed (133 ms)
-&#x2F;&#x2F; Your runtime beats 82.18 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 85.63 % of cpp submissions (33.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">longestConsecutive</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    nums.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">unique</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) </span><span>-</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>==</span><span style="color:#eff1f5;"> cur </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, len);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        len </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 71/71 cases passed (133 ms)
+</span><span style="color:#65737e;">// Your runtime beats 82.18 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 85.63 % of cpp submissions (33.8 MB)
+</span></code></pre>
 
     </div>
   </div>

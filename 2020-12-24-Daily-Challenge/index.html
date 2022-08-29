@@ -119,26 +119,26 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Note:</strong> A leaf is a node with no children.</p>
 <p><strong>Example:</strong></p>
 <p>Given the below binary tree and <code>sum = 22</code>,</p>
-<pre><code>      5
-     &#x2F; \
-    4   8
-   &#x2F;   &#x2F; \
-  11  13  4
- &#x2F;  \      \
-7    2      1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>      5
+</span><span>     / \
+</span><span>    4   8
+</span><span>   /   / \
+</span><span>  11  13  4
+</span><span> /  \      \
+</span><span>7    2      1
+</span></code></pre>
 <p>return true, as there exist a root-to-leaf path <code>5-&gt;4-&gt;11-&gt;2</code> which sum is 22.</p>
 <h2 id="solution">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool hasPathSum(TreeNode* root, int sum) {
-        if(!root) return false;
-        if(root-&gt;left || root-&gt;right) return hasPathSum(root-&gt;left, sum-root-&gt;val) || hasPathSum(root-&gt;right, sum-root-&gt;val);
-        return sum == root-&gt;val;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">hasPathSum</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left </span><span>||</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">hasPathSum</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, sum</span><span>-</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) </span><span>|| </span><span style="color:#bf616a;">hasPathSum</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, sum</span><span>-</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> sum </span><span>==</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-24">December LeetCoding Challenge 24</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Swap Nodes in Pairs</strong></p>
@@ -146,17 +146,17 @@ public:
 <p>You may <strong>not</strong> modify the values in the list's nodes. Only nodes itself may be changed.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/03/swap_ex1.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4]
-Output: [2,1,4,3]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4]
+</span><span>Output: [2,1,4,3]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: head = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: head = [1]
-Output: [1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1]
+</span><span>Output: [1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is in the range <code>[0, 100]</code>.</li>
@@ -164,22 +164,22 @@ Output: [1]
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    ListNode* swapPairs(ListNode* head) {
-        ListNode *newHead = new ListNode(-1, head);
-        ListNode *cur = newHead;
-        while(cur-&gt;next &amp;&amp; cur-&gt;next-&gt;next) {
-            ListNode *nxt = cur-&gt;next;
-            cur-&gt;next = nxt-&gt;next;
-            nxt-&gt;next = cur-&gt;next-&gt;next;
-            cur-&gt;next-&gt;next = nxt;
-            cur = cur-&gt;next-&gt;next;
-        }
-        return newHead-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">swapPairs</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, head);
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">next </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            ListNode </span><span>*</span><span style="color:#eff1f5;">nxt </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> nxt-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            nxt-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> nxt;
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

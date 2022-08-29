@@ -138,30 +138,30 @@ renderMathInElement(document.body, katex_config);
 	<li><code>pattern</code> and <code>words[i]</code> are lowercase English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">string unify(string s) {
-  char mp[26] = {};
-  int cnt = 0;
-  for(auto &amp;c : s) {
-    if(!mp[c - &#x27;a&#x27;]) {
-      mp[c - &#x27;a&#x27;] = &#x27;a&#x27; + cnt;
-      cnt += 1;
-    }
-    c = mp[c - &#x27;a&#x27;];
-  }
-  return s;
-}
-class Solution {
-public:
-  vector&lt;string&gt; findAndReplacePattern(vector&lt;string&gt;&amp; words, string pattern) {
-    vector&lt;int&gt; answer;
-    pattern = unify(pattern);
-    for(auto &amp;word : words) {
-      if(unify(word) == pattern) answer.push_back(word);
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span>string </span><span style="color:#8fa1b3;">unify</span><span>(string </span><span style="color:#bf616a;">s</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">char</span><span> mp[</span><span style="color:#d08770;">26</span><span>] = {};
+</span><span>  </span><span style="color:#b48ead;">int</span><span> cnt = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">auto </span><span>&amp;c : s) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(!mp[c - &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;]) {
+</span><span>      mp[c - &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;] = &#39;</span><span style="color:#a3be8c;">a</span><span>&#39; + cnt;
+</span><span>      cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    c = mp[c - &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;];
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> s;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#8fa1b3;">findAndReplacePattern</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">pattern</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    pattern </span><span>= </span><span style="color:#bf616a;">unify</span><span style="color:#eff1f5;">(pattern);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> words) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">unify</span><span style="color:#eff1f5;">(word) </span><span>==</span><span style="color:#eff1f5;"> pattern) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(word);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

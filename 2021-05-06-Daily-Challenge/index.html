@@ -120,19 +120,19 @@ renderMathInElement(document.body, katex_config);
 <p>You want to reach the last index of the array (index <code>n - 1</code>). Your <strong>score</strong> is the <strong>sum</strong> of all <code>nums[j]</code> for each index <code>j</code> you visited in the array.</p>
 <p>Return <em>the <strong>maximum score</strong> you can get</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,-1,-2,4,-7,3], k = 2
-Output: 7
-Explanation: You can choose your jumps forming the subsequence [1,-1,4,3] (underlined above). The sum is 7.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,-1,-2,4,-7,3], k = 2
+</span><span>Output: 7
+</span><span>Explanation: You can choose your jumps forming the subsequence [1,-1,4,3] (underlined above). The sum is 7.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [10,-5,-2,4,0,3], k = 3
-Output: 17
-Explanation: You can choose your jumps forming the subsequence [10,4,3] (underlined above). The sum is 17.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [10,-5,-2,4,0,3], k = 3
+</span><span>Output: 17
+</span><span>Explanation: You can choose your jumps forming the subsequence [10,4,3] (underlined above). The sum is 17.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [1,-5,-20,4,-1,3,-6,-3], k = 2
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,-5,-20,4,-1,3,-6,-3], k = 2
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length, k &lt;= 10^5</code></li>
@@ -140,26 +140,26 @@ Output: 0
 </ul>
 <h2 id="solution">Solution</h2>
 <p>monotonic queue</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maxResult(vector&lt;int&gt;&amp; nums, int k) {
-    deque&lt;int&gt; monoQueue{nums[0]};
-    int len = nums.size();
-    for(int i = 1; i &lt; min(k, len); ++i) {
-      nums[i] += monoQueue.front();
-      while(monoQueue.size() &amp;&amp; monoQueue.back() &lt; nums[i]) monoQueue.pop_back();
-      monoQueue.push_back(nums[i]);
-    }
-    for(int i = k; i &lt; len; ++i) {
-      nums[i] += monoQueue.front();
-      while(monoQueue.size() &amp;&amp; monoQueue.back() &lt; nums[i]) monoQueue.pop_back();
-      if(monoQueue.size() &amp;&amp; monoQueue.front() == nums[i - k]) monoQueue.pop_front();
-      monoQueue.push_back(nums[i]);
-    }
-    return nums.back();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxResult</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    deque&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">monoQueue</span><span style="color:#eff1f5;">{nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(k, len); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      nums[i] </span><span>+=</span><span style="color:#eff1f5;"> monoQueue.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoQueue.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoQueue.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> nums[i]) monoQueue.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      monoQueue.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(nums[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> k; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      nums[i] </span><span>+=</span><span style="color:#eff1f5;"> monoQueue.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoQueue.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoQueue.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> nums[i]) monoQueue.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(monoQueue.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoQueue.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> nums[i </span><span>-</span><span style="color:#eff1f5;"> k]) monoQueue.</span><span style="color:#bf616a;">pop_front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      monoQueue.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(nums[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="may-leetcoding-challenge-6">May LeetCoding Challenge 6</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Convert Sorted List to Binary Search Tree</strong></p>
@@ -167,22 +167,22 @@ public:
 <p>For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of <em>every</em> node never differ by more than 1.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/08/17/linked.jpg" alt="img" /></p>
-<pre><code>Input: head = [-10,-3,0,5,9]
-Output: [0,-3,9,-10,null,5]
-Explanation: One possible answer is [0,-3,9,-10,null,5], which represents the shown height balanced BST.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [-10,-3,0,5,9]
+</span><span>Output: [0,-3,9,-10,null,5]
+</span><span>Explanation: One possible answer is [0,-3,9,-10,null,5], which represents the shown height balanced BST.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: head = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: head = [0]
-Output: [0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [0]
+</span><span>Output: [0]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: head = [1,3]
-Output: [3,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,3]
+</span><span>Output: [3,1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in <code>head</code> is in the range <code>[0, 2 * 10^4]</code>.</li>
@@ -190,41 +190,41 @@ Output: [3,1]
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>done before</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    ListNode *cur;
-    
-    int length(ListNode *head) {
-        int len = 0;
-        while(head) {
-            len += 1;
-            head = head-&gt;next;
-        }
-        return len;
-    }
-    
-    TreeNode *buildBST(int begin, int end) {
-        if(begin &gt; end) return nullptr;
-        
-        int mid = (begin + end) &gt;&gt; 1;
-        TreeNode *left = buildBST(begin, mid - 1);
-        
-        TreeNode *root = new TreeNode(cur-&gt;val);
-        root-&gt;left = left;
-        
-        cur = cur-&gt;next;
-        root-&gt;right = buildBST(mid + 1, end);
-        
-        return root;
-    }
-    
-public:
-    TreeNode* sortedListToBST(ListNode* head) {
-        int len = length(head);
-        cur = head;
-        return buildBST(0, len-1);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">cur;
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">length</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">            len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#8fa1b3;">buildBST</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span>&gt;</span><span style="color:#eff1f5;"> end) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(begin </span><span>+</span><span style="color:#eff1f5;"> end) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        TreeNode </span><span>*</span><span style="color:#eff1f5;">left </span><span>= </span><span style="color:#bf616a;">buildBST</span><span style="color:#eff1f5;">(begin, mid </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        TreeNode </span><span>*</span><span style="color:#eff1f5;">root </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">left </span><span>=</span><span style="color:#eff1f5;"> left;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">buildBST</span><span style="color:#eff1f5;">(mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end);
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    TreeNode</span><span>* </span><span style="color:#8fa1b3;">sortedListToBST</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(head);
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">buildBST</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

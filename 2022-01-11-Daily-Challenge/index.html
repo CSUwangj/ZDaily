@@ -124,41 +124,41 @@ renderMathInElement(document.body, katex_config);
 <p>The test cases are generated so that the answer fits in a <strong>32-bits</strong> integer.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/04/04/sum-of-root-to-leaf-binary-numbers.png" alt="img" /></p>
-<pre><code>Input: root = [1,0,1,0,1,0,1]
-Output: 22
-Explanation: (100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,0,1,0,1,0,1]
+</span><span>Output: 22
+</span><span>Explanation: (100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: root = [0]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [0]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>
 <li><code>Node.val</code> is <code>0</code> or <code>1</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int sumRootToLeaf(TreeNode* root, int cur = 0) {
-    if(!root) return 0;
-    cur = ((cur &lt;&lt; 1) | root-&gt;val);
-    if(!root-&gt;left &amp;&amp; !root-&gt;right) return cur;
-    return sumRootToLeaf(root-&gt;left, cur) + sumRootToLeaf(root-&gt;right, cur);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 63&#x2F;63 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 87.29 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 29.55 % of cpp submissions (16.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sumRootToLeaf</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    cur </span><span>= </span><span style="color:#eff1f5;">((cur </span><span>&lt;&lt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>|</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">left </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">sumRootToLeaf</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, cur) </span><span>+ </span><span style="color:#bf616a;">sumRootToLeaf</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, cur);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 63/63 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 87.29 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 29.55 % of cpp submissions (16.8 MB)
+</span></code></pre>
 
     </div>
   </div>

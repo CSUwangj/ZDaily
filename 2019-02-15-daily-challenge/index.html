@@ -131,90 +131,90 @@ the number of digits in the denominator.</p>
 <h2 id="solution">Solution</h2>
 <p>Check <a href="https://oeis.org/A000129">A000129</a>/<a href="https://oeis.org/A001541">A001541</a>/<a href="https://oeis.org/A002315">A002315</a></p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate num_bigint;
-extern crate num_traits;
-
-use num_bigint::BigInt;
-use num_traits::FromPrimitive;
-use std::mem::replace;
-
-fn main() {
-    let mut ans = 0;
-    let mut den0: BigInt = FromPrimitive::from_i32(2).unwrap();
-    let mut den1: BigInt = FromPrimitive::from_i32(5).unwrap();
-    let mut num00: BigInt = FromPrimitive::from_i32(1).unwrap();
-    let mut num01: BigInt = FromPrimitive::from_i32(3).unwrap();
-    let mut num10: BigInt = FromPrimitive::from_i32(1).unwrap();
-    let mut num11: BigInt = FromPrimitive::from_i32(7).unwrap();
-    let six: BigInt = FromPrimitive::from_i32(6).unwrap();
-    let two: BigInt = FromPrimitive::from_i32(2).unwrap();
-    for i in 0..1000 {
-        let den_s = den0.to_str_radix(10).len();
-        let den2 = den0 + &amp;two * &amp;den1;
-        den0 = replace(&amp;mut den1, den2);
-        if i &amp; 1 == 0 {
-            let num02 = -num00 + &amp;six * &amp;num01;
-            num00 = replace(&amp;mut num01, num02);
-            let num_s = num00.to_str_radix(10).len();
-            if num_s &gt; den_s {
-                ans += 1;
-            }
-        } else {
-            let num12 = -num10 + &amp;six * &amp;num11;
-            num10 = replace(&amp;mut num11, num12);
-            let num_s = num10.to_str_radix(10).len();
-            if num_s &gt; den_s {
-                ans += 1;
-            }
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> num_bigint;
+</span><span style="color:#b48ead;">extern crate</span><span> num_traits;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>num_bigint::BigInt;
+</span><span style="color:#b48ead;">use </span><span>num_traits::FromPrimitive;
+</span><span style="color:#b48ead;">use </span><span>std::mem::replace;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> den0: BigInt = FromPrimitive::from_i32(</span><span style="color:#d08770;">2</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> den1: BigInt = FromPrimitive::from_i32(</span><span style="color:#d08770;">5</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> num00: BigInt = FromPrimitive::from_i32(</span><span style="color:#d08770;">1</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> num01: BigInt = FromPrimitive::from_i32(</span><span style="color:#d08770;">3</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> num10: BigInt = FromPrimitive::from_i32(</span><span style="color:#d08770;">1</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> num11: BigInt = FromPrimitive::from_i32(</span><span style="color:#d08770;">7</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let</span><span> six: BigInt = FromPrimitive::from_i32(</span><span style="color:#d08770;">6</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let</span><span> two: BigInt = FromPrimitive::from_i32(</span><span style="color:#d08770;">2</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">1000 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> den_s = den0.</span><span style="color:#96b5b4;">to_str_radix</span><span>(</span><span style="color:#d08770;">10</span><span>).</span><span style="color:#96b5b4;">len</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> den2 = den0 + &amp;two * &amp;den1;
+</span><span>        den0 = </span><span style="color:#96b5b4;">replace</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> den1, den2);
+</span><span>        </span><span style="color:#b48ead;">if</span><span> i &amp; </span><span style="color:#d08770;">1 </span><span>== </span><span style="color:#d08770;">0 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">let</span><span> num02 = -num00 + &amp;six * &amp;num01;
+</span><span>            num00 = </span><span style="color:#96b5b4;">replace</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> num01, num02);
+</span><span>            </span><span style="color:#b48ead;">let</span><span> num_s = num00.</span><span style="color:#96b5b4;">to_str_radix</span><span>(</span><span style="color:#d08770;">10</span><span>).</span><span style="color:#96b5b4;">len</span><span>();
+</span><span>            </span><span style="color:#b48ead;">if</span><span> num_s &gt; den_s {
+</span><span>                ans += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            }
+</span><span>        } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>            </span><span style="color:#b48ead;">let</span><span> num12 = -num10 + &amp;six * &amp;num11;
+</span><span>            num10 = </span><span style="color:#96b5b4;">replace</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> num11, num12);
+</span><span>            </span><span style="color:#b48ead;">let</span><span> num_s = num10.</span><span style="color:#96b5b4;">to_str_radix</span><span>(</span><span style="color:#d08770;">10</span><span>).</span><span style="color:#96b5b4;">len</span><span>();
+</span><span>            </span><span style="color:#b48ead;">if</span><span> num_s &gt; den_s {
+</span><span>                ans += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="56-merge-intervals">56. Merge Intervals</h3>
 <p>Given a collection of intervals, merge all overlapping intervals.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [[1,3],[2,6],[8,10],[15,18]]
-Output: [[1,6],[8,10],[15,18]]
-Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[1,3],[2,6],[8,10],[15,18]]
+</span><span>Output: [[1,6],[8,10],[15,18]]
+</span><span>Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [[1,4],[4,5]]
-Output: [[1,5]]
-Explanation: Intervals [1,4] and [4,5] are considered overlapping.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[1,4],[4,5]]
+</span><span>Output: [[1,5]]
+</span><span>Explanation: Intervals [1,4] and [4,5] are considered overlapping.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * Definition for an interval.
- * function Interval(start, end) {
- *     this.start = start;
- *     this.end = end;
- * }
- *&#x2F;
-&#x2F;**
- * @param {Interval[]} intervals
- * @return {Interval[]}
- *&#x2F;
-var merge = function(intervals) {
-  let ans = [];
-  if (!intervals.length) return ans;
-  intervals.sort( (a, b) =&gt; a.start-b.start );
-  let cur = intervals[0];
-  for (let i = 1; i &lt; intervals.length; ++i) {
-    if (intervals[i].start &lt;= cur.end) cur.end = Math.max(cur.end, intervals[i].end);
-    else {
-      ans.push(cur);
-      cur = intervals[i];
-    }
-  }
-  ans.push(cur);
-  return ans;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for an interval.
+</span><span style="color:#65737e;"> * function Interval(start, end) {
+</span><span style="color:#65737e;"> *     this.start = start;
+</span><span style="color:#65737e;"> *     this.end = end;
+</span><span style="color:#65737e;"> * }
+</span><span style="color:#65737e;"> */
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{Interval[]} </span><span style="color:#bf616a;">intervals
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{Interval[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">merge </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">intervals</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(!</span><span style="color:#bf616a;">intervals</span><span>.length) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>  </span><span style="color:#bf616a;">intervals</span><span>.</span><span style="color:#96b5b4;">sort</span><span>( (</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a</span><span>.start-</span><span style="color:#bf616a;">b</span><span>.start );
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#bf616a;">intervals</span><span>[</span><span style="color:#d08770;">0</span><span>];
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">1</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">intervals</span><span>.length; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">intervals</span><span>[</span><span style="color:#bf616a;">i</span><span>].start &lt;= </span><span style="color:#bf616a;">cur</span><span>.</span><span style="color:#bf616a;">end</span><span>) </span><span style="color:#bf616a;">cur</span><span>.</span><span style="color:#bf616a;">end </span><span>= Math.</span><span style="color:#96b5b4;">max</span><span>(</span><span style="color:#bf616a;">cur</span><span>.</span><span style="color:#bf616a;">end</span><span>, </span><span style="color:#bf616a;">intervals</span><span>[</span><span style="color:#bf616a;">i</span><span>].</span><span style="color:#bf616a;">end</span><span>);
+</span><span>    </span><span style="color:#b48ead;">else </span><span>{
+</span><span>      </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">cur</span><span>);
+</span><span>      </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#bf616a;">intervals</span><span>[</span><span style="color:#bf616a;">i</span><span>];
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">cur</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
 <p><img src="https://csuwangj.github.io/ZDaily/2019-02-15-daily-challenge/47.png" alt="haha" />;D</p>
 
     </div>

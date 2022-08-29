@@ -125,18 +125,18 @@ renderMathInElement(document.body, katex_config);
 <li><code>int sumRange(int left, int right)</code> Returns the <strong>sum</strong> of the elements of <code>nums</code> between indices <code>left</code> and <code>right</code> <strong>inclusive</strong> (i.e. <code>nums[left] + nums[left + 1] + ... + nums[right]</code>).</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;NumArray&quot;, &quot;sumRange&quot;, &quot;sumRange&quot;, &quot;sumRange&quot;]
-[[[-2, 0, 3, -5, 2, -1]], [0, 2], [2, 5], [0, 5]]
-Output
-[null, 1, -1, -3]
-
-Explanation
-NumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);
-numArray.sumRange(0, 2); &#x2F;&#x2F; return (-2) + 0 + 3 = 1
-numArray.sumRange(2, 5); &#x2F;&#x2F; return 3 + (-5) + 2 + (-1) = -1
-numArray.sumRange(0, 5); &#x2F;&#x2F; return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;NumArray&quot;, &quot;sumRange&quot;, &quot;sumRange&quot;, &quot;sumRange&quot;]
+</span><span>[[[-2, 0, 3, -5, 2, -1]], [0, 2], [2, 5], [0, 5]]
+</span><span>Output
+</span><span>[null, 1, -1, -3]
+</span><span>
+</span><span>Explanation
+</span><span>NumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);
+</span><span>numArray.sumRange(0, 2); // return (-2) + 0 + 3 = 1
+</span><span>numArray.sumRange(2, 5); // return 3 + (-5) + 2 + (-1) = -1
+</span><span>numArray.sumRange(0, 5); // return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^4</code></li>
@@ -145,31 +145,31 @@ numArray.sumRange(0, 5); &#x2F;&#x2F; return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3
 <li>At most <code>10^4</code> calls will be made to <code>sumRange</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class NumArray {
-  vector&lt;int&gt; prefix{0};
-public:
-  NumArray(vector&lt;int&gt;&amp; nums) {
-    for(int i = 0; i &lt; nums.size(); ++i) {
-      prefix.push_back(prefix[i] + nums[i]);
-    }
-  }
-  
-  int sumRange(int left, int right) {
-    return prefix[right + 1] - prefix[left];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 15&#x2F;15 cases passed (20 ms)
-&#x2F;&#x2F; Your runtime beats 87.17 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 11.03 % of cpp submissions (17.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">NumArray </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">prefix</span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">NumArray</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      prefix.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(prefix[i] </span><span>+</span><span style="color:#eff1f5;"> nums[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sumRange</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> prefix[right </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> prefix[left];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 15/15 cases passed (20 ms)
+</span><span style="color:#65737e;">// Your runtime beats 87.17 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 11.03 % of cpp submissions (17.3 MB)
+</span></code></pre>
 <h1 id="july-leetcoding-challenge-30">July LeetCoding Challenge 30</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Map Sum Pairs</strong></p>
@@ -180,19 +180,19 @@ public:
 <li><code>int sum(string prefix)</code> Returns the sum of all the pairs' value whose <code>key</code> starts with the <code>prefix</code>.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;MapSum&quot;, &quot;insert&quot;, &quot;sum&quot;, &quot;insert&quot;, &quot;sum&quot;]
-[[], [&quot;apple&quot;, 3], [&quot;ap&quot;], [&quot;app&quot;, 2], [&quot;ap&quot;]]
-Output
-[null, null, 3, null, 5]
-
-Explanation
-MapSum mapSum = new MapSum();
-mapSum.insert(&quot;apple&quot;, 3);  
-mapSum.sum(&quot;ap&quot;);           &#x2F;&#x2F; return 3 (apple = 3)
-mapSum.insert(&quot;app&quot;, 2);    
-mapSum.sum(&quot;ap&quot;);           &#x2F;&#x2F; return 5 (apple + app = 3 + 2 = 5)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;MapSum&quot;, &quot;insert&quot;, &quot;sum&quot;, &quot;insert&quot;, &quot;sum&quot;]
+</span><span>[[], [&quot;apple&quot;, 3], [&quot;ap&quot;], [&quot;app&quot;, 2], [&quot;ap&quot;]]
+</span><span>Output
+</span><span>[null, null, 3, null, 5]
+</span><span>
+</span><span>Explanation
+</span><span>MapSum mapSum = new MapSum();
+</span><span>mapSum.insert(&quot;apple&quot;, 3);  
+</span><span>mapSum.sum(&quot;ap&quot;);           // return 3 (apple = 3)
+</span><span>mapSum.insert(&quot;app&quot;, 2);    
+</span><span>mapSum.sum(&quot;ap&quot;);           // return 5 (apple + app = 3 + 2 = 5)
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= key.length, prefix.length &lt;= 50</code></li>
@@ -201,45 +201,45 @@ mapSum.sum(&quot;ap&quot;);           &#x2F;&#x2F; return 5 (apple + app = 3 + 2
 <li>At most <code>50</code> calls will be made to <code>insert</code> and <code>sum</code>.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">struct Node {
-  int sum = 0;
-  Node *children[26] = {};
-};
-class MapSum {
-  Node *root = nullptr;
-  unordered_map&lt;string, int&gt; kv;
-public:
-  MapSum() {
-    root = new Node();
-  }
-  
-  void insert(string key, int val) {
-    int diff = val;
-    if(kv.count(key)) diff = val - kv[key];
-    auto cur = root;
-    for(auto c : key) {
-      if(!(cur-&gt;children[c - &#x27;a&#x27;])) cur-&gt;children[c - &#x27;a&#x27;] = new Node();
-      cur = cur-&gt;children[c - &#x27;a&#x27;];
-      cur-&gt;sum += diff;
-    }
-    kv[key] = val;
-  }
-  
-  int sum(string prefix) {
-    auto cur = root;
-    for(auto c : prefix) {
-      if(!(cur-&gt;children[c - &#x27;a&#x27;])) return 0;
-      cur = cur-&gt;children[c - &#x27;a&#x27;];
-    }
-    return cur-&gt;sum;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 34&#x2F;34 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 68.72 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 60.16 % of cpp submissions (8.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">struct </span><span>Node {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> sum = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  Node *children[</span><span style="color:#d08770;">26</span><span>] = {};
+</span><span>};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MapSum </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  Node </span><span>*</span><span style="color:#eff1f5;">root </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; kv;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">MapSum</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    root </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">Node</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">insert</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span>=</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(kv.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(key)) diff </span><span>=</span><span style="color:#eff1f5;"> val </span><span>-</span><span style="color:#eff1f5;"> kv[key];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> key) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">])) cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">Node</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      cur-&gt;</span><span style="color:#bf616a;">sum </span><span>+=</span><span style="color:#eff1f5;"> diff;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    kv[key] </span><span>=</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sum</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">prefix</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> prefix) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">])) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 34/34 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 68.72 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 60.16 % of cpp submissions (8.1 MB)
+</span></code></pre>
 
     </div>
   </div>

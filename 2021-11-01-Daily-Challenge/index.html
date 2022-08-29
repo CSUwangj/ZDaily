@@ -120,14 +120,14 @@ renderMathInElement(document.body, katex_config);
 <p>A region is <strong>captured</strong> by flipping all <code>'O'</code>s into <code>'X'</code>s in that surrounded region.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/xogrid.jpg" alt="img" /></p>
-<pre><code>Input: board = [[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;X&quot;,&quot;X&quot;]]
-Output: [[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;X&quot;,&quot;X&quot;]]
-Explanation: Surrounded regions should not be on the border, which means that any &#x27;O&#x27; on the border of the board are not flipped to &#x27;X&#x27;. Any &#x27;O&#x27; that is not on the border and it is not connected to an &#x27;O&#x27; on the border will be flipped to &#x27;X&#x27;. Two cells are connected if they are adjacent cells connected horizontally or vertically.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: board = [[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;X&quot;,&quot;X&quot;]]
+</span><span>Output: [[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;X&quot;,&quot;X&quot;]]
+</span><span>Explanation: Surrounded regions should not be on the border, which means that any &#39;O&#39; on the border of the board are not flipped to &#39;X&#39;. Any &#39;O&#39; that is not on the border and it is not connected to an &#39;O&#39; on the border will be flipped to &#39;X&#39;. Two cells are connected if they are adjacent cells connected horizontally or vertically.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: board = [[&quot;X&quot;]]
-Output: [[&quot;X&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: board = [[&quot;X&quot;]]
+</span><span>Output: [[&quot;X&quot;]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == board.length</code></li>
@@ -136,48 +136,48 @@ Output: [[&quot;X&quot;]]
 <li><code>board[i][j]</code> is <code>'X'</code> or <code>'O'</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-class Solution {
-  int rows;
-  int cols;
-  vector&lt;vector&lt;bool&gt;&gt; vis;
-  void dfs(int row, int col, vector&lt;vector&lt;char&gt;&gt;&amp; board) {
-    vis[row][col] = true;
-    board[row][col] = &#x27;A&#x27;;
-    for(int i = 0; i &lt; 4; ++i) {
-      int newRow = row + moves[i][0];
-      int newCol = col + moves[i][1];
-      if(newRow &lt; 0 || newRow &gt;= rows || newCol &lt; 0 || newCol &gt;= cols) continue;
-      if(vis[newRow][newCol] || board[newRow][newCol] == &#x27;X&#x27;) continue;
-      dfs(newRow, newCol, board);
-    }
-  }
-public:
-  void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
-    rows = board.size();
-    cols = board.front().size();
-    vis.resize(rows, vector&lt;bool&gt;(cols));
-    for(int i = 0; i &lt; cols; ++i) {
-      if(!vis[0][i] &amp;&amp; board[0][i] == &#x27;O&#x27;) dfs(0, i, board);
-      if(!vis[rows - 1][i] &amp;&amp; board[rows - 1][i] == &#x27;O&#x27;) dfs(rows - 1, i, board); 
-    }
-    for(int i = 0; i &lt; rows; ++i) {
-      if(!vis[i][0] &amp;&amp; board[i][0] == &#x27;O&#x27;) dfs(i, 0, board);
-      if(!vis[i][cols - 1] &amp;&amp; board[i][cols - 1] == &#x27;O&#x27;) dfs(i, cols - 1, board);
-    }
-    for(auto &amp;row : board) {
-      for(auto &amp;c : row) {
-        c = (c == &#x27;A&#x27; ? &#x27;O&#x27; : &#x27;X&#x27;);
-      }
-    }
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 58&#x2F;58 cases passed (12 ms)
-&#x2F;&#x2F; Your runtime beats 84.68 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 44.1 % of cpp submissions (10.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> moves[</span><span style="color:#d08770;">4</span><span>][</span><span style="color:#d08770;">2</span><span>] = {{</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>}, {</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}, {</span><span style="color:#d08770;">0</span><span>, -</span><span style="color:#d08770;">1</span><span>}, {-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;&gt; vis;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">row</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">col</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">board</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vis[row][col] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    board[row][col] </span><span>= &#39;</span><span style="color:#a3be8c;">A</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> rows </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &gt;</span><span>=</span><span style="color:#eff1f5;"> cols) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[newRow][newCol] </span><span>||</span><span style="color:#eff1f5;"> board[newRow][newCol] </span><span>== &#39;</span><span style="color:#a3be8c;">X</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(newRow, newCol, board);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">board</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    rows </span><span>=</span><span style="color:#eff1f5;"> board.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    cols </span><span>=</span><span style="color:#eff1f5;"> board.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vis.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(rows, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;(cols));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> cols; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">vis[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][i] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][i] </span><span>== &#39;</span><span style="color:#a3be8c;">O</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i, board);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">vis[rows </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][i] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[rows </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][i] </span><span>== &#39;</span><span style="color:#a3be8c;">O</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(rows </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, i, board); 
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">vis[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">O</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(i, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, board);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">vis[i][cols </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[i][cols </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">O</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(i, cols </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, board);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">row </span><span>:</span><span style="color:#eff1f5;"> board) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">c </span><span>:</span><span style="color:#eff1f5;"> row) {
+</span><span style="color:#eff1f5;">        c </span><span>= </span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">A</span><span>&#39; ? &#39;</span><span style="color:#a3be8c;">O</span><span>&#39; : &#39;</span><span style="color:#a3be8c;">X</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 58/58 cases passed (12 ms)
+</span><span style="color:#65737e;">// Your runtime beats 84.68 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 44.1 % of cpp submissions (10.2 MB)
+</span></code></pre>
 
     </div>
   </div>

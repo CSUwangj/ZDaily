@@ -118,14 +118,14 @@ renderMathInElement(document.body, katex_config);
 <p>Given an array of strings <code>words</code>, return <em>the smallest string that contains each string in</em> <code>words</code> <em>as a substring</em>. If there are multiple valid strings of the smallest length, return <strong>any of them</strong>.</p>
 <p>You may assume that no string in <code>words</code> is a substring of another string in <code>words</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: words = [&quot;alex&quot;,&quot;loves&quot;,&quot;leetcode&quot;]
-Output: &quot;alexlovesleetcode&quot;
-Explanation: All permutations of &quot;alex&quot;,&quot;loves&quot;,&quot;leetcode&quot; would also be accepted.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;alex&quot;,&quot;loves&quot;,&quot;leetcode&quot;]
+</span><span>Output: &quot;alexlovesleetcode&quot;
+</span><span>Explanation: All permutations of &quot;alex&quot;,&quot;loves&quot;,&quot;leetcode&quot; would also be accepted.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: words = [&quot;catg&quot;,&quot;ctaagt&quot;,&quot;gcta&quot;,&quot;ttca&quot;,&quot;atgcatc&quot;]
-Output: &quot;gctaagttcatgcatc&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;catg&quot;,&quot;ctaagt&quot;,&quot;gcta&quot;,&quot;ttca&quot;,&quot;atgcatc&quot;]
+</span><span>Output: &quot;gctaagttcatgcatc&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= words.length &lt;= 12</code></li>
@@ -135,70 +135,70 @@ Output: &quot;gctaagttcatgcatc&quot;
 </ul>
 <h2 id="solution">Solution</h2>
 <p>solve forward, not quick enough</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int SZ = (1 &lt;&lt; 12);
-
-int pre[SZ][12];
-int overlap[12][12];
-
-using ti = tuple&lt;int, int, int, int&gt;;
-
-void init(vector&lt;string&gt; &amp;words) {
-  int len = words.size();
-  for(int i = 0; i &lt; len; ++i) {
-    for(int j = 0; j &lt; len; ++j) {
-      if(i == j) continue;
-      overlap[i][j] = 0;
-      for(int k = min(words[i].length(), words[j].length()) - 1; k &gt; 0; --k) {
-        if(words[i].substr(words[i].length() - k) == words[j].substr(0, k)) {
-          overlap[i][j] = k;
-          break;
-        }
-      }
-    }
-  }
-}
-
-string constructAnswer(vector&lt;string&gt; &amp;words, int state, int last) {
-  string answer = words[last];
-  while(pre[state][last] != -1) {
-    int p = pre[state][last];
-    state ^= (1 &lt;&lt; last);
-    answer = words[p].substr(0, words[p].length() - overlap[p][last]) + answer;
-    last = p;
-  }
-  return answer;
-}
-
-string solve(vector&lt;string&gt; &amp;words) {
-  memset(pre, -1, sizeof(pre));
-  priority_queue&lt;ti, vector&lt;ti&gt;, greater&lt;ti&gt;&gt; pq;
-  int len = words.size();
-  int target = (1 &lt;&lt; len) - 1;
-  for(int i = 0; i &lt; len; ++i) {
-    pq.push({words[i].length(), 1 &lt;&lt; i, -1, i});
-  }
-  while(pq.size()) {
-    auto [length, state, p, last] = pq.top();
-    &#x2F;&#x2F; cout &lt;&lt; length &lt;&lt; &quot; &quot; &lt;&lt; state &lt;&lt;  &quot; &quot; &lt;&lt; p &lt;&lt; &quot; &quot; &lt;&lt; last  &lt;&lt; endl;
-    pq.pop();
-    if(pre[state][last] != -1) continue;
-    pre[state][last] = p;
-    if(state == target) return constructAnswer(words, state, last);
-    for(int i = 0; i &lt; len; ++i) {
-      if(state &amp; (1 &lt;&lt; i)) continue;
-      pq.push({length + words[i].length() - overlap[last][i], state | (1 &lt;&lt; i), last, i});
-    }
-  }
-  return &quot;&quot;;
-}
-class Solution {
-public:
-  string shortestSuperstring(vector&lt;string&gt;&amp; words) {
-    init(words);    
-    return solve(words);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> SZ = (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; </span><span style="color:#d08770;">12</span><span>);
+</span><span>
+</span><span style="color:#b48ead;">int</span><span> pre[SZ][</span><span style="color:#d08770;">12</span><span>];
+</span><span style="color:#b48ead;">int</span><span> overlap[</span><span style="color:#d08770;">12</span><span>][</span><span style="color:#d08770;">12</span><span>];
+</span><span>
+</span><span style="color:#b48ead;">using </span><span>ti = tuple&lt;</span><span style="color:#b48ead;">int</span><span>, </span><span style="color:#b48ead;">int</span><span>, </span><span style="color:#b48ead;">int</span><span>, </span><span style="color:#b48ead;">int</span><span>&gt;;
+</span><span>
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span>(vector&lt;string&gt; &amp;</span><span style="color:#bf616a;">words</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> len = words.</span><span style="color:#bf616a;">size</span><span>();
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; len; ++i) {
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> j = </span><span style="color:#d08770;">0</span><span>; j &lt; len; ++j) {
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(i == j) </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>      overlap[i][j] = </span><span style="color:#d08770;">0</span><span>;
+</span><span>      </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> k = </span><span style="color:#bf616a;">min</span><span>(words[i].</span><span style="color:#bf616a;">length</span><span>(), words[j].</span><span style="color:#bf616a;">length</span><span>()) - </span><span style="color:#d08770;">1</span><span>; k &gt; </span><span style="color:#d08770;">0</span><span>; --k) {
+</span><span>        </span><span style="color:#b48ead;">if</span><span>(words[i].</span><span style="color:#bf616a;">substr</span><span>(words[i].</span><span style="color:#bf616a;">length</span><span>() - k) == words[j].</span><span style="color:#bf616a;">substr</span><span>(</span><span style="color:#d08770;">0</span><span>, k)) {
+</span><span>          overlap[i][j] = k;
+</span><span>          </span><span style="color:#b48ead;">break</span><span>;
+</span><span>        }
+</span><span>      }
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span>string </span><span style="color:#8fa1b3;">constructAnswer</span><span>(vector&lt;string&gt; &amp;</span><span style="color:#bf616a;">words</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">state</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">last</span><span>) {
+</span><span>  string answer = words[last];
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(pre[state][last] != -</span><span style="color:#d08770;">1</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">int</span><span> p = pre[state][last];
+</span><span>    state ^= (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; last);
+</span><span>    answer = words[p].</span><span style="color:#bf616a;">substr</span><span>(</span><span style="color:#d08770;">0</span><span>, words[p].</span><span style="color:#bf616a;">length</span><span>() - overlap[p][last]) + answer;
+</span><span>    last = p;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> answer;
+</span><span>}
+</span><span>
+</span><span>string </span><span style="color:#8fa1b3;">solve</span><span>(vector&lt;string&gt; &amp;</span><span style="color:#bf616a;">words</span><span>) {
+</span><span>  </span><span style="color:#96b5b4;">memset</span><span>(pre, -</span><span style="color:#d08770;">1</span><span>, sizeof(pre));
+</span><span>  priority_queue&lt;ti, vector&lt;ti&gt;, greater&lt;ti&gt;&gt; pq;
+</span><span>  </span><span style="color:#b48ead;">int</span><span> len = words.</span><span style="color:#bf616a;">size</span><span>();
+</span><span>  </span><span style="color:#b48ead;">int</span><span> target = (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; len) - </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; len; ++i) {
+</span><span>    pq.</span><span style="color:#bf616a;">push</span><span>({words[i].</span><span style="color:#bf616a;">length</span><span>(), </span><span style="color:#d08770;">1 </span><span>&lt;&lt; i, -</span><span style="color:#d08770;">1</span><span>, i});
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(pq.</span><span style="color:#bf616a;">size</span><span>()) {
+</span><span>    </span><span style="color:#b48ead;">auto </span><span>[length, state, p, last] = pq.</span><span style="color:#bf616a;">top</span><span>();
+</span><span>    </span><span style="color:#65737e;">// cout &lt;&lt; length &lt;&lt; &quot; &quot; &lt;&lt; state &lt;&lt;  &quot; &quot; &lt;&lt; p &lt;&lt; &quot; &quot; &lt;&lt; last  &lt;&lt; endl;
+</span><span>    pq.</span><span style="color:#bf616a;">pop</span><span>();
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(pre[state][last] != -</span><span style="color:#d08770;">1</span><span>) </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>    pre[state][last] = p;
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(state == target) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">constructAnswer</span><span>(words, state, last);
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; len; ++i) {
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(state &amp; (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; i)) </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>      pq.</span><span style="color:#bf616a;">push</span><span>({length + words[i].</span><span style="color:#bf616a;">length</span><span>() - overlap[last][i], state | (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; i), last, i});
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span>&quot;&quot;;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">shortestSuperstring</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(words);    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(words);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="june-leetcoding-challenge-21">June LeetCoding Challenge 21</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Pascal's Triangle</strong></p>
@@ -206,36 +206,36 @@ public:
 <p>In <strong>Pascal's triangle</strong>, each number is the sum of the two numbers directly above it as shown:</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif" alt="img" /></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: numRows = 5
-Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: numRows = 5
+</span><span>Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: numRows = 1
-Output: [[1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: numRows = 1
+</span><span>Output: [[1]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= numRows &lt;= 30</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;vector&lt;int&gt;&gt; generate(int numRows) {
-    vector&lt;vector&lt;int&gt;&gt; answer(numRows);
-    answer[0] = {1};
-    for(int i = 1; i &lt; numRows; ++i) {
-      for(int j = 0; j &lt;= i; ++j) {
-        if(!j || j == i) {
-          answer[i].push_back(1);
-        } else {
-          answer[i].push_back(answer[i - 1][j - 1] + answer[i - 1][j]);
-        }
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">generate</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">numRows</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(numRows);
+</span><span style="color:#eff1f5;">    answer[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> numRows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;=</span><span style="color:#eff1f5;"> i; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">j </span><span>||</span><span style="color:#eff1f5;"> j </span><span>==</span><span style="color:#eff1f5;"> i) {
+</span><span style="color:#eff1f5;">          answer[i].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          answer[i].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(answer[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> answer[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

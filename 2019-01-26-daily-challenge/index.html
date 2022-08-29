@@ -123,52 +123,52 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-use primal::Sieve;
-
-fn main() {
-    const LIMIT: usize = 1_000_000_000;
-    let sieve: Sieve = Sieve::new(LIMIT);
-    let mut ans = 0;
-    let mut cnt = 0;
-    let mut i = 1;
-    while cnt &lt; 11 {
-        let tmp = sieve.nth_prime(i);
-        if is_truncatable(tmp, &amp;sieve) {
-            ans += tmp;
-            cnt += 1;
-            println!(&quot;{}&quot;, tmp)
-        }
-        i += 1;
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn is_truncatable(n: usize, sieve: &amp;Sieve) -&gt; bool {
-    let l = n.to_string().len();
-    if l == 1 {
-        return false;
-    }
-    let mut base = 10usize.pow(l as u32 - 1);
-    while base != 1 {
-        &#x2F;&#x2F; println!(&quot;{}&quot;,n%base);
-        if !sieve.is_prime(n % base) {
-            return false
-        }
-        base &#x2F;= 10;
-    }
-    let mut n = n;
-    while n != 0 {
-        &#x2F;&#x2F; println!(&quot;{}&quot;,n);
-        if !sieve.is_prime(n) {
-            return false;
-        }
-        n &#x2F;= 10;
-    }
-    true
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>primal::Sieve;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#d08770;">LIMIT</span><span>: </span><span style="color:#b48ead;">usize </span><span>= </span><span style="color:#d08770;">1_000_000_000</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sieve: Sieve = Sieve::new(</span><span style="color:#d08770;">LIMIT</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> i = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span> cnt &lt; </span><span style="color:#d08770;">11 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = sieve.</span><span style="color:#96b5b4;">nth_prime</span><span>(i);
+</span><span>        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">is_truncatable</span><span>(tmp, &amp;sieve) {
+</span><span>            ans += tmp;
+</span><span>            cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, tmp)
+</span><span>        }
+</span><span>        i += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">is_truncatable</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#bf616a;">sieve</span><span>: &amp;Sieve) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let</span><span> l = n.</span><span style="color:#96b5b4;">to_string</span><span>().</span><span style="color:#96b5b4;">len</span><span>();
+</span><span>    </span><span style="color:#b48ead;">if</span><span> l == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> base = </span><span style="color:#d08770;">10</span><span style="color:#b48ead;">usize</span><span>.</span><span style="color:#96b5b4;">pow</span><span>(l as </span><span style="color:#b48ead;">u32 </span><span>- </span><span style="color:#d08770;">1</span><span>);
+</span><span>    </span><span style="color:#b48ead;">while</span><span> base != </span><span style="color:#d08770;">1 </span><span>{
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{}&quot;,n%base);
+</span><span>        </span><span style="color:#b48ead;">if </span><span>!sieve.</span><span style="color:#96b5b4;">is_prime</span><span>(n % base) {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false
+</span><span>        }
+</span><span>        base /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> n = n;
+</span><span>    </span><span style="color:#b48ead;">while</span><span> n != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{}&quot;,n);
+</span><span>        </span><span style="color:#b48ead;">if </span><span>!sieve.</span><span style="color:#96b5b4;">is_prime</span><span>(n) {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        }
+</span><span>        n /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#d08770;">true
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="552-student-attendance-record-ii">552. Student Attendance Record II</h3>
@@ -181,13 +181,13 @@ fn is_truncatable(n: usize, sieve: &amp;Sieve) -&gt; bool {
 </ol>
 <p>A record is regarded as rewardable if it doesn't contain <strong>more than one 'A' (absent)</strong> or <strong>more than two continuous 'L' (late)</strong>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 2
-Output: 8 
-Explanation:
-There are 8 records with length 2 will be regarded as rewardable:
-&quot;PP&quot; , &quot;AP&quot;, &quot;PA&quot;, &quot;LP&quot;, &quot;PL&quot;, &quot;AL&quot;, &quot;LA&quot;, &quot;LL&quot;
-Only &quot;AA&quot; won&#x27;t be regarded as rewardable owing to more than one absent times. 
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2
+</span><span>Output: 8 
+</span><span>Explanation:
+</span><span>There are 8 records with length 2 will be regarded as rewardable:
+</span><span>&quot;PP&quot; , &quot;AP&quot;, &quot;PA&quot;, &quot;LP&quot;, &quot;PL&quot;, &quot;AL&quot;, &quot;LA&quot;, &quot;LL&quot;
+</span><span>Only &quot;AA&quot; won&#39;t be regarded as rewardable owing to more than one absent times. 
+</span></code></pre>
 <p><strong>Note:</strong> The value of <strong>n</strong> won't exceed 100,000.</p>
 <h2 id="solution-1">Solution</h2>
 <p>There is a DP problem.</p>
@@ -207,36 +207,36 @@ Only &quot;AA&quot; won&#x27;t be regarded as rewardable owing to more than one 
 <p>$$DP[i][4] = \left{\begin{matrix} 1,i=1\DP[i-1][3],i&gt;1\end{matrix}\right.$$</p>
 <p>$$DP[i][5] = \left{\begin{matrix} 1,i=1\DP[i-1][4],i&gt;1\end{matrix}\right.​$$</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number} n
- * @return {number}
- *&#x2F;
-var checkRecord = function(n) {
-  const MOD = 1000000007;
-  let dp = [];
-  dp.push([1, 1, 0, 1, 0, 0]);
-  dp.push([0, 0, 0, 0, 0, 0]);
-  for (let i = 1; i &lt; n; ++i) {
-    dp[i &amp; 1][0] = (dp[(~i) &amp; 1][0] + dp[(~i) &amp; 1][1]) % MOD;
-    dp[i &amp; 1][0] = (dp[i &amp; 1][0] + dp[(~i) &amp; 1][2]) % MOD;
-    dp[i &amp; 1][1] = dp[(~i) &amp; 1][0];
-    dp[i &amp; 1][2] = dp[(~i) &amp; 1][1];
-    dp[i &amp; 1][3] = 0;
-    for (let j = 0; j &lt; 6; ++j) {
-      dp[i &amp; 1][3] += dp[(~i) &amp; 1][j];
-      dp[i &amp; 1][3] %= MOD;
-    }
-    dp[i &amp; 1][4] = dp[(~i) &amp; 1][3];
-    dp[i &amp; 1][5] = dp[(~i) &amp; 1][4];
-  }
-  let ans = 0;
-  for (let i = 0; i &lt; 6; ++i) {
-    ans += dp[(~n) &amp; 1][i];
-    ans %= MOD;
-  }
-  return ans;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">n
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">checkRecord </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">n</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">MOD </span><span>= </span><span style="color:#d08770;">1000000007</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">dp </span><span>= [];
+</span><span>  </span><span style="color:#bf616a;">dp</span><span>.</span><span style="color:#96b5b4;">push</span><span>([</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>]);
+</span><span>  </span><span style="color:#bf616a;">dp</span><span>.</span><span style="color:#96b5b4;">push</span><span>([</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>]);
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">1</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">n</span><span>; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>] = (</span><span style="color:#bf616a;">dp</span><span>[(~</span><span style="color:#bf616a;">i</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>] + </span><span style="color:#bf616a;">dp</span><span>[(~</span><span style="color:#bf616a;">i</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">1</span><span>]) % </span><span style="color:#bf616a;">MOD</span><span>;
+</span><span>    </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>] = (</span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>] + </span><span style="color:#bf616a;">dp</span><span>[(~</span><span style="color:#bf616a;">i</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">2</span><span>]) % </span><span style="color:#bf616a;">MOD</span><span>;
+</span><span>    </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">1</span><span>] = </span><span style="color:#bf616a;">dp</span><span>[(~</span><span style="color:#bf616a;">i</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>];
+</span><span>    </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">2</span><span>] = </span><span style="color:#bf616a;">dp</span><span>[(~</span><span style="color:#bf616a;">i</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">1</span><span>];
+</span><span>    </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">3</span><span>] = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">j </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">j </span><span>&lt; </span><span style="color:#d08770;">6</span><span>; ++</span><span style="color:#bf616a;">j</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">3</span><span>] += </span><span style="color:#bf616a;">dp</span><span>[(~</span><span style="color:#bf616a;">i</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#bf616a;">j</span><span>];
+</span><span>      </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">3</span><span>] %= </span><span style="color:#bf616a;">MOD</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">4</span><span>] = </span><span style="color:#bf616a;">dp</span><span>[(~</span><span style="color:#bf616a;">i</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">3</span><span>];
+</span><span>    </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>&amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">5</span><span>] = </span><span style="color:#bf616a;">dp</span><span>[(~</span><span style="color:#bf616a;">i</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">4</span><span>];
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#d08770;">6</span><span>; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#bf616a;">ans </span><span>+= </span><span style="color:#bf616a;">dp</span><span>[(~</span><span style="color:#bf616a;">n</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>][</span><span style="color:#bf616a;">i</span><span>];
+</span><span>    </span><span style="color:#bf616a;">ans </span><span>%= </span><span style="color:#bf616a;">MOD</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

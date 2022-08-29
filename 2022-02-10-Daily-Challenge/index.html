@@ -118,13 +118,13 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Subarray Sum Equals K</strong></p>
 <p>Given an array of integers <code>nums</code> and an integer <code>k</code>, return <em>the total number of continuous subarrays whose sum equals to <code>k</code></em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,1,1], k = 2
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,1,1], k = 2
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1,2,3], k = 3
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3], k = 3
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 2 * 10^4</code></li>
@@ -132,53 +132,53 @@ Output: 2
 <li><code>-10^7 &lt;= k &lt;= 10^7</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int findPairs(vector&lt;int&gt;&amp; nums, int k) {
-    unordered_map&lt;int, int&gt; cnt;
-    for(auto i : nums) {
-      cnt[i] += 1;
-    }
-
-    int answer = 0;
-    for(auto [i, c] : cnt) {
-      if(k) answer += cnt.count(i + k);
-      else answer += c &gt; 1;
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 60&#x2F;60 cases passed (11 ms)Vubmissions
-&#x2F;&#x2F; Your memory usage beats 68.98 % of cpp submissions (13.1 MB)auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int subarraySum(vector&lt;int&gt;&amp; nums, int k) {
-    unordered_map&lt;int, int&gt; prefixCount{{0, 1}};
-    int sum = 0;
-    int answer = 0;
-    for(auto n : nums) {
-      sum += n;
-      if(prefixCount.count(sum - k)) {
-        answer += prefixCount[sum - k];
-      }
-      prefixCount[sum] += 1;
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 89&#x2F;89 cases passed (60 ms)
-&#x2F;&#x2F; Your runtime beats 98.77 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 39.62 % of cpp submissions (38.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findPairs</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cnt;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      cnt[i] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[i, c] </span><span>:</span><span style="color:#eff1f5;"> cnt) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k) answer </span><span>+=</span><span style="color:#eff1f5;"> cnt.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(i </span><span>+</span><span style="color:#eff1f5;"> k);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> answer </span><span>+=</span><span style="color:#eff1f5;"> c </span><span>&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 60/60 cases passed (11 ms)Vubmissions
+</span><span style="color:#65737e;">// Your memory usage beats 68.98 % of cpp submissions (13.1 MB)auto speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#8fa1b3;">sync_with_stdio</span><span>(</span><span style="color:#bf616a;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span style="background-color:#bf616a;color:#2b303b;">}</span><span>();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">subarraySum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">prefixCount</span><span style="color:#eff1f5;">{{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> n </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      sum </span><span>+=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prefixCount.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(sum </span><span>-</span><span style="color:#eff1f5;"> k)) {
+</span><span style="color:#eff1f5;">        answer </span><span>+=</span><span style="color:#eff1f5;"> prefixCount[sum </span><span>-</span><span style="color:#eff1f5;"> k];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      prefixCount[sum] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 89/89 cases passed (60 ms)
+</span><span style="color:#65737e;">// Your runtime beats 98.77 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 39.62 % of cpp submissions (38.3 MB)
+</span></code></pre>
 
     </div>
   </div>

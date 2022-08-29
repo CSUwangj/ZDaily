@@ -118,30 +118,30 @@ renderMathInElement(document.body, katex_config);
 <p>Given a valid (IPv4) IP <code>address</code>, return a defanged version of that IP address.</p>
 <p>A <em>defanged IP address</em> replaces every period <code>&quot;.&quot;</code> with <code>&quot;[.]&quot;</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: address = &quot;1.1.1.1&quot;
-Output: &quot;1[.]1[.]1[.]1&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: address = &quot;1.1.1.1&quot;
+</span><span>Output: &quot;1[.]1[.]1[.]1&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: address = &quot;255.100.50.0&quot;
-Output: &quot;255[.]100[.]50[.]0&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: address = &quot;255.100.50.0&quot;
+</span><span>Output: &quot;255[.]100[.]50[.]0&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The given <code>address</code> is a valid IPv4 address.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  string defangIPaddr(string address) {
-    return regex_replace(address, regex(&quot;\\.&quot;), &quot;[.]&quot;);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 62&#x2F;62 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 21.4 % of cpp submissions (6.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">defangIPaddr</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">address</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">regex_replace</span><span style="color:#eff1f5;">(address, </span><span style="color:#bf616a;">regex</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">.</span><span>&quot;</span><span style="color:#eff1f5;">), </span><span>&quot;</span><span style="color:#a3be8c;">[.]</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 62/62 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 21.4 % of cpp submissions (6.8 MB)
+</span></code></pre>
 <h1 id="august-leetcoding-challenge-5">August LeetCoding Challenge 5</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Stone Game</strong></p>
@@ -150,15 +150,15 @@ public:
 <p>Alex and Lee take turns, with Alex starting first. Each turn, a player takes the entire pile of stones from either the beginning or the end of the row. This continues until there are no more piles left, at which point the person with the most stones wins.</p>
 <p>Assuming Alex and Lee play optimally, return <code>True</code> if and only if Alex wins the game.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: piles = [5,3,4,5]
-Output: true
-Explanation: 
-Alex starts first, and can only take the first 5 or the last 5.
-Say he takes the first 5, so that the row becomes [3, 4, 5].
-If Lee takes 3, then the board is [4, 5], and Alex takes 5 to win with 10 points.
-If Lee takes the last 5, then the board is [3, 4], and Alex takes 4 to win with 9 points.
-This demonstrated that taking the first 5 was a winning move for Alex, so we return true.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: piles = [5,3,4,5]
+</span><span>Output: true
+</span><span>Explanation: 
+</span><span>Alex starts first, and can only take the first 5 or the last 5.
+</span><span>Say he takes the first 5, so that the row becomes [3, 4, 5].
+</span><span>If Lee takes 3, then the board is [4, 5], and Alex takes 5 to win with 10 points.
+</span><span>If Lee takes the last 5, then the board is [3, 4], and Alex takes 4 to win with 9 points.
+</span><span>This demonstrated that taking the first 5 was a winning move for Alex, so we return true.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= piles.length &lt;= 500</code></li>
@@ -168,60 +168,60 @@ This demonstrated that taking the first 5 was a winning move for Alex, so we ret
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>it's easy to come up with a interval DP solution</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-int dp[501][501];
-class Solution {
-public:
-  bool stoneGame(vector&lt;int&gt;&amp; piles) {
-    int len = piles.size();
-    for(int i = 0; i &lt; len; ++i) {
-      dp[i][i] = 0;
-      dp[i][i + 1] = piles[i];
-    }
-    for(int i = 2; i &lt;= len; ++i) {
-      if(i &amp; 1) {
-        for(int j = 0; j + i &lt;= len; ++j) {
-          dp[j][j + i] = max(dp[j][j + i - 1] + piles[j + i - 1], dp[j + 1][j + i] + piles[j]);
-        }
-      } else {
-        for(int j = 0; i + j &lt;= len; ++j) {
-          dp[j][j + i] = min(dp[j][j + i - 1] - piles[j + i - 1], dp[j + 1][j + i] - piles[j]);
-        }
-      }
-    }
-    return true;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 46&#x2F;46 cases passed (8 ms)
-&#x2F;&#x2F; Your runtime beats 53.22 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 48.67 % of cpp submissions (8.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">int</span><span> dp[</span><span style="color:#d08770;">501</span><span>][</span><span style="color:#d08770;">501</span><span>];
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">stoneGame</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">piles</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> piles.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      dp[i][i] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      dp[i][i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> piles[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> piles[j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], dp[j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span>+</span><span style="color:#eff1f5;"> i] </span><span>+</span><span style="color:#eff1f5;"> piles[j]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>+</span><span style="color:#eff1f5;"> j </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> piles[j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], dp[j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span>+</span><span style="color:#eff1f5;"> i] </span><span>-</span><span style="color:#eff1f5;"> piles[j]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 46/46 cases passed (8 ms)
+</span><span style="color:#65737e;">// Your runtime beats 53.22 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 48.67 % of cpp submissions (8.5 MB)
+</span></code></pre>
 <p>mark all piles as black and white, Alex can take either all black piles or all white piles, because sum of piles is odd, so black and white piles can not be even. Alex will always win. brilliant illustration!</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  bool stoneGame(vector&lt;int&gt;&amp; piles) {
-    return true;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 46&#x2F;46 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 52.1 % of cpp submissions (7.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">stoneGame</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">piles</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 46/46 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 52.1 % of cpp submissions (7.7 MB)
+</span></code></pre>
 
     </div>
   </div>

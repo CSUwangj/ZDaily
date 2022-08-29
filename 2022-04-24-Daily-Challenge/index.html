@@ -119,21 +119,21 @@ renderMathInElement(document.body, katex_config);
 <p>An underground railway system is keeping track of customer travel times between  different stations. They are using this data to calculate the average  time it takes to travel from one station to another.</p>
 <p>Implement the <code>UndergroundSystem</code> class:</p>
 <ul>
-<li><pre><code>void checkIn(int id, string stationName, int t)
-</code></pre>
+<li><pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>void checkIn(int id, string stationName, int t)
+</span></code></pre>
 <ul>
 <li>A customer with a card ID equal to <code>id</code>, checks in at the station <code>stationName</code> at time <code>t</code>.</li>
 <li>A customer can only be checked into one place at a time.</li>
 </ul>
 </li>
-<li><pre><code>void checkOut(int id, string stationName, int t)
-</code></pre>
+<li><pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>void checkOut(int id, string stationName, int t)
+</span></code></pre>
 <ul>
 <li>A customer with a card ID equal to <code>id</code>, checks out from the station <code>stationName</code> at time <code>t</code>.</li>
 </ul>
 </li>
-<li><pre><code>double getAverageTime(string startStation, string endStation)
-</code></pre>
+<li><pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>double getAverageTime(string startStation, string endStation)
+</span></code></pre>
 <ul>
 <li>Returns the average time it takes to travel from <code>startStation</code> to <code>endStation</code>.</li>
 <li>The average time is computed from all the previous traveling times from <code>startStation</code> to <code>endStation</code> that happened <strong>directly</strong>, meaning a check in at <code>startStation</code> followed by a check out from <code>endStation</code>.</li>
@@ -144,48 +144,48 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>You may assume all calls to the <code>checkIn</code> and <code>checkOut</code> methods are consistent. If a customer checks in at time <code>t1</code> then checks out at time <code>t2</code>, then <code>t1 &lt; t2</code>. All events happen in chronological order.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;UndergroundSystem&quot;,&quot;checkIn&quot;,&quot;checkIn&quot;,&quot;checkIn&quot;,&quot;checkOut&quot;,&quot;checkOut&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;,&quot;getAverageTime&quot;,&quot;checkIn&quot;,&quot;getAverageTime&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;]
-[[],[45,&quot;Leyton&quot;,3],[32,&quot;Paradise&quot;,8],[27,&quot;Leyton&quot;,10],[45,&quot;Waterloo&quot;,15],[27,&quot;Waterloo&quot;,20],[32,&quot;Cambridge&quot;,22],[&quot;Paradise&quot;,&quot;Cambridge&quot;],[&quot;Leyton&quot;,&quot;Waterloo&quot;],[10,&quot;Leyton&quot;,24],[&quot;Leyton&quot;,&quot;Waterloo&quot;],[10,&quot;Waterloo&quot;,38],[&quot;Leyton&quot;,&quot;Waterloo&quot;]]
-
-Output
-[null,null,null,null,null,null,null,14.00000,11.00000,null,11.00000,null,12.00000]
-
-Explanation
-UndergroundSystem undergroundSystem = new UndergroundSystem();
-undergroundSystem.checkIn(45, &quot;Leyton&quot;, 3);
-undergroundSystem.checkIn(32, &quot;Paradise&quot;, 8);
-undergroundSystem.checkIn(27, &quot;Leyton&quot;, 10);
-undergroundSystem.checkOut(45, &quot;Waterloo&quot;, 15);  &#x2F;&#x2F; Customer 45 &quot;Leyton&quot; -&gt; &quot;Waterloo&quot; in 15-3 = 12
-undergroundSystem.checkOut(27, &quot;Waterloo&quot;, 20);  &#x2F;&#x2F; Customer 27 &quot;Leyton&quot; -&gt; &quot;Waterloo&quot; in 20-10 = 10
-undergroundSystem.checkOut(32, &quot;Cambridge&quot;, 22); &#x2F;&#x2F; Customer 32 &quot;Paradise&quot; -&gt; &quot;Cambridge&quot; in 22-8 = 14
-undergroundSystem.getAverageTime(&quot;Paradise&quot;, &quot;Cambridge&quot;); &#x2F;&#x2F; return 14.00000. One trip &quot;Paradise&quot; -&gt; &quot;Cambridge&quot;, (14) &#x2F; 1 = 14
-undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Waterloo&quot;);    &#x2F;&#x2F; return 11.00000. Two trips &quot;Leyton&quot; -&gt; &quot;Waterloo&quot;, (10 + 12) &#x2F; 2 = 11
-undergroundSystem.checkIn(10, &quot;Leyton&quot;, 24);
-undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Waterloo&quot;);    &#x2F;&#x2F; return 11.00000
-undergroundSystem.checkOut(10, &quot;Waterloo&quot;, 38);  &#x2F;&#x2F; Customer 10 &quot;Leyton&quot; -&gt; &quot;Waterloo&quot; in 38-24 = 14
-undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Waterloo&quot;);    &#x2F;&#x2F; return 12.00000. Three trips &quot;Leyton&quot; -&gt; &quot;Waterloo&quot;, (10 + 12 + 14) &#x2F; 3 = 12
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;UndergroundSystem&quot;,&quot;checkIn&quot;,&quot;checkIn&quot;,&quot;checkIn&quot;,&quot;checkOut&quot;,&quot;checkOut&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;,&quot;getAverageTime&quot;,&quot;checkIn&quot;,&quot;getAverageTime&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;]
+</span><span>[[],[45,&quot;Leyton&quot;,3],[32,&quot;Paradise&quot;,8],[27,&quot;Leyton&quot;,10],[45,&quot;Waterloo&quot;,15],[27,&quot;Waterloo&quot;,20],[32,&quot;Cambridge&quot;,22],[&quot;Paradise&quot;,&quot;Cambridge&quot;],[&quot;Leyton&quot;,&quot;Waterloo&quot;],[10,&quot;Leyton&quot;,24],[&quot;Leyton&quot;,&quot;Waterloo&quot;],[10,&quot;Waterloo&quot;,38],[&quot;Leyton&quot;,&quot;Waterloo&quot;]]
+</span><span>
+</span><span>Output
+</span><span>[null,null,null,null,null,null,null,14.00000,11.00000,null,11.00000,null,12.00000]
+</span><span>
+</span><span>Explanation
+</span><span>UndergroundSystem undergroundSystem = new UndergroundSystem();
+</span><span>undergroundSystem.checkIn(45, &quot;Leyton&quot;, 3);
+</span><span>undergroundSystem.checkIn(32, &quot;Paradise&quot;, 8);
+</span><span>undergroundSystem.checkIn(27, &quot;Leyton&quot;, 10);
+</span><span>undergroundSystem.checkOut(45, &quot;Waterloo&quot;, 15);  // Customer 45 &quot;Leyton&quot; -&gt; &quot;Waterloo&quot; in 15-3 = 12
+</span><span>undergroundSystem.checkOut(27, &quot;Waterloo&quot;, 20);  // Customer 27 &quot;Leyton&quot; -&gt; &quot;Waterloo&quot; in 20-10 = 10
+</span><span>undergroundSystem.checkOut(32, &quot;Cambridge&quot;, 22); // Customer 32 &quot;Paradise&quot; -&gt; &quot;Cambridge&quot; in 22-8 = 14
+</span><span>undergroundSystem.getAverageTime(&quot;Paradise&quot;, &quot;Cambridge&quot;); // return 14.00000. One trip &quot;Paradise&quot; -&gt; &quot;Cambridge&quot;, (14) / 1 = 14
+</span><span>undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Waterloo&quot;);    // return 11.00000. Two trips &quot;Leyton&quot; -&gt; &quot;Waterloo&quot;, (10 + 12) / 2 = 11
+</span><span>undergroundSystem.checkIn(10, &quot;Leyton&quot;, 24);
+</span><span>undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Waterloo&quot;);    // return 11.00000
+</span><span>undergroundSystem.checkOut(10, &quot;Waterloo&quot;, 38);  // Customer 10 &quot;Leyton&quot; -&gt; &quot;Waterloo&quot; in 38-24 = 14
+</span><span>undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Waterloo&quot;);    // return 12.00000. Three trips &quot;Leyton&quot; -&gt; &quot;Waterloo&quot;, (10 + 12 + 14) / 3 = 12
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input
-[&quot;UndergroundSystem&quot;,&quot;checkIn&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;,&quot;checkIn&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;,&quot;checkIn&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;]
-[[],[10,&quot;Leyton&quot;,3],[10,&quot;Paradise&quot;,8],[&quot;Leyton&quot;,&quot;Paradise&quot;],[5,&quot;Leyton&quot;,10],[5,&quot;Paradise&quot;,16],[&quot;Leyton&quot;,&quot;Paradise&quot;],[2,&quot;Leyton&quot;,21],[2,&quot;Paradise&quot;,30],[&quot;Leyton&quot;,&quot;Paradise&quot;]]
-
-Output
-[null,null,null,5.00000,null,null,5.50000,null,null,6.66667]
-
-Explanation
-UndergroundSystem undergroundSystem = new UndergroundSystem();
-undergroundSystem.checkIn(10, &quot;Leyton&quot;, 3);
-undergroundSystem.checkOut(10, &quot;Paradise&quot;, 8); &#x2F;&#x2F; Customer 10 &quot;Leyton&quot; -&gt; &quot;Paradise&quot; in 8-3 = 5
-undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Paradise&quot;); &#x2F;&#x2F; return 5.00000, (5) &#x2F; 1 = 5
-undergroundSystem.checkIn(5, &quot;Leyton&quot;, 10);
-undergroundSystem.checkOut(5, &quot;Paradise&quot;, 16); &#x2F;&#x2F; Customer 5 &quot;Leyton&quot; -&gt; &quot;Paradise&quot; in 16-10 = 6
-undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Paradise&quot;); &#x2F;&#x2F; return 5.50000, (5 + 6) &#x2F; 2 = 5.5
-undergroundSystem.checkIn(2, &quot;Leyton&quot;, 21);
-undergroundSystem.checkOut(2, &quot;Paradise&quot;, 30); &#x2F;&#x2F; Customer 2 &quot;Leyton&quot; -&gt; &quot;Paradise&quot; in 30-21 = 9
-undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Paradise&quot;); &#x2F;&#x2F; return 6.66667, (5 + 6 + 9) &#x2F; 3 = 6.66667
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;UndergroundSystem&quot;,&quot;checkIn&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;,&quot;checkIn&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;,&quot;checkIn&quot;,&quot;checkOut&quot;,&quot;getAverageTime&quot;]
+</span><span>[[],[10,&quot;Leyton&quot;,3],[10,&quot;Paradise&quot;,8],[&quot;Leyton&quot;,&quot;Paradise&quot;],[5,&quot;Leyton&quot;,10],[5,&quot;Paradise&quot;,16],[&quot;Leyton&quot;,&quot;Paradise&quot;],[2,&quot;Leyton&quot;,21],[2,&quot;Paradise&quot;,30],[&quot;Leyton&quot;,&quot;Paradise&quot;]]
+</span><span>
+</span><span>Output
+</span><span>[null,null,null,5.00000,null,null,5.50000,null,null,6.66667]
+</span><span>
+</span><span>Explanation
+</span><span>UndergroundSystem undergroundSystem = new UndergroundSystem();
+</span><span>undergroundSystem.checkIn(10, &quot;Leyton&quot;, 3);
+</span><span>undergroundSystem.checkOut(10, &quot;Paradise&quot;, 8); // Customer 10 &quot;Leyton&quot; -&gt; &quot;Paradise&quot; in 8-3 = 5
+</span><span>undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Paradise&quot;); // return 5.00000, (5) / 1 = 5
+</span><span>undergroundSystem.checkIn(5, &quot;Leyton&quot;, 10);
+</span><span>undergroundSystem.checkOut(5, &quot;Paradise&quot;, 16); // Customer 5 &quot;Leyton&quot; -&gt; &quot;Paradise&quot; in 16-10 = 6
+</span><span>undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Paradise&quot;); // return 5.50000, (5 + 6) / 2 = 5.5
+</span><span>undergroundSystem.checkIn(2, &quot;Leyton&quot;, 21);
+</span><span>undergroundSystem.checkOut(2, &quot;Paradise&quot;, 30); // Customer 2 &quot;Leyton&quot; -&gt; &quot;Paradise&quot; in 30-21 = 9
+</span><span>undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Paradise&quot;); // return 6.66667, (5 + 6 + 9) / 3 = 6.66667
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 	<li><code>1 &lt;= id, t &lt;= 10<sup>6</sup></code></li>
@@ -195,46 +195,46 @@ undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Paradise&quot;); &#x2
 	<li>Answers within <code>10<sup>-5</sup></code> of the actual value will be accepted.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-struct Time {
-  long long total;
-  double count;
-  Time(): total(0), count(0) {}
-};
-class UndergroundSystem {
-  unordered_map&lt;string, unordered_map&lt;string, Time&gt;&gt; time;
-  unordered_map&lt;int, int&gt; checkInTime;
-  unordered_map&lt;int, string&gt; checkInStation;
-public:
-  UndergroundSystem(){}
-
-  void checkIn(int id, string stationName, int t) {
-    checkInTime[id] = t;
-    checkInStation[id] = stationName;
-  }
-
-  void checkOut(int id, string end, int t) {
-    int interval = t - checkInTime[id];
-    string start = checkInStation[id];
-    time[start][end].total += interval;
-    time[start][end].count += 1;
-  }
-
-  double getAverageTime(string start, string end) {
-    return time[start][end].total &#x2F; time[start][end].count;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 56&#x2F;56 cases passed (157 ms)
-&#x2F;&#x2F; Your runtime beats 81.49 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 75.4 % of cpp submissions (58.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">struct </span><span>Time {
+</span><span>  </span><span style="color:#b48ead;">long long</span><span> total;
+</span><span>  </span><span style="color:#b48ead;">double</span><span> count;
+</span><span>  </span><span style="color:#8fa1b3;">Time</span><span>(): </span><span style="color:#bf616a;">total</span><span>(</span><span style="color:#d08770;">0</span><span>), </span><span style="color:#bf616a;">count</span><span>(</span><span style="color:#d08770;">0</span><span>) {}
+</span><span>};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">UndergroundSystem </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  unordered_map&lt;string, unordered_map&lt;string, Time&gt;&gt; time;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; checkInTime;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, string&gt; checkInStation;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">UndergroundSystem</span><span style="color:#eff1f5;">(){}
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">checkIn</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">id</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">stationName</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">t</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    checkInTime[id] </span><span>=</span><span style="color:#eff1f5;"> t;
+</span><span style="color:#eff1f5;">    checkInStation[id] </span><span>=</span><span style="color:#eff1f5;"> stationName;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">checkOut</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">id</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">t</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> interval </span><span>=</span><span style="color:#eff1f5;"> t </span><span>-</span><span style="color:#eff1f5;"> checkInTime[id];
+</span><span style="color:#eff1f5;">    string start </span><span>=</span><span style="color:#eff1f5;"> checkInStation[id];
+</span><span style="color:#eff1f5;">    time[start][end].</span><span style="color:#bf616a;">total </span><span>+=</span><span style="color:#eff1f5;"> interval;
+</span><span style="color:#eff1f5;">    time[start][end].</span><span style="color:#bf616a;">count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">double </span><span style="color:#8fa1b3;">getAverageTime</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">start</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> time[start][end].</span><span style="color:#bf616a;">total </span><span>/</span><span style="color:#eff1f5;"> time[start][end].</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 56/56 cases passed (157 ms)
+</span><span style="color:#65737e;">// Your runtime beats 81.49 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 75.4 % of cpp submissions (58.4 MB)
+</span></code></pre>
 
     </div>
   </div>

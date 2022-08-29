@@ -125,18 +125,18 @@ renderMathInElement(document.body, katex_config);
 <p>The <strong>length of a clear path</strong> is the number of visited cells of this path.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/18/example1_1.png" alt="img" /></p>
-<pre><code>Input: grid = [[0,1],[1,0]]
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[0,1],[1,0]]
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/18/example2_1.png" alt="img" /></p>
-<pre><code>Input: grid = [[0,0,0],[1,1,0],[1,1,0]]
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[0,0,0],[1,1,0],[1,1,0]]
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: grid = [[1,0,0],[1,1,0],[1,1,0]]
-Output: -1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[1,0,0],[1,1,0],[1,1,0]]
+</span><span>Output: -1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == grid.length</code></li>
@@ -145,37 +145,37 @@ Output: -1
 <li><code>grid[i][j] is 0 or 1</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int move[8][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
-public:
-  int shortestPathBinaryMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
-    if(grid.front().front() || grid.back().back()) return -1;
-    int n = grid.size();
-    vector&lt;vector&lt;int&gt;&gt; dis(n, vector&lt;int&gt;(n));
-    dis[0][0] = 1;
-    queue&lt;pair&lt;int, int&gt;&gt; q;
-    q.push(make_pair(0, 0));
-    while(!q.empty()) {
-      auto [row, col] = q.front();
-      q.pop();
-      for(int i = 0; i &lt; 8; ++i) {
-        int newRow = row + move[i][0];
-        int newCol = col + move[i][1];
-        if(newRow &lt; 0 || newRow &gt;= n || newCol &lt; 0 || newCol &gt;= n || grid[newRow][newCol]) continue;
-        if(dis[newRow][newCol]) continue;
-        dis[newRow][newCol] = dis[row][col] + 1;
-        q.push(make_pair(newRow, newCol));
-      }
-    }
-    return dis.back().back() ? dis.back().back() : -1;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 88&#x2F;88 cases passed (82 ms)
-&#x2F;&#x2F; Your runtime beats 65.2 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 49.22 % of cpp submissions (20.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> move[</span><span style="color:#d08770;">8</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}, {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}, {</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}, {</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}, {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}, {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}, {</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}, {</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}};
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">shortestPathBinaryMatrix</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(grid.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">dis</span><span style="color:#eff1f5;">(n, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(n));
+</span><span style="color:#eff1f5;">    dis[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    queue&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; q;
+</span><span style="color:#eff1f5;">    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">q.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[row, col] </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">8</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+</span><span style="color:#eff1f5;"> move[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+</span><span style="color:#eff1f5;"> move[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> n </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &gt;</span><span>=</span><span style="color:#eff1f5;"> n </span><span>||</span><span style="color:#eff1f5;"> grid[newRow][newCol]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dis[newRow][newCol]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        dis[newRow][newCol] </span><span>=</span><span style="color:#eff1f5;"> dis[row][col] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(newRow, newCol));
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dis.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>?</span><span style="color:#eff1f5;"> dis.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>: -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 88/88 cases passed (82 ms)
+</span><span style="color:#65737e;">// Your runtime beats 65.2 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 49.22 % of cpp submissions (20.8 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -120,14 +120,14 @@ renderMathInElement(document.body, katex_config);
 <p>Given the five integers <code>m</code>, <code>n</code>, <code>maxMove</code>, <code>startRow</code>, <code>startColumn</code>, return the number of paths to move the ball out of the grid boundary. Since the answer can be very large, return it <strong>modulo</strong> <code>109 + 7</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/28/out_of_boundary_paths_1.png" alt="img" /></p>
-<pre><code>Input: m = 2, n = 2, maxMove = 2, startRow = 0, startColumn = 0
-Output: 6
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 2, n = 2, maxMove = 2, startRow = 0, startColumn = 0
+</span><span>Output: 6
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/28/out_of_boundary_paths_2.png" alt="img" /></p>
-<pre><code>Input: m = 1, n = 3, maxMove = 3, startRow = 0, startColumn = 1
-Output: 12
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 1, n = 3, maxMove = 3, startRow = 0, startColumn = 1
+</span><span>Output: 12
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= m, n &lt;= 50</code></li>
@@ -136,55 +136,55 @@ Output: 12
 <li><code>0 &lt;= startColumn &lt; n</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int SZ = 50;
-const int MOD = 1e9 + 7;
-int path[2][SZ][SZ];
-const int moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-class Solution {
-public:
-  int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
-    memset(path[0], 0, sizeof(path[0]));
-    path[0][startRow][startColumn] = 1;
-    int result = 0;
-    for(int cnt = 0; cnt &lt; maxMove; cnt++) {
-      int parity = cnt &amp; 1;
-      memset(path[!parity], 0, sizeof(path[0]));
-      for(int i = 0; i &lt; m; ++i) {
-        for(int j = 0; j &lt; n; ++j) {
-          &#x2F;&#x2F; cout &lt;&lt; path[parity][i][j] &lt;&lt; &#x27; &#x27; ;
-          for(int c = 0; c &lt; 4; ++c) {
-            int newRow = i + moves[c][0];
-            int newCol = j + moves[c][1];
-            if(newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= m || newCol &gt;= n) continue;
-            path[!parity][newRow][newCol] += path[parity][i][j];
-            path[!parity][newRow][newCol] %= MOD;
-          }
-        }
-        &#x2F;&#x2F; cout &lt;&lt; endl;
-      }
-      &#x2F;&#x2F; cout &lt;&lt; endl;
-      for(int i = 0; i &lt; m; ++i) {
-        result += path[parity][i][0];
-        result %= MOD;
-        result += path[parity][i][n - 1];
-        result %= MOD;
-      }
-      for(int i = 0; i &lt; n; ++i) {
-        result += path[parity][0][i];
-        result %= MOD;
-        result += path[parity][m - 1][i];
-        result %= MOD;
-      }
-    }
-    return result;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 94&#x2F;94 cases passed (8 ms)
-&#x2F;&#x2F; Your runtime beats 84.71 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 100 % of cpp submissions (5.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> SZ = </span><span style="color:#d08770;">50</span><span>;
+</span><span style="color:#b48ead;">const int</span><span> MOD = </span><span style="color:#d08770;">1e9 </span><span>+ </span><span style="color:#d08770;">7</span><span>;
+</span><span style="color:#b48ead;">int</span><span> path[</span><span style="color:#d08770;">2</span><span>][SZ][SZ];
+</span><span style="color:#b48ead;">const int</span><span> moves[</span><span style="color:#d08770;">4</span><span>][</span><span style="color:#d08770;">2</span><span>] = {{</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>}, {</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}, {</span><span style="color:#d08770;">0</span><span>, -</span><span style="color:#d08770;">1</span><span>}, {-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findPaths</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">maxMove</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">startRow</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">startColumn</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(path[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(path[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">    path[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][startRow][startColumn] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; cnt </span><span>&lt;</span><span style="color:#eff1f5;"> maxMove; cnt</span><span>++</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> parity </span><span>=</span><span style="color:#eff1f5;"> cnt </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(path[</span><span>!</span><span style="color:#eff1f5;">parity], </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(path[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> m; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#65737e;">// cout &lt;&lt; path[parity][i][j] &lt;&lt; &#39; &#39; ;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> c </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; c </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">c) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> i </span><span>+</span><span style="color:#eff1f5;"> moves[c][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> j </span><span>+</span><span style="color:#eff1f5;"> moves[c][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> m </span><span>||</span><span style="color:#eff1f5;"> newCol </span><span>&gt;=</span><span style="color:#eff1f5;"> n) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            path[</span><span>!</span><span style="color:#eff1f5;">parity][newRow][newCol] </span><span>+=</span><span style="color:#eff1f5;"> path[parity][i][j];
+</span><span style="color:#eff1f5;">            path[</span><span>!</span><span style="color:#eff1f5;">parity][newRow][newCol] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// cout &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> m; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        result </span><span>+=</span><span style="color:#eff1f5;"> path[parity][i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        result </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        result </span><span>+=</span><span style="color:#eff1f5;"> path[parity][i][n </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        result </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        result </span><span>+=</span><span style="color:#eff1f5;"> path[parity][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][i];
+</span><span style="color:#eff1f5;">        result </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        result </span><span>+=</span><span style="color:#eff1f5;"> path[parity][m </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][i];
+</span><span style="color:#eff1f5;">        result </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 94/94 cases passed (8 ms)
+</span><span style="color:#65737e;">// Your runtime beats 84.71 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 100 % of cpp submissions (5.8 MB)
+</span></code></pre>
 
     </div>
   </div>

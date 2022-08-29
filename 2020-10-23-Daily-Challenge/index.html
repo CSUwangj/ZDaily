@@ -118,21 +118,21 @@ renderMathInElement(document.body, katex_config);
 <p>Given a list of non-negative integers <code>nums</code>, arrange them such that they form the largest number.</p>
 <p><strong>Note:</strong> The result may be very large, so you need to return a string instead of an integer.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [10,2]
-Output: &quot;210&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [10,2]
+</span><span>Output: &quot;210&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [3,30,34,5,9]
-Output: &quot;9534330&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,30,34,5,9]
+</span><span>Output: &quot;9534330&quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [1]
-Output: &quot;1&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1]
+</span><span>Output: &quot;1&quot;
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: nums = [10]
-Output: &quot;10&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [10]
+</span><span>Output: &quot;10&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 100</code></li>
@@ -140,24 +140,24 @@ Output: &quot;10&quot;
 </ul>
 <h2 id="solution">Solution</h2>
 <p>not very obvious solution</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  string largestNumber(vector&lt;int&gt;&amp; nums) {
-    vector&lt;string&gt; tmp;
-    string answer = &quot;&quot;;
-    for (auto i : nums) {
-      tmp.push_back(to_string(i));
-    }
-    sort(tmp.begin(), tmp.end(), [](const string&amp; a, const string&amp; b) {
-      return a+b&gt;b+a;
-    });
-    for (auto &amp;s : tmp) {
-      answer += s;
-    }
-    return answer[0]==&#x27;0&#x27;?&quot;0&quot;:answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">largestNumber</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; tmp;
+</span><span style="color:#eff1f5;">    string answer </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      tmp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(i));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(tmp.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), tmp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [](</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string</span><span>&amp;</span><span style="color:#eff1f5;"> a, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string</span><span>&amp;</span><span style="color:#eff1f5;"> b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a</span><span>+</span><span style="color:#eff1f5;">b</span><span>&gt;</span><span style="color:#eff1f5;">b</span><span>+</span><span style="color:#eff1f5;">a;
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">s </span><span>:</span><span style="color:#eff1f5;"> tmp) {
+</span><span style="color:#eff1f5;">      answer </span><span>+=</span><span style="color:#eff1f5;"> s;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>==&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;?&quot;</span><span style="color:#a3be8c;">0</span><span>&quot;:</span><span style="color:#eff1f5;">answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-23">October LeetCoding Challenge 23</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>132 Pattern</strong></p>
@@ -165,20 +165,20 @@ public:
 <p>Return <em><code>true</code> if there is a <strong>132 pattern</strong> in <code>nums</code>, otherwise, return <code>false</code>.</em></p>
 <p><strong>Follow up:</strong> The <code>O(n^2)</code> is trivial, could you come up with the <code>O(n logn)</code> or the <code>O(n)</code> solution?</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,2,3,4]
-Output: false
-Explanation: There is no 132 pattern in the sequence.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3,4]
+</span><span>Output: false
+</span><span>Explanation: There is no 132 pattern in the sequence.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [3,1,4,2]
-Output: true
-Explanation: There is a 132 pattern in the sequence: [1, 4, 2].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,1,4,2]
+</span><span>Output: true
+</span><span>Explanation: There is a 132 pattern in the sequence: [1, 4, 2].
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [-1,3,2,0]
-Output: true
-Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [-1,3,2,0]
+</span><span>Output: true
+</span><span>Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == nums.length</code></li>
@@ -187,91 +187,91 @@ Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>I write a ugly solution and follow by a quick explanation</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool find132pattern(vector&lt;int&gt; &amp;nums) {
-    if(nums.size() &lt; 3) return false;
-    vector&lt;pair&lt;int, int&gt;&gt; s;
-    int one = 0, three = -1;
-    for(int i = 1; i &lt; nums.size(); ++i) {
-      while(i &lt; nums.size() &amp;&amp; nums[i] &lt;= nums[i-1]) {
-        one = i;
-        i += 1;
-      }
-      if(i == nums.size()) break;
-      while(i &lt; nums.size() &amp;&amp; nums[i] &gt;= nums[i-1]) {
-        for(auto &amp;p : s) {
-          if(nums[i] &gt; p.first &amp;&amp; nums[i] &lt; p.second) {
-            return true;
-          }
-        }
-        three = i;
-        i += 1;
-      }
-      if(i == nums.size()) break;
-      for(int j = s.size() - 1; j &gt;= 0; --j) {
-        if(s[j].second &lt;= nums[three]) {
-          s.pop_back();
-        } else {
-          break;
-        }
-      }
-      s.push_back(make_pair(nums[one], nums[three]));
-      for(auto &amp;p : s) {
-        if(nums[i] &gt; p.first &amp;&amp; nums[i] &lt; p.second) {
-          return true;
-        }
-      }
-      one = i;
-    }
-    return false;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">find132pattern</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; s;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> one </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, three </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[i] </span><span>&lt;=</span><span style="color:#eff1f5;"> nums[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        one </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        i </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>==</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[i] </span><span>&gt;=</span><span style="color:#eff1f5;"> nums[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">p </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">first </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[i] </span><span>&lt;</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        three </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        i </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>==</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[j].</span><span style="color:#bf616a;">second </span><span>&lt;=</span><span style="color:#eff1f5;"> nums[three]) {
+</span><span style="color:#eff1f5;">          s.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      s.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(nums[one], nums[three]));
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">p </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">first </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[i] </span><span>&lt;</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      one </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p><img src="https://csuwangj.github.io/ZDaily/2020-10-23-Daily-Challenge/./explanation.jpg" alt="explanation" /></p>
 <p>I rewrite it into a ... more ugly version?</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool find132pattern(vector&lt;int&gt; &amp;nums) {
-    if(nums.size() &lt; 3) return false;
-    vector&lt;pair&lt;int, int&gt;&gt; s;
-    int one = 0, three = -1, i = 1, c = 1, pc = 1;
-    while(i &lt; nums.size()) {
-      switch (c) {
-      case 1:
-        if(nums[i] &lt;= nums[i-1]) one = i;
-        else pc = 3;
-        break;
-      case 3:
-        if(nums[i] &gt;= nums[i-1]) {
-          for(auto &amp;p : s) {
-            if(nums[i] &gt; p.first &amp;&amp; nums[i] &lt; p.second) {
-              return true;
-            }
-          }
-          three = i;
-        } else {
-          pc = 2;
-        }
-        break;
-      case 2:
-        for(int j = s.size()-1; j &gt;=0 &amp;&amp; s[j].second &lt;= nums[three]; --j) {
-          s.pop_back();
-        }
-        s.push_back(make_pair(nums[one], nums[three]));
-        for(auto &amp;p : s) {
-          if(nums[i] &gt; p.first &amp;&amp; nums[i] &lt; p.second) return true;
-        }
-        one = i;
-        pc = 1;
-      }
-      i += pc==c;
-      c = pc;
-    }
-    return false;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">find132pattern</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; s;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> one </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, three </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, c </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, pc </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">switch </span><span style="color:#eff1f5;">(c) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">case </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&lt;=</span><span style="color:#eff1f5;"> nums[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) one </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> pc </span><span>= </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">case </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;=</span><span style="color:#eff1f5;"> nums[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">p </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">first </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[i] </span><span>&lt;</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">              </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">          three </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          pc </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">case </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&gt;=</span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> s[j].</span><span style="color:#bf616a;">second </span><span>&lt;=</span><span style="color:#eff1f5;"> nums[three]; </span><span>--</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          s.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        s.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(nums[one], nums[three]));
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">p </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">first </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[i] </span><span>&lt;</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        one </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        pc </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      i </span><span>+=</span><span style="color:#eff1f5;"> pc</span><span>==</span><span style="color:#eff1f5;">c;
+</span><span style="color:#eff1f5;">      c </span><span>=</span><span style="color:#eff1f5;"> pc;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

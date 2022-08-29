@@ -124,46 +124,46 @@ renderMathInElement(document.body, katex_config);
 <p>Simple DFS is capabel for this problem.</p>
 <p>Because 9!*7 &lt; 9e7, so number limit will be 6.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::vec::Vec;
-
-fn main() {
-    let mut ans: Vec&lt;i64&gt; = Vec::new();
-    dfs(0, 6, 0, 0, &amp;mut ans);
-    ans.sort();
-    ans.dedup();
-    let mut ans_sum = 0;
-    for num in &amp;ans {
-        println!(&quot;{}&quot;, num);
-        ans_sum += num;       
-    }
-    println!(&quot;Answer is {}&quot;, ans_sum);
-}
-
-
-fn dfs(c: i64, n: i64, num: i64, sum: i64, ans: &amp;mut Vec&lt;i64&gt;){
-    if sum == num &amp;&amp; sum &gt; 2 {
-        ans.push(num);
-    }
-    if c &gt; n {
-        return;
-    }
-    for i in 0i64..10i64 {
-        if num == 0 &amp;&amp; i == 0 {
-            continue;
-        } else {
-            dfs(c+1, n, num*10 + i, sum + factorial(i), ans);
-        }
-    }
-}
-
-fn factorial(i: i64) -&gt; i64 {
-    let mut tmp = 1;
-    for j in 1..(i+1) {
-        tmp *= j;
-    }
-    tmp
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::vec::Vec;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: Vec&lt;</span><span style="color:#b48ead;">i64</span><span>&gt; = Vec::new();
+</span><span>    </span><span style="color:#96b5b4;">dfs</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">6</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, &amp;</span><span style="color:#b48ead;">mut</span><span> ans);
+</span><span>    ans.</span><span style="color:#96b5b4;">sort</span><span>();
+</span><span>    ans.</span><span style="color:#96b5b4;">dedup</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans_sum = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> num in &amp;ans {
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, num);
+</span><span>        ans_sum += num;       
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans_sum);
+</span><span>}
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">dfs</span><span>(</span><span style="color:#bf616a;">c</span><span>: </span><span style="color:#b48ead;">i64</span><span>, </span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">i64</span><span>, </span><span style="color:#bf616a;">num</span><span>: </span><span style="color:#b48ead;">i64</span><span>, </span><span style="color:#bf616a;">sum</span><span>: </span><span style="color:#b48ead;">i64</span><span>, </span><span style="color:#bf616a;">ans</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>Vec&lt;</span><span style="color:#b48ead;">i64</span><span>&gt;){
+</span><span>    </span><span style="color:#b48ead;">if</span><span> sum == num &amp;&amp; sum &gt; </span><span style="color:#d08770;">2 </span><span>{
+</span><span>        ans.</span><span style="color:#96b5b4;">push</span><span>(num);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">if</span><span> c &gt; n {
+</span><span>        </span><span style="color:#b48ead;">return</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span style="color:#b48ead;">i64</span><span>..</span><span style="color:#d08770;">10</span><span style="color:#b48ead;">i64 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span> num == </span><span style="color:#d08770;">0 </span><span>&amp;&amp; i == </span><span style="color:#d08770;">0 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>        } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>            </span><span style="color:#96b5b4;">dfs</span><span>(c+</span><span style="color:#d08770;">1</span><span>, n, num*</span><span style="color:#d08770;">10 </span><span>+ i, sum + </span><span style="color:#96b5b4;">factorial</span><span>(i), ans);
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">factorial</span><span>(</span><span style="color:#bf616a;">i</span><span>: </span><span style="color:#b48ead;">i64</span><span>) -&gt; </span><span style="color:#b48ead;">i64 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> tmp = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">1</span><span>..(i+</span><span style="color:#d08770;">1</span><span>) {
+</span><span>        tmp *= j;
+</span><span>    }
+</span><span>    tmp
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="240-search-a-2d-matrix-ii">240. Search a 2D Matrix II</h3>
@@ -174,37 +174,37 @@ fn factorial(i: i64) -&gt; i64 {
 </ul>
 <p><strong>Example:</strong></p>
 <p>Consider the following matrix:</p>
-<pre><code>[
-  [1,   4,  7, 11, 15],
-  [2,   5,  8, 12, 19],
-  [3,   6,  9, 16, 22],
-  [10, 13, 14, 17, 24],
-  [18, 21, 23, 26, 30]
-]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[
+</span><span>  [1,   4,  7, 11, 15],
+</span><span>  [2,   5,  8, 12, 19],
+</span><span>  [3,   6,  9, 16, 22],
+</span><span>  [10, 13, 14, 17, 24],
+</span><span>  [18, 21, 23, 26, 30]
+</span><span>]
+</span></code></pre>
 <p>Given target = <code>5</code>, return <code>true</code>.</p>
 <p>Given target = <code>20</code>, return <code>false</code>.</p>
 <h2 id="solution-1">Solution</h2>
 <p>Simple simulation.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number[][]} matrix
- * @param {number} target
- * @return {boolean}
- *&#x2F;
-var searchMatrix = function(matrix, target) {
-  if(!matrix.length || !matrix[0].length || target &lt; matrix[0][0]) return false;
-  let row = 0;
-  let col = matrix[0].length - 1;
-  let m = matrix.length;
-  while (row &lt; m &amp;&amp; col &gt;= 0) {
-    if (target === matrix[row][col]) return true;
-    else if (target &lt; matrix[row][col]) --col;
-    else ++row;
-  }
-  return false;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[][]} </span><span style="color:#bf616a;">matrix
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">target
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{boolean}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">searchMatrix </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">matrix</span><span>, </span><span style="color:#bf616a;">target</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(!</span><span style="color:#bf616a;">matrix</span><span>.length || !</span><span style="color:#bf616a;">matrix</span><span>[</span><span style="color:#d08770;">0</span><span>].length || </span><span style="color:#bf616a;">target </span><span>&lt; </span><span style="color:#bf616a;">matrix</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">0</span><span>]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">row </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">col </span><span>= </span><span style="color:#bf616a;">matrix</span><span>[</span><span style="color:#d08770;">0</span><span>].length - </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">m </span><span>= </span><span style="color:#bf616a;">matrix</span><span>.length;
+</span><span>  </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#bf616a;">row </span><span>&lt; </span><span style="color:#bf616a;">m </span><span>&amp;&amp; </span><span style="color:#bf616a;">col </span><span>&gt;= </span><span style="color:#d08770;">0</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">target </span><span>=== </span><span style="color:#bf616a;">matrix</span><span>[</span><span style="color:#bf616a;">row</span><span>][</span><span style="color:#bf616a;">col</span><span>]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>    </span><span style="color:#b48ead;">else if </span><span>(</span><span style="color:#bf616a;">target </span><span>&lt; </span><span style="color:#bf616a;">matrix</span><span>[</span><span style="color:#bf616a;">row</span><span>][</span><span style="color:#bf616a;">col</span><span>]) --</span><span style="color:#bf616a;">col</span><span>;
+</span><span>    </span><span style="color:#b48ead;">else </span><span>++</span><span style="color:#bf616a;">row</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

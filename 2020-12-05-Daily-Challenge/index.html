@@ -116,319 +116,319 @@ renderMathInElement(document.body, katex_config);
 <span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
 <h2 id="the-skyline-problem">The Skyline Problem</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; getSkyline(vector&lt;vector&lt;int&gt;&gt;&amp; buildings) {
-        vector&lt;tuple&lt;int, int, int&gt;&gt; points;
-        for(auto &amp;b : buildings) {
-            points.push_back(make_tuple(b[0], b[1], b[2]));
-            points.push_back(make_tuple(b[1], -1, b[2]));
-        }
-        sort(points.begin(), points.end(), [](tuple&lt;int, int, int&gt; &amp;a, tuple&lt;int, int, int&gt; &amp;b){
-            auto [al, ar, ah] = a;
-            auto [bl, br, bh] = b;
-            return al &lt; bl || (al == bl &amp;&amp; ((ar != -1 &amp;&amp; br == -1) || (ar != -1 &amp;&amp; br != -1 &amp;&amp; ah &gt; bh)));
-        });
-        int curHeight = 0;
-        priority_queue&lt;pair&lt;int, int&gt;&gt; q;
-        vector&lt;vector&lt;int&gt;&gt; answer;
-        for(auto [curPos, rightPos, height] : points) {
-            if(rightPos == -1) {
-                while(q.size() &amp;&amp; q.top().second &gt;= -curPos) q.pop();
-                int newHeight = q.size() ? q.top().first : 0;
-                if(newHeight != curHeight) answer.push_back({curPos, newHeight});
-                curHeight = newHeight;
-            } else {
-                &#x2F;&#x2F; -rightPos is little trick that i dont need to write compare
-                &#x2F;&#x2F; function for priority queue
-                q.push(make_pair(height, -rightPos));
-                if(height &gt; curHeight) {
-                    curHeight = height;
-                    answer.push_back({curPos, curHeight});
-                }
-            }
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">getSkyline</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">buildings</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;tuple&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; points;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">b </span><span>:</span><span style="color:#eff1f5;"> buildings) {
+</span><span style="color:#eff1f5;">            points.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_tuple</span><span style="color:#eff1f5;">(b[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], b[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], b[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">            points.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_tuple</span><span style="color:#eff1f5;">(b[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, b[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(points.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), points.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [](tuple&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">a, tuple&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">b){
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[al, ar, ah] </span><span>=</span><span style="color:#eff1f5;"> a;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[bl, br, bh] </span><span>=</span><span style="color:#eff1f5;"> b;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> al </span><span>&lt;</span><span style="color:#eff1f5;"> bl </span><span>|| </span><span style="color:#eff1f5;">(al </span><span>==</span><span style="color:#eff1f5;"> bl </span><span>&amp;&amp; </span><span style="color:#eff1f5;">((ar </span><span>!= -</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> br </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>|| </span><span style="color:#eff1f5;">(ar </span><span>!= -</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> br </span><span>!= -</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> ah </span><span>&gt;</span><span style="color:#eff1f5;"> bh)));
+</span><span style="color:#eff1f5;">        });
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curHeight </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        priority_queue&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; q;
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[curPos, rightPos, height] </span><span>:</span><span style="color:#eff1f5;"> points) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rightPos </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">second </span><span>&gt;= -</span><span style="color:#eff1f5;">curPos) q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newHeight </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>?</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">first </span><span>: </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newHeight </span><span>!=</span><span style="color:#eff1f5;"> curHeight) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({curPos, newHeight});
+</span><span style="color:#eff1f5;">                curHeight </span><span>=</span><span style="color:#eff1f5;"> newHeight;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                </span><span style="color:#65737e;">// -rightPos is little trick that i dont need to write compare
+</span><span style="color:#eff1f5;">                </span><span style="color:#65737e;">// function for priority queue
+</span><span style="color:#eff1f5;">                q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(height, </span><span>-</span><span style="color:#eff1f5;">rightPos));
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(height </span><span>&gt;</span><span style="color:#eff1f5;"> curHeight) {
+</span><span style="color:#eff1f5;">                    curHeight </span><span>=</span><span style="color:#eff1f5;"> height;
+</span><span style="color:#eff1f5;">                    answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({curPos, curHeight});
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="power-of-two">Power of Two</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool isPowerOfTwo(int n) {
-        return n &gt; 0 &amp;&amp; n == (n&amp;(-n));
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isPowerOfTwo</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> n </span><span>&gt; </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> n </span><span>== </span><span style="color:#eff1f5;">(n</span><span>&amp;</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#eff1f5;">n));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="maximum-depth-of-binary-tree">Maximum Depth of Binary Tree</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int maxDepth(TreeNode* root) {
-        return root ? 1+max(maxDepth(root-&gt;left), maxDepth(root-&gt;right)) : 0;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxDepth</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root </span><span>? </span><span style="color:#d08770;">1</span><span>+</span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">maxDepth</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">maxDepth</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">)) </span><span>: </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="substring-with-concatenation-of-all-words">Substring with Concatenation of All Words</h2>
 <p>simple solution gets better result</p>
 <p>time complexity is $O(sn)$</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;int&gt; findSubstring(string s, vector&lt;string&gt;&amp; words) {
-        unordered_map&lt;string, int&gt; cnt;
-        int wordLen = words[0].length();
-        int total = words.size();
-        int slen = s.length();
-        for(auto &amp;word : words) {
-            cnt[word] += 1;
-        }
-        vector&lt;int&gt; answer;
-        for(int i = 0; i &lt;= slen - total*wordLen; ++i) {
-            if(cnt.count(s.substr(i, wordLen))) {
-                int rest = total;
-                unordered_map&lt;string, int&gt; cur = cnt;
-                int pos = i;
-                string curWord = s.substr(pos, wordLen);
-                do {
-                    cur[curWord] -= 1;
-                    rest -= 1;
-                    if(!cur[curWord]) cur.erase(curWord);
-                    pos += wordLen;
-                    curWord = s.substr(pos, wordLen);
-                }while(rest &amp;&amp; cur.count(curWord));
-                if(rest == 0) {
-                    answer.push_back(i);
-                }
-            }
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">findSubstring</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cnt;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> wordLen </span><span>=</span><span style="color:#eff1f5;"> words[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> total </span><span>=</span><span style="color:#eff1f5;"> words.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> slen </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> words) {
+</span><span style="color:#eff1f5;">            cnt[word] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> slen </span><span>-</span><span style="color:#eff1f5;"> total</span><span>*</span><span style="color:#eff1f5;">wordLen; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(i, wordLen))) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rest </span><span>=</span><span style="color:#eff1f5;"> total;
+</span><span style="color:#eff1f5;">                unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cur </span><span>=</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">                string curWord </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(pos, wordLen);
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">do </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                    cur[curWord] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    rest </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur[curWord]) cur.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(curWord);
+</span><span style="color:#eff1f5;">                    pos </span><span>+=</span><span style="color:#eff1f5;"> wordLen;
+</span><span style="color:#eff1f5;">                    curWord </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(pos, wordLen);
+</span><span style="color:#eff1f5;">                }</span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(rest </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cur.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(curWord));
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rest </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="unique-paths-ii">Unique Paths II</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int uniquePathsWithObstacles(vector&lt;vector&lt;int&gt;&gt;&amp; obstacleGrid) {
-        if(obstacleGrid.front().front() || obstacleGrid.back().back()) return 0;
-        int w = obstacleGrid[0].size(), h = obstacleGrid.size();
-        vector&lt;vector&lt;int&gt;&gt; dp(obstacleGrid.size(), vector&lt;int&gt;(obstacleGrid[0].size(), 0));
-        dp[0][0] = 1;
-        for(int i = 0; i &lt; h; ++i) {
-            for(int j = 0; j &lt; w; ++j) {
-                if(obstacleGrid[i][j]) continue;
-                if(i) dp[i][j] += dp[i-1][j];
-                if(j) dp[i][j] += dp[i][j-1];
-            }
-        }
-        return dp.back().back();
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">uniquePathsWithObstacles</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">obstacleGrid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(obstacleGrid.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> obstacleGrid.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> w </span><span>=</span><span style="color:#eff1f5;"> obstacleGrid[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), h </span><span>=</span><span style="color:#eff1f5;"> obstacleGrid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(obstacleGrid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(obstacleGrid[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> h; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> w; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(obstacleGrid[i][j]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i) dp[i][j] </span><span>+=</span><span style="color:#eff1f5;"> dp[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j];
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(j) dp[i][j] </span><span>+=</span><span style="color:#eff1f5;"> dp[i][j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="linked-list-random-node">Linked List Random Node</h2>
 <p>Reservoir Sampling</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    ListNode* head;
-    mt19937 generator;
-    uniform_real_distribution&lt;double&gt; distribution = uniform_real_distribution&lt;double&gt;(0.0, 1.0);
-    function&lt;double(void)&gt; rng = bind(distribution, generator);
-public:
-    &#x2F;** @param head The linked list&#x27;s head.
-        Note that the head is guaranteed to be not null, so it contains at least one node. *&#x2F;
-    Solution(ListNode* head) {
-        this-&gt;head = head;
-    }
-    
-    &#x2F;** Returns a random node&#x27;s value. *&#x2F;
-    int getRandom() {
-        ListNode *cur = head;
-        double curIndex = 1;
-        int result = -1;
-        while(cur) {
-            if(rng() &lt; 1 &#x2F; curIndex) result = cur-&gt;val;
-            cur = cur-&gt;next;
-            curIndex += 1;
-        }
-        return result;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    ListNode</span><span>*</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    mt19937 generator;
+</span><span style="color:#eff1f5;">    uniform_real_distribution&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt; distribution </span><span>=</span><span style="color:#eff1f5;"> uniform_real_distribution&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt;(</span><span style="color:#d08770;">0.0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1.0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    function&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">void</span><span style="color:#eff1f5;">)&gt; rng </span><span>= </span><span style="color:#bf616a;">bind</span><span style="color:#eff1f5;">(distribution, generator);
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** @param head The linked list&#39;s head.
+</span><span style="color:#65737e;">        Note that the head is guaranteed to be not null, so it contains at least one node. */
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">Solution</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">head </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** Returns a random node&#39;s value. */
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">getRandom</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> curIndex </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">rng</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">1 </span><span>/</span><span style="color:#eff1f5;"> curIndex) result </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            curIndex </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="decrypt-string-from-alphabet-to-integer-mapping">Decrypt String from Alphabet to Integer Mapping</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    string freqAlphabets(string s) {
-        int cur = 0;
-        string answer;
-        for(auto c : s) {
-            if(isdigit(c)) {
-                cur *= 10;
-                cur += c - &#x27;0&#x27;;
-                if(cur &gt; 99) {
-                    answer.push_back((cur &#x2F; 100) + 96);
-                    cur %= 100;
-                }
-            } else {
-                answer.push_back(cur + 96);
-                cur = 0;
-            }
-        }
-        if(cur) {
-            if(cur &gt; 9) answer.push_back((cur &#x2F; 10) + 96);
-            answer.push_back((cur % 10) + 96);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">freqAlphabets</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        string answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(c)) {
+</span><span style="color:#eff1f5;">                cur </span><span>*= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cur </span><span>+=</span><span style="color:#eff1f5;"> c </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>&gt; </span><span style="color:#d08770;">99</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">((cur </span><span>/ </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">) </span><span>+ </span><span style="color:#d08770;">96</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">                    cur </span><span>%= </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur </span><span>+ </span><span style="color:#d08770;">96</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">                cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>&gt; </span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">((cur </span><span>/ </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">) </span><span>+ </span><span style="color:#d08770;">96</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">((cur </span><span>% </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">) </span><span>+ </span><span style="color:#d08770;">96</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="increasing-order-search-tree">Increasing Order Search Tree</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    void inorder(TreeNode *root, TreeNode *&amp;cur) {
-        if(!root) return;
-        inorder(root-&gt;left, cur);
-        cur-&gt;right = new TreeNode(root-&gt;val);
-        cur = cur-&gt;right;
-        inorder(root-&gt;right, cur);
-    }
-public:
-    TreeNode* increasingBST(TreeNode* root) {
-        TreeNode *newRoot = new TreeNode(-1);
-        TreeNode *cur = newRoot;
-        inorder(root, cur);
-        return newRoot-&gt;right;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">inorder</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, TreeNode </span><span>*&amp;</span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">inorder</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, cur);
+</span><span style="color:#eff1f5;">        cur-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">inorder</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, cur);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    TreeNode</span><span>* </span><span style="color:#8fa1b3;">increasingBST</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        TreeNode </span><span>*</span><span style="color:#eff1f5;">newRoot </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        TreeNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> newRoot;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">inorder</span><span style="color:#eff1f5;">(root, cur);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newRoot-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="sort-the-matrix-diagonally">Sort the Matrix Diagonally</h2>
 <p>disgusting problem, won't redo it.</p>
 <h2 id="merge-k-sorted-lists">Merge k Sorted Lists</h2>
 <p>devide and conquer</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- *&#x2F;
-class Solution {
-    ListNode* merge2Lists(ListNode *a, ListNode *b) {
-        ListNode *newHead = new ListNode(-1);
-        ListNode *cur = newHead;
-        while(a &amp;&amp; b) {
-            if(a-&gt;val &lt; b-&gt;val) {
-                cur-&gt;next = a;
-                a = a-&gt;next;
-                cur = cur-&gt;next;
-            } else {
-                cur-&gt;next = b;
-                b = b-&gt;next;
-                cur = cur-&gt;next;
-            }
-        }
-        if(a) cur-&gt;next = a;
-        if(b) cur-&gt;next = b;
-        return newHead-&gt;next;
-    }
-public:
-    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
-        if(lists.empty()) return nullptr;
-        int interval = 1;
-        int len = lists.size();
-        while(interval &lt; len) {
-            for(int i = 0; i+interval &lt; len; i += 2*interval) {
-                lists[i] = merge2Lists(lists[i], lists[i+interval]);
-            }
-            interval *= 2;
-        }
-        return lists.front();
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode() : val(0), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">merge2Lists</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, ListNode </span><span>*</span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(a </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> b) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(a-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> b-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> a;
+</span><span style="color:#eff1f5;">                a </span><span>=</span><span style="color:#eff1f5;"> a-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> b;
+</span><span style="color:#eff1f5;">                b </span><span>=</span><span style="color:#eff1f5;"> b-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(a) cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> a;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(b) cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> b;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">mergeKLists</span><span style="color:#eff1f5;">(vector&lt;ListNode</span><span>*</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">lists</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lists.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> interval </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> lists.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(interval </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i</span><span>+</span><span style="color:#eff1f5;">interval </span><span>&lt;</span><span style="color:#eff1f5;"> len; i </span><span>+= </span><span style="color:#d08770;">2</span><span>*</span><span style="color:#eff1f5;">interval) {
+</span><span style="color:#eff1f5;">                lists[i] </span><span>= </span><span style="color:#bf616a;">merge2Lists</span><span style="color:#eff1f5;">(lists[i], lists[i</span><span>+</span><span style="color:#eff1f5;">interval]);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            interval </span><span>*= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> lists.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="the-kth-factor-of-n">The kth Factor of n</h2>
 <p>too easy to review</p>
 <h2 id="equal-rational-numbers">Equal Rational Numbers</h2>
 <p>same ways, more elegant codes.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    pair&lt;string, string&gt; unify(string n) {
-        int pos = 0, len = n.length();
-        string number, decimal, repeatPart;
-        while(pos &lt; len &amp;&amp; isdigit(n[pos])) {
-            number += n[pos];
-            pos += 1;
-        }
-        if(pos == len) return make_pair(number, string(16, &#x27;0&#x27;));
-        pos += 1;
-        while(pos &lt; len &amp;&amp; isdigit(n[pos])) {
-            decimal += n[pos];
-            pos += 1;
-        }
-        if(pos == len) return make_pair(number, decimal + string(4-decimal.length() + 12, &#x27;0&#x27;));
-        pos += 1;
-        bool all9 = true, all0 = true;
-        while(pos &lt; len &amp;&amp; isdigit(n[pos])) {
-            if(n[pos] != &#x27;9&#x27;) all9 = false;
-            if(n[pos] != &#x27;0&#x27;) all0 = false;
-            repeatPart += n[pos];
-            pos += 1;
-        }
-        if(all9) {
-            repeatPart = &quot;0&quot;;
-            int carry = 1;
-            for(auto it = decimal.rbegin(); carry &amp;&amp; it != decimal.rend(); ++it) {
-                if(*it == &#x27;9&#x27;) *it = &#x27;0&#x27;;
-                else {
-                    *it += 1;
-                    carry = 0;
-                }
-            }
-            for(auto it = number.rbegin(); carry &amp;&amp; it != number.rend(); ++it) {
-                if(*it == &#x27;9&#x27;) *it = &#x27;0&#x27;;
-                else {
-                    *it += 1;
-                    carry = 0;
-                }
-            }
-            if(carry) number = &quot;1&quot; + number;
-        }
-        if(decimal.length() &lt; 4) {
-          if(repeatPart.length() == 1) {
-              decimal += string(4-decimal.length(), repeatPart[0]);
-          } else {
-              while(decimal.length() &lt; 4) {
-                  decimal += repeatPart[0];
-                  repeatPart = repeatPart.substr(1) + repeatPart[0];
-              }
-          }
-        }
-        while(decimal.length() &lt; 16) {
-            decimal += repeatPart;
-        }
-        return make_pair(number, decimal);
-    }
-public:
-    bool isRationalEqual(string S, string T) {
-        return unify(S) == unify(T);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    pair&lt;string, string&gt; </span><span style="color:#8fa1b3;">unify</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>=</span><span style="color:#eff1f5;"> n.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        string number, decimal, repeatPart;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(n[pos])) {
+</span><span style="color:#eff1f5;">            number </span><span>+=</span><span style="color:#eff1f5;"> n[pos];
+</span><span style="color:#eff1f5;">            pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(number, </span><span style="color:#bf616a;">string</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">16</span><span style="color:#eff1f5;">, </span><span>&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(n[pos])) {
+</span><span style="color:#eff1f5;">            decimal </span><span>+=</span><span style="color:#eff1f5;"> n[pos];
+</span><span style="color:#eff1f5;">            pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(number, decimal </span><span>+ </span><span style="color:#bf616a;">string</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">4</span><span>-</span><span style="color:#eff1f5;">decimal.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>+ </span><span style="color:#d08770;">12</span><span style="color:#eff1f5;">, </span><span>&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> all9 </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">, all0 </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(n[pos])) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n[pos] </span><span>!= &#39;</span><span style="color:#a3be8c;">9</span><span>&#39;</span><span style="color:#eff1f5;">) all9 </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n[pos] </span><span>!= &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) all0 </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            repeatPart </span><span>+=</span><span style="color:#eff1f5;"> n[pos];
+</span><span style="color:#eff1f5;">            pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(all9) {
+</span><span style="color:#eff1f5;">            repeatPart </span><span>= &quot;</span><span style="color:#a3be8c;">0</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> carry </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> decimal.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); carry </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> it </span><span>!=</span><span style="color:#eff1f5;"> decimal.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it </span><span>== &#39;</span><span style="color:#a3be8c;">9</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span>*</span><span style="color:#eff1f5;">it </span><span>= &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                    </span><span>*</span><span style="color:#eff1f5;">it </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    carry </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> number.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); carry </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> it </span><span>!=</span><span style="color:#eff1f5;"> number.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it </span><span>== &#39;</span><span style="color:#a3be8c;">9</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span>*</span><span style="color:#eff1f5;">it </span><span>= &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                    </span><span>*</span><span style="color:#eff1f5;">it </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    carry </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(carry) number </span><span>= &quot;</span><span style="color:#a3be8c;">1</span><span>&quot; +</span><span style="color:#eff1f5;"> number;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(decimal.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(repeatPart.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">              decimal </span><span>+= </span><span style="color:#bf616a;">string</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">4</span><span>-</span><span style="color:#eff1f5;">decimal.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(), repeatPart[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">          } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">              </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(decimal.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                  decimal </span><span>+=</span><span style="color:#eff1f5;"> repeatPart[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                  repeatPart </span><span>=</span><span style="color:#eff1f5;"> repeatPart.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>+</span><span style="color:#eff1f5;"> repeatPart[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">              }
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(decimal.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">16</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            decimal </span><span>+=</span><span style="color:#eff1f5;"> repeatPart;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(number, decimal);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isRationalEqual</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">S</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">T</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">unify</span><span style="color:#eff1f5;">(S) </span><span>== </span><span style="color:#bf616a;">unify</span><span style="color:#eff1f5;">(T);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-5">December LeetCoding Challenge 5</h1>
 <h2 id="description">Description</h2>
 <p><strong>Can Place Flowers</strong></p>
 <p>You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in <strong>adjacent</strong> plots.</p>
 <p>Given an integer array <code>flowerbed</code> containing <code>0</code>'s and <code>1</code>'s, where <code>0</code> means empty and <code>1</code> means not empty, and an integer <code>n</code>, return <em>if</em> <code>n</code> new flowers can be planted in the <code>flowerbed</code> without violating the no-adjacent-flowers rule.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: flowerbed = [1,0,0,0,1], n = 1
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: flowerbed = [1,0,0,0,1], n = 1
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: flowerbed = [1,0,0,0,1], n = 2
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: flowerbed = [1,0,0,0,1], n = 2
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= flowerbed.length &lt;= 2 * 104</code></li>
@@ -438,24 +438,24 @@ Output: false
 </ul>
 <h2 id="solution">Solution</h2>
 <p>solution is easy, but think of elegant solutions is not so easy.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool canPlaceFlowers(vector&lt;int&gt;&amp; flowerbed, int n) {
-        int maxCount = 0;
-        int zero = 0;
-        for(int i = 0; i &lt; flowerbed.size(); ++i) {
-            if(!flowerbed[i]) {
-                zero += 1;
-            } else {
-                maxCount += zero &#x2F; 2;
-                zero = -1;
-            }
-        }
-        if(zero) maxCount += (zero + 1) &#x2F; 2;
-        return maxCount &gt;= n;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">canPlaceFlowers</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">flowerbed</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxCount </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> zero </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> flowerbed.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">flowerbed[i]) {
+</span><span style="color:#eff1f5;">                zero </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                maxCount </span><span>+=</span><span style="color:#eff1f5;"> zero </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                zero </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(zero) maxCount </span><span>+= </span><span style="color:#eff1f5;">(zero </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> maxCount </span><span>&gt;=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

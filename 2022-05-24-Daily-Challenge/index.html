@@ -118,78 +118,78 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Longest Valid Parentheses</strong></p>
 <p>Given a string containing just the characters <code>'('</code> and <code>')'</code>, find the length of the longest valid (well-formed) parentheses substring.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;(()&quot;
-Output: 2
-Explanation: The longest valid parentheses substring is &quot;()&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;(()&quot;
+</span><span>Output: 2
+</span><span>Explanation: The longest valid parentheses substring is &quot;()&quot;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;)()())&quot;
-Output: 4
-Explanation: The longest valid parentheses substring is &quot;()()&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;)()())&quot;
+</span><span>Output: 4
+</span><span>Explanation: The longest valid parentheses substring is &quot;()()&quot;.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;&quot;
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;&quot;
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= s.length &lt;= 3 * 10^4</code></li>
 <li><code>s[i]</code> is <code>'('</code>, or <code>')'</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">template&lt;typename T&gt;
-class reversion_wrapper {
-private:
-  T&amp; iterable;
-public:
-  explicit reversion_wrapper(T&amp; iterable): iterable{iterable} {}
-  auto begin() const { return std::rbegin(iterable); }
-  auto end() const { return std::rend(iterable); }
-};
-
-class Solution {
-public:
-  int longestValidParentheses(string s) {
-    int left = 0;
-    int right = 0;
-    int answer = 0;
-    for(auto c : s) {
-      if(c == &#x27;(&#x27;) {
-        left += 1;
-      } else {
-        right += 1;
-        if(left == right) {
-          answer = max(answer, left &lt;&lt; 1);
-        } else if (left &lt; right) {
-          left = 0;
-          right = 0;
-        }
-      }
-    }
-    left = 0;
-    right = 0;
-    for(auto c : reversion_wrapper(s)) {
-      if(c == &#x27;)&#x27;) {
-        right += 1;
-      } else {
-        left += 1;
-        if(left == right) {
-          answer = max(answer, left &lt;&lt; 1);
-        } else if(left &gt; right) {
-          left = 0;
-          right = 0;
-        }
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 231&#x2F;231 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 73.76 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 96.04 % of cpp submissions (6.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">template</span><span>&lt;</span><span style="color:#b48ead;">typename</span><span> T&gt;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">reversion_wrapper </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">private</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  T</span><span>&amp;</span><span style="color:#eff1f5;"> iterable;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">explicit </span><span style="color:#8fa1b3;">reversion_wrapper</span><span style="color:#eff1f5;">(T</span><span>&amp; </span><span style="color:#bf616a;">iterable</span><span style="color:#eff1f5;">): </span><span style="color:#bf616a;">iterable</span><span style="color:#eff1f5;">{iterable} {}
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">auto </span><span style="color:#8fa1b3;">begin</span><span style="color:#eff1f5;">() </span><span style="color:#b48ead;">const </span><span style="color:#eff1f5;">{ </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">std::</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(iterable); }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">auto </span><span style="color:#8fa1b3;">end</span><span style="color:#eff1f5;">() </span><span style="color:#b48ead;">const </span><span style="color:#eff1f5;">{ </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">std::</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(iterable); }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">longestValidParentheses</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> left </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> right </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        left </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        right </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(left </span><span>==</span><span style="color:#eff1f5;"> right) {
+</span><span style="color:#eff1f5;">          answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, left </span><span>&lt;&lt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else if </span><span style="color:#eff1f5;">(left </span><span>&lt;</span><span style="color:#eff1f5;"> right) {
+</span><span style="color:#eff1f5;">          left </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          right </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    left </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    right </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>: </span><span style="color:#bf616a;">reversion_wrapper</span><span style="color:#eff1f5;">(s)) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">)</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        right </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        left </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(left </span><span>==</span><span style="color:#eff1f5;"> right) {
+</span><span style="color:#eff1f5;">          answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, left </span><span>&lt;&lt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(left </span><span>&gt;</span><span style="color:#eff1f5;"> right) {
+</span><span style="color:#eff1f5;">          left </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          right </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 231/231 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 73.76 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 96.04 % of cpp submissions (6.7 MB)
+</span></code></pre>
 
     </div>
   </div>

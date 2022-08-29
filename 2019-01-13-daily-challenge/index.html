@@ -115,144 +115,144 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Lexicographic permutations</em> in <em>Rust</em> and <em>Unique Binary Search Trees II</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Lexicographic permutations
-
-Problem 24 
-
-A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits 1, 2, 3 and 4. If all of the permutations are listed numerically or alphabetically, we call it lexicographic order. The lexicographic permutations of 0, 1 and 2 are:
-
-012   021   102   120   201   210
-
-What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Lexicographic permutations
+</span><span>
+</span><span>Problem 24 
+</span><span>
+</span><span>A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits 1, 2, 3 and 4. If all of the permutations are listed numerically or alphabetically, we call it lexicographic order. The lexicographic permutations of 0, 1 and 2 are:
+</span><span>
+</span><span>012   021   102   120   201   210
+</span><span>
+</span><span>What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>I've done it with javascript in <a href="https://csuwangj.github.io/2019-01-03-Daily-Challenge/">2019-01-03 Daily Challenge</a>, so what I need to do is just translate it into Rust.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::vec::Vec;
-
-fn main() {
-    for i in nth_permutation(3, 3) {
-        println!(&quot;{}&quot;, i);
-    }
-    println!(&quot;&quot;);
-    for i in nth_permutation(4, 9) {
-        print!(&quot;{}&quot;, i);
-    }
-    println!(&quot;&quot;);
-    for i in nth_permutation(10, 1_000_000) {
-        print!(&quot;{}&quot;, i);
-    }
-}
-
-fn nth_permutation(n: i32, mut k: i64) -&gt; Vec&lt;i32&gt; {
-    k -= 1;
-    let mut fac: Vec&lt;i64&gt; = [1].to_vec();
-    let mut ans: Vec&lt;i32&gt; = Vec::new();
-    let mut used: Vec&lt;bool&gt; = [false].to_vec();
-    for i in 1i64..(n as i64) {
-        let tmp = fac[i as usize - 1]*i;
-        fac.push(tmp);
-        used.push(false);
-    }
-    let mut cur = n-1;
-    while cur &gt;= 0 {
-        let mut index = k&#x2F;fac[cur as usize];
-        k %= fac[cur as usize];
-        for i in 0..used.len() {
-            if !used[i] {
-                if index &gt; 0 {
-                    index -= 1;
-                }else{
-                    ans.push(i as i32);
-                    used[i] = true;
-                    break;
-                }
-            }
-        }
-        cur -= 1;
-    }
-    return ans;
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::vec::Vec;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#96b5b4;">nth_permutation</span><span>(</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>) {
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, i);
+</span><span>    }
+</span><span>    println!(&quot;&quot;);
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#96b5b4;">nth_permutation</span><span>(</span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">9</span><span>) {
+</span><span>        print!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, i);
+</span><span>    }
+</span><span>    println!(&quot;&quot;);
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#96b5b4;">nth_permutation</span><span>(</span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">1_000_000</span><span>) {
+</span><span>        print!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, i);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">nth_permutation</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">k</span><span>: </span><span style="color:#b48ead;">i64</span><span>) -&gt; Vec&lt;</span><span style="color:#b48ead;">i32</span><span>&gt; {
+</span><span>    k -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> fac: Vec&lt;</span><span style="color:#b48ead;">i64</span><span>&gt; = [</span><span style="color:#d08770;">1</span><span>].</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: Vec&lt;</span><span style="color:#b48ead;">i32</span><span>&gt; = Vec::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> used: Vec&lt;</span><span style="color:#b48ead;">bool</span><span>&gt; = [</span><span style="color:#d08770;">false</span><span>].</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">i64</span><span>..(n as </span><span style="color:#b48ead;">i64</span><span>) {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = fac[i as </span><span style="color:#b48ead;">usize </span><span>- </span><span style="color:#d08770;">1</span><span>]*i;
+</span><span>        fac.</span><span style="color:#96b5b4;">push</span><span>(tmp);
+</span><span>        used.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> cur = n-</span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span> cur &gt;= </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> index = k/fac[cur as </span><span style="color:#b48ead;">usize</span><span>];
+</span><span>        k %= fac[cur as </span><span style="color:#b48ead;">usize</span><span>];
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..used.</span><span style="color:#96b5b4;">len</span><span>() {
+</span><span>            </span><span style="color:#b48ead;">if </span><span>!used[i] {
+</span><span>                </span><span style="color:#b48ead;">if</span><span> index &gt; </span><span style="color:#d08770;">0 </span><span>{
+</span><span>                    index -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>                }</span><span style="color:#b48ead;">else</span><span>{
+</span><span>                    ans.</span><span style="color:#96b5b4;">push</span><span>(i as </span><span style="color:#b48ead;">i32</span><span>);
+</span><span>                    used[i] = </span><span style="color:#d08770;">true</span><span>;
+</span><span>                    </span><span style="color:#b48ead;">break</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>        cur -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">return</span><span> ans;
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>95. Unique Binary Search Trees II
-
-Given an integer n, generate all structurally unique BST&#x27;s (binary search trees) that store values 1 ... n.
-
-Example:
-
-Input: 3
-Output:
-[
-  [1,null,3,2],
-  [3,2,null,1],
-  [3,1,null,null,2],
-  [2,1,3],
-  [1,null,2,null,3]
-]
-Explanation:
-The above output corresponds to the 5 unique BST&#x27;s shown below:
-
-   1         3     3      2      1
-    \       &#x2F;     &#x2F;      &#x2F; \      \
-     3     2     1      1   3      2
-    &#x2F;     &#x2F;       \                 \
-   2     1         2                 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>95. Unique Binary Search Trees II
+</span><span>
+</span><span>Given an integer n, generate all structurally unique BST&#39;s (binary search trees) that store values 1 ... n.
+</span><span>
+</span><span>Example:
+</span><span>
+</span><span>Input: 3
+</span><span>Output:
+</span><span>[
+</span><span>  [1,null,3,2],
+</span><span>  [3,2,null,1],
+</span><span>  [3,1,null,null,2],
+</span><span>  [2,1,3],
+</span><span>  [1,null,2,null,3]
+</span><span>]
+</span><span>Explanation:
+</span><span>The above output corresponds to the 5 unique BST&#39;s shown below:
+</span><span>
+</span><span>   1         3     3      2      1
+</span><span>    \       /     /      / \      \
+</span><span>     3     2     1      1   3      2
+</span><span>    /     /       \                 \
+</span><span>   2     1         2                 3
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Because it is BST, so when we determine one root, we will known what's on its left and what's on right. So we could do it recursively.</p>
 <p>Because recursive process will go through many repeated tree nodes(like recursive fibonacci function), so we could memorize it.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- *&#x2F;
-&#x2F;**
- * @param {number} n
- * @return {TreeNode[]}
- *&#x2F;
-var generateTrees = function(n) {
-  if(n===0) return [];
-  const map = new Map();
-  return generateTreess(1,n+1,map);
-};
-
-&#x2F;**
- * Interval is left-closed right-opened
- * @param {number} l
- * @param {number} r
- * @param {Map} map
- * @return {TreeNode[]}
- *&#x2F;
-function generateTreess(l,r,map){
-  if(l===r) return [null];
-  if(map.has(l)&amp;&amp;map.get(l).has(r)){
-    return map.get(l).get(r);
-  }
-  let trees = [];
-  for(let i = l; i &lt; r; ++i){
-    const left = generateTreess(l,i,map);
-    const right = generateTreess(i+1,r,map);
-    for(let j = 0; j &lt; left.length; ++j){
-      for(let k = 0; k &lt; right.length; ++k){
-        const node = new TreeNode(i);
-        node.left = left[i];
-        node.right = right[k];
-        trees.push(node);
-      }
-    }
-  }
-  if(!map.has(l)){
-    map.set(l,new Map());
-  }
-  map.get(l).set(r,trees);
-  return trees;
-}
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * function TreeNode(val) {
+</span><span style="color:#65737e;"> *     this.val = val;
+</span><span style="color:#65737e;"> *     this.left = this.right = null;
+</span><span style="color:#65737e;"> * }
+</span><span style="color:#65737e;"> */
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">n
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{TreeNode[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">generateTrees </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">n</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">n</span><span>===</span><span style="color:#d08770;">0</span><span>) </span><span style="color:#b48ead;">return </span><span>[];
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">map </span><span>= new Map();
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#8fa1b3;">generateTreess</span><span>(</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#bf616a;">n</span><span>+</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#bf616a;">map</span><span>);
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Interval is left-closed right-opened
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">l
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">r
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{Map} </span><span style="color:#bf616a;">map
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{TreeNode[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">generateTreess</span><span>(</span><span style="color:#bf616a;">l</span><span>,</span><span style="color:#bf616a;">r</span><span>,</span><span style="color:#bf616a;">map</span><span>){
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">l</span><span>===</span><span style="color:#bf616a;">r</span><span>) </span><span style="color:#b48ead;">return </span><span>[</span><span style="color:#d08770;">null</span><span>];
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">l</span><span>)&amp;&amp;</span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">l</span><span>).</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">r</span><span>)){
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">l</span><span>).</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">r</span><span>);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">trees </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#bf616a;">l</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">r</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#8fa1b3;">generateTreess</span><span>(</span><span style="color:#bf616a;">l</span><span>,</span><span style="color:#bf616a;">i</span><span>,</span><span style="color:#bf616a;">map</span><span>);
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#8fa1b3;">generateTreess</span><span>(</span><span style="color:#bf616a;">i</span><span>+</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#bf616a;">r</span><span>,</span><span style="color:#bf616a;">map</span><span>);
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">j </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">j </span><span>&lt; </span><span style="color:#bf616a;">left</span><span>.length; ++</span><span style="color:#bf616a;">j</span><span>){
+</span><span>      </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">k </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">k </span><span>&lt; </span><span style="color:#bf616a;">right</span><span>.length; ++</span><span style="color:#bf616a;">k</span><span>){
+</span><span>        </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">node </span><span>= new TreeNode(</span><span style="color:#bf616a;">i</span><span>);
+</span><span>        </span><span style="color:#bf616a;">node</span><span>.left = </span><span style="color:#bf616a;">left</span><span>[</span><span style="color:#bf616a;">i</span><span>];
+</span><span>        </span><span style="color:#bf616a;">node</span><span>.right = </span><span style="color:#bf616a;">right</span><span>[</span><span style="color:#bf616a;">k</span><span>];
+</span><span>        </span><span style="color:#bf616a;">trees</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">node</span><span>);
+</span><span>      }
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(!</span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">l</span><span>)){
+</span><span>    </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">l</span><span>,new Map());
+</span><span>  }
+</span><span>  </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">l</span><span>).</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">r</span><span>,</span><span style="color:#bf616a;">trees</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">trees</span><span>;
+</span><span>}
+</span></code></pre>
 
     </div>
   </div>

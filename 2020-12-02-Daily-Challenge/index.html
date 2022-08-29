@@ -123,22 +123,22 @@ renderMathInElement(document.body, katex_config);
 <p>Return the string formed after mapping.</p>
 <p>It's guaranteed that a unique mapping will always exist.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;10#11#12&quot;
-Output: &quot;jkab&quot;
-Explanation: &quot;j&quot; -&gt; &quot;10#&quot; , &quot;k&quot; -&gt; &quot;11#&quot; , &quot;a&quot; -&gt; &quot;1&quot; , &quot;b&quot; -&gt; &quot;2&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;10#11#12&quot;
+</span><span>Output: &quot;jkab&quot;
+</span><span>Explanation: &quot;j&quot; -&gt; &quot;10#&quot; , &quot;k&quot; -&gt; &quot;11#&quot; , &quot;a&quot; -&gt; &quot;1&quot; , &quot;b&quot; -&gt; &quot;2&quot;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;1326#&quot;
-Output: &quot;acz&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;1326#&quot;
+</span><span>Output: &quot;acz&quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;25#&quot;
-Output: &quot;y&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;25#&quot;
+</span><span>Output: &quot;y&quot;
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#&quot;
-Output: &quot;abcdefghijklmnopqrstuvwxyz&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#&quot;
+</span><span>Output: &quot;abcdefghijklmnopqrstuvwxyz&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 1000</code></li>
@@ -147,26 +147,26 @@ Output: &quot;abcdefghijklmnopqrstuvwxyz&quot;
 </ul>
 <h2 id="solution">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    string freqAlphabets(string s) {
-        int pos = 0, len = s.length();
-        string answer;
-        while(pos &lt; len) {
-            char c;
-            if(pos + 2 &lt; len &amp;&amp; s[pos+2] == &#x27;#&#x27;) {
-                c = (s[pos]-&#x27;0&#x27;)*10 + s[pos+1] - &#x27;0&#x27; + 96;
-                pos += 3;
-            } else {
-                c = s[pos] - &#x27;0&#x27; + 96;
-                pos += 1;
-            }
-            answer.push_back(c);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">freqAlphabets</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        string answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> c;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>+ </span><span style="color:#d08770;">2 </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> s[pos</span><span>+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">#</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                c </span><span>= </span><span style="color:#eff1f5;">(s[pos]</span><span>-&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">)</span><span>*</span><span style="color:#d08770;">10 </span><span>+</span><span style="color:#eff1f5;"> s[pos</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39; + </span><span style="color:#d08770;">96</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                c </span><span>=</span><span style="color:#eff1f5;"> s[pos] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39; + </span><span style="color:#d08770;">96</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-2">December LeetCoding Challenge 2</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Linked List Random Node</strong></p>
@@ -174,66 +174,66 @@ public:
 <p><strong>Follow up:</strong>
 What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?</p>
 <p><strong>Example:</strong></p>
-<pre><code>&#x2F;&#x2F; Init a singly linked list [1,2,3].
-ListNode head = new ListNode(1);
-head.next = new ListNode(2);
-head.next.next = new ListNode(3);
-Solution solution = new Solution(head);
-
-&#x2F;&#x2F; getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.
-solution.getRandom();
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>// Init a singly linked list [1,2,3].
+</span><span>ListNode head = new ListNode(1);
+</span><span>head.next = new ListNode(2);
+</span><span>head.next.next = new ListNode(3);
+</span><span>Solution solution = new Solution(head);
+</span><span>
+</span><span>// getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.
+</span><span>solution.getRandom();
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- *&#x2F;
-class Solution {
-    std::default_random_engine generator;
-    uniform_int_distribution&lt;int&gt; roll;
-    int listLength(ListNode* head) {
-        int len = 0;
-        while(head) {
-            len += 1;
-            head = head-&gt;next;
-        }
-        return len;
-    }
-    ListNode* head;
-public:
-    &#x2F;** @param head The linked list&#x27;s head.
-        Note that the head is guaranteed to be not null, so it contains at least one node. *&#x2F;
-    Solution(ListNode* head) {
-        this-&gt;head = head;
-        int len = listLength(head);
-        roll = uniform_int_distribution&lt;int&gt;(1, len);
-    }
-    
-    &#x2F;** Returns a random node&#x27;s value. *&#x2F;
-    int getRandom() {
-        int pos = roll(generator);
-        cout &lt;&lt; pos &lt;&lt; endl;
-        ListNode* cur = head;
-        while(--pos) {
-            cur = cur-&gt;next;
-        }
-        return cur-&gt;val;
-    }
-};
-
-&#x2F;**
- * Your Solution object will be instantiated and called as such:
- * Solution* obj = new Solution(head);
- * int param_1 = obj-&gt;getRandom();
- *&#x2F;
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode() : val(0), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    std::default_random_engine generator;
+</span><span style="color:#eff1f5;">    uniform_int_distribution&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; roll;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">listLength</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">            len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    ListNode</span><span>*</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** @param head The linked list&#39;s head.
+</span><span style="color:#65737e;">        Note that the head is guaranteed to be not null, so it contains at least one node. */
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">Solution</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">head </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#bf616a;">listLength</span><span style="color:#eff1f5;">(head);
+</span><span style="color:#eff1f5;">        roll </span><span>= </span><span style="color:#bf616a;">uniform_int_distribution</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, len);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** Returns a random node&#39;s value. */
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">getRandom</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#bf616a;">roll</span><span style="color:#eff1f5;">(generator);
+</span><span style="color:#eff1f5;">        cout </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> pos </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> endl;
+</span><span style="color:#eff1f5;">        ListNode</span><span>*</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>--</span><span style="color:#eff1f5;">pos) {
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Your Solution object will be instantiated and called as such:
+</span><span style="color:#65737e;"> * Solution* obj = new Solution(head);
+</span><span style="color:#65737e;"> * int param_1 = obj-&gt;getRandom();
+</span><span style="color:#65737e;"> */
+</span></code></pre>
 
     </div>
   </div>

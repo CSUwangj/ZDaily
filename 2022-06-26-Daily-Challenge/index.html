@@ -121,20 +121,20 @@ renderMathInElement(document.body, katex_config);
 <p>Your score is the sum of the points of the cards you have taken.</p>
 <p>Given the integer array <code>cardPoints</code> and the integer <code>k</code>, return the <em>maximum score</em> you can obtain.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: cardPoints = [1,2,3,4,5,6,1], k = 3
-Output: 12
-Explanation: After the first step, your score will always be 1. However, choosing the rightmost card first will maximize your total score. The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: cardPoints = [1,2,3,4,5,6,1], k = 3
+</span><span>Output: 12
+</span><span>Explanation: After the first step, your score will always be 1. However, choosing the rightmost card first will maximize your total score. The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: cardPoints = [2,2,2], k = 2
-Output: 4
-Explanation: Regardless of which two cards you take, your score will always be 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: cardPoints = [2,2,2], k = 2
+</span><span>Output: 4
+</span><span>Explanation: Regardless of which two cards you take, your score will always be 4.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: cardPoints = [9,7,7,9,7,7,9], k = 7
-Output: 55
-Explanation: You have to take all the cards. Your score is the sum of points of all cards.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: cardPoints = [9,7,7,9,7,7,9], k = 7
+</span><span>Output: 55
+</span><span>Explanation: You have to take all the cards. Your score is the sum of points of all cards.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= cardPoints.length &lt;= 10^5</code></li>
@@ -142,29 +142,29 @@ Explanation: You have to take all the cards. Your score is the sum of points of 
 <li><code>1 &lt;= k &lt;= cardPoints.length</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-	int maxScore(vector&lt;int&gt;&amp; cardPoints, int k) {
-		int len = cardPoints.size();
-		vector&lt;int&gt; sum(len + 1);
-		vector&lt;int&gt; rsum(len + 1);
-		for(int i = 0; i &lt; len; ++i) {
-			sum[i + 1] = cardPoints[i] + sum[i];
-			rsum[i + 1] = cardPoints[len - 1 - i] + rsum[i];
-		}
-		int answer = 0;
-		for(int i = 0; i &lt;=k; ++i) {
-			answer = max(answer, sum[i] + rsum[k - i]);
-		}
-		return answer;
-	}
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 40&#x2F;40 cases passed (110 ms)
-&#x2F;&#x2F; Your runtime beats 24.54 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 8.03 % of cpp submissions (45.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">	</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxScore</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">cardPoints</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> cardPoints.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">		vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">(len </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">		vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">rsum</span><span style="color:#eff1f5;">(len </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">			sum[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> cardPoints[i] </span><span>+</span><span style="color:#eff1f5;"> sum[i];
+</span><span style="color:#eff1f5;">			rsum[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> cardPoints[len </span><span>- </span><span style="color:#d08770;">1 </span><span>-</span><span style="color:#eff1f5;"> i] </span><span>+</span><span style="color:#eff1f5;"> rsum[i];
+</span><span style="color:#eff1f5;">		}
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;">k; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">			answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, sum[i] </span><span>+</span><span style="color:#eff1f5;"> rsum[k </span><span>-</span><span style="color:#eff1f5;"> i]);
+</span><span style="color:#eff1f5;">		}
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">	}
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 40/40 cases passed (110 ms)
+</span><span style="color:#65737e;">// Your runtime beats 24.54 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 8.03 % of cpp submissions (45.8 MB)
+</span></code></pre>
 
     </div>
   </div>

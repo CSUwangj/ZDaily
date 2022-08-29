@@ -126,91 +126,91 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Follow up:</strong>
 Could you solve it using only <code>O(1)</code> extra space?</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: chars = [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;,&quot;c&quot;,&quot;c&quot;,&quot;c&quot;]
-Output: Return 6, and the first 6 characters of the input array should be: [&quot;a&quot;,&quot;2&quot;,&quot;b&quot;,&quot;2&quot;,&quot;c&quot;,&quot;3&quot;]
-Explanation: The groups are &quot;aa&quot;, &quot;bb&quot;, and &quot;ccc&quot;. This compresses to &quot;a2b2c3&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: chars = [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;,&quot;c&quot;,&quot;c&quot;,&quot;c&quot;]
+</span><span>Output: Return 6, and the first 6 characters of the input array should be: [&quot;a&quot;,&quot;2&quot;,&quot;b&quot;,&quot;2&quot;,&quot;c&quot;,&quot;3&quot;]
+</span><span>Explanation: The groups are &quot;aa&quot;, &quot;bb&quot;, and &quot;ccc&quot;. This compresses to &quot;a2b2c3&quot;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: chars = [&quot;a&quot;]
-Output: Return 1, and the first character of the input array should be: [&quot;a&quot;]
-Explanation: The only group is &quot;a&quot;, which remains uncompressed since it&#x27;s a single character.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: chars = [&quot;a&quot;]
+</span><span>Output: Return 1, and the first character of the input array should be: [&quot;a&quot;]
+</span><span>Explanation: The only group is &quot;a&quot;, which remains uncompressed since it&#39;s a single character.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: chars = [&quot;a&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;]
-Output: Return 4, and the first 4 characters of the input array should be: [&quot;a&quot;,&quot;b&quot;,&quot;1&quot;,&quot;2&quot;].
-Explanation: The groups are &quot;a&quot; and &quot;bbbbbbbbbbbb&quot;. This compresses to &quot;ab12&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: chars = [&quot;a&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;]
+</span><span>Output: Return 4, and the first 4 characters of the input array should be: [&quot;a&quot;,&quot;b&quot;,&quot;1&quot;,&quot;2&quot;].
+</span><span>Explanation: The groups are &quot;a&quot; and &quot;bbbbbbbbbbbb&quot;. This compresses to &quot;ab12&quot;.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: chars = [&quot;a&quot;,&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;,&quot;a&quot;,&quot;a&quot;]
-Output: Return 6, and the first 6 characters of the input array should be: [&quot;a&quot;,&quot;3&quot;,&quot;b&quot;,&quot;2&quot;,&quot;a&quot;,&quot;2&quot;].
-Explanation: The groups are &quot;aaa&quot;, &quot;bb&quot;, and &quot;aa&quot;. This compresses to &quot;a3b2a2&quot;. Note that each group is independent even if two groups have the same character.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: chars = [&quot;a&quot;,&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;,&quot;a&quot;,&quot;a&quot;]
+</span><span>Output: Return 6, and the first 6 characters of the input array should be: [&quot;a&quot;,&quot;3&quot;,&quot;b&quot;,&quot;2&quot;,&quot;a&quot;,&quot;2&quot;].
+</span><span>Explanation: The groups are &quot;aaa&quot;, &quot;bb&quot;, and &quot;aa&quot;. This compresses to &quot;a3b2a2&quot;. Note that each group is independent even if two groups have the same character.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= chars.length &lt;= 2000</code></li>
 <li><code>chars[i]</code> is a lower-case English letter, upper-case English letter, digit, or symbol.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int compress(vector&lt;char&gt;&amp; chars) {
-        int newPos = 0;
-        int len = chars.size();
-        int pos = 0;
-        while(pos &lt; len) {
-            chars[newPos] = chars[pos];
-            int cnt = 0;
-            while(pos &lt; len &amp;&amp; chars[pos] == chars[newPos]) {
-                pos += 1;
-                cnt += 1;
-            }
-            newPos += 1;
-            if(cnt == 1) continue;
-            bool leading = false;
-            if(cnt &gt; 999) {
-                chars[newPos++] = (cnt&#x2F;1000) + &#x27;0&#x27;;
-                leading = true;
-                cnt %= 1000;
-            }
-            if(leading || cnt &gt; 99) { 
-                chars[newPos++] = (cnt&#x2F;100) + &#x27;0&#x27;;
-                leading = true;
-                cnt %= 100;
-            }
-            if(leading || cnt &gt; 9) { 
-                chars[newPos++] = (cnt&#x2F;10) + &#x27;0&#x27;;
-                leading = true;
-                cnt %= 10;
-            }
-            chars[newPos++] = cnt + &#x27;0&#x27;;
-        }
-        return newPos;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">compress</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">chars</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newPos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> chars.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            chars[newPos] </span><span>=</span><span style="color:#eff1f5;"> chars[pos];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> chars[pos] </span><span>==</span><span style="color:#eff1f5;"> chars[newPos]) {
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            newPos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> leading </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt </span><span>&gt; </span><span style="color:#d08770;">999</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                chars[newPos</span><span>++</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">(cnt</span><span>/</span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">) </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                leading </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cnt </span><span>%= </span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(leading </span><span>||</span><span style="color:#eff1f5;"> cnt </span><span>&gt; </span><span style="color:#d08770;">99</span><span style="color:#eff1f5;">) { 
+</span><span style="color:#eff1f5;">                chars[newPos</span><span>++</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">(cnt</span><span>/</span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">) </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                leading </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cnt </span><span>%= </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(leading </span><span>||</span><span style="color:#eff1f5;"> cnt </span><span>&gt; </span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">) { 
+</span><span style="color:#eff1f5;">                chars[newPos</span><span>++</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">(cnt</span><span>/</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">) </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                leading </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cnt </span><span>%= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            chars[newPos</span><span>++</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> cnt </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newPos;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>emmmm, so ugly. I'd rather use a string</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int compress(vector&lt;char&gt;&amp; chars) {
-        int newPos = 0;
-        int len = chars.size();
-        int pos = 0;
-        while(pos &lt; len) {
-            chars[newPos] = chars[pos];
-            int cnt = 0;
-            while(pos &lt; len &amp;&amp; chars[pos] == chars[newPos]) {
-                pos += 1;
-                cnt += 1;
-            }
-            newPos += 1;
-            if(cnt == 1) continue;
-            string count = to_string(cnt);
-            for(auto it = count.begin(); it != count.end(); ++it) chars[newPos++] = *it;
-        }
-        return newPos;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">compress</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">chars</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newPos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> chars.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            chars[newPos] </span><span>=</span><span style="color:#eff1f5;"> chars[pos];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> chars[pos] </span><span>==</span><span style="color:#eff1f5;"> chars[newPos]) {
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            newPos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            string count </span><span>= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(cnt);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(); it </span><span>!=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) chars[newPos</span><span>++</span><span style="color:#eff1f5;">] </span><span>= *</span><span style="color:#eff1f5;">it;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newPos;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="february-leetcoding-challenge-5">February LeetCoding Challenge 5</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Simplify Path</strong></p>
@@ -225,24 +225,24 @@ public:
 </ul>
 <p>Return <em>the simplified <strong>canonical path</strong></em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: path = &quot;&#x2F;home&#x2F;&quot;
-Output: &quot;&#x2F;home&quot;
-Explanation: Note that there is no trailing slash after the last directory name.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: path = &quot;/home/&quot;
+</span><span>Output: &quot;/home&quot;
+</span><span>Explanation: Note that there is no trailing slash after the last directory name.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: path = &quot;&#x2F;..&#x2F;&quot;
-Output: &quot;&#x2F;&quot;
-Explanation: Going one level up from the root directory is a no-op, as the root level is the highest level you can go.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: path = &quot;/../&quot;
+</span><span>Output: &quot;/&quot;
+</span><span>Explanation: Going one level up from the root directory is a no-op, as the root level is the highest level you can go.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: path = &quot;&#x2F;home&#x2F;&#x2F;foo&#x2F;&quot;
-Output: &quot;&#x2F;home&#x2F;foo&quot;
-Explanation: In the canonical path, multiple consecutive slashes are replaced by a single one.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: path = &quot;/home//foo/&quot;
+</span><span>Output: &quot;/home/foo&quot;
+</span><span>Explanation: In the canonical path, multiple consecutive slashes are replaced by a single one.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: path = &quot;&#x2F;a&#x2F;.&#x2F;b&#x2F;..&#x2F;..&#x2F;c&#x2F;&quot;
-Output: &quot;&#x2F;c&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: path = &quot;/a/./b/../../c/&quot;
+</span><span>Output: &quot;/c&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= path.length &lt;= 3000</code></li>
@@ -250,43 +250,43 @@ Output: &quot;&#x2F;c&quot;
 <li><code>path</code> is a valid absolute Unix path.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    bool isCurrent(string &amp;path, int pos) {
-        int len = path.length();
-        return pos &lt; len &amp;&amp; path[pos] == &#x27;.&#x27; &amp;&amp; (pos == len-1 || path[pos+1] == &#x27;&#x2F;&#x27;);
-    }
-    bool isUpLevel(string &amp;path, int pos) {
-        int len = path.length();
-        return pos &lt; len-1 &amp;&amp; path[pos] == &#x27;.&#x27; &amp;&amp; path[pos+1] == &#x27;.&#x27; &amp;&amp; (pos == len-2 || path[pos+2] == &#x27;&#x2F;&#x27;);
-    }
-public:
-    string simplifyPath(string path) {
-        vector&lt;pair&lt;int, int&gt;&gt; st;
-        int len = path.length();
-        int pos = 0;
-        while(pos &lt; len) {
-            if(path[pos] == &#x27;&#x2F;&#x27;) {
-                while(pos &lt; len &amp;&amp; path[pos] == &#x27;&#x2F;&#x27;) pos += 1;
-            } else if(isCurrent(path, pos)) {
-                pos += 1;
-            } else if(isUpLevel(path, pos)){
-                pos += 2;
-                if(!st.empty()) st.pop_back();
-            } else {
-                int begin = pos;
-                while(pos &lt; len &amp;&amp; (path[pos] == &#x27;.&#x27; || path[pos] == &#x27;_&#x27; || isalnum(path[pos]))) ++pos;
-                st.push_back(make_pair(begin, pos - begin));
-            }
-        }
-        if(st.empty()) return &quot;&#x2F;&quot;;
-        string answer;
-        for(auto [begin, len] : st) {
-            answer += &quot;&#x2F;&quot; + path.substr(begin, len);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isCurrent</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">path</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> path[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">.</span><span>&#39; &amp;&amp; </span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">1 </span><span>||</span><span style="color:#eff1f5;"> path[pos</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">/</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isUpLevel</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">path</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> pos </span><span>&lt;</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> path[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">.</span><span>&#39; &amp;&amp;</span><span style="color:#eff1f5;"> path[pos</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">.</span><span>&#39; &amp;&amp; </span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">2 </span><span>||</span><span style="color:#eff1f5;"> path[pos</span><span>+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">/</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">simplifyPath</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">path</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; st;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(path[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">/</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> path[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">/</span><span>&#39;</span><span style="color:#eff1f5;">) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">isCurrent</span><span style="color:#eff1f5;">(path, pos)) {
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">isUpLevel</span><span style="color:#eff1f5;">(path, pos)){
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>=</span><span style="color:#eff1f5;"> pos;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#eff1f5;">(path[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">.</span><span>&#39; ||</span><span style="color:#eff1f5;"> path[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">_</span><span>&#39; || </span><span style="color:#96b5b4;">isalnum</span><span style="color:#eff1f5;">(path[pos]))) </span><span>++</span><span style="color:#eff1f5;">pos;
+</span><span style="color:#eff1f5;">                st.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(begin, pos </span><span>-</span><span style="color:#eff1f5;"> begin));
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">/</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        string answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[begin, len] </span><span>:</span><span style="color:#eff1f5;"> st) {
+</span><span style="color:#eff1f5;">            answer </span><span>+= &quot;</span><span style="color:#a3be8c;">/</span><span>&quot; +</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(begin, len);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

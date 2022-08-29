@@ -120,28 +120,28 @@ renderMathInElement(document.body, katex_config);
 <p>You have a car with an unlimited gas tank and it costs <code>cost[i]</code> of gas to travel from the <code>ith</code> station to its next <code>(i + 1)th</code> station. You begin the journey with an empty tank at one of the gas stations.</p>
 <p>Given two integer arrays <code>gas</code> and <code>cost</code>, return <em>the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return</em> <code>-1</code>. If there exists a solution, it is <strong>guaranteed</strong> to be <strong>unique</strong></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: gas = [1,2,3,4,5], cost = [3,4,5,1,2]
-Output: 3
-Explanation:
-Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
-Travel to station 4. Your tank = 4 - 1 + 5 = 8
-Travel to station 0. Your tank = 8 - 2 + 1 = 7
-Travel to station 1. Your tank = 7 - 3 + 2 = 6
-Travel to station 2. Your tank = 6 - 4 + 3 = 5
-Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
-Therefore, return 3 as the starting index.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: gas = [1,2,3,4,5], cost = [3,4,5,1,2]
+</span><span>Output: 3
+</span><span>Explanation:
+</span><span>Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
+</span><span>Travel to station 4. Your tank = 4 - 1 + 5 = 8
+</span><span>Travel to station 0. Your tank = 8 - 2 + 1 = 7
+</span><span>Travel to station 1. Your tank = 7 - 3 + 2 = 6
+</span><span>Travel to station 2. Your tank = 6 - 4 + 3 = 5
+</span><span>Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
+</span><span>Therefore, return 3 as the starting index.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: gas = [2,3,4], cost = [3,4,3]
-Output: -1
-Explanation:
-You can&#x27;t start at station 0 or 1, as there is not enough gas to travel to the next station.
-Let&#x27;s start at station 2 and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
-Travel to station 0. Your tank = 4 - 3 + 2 = 3
-Travel to station 1. Your tank = 3 - 3 + 3 = 3
-You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.
-Therefore, you can&#x27;t travel around the circuit once no matter where you start.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: gas = [2,3,4], cost = [3,4,3]
+</span><span>Output: -1
+</span><span>Explanation:
+</span><span>You can&#39;t start at station 0 or 1, as there is not enough gas to travel to the next station.
+</span><span>Let&#39;s start at station 2 and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
+</span><span>Travel to station 0. Your tank = 4 - 3 + 2 = 3
+</span><span>Travel to station 1. Your tank = 3 - 3 + 3 = 3
+</span><span>You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.
+</span><span>Therefore, you can&#39;t travel around the circuit once no matter where you start.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>gas.length == n</code></li>
@@ -150,40 +150,40 @@ Therefore, you can&#x27;t travel around the circuit once no matter where you sta
 <li><code>0 &lt;= gas[i], cost[i] &lt;= 10^4</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int canCompleteCircuit(vector&lt;int&gt;&amp; gas, vector&lt;int&gt;&amp; cost) {
-    int len = gas.size();
-    for(int i = 0; i &lt; len; ++i) {
-      gas[i] -= cost[i];
-    }
-    int begin = 0;
-    while(begin &lt; len) {
-      int current = 0;
-      for(int i = 0; i &lt; len; ++i) {
-        current += gas[(begin + i) % len];
-        if(current &lt; 0) {
-          begin = begin + i + 1;
-          break;
-        }
-      }
-      if(current &gt;= 0) return begin;
-    }
-    return -1;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 35&#x2F;35 cases passed (69 ms)
-&#x2F;&#x2F; Your runtime beats 45.23 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 45.28 % of cpp submissions (49.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">canCompleteCircuit</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">gas</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">cost</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> gas.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      gas[i] </span><span>-=</span><span style="color:#eff1f5;"> cost[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        current </span><span>+=</span><span style="color:#eff1f5;"> gas[(begin </span><span>+</span><span style="color:#eff1f5;"> i) </span><span>%</span><span style="color:#eff1f5;"> len];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current </span><span>&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          begin </span><span>=</span><span style="color:#eff1f5;"> begin </span><span>+</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> begin;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 35/35 cases passed (69 ms)
+</span><span style="color:#65737e;">// Your runtime beats 45.23 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 45.28 % of cpp submissions (49.8 MB)
+</span></code></pre>
 
     </div>
   </div>

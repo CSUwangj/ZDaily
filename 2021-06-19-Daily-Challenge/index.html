@@ -121,85 +121,85 @@ renderMathInElement(document.body, katex_config);
 <h2 id="generate-parentheses">Generate Parentheses</h2>
 <p>too easy to review</p>
 <h2 id="matchsticks-to-square">Matchsticks to Square</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int len;
-  int target;
-  int sides[4] = {};
-  bool solve(vector&lt;int&gt; &amp;m, int index) {
-    if(index == len) return true;
-    for(int i = 0; i &lt; 4; ++i) {
-      if([&amp;](){
-        for(int j = 0; j &lt; i; ++j) {
-          if(sides[j] == sides[i]) return true;
-        }
-        return false;
-      }()) continue;
-      if(sides[i] + m[index] &gt; target) continue;
-      sides[i] += m[index];
-      if(solve(m, index + 1)) return true;
-      sides[i] -= m[index];
-    }
-    return false;
-  }
-public:
-  bool makesquare(vector&lt;int&gt;&amp; matchsticks) {
-    len = matchsticks.size();
-    if(len &lt; 4) return false;
-    sort(matchsticks.rbegin(), matchsticks.rend());
-    int sum = 0;
-    for(auto l : matchsticks) sum += l;
-    if(sum % 4 || matchsticks.back() &gt; sum &#x2F; 4) return false;
-    target = sum &#x2F; 4;
-    return solve(matchsticks, 0); 
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sides[</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> len) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">([</span><span>&amp;</span><span style="color:#eff1f5;">](){
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> i; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sides[j] </span><span>==</span><span style="color:#eff1f5;"> sides[i]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }()) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sides[i] </span><span>+</span><span style="color:#eff1f5;"> m[index] </span><span>&gt;</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      sides[i] </span><span>+=</span><span style="color:#eff1f5;"> m[index];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(m, index </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      sides[i] </span><span>-=</span><span style="color:#eff1f5;"> m[index];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">makesquare</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">matchsticks</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> matchsticks.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(matchsticks.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(), matchsticks.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> l </span><span>:</span><span style="color:#eff1f5;"> matchsticks) sum </span><span>+=</span><span style="color:#eff1f5;"> l;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sum </span><span>% </span><span style="color:#d08770;">4 </span><span>||</span><span style="color:#eff1f5;"> matchsticks.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> sum </span><span>/ </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    target </span><span>=</span><span style="color:#eff1f5;"> sum </span><span>/ </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(matchsticks, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">); 
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="maximum-units-on-a-truck">Maximum Units on a Truck</h2>
 <p>too easy to review</p>
 <h2 id="sort-integers-by-the-number-of-1-bits">Sort Integers by The Number of 1 Bits</h2>
 <p>too easy to review</p>
 <h2 id="cells-with-odd-values-in-a-matrix">Cells with Odd Values in a Matrix</h2>
 <p>too easy but review</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">using ll = long long;
-
-const ll M1 = 0X5555555555555555;
-const ll M2 = 0X3333333333333333;
-const ll M4 = 0X0F0F0F0F0F0F0F0F;
-const ll M8 = 0X00FF00FF00FF00FF;
-const ll M16 = 0X0000FFFF0000FFFF;
-const ll M32 = 0X00000000FFFFFFFF;
-
-inline constexpr ll popcount(ll X) {
-  X = (X &amp; M1) + ((X &gt;&gt; 1) &amp; M1);
-  X = (X &amp; M2) + ((X &gt;&gt; 2) &amp; M2);
-  X = (X &amp; M4) + ((X &gt;&gt; 4) &amp; M4);
-  X = (X &amp; M8) + ((X &gt;&gt; 8) &amp; M8);
-  X = (X &amp; M16) + ((X &gt;&gt; 16) &amp; M16);
-  X = (X &amp; M32) + ((X &gt;&gt; 32) &amp; M32);
-  return X;
-}
-
-class Solution {
-public:
-  int oddCells(int m, int n, vector&lt;vector&lt;int&gt;&gt;&amp; indices) {
-    ll row = 0;
-    ll col = 0;
-    for(auto &amp;index : indices) {
-      row ^= (1LL &lt;&lt; index[0]);
-      col ^= (1LL &lt;&lt; index[1]);
-    }
-    int oddRows = popcount(row);
-    int evenRows = m - oddRows;
-
-    int answer = 0;
-    for(int i = 0; i &lt; n; i++) {
-      if(col &amp; (1LL &lt;&lt; i)) answer += evenRows;
-      else answer += oddRows;
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">using </span><span>ll = </span><span style="color:#b48ead;">long long</span><span>;
+</span><span>
+</span><span style="color:#b48ead;">const</span><span> ll M1 = </span><span style="color:#d08770;">0X5555555555555555</span><span>;
+</span><span style="color:#b48ead;">const</span><span> ll M2 = </span><span style="color:#d08770;">0X3333333333333333</span><span>;
+</span><span style="color:#b48ead;">const</span><span> ll M4 = </span><span style="color:#d08770;">0X0F0F0F0F0F0F0F0F</span><span>;
+</span><span style="color:#b48ead;">const</span><span> ll M8 = </span><span style="color:#d08770;">0X00FF00FF00FF00FF</span><span>;
+</span><span style="color:#b48ead;">const</span><span> ll M16 = </span><span style="color:#d08770;">0X0000FFFF0000FFFF</span><span>;
+</span><span style="color:#b48ead;">const</span><span> ll M32 = </span><span style="color:#d08770;">0X00000000FFFFFFFF</span><span>;
+</span><span>
+</span><span style="color:#b48ead;">inline constexpr</span><span> ll </span><span style="color:#8fa1b3;">popcount</span><span>(ll </span><span style="color:#bf616a;">X</span><span>) {
+</span><span>  X = (X &amp; M1) + ((X &gt;&gt; </span><span style="color:#d08770;">1</span><span>) &amp; M1);
+</span><span>  X = (X &amp; M2) + ((X &gt;&gt; </span><span style="color:#d08770;">2</span><span>) &amp; M2);
+</span><span>  X = (X &amp; M4) + ((X &gt;&gt; </span><span style="color:#d08770;">4</span><span>) &amp; M4);
+</span><span>  X = (X &amp; M8) + ((X &gt;&gt; </span><span style="color:#d08770;">8</span><span>) &amp; M8);
+</span><span>  X = (X &amp; M16) + ((X &gt;&gt; </span><span style="color:#d08770;">16</span><span>) &amp; M16);
+</span><span>  X = (X &amp; M32) + ((X &gt;&gt; </span><span style="color:#d08770;">32</span><span>) &amp; M32);
+</span><span>  </span><span style="color:#b48ead;">return</span><span> X;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">oddCells</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">indices</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ll row </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ll col </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">index </span><span>:</span><span style="color:#eff1f5;"> indices) {
+</span><span style="color:#eff1f5;">      row </span><span>^= </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#b48ead;">LL </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> index[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">      col </span><span>^= </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#b48ead;">LL </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> index[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> oddRows </span><span>= </span><span style="color:#bf616a;">popcount</span><span style="color:#eff1f5;">(row);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> evenRows </span><span>=</span><span style="color:#eff1f5;"> m </span><span>-</span><span style="color:#eff1f5;"> oddRows;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; i</span><span>++</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(col </span><span>&amp; </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#b48ead;">LL </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> i)) answer </span><span>+=</span><span style="color:#eff1f5;"> evenRows;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> answer </span><span>+=</span><span style="color:#eff1f5;"> oddRows;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="distribute-coins-in-binary-tree">Distribute Coins in Binary Tree</h2>
 <p>too easy to review</p>
 <h2 id="search-in-a-binary-search-tree">Search in a Binary Search Tree</h2>
@@ -212,15 +212,15 @@ public:
 <p>For an integer array <code>nums</code>, an <strong>inverse pair</strong> is a pair of integers <code>[i, j]</code> where <code>0 &lt;= i &lt; j &lt; nums.length</code> and <code>nums[i] &gt; nums[j]</code>.</p>
 <p>Given two integers n and k, return the number of different arrays consist of numbers from <code>1</code> to <code>n</code> such that there are exactly <code>k</code> <strong>inverse pairs</strong>. Since the answer can be huge, return it <strong>modulo</strong> <code>109 + 7</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 3, k = 0
-Output: 1
-Explanation: Only the array [1,2,3] which consists of numbers from 1 to 3 has exactly 0 inverse pairs.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, k = 0
+</span><span>Output: 1
+</span><span>Explanation: Only the array [1,2,3] which consists of numbers from 1 to 3 has exactly 0 inverse pairs.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 3, k = 1
-Output: 2
-Explanation: The array [1,3,2] and [2,1,3] have exactly 1 inverse pair.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, k = 1
+</span><span>Output: 2
+</span><span>Explanation: The array [1,3,2] and [2,1,3] have exactly 1 inverse pair.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 1000</code></li>
@@ -229,37 +229,37 @@ Explanation: The array [1,3,2] and [2,1,3] have exactly 1 inverse pair.
 <h2 id="solution">Solution</h2>
 <p>we use <code>dp[i][j]</code> represents states which means amount of <code>permutations of 1-i</code> have exactly <code>j</code> inverse pairs. then we can conclude state transition formula:</p>
 <p>$$dp[i][j]=\sum\limits_{j'=max(0, j-i)}^{j} dp[i-1][j']$$</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int MOD = 1e9 + 7;
-int values[1001][1001] = {};
-const int SZ = 1000;
-void init(int N) {
-  values[0][0] = 1;
-  for(int i = 1; i &lt;= N; ++i) {
-    int nextJ = i * (i + 1) &#x2F; 2;
-    int J = i * (i - 1) &#x2F; 2;
-    J = J &gt; SZ ? SZ : J;
-    nextJ = nextJ &gt; SZ ? SZ : nextJ;
-    for(int j = 0; j &lt;= J; ++j) {
-      values[i][j] = (j ? values[i][j - 1] : 0) + values[i - 1][j] - (i &gt; j ? 0 : values[i - 1][j - i]);
-      values[i][j] = (values[i][j] % MOD + MOD) % MOD;
-    }
-    for(int j = J + 1; j &lt;= nextJ; ++j) {
-      values[i][j] = values[i][j - 1];
-    }
-  }
-}
-
-class Solution {
-public:
-  int kInversePairs(int n, int k) {
-    if(!k) return 1;
-    init(n);
-    int answer = values[n][k] - values[n][k - 1];
-    answer = (answer % MOD + MOD) % MOD;
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> MOD = </span><span style="color:#d08770;">1e9 </span><span>+ </span><span style="color:#d08770;">7</span><span>;
+</span><span style="color:#b48ead;">int</span><span> values[</span><span style="color:#d08770;">1001</span><span>][</span><span style="color:#d08770;">1001</span><span>] = {};
+</span><span style="color:#b48ead;">const int</span><span> SZ = </span><span style="color:#d08770;">1000</span><span>;
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">N</span><span>) {
+</span><span>  values[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">1</span><span>; i &lt;= N; ++i) {
+</span><span>    </span><span style="color:#b48ead;">int</span><span> nextJ = i * (i + </span><span style="color:#d08770;">1</span><span>) / </span><span style="color:#d08770;">2</span><span>;
+</span><span>    </span><span style="color:#b48ead;">int</span><span> J = i * (i - </span><span style="color:#d08770;">1</span><span>) / </span><span style="color:#d08770;">2</span><span>;
+</span><span>    J = J &gt; SZ ? SZ : J;
+</span><span>    nextJ = nextJ &gt; SZ ? SZ : nextJ;
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> j = </span><span style="color:#d08770;">0</span><span>; j &lt;= J; ++j) {
+</span><span>      values[i][j] = (j ? values[i][j - </span><span style="color:#d08770;">1</span><span>] : </span><span style="color:#d08770;">0</span><span>) + values[i - </span><span style="color:#d08770;">1</span><span>][j] - (i &gt; j ? </span><span style="color:#d08770;">0 </span><span>: values[i - </span><span style="color:#d08770;">1</span><span>][j - i]);
+</span><span>      values[i][j] = (values[i][j] % MOD + MOD) % MOD;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> j = J + </span><span style="color:#d08770;">1</span><span>; j &lt;= nextJ; ++j) {
+</span><span>      values[i][j] = values[i][j - </span><span style="color:#d08770;">1</span><span>];
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">kInversePairs</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">k) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> values[n][k] </span><span>-</span><span style="color:#eff1f5;"> values[n][k </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    answer </span><span>= </span><span style="color:#eff1f5;">(answer </span><span>%</span><span style="color:#eff1f5;"> MOD </span><span>+</span><span style="color:#eff1f5;"> MOD) </span><span>%</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

@@ -121,22 +121,22 @@ renderMathInElement(document.body, katex_config);
 <p>Return <code>true</code> <em>if there is a cycle in the linked list</em>. Otherwise, return <code>false</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png" alt="img" /></p>
-<pre><code>Input: head = [3,2,0,-4], pos = 1
-Output: true
-Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [3,2,0,-4], pos = 1
+</span><span>Output: true
+</span><span>Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test2.png" alt="img" /></p>
-<pre><code>Input: head = [1,2], pos = 0
-Output: true
-Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2], pos = 0
+</span><span>Output: true
+</span><span>Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test3.png" alt="img" /></p>
-<pre><code>Input: head = [1], pos = -1
-Output: false
-Explanation: There is no cycle in the linked list.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1], pos = -1
+</span><span>Output: false
+</span><span>Explanation: There is no cycle in the linked list.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of the nodes in the list is in the range <code>[0, 104]</code>.</li>
@@ -145,26 +145,26 @@ Explanation: There is no cycle in the linked list.
 </ul>
 <p><strong>Follow up:</strong> Can you solve it using <code>O(1)</code> (i.e. constant) memory?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool hasCycle(ListNode *head) {
-    ListNode *fast = head;
-    ListNode *slow = head;
-    while(slow &amp;&amp; fast) {
-      if(!fast || !fast-&gt;next) return false;
-      fast = fast-&gt;next-&gt;next;
-      slow = slow-&gt;next;
-      if(slow == fast) return true;
-    }
-    return false;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 21&#x2F;21 cases passed (17 ms)
-&#x2F;&#x2F; Your runtime beats 42.1 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 81.34 % of cpp submissions (7.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">hasCycle</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">fast </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">slow </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(slow </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> fast) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">fast </span><span>|| !</span><span style="color:#eff1f5;">fast-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      fast </span><span>=</span><span style="color:#eff1f5;"> fast-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      slow </span><span>=</span><span style="color:#eff1f5;"> slow-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(slow </span><span>==</span><span style="color:#eff1f5;"> fast) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 21/21 cases passed (17 ms)
+</span><span style="color:#65737e;">// Your runtime beats 42.1 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 81.34 % of cpp submissions (7.9 MB)
+</span></code></pre>
 
     </div>
   </div>

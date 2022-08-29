@@ -132,105 +132,105 @@ renderMathInElement(document.body, katex_config);
 <h1 id="leetcode-review">LeetCode Review</h1>
 <h2 id="sort-list">Sort List</h2>
 <p>bottom-up merge sort</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- *&#x2F;
-class Solution {
-    int length(ListNode* head){
-        int len = 0;
-        while(head) {
-            len += 1;
-            head = head-&gt;next;
-        }
-        return len;
-    }
-public:
-    ListNode* sortList(ListNode* head) {
-        int interval = 1, len = length(head);
-        if(len &lt; 2) return head;
-        ListNode *new_head = new ListNode(-1, head);
-        while(interval &lt; len) {
-            ListNode *pre = new_head, *h = pre-&gt;next;
-            while(h) {
-                ListNode *h1 = h;
-                int cnt = interval;
-                while(h &amp;&amp; cnt) {
-                    h = h-&gt;next;
-                    cnt -= 1;
-                }
-                if(cnt) break;
-                ListNode *h2 = h;
-                cnt = interval;
-                while(h &amp;&amp; cnt) {
-                    h = h-&gt;next;
-                    cnt -= 1;
-                }
-                int len1 = interval, len2 = interval - cnt;
-                while(len1 &amp;&amp; len2) {
-                    if(h1-&gt;val &lt; h2-&gt;val) {
-                        pre-&gt;next = h1;
-                        h1 = h1-&gt;next;
-                        len1 -= 1;
-                    } else {
-                        pre-&gt;next = h2;
-                        h2 = h2-&gt;next;
-                        len2 -= 1;
-                    }
-                    pre = pre-&gt;next;
-                }
-                pre-&gt;next = len1 ? h1 : h2;
-                while(len1 &gt; 0 || len2 &gt; 0) {
-                    pre = pre-&gt;next;
-                    len1 -= 1;
-                    len2 -= 1;
-                }
-                pre-&gt;next = h;
-            }
-            interval *= 2;
-        }
-        return new_head-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode() : val(0), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">length</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">            len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">sortList</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> interval </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, len </span><span>= </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(head);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span>&lt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">new_head </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, head);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(interval </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            ListNode </span><span>*</span><span style="color:#eff1f5;">pre </span><span>=</span><span style="color:#eff1f5;"> new_head, </span><span>*</span><span style="color:#eff1f5;">h </span><span>=</span><span style="color:#eff1f5;"> pre-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(h) {
+</span><span style="color:#eff1f5;">                ListNode </span><span>*</span><span style="color:#eff1f5;">h1 </span><span>=</span><span style="color:#eff1f5;"> h;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>=</span><span style="color:#eff1f5;"> interval;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(h </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cnt) {
+</span><span style="color:#eff1f5;">                    h </span><span>=</span><span style="color:#eff1f5;"> h-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    cnt </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                ListNode </span><span>*</span><span style="color:#eff1f5;">h2 </span><span>=</span><span style="color:#eff1f5;"> h;
+</span><span style="color:#eff1f5;">                cnt </span><span>=</span><span style="color:#eff1f5;"> interval;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(h </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cnt) {
+</span><span style="color:#eff1f5;">                    h </span><span>=</span><span style="color:#eff1f5;"> h-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    cnt </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len1 </span><span>=</span><span style="color:#eff1f5;"> interval, len2 </span><span>=</span><span style="color:#eff1f5;"> interval </span><span>-</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(len1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> len2) {
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(h1-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> h2-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                        pre-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> h1;
+</span><span style="color:#eff1f5;">                        h1 </span><span>=</span><span style="color:#eff1f5;"> h1-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                        len1 </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                        pre-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> h2;
+</span><span style="color:#eff1f5;">                        h2 </span><span>=</span><span style="color:#eff1f5;"> h2-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                        len2 </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    }
+</span><span style="color:#eff1f5;">                    pre </span><span>=</span><span style="color:#eff1f5;"> pre-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                pre-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> len1 </span><span>?</span><span style="color:#eff1f5;"> h1 </span><span>:</span><span style="color:#eff1f5;"> h2;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(len1 </span><span>&gt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> len2 </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    pre </span><span>=</span><span style="color:#eff1f5;"> pre-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    len1 </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    len2 </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                pre-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> h;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            interval </span><span>*= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> new_head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="maximum-number-of-achievable-transfer-requests">Maximum Number of Achievable Transfer Requests</h2>
 <p>use dfs to enumerate combinations</p>
 <p>dfs has a shortcoming that can not enumerate combinations by number of <code>1</code> in its binary representation</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    vector&lt;int&gt; record;
-    int ans;
-    bool sat() {
-        for(auto i : record) {
-            if(i) return false;
-        }
-        return true;
-    }
-    void dfs(int index, int cur, vector&lt;vector&lt;int&gt;&gt;&amp; requests){
-        if(index == requests.size()) {
-            if(sat() &amp;&amp; cur &gt; ans) ans = cur;
-            return;
-        }
-        dfs(index+1, cur, requests);
-        record[requests[index][0]] -= 1;
-        record[requests[index][1]] += 1;
-        dfs(index+1, cur+1, requests);
-        record[requests[index][0]] += 1;
-        record[requests[index][1]] -= 1;
-    }
-public:
-    int maximumRequests(int n, vector&lt;vector&lt;int&gt;&gt;&amp; requests) {
-        record = vector&lt;int&gt;(n+1);
-        dfs(0, 0, requests);
-        return ans;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; record;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">sat</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> record) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">requests</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> requests.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sat</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cur </span><span>&gt;</span><span style="color:#eff1f5;"> ans) ans </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(index</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, cur, requests);
+</span><span style="color:#eff1f5;">        record[requests[index][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        record[requests[index][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(index</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, cur</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, requests);
+</span><span style="color:#eff1f5;">        record[requests[index][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        record[requests[index][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maximumRequests</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">requests</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        record </span><span>= </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(n</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, requests);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-18">October LeetCoding Challenge 18</h1>
 <h2 id="description">Description</h2>
 <p><strong>Best Time to Buy and Sell Stock IV</strong></p>
@@ -238,15 +238,15 @@ public:
 <p>Design an algorithm to find the maximum profit. You may complete at most <code>k</code> transactions.</p>
 <p><strong>Notice</strong> that you may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: k = 2, prices = [2,4,1]
-Output: 2
-Explanation: Buy on day 1 (price = 2) and sell on day 2 (price = 4), profit = 4-2 = 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 2, prices = [2,4,1]
+</span><span>Output: 2
+</span><span>Explanation: Buy on day 1 (price = 2) and sell on day 2 (price = 4), profit = 4-2 = 2.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: k = 2, prices = [3,2,6,5,0,3]
-Output: 7
-Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-2 = 4. Then buy on day 5 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 2, prices = [3,2,6,5,0,3]
+</span><span>Output: 7
+</span><span>Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-2 = 4. Then buy on day 5 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= k &lt;= 109</code></li>
@@ -255,33 +255,33 @@ Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-
 </ul>
 <h2 id="solution">Solution</h2>
 <p>dp</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int maxProfit(vector&lt;int&gt;&amp; prices) {
-    int ans = 0;
-    for(int i = 1; i &lt; prices.size(); ++i) {
-      if(prices[i] &gt; prices[i-1]) ans += prices[i] - prices[i-1];
-    }
-    return ans;
-  }
- public:
-  int maxProfit(int k, vector&lt;int&gt;&amp; prices) {
-    if(!prices.size()) return 0;
-    if(k*2 &gt;= prices.size()) return maxProfit(prices);
-    vector&lt;int&gt; dp(prices.size());
-    for(int i = 0; i &lt; k; ++i) {
-      int previous = dp[0];
-      int min_paid = prices[0];
-      for(int j = 1; j &lt; prices.size(); ++j) {
-        int tmp = dp[j];
-        min_paid = min(min_paid, prices[j]-previous);
-        dp[j] = max(dp[j-1], prices[j]-min_paid);
-        previous = tmp;
-      }
-    }
-    return dp[prices.size()-1];
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxProfit</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">prices</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> prices.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prices[i] </span><span>&gt;</span><span style="color:#eff1f5;"> prices[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) ans </span><span>+=</span><span style="color:#eff1f5;"> prices[i] </span><span>-</span><span style="color:#eff1f5;"> prices[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxProfit</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">prices</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">prices.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k</span><span>*</span><span style="color:#d08770;">2 </span><span>&gt;=</span><span style="color:#eff1f5;"> prices.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">maxProfit</span><span style="color:#eff1f5;">(prices);
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(prices.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> k; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> previous </span><span>=</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> min_paid </span><span>=</span><span style="color:#eff1f5;"> prices[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> prices.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tmp </span><span>=</span><span style="color:#eff1f5;"> dp[j];
+</span><span style="color:#eff1f5;">        min_paid </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(min_paid, prices[j]</span><span>-</span><span style="color:#eff1f5;">previous);
+</span><span style="color:#eff1f5;">        dp[j] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], prices[j]</span><span>-</span><span style="color:#eff1f5;">min_paid);
+</span><span style="color:#eff1f5;">        previous </span><span>=</span><span style="color:#eff1f5;"> tmp;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[prices.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

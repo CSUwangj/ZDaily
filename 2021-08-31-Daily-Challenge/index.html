@@ -118,22 +118,22 @@ renderMathInElement(document.body, katex_config);
 <p>You are given an integer array <code>nums</code> where the largest integer is <strong>unique</strong>.</p>
 <p>Determine whether the largest element in the array is <strong>at least twice</strong> as much as every other number in the array. If it is, return <em>the <strong>index</strong> of the largest element, or return</em> <code>-1</code> <em>otherwise</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [3,6,1,0]
-Output: 1
-Explanation: 6 is the largest integer.
-For every other number in the array x, 6 is at least twice as big as x.
-The index of value 6 is 1, so we return 1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,6,1,0]
+</span><span>Output: 1
+</span><span>Explanation: 6 is the largest integer.
+</span><span>For every other number in the array x, 6 is at least twice as big as x.
+</span><span>The index of value 6 is 1, so we return 1.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1,2,3,4]
-Output: -1
-Explanation: 4 is less than twice the value of 3, so we return -1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3,4]
+</span><span>Output: -1
+</span><span>Explanation: 4 is less than twice the value of 3, so we return -1.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [1]
-Output: 0
-Explanation: 1 is trivially at least twice the value as any other number because there are no other numbers.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1]
+</span><span>Output: 0
+</span><span>Explanation: 1 is trivially at least twice the value as any other number because there are no other numbers.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 50</code></li>
@@ -141,29 +141,29 @@ Explanation: 1 is trivially at least twice the value as any other number because
 <li>The largest element in <code>nums</code> is unique.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int dominantIndex(vector&lt;int&gt;&amp; nums) {
-    int max[2] = {};
-    int answer = -1;
-    for(int i = 0; i &lt; nums.size(); ++i) {
-      if(nums[i] &gt; max[0]) {
-        max[1] = max[0];
-        max[0] = nums[i];
-        answer = i;
-      } else if(nums[i] &gt; max[1]) {
-        max[1] = nums[i];
-      }
-    }
-    return (max[0] &gt;= max[1] * 2) ? answer : -1;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 232&#x2F;232 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 69.27 % of cpp submissions (10.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">dominantIndex</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> max[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> max[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        max[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> max[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        max[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">        answer </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> max[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        max[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(max[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&gt;=</span><span style="color:#eff1f5;"> max[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>?</span><span style="color:#eff1f5;"> answer </span><span>: -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 232/232 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 69.27 % of cpp submissions (10.8 MB)
+</span></code></pre>
 <h1 id="august-leetcoding-challenge-31">August LeetCoding Challenge 31</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Find Minimum in Rotated Sorted Array</strong></p>
@@ -176,20 +176,20 @@ public:
 <p>Given the sorted rotated array <code>nums</code> of <strong>unique</strong> elements, return <em>the minimum element of this array</em>.</p>
 <p>You must write an algorithm that runs in <code>O(log n) time.</code></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [3,4,5,1,2]
-Output: 1
-Explanation: The original array was [1,2,3,4,5] rotated 3 times.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,4,5,1,2]
+</span><span>Output: 1
+</span><span>Explanation: The original array was [1,2,3,4,5] rotated 3 times.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [4,5,6,7,0,1,2]
-Output: 0
-Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [4,5,6,7,0,1,2]
+</span><span>Output: 0
+</span><span>Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [11,13,15,17]
-Output: 11
-Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [11,13,15,17]
+</span><span>Output: 11
+</span><span>Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == nums.length</code></li>
@@ -199,35 +199,35 @@ Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
 <li><code>nums</code> is sorted and rotated between <code>1</code> and <code>n</code> times.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int findMin(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    int low = 0;
-    int high = len - 1;
-    while(nums[low] &gt; nums[high]) {
-      int mid = (low + high) &gt;&gt; 1;
-      if(nums[mid] &gt;= nums[low]) {
-        low = mid + 1;
-      } else {
-        high = mid;
-      }
-    }
-    return nums[low];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 150&#x2F;150 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 23.47 % of cpp submissions (10.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findMin</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> low </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> high </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(nums[low] </span><span>&gt;</span><span style="color:#eff1f5;"> nums[high]) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(low </span><span>+</span><span style="color:#eff1f5;"> high) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[mid] </span><span>&gt;=</span><span style="color:#eff1f5;"> nums[low]) {
+</span><span style="color:#eff1f5;">        low </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        high </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> nums[low];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 150/150 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 23.47 % of cpp submissions (10.4 MB)
+</span></code></pre>
 
     </div>
   </div>

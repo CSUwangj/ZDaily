@@ -125,13 +125,13 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/05/02/tree.png" alt="img" /></p>
-<pre><code>Input: root = [4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
-Output: [30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
+</span><span>Output: [30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: root = [0,null,1]
-Output: [1,null,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [0,null,1]
+</span><span>Output: [1,null,1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[0, 10^4]</code>.</li>
@@ -141,33 +141,33 @@ Output: [1,null,1]
 </ul>
 <p><strong>Note:</strong> This question is the same as 1038: https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  void traversal(TreeNode *root, int &amp;sum) {
-    if(!root) return;
-    traversal(root-&gt;right, sum);
-    root-&gt;val += sum;
-    sum = root-&gt;val;
-    traversal(root-&gt;left, sum);
-  }
-public:
-  TreeNode* convertBST(TreeNode* root) {
-    int tmp = 0;
-    traversal(root, tmp);
-    return root;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 215&#x2F;215 cases passed (38 ms)
-&#x2F;&#x2F; Your runtime beats 83.38 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 12.35 % of cpp submissions (33.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">traversal</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, sum);
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">val </span><span>+=</span><span style="color:#eff1f5;"> sum;
+</span><span style="color:#eff1f5;">    sum </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, sum);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">convertBST</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tmp </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root, tmp);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 215/215 cases passed (38 ms)
+</span><span style="color:#65737e;">// Your runtime beats 83.38 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 12.35 % of cpp submissions (33.6 MB)
+</span></code></pre>
 
     </div>
   </div>

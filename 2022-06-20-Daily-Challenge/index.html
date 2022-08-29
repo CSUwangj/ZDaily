@@ -124,18 +124,18 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Given an array of <code>words</code>, return <em>the <strong>length of the shortest reference string</strong></em> <code>s</code> <em>possible of any <strong>valid encoding</strong> of</em> <code>words</code><em>.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: words = [&quot;time&quot;, &quot;me&quot;, &quot;bell&quot;]
-Output: 10
-Explanation: A valid encoding would be s = &quot;time#bell#&quot; and indices = [0, 2, 5].
-words[0] = &quot;time&quot;, the substring of s starting from indices[0] = 0 to the next &#x27;#&#x27; is underlined in &quot;time#bell#&quot;
-words[1] = &quot;me&quot;, the substring of s starting from indices[1] = 2 to the next &#x27;#&#x27; is underlined in &quot;time#bell#&quot;
-words[2] = &quot;bell&quot;, the substring of s starting from indices[2] = 5 to the next &#x27;#&#x27; is underlined in &quot;time#bell#&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;time&quot;, &quot;me&quot;, &quot;bell&quot;]
+</span><span>Output: 10
+</span><span>Explanation: A valid encoding would be s = &quot;time#bell#&quot; and indices = [0, 2, 5].
+</span><span>words[0] = &quot;time&quot;, the substring of s starting from indices[0] = 0 to the next &#39;#&#39; is underlined in &quot;time#bell#&quot;
+</span><span>words[1] = &quot;me&quot;, the substring of s starting from indices[1] = 2 to the next &#39;#&#39; is underlined in &quot;time#bell#&quot;
+</span><span>words[2] = &quot;bell&quot;, the substring of s starting from indices[2] = 5 to the next &#39;#&#39; is underlined in &quot;time#bell#&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: words = [&quot;t&quot;]
-Output: 2
-Explanation: A valid encoding would be s = &quot;t#&quot; and indices = [0].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;t&quot;]
+</span><span>Output: 2
+</span><span>Explanation: A valid encoding would be s = &quot;t#&quot; and indices = [0].
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= words.length &lt;= 2000</code></li>
@@ -143,27 +143,27 @@ Explanation: A valid encoding would be s = &quot;t#&quot; and indices = [0].
 <li><code>words[i]</code> consists of only lowercase letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int minimumLengthEncoding(vector&lt;string&gt;&amp; words) {
-    for(auto &amp;word : words) reverse(word.begin(), word.end());
-    sort(words.begin(), words.end());
-    int answer = 0;
-    int len = words.size();
-    for(int i = 0; i &lt; len; ++i) {
-      bool unique = true;
-      if(i &lt; len - 1 &amp;&amp; words[i + 1].rfind(words[i], 0) == 0) unique = false;
-      if(unique) answer += words[i].length() + 1;
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 36&#x2F;36 cases passed (50 ms)
-&#x2F;&#x2F; Your runtime beats 93.14 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 94.12 % of cpp submissions (13.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minimumLengthEncoding</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> words) </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(word.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), word.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(words.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), words.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> words.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> unique </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> words[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">rfind</span><span style="color:#eff1f5;">(words[i], </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) unique </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(unique) answer </span><span>+=</span><span style="color:#eff1f5;"> words[i].</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 36/36 cases passed (50 ms)
+</span><span style="color:#65737e;">// Your runtime beats 93.14 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 94.12 % of cpp submissions (13.8 MB)
+</span></code></pre>
 
     </div>
   </div>

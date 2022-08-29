@@ -120,21 +120,21 @@ renderMathInElement(document.body, katex_config);
 <p>The testcases will be generated such that the answer is <strong>unique</strong>.</p>
 <p>A <strong>substring</strong> is a contiguous sequence of characters within the string.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;ADOBECODEBANC&quot;, t = &quot;ABC&quot;
-Output: &quot;BANC&quot;
-Explanation: The minimum window substring &quot;BANC&quot; includes &#x27;A&#x27;, &#x27;B&#x27;, and &#x27;C&#x27; from string t.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;ADOBECODEBANC&quot;, t = &quot;ABC&quot;
+</span><span>Output: &quot;BANC&quot;
+</span><span>Explanation: The minimum window substring &quot;BANC&quot; includes &#39;A&#39;, &#39;B&#39;, and &#39;C&#39; from string t.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;a&quot;, t = &quot;a&quot;
-Output: &quot;a&quot;
-Explanation: The entire string s is the minimum window.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;a&quot;, t = &quot;a&quot;
+</span><span>Output: &quot;a&quot;
+</span><span>Explanation: The entire string s is the minimum window.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;a&quot;, t = &quot;aa&quot;
-Output: &quot;&quot;
-Explanation: Both &#x27;a&#x27;s from t must be included in the window.
-Since the largest window of s only has one &#x27;a&#x27;, return empty string.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;a&quot;, t = &quot;aa&quot;
+</span><span>Output: &quot;&quot;
+</span><span>Explanation: Both &#39;a&#39;s from t must be included in the window.
+</span><span>Since the largest window of s only has one &#39;a&#39;, return empty string.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == s.length</code></li>
@@ -144,52 +144,52 @@ Since the largest window of s only has one &#x27;a&#x27;, return empty string.
 </ul>
 <p><strong>Follow up:</strong> Could you find an algorithm that runs in <code>O(m + n)</code> time?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  int cnt[128] = {};
-public:
-  string minWindow(string s, string t) {
-    int chars = 0;
-    for(auto c : t) {
-      chars += !cnt[c];
-      cnt[c] += 1;
-    }
-    int end = 0;
-    int sLen = s.length();
-    while(end &lt; sLen &amp;&amp; chars) {
-      cnt[s[end]] -= 1;
-      chars -= !cnt[s[end]];
-      end += 1;
-    }
-    if(chars) return &quot;&quot;;
-    int resultLen = INT_MAX;
-    int resultBegin = 0;
-    for(int begin = 0; begin &lt; end; ++begin) {
-      if(end - begin &lt; resultLen) {
-        resultLen = end - begin;
-        resultBegin = begin;
-      }
-      cnt[s[begin]] += 1;
-      while(end &lt; sLen &amp;&amp; cnt[s[begin]] &gt; 0) {
-        cnt[s[end]] -= 1;
-        end += 1;
-      }
-      if(cnt[s[begin]] &gt; 0) break;
-    }
-    return s.substr(resultBegin, resultLen);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 266&#x2F;266 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 80.15 % of cpp submissions (7.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">minWindow</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">t</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> chars </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> t) {
+</span><span style="color:#eff1f5;">      chars </span><span>+= !</span><span style="color:#eff1f5;">cnt[c];
+</span><span style="color:#eff1f5;">      cnt[c] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sLen </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(end </span><span>&lt; </span><span style="color:#bf616a;">sLen </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> chars) {
+</span><span style="color:#eff1f5;">      cnt[s[end]] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      chars </span><span>-= !</span><span style="color:#eff1f5;">cnt[s[end]];
+</span><span style="color:#eff1f5;">      end </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(chars) </span><span style="color:#b48ead;">return </span><span>&quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> resultLen </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> resultBegin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; begin </span><span>&lt;</span><span style="color:#eff1f5;"> end; </span><span>++</span><span style="color:#eff1f5;">begin) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(end </span><span>-</span><span style="color:#eff1f5;"> begin </span><span>&lt;</span><span style="color:#eff1f5;"> resultLen) {
+</span><span style="color:#eff1f5;">        resultLen </span><span>=</span><span style="color:#eff1f5;"> end </span><span>-</span><span style="color:#eff1f5;"> begin;
+</span><span style="color:#eff1f5;">        resultBegin </span><span>=</span><span style="color:#eff1f5;"> begin;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cnt[s[begin]] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(end </span><span>&lt; </span><span style="color:#bf616a;">sLen </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cnt[s[begin]] </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        cnt[s[end]] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        end </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt[s[begin]] </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(resultBegin, resultLen);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 266/266 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 80.15 % of cpp submissions (7.7 MB)
+</span></code></pre>
 
     </div>
   </div>

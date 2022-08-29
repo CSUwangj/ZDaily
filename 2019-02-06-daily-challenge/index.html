@@ -123,45 +123,45 @@ renderMathInElement(document.body, katex_config);
 <p>Modular arithmetic has compatibility with addition\multiplication.</p>
 <p>Be careful, result of middle processing will exceed 2^64.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut ans: u128 = 0;
-    const MOD: u128 = 10_000_000_000;
-    for i in 1..1001 {
-        ans += quick_pow(i, i, MOD);
-        ans %= MOD;
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn quick_pow(mut b: u128, mut e: u128, m: u128) -&gt; u128 {
-    let mut ans = 1;
-    while e != 0 {
-        if e&amp;1 == 1 {
-            ans *= b;
-            ans %= m;
-        }
-        e &gt;&gt;= 1;
-        b *= b;
-        b %= m;
-    }
-    return ans;
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: </span><span style="color:#b48ead;">u128 </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#d08770;">MOD</span><span>: </span><span style="color:#b48ead;">u128 </span><span>= </span><span style="color:#d08770;">10_000_000_000</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">1001 </span><span>{
+</span><span>        ans += </span><span style="color:#96b5b4;">quick_pow</span><span>(i, i, </span><span style="color:#d08770;">MOD</span><span>);
+</span><span>        ans %= </span><span style="color:#d08770;">MOD</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">quick_pow</span><span>(</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">b</span><span>: </span><span style="color:#b48ead;">u128</span><span>, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">e</span><span>: </span><span style="color:#b48ead;">u128</span><span>, </span><span style="color:#bf616a;">m</span><span>: </span><span style="color:#b48ead;">u128</span><span>) -&gt; </span><span style="color:#b48ead;">u128 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span> e != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span> e&amp;</span><span style="color:#d08770;">1 </span><span>== </span><span style="color:#d08770;">1 </span><span>{
+</span><span>            ans *= b;
+</span><span>            ans %= m;
+</span><span>        }
+</span><span>        e &gt;&gt;= </span><span style="color:#d08770;">1</span><span>;
+</span><span>        b *= b;
+</span><span>        b %= m;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">return</span><span> ans;
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="637-average-of-levels-in-binary-tree">637. Average of Levels in Binary Tree</h3>
 <p>Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input:
-    3
-   &#x2F; \
-  9  20
-    &#x2F;  \
-   15   7
-Output: [3, 14.5, 11]
-Explanation:
-The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input:
+</span><span>    3
+</span><span>   / \
+</span><span>  9  20
+</span><span>    /  \
+</span><span>   15   7
+</span><span>Output: [3, 14.5, 11]
+</span><span>Explanation:
+</span><span>The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>The range of node's value is in the range of 32-bit signed integer.</li>
@@ -171,69 +171,69 @@ The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 
 <p>I've write a non-FP implementation and an implementation with a little FP :D</p>
 <h2 id="implementation-1">Implementation</h2>
 <p>non-FP</p>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- *&#x2F;
-&#x2F;**
- * @param {TreeNode} root
- * @return {number[]}
- *&#x2F;
-var averageOfLevels = function(root) {
-  let queue = [];
-  let ans = [];
-  let cnt = [];
-  queue.push([0, root]);
-  while (queue.length) {
-    let cur = queue.shift();
-    if (cur[1] === null) continue;
-    if (ans.length &lt;= cur[0]) ans.push(cur[1].val);
-    else ans[cur[0]] += cur[1].val;
-    if (cnt.length &lt;= cur[0]) cnt.push(1);
-    else cnt[cur[0]] += 1;
-    queue.push([cur[0]+1, cur[1].left]);
-    queue.push([cur[0]+1, cur[1].right]);
-  }
-  for (const [index, value] of ans.entries()) {
-    ans[index] = value&#x2F;cnt[index];
-  }
-  return ans;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * function TreeNode(val) {
+</span><span style="color:#65737e;"> *     this.val = val;
+</span><span style="color:#65737e;"> *     this.left = this.right = null;
+</span><span style="color:#65737e;"> * }
+</span><span style="color:#65737e;"> */
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{TreeNode} </span><span style="color:#bf616a;">root
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">averageOfLevels </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">root</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">queue </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cnt </span><span>= [];
+</span><span>  </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>([</span><span style="color:#d08770;">0</span><span>, root]);
+</span><span>  </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#bf616a;">queue</span><span>.length) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">shift</span><span>();
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>] === </span><span style="color:#d08770;">null</span><span>) </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">ans</span><span>.length &lt;= </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]) </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">val</span><span>);
+</span><span>    </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">ans</span><span>[</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]] += </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">val</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">cnt</span><span>.length &lt;= </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]) </span><span style="color:#bf616a;">cnt</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#d08770;">1</span><span>);
+</span><span>    </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">cnt</span><span>[</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>([</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]+</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>].left]);
+</span><span>    </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>([</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]+</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>].right]);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span>[</span><span style="color:#bf616a;">index</span><span>, </span><span style="color:#bf616a;">value</span><span>] of </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">entries</span><span>()) {
+</span><span>    </span><span style="color:#bf616a;">ans</span><span>[</span><span style="color:#bf616a;">index</span><span>] = </span><span style="color:#bf616a;">value</span><span>/</span><span style="color:#bf616a;">cnt</span><span>[</span><span style="color:#bf616a;">index</span><span>];
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
 <p>A little FP</p>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- *&#x2F;
-&#x2F;**
- * @param {TreeNode} root
- * @return {number[]}
- *&#x2F;
-var averageOfLevels = function(root) {
-  let queue = [];
-  let ans = [];
-  queue.push([0, root]);
-  while (queue.length) {
-    let cur = queue.shift();
-    if (cur[1] === null) continue;
-    if (ans.length &lt; cur[0]) {
-      ans.push({cnt : 1, sum : cur[1].val});
-    } else {
-      ans[cur[0]].cnt += 1;
-      ans[cur[0]].sum += cur[1].val;
-    }
-    queue.push([cur[0]+1, cur[1].left]);
-    queue.push([cur[0]+1, cur[1].right]);
-  }
-  return ans.map(val =&gt; val.sum&#x2F;val.cnt);
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * function TreeNode(val) {
+</span><span style="color:#65737e;"> *     this.val = val;
+</span><span style="color:#65737e;"> *     this.left = this.right = null;
+</span><span style="color:#65737e;"> * }
+</span><span style="color:#65737e;"> */
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{TreeNode} </span><span style="color:#bf616a;">root
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">averageOfLevels </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">root</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">queue </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [];
+</span><span>  </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>([</span><span style="color:#d08770;">0</span><span>, root]);
+</span><span>  </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#bf616a;">queue</span><span>.length) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">shift</span><span>();
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>] === </span><span style="color:#d08770;">null</span><span>) </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">ans</span><span>.length &lt; </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]) {
+</span><span>      </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>({cnt : </span><span style="color:#d08770;">1</span><span>, sum : </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">val</span><span>});
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>      </span><span style="color:#bf616a;">ans</span><span>[</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]].</span><span style="color:#bf616a;">cnt </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>      </span><span style="color:#bf616a;">ans</span><span>[</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]].</span><span style="color:#bf616a;">sum </span><span>+= </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">val</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>([</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]+</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>].left]);
+</span><span>    </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>([</span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">0</span><span>]+</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">cur</span><span>[</span><span style="color:#d08770;">1</span><span>].right]);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">val </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">val</span><span>.</span><span style="color:#bf616a;">sum</span><span>/</span><span style="color:#bf616a;">val</span><span>.</span><span style="color:#bf616a;">cnt</span><span>);
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

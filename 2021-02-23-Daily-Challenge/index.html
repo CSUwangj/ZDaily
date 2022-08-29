@@ -120,29 +120,29 @@ renderMathInElement(document.body, katex_config);
 <p>Return the number of moments in which <strong>all turned on</strong> bulbs <strong>are blue.</strong></p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/02/29/sample_2_1725.png" alt="img" /></p>
-<pre><code>Input: light = [2,1,3,5,4]
-Output: 3
-Explanation: All bulbs turned on, are blue at the moment 1, 2 and 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: light = [2,1,3,5,4]
+</span><span>Output: 3
+</span><span>Explanation: All bulbs turned on, are blue at the moment 1, 2 and 4.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: light = [3,2,4,1,5]
-Output: 2
-Explanation: All bulbs turned on, are blue at the moment 3, and 4 (index-0).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: light = [3,2,4,1,5]
+</span><span>Output: 2
+</span><span>Explanation: All bulbs turned on, are blue at the moment 3, and 4 (index-0).
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: light = [4,1,2,3]
-Output: 1
-Explanation: All bulbs turned on, are blue at the moment 3 (index-0).
-Bulb 4th changes to blue at the moment 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: light = [4,1,2,3]
+</span><span>Output: 1
+</span><span>Explanation: All bulbs turned on, are blue at the moment 3 (index-0).
+</span><span>Bulb 4th changes to blue at the moment 3.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: light = [2,1,4,3,6,5]
-Output: 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: light = [2,1,4,3,6,5]
+</span><span>Output: 3
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: light = [1,2,3,4,5,6]
-Output: 6
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: light = [1,2,3,4,5,6]
+</span><span>Output: 6
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == light.length</code></li>
@@ -150,21 +150,21 @@ Output: 6
 <li><code>light</code> is a permutation of <code>[1, 2, ..., n]</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int numTimesAllBlue(vector&lt;int&gt;&amp; light) {
-        int cnt = 0;
-        int right = 0;
-        int answer = 0;
-        for(auto i : light) {
-            right = max(right, i);
-            cnt += 1;
-            answer += (cnt == right);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numTimesAllBlue</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">light</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> right </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> light) {
+</span><span style="color:#eff1f5;">            right </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(right, i);
+</span><span style="color:#eff1f5;">            cnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            answer </span><span>+= </span><span style="color:#eff1f5;">(cnt </span><span>==</span><span style="color:#eff1f5;"> right);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="february-leetcoding-challenge-23">February LeetCoding Challenge 23</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Search a 2D Matrix II</strong></p>
@@ -175,14 +175,14 @@ public:
 </ul>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/24/searchgrid2.jpg" alt="img" /></p>
-<pre><code>Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/24/searchgrid.jpg" alt="img" /></p>
-<pre><code>Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == matrix.length</code></li>
@@ -195,49 +195,49 @@ Output: false
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>bad binary search, doubt if it's slower than binary search</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    bool searchInMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target, int top, int down, int left, int right) {
-        if(top &gt; down || left &gt; right) return false;
-        int verticalMiddle = (top + down) &gt;&gt; 1;
-        int horizontalMiddle = (left + right) &gt;&gt; 1;
-        if(matrix[verticalMiddle][horizontalMiddle] == target) return true;
-        if(matrix[verticalMiddle][horizontalMiddle] &gt; target) {
-            return searchInMatrix(matrix, target, top, verticalMiddle-1, horizontalMiddle, right) ||
-                   searchInMatrix(matrix, target, verticalMiddle, down, left, horizontalMiddle-1) ||
-                   searchInMatrix(matrix, target, top, verticalMiddle-1, left, horizontalMiddle-1);
-        } else {
-            return searchInMatrix(matrix, target, top, verticalMiddle, horizontalMiddle+1, right) ||
-                   searchInMatrix(matrix, target, verticalMiddle+1, down, left, horizontalMiddle) ||
-                   searchInMatrix(matrix, target, verticalMiddle+1, down, horizontalMiddle+1, right);
-        }
-    }
-public:
-    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {
-        int m = matrix.size();
-        int n = matrix.front().size();
-        return searchInMatrix(matrix, target, 0, m-1, 0, n-1);
-    }
-};
-
-&#x2F;&#x2F; 128 &#x2F; 128 test cases passed.
-&#x2F;&#x2F; Status: Accepted
-&#x2F;&#x2F; Runtime: 1884 ms
-&#x2F;&#x2F; Memory Usage: 14.8 MB
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">searchInMatrix</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">matrix</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">down</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(top </span><span>&gt;</span><span style="color:#eff1f5;"> down </span><span>||</span><span style="color:#eff1f5;"> left </span><span>&gt;</span><span style="color:#eff1f5;"> right) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> verticalMiddle </span><span>= </span><span style="color:#eff1f5;">(top </span><span>+</span><span style="color:#eff1f5;"> down) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> horizontalMiddle </span><span>= </span><span style="color:#eff1f5;">(left </span><span>+</span><span style="color:#eff1f5;"> right) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(matrix[verticalMiddle][horizontalMiddle] </span><span>==</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(matrix[verticalMiddle][horizontalMiddle] </span><span>&gt;</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">searchInMatrix</span><span style="color:#eff1f5;">(matrix, target, top, verticalMiddle</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, horizontalMiddle, right) </span><span>||
+</span><span style="color:#eff1f5;">                   </span><span style="color:#bf616a;">searchInMatrix</span><span style="color:#eff1f5;">(matrix, target, verticalMiddle, down, left, horizontalMiddle</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>||
+</span><span style="color:#eff1f5;">                   </span><span style="color:#bf616a;">searchInMatrix</span><span style="color:#eff1f5;">(matrix, target, top, verticalMiddle</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, left, horizontalMiddle</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">searchInMatrix</span><span style="color:#eff1f5;">(matrix, target, top, verticalMiddle, horizontalMiddle</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, right) </span><span>||
+</span><span style="color:#eff1f5;">                   </span><span style="color:#bf616a;">searchInMatrix</span><span style="color:#eff1f5;">(matrix, target, verticalMiddle</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, down, left, horizontalMiddle) </span><span>||
+</span><span style="color:#eff1f5;">                   </span><span style="color:#bf616a;">searchInMatrix</span><span style="color:#eff1f5;">(matrix, target, verticalMiddle</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, down, horizontalMiddle</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, right);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">searchMatrix</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">matrix</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> m </span><span>=</span><span style="color:#eff1f5;"> matrix.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>=</span><span style="color:#eff1f5;"> matrix.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">searchInMatrix</span><span style="color:#eff1f5;">(matrix, target, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, m</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, n</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 128 / 128 test cases passed.
+</span><span style="color:#65737e;">// Status: Accepted
+</span><span style="color:#65737e;">// Runtime: 1884 ms
+</span><span style="color:#65737e;">// Memory Usage: 14.8 MB
+</span></code></pre>
 <p>oh shit</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {
-        for(auto &amp;row : matrix) for(auto num : row) if(num == target) return true;
-        return false;
-    }
-};
-
-&#x2F;&#x2F; 128 &#x2F; 128 test cases passed.
-&#x2F;&#x2F; Status: Accepted
-&#x2F;&#x2F; Runtime: 604 ms
-&#x2F;&#x2F; Memory Usage: 14.9 MB
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">searchMatrix</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">matrix</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">row </span><span>:</span><span style="color:#eff1f5;"> matrix) </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> num </span><span>:</span><span style="color:#eff1f5;"> row) </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>==</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 128 / 128 test cases passed.
+</span><span style="color:#65737e;">// Status: Accepted
+</span><span style="color:#65737e;">// Runtime: 604 ms
+</span><span style="color:#65737e;">// Memory Usage: 14.9 MB
+</span></code></pre>
 
     </div>
   </div>

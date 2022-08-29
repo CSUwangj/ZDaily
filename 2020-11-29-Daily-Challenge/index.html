@@ -116,50 +116,50 @@ renderMathInElement(document.body, katex_config);
 <span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
 <h2 id="sliding-window-maximum">Sliding Window Maximum</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) {
-        deque&lt;int&gt; monoQueue;
-        for(int i = 0; i &lt; k; ++i) {
-            while(monoQueue.size() &amp;&amp; monoQueue.back() &lt; nums[i]) monoQueue.pop_back();
-            monoQueue.push_back(nums[i]);
-        }
-        vector&lt;int&gt; answer{monoQueue.front()};
-        for(int i = k; i &lt; nums.size(); ++i) {
-            while(monoQueue.size() &amp;&amp; monoQueue.back() &lt; nums[i]) monoQueue.pop_back();
-            if(monoQueue.size() &amp;&amp; monoQueue.front() == nums[i-k]) monoQueue.pop_front();
-            monoQueue.push_back(nums[i]);
-            answer.push_back(monoQueue.front());
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">maxSlidingWindow</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        deque&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; monoQueue;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> k; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoQueue.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoQueue.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> nums[i]) monoQueue.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            monoQueue.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(nums[i]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">{monoQueue.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">()};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> k; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoQueue.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoQueue.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> nums[i]) monoQueue.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(monoQueue.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoQueue.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> nums[i</span><span>-</span><span style="color:#eff1f5;">k]) monoQueue.</span><span style="color:#bf616a;">pop_front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            monoQueue.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(nums[i]);
+</span><span style="color:#eff1f5;">            answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(monoQueue.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-29">November LeetCoding Challenge 29</h1>
 <h2 id="description">Description</h2>
 <p><strong>Jump Game III</strong></p>
 <p>Given an array of non-negative integers <code>arr</code>, you are initially positioned at <code>start</code> index of the array. When you are at index <code>i</code>, you can jump to <code>i + arr[i]</code> or <code>i - arr[i]</code>, check if you can reach to <strong>any</strong> index with value 0.</p>
 <p>Notice that you can not jump outside of the array at any time.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: arr = [4,2,3,0,3,1,2], start = 5
-Output: true
-Explanation: 
-All possible ways to reach at index 3 with value 0 are: 
-index 5 -&gt; index 4 -&gt; index 1 -&gt; index 3 
-index 5 -&gt; index 6 -&gt; index 4 -&gt; index 1 -&gt; index 3 
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [4,2,3,0,3,1,2], start = 5
+</span><span>Output: true
+</span><span>Explanation: 
+</span><span>All possible ways to reach at index 3 with value 0 are: 
+</span><span>index 5 -&gt; index 4 -&gt; index 1 -&gt; index 3 
+</span><span>index 5 -&gt; index 6 -&gt; index 4 -&gt; index 1 -&gt; index 3 
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: arr = [4,2,3,0,3,1,2], start = 0
-Output: true 
-Explanation: 
-One possible way to reach at index 3 with value 0 is: 
-index 0 -&gt; index 4 -&gt; index 1 -&gt; index 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [4,2,3,0,3,1,2], start = 0
+</span><span>Output: true 
+</span><span>Explanation: 
+</span><span>One possible way to reach at index 3 with value 0 is: 
+</span><span>index 0 -&gt; index 4 -&gt; index 1 -&gt; index 3
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: arr = [3,0,2,1,2], start = 2
-Output: false
-Explanation: There is no way to reach at index 1 with value 0.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [3,0,2,1,2], start = 2
+</span><span>Output: false
+</span><span>Explanation: There is no way to reach at index 1 with value 0.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= arr.length &lt;= 5 * 10^4</code></li>
@@ -168,45 +168,45 @@ Explanation: There is no way to reach at index 1 with value 0.
 </ul>
 <h2 id="solution">Solution</h2>
 <p>DFS, time complexity is $O(n)$</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    vector&lt;bool&gt; visited;
-    bool dfs(vector&lt;int&gt; &amp;arr, int current) {
-        if(visited[current]) return false;
-        if(arr[current] == 0) return true;
-        visited[current] = true;
-        if(current + arr[current] &lt; arr.size() &amp;&amp; dfs(arr, current + arr[current])) return true;
-        if(current - arr[current] &gt;= 0 &amp;&amp; dfs(arr, current - arr[current])) return true;
-        return false;
-    }
-public:
-    bool canReach(vector&lt;int&gt;&amp; arr, int start) {
-        visited = vector&lt;bool&gt;(arr.size(), false);
-        return dfs(arr, start);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; visited;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(visited[current]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(arr[current] </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        visited[current] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current </span><span>+</span><span style="color:#eff1f5;"> arr[current] </span><span>&lt;</span><span style="color:#eff1f5;"> arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp; </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(arr, current </span><span>+</span><span style="color:#eff1f5;"> arr[current])) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current </span><span>-</span><span style="color:#eff1f5;"> arr[current] </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp; </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(arr, current </span><span>-</span><span style="color:#eff1f5;"> arr[current])) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">canReach</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">start</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        visited </span><span>= </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;(arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(arr, start);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>BFS is ok too, with same time complexity and space complexity.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool canReach(vector&lt;int&gt;&amp; arr, int start) {
-        vector&lt;bool&gt; visited(arr.size());
-        queue&lt;int&gt; q;
-        q.push(start);
-        int len = arr.size();
-        while(q.size()) {
-            int current = q.front();
-            q.pop();
-            if(arr[current] == 0) return true;
-            visited[current] = true;
-            int farther = current + arr[current];
-            if(farther &lt; len &amp;&amp; !visited[farther]) q.push(farther);
-            int near = current - arr[current];
-            if(near &gt;= 0 &amp;&amp; !visited[near]) q.push(near);
-        }
-        return false;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">canReach</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">start</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">visited</span><span style="color:#eff1f5;">(arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(start);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(arr[current] </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            visited[current] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> farther </span><span>=</span><span style="color:#eff1f5;"> current </span><span>+</span><span style="color:#eff1f5;"> arr[current];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(farther </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">visited[farther]) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(farther);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> near </span><span>=</span><span style="color:#eff1f5;"> current </span><span>-</span><span style="color:#eff1f5;"> arr[current];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(near </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">visited[near]) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(near);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

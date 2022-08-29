@@ -122,18 +122,18 @@ renderMathInElement(document.body, katex_config);
 <p>The testcases are generated so that the answer will be less than or equal to <code>2 * 109</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/04/robot1.jpg" alt="img" /></p>
-<pre><code>Input: obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]
-Output: 2
-Explanation: There is one obstacle in the middle of the 3x3 grid above.
-There are two ways to reach the bottom-right corner:
-1. Right -&gt; Right -&gt; Down -&gt; Down
-2. Down -&gt; Down -&gt; Right -&gt; Right
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]
+</span><span>Output: 2
+</span><span>Explanation: There is one obstacle in the middle of the 3x3 grid above.
+</span><span>There are two ways to reach the bottom-right corner:
+</span><span>1. Right -&gt; Right -&gt; Down -&gt; Down
+</span><span>2. Down -&gt; Down -&gt; Right -&gt; Right
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/04/robot2.jpg" alt="img" /></p>
-<pre><code>Input: obstacleGrid = [[0,1],[0,0]]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: obstacleGrid = [[0,1],[0,0]]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == obstacleGrid.length</code></li>
@@ -142,27 +142,27 @@ Output: 1
 <li><code>obstacleGrid[i][j]</code> is <code>0</code> or <code>1</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int uniquePathsWithObstacles(vector&lt;vector&lt;int&gt;&gt;&amp; obstacleGrid) {
-    int m = obstacleGrid.size(), n = obstacleGrid[0].size();
-    if(obstacleGrid[0][0] || obstacleGrid[m-1][n-1]) return 0;
-    vector&lt;int&gt; dp(m*n);
-    dp[0] = 1;
-    for(int i = 1; i &lt; m*n; ++i) {
-      if(obstacleGrid[i&#x2F;n][i%n] == 1) continue;
-      if(i &gt;= n) dp[i] += dp[i-n];
-      if(i % n != 0) dp[i] += dp[i-1];
-    }
-    return dp.back();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 41&#x2F;41 cases passed (11 ms)
-&#x2F;&#x2F; Your runtime beats 10.13 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 73.85 % of cpp submissions (7.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">uniquePathsWithObstacles</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">obstacleGrid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> m </span><span>=</span><span style="color:#eff1f5;"> obstacleGrid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), n </span><span>=</span><span style="color:#eff1f5;"> obstacleGrid[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(obstacleGrid[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>||</span><span style="color:#eff1f5;"> obstacleGrid[m</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][n</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(m</span><span>*</span><span style="color:#eff1f5;">n);
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> m</span><span>*</span><span style="color:#eff1f5;">n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(obstacleGrid[i</span><span>/</span><span style="color:#eff1f5;">n][i</span><span>%</span><span style="color:#eff1f5;">n] </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>&gt;=</span><span style="color:#eff1f5;"> n) dp[i] </span><span>+=</span><span style="color:#eff1f5;"> dp[i</span><span>-</span><span style="color:#eff1f5;">n];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>%</span><span style="color:#eff1f5;"> n </span><span>!= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) dp[i] </span><span>+=</span><span style="color:#eff1f5;"> dp[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 41/41 cases passed (11 ms)
+</span><span style="color:#65737e;">// Your runtime beats 10.13 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 73.85 % of cpp submissions (7.7 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -121,20 +121,20 @@ renderMathInElement(document.body, katex_config);
 <p>For each <code>0 &lt;= i &lt; nums1.length</code>, find the index <code>j</code> such that <code>nums1[i] == nums2[j]</code> and determine the <strong>next greater element</strong> of <code>nums2[j]</code> in <code>nums2</code>. If there is no next greater element, then the answer for this query is <code>-1</code>.</p>
 <p>Return <em>an array</em> <code>ans</code> <em>of length</em> <code>nums1.length</code> <em>such that</em> <code>ans[i]</code> <em>is the <strong>next greater element</strong> as described above.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
-Output: [-1,3,-1]
-Explanation: The next greater element for each value of nums1 is as follows:
-- 4 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
-- 1 is underlined in nums2 = [1,3,4,2]. The next greater element is 3.
-- 2 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
+</span><span>Output: [-1,3,-1]
+</span><span>Explanation: The next greater element for each value of nums1 is as follows:
+</span><span>- 4 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+</span><span>- 1 is underlined in nums2 = [1,3,4,2]. The next greater element is 3.
+</span><span>- 2 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums1 = [2,4], nums2 = [1,2,3,4]
-Output: [3,-1]
-Explanation: The next greater element for each value of nums1 is as follows:
-- 2 is underlined in nums2 = [1,2,3,4]. The next greater element is 3.
-- 4 is underlined in nums2 = [1,2,3,4]. There is no next greater element, so the answer is -1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums1 = [2,4], nums2 = [1,2,3,4]
+</span><span>Output: [3,-1]
+</span><span>Explanation: The next greater element for each value of nums1 is as follows:
+</span><span>- 2 is underlined in nums2 = [1,2,3,4]. The next greater element is 3.
+</span><span>- 4 is underlined in nums2 = [1,2,3,4]. There is no next greater element, so the answer is -1.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums1.length &lt;= nums2.length &lt;= 1000</code></li>
@@ -144,29 +144,29 @@ Explanation: The next greater element for each value of nums1 is as follows:
 </ul>
 <p><strong>Follow up:</strong> Could you find an <code>O(nums1.length + nums2.length)</code> solution?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; nextGreaterElement(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
-    unordered_map&lt;int, int&gt; nextGreater;
-    vector&lt;int&gt; monoStack;
-    for(auto it = nums2.rbegin(); it != nums2.rend(); ++it) {
-      while(monoStack.size() &amp;&amp; monoStack.back() &lt;= *it) monoStack.pop_back();
-      nextGreater[*it] = monoStack.size() ? monoStack.back() : -1;
-      monoStack.push_back(*it);
-    }
-    vector&lt;int&gt; answer(nums1.size());
-    for(int i = 0; i &lt; nums1.size(); ++i) {
-      answer[i] = nextGreater[nums1[i]];
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 15&#x2F;15 cases passed (10 ms)
-&#x2F;&#x2F; Your runtime beats 33.18 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 58.15 % of cpp submissions (8.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">nextGreaterElement</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums1</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; nextGreater;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; monoStack;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> nums2.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); it </span><span>!=</span><span style="color:#eff1f5;"> nums2.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&lt;= *</span><span style="color:#eff1f5;">it) monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      nextGreater[</span><span>*</span><span style="color:#eff1f5;">it] </span><span>=</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>?</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>: -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(nums1.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums1.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      answer[i] </span><span>=</span><span style="color:#eff1f5;"> nextGreater[nums1[i]];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 15/15 cases passed (10 ms)
+</span><span style="color:#65737e;">// Your runtime beats 33.18 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 58.15 % of cpp submissions (8.8 MB)
+</span></code></pre>
 
     </div>
   </div>

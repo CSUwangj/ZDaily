@@ -124,46 +124,46 @@ renderMathInElement(document.body, katex_config);
 <p>Initially, the calculator is displaying the number <code>X</code>.</p>
 <p>Return the minimum number of operations needed to display the number <code>Y</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: X = 2, Y = 3
-Output: 2
-Explanation: Use double operation and then decrement operation {2 -&gt; 4 -&gt; 3}.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: X = 2, Y = 3
+</span><span>Output: 2
+</span><span>Explanation: Use double operation and then decrement operation {2 -&gt; 4 -&gt; 3}.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: X = 5, Y = 8
-Output: 2
-Explanation: Use decrement and then double {5 -&gt; 4 -&gt; 8}.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: X = 5, Y = 8
+</span><span>Output: 2
+</span><span>Explanation: Use decrement and then double {5 -&gt; 4 -&gt; 8}.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: X = 3, Y = 10
-Output: 3
-Explanation:  Use double, decrement and double {3 -&gt; 6 -&gt; 5 -&gt; 10}.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: X = 3, Y = 10
+</span><span>Output: 3
+</span><span>Explanation:  Use double, decrement and double {3 -&gt; 6 -&gt; 5 -&gt; 10}.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: X = 1024, Y = 1
-Output: 1023
-Explanation: Use decrement operations 1023 times.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: X = 1024, Y = 1
+</span><span>Output: 1023
+</span><span>Explanation: Use decrement operations 1023 times.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>$1 \le X \le 10^9$</li>
 <li>$1 \le Y \le 10^9$</li>
 </ol>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int brokenCalc(int X, int Y) {
-        int answer = 0;
-        while(Y &gt; X) {
-            if(Y &amp; 1) Y += 1;
-            else Y &#x2F;= 2;
-            answer += 1;
-        }
-        return answer + X - Y;
-    }
-};
-
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">brokenCalc</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">X</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">Y</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(Y </span><span>&gt;</span><span style="color:#eff1f5;"> X) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(Y </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) Y </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> Y </span><span>/= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            answer </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer </span><span>+</span><span style="color:#eff1f5;"> X </span><span>-</span><span style="color:#eff1f5;"> Y;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span>
+</span></code></pre>
 
     </div>
   </div>

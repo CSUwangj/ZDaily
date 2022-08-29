@@ -126,22 +126,22 @@ renderMathInElement(document.body, katex_config);
 <p>1 / 6 = 0.16666666... = 0.1(6) = 0.1666(6) = 0.166(66)</p>
 <p>Both 0.1(6) or 0.1666(6) or 0.166(66) are correct representations of 1 / 6.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: S = &quot;0.(52)&quot;, T = &quot;0.5(25)&quot;
-Output: true
-Explanation:
-Because &quot;0.(52)&quot; represents 0.52525252..., and &quot;0.5(25)&quot; represents 0.52525252525..... , the strings represent the same number.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: S = &quot;0.(52)&quot;, T = &quot;0.5(25)&quot;
+</span><span>Output: true
+</span><span>Explanation:
+</span><span>Because &quot;0.(52)&quot; represents 0.52525252..., and &quot;0.5(25)&quot; represents 0.52525252525..... , the strings represent the same number.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: S = &quot;0.1666(6)&quot;, T = &quot;0.166(66)&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: S = &quot;0.1666(6)&quot;, T = &quot;0.166(66)&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: S = &quot;0.9(9)&quot;, T = &quot;1.&quot;
-Output: true
-Explanation: 
-&quot;0.9(9)&quot; represents 0.999999999... repeated forever, which equals 1.  [See this link for an explanation.]
-&quot;1.&quot; represents the number 1, which is formed correctly: (IntegerPart) = &quot;1&quot; and (NonRepeatingPart) = &quot;&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: S = &quot;0.9(9)&quot;, T = &quot;1.&quot;
+</span><span>Output: true
+</span><span>Explanation: 
+</span><span>&quot;0.9(9)&quot; represents 0.999999999... repeated forever, which equals 1.  [See this link for an explanation.]
+</span><span>&quot;1.&quot; represents the number 1, which is formed correctly: (IntegerPart) = &quot;1&quot; and (NonRepeatingPart) = &quot;&quot;.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>Each part consists only of digits.</li>
@@ -152,106 +152,106 @@ Explanation:
 </ol>
 <h2 id="solution">Solution</h2>
 <p>if we have a unambiguous form to represent a number, then we can compare them directly.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    int gcd(int a, int b) { return b ? gcd(b, a%b) : a;}
-    tuple&lt;string,string,string&gt; parse(string r) {
-        string integerPart, nonRepeatingPart, repeatingPart;
-        int pos = 0;
-        int len = r.length();
-        while(pos &lt; len &amp;&amp; isdigit(r[pos])) {
-            integerPart += r[pos];
-            pos += 1;
-        }
-        if(pos == len) {
-            &#x2F;&#x2F; unify to max decimal part length
-            return make_tuple(integerPart, &quot;0000&quot;, &quot;0&quot;);
-        }
-        &#x2F;&#x2F; &#x27;.&#x27;
-        pos += 1;
-        while(pos &lt; len &amp;&amp; isdigit(r[pos])) {
-            nonRepeatingPart += r[pos];
-            pos += 1;
-        }
-        if(pos == len) {
-            return make_tuple(integerPart, nonRepeatingPart, &quot;0&quot;);
-        }
-        &#x2F;&#x2F; &#x27;(&#x27;
-        pos += 1;
-        bool all9 = true, all0 = true;
-        while(pos &lt; len &amp;&amp; isdigit(r[pos])) {
-            if(r[pos] != &#x27;9&#x27;) all9 = false;
-            if(r[pos] != &#x27;0&#x27;) all0 = false;
-            repeatingPart += r[pos];
-            pos += 1;
-        }
-        if(all9) {
-            int carry = 1;
-            for(auto it = nonRepeatingPart.rbegin(); carry &amp;&amp; it != nonRepeatingPart.rend(); ++it) {
-                if(*it != &#x27;9&#x27;) {
-                    carry = 0;
-                    *it += 1;
-                } else {
-                    *it = &#x27;0&#x27;;
-                }
-            }
-            for(auto it = integerPart.rbegin(); carry &amp;&amp; it != integerPart.rend(); ++it) {
-                if(*it != &#x27;9&#x27;) {
-                    carry = 0;
-                    *it += 1;
-                } else {
-                    *it = &#x27;0&#x27;;
-                }
-            }
-            if(carry) integerPart = &quot;1&quot; + integerPart;
-        }
-        if(all9 || all0) return make_tuple(integerPart, nonRepeatingPart, &quot;0&quot;);
-        return make_tuple(integerPart, nonRepeatingPart, repeatingPart);
-    }
-public:
-    bool isRationalEqual(string S, string T) {
-        auto [si, sn, sr] = parse(S);
-        auto [ti, tn, tr] = parse(T);
-        cout &lt;&lt; si &lt;&lt; &#x27;.&#x27; &lt;&lt; sn &lt;&lt; &#x27;(&#x27; &lt;&lt; sr &lt;&lt; &#x27;)&#x27; &lt;&lt; endl;
-        cout &lt;&lt; ti &lt;&lt; &#x27;.&#x27; &lt;&lt; tn &lt;&lt; &#x27;(&#x27; &lt;&lt; tr &lt;&lt; &#x27;)&#x27; &lt;&lt; endl;
-        int srl = sr.length(), trl = tr.length();
-        if(si != ti) return false;
-        if(sn.length() &lt; tn.length()) {
-            if(srl == 1) {
-                while(sn.length() &lt; tn.length()) sn += sr;
-            } else {
-                while(sn.length() &lt; tn.length()) {
-                    sn += sr[0];
-                    sr = sr.substr(1) + sr[0];
-                }
-            }
-        }
-        if(tn.length() &lt; sn.length()) {
-            if(trl == 1) {
-                while(tn.length() &lt; sn.length()) tn += tr;
-            } else {
-                while(tn.length() &lt; sn.length()) {
-                    tn += tr[0];
-                    tr = tr.substr(1) + tr[0];
-                }
-            }
-        }
-        int lcm = srl * trl &#x2F; gcd(srl, trl);
-        if(srl &lt; lcm) {
-            string newSr = &quot;&quot;;
-            while(newSr.length() != lcm) newSr += sr;
-            sr = newSr;
-        }
-        if(trl &lt; lcm) {
-            string newTr = &quot;&quot;;
-            while(newTr.length() != lcm) newTr += tr;
-            tr = newTr;
-        }
-        cout &lt;&lt; si &lt;&lt; &#x27;.&#x27; &lt;&lt; sn &lt;&lt; &#x27;(&#x27; &lt;&lt; sr &lt;&lt; &#x27;)&#x27; &lt;&lt; endl;
-        cout &lt;&lt; ti &lt;&lt; &#x27;.&#x27; &lt;&lt; tn &lt;&lt; &#x27;(&#x27; &lt;&lt; tr &lt;&lt; &#x27;)&#x27; &lt;&lt; endl;
-        return (sn == tn &amp;&amp; sr == tr);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">gcd</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) { </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> b </span><span>? </span><span style="color:#bf616a;">gcd</span><span style="color:#eff1f5;">(b, a</span><span>%</span><span style="color:#eff1f5;">b) </span><span>:</span><span style="color:#eff1f5;"> a;}
+</span><span style="color:#eff1f5;">    tuple&lt;string,string,string&gt; </span><span style="color:#8fa1b3;">parse</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">r</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        string integerPart, nonRepeatingPart, repeatingPart;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> r.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(r[pos])) {
+</span><span style="color:#eff1f5;">            integerPart </span><span>+=</span><span style="color:#eff1f5;"> r[pos];
+</span><span style="color:#eff1f5;">            pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#65737e;">// unify to max decimal part length
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_tuple</span><span style="color:#eff1f5;">(integerPart, </span><span>&quot;</span><span style="color:#a3be8c;">0000</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">0</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// &#39;.&#39;
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(r[pos])) {
+</span><span style="color:#eff1f5;">            nonRepeatingPart </span><span>+=</span><span style="color:#eff1f5;"> r[pos];
+</span><span style="color:#eff1f5;">            pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_tuple</span><span style="color:#eff1f5;">(integerPart, nonRepeatingPart, </span><span>&quot;</span><span style="color:#a3be8c;">0</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// &#39;(&#39;
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> all9 </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">, all0 </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(r[pos])) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(r[pos] </span><span>!= &#39;</span><span style="color:#a3be8c;">9</span><span>&#39;</span><span style="color:#eff1f5;">) all9 </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(r[pos] </span><span>!= &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) all0 </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            repeatingPart </span><span>+=</span><span style="color:#eff1f5;"> r[pos];
+</span><span style="color:#eff1f5;">            pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(all9) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> carry </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> nonRepeatingPart.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); carry </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> it </span><span>!=</span><span style="color:#eff1f5;"> nonRepeatingPart.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it </span><span>!= &#39;</span><span style="color:#a3be8c;">9</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    carry </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span>*</span><span style="color:#eff1f5;">it </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                    </span><span>*</span><span style="color:#eff1f5;">it </span><span>= &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> integerPart.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); carry </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> it </span><span>!=</span><span style="color:#eff1f5;"> integerPart.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it </span><span>!= &#39;</span><span style="color:#a3be8c;">9</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    carry </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span>*</span><span style="color:#eff1f5;">it </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                    </span><span>*</span><span style="color:#eff1f5;">it </span><span>= &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(carry) integerPart </span><span>= &quot;</span><span style="color:#a3be8c;">1</span><span>&quot; +</span><span style="color:#eff1f5;"> integerPart;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(all9 </span><span>||</span><span style="color:#eff1f5;"> all0) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_tuple</span><span style="color:#eff1f5;">(integerPart, nonRepeatingPart, </span><span>&quot;</span><span style="color:#a3be8c;">0</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_tuple</span><span style="color:#eff1f5;">(integerPart, nonRepeatingPart, repeatingPart);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isRationalEqual</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">S</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">T</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[si, sn, sr] </span><span>= </span><span style="color:#bf616a;">parse</span><span style="color:#eff1f5;">(S);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[ti, tn, tr] </span><span>= </span><span style="color:#bf616a;">parse</span><span style="color:#eff1f5;">(T);
+</span><span style="color:#eff1f5;">        cout </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> si </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">.</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> sn </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">(</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> sr </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">)</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> endl;
+</span><span style="color:#eff1f5;">        cout </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> ti </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">.</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> tn </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">(</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> tr </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">)</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> endl;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> srl </span><span>=</span><span style="color:#eff1f5;"> sr.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(), trl </span><span>=</span><span style="color:#eff1f5;"> tr.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(si </span><span>!=</span><span style="color:#eff1f5;"> ti) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> tn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(srl </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(sn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> tn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) sn </span><span>+=</span><span style="color:#eff1f5;"> sr;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(sn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> tn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">                    sn </span><span>+=</span><span style="color:#eff1f5;"> sr[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                    sr </span><span>=</span><span style="color:#eff1f5;"> sr.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>+</span><span style="color:#eff1f5;"> sr[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(tn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> sn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(trl </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(tn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> sn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) tn </span><span>+=</span><span style="color:#eff1f5;"> tr;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(tn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> sn.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">                    tn </span><span>+=</span><span style="color:#eff1f5;"> tr[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                    tr </span><span>=</span><span style="color:#eff1f5;"> tr.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>+</span><span style="color:#eff1f5;"> tr[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lcm </span><span>=</span><span style="color:#eff1f5;"> srl </span><span>*</span><span style="color:#eff1f5;"> trl </span><span>/ </span><span style="color:#bf616a;">gcd</span><span style="color:#eff1f5;">(srl, trl);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(srl </span><span>&lt;</span><span style="color:#eff1f5;"> lcm) {
+</span><span style="color:#eff1f5;">            string newSr </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(newSr.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>!=</span><span style="color:#eff1f5;"> lcm) newSr </span><span>+=</span><span style="color:#eff1f5;"> sr;
+</span><span style="color:#eff1f5;">            sr </span><span>=</span><span style="color:#eff1f5;"> newSr;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(trl </span><span>&lt;</span><span style="color:#eff1f5;"> lcm) {
+</span><span style="color:#eff1f5;">            string newTr </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(newTr.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>!=</span><span style="color:#eff1f5;"> lcm) newTr </span><span>+=</span><span style="color:#eff1f5;"> tr;
+</span><span style="color:#eff1f5;">            tr </span><span>=</span><span style="color:#eff1f5;"> newTr;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        cout </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> si </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">.</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> sn </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">(</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> sr </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">)</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> endl;
+</span><span style="color:#eff1f5;">        cout </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> ti </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">.</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> tn </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">(</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> tr </span><span>&lt;&lt; &#39;</span><span style="color:#a3be8c;">)</span><span>&#39; &lt;&lt;</span><span style="color:#eff1f5;"> endl;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(sn </span><span>==</span><span style="color:#eff1f5;"> tn </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> sr </span><span>==</span><span style="color:#eff1f5;"> tr);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-4">December LeetCoding Challenge 4</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>The kth Factor of n</strong></p>
@@ -259,48 +259,48 @@ public:
 <p>A factor of an integer <code>n</code> is defined as an integer <code>i</code> where <code>n % i == 0</code>.</p>
 <p>Consider a list of all factors of <code>n</code> sorted in <strong>ascending order</strong>, return <em>the</em> <code>kth</code> <em>factor</em> in this list or return <strong>-1</strong> if <code>n</code> has less than <code>k</code> factors.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 12, k = 3
-Output: 3
-Explanation: Factors list is [1, 2, 3, 4, 6, 12], the 3rd factor is 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 12, k = 3
+</span><span>Output: 3
+</span><span>Explanation: Factors list is [1, 2, 3, 4, 6, 12], the 3rd factor is 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 7, k = 2
-Output: 7
-Explanation: Factors list is [1, 7], the 2nd factor is 7.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 7, k = 2
+</span><span>Output: 7
+</span><span>Explanation: Factors list is [1, 7], the 2nd factor is 7.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 4, k = 4
-Output: -1
-Explanation: Factors list is [1, 2, 4], there is only 3 factors. We should return -1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 4, k = 4
+</span><span>Output: -1
+</span><span>Explanation: Factors list is [1, 2, 4], there is only 3 factors. We should return -1.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: n = 1, k = 1
-Output: 1
-Explanation: Factors list is [1], the 1st factor is 1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1, k = 1
+</span><span>Output: 1
+</span><span>Explanation: Factors list is [1], the 1st factor is 1.
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: n = 1000, k = 3
-Output: 4
-Explanation: Factors list is [1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1000, k = 3
+</span><span>Output: 4
+</span><span>Explanation: Factors list is [1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000].
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= k &lt;= n &lt;= 1000</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int kthFactor(int n, int k) {
-        int cur = 0;
-        for(int i = 1; i &lt;= n; ++i) {
-            if(n % i) continue;
-            if(++cur == k) return i;
-        }
-        return -1;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">kthFactor</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>%</span><span style="color:#eff1f5;"> i) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>++</span><span style="color:#eff1f5;">cur </span><span>==</span><span style="color:#eff1f5;"> k) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

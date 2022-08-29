@@ -117,62 +117,62 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p>Given an integer <code>n</code>, add a dot (&quot;.&quot;) as the thousands separator and return it in string format.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 987
-Output: &quot;987&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 987
+</span><span>Output: &quot;987&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 1234
-Output: &quot;1.234&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1234
+</span><span>Output: &quot;1.234&quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 123456789
-Output: &quot;123.456.789&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 123456789
+</span><span>Output: &quot;123.456.789&quot;
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: n = 0
-Output: &quot;0&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 0
+</span><span>Output: &quot;0&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>$0 \le  n &lt; 2^{31}$</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    string thousandSeparator(int n) {
-        string answer = &quot;&quot;;
-        while(n &gt; 1000) {
-            string tmp = to_string(n%1000);
-            while(tmp.length() &lt; 3) tmp = &quot;0&quot; + tmp;
-            answer = &quot;.&quot; + tmp + answer;
-            n &#x2F;= 1000;
-        }
-        answer = to_string(n%1000) + answer;
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">thousandSeparator</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        string answer </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(n </span><span>&gt; </span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            string tmp </span><span>= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(n</span><span>%</span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(tmp.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) tmp </span><span>= &quot;</span><span style="color:#a3be8c;">0</span><span>&quot; +</span><span style="color:#eff1f5;"> tmp;
+</span><span style="color:#eff1f5;">            answer </span><span>= &quot;</span><span style="color:#a3be8c;">.</span><span>&quot; +</span><span style="color:#eff1f5;"> tmp </span><span>+</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">            n </span><span>/= </span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(n</span><span>%</span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">) </span><span>+</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-8">January LeetCoding Challenge 8</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Check If Two String Arrays are Equivalent</strong></p>
 <p>Given two string arrays <code>word1</code> and <code>word2</code>, return <code>true</code> <em>if the two arrays <strong>represent</strong> the same string, and</em> <code>false</code> <em>otherwise.</em></p>
 <p>A string is <strong>represented</strong> by an array if the array elements concatenated <strong>in order</strong> forms the string.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: word1 = [&quot;ab&quot;, &quot;c&quot;], word2 = [&quot;a&quot;, &quot;bc&quot;]
-Output: true
-Explanation:
-word1 represents string &quot;ab&quot; + &quot;c&quot; -&gt; &quot;abc&quot;
-word2 represents string &quot;a&quot; + &quot;bc&quot; -&gt; &quot;abc&quot;
-The strings are the same, so return true.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word1 = [&quot;ab&quot;, &quot;c&quot;], word2 = [&quot;a&quot;, &quot;bc&quot;]
+</span><span>Output: true
+</span><span>Explanation:
+</span><span>word1 represents string &quot;ab&quot; + &quot;c&quot; -&gt; &quot;abc&quot;
+</span><span>word2 represents string &quot;a&quot; + &quot;bc&quot; -&gt; &quot;abc&quot;
+</span><span>The strings are the same, so return true.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: word1 = [&quot;a&quot;, &quot;cb&quot;], word2 = [&quot;ab&quot;, &quot;c&quot;]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word1 = [&quot;a&quot;, &quot;cb&quot;], word2 = [&quot;ab&quot;, &quot;c&quot;]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: word1  = [&quot;abc&quot;, &quot;d&quot;, &quot;defg&quot;], word2 = [&quot;abcddefg&quot;]
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word1  = [&quot;abc&quot;, &quot;d&quot;, &quot;defg&quot;], word2 = [&quot;abcddefg&quot;]
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>$1 \le word1.length, word2.length \le 10^3$</li>
@@ -181,23 +181,23 @@ Output: true
 <li><code>word1[i]</code> and <code>word2[i]</code> consist of lowercase letters.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool arrayStringsAreEqual(vector&lt;string&gt;&amp; word1, vector&lt;string&gt;&amp; word2) {
-        int i1 = 0, i2 = 0, s1 = 0, s2 = 0;
-        int len1 = word1.size(), len2 = word2.size();
-        while(i1 &lt; len1 &amp;&amp; i2 &lt;len2) {
-            if(word1[i1][s1] != word2[i2][s2]) return false;
-            s1 += 1;
-            if(s1 == word1[i1].length()) s1 = 0, i1 += 1;
-            s2 += 1;
-            if(s2 == word2[i2].length()) s2 = 0, i2 += 1;
-        }
-        if(i1 != len1 || i2 != len2) return false;
-        return true;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">arrayStringsAreEqual</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">word1</span><span style="color:#eff1f5;">, vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">word2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i1 </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i2 </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, s1 </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, s2 </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len1 </span><span>=</span><span style="color:#eff1f5;"> word1.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), len2 </span><span>=</span><span style="color:#eff1f5;"> word2.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(i1 </span><span>&lt;</span><span style="color:#eff1f5;"> len1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> i2 </span><span>&lt;</span><span style="color:#eff1f5;">len2) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(word1[i1][s1] </span><span>!=</span><span style="color:#eff1f5;"> word2[i2][s2]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            s1 </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s1 </span><span>==</span><span style="color:#eff1f5;"> word1[i1].</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) s1 </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i1 </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            s2 </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s2 </span><span>==</span><span style="color:#eff1f5;"> word2[i2].</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) s2 </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i2 </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i1 </span><span>!=</span><span style="color:#eff1f5;"> len1 </span><span>||</span><span style="color:#eff1f5;"> i2 </span><span>!=</span><span style="color:#eff1f5;"> len2) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

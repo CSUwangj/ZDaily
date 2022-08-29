@@ -130,37 +130,37 @@ renderMathInElement(document.body, katex_config);
 <p>Return the winner of the game if it exists (<em>A</em> or <em>B</em>), in case the game ends in a draw return &quot;Draw&quot;, if there are still movements to play return &quot;Pending&quot;.</p>
 <p>You can assume that <code>moves</code> is <strong>valid</strong> (It follows the rules of Tic-Tac-Toe), the grid is initially empty and <em>A</em> will play <strong>first</strong>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]
-Output: &quot;A&quot;
-Explanation: &quot;A&quot; wins, he always plays first.
-&quot;X  &quot;    &quot;X  &quot;    &quot;X  &quot;    &quot;X  &quot;    &quot;X  &quot;
-&quot;   &quot; -&gt; &quot;   &quot; -&gt; &quot; X &quot; -&gt; &quot; X &quot; -&gt; &quot; X &quot;
-&quot;   &quot;    &quot;O  &quot;    &quot;O  &quot;    &quot;OO &quot;    &quot;OOX&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]
+</span><span>Output: &quot;A&quot;
+</span><span>Explanation: &quot;A&quot; wins, he always plays first.
+</span><span>&quot;X  &quot;    &quot;X  &quot;    &quot;X  &quot;    &quot;X  &quot;    &quot;X  &quot;
+</span><span>&quot;   &quot; -&gt; &quot;   &quot; -&gt; &quot; X &quot; -&gt; &quot; X &quot; -&gt; &quot; X &quot;
+</span><span>&quot;   &quot;    &quot;O  &quot;    &quot;O  &quot;    &quot;OO &quot;    &quot;OOX&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: moves = [[0,0],[1,1],[0,1],[0,2],[1,0],[2,0]]
-Output: &quot;B&quot;
-Explanation: &quot;B&quot; wins.
-&quot;X  &quot;    &quot;X  &quot;    &quot;XX &quot;    &quot;XXO&quot;    &quot;XXO&quot;    &quot;XXO&quot;
-&quot;   &quot; -&gt; &quot; O &quot; -&gt; &quot; O &quot; -&gt; &quot; O &quot; -&gt; &quot;XO &quot; -&gt; &quot;XO &quot; 
-&quot;   &quot;    &quot;   &quot;    &quot;   &quot;    &quot;   &quot;    &quot;   &quot;    &quot;O  &quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: moves = [[0,0],[1,1],[0,1],[0,2],[1,0],[2,0]]
+</span><span>Output: &quot;B&quot;
+</span><span>Explanation: &quot;B&quot; wins.
+</span><span>&quot;X  &quot;    &quot;X  &quot;    &quot;XX &quot;    &quot;XXO&quot;    &quot;XXO&quot;    &quot;XXO&quot;
+</span><span>&quot;   &quot; -&gt; &quot; O &quot; -&gt; &quot; O &quot; -&gt; &quot; O &quot; -&gt; &quot;XO &quot; -&gt; &quot;XO &quot; 
+</span><span>&quot;   &quot;    &quot;   &quot;    &quot;   &quot;    &quot;   &quot;    &quot;   &quot;    &quot;O  &quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: moves = [[0,0],[1,1],[2,0],[1,0],[1,2],[2,1],[0,1],[0,2],[2,2]]
-Output: &quot;Draw&quot;
-Explanation: The game ends in a draw since there are no moves to make.
-&quot;XXO&quot;
-&quot;OOX&quot;
-&quot;XOX&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: moves = [[0,0],[1,1],[2,0],[1,0],[1,2],[2,1],[0,1],[0,2],[2,2]]
+</span><span>Output: &quot;Draw&quot;
+</span><span>Explanation: The game ends in a draw since there are no moves to make.
+</span><span>&quot;XXO&quot;
+</span><span>&quot;OOX&quot;
+</span><span>&quot;XOX&quot;
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: moves = [[0,0],[1,1]]
-Output: &quot;Pending&quot;
-Explanation: The game has not finished yet.
-&quot;X  &quot;
-&quot; O &quot;
-&quot;   &quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: moves = [[0,0],[1,1]]
+</span><span>Output: &quot;Pending&quot;
+</span><span>Explanation: The game has not finished yet.
+</span><span>&quot;X  &quot;
+</span><span>&quot; O &quot;
+</span><span>&quot;   &quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= moves.length &lt;= 9</code></li>
@@ -170,46 +170,46 @@ Explanation: The game has not finished yet.
 <li><code>moves</code> follow the rules of tic tac toe.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int board[3][3] = {};
-  int checkWinner() {
-    for(int w = 1; w &lt; 3; ++w) {
-      if (board[0][0] == w &amp;&amp; board[1][0] == w &amp;&amp; board[2][0] == w ||
-          board[0][1] == w &amp;&amp; board[1][1] == w &amp;&amp; board[2][1] == w ||
-          board[0][2] == w &amp;&amp; board[1][2] == w &amp;&amp; board[2][2] == w ||
-          board[0][0] == w &amp;&amp; board[0][1] == w &amp;&amp; board[0][2] == w ||
-          board[1][0] == w &amp;&amp; board[1][1] == w &amp;&amp; board[1][2] == w ||
-          board[2][0] == w &amp;&amp; board[2][1] == w &amp;&amp; board[2][2] == w ||
-          board[0][0] == w &amp;&amp; board[1][1] == w &amp;&amp; board[2][2] == w ||
-          board[0][2] == w &amp;&amp; board[1][1] == w &amp;&amp; board[2][0] == w
-      ) {
-        return w;
-      }
-    }
-    return 0;
-  }
-public:
-  string tictactoe(vector&lt;vector&lt;int&gt;&gt;&amp; moves) {
-    int len = moves.size();
-    for(int i = 0; i &lt; len; i += 2) {
-      board[moves[i][0]][moves[i][1]] = 1;
-    }
-    for(int i = 1; i &lt; len; i += 2) {
-      board[moves[i][0]][moves[i][1]] = 2;
-    }
-    int winner = checkWinner();
-    if(winner) {
-      return winner == 1 ? &quot;A&quot; : &quot;B&quot;;
-    }
-    return moves.size() == 9 ? &quot;Draw&quot; : &quot;Pending&quot;;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 100&#x2F;100 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 96.15 % of cpp submissions (8.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">checkWinner</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> w </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; w </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">w) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>||
+</span><span style="color:#eff1f5;">          board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>||
+</span><span style="color:#eff1f5;">          board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>||
+</span><span style="color:#eff1f5;">          board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>||
+</span><span style="color:#eff1f5;">          board[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>||
+</span><span style="color:#eff1f5;">          board[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>||
+</span><span style="color:#eff1f5;">          board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>||
+</span><span style="color:#eff1f5;">          board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> w
+</span><span style="color:#eff1f5;">      ) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> w;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">tictactoe</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">moves</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> moves.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; i </span><span>+= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      board[moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]][moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; i </span><span>+= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      board[moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]][moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> winner </span><span>= </span><span style="color:#bf616a;">checkWinner</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(winner) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> winner </span><span>== </span><span style="color:#d08770;">1 </span><span>? &quot;</span><span style="color:#a3be8c;">A</span><span>&quot; : &quot;</span><span style="color:#a3be8c;">B</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> moves.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>== </span><span style="color:#d08770;">9 </span><span>? &quot;</span><span style="color:#a3be8c;">Draw</span><span>&quot; : &quot;</span><span style="color:#a3be8c;">Pending</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 100/100 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 96.15 % of cpp submissions (8.1 MB)
+</span></code></pre>
 
     </div>
   </div>

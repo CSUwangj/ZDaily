@@ -118,29 +118,29 @@ renderMathInElement(document.body, katex_config);
 <p>Given a <strong>(0-indexed)</strong> integer array <code>nums</code> and two integers <code>low</code> and <code>high</code>, return <em>the number of <strong>nice pairs</strong></em>.</p>
 <p>A <strong>nice pair</strong> is a pair <code>(i, j)</code> where <code>0 &lt;= i &lt; j &lt; nums.length</code> and <code>low &lt;= (nums[i] XOR nums[j]) &lt;= high</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,4,2,7], low = 2, high = 6
-Output: 6
-Explanation: All nice pairs (i, j) are as follows:
-    - (0, 1): nums[0] XOR nums[1] = 5 
-    - (0, 2): nums[0] XOR nums[2] = 3
-    - (0, 3): nums[0] XOR nums[3] = 6
-    - (1, 2): nums[1] XOR nums[2] = 6
-    - (1, 3): nums[1] XOR nums[3] = 3
-    - (2, 3): nums[2] XOR nums[3] = 5
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,4,2,7], low = 2, high = 6
+</span><span>Output: 6
+</span><span>Explanation: All nice pairs (i, j) are as follows:
+</span><span>    - (0, 1): nums[0] XOR nums[1] = 5 
+</span><span>    - (0, 2): nums[0] XOR nums[2] = 3
+</span><span>    - (0, 3): nums[0] XOR nums[3] = 6
+</span><span>    - (1, 2): nums[1] XOR nums[2] = 6
+</span><span>    - (1, 3): nums[1] XOR nums[3] = 3
+</span><span>    - (2, 3): nums[2] XOR nums[3] = 5
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [9,8,4,2,1], low = 5, high = 14
-Output: 8
-Explanation: All nice pairs (i, j) are as follows:
-    - (0, 2): nums[0] XOR nums[2] = 13
-    - (0, 3): nums[0] XOR nums[3] = 11
-    - (0, 4): nums[0] XOR nums[4] = 8
-    - (1, 2): nums[1] XOR nums[2] = 12
-    - (1, 3): nums[1] XOR nums[3] = 10
-    - (1, 4): nums[1] XOR nums[4] = 9
-    - (2, 3): nums[2] XOR nums[3] = 6
-    - (2, 4): nums[2] XOR nums[4] = 5
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [9,8,4,2,1], low = 5, high = 14
+</span><span>Output: 8
+</span><span>Explanation: All nice pairs (i, j) are as follows:
+</span><span>    - (0, 2): nums[0] XOR nums[2] = 13
+</span><span>    - (0, 3): nums[0] XOR nums[3] = 11
+</span><span>    - (0, 4): nums[0] XOR nums[4] = 8
+</span><span>    - (1, 2): nums[1] XOR nums[2] = 12
+</span><span>    - (1, 3): nums[1] XOR nums[3] = 10
+</span><span>    - (1, 4): nums[1] XOR nums[4] = 9
+</span><span>    - (2, 3): nums[2] XOR nums[3] = 6
+</span><span>    - (2, 4): nums[2] XOR nums[4] = 5
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 2 * 10^4</code></li>
@@ -149,167 +149,167 @@ Explanation: All nice pairs (i, j) are as follows:
 </ul>
 <h2 id="solution">Solution</h2>
 <p>better way to enumerate the pairs using trie tree</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-struct TrieNode {
-  int count = 0;
-  TrieNode *child[2] = {};
-};
-
-void insert(TrieNode *root, int num) {
-  TrieNode *cur = root;
-  root-&gt;count += 1;
-  for(int i = 14; i &gt;= 0; --i) {
-    int index = 0;
-    if(num &amp; (1 &lt;&lt; i)) {
-      index = 1;
-    }
-    if(!cur-&gt;child[index]) {
-      cur-&gt;child[index] = new TrieNode();
-    }
-    cur = cur-&gt;child[index];
-    cur-&gt;count += 1;
-  }
-}
-
-int solveOne(TrieNode *cur, int num, int low, int high, int rest, bool mustLessThanHigh = false, bool mustGreaterThanLow = false) {
-  &#x2F;&#x2F; cout &lt;&lt; num &lt;&lt; &#x27; &#x27; &lt;&lt; low &lt;&lt;  &#x27; &#x27; &lt;&lt; high &lt;&lt; &#x27; &#x27; &lt;&lt; rest &lt;&lt; &#x27; &#x27; &lt;&lt; mustLessThanHigh &lt;&lt; &#x27; &#x27; &lt;&lt; mustGreaterThanLow &lt;&lt;endl;
-  if(!cur) return 0;
-  if(rest == -1) return cur-&gt;count;
-  if(mustGreaterThanLow &amp;&amp; mustLessThanHigh) return cur-&gt;count;
-  int result = 0;
-  bool ok[2] = { true, true };
-  bool lowBit = low &amp; (1 &lt;&lt; rest);
-  bool highBit = high &amp; (1 &lt;&lt; rest);
-  bool numBit = (num &amp; (1 &lt;&lt; rest));
-  &#x2F;&#x2F; cout &lt;&lt;&quot;## &quot; &lt;&lt; num &lt;&lt; &#x27; &#x27; &lt;&lt; low &lt;&lt;  &#x27; &#x27; &lt;&lt; high &lt;&lt; &#x27; &#x27; &lt;&lt; rest &lt;&lt; &#x27; &#x27; &lt;&lt; mustLessThanHigh &lt;&lt; &#x27; &#x27; &lt;&lt; mustGreaterThanLow &lt;&lt;endl;
-  if(!mustGreaterThanLow) {
-    if(lowBit) {
-      ok[numBit] = false;
-    }
-  }
-  if(!mustLessThanHigh) {
-    if(!highBit) {
-      ok[!numBit] = false;
-    }
-  }
-  for(int i = 0; i &lt; 2; ++i) {
-    if(!ok[i]) continue;
-    if(i == numBit) {
-      if(highBit) {
-        result += solveOne(cur-&gt;child[i], num, low, high, rest - 1, true, mustGreaterThanLow);
-      } else {
-        result += solveOne(cur-&gt;child[i], num, low, high, rest - 1, mustLessThanHigh, mustGreaterThanLow);
-      }
-    } else {
-      if(!lowBit) {
-        result += solveOne(cur-&gt;child[i], num, low, high, rest - 1, mustLessThanHigh, true);
-      } else {
-        result += solveOne(cur-&gt;child[i], num, low, high, rest - 1, mustLessThanHigh, mustGreaterThanLow);
-      }
-    }
-  }
-  return result;
-}
-
-int solve(vector&lt;int&gt; &amp;nums, int low, int high) {
-  TrieNode *root = new TrieNode();
-  int answer = 0;
-  for(auto n : nums) {
-    answer += solveOne(root, n, low, high, 14);
-    insert(root, n);
-  }
-  return answer;
-}
-class Solution {
-public:
-  int countPairs(vector&lt;int&gt;&amp; nums, int low, int high) {
-    return solve(nums, low, high);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 63&#x2F;63 cases passed (280 ms)
-&#x2F;&#x2F; Your runtime beats 30.08 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 36.72 % of cpp submissions (71.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">struct </span><span>TrieNode {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> count = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  TrieNode *child[</span><span style="color:#d08770;">2</span><span>] = {};
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">insert</span><span>(TrieNode *</span><span style="color:#bf616a;">root</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span>) {
+</span><span>  TrieNode *cur = root;
+</span><span>  root-&gt;</span><span style="color:#bf616a;">count </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">14</span><span>; i &gt;= </span><span style="color:#d08770;">0</span><span>; --i) {
+</span><span>    </span><span style="color:#b48ead;">int</span><span> index = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(num &amp; (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; i)) {
+</span><span>      index = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(!cur-&gt;</span><span style="color:#bf616a;">child</span><span>[index]) {
+</span><span>      cur-&gt;</span><span style="color:#bf616a;">child</span><span>[index] = </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span>();
+</span><span>    }
+</span><span>    cur = cur-&gt;</span><span style="color:#bf616a;">child</span><span>[index];
+</span><span>    cur-&gt;</span><span style="color:#bf616a;">count </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">solveOne</span><span>(TrieNode *</span><span style="color:#bf616a;">cur</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">low</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">high</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rest</span><span>, </span><span style="color:#b48ead;">bool </span><span style="color:#bf616a;">mustLessThanHigh </span><span>= </span><span style="color:#d08770;">false</span><span>, </span><span style="color:#b48ead;">bool </span><span style="color:#bf616a;">mustGreaterThanLow </span><span>= </span><span style="color:#d08770;">false</span><span>) {
+</span><span>  </span><span style="color:#65737e;">// cout &lt;&lt; num &lt;&lt; &#39; &#39; &lt;&lt; low &lt;&lt;  &#39; &#39; &lt;&lt; high &lt;&lt; &#39; &#39; &lt;&lt; rest &lt;&lt; &#39; &#39; &lt;&lt; mustLessThanHigh &lt;&lt; &#39; &#39; &lt;&lt; mustGreaterThanLow &lt;&lt;endl;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(!cur) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(rest == -</span><span style="color:#d08770;">1</span><span>) </span><span style="color:#b48ead;">return</span><span> cur-&gt;</span><span style="color:#bf616a;">count</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(mustGreaterThanLow &amp;&amp; mustLessThanHigh) </span><span style="color:#b48ead;">return</span><span> cur-&gt;</span><span style="color:#bf616a;">count</span><span>;
+</span><span>  </span><span style="color:#b48ead;">int</span><span> result = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">bool</span><span> ok[</span><span style="color:#d08770;">2</span><span>] = { </span><span style="color:#d08770;">true</span><span>, </span><span style="color:#d08770;">true </span><span>};
+</span><span>  </span><span style="color:#b48ead;">bool</span><span> lowBit = low &amp; (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; rest);
+</span><span>  </span><span style="color:#b48ead;">bool</span><span> highBit = high &amp; (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; rest);
+</span><span>  </span><span style="color:#b48ead;">bool</span><span> numBit = (num &amp; (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; rest));
+</span><span>  </span><span style="color:#65737e;">// cout &lt;&lt;&quot;## &quot; &lt;&lt; num &lt;&lt; &#39; &#39; &lt;&lt; low &lt;&lt;  &#39; &#39; &lt;&lt; high &lt;&lt; &#39; &#39; &lt;&lt; rest &lt;&lt; &#39; &#39; &lt;&lt; mustLessThanHigh &lt;&lt; &#39; &#39; &lt;&lt; mustGreaterThanLow &lt;&lt;endl;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(!mustGreaterThanLow) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(lowBit) {
+</span><span>      ok[numBit] = </span><span style="color:#d08770;">false</span><span>;
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(!mustLessThanHigh) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(!highBit) {
+</span><span>      ok[!numBit] = </span><span style="color:#d08770;">false</span><span>;
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; </span><span style="color:#d08770;">2</span><span>; ++i) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(!ok[i]) </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(i == numBit) {
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(highBit) {
+</span><span>        result += </span><span style="color:#bf616a;">solveOne</span><span>(cur-&gt;</span><span style="color:#bf616a;">child</span><span>[i], num, low, high, rest - </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">true</span><span>, mustGreaterThanLow);
+</span><span>      } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        result += </span><span style="color:#bf616a;">solveOne</span><span>(cur-&gt;</span><span style="color:#bf616a;">child</span><span>[i], num, low, high, rest - </span><span style="color:#d08770;">1</span><span>, mustLessThanHigh, mustGreaterThanLow);
+</span><span>      }
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(!lowBit) {
+</span><span>        result += </span><span style="color:#bf616a;">solveOne</span><span>(cur-&gt;</span><span style="color:#bf616a;">child</span><span>[i], num, low, high, rest - </span><span style="color:#d08770;">1</span><span>, mustLessThanHigh, </span><span style="color:#d08770;">true</span><span>);
+</span><span>      } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        result += </span><span style="color:#bf616a;">solveOne</span><span>(cur-&gt;</span><span style="color:#bf616a;">child</span><span>[i], num, low, high, rest - </span><span style="color:#d08770;">1</span><span>, mustLessThanHigh, mustGreaterThanLow);
+</span><span>      }
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> result;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">solve</span><span>(vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; &amp;</span><span style="color:#bf616a;">nums</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">low</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">high</span><span>) {
+</span><span>  TrieNode *root = </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span>();
+</span><span>  </span><span style="color:#b48ead;">int</span><span> answer = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">auto</span><span> n : nums) {
+</span><span>    answer += </span><span style="color:#bf616a;">solveOne</span><span>(root, n, low, high, </span><span style="color:#d08770;">14</span><span>);
+</span><span>    </span><span style="color:#bf616a;">insert</span><span>(root, n);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> answer;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">countPairs</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">low</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">high</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(nums, low, high);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 63/63 cases passed (280 ms)
+</span><span style="color:#65737e;">// Your runtime beats 30.08 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 36.72 % of cpp submissions (71.6 MB)
+</span></code></pre>
 <p>more elegant way</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-struct TrieNode {
-  int count = 0;
-  TrieNode *child[2] = {};
-};
-
-void insert(TrieNode *root, int num) {
-  TrieNode *cur = root;
-  root-&gt;count += 1;
-  for(int i = 14; i &gt;= 0; --i) {
-    int index = !!(num &amp; (1 &lt;&lt; i));
-    if(!cur-&gt;child[index]) {
-      cur-&gt;child[index] = new TrieNode();
-    }
-    cur = cur-&gt;child[index];
-    cur-&gt;count += 1;
-  }
-}
-int find(TrieNode *root, int num, int target) {
-  TrieNode *cur = root;
-  int result = 0;
-  for(int i = 14; i &gt;= 0; --i) {
-    &#x2F;&#x2F; cout &lt;&lt; &quot;#&quot; &lt;&lt; num &lt;&lt; &#x27; &#x27; &lt;&lt; target &lt;&lt; &#x27; &#x27; &lt;&lt; i &lt;&lt; &#x27; &#x27; &lt;&lt; result &lt;&lt; endl;
-    if(!cur) break;
-    bool numBit = num &amp; (1 &lt;&lt; i);
-    bool targetBit = target &amp; (1 &lt;&lt; i);
-    if(targetBit) {
-      if(cur-&gt;child[numBit]) result += cur-&gt;child[numBit]-&gt;count;
-      cur = cur-&gt;child[!numBit];
-    } else {
-      cur = cur-&gt;child[numBit];
-    }
-  }
-  if(cur) result += cur-&gt;count;
-  return result;
-}
-int solve(vector&lt;int&gt; &amp;nums, int low, int high) {
-  TrieNode *root = new TrieNode();
-  int answer = 0;
-  for(auto n : nums) {
-    answer += find(root, n, high) - find(root, n, low - 1);
-    &#x2F;&#x2F; cout &lt;&lt; find(root, n, high) &lt;&lt; &#x27; &#x27; &lt;&lt; find(root, n, low - 1) &lt;&lt; &#x27; &#x27; &lt;&lt; answer &lt;&lt; endl;
-    insert(root, n);
-  }
-  return answer;
-}
-class Solution {
-public:
-  int countPairs(vector&lt;int&gt;&amp; nums, int low, int high) {
-    return solve(nums, low, high);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 63&#x2F;63 cases passed (164 ms)
-&#x2F;&#x2F; Your runtime beats 98.05 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 36.72 % of cpp submissions (71.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">struct </span><span>TrieNode {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> count = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  TrieNode *child[</span><span style="color:#d08770;">2</span><span>] = {};
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">insert</span><span>(TrieNode *</span><span style="color:#bf616a;">root</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span>) {
+</span><span>  TrieNode *cur = root;
+</span><span>  root-&gt;</span><span style="color:#bf616a;">count </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">14</span><span>; i &gt;= </span><span style="color:#d08770;">0</span><span>; --i) {
+</span><span>    </span><span style="color:#b48ead;">int</span><span> index = !!(num &amp; (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; i));
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(!cur-&gt;</span><span style="color:#bf616a;">child</span><span>[index]) {
+</span><span>      cur-&gt;</span><span style="color:#bf616a;">child</span><span>[index] = </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span>();
+</span><span>    }
+</span><span>    cur = cur-&gt;</span><span style="color:#bf616a;">child</span><span>[index];
+</span><span>    cur-&gt;</span><span style="color:#bf616a;">count </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>  }
+</span><span>}
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">find</span><span>(TrieNode *</span><span style="color:#bf616a;">root</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span>) {
+</span><span>  TrieNode *cur = root;
+</span><span>  </span><span style="color:#b48ead;">int</span><span> result = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">14</span><span>; i &gt;= </span><span style="color:#d08770;">0</span><span>; --i) {
+</span><span>    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;#&quot; &lt;&lt; num &lt;&lt; &#39; &#39; &lt;&lt; target &lt;&lt; &#39; &#39; &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; result &lt;&lt; endl;
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(!cur) </span><span style="color:#b48ead;">break</span><span>;
+</span><span>    </span><span style="color:#b48ead;">bool</span><span> numBit = num &amp; (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; i);
+</span><span>    </span><span style="color:#b48ead;">bool</span><span> targetBit = target &amp; (</span><span style="color:#d08770;">1 </span><span>&lt;&lt; i);
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(targetBit) {
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(cur-&gt;</span><span style="color:#bf616a;">child</span><span>[numBit]) result += cur-&gt;</span><span style="color:#bf616a;">child</span><span>[numBit]-&gt;</span><span style="color:#bf616a;">count</span><span>;
+</span><span>      cur = cur-&gt;</span><span style="color:#bf616a;">child</span><span>[!numBit];
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>      cur = cur-&gt;</span><span style="color:#bf616a;">child</span><span>[numBit];
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(cur) result += cur-&gt;</span><span style="color:#bf616a;">count</span><span>;
+</span><span>  </span><span style="color:#b48ead;">return</span><span> result;
+</span><span>}
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">solve</span><span>(vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; &amp;</span><span style="color:#bf616a;">nums</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">low</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">high</span><span>) {
+</span><span>  TrieNode *root = </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span>();
+</span><span>  </span><span style="color:#b48ead;">int</span><span> answer = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">auto</span><span> n : nums) {
+</span><span>    answer += </span><span style="color:#bf616a;">find</span><span>(root, n, high) - </span><span style="color:#bf616a;">find</span><span>(root, n, low - </span><span style="color:#d08770;">1</span><span>);
+</span><span>    </span><span style="color:#65737e;">// cout &lt;&lt; find(root, n, high) &lt;&lt; &#39; &#39; &lt;&lt; find(root, n, low - 1) &lt;&lt; &#39; &#39; &lt;&lt; answer &lt;&lt; endl;
+</span><span>    </span><span style="color:#bf616a;">insert</span><span>(root, n);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> answer;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">countPairs</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">low</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">high</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(nums, low, high);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 63/63 cases passed (164 ms)
+</span><span style="color:#65737e;">// Your runtime beats 98.05 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 36.72 % of cpp submissions (71.6 MB)
+</span></code></pre>
 <h1 id="august-leetcoding-challenge-18">August LeetCoding Challenge 18</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Decode Ways</strong></p>
 <p>A message containing letters from <code>A-Z</code> can be <strong>encoded</strong> into numbers using the following mapping:</p>
-<pre><code>&#x27;A&#x27; -&gt; &quot;1&quot;
-&#x27;B&#x27; -&gt; &quot;2&quot;
-...
-&#x27;Z&#x27; -&gt; &quot;26&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>&#39;A&#39; -&gt; &quot;1&quot;
+</span><span>&#39;B&#39; -&gt; &quot;2&quot;
+</span><span>...
+</span><span>&#39;Z&#39; -&gt; &quot;26&quot;
+</span></code></pre>
 <p>To <strong>decode</strong> an encoded message, all the digits must be grouped then mapped back into letters using the reverse of the mapping above (there may be multiple ways). For example, <code>&quot;11106&quot;</code> can be mapped into:</p>
 <ul>
 <li><code>&quot;AAJF&quot;</code> with the grouping <code>(1 1 10 6)</code></li>
@@ -319,68 +319,68 @@ public:
 <p>Given a string <code>s</code> containing only digits, return <em>the <strong>number</strong> of ways to <strong>decode</strong> it</em>.</p>
 <p>The answer is guaranteed to fit in a <strong>32-bit</strong> integer.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;12&quot;
-Output: 2
-Explanation: &quot;12&quot; could be decoded as &quot;AB&quot; (1 2) or &quot;L&quot; (12).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;12&quot;
+</span><span>Output: 2
+</span><span>Explanation: &quot;12&quot; could be decoded as &quot;AB&quot; (1 2) or &quot;L&quot; (12).
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;226&quot;
-Output: 3
-Explanation: &quot;226&quot; could be decoded as &quot;BZ&quot; (2 26), &quot;VF&quot; (22 6), or &quot;BBF&quot; (2 2 6).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;226&quot;
+</span><span>Output: 3
+</span><span>Explanation: &quot;226&quot; could be decoded as &quot;BZ&quot; (2 26), &quot;VF&quot; (22 6), or &quot;BBF&quot; (2 2 6).
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;0&quot;
-Output: 0
-Explanation: There is no character that is mapped to a number starting with 0.
-The only valid mappings with 0 are &#x27;J&#x27; -&gt; &quot;10&quot; and &#x27;T&#x27; -&gt; &quot;20&quot;, neither of which start with 0.
-Hence, there are no valid ways to decode this since all digits need to be mapped.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;0&quot;
+</span><span>Output: 0
+</span><span>Explanation: There is no character that is mapped to a number starting with 0.
+</span><span>The only valid mappings with 0 are &#39;J&#39; -&gt; &quot;10&quot; and &#39;T&#39; -&gt; &quot;20&quot;, neither of which start with 0.
+</span><span>Hence, there are no valid ways to decode this since all digits need to be mapped.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;06&quot;
-Output: 0
-Explanation: &quot;06&quot; cannot be mapped to &quot;F&quot; because of the leading zero (&quot;6&quot; is different from &quot;06&quot;).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;06&quot;
+</span><span>Output: 0
+</span><span>Explanation: &quot;06&quot; cannot be mapped to &quot;F&quot; because of the leading zero (&quot;6&quot; is different from &quot;06&quot;).
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 100</code></li>
 <li><code>s</code> contains only digits and may contain leading zero(s).</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int numDecodings(string s) {
-    int len = s.length();
-    int dp = 1;
-    int dp_ = 0;
-    for(int i = 0; i &lt; len &amp;&amp; dp; i++) {
-      int nextDP = 0;
-      if(s[i] &gt; &#x27;0&#x27;) {
-        nextDP = dp;
-      }
-      if(i) {
-        int code = (s[i - 1] - &#x27;0&#x27;) * 10 + s[i] - &#x27;0&#x27;;
-        if(code &gt; 9 &amp;&amp; code &lt; 27) {
-          nextDP += dp_;
-        }
-      }
-      dp_ = dp;
-      dp = nextDP;
-    }
-    return dp;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 269&#x2F;269 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 90.44 % of cpp submissions (6.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numDecodings</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp_ </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> dp; i</span><span>++</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> nextDP </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[i] </span><span>&gt; &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        nextDP </span><span>=</span><span style="color:#eff1f5;"> dp;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> code </span><span>= </span><span style="color:#eff1f5;">(s[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span>* </span><span style="color:#d08770;">10 </span><span>+</span><span style="color:#eff1f5;"> s[i] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(code </span><span>&gt; </span><span style="color:#d08770;">9 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> code </span><span>&lt; </span><span style="color:#d08770;">27</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          nextDP </span><span>+=</span><span style="color:#eff1f5;"> dp_;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      dp_ </span><span>=</span><span style="color:#eff1f5;"> dp;
+</span><span style="color:#eff1f5;">      dp </span><span>=</span><span style="color:#eff1f5;"> nextDP;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 269/269 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 90.44 % of cpp submissions (6.1 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -124,39 +124,39 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return <em>the indices of the</em> <code>k</code> <em><strong>weakest</strong> rows in the matrix ordered from weakest to strongest</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: mat = 
-[[1,1,0,0,0],
- [1,1,1,1,0],
- [1,0,0,0,0],
- [1,1,0,0,0],
- [1,1,1,1,1]], 
-k = 3
-Output: [2,0,3]
-Explanation: 
-The number of soldiers in each row is: 
-- Row 0: 2 
-- Row 1: 4 
-- Row 2: 1 
-- Row 3: 2 
-- Row 4: 5 
-The rows ordered from weakest to strongest are [2,0,3,1,4].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = 
+</span><span>[[1,1,0,0,0],
+</span><span> [1,1,1,1,0],
+</span><span> [1,0,0,0,0],
+</span><span> [1,1,0,0,0],
+</span><span> [1,1,1,1,1]], 
+</span><span>k = 3
+</span><span>Output: [2,0,3]
+</span><span>Explanation: 
+</span><span>The number of soldiers in each row is: 
+</span><span>- Row 0: 2 
+</span><span>- Row 1: 4 
+</span><span>- Row 2: 1 
+</span><span>- Row 3: 2 
+</span><span>- Row 4: 5 
+</span><span>The rows ordered from weakest to strongest are [2,0,3,1,4].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: mat = 
-[[1,0,0,0],
- [1,1,1,1],
- [1,0,0,0],
- [1,0,0,0]], 
-k = 2
-Output: [0,2]
-Explanation: 
-The number of soldiers in each row is: 
-- Row 0: 1 
-- Row 1: 4 
-- Row 2: 1 
-- Row 3: 1 
-The rows ordered from weakest to strongest are [0,2,3,1].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = 
+</span><span>[[1,0,0,0],
+</span><span> [1,1,1,1],
+</span><span> [1,0,0,0],
+</span><span> [1,0,0,0]], 
+</span><span>k = 2
+</span><span>Output: [0,2]
+</span><span>Explanation: 
+</span><span>The number of soldiers in each row is: 
+</span><span>- Row 0: 1 
+</span><span>- Row 1: 4 
+</span><span>- Row 2: 1 
+</span><span>- Row 3: 1 
+</span><span>The rows ordered from weakest to strongest are [0,2,3,1].
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == mat.length</code></li>
@@ -166,47 +166,47 @@ The rows ordered from weakest to strongest are [0,2,3,1].
 <li><code>matrix[i][j]</code> is either 0 or 1.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  vector&lt;int&gt; kWeakestRows(vector&lt;vector&lt;int&gt;&gt;&amp; mat, int k) {
-    int rows = mat.size();
-    int cols = mat.front().size();
-    vector&lt;int&gt; rowCount(rows);
-    for(int i = 0; i &lt; rows; ++i) {
-      int low = 0, high = cols - 1;
-      while(low &lt; high) {
-        int mid = (low + high) &gt;&gt; 1;
-        if(mat[i][mid]) {
-          low = mid + 1;
-        } else {
-          high = mid;
-        }
-      }
-      rowCount[i] = mat[i][low] ? low + 1 : low;
-    }
-    vector&lt;int&gt; answer(rows);
-    for(int i = 0; i &lt; rows; ++i) {
-      answer[i] = i;
-    }
-    sort(answer.begin(), answer.end(), [&amp;](int a, int b) {
-      return rowCount[a] &lt; rowCount[b] || (rowCount[a] == rowCount[b] &amp;&amp; a &lt; b);
-    });
-    answer.resize(k);
-    return move(answer);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 52&#x2F;52 cases passed (18 ms)
-&#x2F;&#x2F; Your runtime beats 46.89 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 19.79 % of cpp submissions (10.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">kWeakestRows</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">mat</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">rowCount</span><span style="color:#eff1f5;">(rows);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> low </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, high </span><span>=</span><span style="color:#eff1f5;"> cols </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(low </span><span>&lt;</span><span style="color:#eff1f5;"> high) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(low </span><span>+</span><span style="color:#eff1f5;"> high) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mat[i][mid]) {
+</span><span style="color:#eff1f5;">          low </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          high </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      rowCount[i] </span><span>=</span><span style="color:#eff1f5;"> mat[i][low] </span><span>?</span><span style="color:#eff1f5;"> low </span><span>+ </span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> low;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(rows);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      answer[i] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">](</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> rowCount[a] </span><span>&lt;</span><span style="color:#eff1f5;"> rowCount[b] </span><span>|| </span><span style="color:#eff1f5;">(rowCount[a] </span><span>==</span><span style="color:#eff1f5;"> rowCount[b] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> a </span><span>&lt;</span><span style="color:#eff1f5;"> b);
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    answer.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(k);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(answer);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 52/52 cases passed (18 ms)
+</span><span style="color:#65737e;">// Your runtime beats 46.89 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 19.79 % of cpp submissions (10.7 MB)
+</span></code></pre>
 
     </div>
   </div>

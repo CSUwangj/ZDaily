@@ -121,111 +121,111 @@ renderMathInElement(document.body, katex_config);
 <h2 id="decode-ways">Decode Ways</h2>
 <p>already reviewed</p>
 <h2 id="decode-ways-ii">Decode Ways II</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int MOD = 1e9 + 7;
-auto speedup = []() {
-    std::ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    return nullptr;
-}();
-constexpr inline int mul(int a, int b) {
-  int result = 0;
-  while(b) {
-    if(b &amp; 1) {
-      result += a;
-      result %= MOD;
-    }
-    b &gt;&gt;= 1;
-    a += a;
-    a %= MOD;
-  }
-  return result;
-}
-class Solution {
-public:
-  int numDecodings(string s) {
-    int len = s.length();
-    vector&lt;int&gt; dp(len + 1);
-    dp[0] = 1;
-    for(int i = 0; i &lt; len; ++i) {
-      char prev = i ? s[i - 1] : -1;
-      if(s[i] == &#x27;*&#x27;) {
-        dp[i + 1] = mul(dp[i], 9);
-        if(prev == &#x27;1&#x27;) {
-          dp[i + 1] += mul(dp[i - 1], 9);
-          dp[i + 1] %= MOD;
-        }
-        if(prev == &#x27;2&#x27;) {
-          dp[i + 1] += mul(dp[i - 1], 6);
-          dp[i + 1] %= MOD;
-        }
-        if(prev == &#x27;*&#x27;) {
-          dp[i + 1] += mul(dp[i - 1], 15);
-          dp[i + 1] %= MOD;
-        }
-      } else {
-        if(s[i] &lt; &#x27;7&#x27; &amp;&amp; (prev == &#x27;2&#x27; || prev == &#x27;*&#x27;)) {
-          dp[i + 1] += dp[i - 1];
-          dp[i + 1] %= MOD;
-        }
-        if(prev == &#x27;1&#x27; || prev == &#x27;*&#x27;) {
-          dp[i + 1] += dp[i - 1];
-          dp[i + 1] %= MOD;
-        }
-        if(s[i] != &#x27;0&#x27;) {
-          dp[i + 1] += dp[i];
-          dp[i + 1] %= MOD;
-        }
-      }
-      if(!dp[i] &amp;&amp; !dp[i + 1]) return 0;
-      &#x2F;&#x2F; cout &lt;&lt; dp[i + 1][10] &lt;&lt; &#x27; &#x27;;
-    }
-    &#x2F;&#x2F; cout &lt;&lt; endl;
-    return dp.back();
-  }
-};
-
-&#x2F;&#x2F; Runtime: 20 ms, faster than 100.00% of C++ online submissions for Decode Ways II.
-&#x2F;&#x2F; Memory Usage: 16.9 MB, less than 59.65% of C++ online submissions for Decode Ways II.
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> MOD = </span><span style="color:#d08770;">1e9 </span><span>+ </span><span style="color:#d08770;">7</span><span>;
+</span><span style="color:#b48ead;">auto</span><span> speedup = []() {
+</span><span>    std::ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>    cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>    cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">constexpr inline int </span><span style="color:#8fa1b3;">mul</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> result = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(b) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(b &amp; </span><span style="color:#d08770;">1</span><span>) {
+</span><span>      result += a;
+</span><span>      result %= MOD;
+</span><span>    }
+</span><span>    b &gt;&gt;= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    a += a;
+</span><span>    a %= MOD;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> result;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numDecodings</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(len </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> prev </span><span>=</span><span style="color:#eff1f5;"> i </span><span>?</span><span style="color:#eff1f5;"> s[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>: -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[i] </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#bf616a;">mul</span><span style="color:#eff1f5;">(dp[i], </span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">1</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#bf616a;">mul</span><span style="color:#eff1f5;">(dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], </span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">2</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#bf616a;">mul</span><span style="color:#eff1f5;">(dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], </span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#bf616a;">mul</span><span style="color:#eff1f5;">(dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], </span><span style="color:#d08770;">15</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[i] </span><span>&lt; &#39;</span><span style="color:#a3be8c;">7</span><span>&#39; &amp;&amp; </span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">2</span><span>&#39; ||</span><span style="color:#eff1f5;"> prev </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">1</span><span>&#39; ||</span><span style="color:#eff1f5;"> prev </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[i] </span><span>!= &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> dp[i];
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">dp[i] </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; dp[i + 1][10] &lt;&lt; &#39; &#39;;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Runtime: 20 ms, faster than 100.00% of C++ online submissions for Decode Ways II.
+</span><span style="color:#65737e;">// Memory Usage: 16.9 MB, less than 59.65% of C++ online submissions for Decode Ways II.
+</span></code></pre>
 <p>long long is quicker, even larger</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int MOD = 1e9 + 7;
-auto speedup = []() {
-    std::ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    return nullptr;
-}();
-class Solution {
-public:
-  int numDecodings(string s) {
-    int len = s.length();
-    vector&lt;long long&gt; dp(len + 1);
-    dp[0] = 1;
-    for(int i = 0; i &lt; len; ++i) {
-      char prev = i ? s[i - 1] : -1;
-      if(s[i] == &#x27;*&#x27;) {
-        dp[i + 1] = dp[i] * 9;
-        if(prev == &#x27;1&#x27;) dp[i + 1] += dp[i - 1] * 9;
-        if(prev == &#x27;2&#x27;) dp[i + 1] += dp[i - 1] * 6;
-        if(prev == &#x27;*&#x27;) dp[i + 1] += dp[i - 1] * 15;
-      } else {
-        if(s[i] &lt; &#x27;7&#x27; &amp;&amp; (prev == &#x27;2&#x27; || prev == &#x27;*&#x27;)) dp[i + 1] += dp[i - 1];
-        if(prev == &#x27;1&#x27; || prev == &#x27;*&#x27;) dp[i + 1] += dp[i - 1];
-        if(s[i] != &#x27;0&#x27;) dp[i + 1] += dp[i];
-      }
-      dp[i + 1] %= MOD;
-      if(!dp[i] &amp;&amp; !dp[i + 1]) return 0;
-      &#x2F;&#x2F; cout &lt;&lt; dp[i + 1][10] &lt;&lt; &#x27; &#x27;;
-    }
-    &#x2F;&#x2F; cout &lt;&lt; endl;
-    return dp.back();
-  }
-};
-
-&#x2F;&#x2F; Runtime: 16 ms, faster than 100.00% of C++ online submissions for Decode Ways II.
-&#x2F;&#x2F; Memory Usage: 21.7 MB, less than 33.01% of C++ online submissions for Decode Ways II.
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> MOD = </span><span style="color:#d08770;">1e9 </span><span>+ </span><span style="color:#d08770;">7</span><span>;
+</span><span style="color:#b48ead;">auto</span><span> speedup = []() {
+</span><span>    std::ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>    cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>    cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numDecodings</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(len </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> prev </span><span>=</span><span style="color:#eff1f5;"> i </span><span>?</span><span style="color:#eff1f5;"> s[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>: -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[i] </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> dp[i] </span><span>* </span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">1</span><span>&#39;</span><span style="color:#eff1f5;">) dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>* </span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">2</span><span>&#39;</span><span style="color:#eff1f5;">) dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>* </span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">) dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>* </span><span style="color:#d08770;">15</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[i] </span><span>&lt; &#39;</span><span style="color:#a3be8c;">7</span><span>&#39; &amp;&amp; </span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">2</span><span>&#39; ||</span><span style="color:#eff1f5;"> prev </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">)) dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>== &#39;</span><span style="color:#a3be8c;">1</span><span>&#39; ||</span><span style="color:#eff1f5;"> prev </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">) dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[i] </span><span>!= &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> dp[i];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">dp[i] </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; dp[i + 1][10] &lt;&lt; &#39; &#39;;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Runtime: 16 ms, faster than 100.00% of C++ online submissions for Decode Ways II.
+</span><span style="color:#65737e;">// Memory Usage: 21.7 MB, less than 33.01% of C++ online submissions for Decode Ways II.
+</span></code></pre>
 <h2 id="human-traffic-of-stadium">Human Traffic of Stadium</h2>
 <p>no need to review</p>
 <h2 id="number-of-lines-to-write-string">Number of Lines To Write String</h2>
@@ -262,10 +262,10 @@ public:
 <p>Return all critical connections in the network in any order.</p>
 <p><strong>Example 1:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/09/03/1537_ex1_2.png" alt="img" /></strong></p>
-<pre><code>Input: n = 4, connections = [[0,1],[1,2],[2,0],[1,3]]
-Output: [[1,3]]
-Explanation: [[3,1]] is also accepted.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 4, connections = [[0,1],[1,2],[2,0],[1,3]]
+</span><span>Output: [[1,3]]
+</span><span>Explanation: [[3,1]] is also accepted.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 10^5</code></li>
@@ -275,44 +275,44 @@ Explanation: [[3,1]] is also accepted.
 </ul>
 <h2 id="solution">Solution</h2>
 <p>learning tarjan algorithm</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  vector&lt;vector&lt;int&gt;&gt; neighbors;
-  vector&lt;int&gt; num;
-  vector&lt;int&gt; low;
-  int count = 0;
-  void init(int n, vector&lt;vector&lt;int&gt;&gt;&amp; connections) {
-    num.resize(n);
-    low.resize(n);
-    neighbors.resize(n);
-    for(auto &amp;edge : connections) {
-      neighbors[edge[0]].push_back(edge[1]);
-      neighbors[edge[1]].push_back(edge[0]);
-    }
-  }
-  void tarjan(int u, int father, vector&lt;vector&lt;int&gt;&gt; &amp;answer) {
-    low[u] = num[u] = ++count;
-    for(auto child : neighbors[u]) {
-      if(child == father) continue;
-      if(!num[child]) {
-        tarjan(child, u, answer);
-        low[u] = min(low[u], low[child]);
-        if(low[child] &gt; num[u]) {
-          answer.push_back({u, child});
-        }
-      } else if (num[child] &lt; num[u]) {
-        low[u] = min(low[u], num[child]);
-      }
-    }
-  }
-public:
-  vector&lt;vector&lt;int&gt;&gt; criticalConnections(int n, vector&lt;vector&lt;int&gt;&gt;&amp; connections) {
-    init(n, connections);
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    tarjan(0, 0, answer);
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; neighbors;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; num;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; low;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">connections</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    num.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    low.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    neighbors.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">edge </span><span>:</span><span style="color:#eff1f5;"> connections) {
+</span><span style="color:#eff1f5;">      neighbors[edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">      neighbors[edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">tarjan</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">u</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">father</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    low[u] </span><span>=</span><span style="color:#eff1f5;"> num[u] </span><span>= ++</span><span style="color:#eff1f5;">count;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> child </span><span>:</span><span style="color:#eff1f5;"> neighbors[u]) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(child </span><span>==</span><span style="color:#eff1f5;"> father) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">num[child]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">tarjan</span><span style="color:#eff1f5;">(child, u, answer);
+</span><span style="color:#eff1f5;">        low[u] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(low[u], low[child]);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(low[child] </span><span>&gt;</span><span style="color:#eff1f5;"> num[u]) {
+</span><span style="color:#eff1f5;">          answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({u, child});
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if </span><span style="color:#eff1f5;">(num[child] </span><span>&lt;</span><span style="color:#eff1f5;"> num[u]) {
+</span><span style="color:#eff1f5;">        low[u] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(low[u], num[child]);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">criticalConnections</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">connections</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(n, connections);
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">tarjan</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, answer);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

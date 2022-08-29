@@ -118,9 +118,9 @@ renderMathInElement(document.body, katex_config);
 <p>Given a <code>m * n</code> matrix <code>mat</code> of integers, sort it diagonally in ascending order from the top-left to the bottom-right then return the sorted array.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/01/21/1482_example_1_2.png" alt="img" /></p>
-<pre><code>Input: mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]]
-Output: [[1,1,1,1],[1,2,2,2],[1,2,3,3]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]]
+</span><span>Output: [[1,1,1,1],[1,2,2,2],[1,2,3,3]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == mat.length</code></li>
@@ -130,54 +130,54 @@ Output: [[1,1,1,1],[1,2,2,2],[1,2,3,3]]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>this problem is so... disgusting</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; diagonalSort(vector&lt;vector&lt;int&gt;&gt;&amp; mat) {
-        int h = mat.size();
-        int w = mat[0].size();
-        vector&lt;int&gt; index;
-        for(int i = 0; i &lt; h+w-1; ++i) {
-            int beginH = i &gt;= w ? i-w+1 : 0;
-            int endH = beginH ? (i+w-1 &lt; h ? i+w-1 : h-1) : min(i, h-1);
-            &#x2F;&#x2F; cout &lt;&lt; beginH &lt;&lt; &#x27; &#x27; &lt;&lt; endH &lt;&lt; endl;
-            if(beginH == endH) continue;
-            index.clear();
-            for(int j = beginH; j &lt;= endH; ++j) {
-                index.push_back(mat[j][j+w-1-i]);
-            }
-            sort(index.begin(), index.end());
-            for(int j = beginH; j &lt;= endH; ++j) {
-                mat[j][j+w-1-i] = index[j-beginH];
-            }
-        }
-        return mat;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">diagonalSort</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">mat</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> h </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> w </span><span>=</span><span style="color:#eff1f5;"> mat[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; index;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> h</span><span>+</span><span style="color:#eff1f5;">w</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> beginH </span><span>=</span><span style="color:#eff1f5;"> i </span><span>&gt;=</span><span style="color:#eff1f5;"> w </span><span>?</span><span style="color:#eff1f5;"> i</span><span>-</span><span style="color:#eff1f5;">w</span><span>+</span><span style="color:#d08770;">1 </span><span>: </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> endH </span><span>=</span><span style="color:#eff1f5;"> beginH </span><span>? </span><span style="color:#eff1f5;">(i</span><span>+</span><span style="color:#eff1f5;">w</span><span>-</span><span style="color:#d08770;">1 </span><span>&lt;</span><span style="color:#eff1f5;"> h </span><span>?</span><span style="color:#eff1f5;"> i</span><span>+</span><span style="color:#eff1f5;">w</span><span>-</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> h</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>: </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(i, h</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            </span><span style="color:#65737e;">// cout &lt;&lt; beginH &lt;&lt; &#39; &#39; &lt;&lt; endH &lt;&lt; endl;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(beginH </span><span>==</span><span style="color:#eff1f5;"> endH) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            index.</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> beginH; j </span><span>&lt;=</span><span style="color:#eff1f5;"> endH; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                index.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(mat[j][j</span><span>+</span><span style="color:#eff1f5;">w</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">i]);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(index.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), index.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> beginH; j </span><span>&lt;=</span><span style="color:#eff1f5;"> endH; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                mat[j][j</span><span>+</span><span style="color:#eff1f5;">w</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">i] </span><span>=</span><span style="color:#eff1f5;"> index[j</span><span>-</span><span style="color:#eff1f5;">beginH];
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> mat;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="merge-k-sorted-lists">Merge k Sorted Lists</h1>
 <h2 id="description-1">Description</h2>
 <p>You are given an array of <code>k</code> linked-lists <code>lists</code>, each linked-list is sorted in ascending order.</p>
 <p><em>Merge all the linked-lists into one sorted linked-list and return it.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: lists = [[1,4,5],[1,3,4],[2,6]]
-Output: [1,1,2,3,4,4,5,6]
-Explanation: The linked-lists are:
-[
-  1-&gt;4-&gt;5,
-  1-&gt;3-&gt;4,
-  2-&gt;6
-]
-merging them into one sorted list:
-1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: lists = [[1,4,5],[1,3,4],[2,6]]
+</span><span>Output: [1,1,2,3,4,4,5,6]
+</span><span>Explanation: The linked-lists are:
+</span><span>[
+</span><span>  1-&gt;4-&gt;5,
+</span><span>  1-&gt;3-&gt;4,
+</span><span>  2-&gt;6
+</span><span>]
+</span><span>merging them into one sorted list:
+</span><span>1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: lists = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: lists = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: lists = [[]]
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: lists = [[]]
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>k == lists.length</code></li>
@@ -189,52 +189,52 @@ Output: []
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- *&#x2F;
-class Solution {
-public:
-    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
-        priority_queue&lt;ListNode*, vector&lt;ListNode*&gt;, bool(*)(ListNode*, ListNode*)&gt; q([](ListNode* a, ListNode* b){
-            return a-&gt;val &gt; b-&gt;val;
-        });
-        if(lists.empty()) return nullptr;
-        ListNode* newHead = new ListNode(-100100);
-        ListNode* cur = newHead;
-        for(auto list: lists) {
-            if(list) q.push(list);
-        }
-        while(q.size()) {
-            cur-&gt;next = q.top();
-            q.pop();
-            cur = cur-&gt;next;
-            if(cur-&gt;next) q.push(cur-&gt;next);
-        }
-        return newHead-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode() : val(0), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">mergeKLists</span><span style="color:#eff1f5;">(vector&lt;ListNode</span><span>*</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">lists</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        priority_queue</span><span>&lt;</span><span style="color:#eff1f5;">ListNode</span><span>*</span><span style="color:#eff1f5;">, vector</span><span>&lt;</span><span style="color:#eff1f5;">ListNode</span><span>*&gt;</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">)(ListNode</span><span>*</span><span style="color:#eff1f5;">, ListNode</span><span>*</span><span style="color:#eff1f5;">)</span><span>&gt; </span><span style="color:#bf616a;">q</span><span style="color:#eff1f5;">([](ListNode</span><span>*</span><span style="color:#eff1f5;"> a, ListNode</span><span>*</span><span style="color:#eff1f5;"> b){
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a-&gt;</span><span style="color:#bf616a;">val </span><span>&gt;</span><span style="color:#eff1f5;"> b-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        });
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lists.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        ListNode</span><span>*</span><span style="color:#eff1f5;"> newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">100100</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        ListNode</span><span>*</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> list</span><span>:</span><span style="color:#eff1f5;"> lists) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(list) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(list);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-3">December LeetCoding Challenge 3</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Increasing Order Search Tree</strong></p>
 <p>Given the <code>root</code> of a binary search tree, rearrange the tree in <strong>in-order</strong> so that the leftmost node in the tree is now the root of the tree, and every node has no left child and only one right child.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/17/ex1.jpg" alt="img" /></p>
-<pre><code>Input: root = [5,3,6,2,4,null,8,1,null,null,null,7,9]
-Output: [1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [5,3,6,2,4,null,8,1,null,null,null,7,9]
+</span><span>Output: [1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/17/ex2.jpg" alt="img" /></p>
-<pre><code>Input: root = [5,1,7]
-Output: [1,null,5,null,7]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [5,1,7]
+</span><span>Output: [1,null,5,null,7]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the given tree will be in the range <code>[1, 100]</code>.</li>
@@ -242,34 +242,34 @@ Output: [1,null,5,null,7]
 </ul>
 <h2 id="solution-2">Solution</h2>
 <p>inorder traversal is all we need, 'cause it's a BST</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- *&#x2F;
-class Solution {
-    void helper(TreeNode* root, TreeNode* &amp;newRoot) {
-        if(!root) return;
-        helper(root-&gt;left, newRoot);
-        newRoot-&gt;right = new TreeNode(root-&gt;val);
-        newRoot = newRoot-&gt;right;
-        helper(root-&gt;right, newRoot);
-    }
-public:
-    TreeNode* increasingBST(TreeNode* root) {
-        TreeNode* newRootHead = new TreeNode(-1);
-        TreeNode* helperNode = newRootHead;
-        helper(root, helperNode);
-        return newRootHead-&gt;right;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * struct TreeNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     TreeNode *left;
+</span><span style="color:#65737e;"> *     TreeNode *right;
+</span><span style="color:#65737e;"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">helper</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, TreeNode</span><span>* &amp;</span><span style="color:#bf616a;">newRoot</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, newRoot);
+</span><span style="color:#eff1f5;">        newRoot-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        newRoot </span><span>=</span><span style="color:#eff1f5;"> newRoot-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, newRoot);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    TreeNode</span><span>* </span><span style="color:#8fa1b3;">increasingBST</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        TreeNode</span><span>*</span><span style="color:#eff1f5;"> newRootHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        TreeNode</span><span>*</span><span style="color:#eff1f5;"> helperNode </span><span>=</span><span style="color:#eff1f5;"> newRootHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(root, helperNode);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newRootHead-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

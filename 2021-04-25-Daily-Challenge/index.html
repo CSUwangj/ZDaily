@@ -120,22 +120,22 @@ renderMathInElement(document.body, katex_config);
 <p>You have to rotate the image <a href="https://en.wikipedia.org/wiki/In-place_algorithm"><strong>in-place</strong></a>, which means you have to modify the input 2D matrix directly. <strong>DO NOT</strong> allocate another 2D matrix and do the rotation.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/08/28/mat1.jpg" alt="img" /></p>
-<pre><code>Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
-Output: [[7,4,1],[8,5,2],[9,6,3]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+</span><span>Output: [[7,4,1],[8,5,2],[9,6,3]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/08/28/mat2.jpg" alt="img" /></p>
-<pre><code>Input: matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
-Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+</span><span>Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: matrix = [[1]]
-Output: [[1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[1]]
+</span><span>Output: [[1]]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: matrix = [[1,2],[3,4]]
-Output: [[3,1],[4,2]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[1,2],[3,4]]
+</span><span>Output: [[3,1],[4,2]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>matrix.length == n</code></li>
@@ -145,36 +145,36 @@ Output: [[3,1],[4,2]]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>done at spring festival</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
-        int n = matrix.size();
-        int low = n &#x2F; 2;
-        int high = n - low;
-        for(int j = 0; j &lt; high; ++j) {
-            for(int i = 0; i+j &lt; n-1-j; ++i) {
-                swap(matrix[j][j+i], matrix[j+i][n-1-j]);
-                swap(matrix[j][j+i], matrix[n-1-i-j][j]);
-                swap(matrix[n-1-j][n-1-i-j], matrix[n-1-i-j][j]);
-            }
-        }
-    }
-};
-
-&#x2F;&#x2F; [0, 0], [0, n-1], [n-1, n-1], [n-1, 0] -&gt; [n-1, 0], [0, 0], [0, n-1], [n-1, n-1]
-&#x2F;&#x2F; [0, 1], [1, n-1], [n-1, n-2], [n-2, 0] -&gt; [n-2, 0], [0, 1], [1, n-1], [n-1, n-2]
-&#x2F;&#x2F; ...
-&#x2F;&#x2F; [0, i], [i, n-1], [n-1, n-1-i], [n-1-i, 0] -&gt; ...
-&#x2F;&#x2F; ...
-&#x2F;&#x2F; [0, n-2], [n-2, n-1], [n-1, 1], [1, 0] -&gt; ...
-
-&#x2F;&#x2F; [1, 1], [1, n-2], [n-2, n-2], [n-2, 1] -&gt; ...
-&#x2F;&#x2F; [1, 2], [2, n-2], [n-2, n-3], [n-3, 1] -&gt; ...
-&#x2F;&#x2F; ...
-&#x2F;&#x2F; [1, 1+i], [1+i, n-2], [n-2, n-2-i], [n-2-i, 1] -&gt; ...
-
-&#x2F;&#x2F; [j, j+i], [j+i, n-1-j], [n-1-j, n-1-i-j], [n-1-i-j, j] -&gt; ...
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">rotate</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">matrix</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>=</span><span style="color:#eff1f5;"> matrix.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> low </span><span>=</span><span style="color:#eff1f5;"> n </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> high </span><span>=</span><span style="color:#eff1f5;"> n </span><span>-</span><span style="color:#eff1f5;"> low;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> high; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i</span><span>+</span><span style="color:#eff1f5;">j </span><span>&lt;</span><span style="color:#eff1f5;"> n</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">j; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(matrix[j][j</span><span>+</span><span style="color:#eff1f5;">i], matrix[j</span><span>+</span><span style="color:#eff1f5;">i][n</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">j]);
+</span><span style="color:#eff1f5;">                </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(matrix[j][j</span><span>+</span><span style="color:#eff1f5;">i], matrix[n</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">i</span><span>-</span><span style="color:#eff1f5;">j][j]);
+</span><span style="color:#eff1f5;">                </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(matrix[n</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">j][n</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">i</span><span>-</span><span style="color:#eff1f5;">j], matrix[n</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">i</span><span>-</span><span style="color:#eff1f5;">j][j]);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// [0, 0], [0, n-1], [n-1, n-1], [n-1, 0] -&gt; [n-1, 0], [0, 0], [0, n-1], [n-1, n-1]
+</span><span style="color:#65737e;">// [0, 1], [1, n-1], [n-1, n-2], [n-2, 0] -&gt; [n-2, 0], [0, 1], [1, n-1], [n-1, n-2]
+</span><span style="color:#65737e;">// ...
+</span><span style="color:#65737e;">// [0, i], [i, n-1], [n-1, n-1-i], [n-1-i, 0] -&gt; ...
+</span><span style="color:#65737e;">// ...
+</span><span style="color:#65737e;">// [0, n-2], [n-2, n-1], [n-1, 1], [1, 0] -&gt; ...
+</span><span>
+</span><span style="color:#65737e;">// [1, 1], [1, n-2], [n-2, n-2], [n-2, 1] -&gt; ...
+</span><span style="color:#65737e;">// [1, 2], [2, n-2], [n-2, n-3], [n-3, 1] -&gt; ...
+</span><span style="color:#65737e;">// ...
+</span><span style="color:#65737e;">// [1, 1+i], [1+i, n-2], [n-2, n-2-i], [n-2-i, 1] -&gt; ...
+</span><span>
+</span><span style="color:#65737e;">// [j, j+i], [j+i, n-1-j], [n-1-j, n-1-i-j], [n-1-i-j, j] -&gt; ...
+</span></code></pre>
 
     </div>
   </div>

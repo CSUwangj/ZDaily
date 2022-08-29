@@ -124,24 +124,24 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/12/18/e1.png" alt="img" /></p>
-<pre><code>Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
-Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+</span><span>Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/12/18/e2.png" alt="img" /></p>
-<pre><code>Input: head = [[1,1],[2,1]]
-Output: [[1,1],[2,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [[1,1],[2,1]]
+</span><span>Output: [[1,1],[2,1]]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/12/18/e3.png" alt="img" /></strong></p>
-<pre><code>Input: head = [[3,null],[3,0],[3,null]]
-Output: [[3,null],[3,0],[3,null]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [[3,null],[3,0],[3,null]]
+</span><span>Output: [[3,null],[3,0],[3,null]]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: head = []
-Output: []
-Explanation: Given linked list is empty (null pointer), so return null.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = []
+</span><span>Output: []
+</span><span>Explanation: Given linked list is empty (null pointer), so return null.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>-10000 &lt;= Node.val &lt;= 10000</code></li>
@@ -150,29 +150,29 @@ Explanation: Given linked list is empty (null pointer), so return null.
 </ul>
 <h2 id="solution">Solution</h2>
 <p>use a unordered_map</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    Node* copyRandomList(Node* head) {
-        Node *newHead = new Node(-1);
-        Node *cur = newHead;
-        unordered_map&lt;Node*, Node*&gt; mp;
-        while(head) {
-            cur-&gt;next = new Node(head-&gt;val);
-            mp[head] = cur-&gt;next;
-            cur = cur-&gt;next;
-            cur-&gt;random = head-&gt;random;
-            head = head-&gt;next;
-        }
-        mp[NULL] = NULL;
-        cur = newHead-&gt;next;
-        while(cur) {
-            cur-&gt;random = mp[cur-&gt;random];
-            cur = cur-&gt;next;
-        }
-        return newHead-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    Node</span><span>* </span><span style="color:#8fa1b3;">copyRandomList</span><span style="color:#eff1f5;">(Node</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        Node </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">Node</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        Node </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        unordered_map</span><span>&lt;</span><span style="color:#eff1f5;">Node</span><span>*</span><span style="color:#eff1f5;">, Node</span><span>*&gt;</span><span style="color:#eff1f5;"> mp;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">Node</span><span style="color:#eff1f5;">(head-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            mp[head] </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">random </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">random</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        mp[</span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">random </span><span>=</span><span style="color:#eff1f5;"> mp[cur-&gt;</span><span style="color:#bf616a;">random</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="lru-cache">LRU Cache</h1>
 <h2 id="description-1">Description</h2>
 <p>Design a data structure that follows the constraints of a <strong><a href="https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU">Least Recently Used (LRU) cache</a></strong>.</p>
@@ -185,24 +185,24 @@ public:
 <p><strong>Follow up:</strong>
 Could you do <code>get</code> and <code>put</code> in <code>O(1)</code> time complexity?</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]
-[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
-Output
-[null, null, null, 1, null, -1, null, -1, 3, 4]
-
-Explanation
-LRUCache lRUCache = new LRUCache(2);
-lRUCache.put(1, 1); &#x2F;&#x2F; cache is {1=1}
-lRUCache.put(2, 2); &#x2F;&#x2F; cache is {1=1, 2=2}
-lRUCache.get(1);    &#x2F;&#x2F; return 1
-lRUCache.put(3, 3); &#x2F;&#x2F; LRU key was 2, evicts key 2, cache is {1=1, 3=3}
-lRUCache.get(2);    &#x2F;&#x2F; returns -1 (not found)
-lRUCache.put(4, 4); &#x2F;&#x2F; LRU key was 1, evicts key 1, cache is {4=4, 3=3}
-lRUCache.get(1);    &#x2F;&#x2F; return -1 (not found)
-lRUCache.get(3);    &#x2F;&#x2F; return 3
-lRUCache.get(4);    &#x2F;&#x2F; return 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]
+</span><span>[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+</span><span>Output
+</span><span>[null, null, null, 1, null, -1, null, -1, 3, 4]
+</span><span>
+</span><span>Explanation
+</span><span>LRUCache lRUCache = new LRUCache(2);
+</span><span>lRUCache.put(1, 1); // cache is {1=1}
+</span><span>lRUCache.put(2, 2); // cache is {1=1, 2=2}
+</span><span>lRUCache.get(1);    // return 1
+</span><span>lRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+</span><span>lRUCache.get(2);    // returns -1 (not found)
+</span><span>lRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
+</span><span>lRUCache.get(1);    // return -1 (not found)
+</span><span>lRUCache.get(3);    // return 3
+</span><span>lRUCache.get(4);    // return 4
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= capacity &lt;= 3000</code></li>
@@ -213,59 +213,59 @@ lRUCache.get(4);    &#x2F;&#x2F; return 4
 <h2 id="solution-1">Solution</h2>
 <p>use a list and two unordered_map</p>
 <p>code can be more elegant</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class LRUCache {
-    int capacity;
-    list&lt;int&gt; LRU;
-    unordered_map&lt;int, list&lt;int&gt;::iterator&gt; position;
-    unordered_map&lt;int, int&gt; kv;
-public:
-    LRUCache(int capacity) : capacity(capacity) {}
-    
-    int get(int key) {
-        if(kv.count(key)) {
-            LRU.erase(position[key]);
-            LRU.push_front(key);
-            position[key] = LRU.begin();
-            return kv[key];
-        }
-        return -1;
-    }
-    
-    void put(int key, int value) {
-        if(kv.count(key)) {
-            LRU.erase(position[key]);
-        } else {
-            if(kv.size() == capacity) {
-                kv.erase(LRU.back());
-                position.erase(LRU.back());
-                LRU.pop_back();
-            }
-        }
-        LRU.push_front(key);
-        position[key] = LRU.begin();
-        kv[key] = value;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">LRUCache </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> capacity;
+</span><span style="color:#eff1f5;">    list&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; LRU;
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, list&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;::iterator&gt; position;
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; kv;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">LRUCache</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">capacity</span><span style="color:#eff1f5;">) : </span><span style="color:#bf616a;">capacity</span><span style="color:#eff1f5;">(capacity) {}
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">get</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(kv.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(key)) {
+</span><span style="color:#eff1f5;">            LRU.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(position[key]);
+</span><span style="color:#eff1f5;">            LRU.</span><span style="color:#bf616a;">push_front</span><span style="color:#eff1f5;">(key);
+</span><span style="color:#eff1f5;">            position[key] </span><span>=</span><span style="color:#eff1f5;"> LRU.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> kv[key];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">put</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(kv.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(key)) {
+</span><span style="color:#eff1f5;">            LRU.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(position[key]);
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(kv.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> capacity) {
+</span><span style="color:#eff1f5;">                kv.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(LRU.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">                position.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(LRU.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">                LRU.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        LRU.</span><span style="color:#bf616a;">push_front</span><span style="color:#eff1f5;">(key);
+</span><span style="color:#eff1f5;">        position[key] </span><span>=</span><span style="color:#eff1f5;"> LRU.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        kv[key] </span><span>=</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-14">January LeetCoding Challenge 14</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Minimum Operations to Reduce X to Zero</strong></p>
 <p>You are given an integer array <code>nums</code> and an integer <code>x</code>. In one operation, you can either remove the leftmost or the rightmost element from the array <code>nums</code> and subtract its value from <code>x</code>. Note that this <strong>modifies</strong> the array for future operations.</p>
 <p>Return <em>the <strong>minimum number</strong> of operations to reduce</em> <code>x</code> <em>to <strong>exactly</strong></em> <code>0</code> <em>if it's possible</em>*, otherwise, return* <code>-1</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,1,4,2,3], x = 5
-Output: 2
-Explanation: The optimal solution is to remove the last two elements to reduce x to zero.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,1,4,2,3], x = 5
+</span><span>Output: 2
+</span><span>Explanation: The optimal solution is to remove the last two elements to reduce x to zero.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [5,6,7,8,9], x = 4
-Output: -1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [5,6,7,8,9], x = 4
+</span><span>Output: -1
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [3,2,20,1,1,3], x = 10
-Output: 5
-Explanation: The optimal solution is to remove the last three elements and the first two elements (5 operations in total) to reduce x to zero.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,2,20,1,1,3], x = 10
+</span><span>Output: 5
+</span><span>Explanation: The optimal solution is to remove the last three elements and the first two elements (5 operations in total) to reduce x to zero.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 105</code></li>
@@ -273,35 +273,35 @@ Explanation: The optimal solution is to remove the last three elements and the f
 <li><code>1 &lt;= x &lt;= 109</code></li>
 </ul>
 <h2 id="solution-2">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int minOperations(vector&lt;int&gt;&amp; nums, int x) {
-        int len = nums.size();
-        int sum = 0;
-        unordered_map&lt;int, int&gt; sumLeft, sumRight;
-        int pos = 0;
-        while(pos &lt; len &amp;&amp; sum &lt; x) {
-            sum += nums[pos];
-            sumLeft[sum] = pos;
-            pos += 1;
-        }
-        pos = len-1;
-        sum = 0;
-        while(pos &gt;= 0 &amp;&amp; sum &lt; x) {
-            sum += nums[pos];
-            sumRight[sum] = pos;
-            pos -= 1;
-        }
-        int answer = INT_MAX;
-        for(auto [sum, pos] : sumLeft) {
-            if(sumRight.count(x-sum) &amp;&amp; sumRight[x-sum] &gt; pos) answer = min(answer, pos + 1 + len - sumRight[x-sum]);
-        }
-        if(sumLeft.count(x)) answer = min(answer, sumLeft[x] + 1);
-        if(sumRight.count(x)) answer = min(answer, len - sumRight[x]);
-        return answer == INT_MAX ? -1 : answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minOperations</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; sumLeft, sumRight;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> sum </span><span>&lt;</span><span style="color:#eff1f5;"> x) {
+</span><span style="color:#eff1f5;">            sum </span><span>+=</span><span style="color:#eff1f5;"> nums[pos];
+</span><span style="color:#eff1f5;">            sumLeft[sum] </span><span>=</span><span style="color:#eff1f5;"> pos;
+</span><span style="color:#eff1f5;">            pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        pos </span><span>=</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> sum </span><span>&lt;</span><span style="color:#eff1f5;"> x) {
+</span><span style="color:#eff1f5;">            sum </span><span>+=</span><span style="color:#eff1f5;"> nums[pos];
+</span><span style="color:#eff1f5;">            sumRight[sum] </span><span>=</span><span style="color:#eff1f5;"> pos;
+</span><span style="color:#eff1f5;">            pos </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[sum, pos] </span><span>:</span><span style="color:#eff1f5;"> sumLeft) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sumRight.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(x</span><span>-</span><span style="color:#eff1f5;">sum) </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> sumRight[x</span><span>-</span><span style="color:#eff1f5;">sum] </span><span>&gt;</span><span style="color:#eff1f5;"> pos) answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, pos </span><span>+ </span><span style="color:#d08770;">1 </span><span>+</span><span style="color:#eff1f5;"> len </span><span>-</span><span style="color:#eff1f5;"> sumRight[x</span><span>-</span><span style="color:#eff1f5;">sum]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sumLeft.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(x)) answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, sumLeft[x] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sumRight.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(x)) answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, len </span><span>-</span><span style="color:#eff1f5;"> sumRight[x]);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer </span><span>==</span><span style="color:#eff1f5;"> INT_MAX </span><span>? -</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

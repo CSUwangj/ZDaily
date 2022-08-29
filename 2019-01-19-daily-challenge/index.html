@@ -128,34 +128,34 @@ $9474 = 9^4 + 4^4 + 7^4 + 4^4$</p>
 <p>All you need is a DFS.</p>
 <p>Because $9^5&lt;10^5$,$7\times 9^5&lt;10^6$, so upper bound of DFS is 6.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::vec::Vec;
-
-fn main() {
-    let mut ans: Vec&lt;i32&gt; = Vec::new();
-    dfs(0, 5, 0, 0, &amp;mut ans);
-    ans.sort();
-    ans.dedup();
-    let mut ans_sum = 0;
-    for num in &amp;ans {
-        println!(&quot;{}&quot;, num);
-        ans_sum += num;       
-    }
-    println!(&quot;Answer is {}&quot;, ans_sum);
-}
-
-
-fn dfs(c: i32, n: i32, num: i32, sum: i32, ans: &amp;mut Vec&lt;i32&gt;){
-    if sum == num &amp;&amp; sum &gt; 1 {
-        ans.push(num);
-    }
-    if c &gt; n {
-        return;
-    }
-    for i in 0i32..10i32 {
-        dfs(c+1, n, num*10 + i, sum + i.pow(n as u32), ans);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::vec::Vec;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: Vec&lt;</span><span style="color:#b48ead;">i32</span><span>&gt; = Vec::new();
+</span><span>    </span><span style="color:#96b5b4;">dfs</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">5</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, &amp;</span><span style="color:#b48ead;">mut</span><span> ans);
+</span><span>    ans.</span><span style="color:#96b5b4;">sort</span><span>();
+</span><span>    ans.</span><span style="color:#96b5b4;">dedup</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans_sum = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> num in &amp;ans {
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, num);
+</span><span>        ans_sum += num;       
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans_sum);
+</span><span>}
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">dfs</span><span>(</span><span style="color:#bf616a;">c</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#bf616a;">num</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#bf616a;">sum</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#bf616a;">ans</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>Vec&lt;</span><span style="color:#b48ead;">i32</span><span>&gt;){
+</span><span>    </span><span style="color:#b48ead;">if</span><span> sum == num &amp;&amp; sum &gt; </span><span style="color:#d08770;">1 </span><span>{
+</span><span>        ans.</span><span style="color:#96b5b4;">push</span><span>(num);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">if</span><span> c &gt; n {
+</span><span>        </span><span style="color:#b48ead;">return</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span style="color:#b48ead;">i32</span><span>..</span><span style="color:#d08770;">10</span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>        </span><span style="color:#96b5b4;">dfs</span><span>(c+</span><span style="color:#d08770;">1</span><span>, n, num*</span><span style="color:#d08770;">10 </span><span>+ i, sum + i.</span><span style="color:#96b5b4;">pow</span><span>(n as </span><span style="color:#b48ead;">u32</span><span>), ans);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="593-valid-square">593. Valid Square</h3>
@@ -163,9 +163,9 @@ fn dfs(c: i32, n: i32, num: i32, sum: i32, ans: &amp;mut Vec&lt;i32&gt;){
 <p>Given the coordinates of four points in 2D space, return whether the four points could construct a square.</p>
 <p>The coordinate (x,y) of a point is represented by an integer array with two integers.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input: p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]
-Output: True
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]
+</span><span>Output: True
+</span></code></pre>
 <p>Note:</p>
 <ol>
 <li>All the input integers are in the range [-10000, 10000].</li>
@@ -180,33 +180,33 @@ Output: True
 <li>Check if these two line are perpendicular.</li>
 </ol>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number[]} p1
- * @param {number[]} p2
- * @param {number[]} p3
- * @param {number[]} p4
- * @return {boolean}
- *&#x2F;
-var validSquare = function(p1, p2, p3, p4) {
-  const dis = (p1, p2) =&gt; {
-    return Math.sqrt((p1[0]-p2[0])*(p1[0]-p2[0])+(p1[1]-p2[1])*(p1[1]-p2[1]));
-  };
-  const cmp = (a, b) =&gt; {
-    return a-b &gt;1e-6;
-  };
-  if(cmp(dis(p1,p2), dis(p1,p3))) [p2, p4] = [p4, p2];
-  else if(cmp(dis(p1,p3), dis(p1, p2))) [p3, p4] = [p4, p3];
-  return !cmp(dis(p1,p2),dis(p1,p3)) &amp;&amp; !cmp(dis(p1,p3),dis(p1,p2)) &amp;&amp; cmp(dis(p1,p2),0)&amp;&amp;
-         (Math.abs(p1[0]-p2[0]) === Math.abs(p3[0]-p4[0])) &amp;&amp;
-         (Math.abs(p1[1]-p2[1]) === Math.abs(p3[1]-p4[1])) &amp;&amp;
-         (Math.abs(p1[0]-p3[0]) === Math.abs(p2[0]-p4[0])) &amp;&amp;
-         (Math.abs(p1[1]-p3[1]) === Math.abs(p2[1]-p4[1])) &amp;&amp;
-         ((p1[0]-p2[0])*(p1[0]-p3[0])+(p1[1]-p3[1])*(p1[1]-p2[1]) === 0);
-};
-
-&#x2F;&#x2F; console.log(validSquare(p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]));
-&#x2F;&#x2F; console.log(validSquare([0,0], [5,0], [5,4], [0,4]));
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">p1
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">p2
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">p3
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">p4
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{boolean}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">validSquare </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">p1</span><span>, </span><span style="color:#bf616a;">p2</span><span>, </span><span style="color:#bf616a;">p3</span><span>, </span><span style="color:#bf616a;">p4</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">dis </span><span>= (</span><span style="color:#bf616a;">p1</span><span>, </span><span style="color:#bf616a;">p2</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">return </span><span>Math.</span><span style="color:#96b5b4;">sqrt</span><span>((</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">0</span><span>]-</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">0</span><span>])*(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">0</span><span>]-</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">0</span><span>])+(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">1</span><span>]-</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">1</span><span>])*(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">1</span><span>]-</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">1</span><span>]));
+</span><span>  };
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">cmp </span><span>= (</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">a</span><span>-</span><span style="color:#bf616a;">b </span><span>&gt;</span><span style="color:#d08770;">1e-6</span><span>;
+</span><span>  };
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#8fa1b3;">cmp</span><span>(</span><span style="color:#8fa1b3;">dis</span><span>(</span><span style="color:#bf616a;">p1</span><span>,</span><span style="color:#bf616a;">p2</span><span>), </span><span style="color:#8fa1b3;">dis</span><span>(</span><span style="color:#bf616a;">p1</span><span>,</span><span style="color:#bf616a;">p3</span><span>))) [</span><span style="color:#bf616a;">p2</span><span>, </span><span style="color:#bf616a;">p4</span><span>] = [</span><span style="color:#bf616a;">p4</span><span>, </span><span style="color:#bf616a;">p2</span><span>];
+</span><span>  </span><span style="color:#b48ead;">else if</span><span>(</span><span style="color:#8fa1b3;">cmp</span><span>(</span><span style="color:#8fa1b3;">dis</span><span>(</span><span style="color:#bf616a;">p1</span><span>,</span><span style="color:#bf616a;">p3</span><span>), </span><span style="color:#8fa1b3;">dis</span><span>(</span><span style="color:#bf616a;">p1</span><span>, </span><span style="color:#bf616a;">p2</span><span>))) [</span><span style="color:#bf616a;">p3</span><span>, </span><span style="color:#bf616a;">p4</span><span>] = [</span><span style="color:#bf616a;">p4</span><span>, </span><span style="color:#bf616a;">p3</span><span>];
+</span><span>  </span><span style="color:#b48ead;">return </span><span>!</span><span style="color:#8fa1b3;">cmp</span><span>(</span><span style="color:#8fa1b3;">dis</span><span>(</span><span style="color:#bf616a;">p1</span><span>,</span><span style="color:#bf616a;">p2</span><span>),</span><span style="color:#8fa1b3;">dis</span><span>(</span><span style="color:#bf616a;">p1</span><span>,</span><span style="color:#bf616a;">p3</span><span>)) &amp;&amp; !</span><span style="color:#8fa1b3;">cmp</span><span>(</span><span style="color:#8fa1b3;">dis</span><span>(</span><span style="color:#bf616a;">p1</span><span>,</span><span style="color:#bf616a;">p3</span><span>),</span><span style="color:#8fa1b3;">dis</span><span>(</span><span style="color:#bf616a;">p1</span><span>,</span><span style="color:#bf616a;">p2</span><span>)) &amp;&amp; </span><span style="color:#8fa1b3;">cmp</span><span>(</span><span style="color:#8fa1b3;">dis</span><span>(</span><span style="color:#bf616a;">p1</span><span>,</span><span style="color:#bf616a;">p2</span><span>),</span><span style="color:#d08770;">0</span><span>)&amp;&amp;
+</span><span>         (Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">0</span><span>]-</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">0</span><span>]) === Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">p3</span><span>[</span><span style="color:#d08770;">0</span><span>]-</span><span style="color:#bf616a;">p4</span><span>[</span><span style="color:#d08770;">0</span><span>])) &amp;&amp;
+</span><span>         (Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">1</span><span>]-</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">1</span><span>]) === Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">p3</span><span>[</span><span style="color:#d08770;">1</span><span>]-</span><span style="color:#bf616a;">p4</span><span>[</span><span style="color:#d08770;">1</span><span>])) &amp;&amp;
+</span><span>         (Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">0</span><span>]-</span><span style="color:#bf616a;">p3</span><span>[</span><span style="color:#d08770;">0</span><span>]) === Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">0</span><span>]-</span><span style="color:#bf616a;">p4</span><span>[</span><span style="color:#d08770;">0</span><span>])) &amp;&amp;
+</span><span>         (Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">1</span><span>]-</span><span style="color:#bf616a;">p3</span><span>[</span><span style="color:#d08770;">1</span><span>]) === Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">1</span><span>]-</span><span style="color:#bf616a;">p4</span><span>[</span><span style="color:#d08770;">1</span><span>])) &amp;&amp;
+</span><span>         ((</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">0</span><span>]-</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">0</span><span>])*(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">0</span><span>]-</span><span style="color:#bf616a;">p3</span><span>[</span><span style="color:#d08770;">0</span><span>])+(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">1</span><span>]-</span><span style="color:#bf616a;">p3</span><span>[</span><span style="color:#d08770;">1</span><span>])*(</span><span style="color:#bf616a;">p1</span><span>[</span><span style="color:#d08770;">1</span><span>]-</span><span style="color:#bf616a;">p2</span><span>[</span><span style="color:#d08770;">1</span><span>]) === </span><span style="color:#d08770;">0</span><span>);
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(validSquare(p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]));
+</span><span style="color:#65737e;">// console.log(validSquare([0,0], [5,0], [5,4], [0,4]));
+</span></code></pre>
 
     </div>
   </div>

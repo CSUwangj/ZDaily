@@ -115,81 +115,81 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>10001st prime</em> in <em>Rust</em> and <em>Binary Tree Preorder Traversal</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>10001st prime
-
-Problem 7 
-
-By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
-
-What is the 10 001st prime number?
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>10001st prime
+</span><span>
+</span><span>Problem 7 
+</span><span>
+</span><span>By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+</span><span>
+</span><span>What is the 10 001st prime number?
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>It's easy to think about use sieve of Eratosthenes to compute prime, whose time complexity is $O(nloglogn)$, or Euler sieve, whose time complexity is $O(n)$.</p>
 <p>I'll do it with extern crate. ;)</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-fn main() {
-    let p = primal::Primes::all().nth(10001 - 1).unwrap();
-    println!(&quot;The 10001st prime is {}&quot;, p);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> p = primal::Primes::all().</span><span style="color:#96b5b4;">nth</span><span>(</span><span style="color:#d08770;">10001 </span><span>- </span><span style="color:#d08770;">1</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">The 10001st prime is </span><span style="color:#d08770;">{}</span><span>&quot;, p);
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>144. Binary Tree Preorder Traversal
-
-Given a binary tree, return the preorder traversal of its nodes&#x27; values.
-
-Example:
-
-Input: [1,null,2,3]
-   1
-    \
-     2
-    &#x2F;
-   3
-
-Output: [1,2,3]
-Follow up: Recursive solution is trivial, could you do it iteratively?
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>144. Binary Tree Preorder Traversal
+</span><span>
+</span><span>Given a binary tree, return the preorder traversal of its nodes&#39; values.
+</span><span>
+</span><span>Example:
+</span><span>
+</span><span>Input: [1,null,2,3]
+</span><span>   1
+</span><span>    \
+</span><span>     2
+</span><span>    /
+</span><span>   3
+</span><span>
+</span><span>Output: [1,2,3]
+</span><span>Follow up: Recursive solution is trivial, could you do it iteratively?
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>;p</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- *&#x2F;
-&#x2F;**
- * @param {TreeNode} root
- * @return {number[]}
- *&#x2F;
-var preorderTraversal = (root) =&gt; {
-  if(root == null) return [];
-  let ans = [root.val]
-  ans = ans.concat(preorderTraversal(root.left));
-  ans = ans.concat(preorderTraversal(root.right));
-  return ans;
-};
-
-var preorderTraversal = (root) =&gt; {
-  if(root == null) return [];
-  let ans = [root.val];
-  let s = [];
-  s.push(root.right);
-  s.push(root.left);
-  while(s.length){
-    let tmp = s.pop();
-    if(tmp === null) continue;
-    ans.push(tmp.val);
-    s.push(tmp.right);
-    s.push(tmp.left);
-  }
-  return ans;
-};
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * function TreeNode(val) {
+</span><span style="color:#65737e;"> *     this.val = val;
+</span><span style="color:#65737e;"> *     this.left = this.right = null;
+</span><span style="color:#65737e;"> * }
+</span><span style="color:#65737e;"> */
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{TreeNode} </span><span style="color:#bf616a;">root
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">preorderTraversal </span><span>= (</span><span style="color:#bf616a;">root</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(root == </span><span style="color:#d08770;">null</span><span>) </span><span style="color:#b48ead;">return </span><span>[];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [root.</span><span style="color:#bf616a;">val</span><span>]
+</span><span>  </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">concat</span><span>(</span><span style="color:#8fa1b3;">preorderTraversal</span><span>(root.left));
+</span><span>  </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">concat</span><span>(</span><span style="color:#8fa1b3;">preorderTraversal</span><span>(root.right));
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">preorderTraversal </span><span>= (</span><span style="color:#bf616a;">root</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(root == </span><span style="color:#d08770;">null</span><span>) </span><span style="color:#b48ead;">return </span><span>[];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [root.</span><span style="color:#bf616a;">val</span><span>];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">s </span><span>= [];
+</span><span>  </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">push</span><span>(root.right);
+</span><span>  </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">push</span><span>(root.left);
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(</span><span style="color:#bf616a;">s</span><span>.length){
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">tmp </span><span>= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">pop</span><span>();
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">tmp </span><span>=== </span><span style="color:#d08770;">null</span><span>) </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>    </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">tmp</span><span>.</span><span style="color:#bf616a;">val</span><span>);
+</span><span>    </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">tmp</span><span>.right);
+</span><span>    </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">tmp</span><span>.left);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
 <p><img src="https://csuwangj.github.io/ZDaily/2018-12-27-daily-challenge/1545880199212.png" alt="wwwww" /></p>
 
     </div>

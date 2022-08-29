@@ -119,10 +119,10 @@ renderMathInElement(document.body, katex_config);
 <p>Now, we define a pair <code>(c, d)</code> can follow another pair <code>(a, b)</code> if and only if <code>b &lt; c</code>. Chain of pairs can be formed in this fashion.</p>
 <p>Given a set of pairs, find the length longest chain which can be formed. You needn't use up all the given pairs. You can select pairs in any order.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [[1,2], [2,3], [3,4]]
-Output: 2
-Explanation: The longest chain is [1,2] -&gt; [3,4]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[1,2], [2,3], [3,4]]
+</span><span>Output: 2
+</span><span>Explanation: The longest chain is [1,2] -&gt; [3,4]
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>The number of given pairs will be in the range [1, 1000].</li>
@@ -130,37 +130,37 @@ Explanation: The longest chain is [1,2] -&gt; [3,4]
 <h2 id="solution">Solution</h2>
 <p>simple DP</p>
 <p>but solution show me that greedy approach will be faster</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int findLongestChain(vector&lt;vector&lt;int&gt;&gt;&amp; pairs) {
-        sort(pairs.begin(), pairs.end());
-        int len = pairs.size();
-        vector&lt;int&gt; dp(len, 1);
-        for(int i = 1; i &lt; len; ++i) {
-            for(int j = 0; j &lt; i; ++j) {
-                if(pairs[i][0] &gt; pairs[j][1]) {
-                    dp[i] = max(dp[i], dp[j] + 1); 
-                }
-            }
-        }
-        return *max_element(dp.begin(), dp.end());
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findLongestChain</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">pairs</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(pairs.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), pairs.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> pairs.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(len, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> i; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pairs[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&gt;</span><span style="color:#eff1f5;"> pairs[j][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                    dp[i] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[i], dp[j] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">); 
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span>*</span><span style="color:#bf616a;">max_element</span><span style="color:#eff1f5;">(dp.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), dp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-26">November LeetCoding Challenge 26</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Longest Substring with At Least K Repeating Characters</strong></p>
 <p>Given a string <code>s</code> and an integer <code>k</code>, return <em>the length of the longest substring of</em> <code>s</code> <em>such that the frequency of each character in this substring is less than or equal to</em> <code>k</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;aaabb&quot;, k = 3
-Output: 3
-Explanation: The longest substring is &quot;aaa&quot;, as &#x27;a&#x27; is repeated 3 times.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aaabb&quot;, k = 3
+</span><span>Output: 3
+</span><span>Explanation: The longest substring is &quot;aaa&quot;, as &#39;a&#39; is repeated 3 times.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;ababbc&quot;, k = 2
-Output: 5
-Explanation: The longest substring is &quot;ababb&quot;, as &#x27;a&#x27; is repeated 2 times and &#x27;b&#x27; is repeated 3 times.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;ababbc&quot;, k = 2
+</span><span>Output: 5
+</span><span>Explanation: The longest substring is &quot;ababb&quot;, as &#39;a&#39; is repeated 2 times and &#39;b&#39; is repeated 3 times.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 104</code></li>
@@ -170,42 +170,42 @@ Explanation: The longest substring is &quot;ababb&quot;, as &#x27;a&#x27; is rep
 <h2 id="solution-1">Solution</h2>
 <p>sliding window runs with time complexity as $O(N)$</p>
 <p>will try divide-and-conquer later</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int longestSubstring(string s, int k) {
-        unordered_map&lt;char, int&gt; occurence;
-        for(auto c : s) {
-            occurence[c] += 1;
-        }
-        int len = s.size();
-        int maxChars = occurence.size();
-        int answer = 0;
-        for(int chars = 1; chars &lt;= maxChars; ++chars) {
-            occurence.clear();
-            int cnt = 0, start = 0, end = 0;
-            for(; end &lt; len; ++end) {
-                if(occurence[s[end]] == 0) {
-                    cnt += 1;
-                }
-                occurence[s[end]] += 1;
-                while(cnt &gt; chars) {
-                    occurence[s[start]] -= 1;
-                    if(occurence[s[start]] == 0) {
-                        cnt -= 1;
-                    }
-                    start += 1;
-                }
-                bool sat = true;
-                for(auto [c, cnt] : occurence) {
-                    if(cnt &amp;&amp; cnt &lt; k) sat = false;
-                }
-                if(sat) answer = max(answer, end-start+1);
-            }
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">longestSubstring</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        unordered_map&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; occurence;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">            occurence[c] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxChars </span><span>=</span><span style="color:#eff1f5;"> occurence.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> chars </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; chars </span><span>&lt;=</span><span style="color:#eff1f5;"> maxChars; </span><span>++</span><span style="color:#eff1f5;">chars) {
+</span><span style="color:#eff1f5;">            occurence.</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, start </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, end </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(; end </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">end) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(occurence[s[end]] </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    cnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                occurence[s[end]] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cnt </span><span>&gt;</span><span style="color:#eff1f5;"> chars) {
+</span><span style="color:#eff1f5;">                    occurence[s[start]] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(occurence[s[start]] </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                        cnt </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    }
+</span><span style="color:#eff1f5;">                    start </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> sat </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[c, cnt] </span><span>:</span><span style="color:#eff1f5;"> occurence) {
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cnt </span><span>&lt;</span><span style="color:#eff1f5;"> k) sat </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sat) answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, end</span><span>-</span><span style="color:#eff1f5;">start</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

@@ -117,44 +117,44 @@ renderMathInElement(document.body, katex_config);
 <h2 id="problem">Problem</h2>
 <h3 id="where-my-anagrams-at">Where my anagrams at?</h3>
 <p>What is an anagram? Well, two words are anagrams of each other if they both contain the same letters. For example:</p>
-<pre><code>&#x27;abba&#x27; &amp; &#x27;baab&#x27; == true
-
-&#x27;abba&#x27; &amp; &#x27;bbaa&#x27; == true
-
-&#x27;abba&#x27; &amp; &#x27;abbba&#x27; == false
-
-&#x27;abba&#x27; &amp; &#x27;abca&#x27; == false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>&#39;abba&#39; &amp; &#39;baab&#39; == true
+</span><span>
+</span><span>&#39;abba&#39; &amp; &#39;bbaa&#39; == true
+</span><span>
+</span><span>&#39;abba&#39; &amp; &#39;abbba&#39; == false
+</span><span>
+</span><span>&#39;abba&#39; &amp; &#39;abca&#39; == false
+</span></code></pre>
 <p>Write a function that will find all the anagrams of a word from a list. You will be given two inputs a word and an array with words. You should return an array of all the anagrams or an empty array if there are none. For example:</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">anagrams(&#x27;abba&#x27;, [&#x27;aabb&#x27;, &#x27;abcd&#x27;, &#x27;bbaa&#x27;, &#x27;dada&#x27;]) =&gt; [&#x27;aabb&#x27;, &#x27;bbaa&#x27;]
-
-anagrams(&#x27;racer&#x27;, [&#x27;crazer&#x27;, &#x27;carer&#x27;, &#x27;racar&#x27;, &#x27;caers&#x27;, &#x27;racer&#x27;]) =&gt; [&#x27;carer&#x27;, &#x27;racer&#x27;]
-
-anagrams(&#x27;laser&#x27;, [&#x27;lazing&#x27;, &#x27;lazy&#x27;,  &#x27;lacer&#x27;]) =&gt; []
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#8fa1b3;">anagrams</span><span>(&#39;</span><span style="color:#a3be8c;">abba</span><span>&#39;, [&#39;</span><span style="color:#a3be8c;">aabb</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">abcd</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">bbaa</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">dada</span><span>&#39;]) </span><span style="color:#b48ead;">=&gt; </span><span>[&#39;</span><span style="color:#a3be8c;">aabb</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">bbaa</span><span>&#39;]
+</span><span>
+</span><span style="color:#8fa1b3;">anagrams</span><span>(&#39;</span><span style="color:#a3be8c;">racer</span><span>&#39;, [&#39;</span><span style="color:#a3be8c;">crazer</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">carer</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">racar</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">caers</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">racer</span><span>&#39;]) </span><span style="color:#b48ead;">=&gt; </span><span>[&#39;</span><span style="color:#a3be8c;">carer</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">racer</span><span>&#39;]
+</span><span>
+</span><span style="color:#8fa1b3;">anagrams</span><span>(&#39;</span><span style="color:#a3be8c;">laser</span><span>&#39;, [&#39;</span><span style="color:#a3be8c;">lazing</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">lazy</span><span>&#39;,  &#39;</span><span style="color:#a3be8c;">lacer</span><span>&#39;]) </span><span style="color:#b48ead;">=&gt; </span><span>[]
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">function anagrams(word, words) {
-  return words.filter(w =&gt; word.split(&quot;&quot;).sort().join(&quot;&quot;)===w.split(&quot;&quot;).sort().join(&quot;&quot;))
-}
-
-&#x2F;&#x2F;&#x2F;&#x2F;
-
-function anagrams(word, words) {
-  word = word.split(&quot;&quot;).sort().join(&quot;&quot;);
-  return words.filter(w =&gt; word===w.split(&quot;&quot;).sort().join(&quot;&quot;))
-}
-
-&#x2F;&#x2F;&#x2F;&#x2F;
-
-String.prototype.sort = function() {
-  return this.split(&quot;&quot;).sort().join(&quot;&quot;);
-};
-
-function anagrams(word, words) {
-  return words.filter(x =&gt; x.sort() === word.sort());
-}
-&#x2F;&#x2F;&#x2F;&#x2F;
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">anagrams</span><span>(</span><span style="color:#bf616a;">word</span><span>, </span><span style="color:#bf616a;">words</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">words</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">w </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">word</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#96b5b4;">sort</span><span>().</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;)===</span><span style="color:#bf616a;">w</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#96b5b4;">sort</span><span>().</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;))
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">////
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">anagrams</span><span>(</span><span style="color:#bf616a;">word</span><span>, </span><span style="color:#bf616a;">words</span><span>) {
+</span><span>  </span><span style="color:#bf616a;">word </span><span>= </span><span style="color:#bf616a;">word</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#96b5b4;">sort</span><span>().</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">words</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">w </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">word</span><span>===</span><span style="color:#bf616a;">w</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#96b5b4;">sort</span><span>().</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;))
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">////
+</span><span>
+</span><span style="color:#ebcb8b;">String</span><span>.prototype.</span><span style="color:#8fa1b3;">sort </span><span>= </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#96b5b4;">sort</span><span>().</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;);
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">anagrams</span><span>(</span><span style="color:#bf616a;">word</span><span>, </span><span style="color:#bf616a;">words</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">words</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">x </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">x</span><span>.</span><span style="color:#96b5b4;">sort</span><span>() === </span><span style="color:#bf616a;">word</span><span>.</span><span style="color:#96b5b4;">sort</span><span>());
+</span><span>}
+</span><span style="color:#65737e;">////
+</span></code></pre>
 
     </div>
   </div>

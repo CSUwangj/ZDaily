@@ -119,18 +119,18 @@ renderMathInElement(document.body, katex_config);
 <p>Given an integer array <code>nums</code>, you need to find one <strong>continuous subarray</strong> that if you only sort this subarray in ascending order, then the whole array will be sorted in ascending order.</p>
 <p>Return <em>the shortest such subarray and output its length</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [2,6,4,8,10,9,15]
-Output: 5
-Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,6,4,8,10,9,15]
+</span><span>Output: 5
+</span><span>Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1,2,3,4]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3,4]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [1]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^4</code></li>
@@ -138,44 +138,44 @@ Output: 0
 </ul>
 <p><strong>Follow up:</strong> Can you solve it in <code>O(n)</code> time complexity?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int findUnsortedSubarray(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    int wrongLess = -1;
-    for(int i = 1; i &lt; len; ++i) {
-      if(nums[i] &lt; nums[i - 1]) {
-        wrongLess = i - 1;
-        break;
-      }
-    }
-    if(wrongLess == -1) return 0;
-    int wrongGreater = -1;
-    for(int i = len - 2; i &gt;= 0; --i) {
-      if(nums[i] &gt; nums[i + 1]) {
-        wrongGreater = i + 1;
-        break;
-      }
-    }
-    int minPos = wrongLess;
-    int maxPos = wrongGreater;
-    for(int i = min(wrongLess, wrongGreater); i &lt;= max(wrongLess, wrongGreater); ++i) {
-      if(nums[i] &lt; nums[minPos]) minPos = i;
-      if(nums[i] &gt; nums[maxPos]) maxPos = i;
-    }
-    int begin = 0;
-    while(nums[begin] &lt;= nums[minPos]) begin += 1;
-    int end = len - 1;
-    while(nums[end] &gt;= nums[maxPos]) end -= 1;
-    return end - begin + 1;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 307&#x2F;307 cases passed (26 ms)
-&#x2F;&#x2F; Your runtime beats 94.24 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 68.9 % of cpp submissions (26.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findUnsortedSubarray</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> wrongLess </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&lt;</span><span style="color:#eff1f5;"> nums[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        wrongLess </span><span>=</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(wrongLess </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> wrongGreater </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> nums[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        wrongGreater </span><span>=</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> minPos </span><span>=</span><span style="color:#eff1f5;"> wrongLess;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxPos </span><span>=</span><span style="color:#eff1f5;"> wrongGreater;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(wrongLess, wrongGreater); i </span><span>&lt;= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(wrongLess, wrongGreater); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&lt;</span><span style="color:#eff1f5;"> nums[minPos]) minPos </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> nums[maxPos]) maxPos </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(nums[begin] </span><span>&lt;=</span><span style="color:#eff1f5;"> nums[minPos]) begin </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(nums[end] </span><span>&gt;=</span><span style="color:#eff1f5;"> nums[maxPos]) end </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> end </span><span>-</span><span style="color:#eff1f5;"> begin </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 307/307 cases passed (26 ms)
+</span><span style="color:#65737e;">// Your runtime beats 94.24 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 68.9 % of cpp submissions (26.6 MB)
+</span></code></pre>
 
     </div>
   </div>

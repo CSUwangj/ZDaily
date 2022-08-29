@@ -118,18 +118,18 @@ renderMathInElement(document.body, katex_config);
 <p>You are given <code>n</code> <code>points</code> in the plane that are all <strong>distinct</strong>, where <code>points[i] = [xi, yi]</code>. A <strong>boomerang</strong> is a tuple of points <code>(i, j, k)</code> such that the distance between <code>i</code> and <code>j</code> equals the distance between <code>i</code> and <code>k</code> <strong>(the order of the tuple matters)</strong>.</p>
 <p>Return <em>the number of boomerangs</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: points = [[0,0],[1,0],[2,0]]
-Output: 2
-Explanation: The two boomerangs are [[1,0],[0,0],[2,0]] and [[1,0],[2,0],[0,0]].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: points = [[0,0],[1,0],[2,0]]
+</span><span>Output: 2
+</span><span>Explanation: The two boomerangs are [[1,0],[0,0],[2,0]] and [[1,0],[2,0],[0,0]].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: points = [[1,1],[2,2],[3,3]]
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: points = [[1,1],[2,2],[3,3]]
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: points = [[1,1]]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: points = [[1,1]]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == points.length</code></li>
@@ -139,27 +139,27 @@ Output: 0
 <li>All the points are <strong>unique</strong>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">constexpr int distance(int x1, int y1, int x2, int y2) {
-  return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
-}
-
-class Solution {
-public:
-  int numberOfBoomerangs(vector&lt;vector&lt;int&gt;&gt;&amp; points) {
-    int len = points.size();
-    int answer = 0;
-    for(auto &amp;p : points) {
-      unordered_map&lt;int, int&gt; cnt;
-      for(auto &amp;pp : points) {
-        int d = distance(p[0], p[1], pp[0], pp[1]);
-        answer += 2 * cnt[d];
-        cnt[d] += 1;
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">constexpr int </span><span style="color:#8fa1b3;">distance</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x1</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">y1</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x2</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">y2</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span>(x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numberOfBoomerangs</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">points</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> points.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">p </span><span>:</span><span style="color:#eff1f5;"> points) {
+</span><span style="color:#eff1f5;">      unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cnt;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">pp </span><span>:</span><span style="color:#eff1f5;"> points) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> d </span><span>= </span><span style="color:#bf616a;">distance</span><span style="color:#eff1f5;">(p[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], p[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], pp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], pp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">        answer </span><span>+= </span><span style="color:#d08770;">2 </span><span>*</span><span style="color:#eff1f5;"> cnt[d];
+</span><span style="color:#eff1f5;">        cnt[d] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="april-leetcoding-challenge-7">April LeetCoding challenge 7</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Determine if String Halves Are Alike</strong></p>
@@ -167,24 +167,24 @@ public:
 <p>Two strings are <strong>alike</strong> if they have the same number of vowels (<code>'a'</code>, <code>'e'</code>, <code>'i'</code>, <code>'o'</code>, <code>'u'</code>, <code>'A'</code>, <code>'E'</code>, <code>'I'</code>, <code>'O'</code>, <code>'U'</code>). Notice that <code>s</code> contains uppercase and lowercase letters.</p>
 <p>Return <code>true</code> <em>if</em> <code>a</code> <em>and</em> <code>b</code> <em>are <strong>alike</strong></em>. Otherwise, return <code>false</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;book&quot;
-Output: true
-Explanation: a = &quot;bo&quot; and b = &quot;ok&quot;. a has 1 vowel and b has 1 vowel. Therefore, they are alike.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;book&quot;
+</span><span>Output: true
+</span><span>Explanation: a = &quot;bo&quot; and b = &quot;ok&quot;. a has 1 vowel and b has 1 vowel. Therefore, they are alike.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;textbook&quot;
-Output: false
-Explanation: a = &quot;text&quot; and b = &quot;book&quot;. a has 1 vowel whereas b has 2. Therefore, they are not alike.
-Notice that the vowel o is counted twice.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;textbook&quot;
+</span><span>Output: false
+</span><span>Explanation: a = &quot;text&quot; and b = &quot;book&quot;. a has 1 vowel whereas b has 2. Therefore, they are not alike.
+</span><span>Notice that the vowel o is counted twice.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;MerryChristmas&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;MerryChristmas&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;AbCdEfGh&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;AbCdEfGh&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= s.length &lt;= 1000</code></li>
@@ -192,38 +192,38 @@ Output: true
 <li><code>s</code> consists of <strong>uppercase and lowercase</strong> letters.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">constexpr int vowel(char c) {
-  switch(c) {
-    case &#x27;a&#x27;:
-    case &#x27;e&#x27;:
-    case &#x27;i&#x27;:
-    case &#x27;o&#x27;:
-    case &#x27;u&#x27;:
-    case &#x27;A&#x27;:
-    case &#x27;E&#x27;:
-    case &#x27;I&#x27;:
-    case &#x27;O&#x27;:
-    case &#x27;U&#x27;:
-      return 1;
-  }
-  return 0;
-}
-class Solution {
-public:
-  bool halvesAreAlike(string s) {
-    int front = 0;
-    int back = 0;
-    int len = s.length();
-    for(int i = 0; i &lt; len &#x2F; 2; ++i) {
-      front += vowel(s[i]);
-    }
-    for(int i = len &#x2F; 2; i &lt; len; ++i) {
-      back += vowel(s[i]);
-    }
-    return front == back;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">constexpr int </span><span style="color:#8fa1b3;">vowel</span><span>(</span><span style="color:#b48ead;">char </span><span style="color:#bf616a;">c</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">switch</span><span>(c) {
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;:
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">e</span><span>&#39;:
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">i</span><span>&#39;:
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">o</span><span>&#39;:
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">u</span><span>&#39;:
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">A</span><span>&#39;:
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">E</span><span>&#39;:
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">I</span><span>&#39;:
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">O</span><span>&#39;:
+</span><span>    </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">U</span><span>&#39;:
+</span><span>      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">halvesAreAlike</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> front </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> back </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      front </span><span>+= </span><span style="color:#bf616a;">vowel</span><span style="color:#eff1f5;">(s[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> len </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      back </span><span>+= </span><span style="color:#bf616a;">vowel</span><span style="color:#eff1f5;">(s[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> front </span><span>==</span><span style="color:#eff1f5;"> back;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

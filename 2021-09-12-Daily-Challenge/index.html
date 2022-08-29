@@ -124,20 +124,20 @@ renderMathInElement(document.body, katex_config);
 <p>Given the original graph and <code>maxMoves</code>, return <em>the number of nodes that are <strong>reachable</strong> from node</em> <code>0</code> <em>in the new graph</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/08/01/origfinal.png" alt="img" /></p>
-<pre><code>Input: edges = [[0,1,10],[0,2,1],[1,2,2]], maxMoves = 6, n = 3
-Output: 13
-Explanation: The edge subdivisions are shown in the image above.
-The nodes that are reachable are highlighted in yellow.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: edges = [[0,1,10],[0,2,1],[1,2,2]], maxMoves = 6, n = 3
+</span><span>Output: 13
+</span><span>Explanation: The edge subdivisions are shown in the image above.
+</span><span>The nodes that are reachable are highlighted in yellow.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: edges = [[0,1,4],[1,2,6],[0,2,8],[1,3,1]], maxMoves = 10, n = 4
-Output: 23
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: edges = [[0,1,4],[1,2,6],[0,2,8],[1,3,1]], maxMoves = 10, n = 4
+</span><span>Output: 23
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: edges = [[1,2,4],[1,4,5],[1,3,1],[2,3,4],[3,4,5]], maxMoves = 17, n = 5
-Output: 1
-Explanation: Node 0 is disconnected from the rest of the graph, so only node 0 is reachable.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: edges = [[1,2,4],[1,4,5],[1,3,1],[2,3,4],[3,4,5]], maxMoves = 17, n = 5
+</span><span>Output: 1
+</span><span>Explanation: Node 0 is disconnected from the rest of the graph, so only node 0 is reachable.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 	<li><code>0 &lt;= edges.length &lt;= min(n * (n - 1) / 2, 10<sup>4</sup>)</code></li>
@@ -149,75 +149,75 @@ Explanation: Node 0 is disconnected from the rest of the graph, so only node 0 i
 	<li><code>1 &lt;= n &lt;= 3000</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-const int MAX = INT_MAX &#x2F; 2;
-class Solution {
-  using pi = pair&lt;int, int&gt;;
-  vector&lt;vector&lt;pi&gt;&gt; neighbors;
-  vector&lt;int&gt; distance;
-  void init(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
-    neighbors.resize(n);
-    distance.resize(n, MAX);
-
-    for(auto &amp;edge : edges) {
-      neighbors[edge[0]].push_back({edge[1], edge[2] + 1});
-      neighbors[edge[1]].push_back({edge[0], edge[2] + 1});
-    }
-  }
-  void dijkstra() {
-    priority_queue&lt;pi, vector&lt;pi&gt;, greater&lt;pi&gt;&gt; pq;
-    pq.push({0, 0});
-
-    while(pq.size()) {
-      auto [moves, cur] = pq.top();
-      pq.pop();
-      if(distance[cur] != MAX) continue;
-      distance[cur] = moves;
-      for(auto [nxt, edge] : neighbors[cur]) {
-        if(distance[nxt] != MAX) continue;
-        pq.push({edge + moves, nxt});
-      }
-    }
-  }
-public:
-  int reachableNodes(vector&lt;vector&lt;int&gt;&gt;&amp; edges, int maxMoves, int n) {
-    init(n, edges);
-    dijkstra();
-
-    int answer = 0;
-    for(auto &amp;edge : edges) {
-      if(distance[edge[0]] + edge[2] &lt;= maxMoves \
-      || distance[edge[1]] + edge[2] &lt;= maxMoves \
-      || 2 * maxMoves - distance[edge[0]] - distance[edge[1]] &gt;= edge[2]) {
-        answer += edge[2];
-      } else {
-        if(distance[edge[0]] &lt; maxMoves) {
-          answer += maxMoves - distance[edge[0]];
-        }
-        if(distance[edge[1]] &lt; maxMoves) {
-          answer += maxMoves - distance[edge[1]];
-        }
-      }
-    }
-
-    for(int i = 0; i &lt; n; ++i) {
-      answer += distance[i] &lt;= maxMoves;
-    }
-    
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 47&#x2F;47 cases passed (137 ms)
-&#x2F;&#x2F; Your runtime beats 73.76 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 91.4 % of cpp submissions (38.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">const int</span><span> MAX = INT_MAX / </span><span style="color:#d08770;">2</span><span>;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">using </span><span style="color:#eff1f5;">pi </span><span>=</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;;
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;pi&gt;&gt; neighbors;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; distance;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">edges</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    neighbors.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    distance.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n, MAX);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">edge </span><span>:</span><span style="color:#eff1f5;"> edges) {
+</span><span style="color:#eff1f5;">      neighbors[edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], edge[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">      neighbors[edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], edge[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dijkstra</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    priority_queue</span><span>&lt;</span><span style="color:#eff1f5;">pi, vector&lt;pi&gt;, greater&lt;pi&gt;</span><span>&gt;</span><span style="color:#eff1f5;"> pq;
+</span><span style="color:#eff1f5;">    pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[moves, cur] </span><span>=</span><span style="color:#eff1f5;"> pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(distance[cur] </span><span>!=</span><span style="color:#eff1f5;"> MAX) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      distance[cur] </span><span>=</span><span style="color:#eff1f5;"> moves;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[nxt, edge] </span><span>:</span><span style="color:#eff1f5;"> neighbors[cur]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(distance[nxt] </span><span>!=</span><span style="color:#eff1f5;"> MAX) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({edge </span><span>+</span><span style="color:#eff1f5;"> moves, nxt});
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">reachableNodes</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">edges</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">maxMoves</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(n, edges);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">dijkstra</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">edge </span><span>:</span><span style="color:#eff1f5;"> edges) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(distance[edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>+</span><span style="color:#eff1f5;"> edge[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>&lt;=</span><span style="color:#eff1f5;"> maxMoves \
+</span><span style="color:#eff1f5;">      </span><span>||</span><span style="color:#eff1f5;"> distance[edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>+</span><span style="color:#eff1f5;"> edge[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>&lt;=</span><span style="color:#eff1f5;"> maxMoves \
+</span><span style="color:#eff1f5;">      </span><span>|| </span><span style="color:#d08770;">2 </span><span>*</span><span style="color:#eff1f5;"> maxMoves </span><span>-</span><span style="color:#eff1f5;"> distance[edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>-</span><span style="color:#eff1f5;"> distance[edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>&gt;=</span><span style="color:#eff1f5;"> edge[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        answer </span><span>+=</span><span style="color:#eff1f5;"> edge[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(distance[edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>&lt;</span><span style="color:#eff1f5;"> maxMoves) {
+</span><span style="color:#eff1f5;">          answer </span><span>+=</span><span style="color:#eff1f5;"> maxMoves </span><span>-</span><span style="color:#eff1f5;"> distance[edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(distance[edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>&lt;</span><span style="color:#eff1f5;"> maxMoves) {
+</span><span style="color:#eff1f5;">          answer </span><span>+=</span><span style="color:#eff1f5;"> maxMoves </span><span>-</span><span style="color:#eff1f5;"> distance[edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      answer </span><span>+=</span><span style="color:#eff1f5;"> distance[i] </span><span>&lt;=</span><span style="color:#eff1f5;"> maxMoves;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 47/47 cases passed (137 ms)
+</span><span style="color:#65737e;">// Your runtime beats 73.76 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 91.4 % of cpp submissions (38.8 MB)
+</span></code></pre>
 
     </div>
   </div>

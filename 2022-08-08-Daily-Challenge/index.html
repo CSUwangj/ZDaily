@@ -119,18 +119,18 @@ renderMathInElement(document.body, katex_config);
 <p>Given an integer array <code>nums</code>, return the length of the longest strictly increasing subsequence.</p>
 <p>A <strong>subsequence</strong> is a sequence that can be derived from an array by deleting some or no elements without changing the order of  the remaining elements. For example, <code>[3,6,2,7]</code> is a subsequence of the array <code>[0,3,1,6,2,2,7]</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [10,9,2,5,3,7,101,18]
-Output: 4
-Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [10,9,2,5,3,7,101,18]
+</span><span>Output: 4
+</span><span>Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0,1,0,3,2,3]
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,1,0,3,2,3]
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [7,7,7,7,7,7,7]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [7,7,7,7,7,7,7]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 2500</code></li>
@@ -138,33 +138,33 @@ Output: 1
 </ul>
 <p><strong>Follow up:</strong> Can you come up with an algorithm that runs in <code>O(n log(n))</code> time complexity?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int lengthOfLIS(vector&lt;int&gt;&amp; nums) {
-    vector&lt;int&gt; LIS{nums[0]};
-    for(auto i : nums) {
-      auto it = lower_bound(LIS.begin(), LIS.end(), i);
-      if(it != LIS.end()) {
-        *it = i;
-      } else {
-        LIS.push_back(i);
-      }
-    }
-    return LIS.size();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 54&#x2F;54 cases passed (7 ms)
-&#x2F;&#x2F; Your runtime beats 97.92 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 69.86 % of cpp submissions (10.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">lengthOfLIS</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">LIS</span><span style="color:#eff1f5;">{nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(LIS.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), LIS.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), i);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(it </span><span>!=</span><span style="color:#eff1f5;"> LIS.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        </span><span>*</span><span style="color:#eff1f5;">it </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        LIS.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> LIS.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 54/54 cases passed (7 ms)
+</span><span style="color:#65737e;">// Your runtime beats 97.92 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 69.86 % of cpp submissions (10.5 MB)
+</span></code></pre>
 
     </div>
   </div>

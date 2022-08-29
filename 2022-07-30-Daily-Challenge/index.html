@@ -124,13 +124,13 @@ renderMathInElement(document.body, katex_config);
 <p>A string <code>a</code> from <code>words1</code> is <strong>universal</strong> if for every string <code>b</code> in <code>words2</code>, <code>b</code> is a subset of <code>a</code>.</p>
 <p>Return an array of all the <strong>universal</strong> strings in <code>words1</code>. You may return the answer in <strong>any order</strong>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: words1 = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], words2 = [&quot;e&quot;,&quot;o&quot;]
-Output: [&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words1 = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], words2 = [&quot;e&quot;,&quot;o&quot;]
+</span><span>Output: [&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: words1 = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], words2 = [&quot;l&quot;,&quot;e&quot;]
-Output: [&quot;apple&quot;,&quot;google&quot;,&quot;leetcode&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words1 = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], words2 = [&quot;l&quot;,&quot;e&quot;]
+</span><span>Output: [&quot;apple&quot;,&quot;google&quot;,&quot;leetcode&quot;]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= words1.length, words2.length &lt;= 10^4</code></li>
@@ -139,33 +139,33 @@ Output: [&quot;apple&quot;,&quot;google&quot;,&quot;leetcode&quot;]
 <li>All the strings of <code>words1</code> are <strong>unique</strong>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;string&gt; wordSubsets(vector&lt;string&gt;&amp; A, vector&lt;string&gt;&amp; B) {
-    vector&lt;int&gt; count(26);
-    for(auto &amp;b : B) {
-      vector&lt;int&gt; tmpCount(26);
-      for(auto c : b) tmpCount[c - &#x27;a&#x27;] += 1;
-      for(int i = 0; i &lt; 26; ++i) count[i] = max(count[i], tmpCount[i]);
-    }
-    
-    vector&lt;string&gt; answer;
-    for(auto &amp;a : A) {
-      vector&lt;int&gt; tmpCount(26);
-      for(auto c : a) tmpCount[c - &#x27;a&#x27;] += 1;
-      bool universal = true;
-      for(int i = 0; i &lt; 26; ++i) universal &amp;= tmpCount[i] &gt;= count[i];
-      if(universal) answer.push_back(a);
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 56&#x2F;56 cases passed (282 ms)
-&#x2F;&#x2F; Your runtime beats 62.47 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 65.17 % of cpp submissions (102.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#8fa1b3;">wordSubsets</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">, vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">B</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">b </span><span>:</span><span style="color:#eff1f5;"> B) {
+</span><span style="color:#eff1f5;">      vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">tmpCount</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> b) tmpCount[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) count[i] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(count[i], tmpCount[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">a </span><span>:</span><span style="color:#eff1f5;"> A) {
+</span><span style="color:#eff1f5;">      vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">tmpCount</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> a) tmpCount[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> universal </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) universal </span><span>&amp;=</span><span style="color:#eff1f5;"> tmpCount[i] </span><span>&gt;=</span><span style="color:#eff1f5;"> count[i];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(universal) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(a);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 56/56 cases passed (282 ms)
+</span><span style="color:#65737e;">// Your runtime beats 62.47 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 65.17 % of cpp submissions (102.4 MB)
+</span></code></pre>
 
     </div>
   </div>

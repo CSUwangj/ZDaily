@@ -119,19 +119,19 @@ renderMathInElement(document.body, katex_config);
 <p>You are given a string <code>s</code> and an array of strings <code>words</code> of <strong>the same length</strong>. Return all starting indices of substring(s) in <code>s</code> that is a concatenation of each word in <code>words</code> <strong>exactly once</strong>, <strong>in any order</strong>, and <strong>without any intervening characters</strong>.</p>
 <p>You can return the answer in <strong>any order</strong>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;barfoothefoobarman&quot;, words = [&quot;foo&quot;,&quot;bar&quot;]
-Output: [0,9]
-Explanation: Substrings starting at index 0 and 9 are &quot;barfoo&quot; and &quot;foobar&quot; respectively.
-The output order does not matter, returning [9,0] is fine too.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;barfoothefoobarman&quot;, words = [&quot;foo&quot;,&quot;bar&quot;]
+</span><span>Output: [0,9]
+</span><span>Explanation: Substrings starting at index 0 and 9 are &quot;barfoo&quot; and &quot;foobar&quot; respectively.
+</span><span>The output order does not matter, returning [9,0] is fine too.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;wordgoodgoodgoodbestword&quot;, words = [&quot;word&quot;,&quot;good&quot;,&quot;best&quot;,&quot;word&quot;]
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;wordgoodgoodgoodbestword&quot;, words = [&quot;word&quot;,&quot;good&quot;,&quot;best&quot;,&quot;word&quot;]
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;barfoofoobarthefoobarman&quot;, words = [&quot;bar&quot;,&quot;foo&quot;,&quot;the&quot;]
-Output: [6,9,12]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;barfoofoobarthefoobarman&quot;, words = [&quot;bar&quot;,&quot;foo&quot;,&quot;the&quot;]
+</span><span>Output: [6,9,12]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 10^4</code></li>
@@ -140,44 +140,44 @@ Output: [6,9,12]
 <li><code>s</code> and <code>words[i]</code> consist of lowercase English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; findSubstring(string s, vector&lt;string&gt;&amp; words) {
-    unordered_map&lt;string, int&gt; cnt;
-    int wordLen = words[0].length();
-    int total = words.size();
-    int slen = s.length();
-    for(auto &amp;word : words) {
-      cnt[word] += 1;
-    }
-    vector&lt;int&gt; answer;
-    for(int i = 0; i &lt;= slen - total*wordLen; ++i) {
-      if(cnt.count(s.substr(i, wordLen))) {
-        int rest = total;
-        unordered_map&lt;string, int&gt; cur = cnt;
-        int pos = i;
-        string curWord = s.substr(pos, wordLen);
-        do {
-          cur[curWord] -= 1;
-          rest -= 1;
-          if(!cur[curWord]) cur.erase(curWord);
-          pos += wordLen;
-          curWord = s.substr(pos, wordLen);
-        }while(rest &amp;&amp; cur.count(curWord));
-        if(rest == 0) {
-          answer.push_back(i);
-        }
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 178&#x2F;178 cases passed (329 ms)
-&#x2F;&#x2F; Your runtime beats 61.92 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 54.83 % of cpp submissions (26.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">findSubstring</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cnt;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> wordLen </span><span>=</span><span style="color:#eff1f5;"> words[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> total </span><span>=</span><span style="color:#eff1f5;"> words.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> slen </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> words) {
+</span><span style="color:#eff1f5;">      cnt[word] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> slen </span><span>-</span><span style="color:#eff1f5;"> total</span><span>*</span><span style="color:#eff1f5;">wordLen; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(i, wordLen))) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rest </span><span>=</span><span style="color:#eff1f5;"> total;
+</span><span style="color:#eff1f5;">        unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cur </span><span>=</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        string curWord </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(pos, wordLen);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">do </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          cur[curWord] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          rest </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur[curWord]) cur.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(curWord);
+</span><span style="color:#eff1f5;">          pos </span><span>+=</span><span style="color:#eff1f5;"> wordLen;
+</span><span style="color:#eff1f5;">          curWord </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(pos, wordLen);
+</span><span style="color:#eff1f5;">        }</span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(rest </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cur.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(curWord));
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rest </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 178/178 cases passed (329 ms)
+</span><span style="color:#65737e;">// Your runtime beats 61.92 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 54.83 % of cpp submissions (26.2 MB)
+</span></code></pre>
 
     </div>
   </div>

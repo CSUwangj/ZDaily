@@ -122,25 +122,25 @@ renderMathInElement(document.body, katex_config);
 <p>What is the least number of refueling stops the car must make in order to reach its destination? If it cannot reach the destination, return <code>-1</code>.</p>
 <p>Note that if the car reaches a gas station with 0 fuel left, the car can still refuel there. If the car reaches the destination with 0 fuel left, it is still considered to have arrived.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: target = 1, startFuel = 1, stations = []
-Output: 0
-Explanation: We can reach the target without refueling.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = 1, startFuel = 1, stations = []
+</span><span>Output: 0
+</span><span>Explanation: We can reach the target without refueling.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: target = 100, startFuel = 1, stations = [[10,100]]
-Output: -1
-Explanation: We can&#x27;t reach the target (or even the first gas station).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = 100, startFuel = 1, stations = [[10,100]]
+</span><span>Output: -1
+</span><span>Explanation: We can&#39;t reach the target (or even the first gas station).
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]]
-Output: 2
-Explanation: 
-We start with 10 liters of fuel.
-We drive to position 10, expending 10 liters of fuel.  We refuel from 0 liters to 60 liters of gas.
-Then, we drive from position 10 to position 60 (expending 50 liters of fuel),
-and refuel from 10 liters to 50 liters of gas.  We then drive to and reach the target.
-We made 2 refueling stops along the way, so we return 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]]
+</span><span>Output: 2
+</span><span>Explanation: 
+</span><span>We start with 10 liters of fuel.
+</span><span>We drive to position 10, expending 10 liters of fuel.  We refuel from 0 liters to 60 liters of gas.
+</span><span>Then, we drive from position 10 to position 60 (expending 50 liters of fuel),
+</span><span>and refuel from 10 liters to 50 liters of gas.  We then drive to and reach the target.
+</span><span>We made 2 refueling stops along the way, so we return 2.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>1 &lt;= target, startFuel, stations[i][1] &lt;= 10^9</code></li>
@@ -149,30 +149,30 @@ We made 2 refueling stops along the way, so we return 2.
 </ol>
 <h2 id="solution">Solution</h2>
 <p>why this problem is <code>hard</code>?</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int minRefuelStops(int target, int startFuel, vector&lt;vector&lt;int&gt;&gt;&amp; stations) {
-    if(startFuel &gt;= target) return 0;
-    sort(stations.begin(), stations.end());
-    int len = stations.size();
-    vector&lt;long long&gt; dp(len + 1);
-    dp[0] = startFuel;
-    int answer = INT_MAX;
-    for(int i = 0; i &lt; len; ++i) {
-      for(int j = 1 + i; j &gt; 0; --j) {
-        if(dp[j - 1] &gt;= stations[i][0]) {
-          dp[j] = max(dp[j], dp[j - 1] + stations[i][1]);
-        } else {
-          break;
-        }
-        if(dp[j] &gt;= target) answer = min(answer, j);
-      }
-    }
-    
-    return answer == INT_MAX ? -1 : answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minRefuelStops</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">startFuel</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">stations</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(startFuel </span><span>&gt;=</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(stations.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), stations.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> stations.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(len </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> startFuel;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">1 </span><span>+</span><span style="color:#eff1f5;"> i; j </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dp[j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&gt;=</span><span style="color:#eff1f5;"> stations[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">          dp[j] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[j], dp[j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> stations[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dp[j] </span><span>&gt;=</span><span style="color:#eff1f5;"> target) answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, j);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer </span><span>==</span><span style="color:#eff1f5;"> INT_MAX </span><span>? -</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="march-leetcoding-challenge-26">March LeetCoding challenge 26</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Word Subsets</strong></p>
@@ -181,25 +181,25 @@ public:
 <p>Now say a word <code>a</code> from <code>A</code> is <em>universal</em> if for every <code>b</code> in <code>B</code>, <code>b</code> is a subset of <code>a</code>. </p>
 <p>Return a list of all universal words in <code>A</code>. You can return the words in any order.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;e&quot;,&quot;o&quot;]
-Output: [&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;e&quot;,&quot;o&quot;]
+</span><span>Output: [&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;l&quot;,&quot;e&quot;]
-Output: [&quot;apple&quot;,&quot;google&quot;,&quot;leetcode&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;l&quot;,&quot;e&quot;]
+</span><span>Output: [&quot;apple&quot;,&quot;google&quot;,&quot;leetcode&quot;]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;e&quot;,&quot;oo&quot;]
-Output: [&quot;facebook&quot;,&quot;google&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;e&quot;,&quot;oo&quot;]
+</span><span>Output: [&quot;facebook&quot;,&quot;google&quot;]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;lo&quot;,&quot;eo&quot;]
-Output: [&quot;google&quot;,&quot;leetcode&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;lo&quot;,&quot;eo&quot;]
+</span><span>Output: [&quot;google&quot;,&quot;leetcode&quot;]
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;ec&quot;,&quot;oc&quot;,&quot;ceo&quot;]
-Output: [&quot;facebook&quot;,&quot;leetcode&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;ec&quot;,&quot;oc&quot;,&quot;ceo&quot;]
+</span><span>Output: [&quot;facebook&quot;,&quot;leetcode&quot;]
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>1 &lt;= A.length, B.length &lt;= 10000</code></li>
@@ -208,28 +208,28 @@ Output: [&quot;facebook&quot;,&quot;leetcode&quot;]
 <li>All words in <code>A[i]</code> are unique: there isn't <code>i != j</code> with <code>A[i] == A[j]</code>.</li>
 </ol>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;string&gt; wordSubsets(vector&lt;string&gt;&amp; A, vector&lt;string&gt;&amp; B) {
-    vector&lt;int&gt; count(26);
-    for(auto &amp;b : B) {
-      vector&lt;int&gt; tmpCount(26);
-      for(auto c : b) tmpCount[c - &#x27;a&#x27;] += 1;
-      for(int i = 0; i &lt; 26; ++i) count[i] = max(count[i], tmpCount[i]);
-    }
-    
-    vector&lt;string&gt; answer;
-    for(auto &amp;a : A) {
-      vector&lt;int&gt; tmpCount(26);
-      for(auto c : a) tmpCount[c - &#x27;a&#x27;] += 1;
-      bool universal = true;
-      for(int i = 0; i &lt; 26; ++i) universal &amp;= tmpCount[i] &gt;= count[i];
-      if(universal) answer.push_back(a);
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#8fa1b3;">wordSubsets</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">, vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">B</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">b </span><span>:</span><span style="color:#eff1f5;"> B) {
+</span><span style="color:#eff1f5;">      vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">tmpCount</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> b) tmpCount[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) count[i] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(count[i], tmpCount[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">a </span><span>:</span><span style="color:#eff1f5;"> A) {
+</span><span style="color:#eff1f5;">      vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">tmpCount</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> a) tmpCount[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> universal </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) universal </span><span>&amp;=</span><span style="color:#eff1f5;"> tmpCount[i] </span><span>&gt;=</span><span style="color:#eff1f5;"> count[i];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(universal) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(a);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

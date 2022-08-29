@@ -117,59 +117,59 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p>Given two strings <code>s1, s2</code>, find the lowest ASCII sum of deleted characters to make two strings equal.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s1 = &quot;sea&quot;, s2 = &quot;eat&quot;
-Output: 231
-Explanation: Deleting &quot;s&quot; from &quot;sea&quot; adds the ASCII value of &quot;s&quot; (115) to the sum.
-Deleting &quot;t&quot; from &quot;eat&quot; adds 116 to the sum.
-At the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s1 = &quot;sea&quot;, s2 = &quot;eat&quot;
+</span><span>Output: 231
+</span><span>Explanation: Deleting &quot;s&quot; from &quot;sea&quot; adds the ASCII value of &quot;s&quot; (115) to the sum.
+</span><span>Deleting &quot;t&quot; from &quot;eat&quot; adds 116 to the sum.
+</span><span>At the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s1 = &quot;delete&quot;, s2 = &quot;leet&quot;
-Output: 403
-Explanation: Deleting &quot;dee&quot; from &quot;delete&quot; to turn the string into &quot;let&quot;,
-adds 100[d]+101[e]+101[e] to the sum.  Deleting &quot;e&quot; from &quot;leet&quot; adds 101[e] to the sum.
-At the end, both strings are equal to &quot;let&quot;, and the answer is 100+101+101+101 = 403.
-If instead we turned both strings into &quot;lee&quot; or &quot;eet&quot;, we would get answers of 433 or 417, which are higher.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s1 = &quot;delete&quot;, s2 = &quot;leet&quot;
+</span><span>Output: 403
+</span><span>Explanation: Deleting &quot;dee&quot; from &quot;delete&quot; to turn the string into &quot;let&quot;,
+</span><span>adds 100[d]+101[e]+101[e] to the sum.  Deleting &quot;e&quot; from &quot;leet&quot; adds 101[e] to the sum.
+</span><span>At the end, both strings are equal to &quot;let&quot;, and the answer is 100+101+101+101 = 403.
+</span><span>If instead we turned both strings into &quot;lee&quot; or &quot;eet&quot;, we would get answers of 433 or 417, which are higher.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <p><code>0 &lt; s1.length, s2.length &lt;= 1000</code>.</p>
 <p>All elements of each string will have an ASCII value in <code>[97, 122]</code>.</p>
 <h2 id="solution">Solution</h2>
 <p>LCS</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int minimumDeleteSum(string s1, string s2) {
-        int lenS1 = s1.size();
-        int lenS2 = s2.size();
-        vector&lt;vector&lt;int&gt;&gt; dp(lenS1+1, vector&lt;int&gt;(lenS2+1));
-        for(int i = 1; i &lt;= lenS1; ++i) {
-            for(int j = 1; j &lt;= lenS2; ++j) {
-                dp[i][j] = max(dp[i][j-1], dp[i-1][j]);
-                if(s1[i-1] == s2[j-1]) {
-                    dp[i][j] = max(dp[i][j], dp[i-1][j-1]+s1[i-1]);
-                }
-            }
-        }
-        int sum = 0;
-        for(auto c : s1) sum += c;
-        for(auto c : s2) sum += c;
-        return sum - 2*dp[lenS1][lenS2];
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minimumDeleteSum</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s1</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">s2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lenS1 </span><span>=</span><span style="color:#eff1f5;"> s1.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lenS2 </span><span>=</span><span style="color:#eff1f5;"> s2.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(lenS1</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(lenS2</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> lenS1; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&lt;=</span><span style="color:#eff1f5;"> lenS2; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                dp[i][j] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[i][j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], dp[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j]);
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s1[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> s2[j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                    dp[i][j] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[i][j], dp[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]</span><span>+</span><span style="color:#eff1f5;">s1[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s1) sum </span><span>+=</span><span style="color:#eff1f5;"> c;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s2) sum </span><span>+=</span><span style="color:#eff1f5;"> c;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> sum </span><span>- </span><span style="color:#d08770;">2</span><span>*</span><span style="color:#eff1f5;">dp[lenS1][lenS2];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-14">December LeetCoding Challenge 14</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Palindrome Partitioning</strong></p>
 <p>Given a string <code>s</code>, partition <code>s</code> such that every substring of the partition is a <strong>palindrome</strong>. Return all possible palindrome partitioning of <code>s</code>.</p>
 <p>A <strong>palindrome</strong> string is a string that reads the same backward as forward.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;aab&quot;
-Output: [[&quot;a&quot;,&quot;a&quot;,&quot;b&quot;],[&quot;aa&quot;,&quot;b&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aab&quot;
+</span><span>Output: [[&quot;a&quot;,&quot;a&quot;,&quot;b&quot;],[&quot;aa&quot;,&quot;b&quot;]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;a&quot;
-Output: [[&quot;a&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;a&quot;
+</span><span>Output: [[&quot;a&quot;]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 16</code></li>
@@ -177,41 +177,41 @@ Output: [[&quot;a&quot;]]
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>dfs</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    string s;
-    int len;
-    
-    bool isPalindrome(int begin, int end) {
-        while(begin &lt;= end) {
-            if(s[begin] != s[end]) return false;
-            ++begin;
-            --end;
-        }
-        return true;
-    }
-    
-    void dfs(vector&lt;vector&lt;string&gt;&gt; &amp;result, vector&lt;string&gt; &amp;current, int index) {
-        if(index == len) result.push_back(current);
-        for(int i = 0; index+i &lt; len; ++i) {
-            if(isPalindrome(index, index+i)) {
-                current.push_back(s.substr(index, i+1));
-                dfs(result, current, index+i+1);
-                current.pop_back();
-            }
-        }
-    }
-    
-public:
-    vector&lt;vector&lt;string&gt;&gt; partition(string s) {
-        this-&gt;s = s;
-        len = s.length();
-        vector&lt;vector&lt;string&gt;&gt; answer;
-        vector&lt;string&gt; tmp;
-        dfs(answer, tmp, 0);
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    string s;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isPalindrome</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;=</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[begin] </span><span>!=</span><span style="color:#eff1f5;"> s[end]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span>++</span><span style="color:#eff1f5;">begin;
+</span><span style="color:#eff1f5;">            </span><span>--</span><span style="color:#eff1f5;">end;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(vector&lt;vector&lt;string&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">, vector&lt;string&gt; </span><span>&amp;</span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> len) result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(current);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; index</span><span>+</span><span style="color:#eff1f5;">i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">isPalindrome</span><span style="color:#eff1f5;">(index, index</span><span>+</span><span style="color:#eff1f5;">i)) {
+</span><span style="color:#eff1f5;">                current.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(index, i</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">                </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(result, current, index</span><span>+</span><span style="color:#eff1f5;">i</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">                current.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;string&gt;&gt; </span><span style="color:#8fa1b3;">partition</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">s </span><span>=</span><span style="color:#eff1f5;"> s;
+</span><span style="color:#eff1f5;">        len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;string&gt;&gt; answer;
+</span><span style="color:#eff1f5;">        vector&lt;string&gt; tmp;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(answer, tmp, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

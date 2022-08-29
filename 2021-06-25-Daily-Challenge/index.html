@@ -120,43 +120,43 @@ renderMathInElement(document.body, katex_config);
 <p>Given the <code>root</code> of a binary tree, return <em>the maximum <strong>path sum</strong> of any path</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/13/exx1.jpg" alt="img" /></p>
-<pre><code>Input: root = [1,2,3]
-Output: 6
-Explanation: The optimal path is 2 -&gt; 1 -&gt; 3 with a path sum of 2 + 1 + 3 = 6.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3]
+</span><span>Output: 6
+</span><span>Explanation: The optimal path is 2 -&gt; 1 -&gt; 3 with a path sum of 2 + 1 + 3 = 6.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/13/exx2.jpg" alt="img" /></p>
-<pre><code>Input: root = [-10,9,20,null,null,15,7]
-Output: 42
-Explanation: The optimal path is 15 -&gt; 20 -&gt; 7 with a path sum of 15 + 20 + 7 = 42.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [-10,9,20,null,null,15,7]
+</span><span>Output: 42
+</span><span>Explanation: The optimal path is 15 -&gt; 20 -&gt; 7 with a path sum of 15 + 20 + 7 = 42.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 3 * 104]</code>.</li>
 <li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int answer = INT_MIN;
-  int solve(TreeNode* root) {
-    if(!root) return 0;
-    int maxLeft = solve(root-&gt;left);
-    int maxRight = solve(root-&gt;right);
-    int val = root-&gt;val;
-    if(maxLeft &gt; 0) val += maxLeft;
-    if(maxRight &gt; 0) val += maxRight;
-    answer = max(answer, val);
-    return (maxLeft &lt; 0 &amp;&amp; maxRight &lt; 0) ? root-&gt;val :
-           maxLeft &gt; maxRight ? root-&gt;val + maxLeft :
-                                root-&gt;val + maxRight;
-  }
-public:
-  int maxPathSum(TreeNode* root) {
-    solve(root);
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> INT_MIN;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxLeft </span><span>= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxRight </span><span>= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(maxLeft </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) val </span><span>+=</span><span style="color:#eff1f5;"> maxLeft;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(maxRight </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) val </span><span>+=</span><span style="color:#eff1f5;"> maxRight;
+</span><span style="color:#eff1f5;">    answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, val);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(maxLeft </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> maxRight </span><span>&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span>?</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val </span><span>:
+</span><span style="color:#eff1f5;">           maxLeft </span><span>&gt;</span><span style="color:#eff1f5;"> maxRight </span><span>?</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;"> maxLeft </span><span>:
+</span><span style="color:#eff1f5;">                                root-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;"> maxRight;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxPathSum</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="june-leetcoding-challenge-25">June LeetCoding Challenge 25</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Redundant Connection</strong></p>
@@ -165,14 +165,14 @@ public:
 <p>Return <em>an edge that can be removed so that the resulting graph is a tree of</em> <code>n</code> <em>nodes</em>. If there are multiple answers, return the answer that occurs last in the input.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/05/02/reduntant1-1-graph.jpg" alt="img" /></p>
-<pre><code>Input: edges = [[1,2],[1,3],[2,3]]
-Output: [2,3]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: edges = [[1,2],[1,3],[2,3]]
+</span><span>Output: [2,3]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/05/02/reduntant1-2-graph.jpg" alt="img" /></p>
-<pre><code>Input: edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]
-Output: [1,4]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]
+</span><span>Output: [1,4]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == edges.length</code></li>
@@ -184,38 +184,38 @@ Output: [1,4]
 <li>The given graph is connected.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int parent[1000];
-
-  int find(int x) {
-    if(x != parent[x]) parent[x] = find(parent[x]);
-    return parent[x];
-  }
-  
-  void merge(int x, int y) {
-    int px = find(x);
-    int py = find(y);
-    parent[px] = py;
-  }
-
-  void init() {
-    for(int i = 0; i &lt; 1000; i++) parent[i] = i;
-  }
-public:
-  vector&lt;int&gt; findRedundantConnection(vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
-    init();
-    for(auto &amp;edge : edges) {
-      int x = edge[0] - 1;
-      int y = edge[1] - 1;
-      int px = find(x);
-      int py = find(y);
-      if(px != py) merge(x, y);
-      else return edge;
-    }
-    return {-1, -1};
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> parent[</span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">find</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(x </span><span>!=</span><span style="color:#eff1f5;"> parent[x]) parent[x] </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(parent[x]);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> parent[x];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">merge</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">y</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> px </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(x);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> py </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(y);
+</span><span style="color:#eff1f5;">    parent[px] </span><span>=</span><span style="color:#eff1f5;"> py;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">; i</span><span>++</span><span style="color:#eff1f5;">) parent[i] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">findRedundantConnection</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">edges</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">edge </span><span>:</span><span style="color:#eff1f5;"> edges) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> x </span><span>=</span><span style="color:#eff1f5;"> edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> y </span><span>=</span><span style="color:#eff1f5;"> edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> px </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(x);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> py </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(y);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(px </span><span>!=</span><span style="color:#eff1f5;"> py) </span><span style="color:#bf616a;">merge</span><span style="color:#eff1f5;">(x, y);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">else return</span><span style="color:#eff1f5;"> edge;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

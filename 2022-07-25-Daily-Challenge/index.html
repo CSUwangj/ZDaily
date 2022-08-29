@@ -120,17 +120,17 @@ renderMathInElement(document.body, katex_config);
 <p>If <code>target</code> is not found in the array, return <code>[-1, -1]</code>.</p>
 <p>You must write an algorithm with <code>O(log n)</code> runtime complexity.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [5,7,7,8,8,10], target = 8
-Output: [3,4]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [5,7,7,8,8,10], target = 8
+</span><span>Output: [3,4]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [5,7,7,8,8,10], target = 6
-Output: [-1,-1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [5,7,7,8,8,10], target = 6
+</span><span>Output: [-1,-1]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [], target = 0
-Output: [-1,-1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [], target = 0
+</span><span>Output: [-1,-1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= nums.length &lt;= 10^5</code></li>
@@ -139,42 +139,42 @@ Output: [-1,-1]
 <li><code>-10^9 &lt;= target &lt;= 10^9</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; searchRange(vector&lt;int&gt;&amp; nums, int target) {
-    int len = nums.size();
-    if(!len) return{-1, -1};
-    int begin = 0;
-    int end = len - 1;
-    while(begin &lt; end) {
-      int mid = (begin + end) &gt;&gt; 1;
-      if(nums[mid] &lt; target) {
-        begin = mid + 1;
-      } else {
-        end = mid;
-      }
-    }
-    if(nums[begin] != target) return {-1, -1};
-    int left = begin;
-    begin = 0;
-    end = len - 1;
-    while(begin &lt; end) {
-      int mid = (begin + end + 1) &gt;&gt; 1;
-      if(nums[mid] &gt; target) {
-        end = mid - 1;
-      } else {
-        begin = mid;
-      }
-    }
-    return {left, begin};
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 88&#x2F;88 cases passed (13 ms)
-&#x2F;&#x2F; Your runtime beats 48.91 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 83.66 % of cpp submissions (13.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">searchRange</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">len) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">{</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(begin </span><span>+</span><span style="color:#eff1f5;"> end) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[mid] </span><span>&lt;</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[begin] </span><span>!=</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> left </span><span>=</span><span style="color:#eff1f5;"> begin;
+</span><span style="color:#eff1f5;">    begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    end </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(begin </span><span>+</span><span style="color:#eff1f5;"> end </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[mid] </span><span>&gt;</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{left, begin};
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 88/88 cases passed (13 ms)
+</span><span style="color:#65737e;">// Your runtime beats 48.91 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 83.66 % of cpp submissions (13.6 MB)
+</span></code></pre>
 
     </div>
   </div>

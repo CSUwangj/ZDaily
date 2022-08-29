@@ -120,18 +120,18 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>a <strong>boolean array</strong> </em><code>answer</code><em>, where </em><code>answer.length == queries.length</code> <em>and the </em><code>j<sup>th</sup></code> <em>value of </em><code>answer</code> <em>is </em><code>true</code><em> if there is a path for </em><code>queries[j]</code><em> is </em><code>true</code><em>, and </em><code>false</code><em> otherwise</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/12/08/h.png" alt="img" /></p>
-<pre><code>Input: n = 3, edgeList = [[0,1,2],[1,2,4],[2,0,8],[1,0,16]], queries = [[0,1,2],[0,2,5]]
-Output: [false,true]
-Explanation: The above figure shows the given graph. Note that there are two overlapping edges between 0 and 1 with distances 2 and 16.
-For the first query, between 0 and 1 there is no path where each distance is less than 2, thus we return false for this query.
-For the second query, there is a path (0 -&gt; 1 -&gt; 2) of two edges with distances less than 5, thus we return true for this query.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, edgeList = [[0,1,2],[1,2,4],[2,0,8],[1,0,16]], queries = [[0,1,2],[0,2,5]]
+</span><span>Output: [false,true]
+</span><span>Explanation: The above figure shows the given graph. Note that there are two overlapping edges between 0 and 1 with distances 2 and 16.
+</span><span>For the first query, between 0 and 1 there is no path where each distance is less than 2, thus we return false for this query.
+</span><span>For the second query, there is a path (0 -&gt; 1 -&gt; 2) of two edges with distances less than 5, thus we return true for this query.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/12/08/q.png" alt="img" /></p>
-<pre><code>Input: n = 5, edgeList = [[0,1,10],[1,2,5],[2,3,9],[3,4,13]], queries = [[0,4,14],[1,4,13]]
-Output: [true,false]
-Exaplanation: The above figure shows the given graph.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 5, edgeList = [[0,1,10],[1,2,5],[2,3,9],[3,4,13]], queries = [[0,4,14],[1,4,13]]
+</span><span>Output: [true,false]
+</span><span>Exaplanation: The above figure shows the given graph.
+</span></code></pre>
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 <ul>
@@ -147,67 +147,67 @@ Exaplanation: The above figure shows the given graph.
 </ul>
 <h2 id="solution">Solution</h2>
 <p>I first wrote dijkstra, then TLE, so I figured out.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  vector&lt;int&gt; parent;
-  int curIndex;
-  void init(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edgeList) {
-    curIndex = 0;
-    sort(edgeList.begin(), edgeList.end(), [](const vector&lt;int&gt;&amp; a, const vector&lt;int&gt;&amp; b) {
-      return a[2] &lt; b[2];
-    });
-    parent.resize(n);
-    for(int i = 0; i &lt; n; ++i) {
-      parent[i] = i;
-    }
-  }
-  
-  int find(int x) {
-    if(parent[x] != x) parent[x] = find(parent[x]);
-    return parent[x];
-  }
-
-  void merge(int x, int y) {
-    int px = find(x);
-    int py = find(y);
-    parent[px] = py;
-  }
-
-  void solveToLength(int len, vector&lt;vector&lt;int&gt;&gt;&amp; edgeList) {
-    for(; curIndex &lt; edgeList.size() &amp;&amp; edgeList[curIndex][2] &lt; len; ++curIndex) {
-      merge(edgeList[curIndex][1], edgeList[curIndex][0]);
-    }
-  }
-public:
-  vector&lt;bool&gt; distanceLimitedPathsExist(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edgeList, vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
-    init(n, edgeList);
-    int len = queries.size();
-    vector&lt;int&gt; order(len);
-    vector&lt;bool&gt; answer(len);
-    for(int i = 0; i &lt; len; ++i) {
-      order[i] = i;
-    }
-    sort(order.begin(), order.end(), [&amp;](int a, int b) {
-      return queries[a][2] &lt; queries[b][2];
-    });
-    for(auto i : order) {
-      solveToLength(queries[i][2], edgeList);
-      answer[i] = (find(queries[i][0]) == find(queries[i][1]));
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 23&#x2F;23 cases passed (476 ms)
-&#x2F;&#x2F; Your runtime beats 98.73 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 84.81 % of cpp submissions (109.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; parent;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curIndex;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">edgeList</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    curIndex </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(edgeList.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), edgeList.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [](</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp;</span><span style="color:#eff1f5;"> a, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp;</span><span style="color:#eff1f5;"> b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> b[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    parent.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      parent[i] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">find</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(parent[x] </span><span>!=</span><span style="color:#eff1f5;"> x) parent[x] </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(parent[x]);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> parent[x];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">merge</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">y</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> px </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(x);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> py </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(y);
+</span><span style="color:#eff1f5;">    parent[px] </span><span>=</span><span style="color:#eff1f5;"> py;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solveToLength</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">len</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">edgeList</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(; curIndex </span><span>&lt;</span><span style="color:#eff1f5;"> edgeList.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> edgeList[curIndex][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">curIndex) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">merge</span><span style="color:#eff1f5;">(edgeList[curIndex][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], edgeList[curIndex][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">distanceLimitedPathsExist</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">edgeList</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">queries</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(n, edgeList);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> queries.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">order</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      order[i] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(order.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), order.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">](</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> queries[a][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> queries[b][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> order) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">solveToLength</span><span style="color:#eff1f5;">(queries[i][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">], edgeList);
+</span><span style="color:#eff1f5;">      answer[i] </span><span>= </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(queries[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) </span><span>== </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(queries[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 23/23 cases passed (476 ms)
+</span><span style="color:#65737e;">// Your runtime beats 98.73 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 84.81 % of cpp submissions (109.6 MB)
+</span></code></pre>
 <h1 id="september-leetcoding-challenge-6">September LeetCoding Challenge 6</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Slowest Key</strong></p>
@@ -217,27 +217,27 @@ public:
 <p>Note that the same key could have been pressed multiple times during the test, and these multiple presses of the same key <strong>may not</strong> have had the same <strong>duration</strong>.</p>
 <p><em>Return the key of the keypress that had the <strong>longest duration</strong>. If there are multiple such keypresses, return the lexicographically largest key of the keypresses.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: releaseTimes = [9,29,49,50], keysPressed = &quot;cbcd&quot;
-Output: &quot;c&quot;
-Explanation: The keypresses were as follows:
-Keypress for &#x27;c&#x27; had a duration of 9 (pressed at time 0 and released at time 9).
-Keypress for &#x27;b&#x27; had a duration of 29 - 9 = 20 (pressed at time 9 right after the release of the previous character and released at time 29).
-Keypress for &#x27;c&#x27; had a duration of 49 - 29 = 20 (pressed at time 29 right after the release of the previous character and released at time 49).
-Keypress for &#x27;d&#x27; had a duration of 50 - 49 = 1 (pressed at time 49 right after the release of the previous character and released at time 50).
-The longest of these was the keypress for &#x27;b&#x27; and the second keypress for &#x27;c&#x27;, both with duration 20.
-&#x27;c&#x27; is lexicographically larger than &#x27;b&#x27;, so the answer is &#x27;c&#x27;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: releaseTimes = [9,29,49,50], keysPressed = &quot;cbcd&quot;
+</span><span>Output: &quot;c&quot;
+</span><span>Explanation: The keypresses were as follows:
+</span><span>Keypress for &#39;c&#39; had a duration of 9 (pressed at time 0 and released at time 9).
+</span><span>Keypress for &#39;b&#39; had a duration of 29 - 9 = 20 (pressed at time 9 right after the release of the previous character and released at time 29).
+</span><span>Keypress for &#39;c&#39; had a duration of 49 - 29 = 20 (pressed at time 29 right after the release of the previous character and released at time 49).
+</span><span>Keypress for &#39;d&#39; had a duration of 50 - 49 = 1 (pressed at time 49 right after the release of the previous character and released at time 50).
+</span><span>The longest of these was the keypress for &#39;b&#39; and the second keypress for &#39;c&#39;, both with duration 20.
+</span><span>&#39;c&#39; is lexicographically larger than &#39;b&#39;, so the answer is &#39;c&#39;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: releaseTimes = [12,23,36,46,62], keysPressed = &quot;spuda&quot;
-Output: &quot;a&quot;
-Explanation: The keypresses were as follows:
-Keypress for &#x27;s&#x27; had a duration of 12.
-Keypress for &#x27;p&#x27; had a duration of 23 - 12 = 11.
-Keypress for &#x27;u&#x27; had a duration of 36 - 23 = 13.
-Keypress for &#x27;d&#x27; had a duration of 46 - 36 = 10.
-Keypress for &#x27;a&#x27; had a duration of 62 - 46 = 16.
-The longest of these was the keypress for &#x27;a&#x27; with duration 16.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: releaseTimes = [12,23,36,46,62], keysPressed = &quot;spuda&quot;
+</span><span>Output: &quot;a&quot;
+</span><span>Explanation: The keypresses were as follows:
+</span><span>Keypress for &#39;s&#39; had a duration of 12.
+</span><span>Keypress for &#39;p&#39; had a duration of 23 - 12 = 11.
+</span><span>Keypress for &#39;u&#39; had a duration of 36 - 23 = 13.
+</span><span>Keypress for &#39;d&#39; had a duration of 46 - 36 = 10.
+</span><span>Keypress for &#39;a&#39; had a duration of 62 - 46 = 16.
+</span><span>The longest of these was the keypress for &#39;a&#39; with duration 16.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>releaseTimes.length == n</code></li>
@@ -248,35 +248,35 @@ The longest of these was the keypress for &#x27;a&#x27; with duration 16.
 <li><code>keysPressed</code> contains only lowercase English letters.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  char slowestKey(vector&lt;int&gt;&amp; releaseTimes, string keysPressed) {
-    int len = releaseTimes.size();
-    int curTime = 0;
-    char answer = &#x27; &#x27;;
-    int pressTime = 0;
-    for(int i = 0; i &lt; len; ++i) {
-      if(releaseTimes[i] - curTime &gt; pressTime || (releaseTimes[i] - curTime == pressTime &amp;&amp; keysPressed[i] &gt; answer)) {
-        pressTime = releaseTimes[i] - curTime;
-        answer = keysPressed[i];
-      }
-      curTime = releaseTimes[i];
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 105&#x2F;105 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 97.21 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 22.91 % of cpp submissions (10.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char </span><span style="color:#8fa1b3;">slowestKey</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">releaseTimes</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">keysPressed</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> releaseTimes.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curTime </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> answer </span><span>= &#39; &#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pressTime </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(releaseTimes[i] </span><span>-</span><span style="color:#eff1f5;"> curTime </span><span>&gt;</span><span style="color:#eff1f5;"> pressTime </span><span>|| </span><span style="color:#eff1f5;">(releaseTimes[i] </span><span>-</span><span style="color:#eff1f5;"> curTime </span><span>==</span><span style="color:#eff1f5;"> pressTime </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> keysPressed[i] </span><span>&gt;</span><span style="color:#eff1f5;"> answer)) {
+</span><span style="color:#eff1f5;">        pressTime </span><span>=</span><span style="color:#eff1f5;"> releaseTimes[i] </span><span>-</span><span style="color:#eff1f5;"> curTime;
+</span><span style="color:#eff1f5;">        answer </span><span>=</span><span style="color:#eff1f5;"> keysPressed[i];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      curTime </span><span>=</span><span style="color:#eff1f5;"> releaseTimes[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 105/105 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 97.21 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 22.91 % of cpp submissions (10.8 MB)
+</span></code></pre>
 
     </div>
   </div>

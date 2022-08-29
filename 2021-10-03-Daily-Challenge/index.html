@@ -119,46 +119,46 @@ renderMathInElement(document.body, katex_config);
 <p>You are given an integer array <code>nums</code>. You are initially positioned at the array's <strong>first index</strong>, and each element in the array represents your maximum jump length at that position.</p>
 <p>Return <code>true</code> <em>if you can reach the last index, or</em> <code>false</code> <em>otherwise</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [2,3,1,1,4]
-Output: true
-Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,3,1,1,4]
+</span><span>Output: true
+</span><span>Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [3,2,1,0,4]
-Output: false
-Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,2,1,0,4]
+</span><span>Output: false
+</span><span>Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^4</code></li>
 <li><code>0 &lt;= nums[i] &lt;= 10^5</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-
-class Solution {
-public:
-  bool canJump(vector&lt;int&gt;&amp; nums) {
-    int cur = 0;
-    int len = nums.size();
-    for(int i = 0; i &lt; len &amp;&amp; i &lt;= cur; ++i) {
-      cur = max(cur, i + nums[i]);
-      if(cur &gt;= len - 1) return true;
-    }
-    return false;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 166&#x2F;166 cases passed (32 ms)
-&#x2F;&#x2F; Your runtime beats 99.93 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 49.19 % of cpp submissions (48.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">canJump</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> i </span><span>&lt;=</span><span style="color:#eff1f5;"> cur; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      cur </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(cur, i </span><span>+</span><span style="color:#eff1f5;"> nums[i]);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>&gt;=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 166/166 cases passed (32 ms)
+</span><span style="color:#65737e;">// Your runtime beats 99.93 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 49.19 % of cpp submissions (48.3 MB)
+</span></code></pre>
 
     </div>
   </div>

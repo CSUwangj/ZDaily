@@ -121,24 +121,24 @@ renderMathInElement(document.body, katex_config);
 <p>A <strong>chessboard board</strong> is a board where no <code>0</code>'s and no <code>1</code>'s are 4-directionally adjacent.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/06/29/chessboard1-grid.jpg" alt="img" /></p>
-<pre><code>Input: board = [[0,1,1,0],[0,1,1,0],[1,0,0,1],[1,0,0,1]]
-Output: 2
-Explanation: One potential sequence of moves is shown.
-The first move swaps the first and second column.
-The second move swaps the second and third row.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: board = [[0,1,1,0],[0,1,1,0],[1,0,0,1],[1,0,0,1]]
+</span><span>Output: 2
+</span><span>Explanation: One potential sequence of moves is shown.
+</span><span>The first move swaps the first and second column.
+</span><span>The second move swaps the second and third row.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/06/29/chessboard2-grid.jpg" alt="img" /></p>
-<pre><code>Input: board = [[0,1],[1,0]]
-Output: 0
-Explanation: Also note that the board with 0 in the top left corner, is also a valid chessboard.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: board = [[0,1],[1,0]]
+</span><span>Output: 0
+</span><span>Explanation: Also note that the board with 0 in the top left corner, is also a valid chessboard.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/06/29/chessboard3-grid.jpg" alt="img" /></p>
-<pre><code>Input: board = [[1,0],[1,0]]
-Output: -1
-Explanation: No matter what sequence of moves you make, you cannot end with a valid chessboard.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: board = [[1,0],[1,0]]
+</span><span>Output: -1
+</span><span>Explanation: No matter what sequence of moves you make, you cannot end with a valid chessboard.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == board.length</code></li>
@@ -147,43 +147,43 @@ Explanation: No matter what sequence of moves you make, you cannot end with a va
 <li><code>board[i][j]</code> is either <code>0</code> or <code>1</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int movesToChessboard(vector&lt;vector&lt;int&gt;&gt;&amp; board) {
-    int n = board.size();
-    for(int i = 0; i &lt; n; ++i) {
-      for(int j = 0; j &lt; n; ++j) {
-        if(board[0][0] ^ board[0][j] ^ board[i][0] ^ board[i][j]) return - 1;
-      }
-    }
-    int rowSum = 0;
-    int colSum = 0;
-    int rowSwap = 0;
-    int colSwap = 0;
-    for(int i = 0; i &lt; n; ++i) {
-      rowSum += board[0][i];
-      colSum += board[i][0];
-      rowSwap += board[i][0] == (i &amp; 1);
-      colSwap += board[0][i] == (i &amp; 1);
-    }
-    if(rowSum != n &#x2F; 2 &amp;&amp; rowSum != (n + 1) &#x2F; 2) return -1;
-    if(colSum != n &#x2F; 2 &amp;&amp; colSum != (n + 1) &#x2F; 2) return -1;
-    if(n &amp; 1) {
-      if(colSwap &amp; 1) colSwap = n - colSwap;
-      if(rowSwap &amp; 1) rowSwap = n - rowSwap;
-    } else {
-      if(colSwap * 2 &gt; n) colSwap = n - colSwap;
-      if(rowSwap * 2 &gt; n) rowSwap = n - rowSwap;
-    }
-    return (colSwap + rowSwap) &#x2F; 2;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 124&#x2F;124 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 96.43 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 98.21 % of cpp submissions (10 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">movesToChessboard</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">board</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>=</span><span style="color:#eff1f5;"> board.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>^</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][j] </span><span>^</span><span style="color:#eff1f5;"> board[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>^</span><span style="color:#eff1f5;"> board[i][j]) </span><span style="color:#b48ead;">return </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rowSum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> colSum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rowSwap </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> colSwap </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      rowSum </span><span>+=</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][i];
+</span><span style="color:#eff1f5;">      colSum </span><span>+=</span><span style="color:#eff1f5;"> board[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      rowSwap </span><span>+=</span><span style="color:#eff1f5;"> board[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>== </span><span style="color:#eff1f5;">(i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      colSwap </span><span>+=</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][i] </span><span>== </span><span style="color:#eff1f5;">(i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rowSum </span><span>!=</span><span style="color:#eff1f5;"> n </span><span>/ </span><span style="color:#d08770;">2 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> rowSum </span><span>!= </span><span style="color:#eff1f5;">(n </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(colSum </span><span>!=</span><span style="color:#eff1f5;"> n </span><span>/ </span><span style="color:#d08770;">2 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> colSum </span><span>!= </span><span style="color:#eff1f5;">(n </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(colSwap </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) colSwap </span><span>=</span><span style="color:#eff1f5;"> n </span><span>-</span><span style="color:#eff1f5;"> colSwap;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rowSwap </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) rowSwap </span><span>=</span><span style="color:#eff1f5;"> n </span><span>-</span><span style="color:#eff1f5;"> rowSwap;
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(colSwap </span><span>* </span><span style="color:#d08770;">2 </span><span>&gt;</span><span style="color:#eff1f5;"> n) colSwap </span><span>=</span><span style="color:#eff1f5;"> n </span><span>-</span><span style="color:#eff1f5;"> colSwap;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rowSwap </span><span>* </span><span style="color:#d08770;">2 </span><span>&gt;</span><span style="color:#eff1f5;"> n) rowSwap </span><span>=</span><span style="color:#eff1f5;"> n </span><span>-</span><span style="color:#eff1f5;"> rowSwap;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(colSwap </span><span>+</span><span style="color:#eff1f5;"> rowSwap) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 124/124 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 96.43 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 98.21 % of cpp submissions (10 MB)
+</span></code></pre>
 
     </div>
   </div>

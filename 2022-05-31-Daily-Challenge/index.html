@@ -118,20 +118,20 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Check If a String Contains All Binary Codes of Size K</strong></p>
 <p>​Given a binary string <code>s</code> and an integer <code>k</code>, return <code>true</code> <em>if every binary code of length</em> <code>k</code> <em>is a substring of</em> <code>s</code>. Otherwise, return <code>false</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;00110110&quot;, k = 2
-Output: true
-Explanation: The binary codes of length 2 are &quot;00&quot;, &quot;01&quot;, &quot;10&quot; and &quot;11&quot;. They can be all found as substrings at indices 0, 1, 3 and 2 respectively.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;00110110&quot;, k = 2
+</span><span>Output: true
+</span><span>Explanation: The binary codes of length 2 are &quot;00&quot;, &quot;01&quot;, &quot;10&quot; and &quot;11&quot;. They can be all found as substrings at indices 0, 1, 3 and 2 respectively.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;0110&quot;, k = 1
-Output: true
-Explanation: The binary codes of length 1 are &quot;0&quot; and &quot;1&quot;, it is clear that both exist as a substring. 
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;0110&quot;, k = 1
+</span><span>Output: true
+</span><span>Explanation: The binary codes of length 1 are &quot;0&quot; and &quot;1&quot;, it is clear that both exist as a substring. 
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;0110&quot;, k = 2
-Output: false
-Explanation: The binary code &quot;00&quot; is of length 2 and does not exist in the array.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;0110&quot;, k = 2
+</span><span>Output: false
+</span><span>Explanation: The binary code &quot;00&quot; is of length 2 and does not exist in the array.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 5 * 105</code></li>
@@ -139,35 +139,35 @@ Explanation: The binary code &quot;00&quot; is of length 2 and does not exist in
 <li><code>1 &lt;= k &lt;= 20</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool hasAllCodes(string s, int k) {
-    int len = s.length();
-    if((1 &lt;&lt; k) &gt; len - k + 1) return false;
-    int cur = 0;
-    const int MASK = (1 &lt;&lt; k) - 1;
-    vector&lt;bool&gt; has(1 &lt;&lt; k);
-    for(int i = 0; i &lt; k; ++i) {
-      cur &lt;&lt;= 1;
-      cur |= (s[i] == &#x27;1&#x27;);
-    }
-    has[cur] = true;
-    for(int i = k; i &lt; len; ++i) {
-      cur &lt;&lt;= 1;
-      cur |= (s[i] == &#x27;1&#x27;);
-      cur &amp;= MASK;
-      has[cur] = true;
-    }
-    for(auto b : has) if(!b) return false;
-    return true;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 200&#x2F;200 cases passed (92 ms)
-&#x2F;&#x2F; Your runtime beats 88.99 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 99.37 % of cpp submissions (17.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">hasAllCodes</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((</span><span style="color:#d08770;">1 </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> k) </span><span>&gt;</span><span style="color:#eff1f5;"> len </span><span>-</span><span style="color:#eff1f5;"> k </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const int</span><span style="color:#eff1f5;"> MASK </span><span>= </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> k) </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">has</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> k);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> k; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      cur </span><span>&lt;&lt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>|= </span><span style="color:#eff1f5;">(s[i] </span><span>== &#39;</span><span style="color:#a3be8c;">1</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    has[cur] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> k; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      cur </span><span>&lt;&lt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>|= </span><span style="color:#eff1f5;">(s[i] </span><span>== &#39;</span><span style="color:#a3be8c;">1</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      cur </span><span>&amp;=</span><span style="color:#eff1f5;"> MASK;
+</span><span style="color:#eff1f5;">      has[cur] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> b </span><span>:</span><span style="color:#eff1f5;"> has) </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">b) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 200/200 cases passed (92 ms)
+</span><span style="color:#65737e;">// Your runtime beats 88.99 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 99.37 % of cpp submissions (17.4 MB)
+</span></code></pre>
 
     </div>
   </div>

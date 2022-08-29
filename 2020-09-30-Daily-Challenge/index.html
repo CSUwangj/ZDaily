@@ -139,18 +139,18 @@ left align and align with fewer alignments</li>
 <p>If no land or water exists in the grid, return <code>-1</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/05/03/1336_ex1.JPG" alt="img" /></strong></p>
-<pre><code>Input: [[1,0,1],[0,0,0],[1,0,1]]
-Output: 2
-Explanation: 
-The cell (1, 1) is as far as possible from all the land with distance 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[1,0,1],[0,0,0],[1,0,1]]
+</span><span>Output: 2
+</span><span>Explanation: 
+</span><span>The cell (1, 1) is as far as possible from all the land with distance 2.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/05/03/1336_ex2.JPG" alt="img" /></strong></p>
-<pre><code>Input: [[1,0,0],[0,0,0],[0,0,0]]
-Output: 4
-Explanation: 
-The cell (2, 2) is as far as possible from all the land with distance 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[1,0,0],[0,0,0],[0,0,0]]
+</span><span>Output: 4
+</span><span>Explanation: 
+</span><span>The cell (2, 2) is as far as possible from all the land with distance 4.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>1 &lt;= grid.length == grid[0].length &lt;= 100</code></li>
@@ -158,55 +158,55 @@ The cell (2, 2) is as far as possible from all the land with distance 4.
 </ol>
 <h2 id="solution">Solution</h2>
 <p>simple bfs with multiple starting points.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int bfs(vector&lt;vector&lt;int&gt;&gt;&amp; grid, queue&lt;int&gt;&amp; q) {
-    int ans = 0;
-    while(q.size()) {
-      int i = q.front();
-      q.pop();
-      int j = q.front();
-      q.pop();
-      int cnt = q.front();
-      q.pop();
-      if (cnt &gt; ans) {
-        ans = cnt;
-      }
-      for (int m = 0; m &lt; 4; ++m) {
-        if (i+move[m][0] &gt;= 0 &amp;&amp; i+move[m][0] &lt; len &amp;&amp; j+move[m][1] &gt;= 0 &amp;&amp; j+move[m][1] &lt; len &amp;&amp;
-            !visited[i+move[m][0]][j+move[m][1]] &amp;&amp; !grid[i+move[m][0]][j+move[m][1]]) {
-          visited[i+move[m][0]][j+move[m][1]] = true;
-          q.push(i+move[m][0]);
-          q.push(j+move[m][1]);
-          q.push(cnt+1);
-        }
-      }
-    }
-    return ans;
-  }
-  int maxDistance(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
-    queue&lt;int&gt; q;
-    len = grid[0].size();
-    for(int i = 0; i &lt; grid.size(); ++i) {
-      for(int j = 0; j &lt; grid[i].size(); ++j) {
-        if(grid[i][j] == 1) {
-          q.push(i);
-          q.push(j);
-          q.push(0);
-        }
-      }
-    }
-    if (q.size() == len*len*3 || !q.size()) {
-      return -1;
-    }
-    return bfs(grid, q);
-  }
-private:
-  bool visited[100][100] = {};
-  int move[4][2] = {{0,1},{-1,0},{0,-1},{1,0}};
-  int len;
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">bfs</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">, queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">q</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(cnt </span><span>&gt;</span><span style="color:#eff1f5;"> ans) {
+</span><span style="color:#eff1f5;">        ans </span><span>=</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> m </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; m </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">m) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(i</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> i</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> j</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> j</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;
+</span><span style="color:#eff1f5;">            </span><span>!</span><span style="color:#eff1f5;">visited[i</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]][j</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">grid[i</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]][j</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]]) {
+</span><span style="color:#eff1f5;">          visited[i</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]][j</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(i</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(j</span><span>+</span><span style="color:#eff1f5;">move[m][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(cnt</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxDistance</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> grid[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> grid[i].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(grid[i][j] </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(j);
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> len</span><span>*</span><span style="color:#eff1f5;">len</span><span>*</span><span style="color:#d08770;">3 </span><span>|| !</span><span style="color:#eff1f5;">q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">bfs</span><span style="color:#eff1f5;">(grid, q);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">private</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> visited[</span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> move[</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">,</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">},{</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">,</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">},{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">,</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">},{</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">,</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}};
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

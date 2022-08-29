@@ -120,65 +120,65 @@ renderMathInElement(document.body, katex_config);
 <p>The <strong>tilt</strong> of a tree node is the <strong>absolute difference</strong> between the sum of all left subtree node <strong>values</strong> and all right subtree node <strong>values</strong>. If a node does not have a left child, then the sum of the left subtree node <strong>values</strong> is treated as <code>0</code>. The rule is similar if there the node does not have a right child.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/20/tilt1.jpg" alt="img" /></p>
-<pre><code>Input: root = [1,2,3]
-Output: 1
-Explanation: 
-Tilt of node 2 : |0-0| = 0 (no children)
-Tilt of node 3 : |0-0| = 0 (no children)
-Tilt of node 1 : |2-3| = 1 (left subtree is just left child, so sum is 2; right subtree is just right child, so sum is 3)
-Sum of every tilt : 0 + 0 + 1 = 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3]
+</span><span>Output: 1
+</span><span>Explanation: 
+</span><span>Tilt of node 2 : |0-0| = 0 (no children)
+</span><span>Tilt of node 3 : |0-0| = 0 (no children)
+</span><span>Tilt of node 1 : |2-3| = 1 (left subtree is just left child, so sum is 2; right subtree is just right child, so sum is 3)
+</span><span>Sum of every tilt : 0 + 0 + 1 = 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/20/tilt2.jpg" alt="img" /></p>
-<pre><code>Input: root = [4,2,9,3,5,null,7]
-Output: 15
-Explanation: 
-Tilt of node 3 : |0-0| = 0 (no children)
-Tilt of node 5 : |0-0| = 0 (no children)
-Tilt of node 7 : |0-0| = 0 (no children)
-Tilt of node 2 : |3-5| = 2 (left subtree is just left child, so sum is 3; right subtree is just right child, so sum is 5)
-Tilt of node 9 : |0-7| = 7 (no left child, so sum is 0; right subtree is just right child, so sum is 7)
-Tilt of node 4 : |(3+5+2)-(9+7)| = |10-16| = 6 (left subtree values are 3, 5, and 2, which sums to 10; right subtree values are 9 and 7, which sums to 16)
-Sum of every tilt : 0 + 0 + 0 + 2 + 7 + 6 = 15
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [4,2,9,3,5,null,7]
+</span><span>Output: 15
+</span><span>Explanation: 
+</span><span>Tilt of node 3 : |0-0| = 0 (no children)
+</span><span>Tilt of node 5 : |0-0| = 0 (no children)
+</span><span>Tilt of node 7 : |0-0| = 0 (no children)
+</span><span>Tilt of node 2 : |3-5| = 2 (left subtree is just left child, so sum is 3; right subtree is just right child, so sum is 5)
+</span><span>Tilt of node 9 : |0-7| = 7 (no left child, so sum is 0; right subtree is just right child, so sum is 7)
+</span><span>Tilt of node 4 : |(3+5+2)-(9+7)| = |10-16| = 6 (left subtree values are 3, 5, and 2, which sums to 10; right subtree values are 9 and 7, which sums to 16)
+</span><span>Sum of every tilt : 0 + 0 + 0 + 2 + 7 + 6 = 15
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/20/tilt3.jpg" alt="img" /></p>
-<pre><code>Input: root = [21,7,14,1,1,2,2,3,3]
-Output: 9
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [21,7,14,1,1,2,2,3,3]
+</span><span>Output: 9
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[0, 10^4]</code>.</li>
 <li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  int answer = 0;
-  int solve(TreeNode *root) {
-    if(!root) return 0;
-    int leftSum = solve(root-&gt;left);
-    int rightSum = solve(root-&gt;right);
-    answer += abs(leftSum - rightSum);
-    return leftSum + rightSum + root-&gt;val;
-  }
-public:
-  int findTilt(TreeNode* root) {
-    solve(root);
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 77&#x2F;77 cases passed (12 ms)
-&#x2F;&#x2F; Your runtime beats 94.11 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 11.69 % of cpp submissions (23.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> leftSum </span><span>= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rightSum </span><span>= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    answer </span><span>+= </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(leftSum </span><span>-</span><span style="color:#eff1f5;"> rightSum);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> leftSum </span><span>+</span><span style="color:#eff1f5;"> rightSum </span><span>+</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findTilt</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 77/77 cases passed (12 ms)
+</span><span style="color:#65737e;">// Your runtime beats 94.11 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 11.69 % of cpp submissions (23.8 MB)
+</span></code></pre>
 
     </div>
   </div>

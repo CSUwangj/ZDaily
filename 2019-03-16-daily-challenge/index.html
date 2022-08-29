@@ -118,38 +118,38 @@ renderMathInElement(document.body, katex_config);
 <h3 id="nesting-structure-comparison">Nesting Structure Comparison</h3>
 <p>Complete the function/method (depending on the language) to return <code>true</code>/<code>True</code> when its argument is an array that has the same nesting structure as the first array.</p>
 <p>For example:</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript"> &#x2F;&#x2F; should return true
-[ 1, 1, 1 ].sameStructureAs( [ 2, 2, 2 ] );          
-[ 1, [ 1, 1 ] ].sameStructureAs( [ 2, [ 2, 2 ] ] );  
-
- &#x2F;&#x2F; should return false 
-[ 1, [ 1, 1 ] ].sameStructureAs( [ [ 2, 2 ], 2 ] );  
-[ 1, [ 1, 1 ] ].sameStructureAs( [ [ 2 ], 2 ] );  
-
-&#x2F;&#x2F; should return true
-[ [ [ ], [ ] ] ].sameStructureAs( [ [ [ ], [ ] ] ] ); 
-
-&#x2F;&#x2F; should return false
-[ [ [ ], [ ] ] ].sameStructureAs( [ [ 1, 1 ] ] );     
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span> </span><span style="color:#65737e;">// should return true
+</span><span>[ </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1 </span><span>].</span><span style="color:#8fa1b3;">sameStructureAs</span><span>( [ </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2 </span><span>] );          
+</span><span>[ </span><span style="color:#d08770;">1</span><span>, [ </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1 </span><span>] ].</span><span style="color:#8fa1b3;">sameStructureAs</span><span>( [ </span><span style="color:#d08770;">2</span><span>, [ </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2 </span><span>] ] );  
+</span><span>
+</span><span> </span><span style="color:#65737e;">// should return false 
+</span><span>[ </span><span style="color:#d08770;">1</span><span>, [ </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1 </span><span>] ].</span><span style="color:#8fa1b3;">sameStructureAs</span><span>( [ [ </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2 </span><span>], </span><span style="color:#d08770;">2 </span><span>] );  
+</span><span>[ </span><span style="color:#d08770;">1</span><span>, [ </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1 </span><span>] ].</span><span style="color:#8fa1b3;">sameStructureAs</span><span>( [ [ </span><span style="color:#d08770;">2 </span><span>], </span><span style="color:#d08770;">2 </span><span>] );  
+</span><span>
+</span><span style="color:#65737e;">// should return true
+</span><span>[ [ [ ], [ ] ] ].</span><span style="color:#8fa1b3;">sameStructureAs</span><span>( [ [ [ ], [ ] ] ] ); 
+</span><span>
+</span><span style="color:#65737e;">// should return false
+</span><span>[ [ [ ], [ ] ] ].</span><span style="color:#8fa1b3;">sameStructureAs</span><span>( [ [ </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1 </span><span>] ] );     
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">Array.prototype.sameStructureAs = function (other) {
-  if (this.length !== other.length) return false;
-  for (let i = 0; i &lt; this.length; ++i) {
-    if (Array.isArray(this[i]) &amp;&amp; !this[i].sameStructureAs(other[i])) return false;
-    if (!Array.isArray(this[i]) &amp;&amp; Array.isArray(other[i])) return false;
-  }
-  return true;
-};
-
-&#x2F;&#x2F;&#x2F;&#x2F;
-
-Array.prototype.sameStructureAs = function (other) {
-  return (this.length === other.length) ? this.every(
-    (e, i) =&gt; Array.isArray(e) ? e.sameStructureAs(other[i]) : true
-  ) : false;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#ebcb8b;">Array</span><span>.prototype.</span><span style="color:#8fa1b3;">sameStructureAs </span><span>= </span><span style="color:#b48ead;">function </span><span>(</span><span style="color:#bf616a;">other</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">this</span><span>.length !== </span><span style="color:#bf616a;">other</span><span>.length) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">this</span><span>.length; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">isArray</span><span>(</span><span style="color:#bf616a;">this</span><span>[</span><span style="color:#bf616a;">i</span><span>]) &amp;&amp; !</span><span style="color:#bf616a;">this</span><span>[</span><span style="color:#bf616a;">i</span><span>].</span><span style="color:#8fa1b3;">sameStructureAs</span><span>(</span><span style="color:#bf616a;">other</span><span>[</span><span style="color:#bf616a;">i</span><span>])) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(!</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">isArray</span><span>(</span><span style="color:#bf616a;">this</span><span>[</span><span style="color:#bf616a;">i</span><span>]) &amp;&amp; </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">isArray</span><span>(</span><span style="color:#bf616a;">other</span><span>[</span><span style="color:#bf616a;">i</span><span>])) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">////
+</span><span>
+</span><span style="color:#ebcb8b;">Array</span><span>.prototype.</span><span style="color:#8fa1b3;">sameStructureAs </span><span>= </span><span style="color:#b48ead;">function </span><span>(</span><span style="color:#bf616a;">other</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span>(</span><span style="color:#bf616a;">this</span><span>.length === </span><span style="color:#bf616a;">other</span><span>.length) ? </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#8fa1b3;">every</span><span>(
+</span><span>    (</span><span style="color:#bf616a;">e</span><span>, </span><span style="color:#bf616a;">i</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">isArray</span><span>(</span><span style="color:#bf616a;">e</span><span>) ? </span><span style="color:#bf616a;">e</span><span>.</span><span style="color:#8fa1b3;">sameStructureAs</span><span>(</span><span style="color:#bf616a;">other</span><span>[</span><span style="color:#bf616a;">i</span><span>]) : </span><span style="color:#d08770;">true
+</span><span>  ) : </span><span style="color:#d08770;">false</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

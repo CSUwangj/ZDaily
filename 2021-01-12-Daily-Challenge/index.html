@@ -119,32 +119,32 @@ renderMathInElement(document.body, katex_config);
 <p>If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
 <p>Note that you cannot sell a stock before you buy one.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [7,1,5,3,6,4]
-Output: 5
-Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-             Not 7-1 = 6, as selling price needs to be larger than buying price.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [7,1,5,3,6,4]
+</span><span>Output: 5
+</span><span>Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+</span><span>             Not 7-1 = 6, as selling price needs to be larger than buying price.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [7,6,4,3,1]
-Output: 0
-Explanation: In this case, no transaction is done, i.e. max profit = 0.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [7,6,4,3,1]
+</span><span>Output: 0
+</span><span>Explanation: In this case, no transaction is done, i.e. max profit = 0.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int maxProfit(vector&lt;int&gt;&amp; prices) {
-        if(prices.empty()) return 0;
-        int mmin = prices.front();
-        int answer = 0;
-        int len = prices.size();
-        for(int i : prices) {
-            mmin = min(mmin, i);
-            answer = max(answer, i-mmin);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxProfit</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">prices</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prices.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mmin </span><span>=</span><span style="color:#eff1f5;"> prices.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> prices.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> prices) {
+</span><span style="color:#eff1f5;">            mmin </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(mmin, i);
+</span><span style="color:#eff1f5;">            answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, i</span><span>-</span><span style="color:#eff1f5;">mmin);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-12">January LeetCoding Challenge 12</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Add Two Numbers</strong></p>
@@ -152,18 +152,18 @@ public:
 <p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/02/addtwonumber1.jpg" alt="img" /></p>
-<pre><code>Input: l1 = [2,4,3], l2 = [5,6,4]
-Output: [7,0,8]
-Explanation: 342 + 465 = 807.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: l1 = [2,4,3], l2 = [5,6,4]
+</span><span>Output: [7,0,8]
+</span><span>Explanation: 342 + 465 = 807.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: l1 = [0], l2 = [0]
-Output: [0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: l1 = [0], l2 = [0]
+</span><span>Output: [0]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
-Output: [8,9,9,9,0,0,0,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+</span><span>Output: [8,9,9,9,0,0,0,1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in each linked list is in the range <code>[1, 100]</code>.</li>
@@ -171,33 +171,33 @@ Output: [8,9,9,9,0,0,0,1]
 <li>It is guaranteed that the list represents a number that does not have leading zeros.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode *newHead = new ListNode();
-        ListNode *cur = newHead;
-        int carry = 0;
-        while(l1 &amp;&amp; l2) {
-            int val = l1-&gt;val + l2-&gt;val + carry;
-            carry = val &#x2F; 10;
-            cur-&gt;next = new ListNode(val%10);
-            cur = cur-&gt;next;
-            l1 = l1-&gt;next;
-            l2 = l2-&gt;next;
-        }
-        ListNode *rest = l1 ? l1 : l2;
-        while(rest) {
-            int val = rest-&gt;val + carry;
-            carry = val &#x2F; 10;
-            cur-&gt;next = new ListNode(val%10);
-            cur = cur-&gt;next;
-            rest = rest-&gt;next;
-        }
-        if(carry) cur-&gt;next = new ListNode(carry);
-        return newHead-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">addTwoNumbers</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">l1</span><span style="color:#eff1f5;">, ListNode</span><span>* </span><span style="color:#bf616a;">l2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> carry </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(l1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> l2) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>=</span><span style="color:#eff1f5;"> l1-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;"> l2-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">            carry </span><span>=</span><span style="color:#eff1f5;"> val </span><span>/ </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(val</span><span>%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            l1 </span><span>=</span><span style="color:#eff1f5;"> l1-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            l2 </span><span>=</span><span style="color:#eff1f5;"> l2-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">rest </span><span>=</span><span style="color:#eff1f5;"> l1 </span><span>?</span><span style="color:#eff1f5;"> l1 </span><span>:</span><span style="color:#eff1f5;"> l2;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(rest) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>=</span><span style="color:#eff1f5;"> rest-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">            carry </span><span>=</span><span style="color:#eff1f5;"> val </span><span>/ </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(val</span><span>%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            rest </span><span>=</span><span style="color:#eff1f5;"> rest-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(carry) cur-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(carry);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

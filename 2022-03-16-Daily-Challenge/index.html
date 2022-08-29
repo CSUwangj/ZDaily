@@ -118,19 +118,19 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Validate Stack Sequences</strong></p>
 <p>Given two integer arrays <code>pushed</code> and <code>popped</code> each with distinct values, return <code>true</code> <em>if this could have been the result of a sequence of push and pop operations on an initially empty stack, or</em> <code>false</code> <em>otherwise.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
-Output: true
-Explanation: We might do the following sequence:
-push(1), push(2), push(3), push(4),
-pop() -&gt; 4,
-push(5),
-pop() -&gt; 5, pop() -&gt; 3, pop() -&gt; 2, pop() -&gt; 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
+</span><span>Output: true
+</span><span>Explanation: We might do the following sequence:
+</span><span>push(1), push(2), push(3), push(4),
+</span><span>pop() -&gt; 4,
+</span><span>push(5),
+</span><span>pop() -&gt; 5, pop() -&gt; 3, pop() -&gt; 2, pop() -&gt; 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: pushed = [1,2,3,4,5], popped = [4,3,5,1,2]
-Output: false
-Explanation: 1 cannot be popped before 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: pushed = [1,2,3,4,5], popped = [4,3,5,1,2]
+</span><span>Output: false
+</span><span>Explanation: 1 cannot be popped before 2.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= pushed.length &lt;= 1000</code></li>
@@ -140,29 +140,29 @@ Explanation: 1 cannot be popped before 2.
 <li><code>popped</code> is a permutation of <code>pushed</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool validateStackSequences(vector&lt;int&gt;&amp; pushed, vector&lt;int&gt;&amp; popped) {
-    vector&lt;int&gt; st;
-    int pos = 0;
-    int len = pushed.size();
-    for(int i = 0; i &lt; len; ++i) {
-      while(pos &lt; len &amp;&amp; (st.empty() || st.back() != popped[i])) {
-        st.push_back(pushed[pos]);
-        pos += 1;
-      }
-      if(st.back() != popped[i]) return false;;
-      st.pop_back();
-    }
-    return true;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 151&#x2F;151 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 97.31 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 59.16 % of cpp submissions (15.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">validateStackSequences</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">pushed</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">popped</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; st;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> pushed.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>!=</span><span style="color:#eff1f5;"> popped[i])) {
+</span><span style="color:#eff1f5;">        st.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(pushed[pos]);
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>!=</span><span style="color:#eff1f5;"> popped[i]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;;
+</span><span style="color:#eff1f5;">      st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 151/151 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 97.31 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 59.16 % of cpp submissions (15.4 MB)
+</span></code></pre>
 
     </div>
   </div>

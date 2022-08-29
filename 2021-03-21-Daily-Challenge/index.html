@@ -118,72 +118,72 @@ renderMathInElement(document.body, katex_config);
 <p>image array <code>[..., a, b, ... , c, d, ...]</code> and we reverse <code>[b, ..., c]</code>, array value is only change at pair(a, b) and pair(c, d), which turns into pair(a, c) and pair(b, d). So we want to maximize this change.</p>
 <p>see this image</p>
 <p><img src="https://csuwangj.github.io/ZDaily/2021-03-21-Daily-Challenge/./img.jpg" alt="explanation" /></p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maxValueAfterReverse(vector&lt;int&gt;&amp; nums) {
-    int minMax = INT_MAX;
-    int maxMin = INT_MIN;
-    int len = nums.size();
-    int value = 0;
-    for(int i = 1; i &lt; len; ++i) value += abs(nums[i] - nums[i - 1]);
-    
-    for(int i = 1; i &lt; len; ++i) {
-      minMax = min(minMax, max(nums[i - 1], nums[i]));
-      maxMin = max(maxMin, min(nums[i - 1], nums[i]));
-    }
-    
-    int change = 2 * (maxMin - minMax);
-    for(int i = 1; i &lt; len; ++i) {
-      change = max(change, abs(nums[0] - nums[i]) - abs(nums[i] - nums[i - 1]));
-    }
-    for(int i = 0; i &lt; len - 1; ++i) {
-      change = max(change, abs(nums[len - 1] - nums[i]) - abs(nums[i] - nums[i + 1]));
-    }
-    return value + change;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxValueAfterReverse</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> minMax </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxMin </span><span>=</span><span style="color:#eff1f5;"> INT_MIN;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> value </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) value </span><span>+= </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[i] </span><span>-</span><span style="color:#eff1f5;"> nums[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      minMax </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(minMax, </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(nums[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], nums[i]));
+</span><span style="color:#eff1f5;">      maxMin </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(maxMin, </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(nums[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], nums[i]));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> change </span><span>= </span><span style="color:#d08770;">2 </span><span>* </span><span style="color:#eff1f5;">(maxMin </span><span>-</span><span style="color:#eff1f5;"> minMax);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      change </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(change, </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> nums[i]) </span><span>- </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[i] </span><span>-</span><span style="color:#eff1f5;"> nums[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      change </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(change, </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> nums[i]) </span><span>- </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(nums[i] </span><span>-</span><span style="color:#eff1f5;"> nums[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> value </span><span>+</span><span style="color:#eff1f5;"> change;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="march-leetcoding-challenge-21">March LeetCoding Challenge 21</h1>
 <h2 id="description">Description</h2>
 <p><strong>Reordered Power of 2</strong></p>
 <p>Starting with a positive integer <code>N</code>, we reorder the digits in any order (including the original order) such that the leading digit is not zero.</p>
 <p>Return <code>true</code> if and only if we can do this in a way such that the resulting number is a power of 2.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: 1
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 1
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: 10
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 10
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: 16
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 16
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: 24
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 24
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: 46
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 46
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>1 &lt;= N &lt;= 10^9</code></li>
 </ol>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;&#x2F; sorted powers of 2
-const set&lt;string&gt; st = {&quot;011237&quot;,&quot;0122579&quot;,&quot;012356789&quot;,&quot;0124&quot;,&quot;0134449&quot;,&quot;0145678&quot;,&quot;01466788&quot;,&quot;0248&quot;,&quot;0368888&quot;,&quot;0469&quot;,&quot;1&quot;,&quot;112234778&quot;,&quot;11266777&quot;,&quot;122446&quot;,&quot;125&quot;,&quot;128&quot;,&quot;1289&quot;,&quot;13468&quot;,&quot;16&quot;,&quot;2&quot;,&quot;224588&quot;,&quot;23&quot;,&quot;23334455&quot;,&quot;234455668&quot;,&quot;23678&quot;,&quot;256&quot;,&quot;35566&quot;,&quot;4&quot;,&quot;46&quot;,&quot;8&quot;};
-class Solution {
-public:
-  bool reorderedPowerOf2(int N) {
-    string n = to_string(N);
-    sort(n.begin(), n.end());
-    return st.count(n);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">// sorted powers of 2
+</span><span style="color:#b48ead;">const</span><span> set&lt;string&gt; st = {&quot;</span><span style="color:#a3be8c;">011237</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">0122579</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">012356789</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">0124</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">0134449</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">0145678</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">01466788</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">0248</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">0368888</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">0469</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">1</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">112234778</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">11266777</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">122446</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">125</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">128</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">1289</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">13468</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">16</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">2</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">224588</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">23</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">23334455</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">234455668</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">23678</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">256</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">35566</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">4</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">46</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">8</span><span>&quot;};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">reorderedPowerOf2</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">N</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    string n </span><span>= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(N);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(n.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), n.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

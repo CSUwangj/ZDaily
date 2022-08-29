@@ -123,39 +123,39 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the <strong>lexicographically smallest</strong> string you can obtain by applying the above operations any number of times on</em> <code>s</code>.</p>
 <p>A string <code>a</code> is lexicographically smaller than a string <code>b</code> (of the same length) if in the first position where <code>a</code> and <code>b</code> differ, string <code>a</code> has a letter that appears earlier in the alphabet than the corresponding letter in <code>b</code>. For example, <code>&quot;0158&quot;</code> is lexicographically smaller than <code>&quot;0190&quot;</code> because the first position they differ is at the third letter, and <code>'5'</code> comes before <code>'9'</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;5525&quot;, a = 9, b = 2
-Output: &quot;2050&quot;
-Explanation: We can apply the following operations:
-Start:  &quot;5525&quot;
-Rotate: &quot;2555&quot;
-Add:    &quot;2454&quot;
-Add:    &quot;2353&quot;
-Rotate: &quot;5323&quot;
-Add:    &quot;5222&quot;
-Add:    &quot;5121&quot;
-Rotate: &quot;2151&quot;
-Add:    &quot;2050&quot;
-There is no way to obtain a string that is lexicographically smaller then &quot;2050&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;5525&quot;, a = 9, b = 2
+</span><span>Output: &quot;2050&quot;
+</span><span>Explanation: We can apply the following operations:
+</span><span>Start:  &quot;5525&quot;
+</span><span>Rotate: &quot;2555&quot;
+</span><span>Add:    &quot;2454&quot;
+</span><span>Add:    &quot;2353&quot;
+</span><span>Rotate: &quot;5323&quot;
+</span><span>Add:    &quot;5222&quot;
+</span><span>Add:    &quot;5121&quot;
+</span><span>Rotate: &quot;2151&quot;
+</span><span>Add:    &quot;2050&quot;
+</span><span>There is no way to obtain a string that is lexicographically smaller then &quot;2050&quot;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;74&quot;, a = 5, b = 1
-Output: &quot;24&quot;
-Explanation: We can apply the following operations:
-Start:  &quot;74&quot;
-Rotate: &quot;47&quot;
-Add:    &quot;42&quot;
-Rotate: &quot;24&quot;
-There is no way to obtain a string that is lexicographically smaller then &quot;24&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;74&quot;, a = 5, b = 1
+</span><span>Output: &quot;24&quot;
+</span><span>Explanation: We can apply the following operations:
+</span><span>Start:  &quot;74&quot;
+</span><span>Rotate: &quot;47&quot;
+</span><span>Add:    &quot;42&quot;
+</span><span>Rotate: &quot;24&quot;
+</span><span>There is no way to obtain a string that is lexicographically smaller then &quot;24&quot;.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;0011&quot;, a = 4, b = 2
-Output: &quot;0011&quot;
-Explanation: There are no sequence of operations that will give us a lexicographically smaller string than &quot;0011&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;0011&quot;, a = 4, b = 2
+</span><span>Output: &quot;0011&quot;
+</span><span>Explanation: There are no sequence of operations that will give us a lexicographically smaller string than &quot;0011&quot;.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;43987654&quot;, a = 7, b = 3
-Output: &quot;00553311&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;43987654&quot;, a = 7, b = 3
+</span><span>Output: &quot;00553311&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= s.length &lt;= 100</code></li>
@@ -166,68 +166,68 @@ Output: &quot;00553311&quot;
 </ul>
 <h2 id="solution">Solution</h2>
 <p>I first write this and got <code>TLE</code></p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  string rotate(string &amp;s, int b) {
-    return s.substr(s.length() - b, b) + s.substr(0, s.length() - b);
-  }
-  void add(string &amp;s, int a) {
-    for(int i = 1; i &lt; s.length(); i += 2) {
-      s[i] = (s[i] - &#x27;0&#x27; + a) % 10 + &#x27;0&#x27;;
-    }
-  }
-public:
-  string findLexSmallestString(string s, int a, int b) {
-    set&lt;string&gt; count{s};
-    set&lt;string&gt; vis;
-    int sz;
-    do {
-      sz = count.size();
-      set&lt;string&gt; tmp;
-      for(auto s : count) {
-        if(!vis.count(s)) {
-          vis.insert(s);
-          tmp.insert(rotate(s, b));
-          add(s, a);
-          tmp.insert(s);
-        }
-      }
-      count.merge(tmp);
-    } while(sz != count.size());
-    return *count.begin();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">rotate</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>-</span><span style="color:#eff1f5;"> b, b) </span><span>+</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>-</span><span style="color:#eff1f5;"> b);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">add</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(); i </span><span>+= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      s[i] </span><span>= </span><span style="color:#eff1f5;">(s[i] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39; +</span><span style="color:#eff1f5;"> a) </span><span>% </span><span style="color:#d08770;">10 </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">findLexSmallestString</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    set&lt;string&gt; </span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">{s};
+</span><span style="color:#eff1f5;">    set&lt;string&gt; vis;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">do </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      sz </span><span>=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      set&lt;string&gt; tmp;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> s </span><span>:</span><span style="color:#eff1f5;"> count) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">vis.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(s)) {
+</span><span style="color:#eff1f5;">          vis.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(s);
+</span><span style="color:#eff1f5;">          tmp.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">rotate</span><span style="color:#eff1f5;">(s, b));
+</span><span style="color:#eff1f5;">          </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(s, a);
+</span><span style="color:#eff1f5;">          tmp.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(s);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      count.</span><span style="color:#bf616a;">merge</span><span style="color:#eff1f5;">(tmp);
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(sz </span><span>!=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>*</span><span style="color:#eff1f5;">count.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>then rewrite as follows:</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  string rotate(string &amp;s, int b) {
-    return s.substr(s.length() - b, b) + s.substr(0, s.length() - b);
-  }
-  void add(string &amp;s, int a) {
-    for(int i = 1; i &lt; s.length(); i += 2) {
-      s[i] = (s[i] - &#x27;0&#x27; + a) % 10 + &#x27;0&#x27;;
-    }
-  }
-  void dfs(string s, set&lt;string&gt; &amp;vis, int a, int b) {
-    if(vis.count(s)) return;
-    vis.insert(s);
-    dfs(rotate(s, b), vis, a, b);
-    for(int i = 0; i &lt; 9; ++i) {
-      add(s, a);
-      dfs(s, vis, a, b);
-    }
-  }
-public:
-  string findLexSmallestString(string s, int a, int b) {
-    set&lt;string&gt; vis;
-    dfs(s, vis, a, b);
-    return *vis.begin();
-  }
-};
-
-&#x2F;&#x2F; 80&#x2F;80 cases passed (1216 ms)
-&#x2F;&#x2F; Your runtime beats 5.02 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 5.02 % of cpp submissions (187.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">rotate</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>-</span><span style="color:#eff1f5;"> b, b) </span><span>+</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>-</span><span style="color:#eff1f5;"> b);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">add</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(); i </span><span>+= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      s[i] </span><span>= </span><span style="color:#eff1f5;">(s[i] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39; +</span><span style="color:#eff1f5;"> a) </span><span>% </span><span style="color:#d08770;">10 </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, set&lt;string&gt; </span><span>&amp;</span><span style="color:#bf616a;">vis</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(s)) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vis.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(s);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">rotate</span><span style="color:#eff1f5;">(s, b), vis, a, b);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(s, a);
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(s, vis, a, b);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">findLexSmallestString</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    set&lt;string&gt; vis;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(s, vis, a, b);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>*</span><span style="color:#eff1f5;">vis.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 80/80 cases passed (1216 ms)
+</span><span style="color:#65737e;">// Your runtime beats 5.02 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 5.02 % of cpp submissions (187.7 MB)
+</span></code></pre>
 <p>ok, I will optimize it later.</p>
 <h1 id="april-leetcoding-challenge-27">April LeetCoding challenge 27</h1>
 <h2 id="description-1">Description</h2>
@@ -235,40 +235,40 @@ public:
 <p>Given an integer <code>n</code>, return <em><code>true</code> if it is a power of three. Otherwise, return <code>false</code></em>.</p>
 <p>An integer <code>n</code> is a power of three, if there exists an integer <code>x</code> such that <code>n == 3x</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 27
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 27
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 0
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 0
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 9
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 9
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: n = 45
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 45
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <p>-<code>-2<sup>31</sup> &lt;= n &lt;= 2<sup>31</sup> - 1</code></p>
 <p><strong>Follow up:</strong> Could you solve it without loops/recursion?</p>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const unordered_set&lt;int&gt; ST{1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19683, 59049, 177147, 531441, 1594323, 4782969, 14348907, 43046721, 129140163, 387420489, 1162261467};
-class Solution {
-public:
-  bool isPowerOfThree(int n) {
-    return ST.count(n);
-  }
-};
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool isPowerOfThree(int n) {
-    return n &gt; 0 &amp;&amp; 1162261467 % n == 0;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const</span><span> unordered_set&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">ST</span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">9</span><span>, </span><span style="color:#d08770;">27</span><span>, </span><span style="color:#d08770;">81</span><span>, </span><span style="color:#d08770;">243</span><span>, </span><span style="color:#d08770;">729</span><span>, </span><span style="color:#d08770;">2187</span><span>, </span><span style="color:#d08770;">6561</span><span>, </span><span style="color:#d08770;">19683</span><span>, </span><span style="color:#d08770;">59049</span><span>, </span><span style="color:#d08770;">177147</span><span>, </span><span style="color:#d08770;">531441</span><span>, </span><span style="color:#d08770;">1594323</span><span>, </span><span style="color:#d08770;">4782969</span><span>, </span><span style="color:#d08770;">14348907</span><span>, </span><span style="color:#d08770;">43046721</span><span>, </span><span style="color:#d08770;">129140163</span><span>, </span><span style="color:#d08770;">387420489</span><span>, </span><span style="color:#d08770;">1162261467</span><span>};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isPowerOfThree</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ST.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isPowerOfThree</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> n </span><span>&gt; </span><span style="color:#d08770;">0 </span><span>&amp;&amp; </span><span style="color:#d08770;">1162261467 </span><span>%</span><span style="color:#eff1f5;"> n </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

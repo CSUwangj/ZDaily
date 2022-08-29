@@ -120,17 +120,17 @@ renderMathInElement(document.body, katex_config);
 <p>We will send a signal from a given node <code>k</code>. Return the time it takes for all the <code>n</code> nodes to receive the signal. If it is impossible for all the <code>n</code> nodes to receive the signal, return <code>-1</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/05/23/931_example_1.png" alt="img" /></p>
-<pre><code>Input: times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: times = [[1,2,1]], n = 2, k = 1
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: times = [[1,2,1]], n = 2, k = 1
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: times = [[1,2,1]], n = 2, k = 2
-Output: -1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: times = [[1,2,1]], n = 2, k = 2
+</span><span>Output: -1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= k &lt;= n &lt;= 100</code></li>
@@ -142,52 +142,52 @@ Output: -1
 <li>All the pairs <code>(ui, vi)</code> are <strong>unique</strong>. (i.e., no multiple edges.)</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  using pi = pair&lt;int, int&gt;;
-  vector&lt;vector&lt;pi&gt;&gt; nextJump;
-  vector&lt;int&gt; delays;
-public:
-  int networkDelayTime(vector&lt;vector&lt;int&gt;&gt;&amp; times, int n, int k) {
-    nextJump.resize(n);
-    delays.resize(n);
-    fill(delays.begin(), delays.end(), -1);
-    for(const auto &amp;time : times) {
-      nextJump[time[0] - 1].push_back({time[1] - 1, time[2]});
-    }
-
-    priority_queue&lt;pi, vector&lt;pi&gt;, greater&lt;pi&gt;&gt; pq;
-    pq.push({0, k - 1});
-    int answer = 0;
-    for(int _node = 0; _node &lt; n; ++_node) {
-      while(pq.size() &amp;&amp; delays[pq.top().second] != -1) {
-        pq.pop();
-      }
-      if(pq.empty()) return -1;
-      auto [delay, node] = pq.top();
-      &#x2F;&#x2F; cout &lt;&lt; &quot;Node &quot; &lt;&lt; node &lt;&lt; &quot;: &quot; &lt;&lt; delay &lt;&lt; endl; 
-      pq.pop();
-      delays[node] = delay;
-      answer = delay;
-      for(const auto &amp;[next, addDelay] : nextJump[node]) {
-        if(delays[next] != -1) continue;
-        pq.push({delay + addDelay, next});
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 52&#x2F;52 cases passed (126 ms)
-&#x2F;&#x2F; Your runtime beats 84.67 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 50.01 % of cpp submissions (41.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">using </span><span style="color:#eff1f5;">pi </span><span>=</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;;
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;pi&gt;&gt; nextJump;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; delays;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">networkDelayTime</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">times</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    nextJump.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    delays.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">fill</span><span style="color:#eff1f5;">(delays.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), delays.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const auto </span><span>&amp;</span><span style="color:#eff1f5;">time </span><span>:</span><span style="color:#eff1f5;"> times) {
+</span><span style="color:#eff1f5;">      nextJump[time[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({time[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, time[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">]});
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    priority_queue</span><span>&lt;</span><span style="color:#eff1f5;">pi, vector&lt;pi&gt;, greater&lt;pi&gt;</span><span>&gt;</span><span style="color:#eff1f5;"> pq;
+</span><span style="color:#eff1f5;">    pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, k </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> _node </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; _node </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">_node) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> delays[pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">] </span><span>!= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[delay, node] </span><span>=</span><span style="color:#eff1f5;"> pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; &quot;Node &quot; &lt;&lt; node &lt;&lt; &quot;: &quot; &lt;&lt; delay &lt;&lt; endl; 
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      delays[node] </span><span>=</span><span style="color:#eff1f5;"> delay;
+</span><span style="color:#eff1f5;">      answer </span><span>=</span><span style="color:#eff1f5;"> delay;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const auto </span><span>&amp;</span><span style="color:#eff1f5;">[next, addDelay] </span><span>:</span><span style="color:#eff1f5;"> nextJump[node]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(delays[next] </span><span>!= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({delay </span><span>+</span><span style="color:#eff1f5;"> addDelay, next});
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 52/52 cases passed (126 ms)
+</span><span style="color:#65737e;">// Your runtime beats 84.67 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 50.01 % of cpp submissions (41.2 MB)
+</span></code></pre>
 
     </div>
   </div>

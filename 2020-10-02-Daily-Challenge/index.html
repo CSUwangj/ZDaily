@@ -131,26 +131,26 @@ renderMathInElement(document.body, katex_config);
 <p>The <code>veganFriendly</code> filter will be either <em>true</em> (meaning you should only include restaurants with <code>veganFriendlyi</code> set to true) or <em>false</em> (meaning you can include any restaurant). In addition, you have the filters <code>maxPrice</code> and <code>maxDistance</code> which are the maximum value for price and distance of restaurants you should consider respectively.</p>
 <p>Return the array of restaurant <em><strong>IDs</strong></em> after filtering, ordered by <strong>rating</strong> from highest to lowest. For restaurants with the same rating, order them by <em><strong>id</strong></em> from highest to lowest. For simplicity <code>veganFriendlyi</code> and <code>veganFriendly</code> take value <em>1</em> when it is <em>true</em>, and <em>0</em> when it is <em>false</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 1, maxPrice = 50, maxDistance = 10
-Output: [3,1,5] 
-Explanation: 
-The restaurants are:
-Restaurant 1 [id=1, rating=4, veganFriendly=1, price=40, distance=10]
-Restaurant 2 [id=2, rating=8, veganFriendly=0, price=50, distance=5]
-Restaurant 3 [id=3, rating=8, veganFriendly=1, price=30, distance=4]
-Restaurant 4 [id=4, rating=10, veganFriendly=0, price=10, distance=3]
-Restaurant 5 [id=5, rating=1, veganFriendly=1, price=15, distance=1] 
-After filter restaurants with veganFriendly = 1, maxPrice = 50 and maxDistance = 10 we have restaurant 3, restaurant 1 and restaurant 5 (ordered by rating from highest to lowest). 
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 1, maxPrice = 50, maxDistance = 10
+</span><span>Output: [3,1,5] 
+</span><span>Explanation: 
+</span><span>The restaurants are:
+</span><span>Restaurant 1 [id=1, rating=4, veganFriendly=1, price=40, distance=10]
+</span><span>Restaurant 2 [id=2, rating=8, veganFriendly=0, price=50, distance=5]
+</span><span>Restaurant 3 [id=3, rating=8, veganFriendly=1, price=30, distance=4]
+</span><span>Restaurant 4 [id=4, rating=10, veganFriendly=0, price=10, distance=3]
+</span><span>Restaurant 5 [id=5, rating=1, veganFriendly=1, price=15, distance=1] 
+</span><span>After filter restaurants with veganFriendly = 1, maxPrice = 50 and maxDistance = 10 we have restaurant 3, restaurant 1 and restaurant 5 (ordered by rating from highest to lowest). 
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 0, maxPrice = 50, maxDistance = 10
-Output: [4,3,2,1,5]
-Explanation: The restaurants are the same as in example 1, but in this case the filter veganFriendly = 0, therefore all restaurants are considered.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 0, maxPrice = 50, maxDistance = 10
+</span><span>Output: [4,3,2,1,5]
+</span><span>Explanation: The restaurants are the same as in example 1, but in this case the filter veganFriendly = 0, therefore all restaurants are considered.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 0, maxPrice = 30, maxDistance = 3
-Output: [4,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 0, maxPrice = 30, maxDistance = 3
+</span><span>Output: [4,5]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= restaurants.length &lt;= 10^4</code></li>
@@ -163,27 +163,27 @@ Output: [4,5]
 <h2 id="solution">Solution</h2>
 <p>simple fp should work for this.</p>
 <p>fp is nothing special, but I like the way code is.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; filterRestaurants(vector&lt;vector&lt;int&gt;&gt;&amp; restaurants, int veganFriendly, int maxPrice, int maxDistance) {
-    vector&lt;int&gt; id;
-    vector&lt;int&gt; ans;
-    for(int i = 0; i &lt; restaurants.size(); ++i) {
-      id.push_back(i);
-    }
-    &#x2F;&#x2F; filter first is better than sort first
-    copy_if(id.begin(), id.end(),back_inserter(ans), [&amp;restaurants, veganFriendly, maxDistance, maxPrice](int x){
-      return restaurants[x][2] &gt;= veganFriendly &amp;&amp; restaurants[x][3] &lt;= maxPrice &amp;&amp; restaurants[x][4] &lt;= maxDistance;
-    });
-    sort(ans.begin(), ans.end(), [&amp;restaurants](int a, int b){
-      return restaurants[a][1] &gt; restaurants[b][1] || 
-        (restaurants[a][1] == restaurants[b][1] &amp;&amp; restaurants[a][0] &gt; restaurants[b][0]);
-    });
-    transform(ans.begin(), ans.end(), ans.begin(), [&amp;restaurants](int x){ return restaurants[x][0];});
-    return ans;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">filterRestaurants</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">restaurants</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">veganFriendly</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">maxPrice</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">maxDistance</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; id;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; ans;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> restaurants.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      id.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// filter first is better than sort first
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">copy_if</span><span style="color:#eff1f5;">(id.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), id.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(),</span><span style="color:#bf616a;">back_inserter</span><span style="color:#eff1f5;">(ans), [</span><span>&amp;</span><span style="color:#eff1f5;">restaurants, veganFriendly, maxDistance, maxPrice](</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> x){
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> restaurants[x][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>&gt;=</span><span style="color:#eff1f5;"> veganFriendly </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> restaurants[x][</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>&lt;=</span><span style="color:#eff1f5;"> maxPrice </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> restaurants[x][</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">] </span><span>&lt;=</span><span style="color:#eff1f5;"> maxDistance;
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(ans.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), ans.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">restaurants](</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> b){
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> restaurants[a][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&gt;</span><span style="color:#eff1f5;"> restaurants[b][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>|| 
+</span><span style="color:#eff1f5;">        (restaurants[a][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> restaurants[b][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> restaurants[a][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&gt;</span><span style="color:#eff1f5;"> restaurants[b][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">transform</span><span style="color:#eff1f5;">(ans.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), ans.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), ans.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">restaurants](</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> x){ </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> restaurants[x][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];});
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-1">October LeetCoding Challenge 1</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Number of Recent Calls</strong></p>
@@ -195,19 +195,19 @@ public:
 </ul>
 <p>It is <strong>guaranteed</strong> that every call to <code>ping</code> uses a strictly larger value of <code>t</code> than the previous call.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;RecentCounter&quot;, &quot;ping&quot;, &quot;ping&quot;, &quot;ping&quot;, &quot;ping&quot;]
-[[], [1], [100], [3001], [3002]]
-Output
-[null, 1, 2, 3, 3]
-
-Explanation
-RecentCounter recentCounter = new RecentCounter();
-recentCounter.ping(1);     &#x2F;&#x2F; requests = [1], range is [-2999,1], return 1
-recentCounter.ping(100);   &#x2F;&#x2F; requests = [1, 100], range is [-2900,100], return 2
-recentCounter.ping(3001);  &#x2F;&#x2F; requests = [1, 100, 3001], range is [1,3001], return 3
-recentCounter.ping(3002);  &#x2F;&#x2F; requests = [1, 100, 3001, 3002], range is [2,3002], return 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;RecentCounter&quot;, &quot;ping&quot;, &quot;ping&quot;, &quot;ping&quot;, &quot;ping&quot;]
+</span><span>[[], [1], [100], [3001], [3002]]
+</span><span>Output
+</span><span>[null, 1, 2, 3, 3]
+</span><span>
+</span><span>Explanation
+</span><span>RecentCounter recentCounter = new RecentCounter();
+</span><span>recentCounter.ping(1);     // requests = [1], range is [-2999,1], return 1
+</span><span>recentCounter.ping(100);   // requests = [1, 100], range is [-2900,100], return 2
+</span><span>recentCounter.ping(3001);  // requests = [1, 100, 3001], range is [1,3001], return 3
+</span><span>recentCounter.ping(3002);  // requests = [1, 100, 3001, 3002], range is [2,3002], return 3
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= t &lt;= 104</code></li>
@@ -216,47 +216,47 @@ recentCounter.ping(3002);  &#x2F;&#x2F; requests = [1, 100, 3001, 3002], range i
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>simple sliding window, I'd rather implement it using a queue.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class RecentCounter {
-  queue&lt;int&gt; q;
-public:
-  int ping(int t) {
-    while(q.size() &amp;&amp; t - 3000 &gt; q.front()) {
-      q.pop();
-    }
-    q.push(t);
-    return q.size();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">RecentCounter </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">ping</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">t</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> t </span><span>- </span><span style="color:#d08770;">3000 </span><span>&gt;</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(t);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-2">October LeetCoding Challenge 2</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Combination Sum</strong></p>
 <p>Given an array of <strong>distinct</strong> integers <code>candidates</code> and a target integer <code>target</code>, return <em>a list of all <strong>unique combinations</strong> of</em> <code>candidates</code> <em>where the chosen numbers sum to</em> <code>target</code><em>.</em> You may return the combinations in <strong>any order</strong>.</p>
 <p>The <strong>same</strong> number may be chosen from <code>candidates</code> an <strong>unlimited number of times</strong>. Two combinations are unique if the frequency of at least one of the chosen numbers is different.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: candidates = [2,3,6,7], target = 7
-Output: [[2,2,3],[7]]
-Explanation:
-2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
-7 is a candidate, and 7 = 7.
-These are the only two combinations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [2,3,6,7], target = 7
+</span><span>Output: [[2,2,3],[7]]
+</span><span>Explanation:
+</span><span>2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
+</span><span>7 is a candidate, and 7 = 7.
+</span><span>These are the only two combinations.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: candidates = [2,3,5], target = 8
-Output: [[2,2,2,2],[2,3,3],[3,5]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [2,3,5], target = 8
+</span><span>Output: [[2,2,2,2],[2,3,3],[3,5]]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: candidates = [2], target = 1
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [2], target = 1
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: candidates = [1], target = 1
-Output: [[1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [1], target = 1
+</span><span>Output: [[1]]
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: candidates = [1], target = 2
-Output: [[1,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [1], target = 2
+</span><span>Output: [[1,1]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= candidates.length &lt;= 30</code></li>
@@ -266,46 +266,46 @@ Output: [[1,1]]
 </ul>
 <h2 id="solution-2">Solution</h2>
 <p>simple DFS</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int target;
-  int current;
-  int index;
-public:
-  void dfs(vector&lt;vector&lt;int&gt;&gt;&amp; ans, vector&lt;int&gt;&amp; cur, vector&lt;int&gt;&amp; candidates) {
-    if(index == candidates.size() || current &gt;= target) {
-      if(current == target) {
-        ans.push_back(cur);
-      }
-      return;
-    }
-    int cnt = 0;
-    index += 1;
-    dfs(ans, cur, candidates);
-    index -= 1;
-    while(current &lt; target) {
-      current += candidates[index];
-      cur.push_back(candidates[index]);
-      index += 1;
-      cnt += 1;
-      dfs(ans, cur, candidates);
-      index -= 1;
-    }
-    while(cnt) {
-      cur.pop_back();
-      current -= candidates[index];
-      cnt -= 1;
-    }
-  }
-
-  vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) {
-    vector&lt;vector&lt;int&gt;&gt; ans;
-    vector&lt;int&gt; tmp;
-    this-&gt;target = target;
-    dfs(ans, tmp, candidates);
-    return ans;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> index;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">ans</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">candidates</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> candidates.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> current </span><span>&gt;=</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current </span><span>==</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">        ans.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    index </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(ans, cur, candidates);
+</span><span style="color:#eff1f5;">    index </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(current </span><span>&lt;</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">      current </span><span>+=</span><span style="color:#eff1f5;"> candidates[index];
+</span><span style="color:#eff1f5;">      cur.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(candidates[index]);
+</span><span style="color:#eff1f5;">      index </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(ans, cur, candidates);
+</span><span style="color:#eff1f5;">      index </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cnt) {
+</span><span style="color:#eff1f5;">      cur.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      current </span><span>-=</span><span style="color:#eff1f5;"> candidates[index];
+</span><span style="color:#eff1f5;">      cnt </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">combinationSum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">candidates</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; ans;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; tmp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">target </span><span>=</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(ans, tmp, candidates);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

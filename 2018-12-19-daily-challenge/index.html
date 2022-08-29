@@ -127,50 +127,50 @@ renderMathInElement(document.body, katex_config);
 <p>So obvious~</p>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>3. Longest Substring Without Repeating Characters
-
-Given a string, find the length of the longest substring without repeating characters.
-
-Example 1:
-
-Input: &quot;abcabcbb&quot;
-Output: 3 
-Explanation: The answer is &quot;abc&quot;, with the length of 3. 
-Example 2:
-
-Input: &quot;bbbbb&quot;
-Output: 1
-Explanation: The answer is &quot;b&quot;, with the length of 1.
-Example 3:
-
-Input: &quot;pwwkew&quot;
-Output: 3
-Explanation: The answer is &quot;wke&quot;, with the length of 3. 
-             Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>3. Longest Substring Without Repeating Characters
+</span><span>
+</span><span>Given a string, find the length of the longest substring without repeating characters.
+</span><span>
+</span><span>Example 1:
+</span><span>
+</span><span>Input: &quot;abcabcbb&quot;
+</span><span>Output: 3 
+</span><span>Explanation: The answer is &quot;abc&quot;, with the length of 3. 
+</span><span>Example 2:
+</span><span>
+</span><span>Input: &quot;bbbbb&quot;
+</span><span>Output: 1
+</span><span>Explanation: The answer is &quot;b&quot;, with the length of 1.
+</span><span>Example 3:
+</span><span>
+</span><span>Input: &quot;pwwkew&quot;
+</span><span>Output: 3
+</span><span>Explanation: The answer is &quot;wke&quot;, with the length of 3. 
+</span><span>             Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p><img src="https://csuwangj.github.io/ZDaily/2018-12-19-daily-challenge/1545195187445.png" alt="idea" /></p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;**
- * @param {string} s
- * @return {number}
- *&#x2F;
-var lengthOfLongestSubstring = function(s) {
-    let map = new Map();
-    let lp = 0;
-    let ans = 0;
-    let len = s.length;
-    for(let i = 0; i &lt; len ; ++i){
-        if(map.has(s[i]) &amp;&amp; lp &lt; map.get(s[i]) + 1) lp = map.get(s[i]) + 1;
-        ans = ans &gt; ( i - lp + 1 ) ? ans : ( i - lp + 1 );
-        &#x2F;&#x2F;console.log(ans,lp)
-        map.set(s[i], i);
-    }
-    return ans;
-};
-
-&#x2F;&#x2F;console.log(lengthOfLongestSubstring(&quot;abba&quot;));
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">s
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">lengthOfLongestSubstring </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">s</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">map </span><span>= new Map();
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">lp </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">len </span><span>= </span><span style="color:#bf616a;">s</span><span>.length;
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">len </span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>        </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">i</span><span>]) &amp;&amp; </span><span style="color:#bf616a;">lp </span><span>&lt; </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">i</span><span>]) + </span><span style="color:#d08770;">1</span><span>) </span><span style="color:#bf616a;">lp </span><span>= </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">i</span><span>]) + </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#bf616a;">ans </span><span>&gt; ( </span><span style="color:#bf616a;">i </span><span>- </span><span style="color:#bf616a;">lp </span><span>+ </span><span style="color:#d08770;">1 </span><span>) ? </span><span style="color:#bf616a;">ans </span><span>: ( </span><span style="color:#bf616a;">i </span><span>- </span><span style="color:#bf616a;">lp </span><span>+ </span><span style="color:#d08770;">1 </span><span>);
+</span><span>        </span><span style="color:#65737e;">//console.log(ans,lp)
+</span><span>        </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">i</span><span>], </span><span style="color:#bf616a;">i</span><span>);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">//console.log(lengthOfLongestSubstring(&quot;abba&quot;));
+</span></code></pre>
 
     </div>
   </div>

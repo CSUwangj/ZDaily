@@ -122,19 +122,19 @@ renderMathInElement(document.body, katex_config);
 <li><code>int sum(string prefix)</code> Returns the sum of all the pairs' value whose <code>key</code> starts with the <code>prefix</code>.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;MapSum&quot;, &quot;insert&quot;, &quot;sum&quot;, &quot;insert&quot;, &quot;sum&quot;]
-[[], [&quot;apple&quot;, 3], [&quot;ap&quot;], [&quot;app&quot;, 2], [&quot;ap&quot;]]
-Output
-[null, null, 3, null, 5]
-
-Explanation
-MapSum mapSum = new MapSum();
-mapSum.insert(&quot;apple&quot;, 3);  
-mapSum.sum(&quot;ap&quot;);           &#x2F;&#x2F; return 3 (apple = 3)
-mapSum.insert(&quot;app&quot;, 2);    
-mapSum.sum(&quot;ap&quot;);           &#x2F;&#x2F; return 5 (apple + app = 3 + 2 = 5)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;MapSum&quot;, &quot;insert&quot;, &quot;sum&quot;, &quot;insert&quot;, &quot;sum&quot;]
+</span><span>[[], [&quot;apple&quot;, 3], [&quot;ap&quot;], [&quot;app&quot;, 2], [&quot;ap&quot;]]
+</span><span>Output
+</span><span>[null, null, 3, null, 5]
+</span><span>
+</span><span>Explanation
+</span><span>MapSum mapSum = new MapSum();
+</span><span>mapSum.insert(&quot;apple&quot;, 3);  
+</span><span>mapSum.sum(&quot;ap&quot;);           // return 3 (apple = 3)
+</span><span>mapSum.insert(&quot;app&quot;, 2);    
+</span><span>mapSum.sum(&quot;ap&quot;);           // return 5 (apple + app = 3 + 2 = 5)
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= key.length, prefix.length &lt;= 50</code></li>
@@ -143,24 +143,24 @@ mapSum.sum(&quot;ap&quot;);           &#x2F;&#x2F; return 5 (apple + app = 3 + 2
 <li>At most <code>50</code> calls will be made to <code>insert</code> and <code>sum</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class MapSum {
-    unordered_map&lt;string, int&gt; mp;
-public:    
-    void insert(string key, int val) {
-        mp[key] = val;
-    }
-    
-    int sum(string prefix) {
-        int result = 0;
-        for(auto &amp;[s, v] : mp) {
-            if(s.rfind(prefix, 0) == 0) {
-                result += v;
-            }
-        }
-        return result;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MapSum </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; mp;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">insert</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        mp[key] </span><span>=</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sum</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">prefix</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[s, v] </span><span>:</span><span style="color:#eff1f5;"> mp) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">rfind</span><span style="color:#eff1f5;">(prefix, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                result </span><span>+=</span><span style="color:#eff1f5;"> v;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="march-leetcoding-challenge-1">March LeetCoding Challenge 1</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Distribute Candies</strong></p>
@@ -168,20 +168,20 @@ public:
 <p>The doctor advised Alice to only eat <code>n / 2</code> of the candies she has (<code>n</code> is always even). Alice likes her candies very much, and she wants to eat the maximum number of different types of candies while still following the doctor's advice.</p>
 <p>Given the integer array <code>candyType</code> of length <code>n</code>, return <em>the <strong>maximum</strong> number of different types of candies she can eat if she only eats</em> <code>n / 2</code> <em>of them</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: candyType = [1,1,2,2,3,3]
-Output: 3
-Explanation: Alice can only eat 6 &#x2F; 2 = 3 candies. Since there are only 3 types, she can eat one of each type.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candyType = [1,1,2,2,3,3]
+</span><span>Output: 3
+</span><span>Explanation: Alice can only eat 6 / 2 = 3 candies. Since there are only 3 types, she can eat one of each type.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: candyType = [1,1,2,3]
-Output: 2
-Explanation: Alice can only eat 4 &#x2F; 2 = 2 candies. Whether she eats types [1,2], [1,3], or [2,3], she still can only eat 2 different types.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candyType = [1,1,2,3]
+</span><span>Output: 2
+</span><span>Explanation: Alice can only eat 4 / 2 = 2 candies. Whether she eats types [1,2], [1,3], or [2,3], she still can only eat 2 different types.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: candyType = [6,6,6,6]
-Output: 1
-Explanation: Alice can only eat 4 &#x2F; 2 = 2 candies. Even though she can eat 2 candies, she only has 1 type.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candyType = [6,6,6,6]
+</span><span>Output: 1
+</span><span>Explanation: Alice can only eat 4 / 2 = 2 candies. Even though she can eat 2 candies, she only has 1 type.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == candyType.length</code></li>
@@ -192,31 +192,31 @@ Explanation: Alice can only eat 4 &#x2F; 2 = 2 candies. Even though she can eat 
 </li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool validateStackSequences(vector&lt;int&gt;&amp; pushed, vector&lt;int&gt;&amp; popped) {
-        int pos = 0;
-        int len = pushed.size();
-        vector&lt;int&gt; st;
-        for(int i = 0; i &lt; len; ++i) {
-            if(st.size() &amp;&amp; st.back() == popped[i]) {
-                st.pop_back();
-                continue;
-            }
-            while(pos &lt; len &amp;&amp; pushed[pos] != popped[i]) {
-                st.push_back(pushed[pos]);
-                pos += 1;
-            }
-            if(pos &lt; len &amp;&amp; pushed[pos] == popped[i]) {
-                pos += 1;
-                continue;
-            }
-            return false;
-        }
-        return true;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">validateStackSequences</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">pushed</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">popped</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> pushed.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; st;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> popped[i]) {
+</span><span style="color:#eff1f5;">                st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> pushed[pos] </span><span>!=</span><span style="color:#eff1f5;"> popped[i]) {
+</span><span style="color:#eff1f5;">                st.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(pushed[pos]);
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> pushed[pos] </span><span>==</span><span style="color:#eff1f5;"> popped[i]) {
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

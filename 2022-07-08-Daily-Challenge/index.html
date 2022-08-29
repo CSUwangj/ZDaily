@@ -128,24 +128,24 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return <em>the minimum cost of painting all the remaining houses in such a way that there are exactly</em> <code>target</code> <em>neighborhoods</em>. If it is not possible, return <code>-1</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: houses = [0,0,0,0,0], cost = [[1,10],[10,1],[10,1],[1,10],[5,1]], m = 5, n = 2, target = 3
-Output: 9
-Explanation: Paint houses of this way [1,2,2,1,1]
-This array contains target = 3 neighborhoods, [{1}, {2,2}, {1,1}].
-Cost of paint all houses (1 + 1 + 1 + 1 + 5) = 9.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: houses = [0,0,0,0,0], cost = [[1,10],[10,1],[10,1],[1,10],[5,1]], m = 5, n = 2, target = 3
+</span><span>Output: 9
+</span><span>Explanation: Paint houses of this way [1,2,2,1,1]
+</span><span>This array contains target = 3 neighborhoods, [{1}, {2,2}, {1,1}].
+</span><span>Cost of paint all houses (1 + 1 + 1 + 1 + 5) = 9.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: houses = [0,2,1,2,0], cost = [[1,10],[10,1],[10,1],[1,10],[5,1]], m = 5, n = 2, target = 3
-Output: 11
-Explanation: Some houses are already painted, Paint the houses of this way [2,2,1,2,2]
-This array contains target = 3 neighborhoods, [{2,2}, {1}, {2,2}]. 
-Cost of paint the first and last house (10 + 1) = 11.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: houses = [0,2,1,2,0], cost = [[1,10],[10,1],[10,1],[1,10],[5,1]], m = 5, n = 2, target = 3
+</span><span>Output: 11
+</span><span>Explanation: Some houses are already painted, Paint the houses of this way [2,2,1,2,2]
+</span><span>This array contains target = 3 neighborhoods, [{2,2}, {1}, {2,2}]. 
+</span><span>Cost of paint the first and last house (10 + 1) = 11.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: houses = [3,1,2,3], cost = [[1,1,1],[1,1,1],[1,1,1],[1,1,1]], m = 4, n = 3, target = 3
-Output: -1
-Explanation: Houses are already painted with a total of 4 neighborhoods [{3},{1},{2},{3}] different of target = 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: houses = [3,1,2,3], cost = [[1,1,1],[1,1,1],[1,1,1],[1,1,1]], m = 4, n = 3, target = 3
+</span><span>Output: -1
+</span><span>Explanation: Houses are already painted with a total of 4 neighborhoods [{3},{1},{2},{3}] different of target = 3.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == houses.length == cost.length</code></li>
@@ -158,55 +158,55 @@ Explanation: Houses are already painted with a total of 4 neighborhoods [{3},{1}
 </ul>
 <h2 id="solution">Solution</h2>
 <p><code>dp[i][j][k]</code> means minimum costs for beginning <code>i</code> house group into <code>j</code> neighborhoods end with color <code>k</code></p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  bool noWay(const vector&lt;int&gt; &amp;houses, int target, int m) {
-    int pos = 0;
-    while(pos &lt; m &amp;&amp; !houses[pos]) {
-      pos += 1;
-    }
-    if(pos == m) return false;
-    int current = houses[pos];
-    int count = 1;
-    for(;pos &lt; m; ++pos) {
-      if(houses[pos] &amp;&amp; houses[pos] != current) {
-        current = houses[pos];
-        count += 1;
-      }
-    }
-    return m &lt; count;
-  }
-public:
-  int minCost(vector&lt;int&gt;&amp; houses, vector&lt;vector&lt;int&gt;&gt;&amp; cost, int m, int n, int target) {
-    if(noWay(houses, target, m)) return -1;
-    int dp[101][101][21];
-    memset(dp, 0x33333333, sizeof(dp));
-    memset(dp[0][0], 0, sizeof(dp[0][0]));
-    for(int i = 0; i &lt; m; ++i) {
-      for(int j = 1; j &lt;= target; ++j) {
-        for(int k = 1; k &lt;= n; ++k) {
-          if(houses[i] &amp;&amp; houses[i] != k) continue;
-          dp[i + 1][j][k] = dp[i][j][k];
-          for(int _k = 1; _k &lt;= n; ++_k) {
-            &#x2F;&#x2F; cout &lt;&lt; i &lt;&lt; &#x27; &#x27; &lt;&lt; j &lt;&lt; &#x27; &#x27; &lt;&lt; k &lt;&lt; &#x27; &#x27; &lt;&lt; _k &lt;&lt; endl;
-            if(_k == k) continue;
-            dp[i + 1][j][k] = min(dp[i + 1][j][k], dp[i][j - 1][_k]);
-          }
-          if(!houses[i]) dp[i + 1][j][k] += cost[i][k - 1];
-          &#x2F;&#x2F; cout &lt;&lt; &quot;#&quot; &lt;&lt; i + 1 &lt;&lt; &#x27; &#x27; &lt;&lt; j &lt;&lt; &#x27; &#x27; &lt;&lt; k  &lt;&lt; &#x27; &#x27; &lt;&lt; dp[i + 1][j][k] &lt;&lt; endl;
-        }
-      }
-    }
-    int result = *min_element(dp[m][target] + 1, dp[m][target] + n + 1);
-    if(result &gt;= 0x33333333) result = -1;
-    return result;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 60&#x2F;60 cases passed (78 ms)
-&#x2F;&#x2F; Your runtime beats 86.44 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 77.13 % of cpp submissions (10.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">noWay</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">houses</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> m </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">houses[pos]) {
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> m) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current </span><span>=</span><span style="color:#eff1f5;"> houses[pos];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(;pos </span><span>&lt;</span><span style="color:#eff1f5;"> m; </span><span>++</span><span style="color:#eff1f5;">pos) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(houses[pos] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> houses[pos] </span><span>!=</span><span style="color:#eff1f5;"> current) {
+</span><span style="color:#eff1f5;">        current </span><span>=</span><span style="color:#eff1f5;"> houses[pos];
+</span><span style="color:#eff1f5;">        count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> m </span><span>&lt;</span><span style="color:#eff1f5;"> count;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minCost</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">houses</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">cost</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">noWay</span><span style="color:#eff1f5;">(houses, target, m)) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">101</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">101</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">21</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(dp, </span><span style="color:#d08770;">0x33333333</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(dp));
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> m; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&lt;=</span><span style="color:#eff1f5;"> target; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> k </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; k </span><span>&lt;=</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">k) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(houses[i] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> houses[i] </span><span>!=</span><span style="color:#eff1f5;"> k) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j][k] </span><span>=</span><span style="color:#eff1f5;"> dp[i][j][k];
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> _k </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; _k </span><span>&lt;=</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">_k) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#65737e;">// cout &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; j &lt;&lt; &#39; &#39; &lt;&lt; k &lt;&lt; &#39; &#39; &lt;&lt; _k &lt;&lt; endl;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(_k </span><span>==</span><span style="color:#eff1f5;"> k) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j][k] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j][k], dp[i][j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][_k]);
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">houses[i]) dp[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j][k] </span><span>+=</span><span style="color:#eff1f5;"> cost[i][k </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          </span><span style="color:#65737e;">// cout &lt;&lt; &quot;#&quot; &lt;&lt; i + 1 &lt;&lt; &#39; &#39; &lt;&lt; j &lt;&lt; &#39; &#39; &lt;&lt; k  &lt;&lt; &#39; &#39; &lt;&lt; dp[i + 1][j][k] &lt;&lt; endl;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= *</span><span style="color:#bf616a;">min_element</span><span style="color:#eff1f5;">(dp[m][target] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, dp[m][target] </span><span>+</span><span style="color:#eff1f5;"> n </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(result </span><span>&gt;= </span><span style="color:#d08770;">0x33333333</span><span style="color:#eff1f5;">) result </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 60/60 cases passed (78 ms)
+</span><span style="color:#65737e;">// Your runtime beats 86.44 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 77.13 % of cpp submissions (10.8 MB)
+</span></code></pre>
 
     </div>
   </div>

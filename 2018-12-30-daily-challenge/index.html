@@ -115,74 +115,74 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Summation of primes</em> in <em>Rust</em> and <em>Best Time to Buy and Sell Stock with Transaction Fee</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Summation of primes
-
-Problem 10 
-
-The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
-
-Find the sum of all the primes below two million.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Summation of primes
+</span><span>
+</span><span>Problem 10 
+</span><span>
+</span><span>The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+</span><span>
+</span><span>Find the sum of all the primes below two million.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>Sieve for prime!!!!</p>
 <p>Extern crate again ;D</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-fn main() {
-    let sieve = primal::Sieve::new(2_000_000);
-    let mut ans64: i64 = 0;
-    for p in sieve.primes_from(2) {
-        ans64 += p as i64;
-    }
-    println!(&quot;Answer is {}&quot;, ans64);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sieve = primal::Sieve::new(</span><span style="color:#d08770;">2_000_000</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans64: </span><span style="color:#b48ead;">i64 </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> p in sieve.</span><span style="color:#96b5b4;">primes_from</span><span>(</span><span style="color:#d08770;">2</span><span>) {
+</span><span>        ans64 += p as </span><span style="color:#b48ead;">i64</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans64);
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>714. Best Time to Buy and Sell Stock with Transaction Fee
-
-
-Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
-
-You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie. you must sell the stock share before you buy again.)
-
-Return the maximum profit you can make.
-
-Example 1:
-Input: prices = [1, 3, 2, 8, 4, 9], fee = 2
-Output: 8
-Explanation: The maximum profit can be achieved by:
-Buying at prices[0] = 1
-Selling at prices[3] = 8
-Buying at prices[4] = 4
-Selling at prices[5] = 9
-The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
-Note:
-
-0 &lt; prices.length &lt;= 50000.
-0 &lt; prices[i] &lt; 50000.
-0 &lt;= fee &lt; 50000.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>714. Best Time to Buy and Sell Stock with Transaction Fee
+</span><span>
+</span><span>
+</span><span>Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
+</span><span>
+</span><span>You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie. you must sell the stock share before you buy again.)
+</span><span>
+</span><span>Return the maximum profit you can make.
+</span><span>
+</span><span>Example 1:
+</span><span>Input: prices = [1, 3, 2, 8, 4, 9], fee = 2
+</span><span>Output: 8
+</span><span>Explanation: The maximum profit can be achieved by:
+</span><span>Buying at prices[0] = 1
+</span><span>Selling at prices[3] = 8
+</span><span>Buying at prices[4] = 4
+</span><span>Selling at prices[5] = 9
+</span><span>The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
+</span><span>Note:
+</span><span>
+</span><span>0 &lt; prices.length &lt;= 50000.
+</span><span>0 &lt; prices[i] &lt; 50000.
+</span><span>0 &lt;= fee &lt; 50000.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>I remembered that similar question is example problem of <em>Divide and Conquer</em> algorithm in <em>Introduction to Algorithm</em>. But this question can not be done with this method.</p>
 <p>We should maintain the max profit of holding stock and not holding stock, and recursively conquer it.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number[]} prices
- * @param {number} fee
- * @return {number}
- *&#x2F;
-var maxProfit = (prices, fee) =&gt; {
-  let nothold = 0;
-  let hold = -prices[0] - fee;
-  for(const p of prices){
-    nothold = (nothold&gt;hold+p)?nothold:hold+p;
-    hold = (hold&gt;nothold-p-fee)?hold:nothold-p-fee;
-  }
-  return nothold;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">prices
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">fee
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">maxProfit </span><span>= (</span><span style="color:#bf616a;">prices</span><span>, </span><span style="color:#bf616a;">fee</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">nothold </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">hold </span><span>= -</span><span style="color:#bf616a;">prices</span><span>[</span><span style="color:#d08770;">0</span><span>] - </span><span style="color:#bf616a;">fee</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">p </span><span>of </span><span style="color:#bf616a;">prices</span><span>){
+</span><span>    </span><span style="color:#bf616a;">nothold </span><span>= (</span><span style="color:#bf616a;">nothold</span><span>&gt;</span><span style="color:#bf616a;">hold</span><span>+</span><span style="color:#bf616a;">p</span><span>)?</span><span style="color:#bf616a;">nothold</span><span>:</span><span style="color:#bf616a;">hold</span><span>+</span><span style="color:#bf616a;">p</span><span>;
+</span><span>    </span><span style="color:#bf616a;">hold </span><span>= (</span><span style="color:#bf616a;">hold</span><span>&gt;</span><span style="color:#bf616a;">nothold</span><span>-</span><span style="color:#bf616a;">p</span><span>-</span><span style="color:#bf616a;">fee</span><span>)?</span><span style="color:#bf616a;">hold</span><span>:</span><span style="color:#bf616a;">nothold</span><span>-</span><span style="color:#bf616a;">p</span><span>-</span><span style="color:#bf616a;">fee</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">nothold</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

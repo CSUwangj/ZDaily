@@ -125,84 +125,84 @@ renderMathInElement(document.body, katex_config);
 <li><code>void remove(key)</code> removes the <code>key</code> and its corresponding <code>value</code> if the map contains the mapping for the <code>key</code>.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;MyHashMap&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;remove&quot;, &quot;get&quot;]
-[[], [1, 1], [2, 2], [1], [3], [2, 1], [2], [2], [2]]
-Output
-[null, null, null, 1, -1, null, 1, null, -1]
-
-Explanation
-MyHashMap myHashMap = new MyHashMap();
-myHashMap.put(1, 1); &#x2F;&#x2F; The map is now [[1,1]]
-myHashMap.put(2, 2); &#x2F;&#x2F; The map is now [[1,1], [2,2]]
-myHashMap.get(1);    &#x2F;&#x2F; return 1, The map is now [[1,1], [2,2]]
-myHashMap.get(3);    &#x2F;&#x2F; return -1 (i.e., not found), The map is now [[1,1], [2,2]]
-myHashMap.put(2, 1); &#x2F;&#x2F; The map is now [[1,1], [2,1]] (i.e., update the existing value)
-myHashMap.get(2);    &#x2F;&#x2F; return 1, The map is now [[1,1], [2,1]]
-myHashMap.remove(2); &#x2F;&#x2F; remove the mapping for 2, The map is now [[1,1]]
-myHashMap.get(2);    &#x2F;&#x2F; return -1 (i.e., not found), The map is now [[1,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;MyHashMap&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;remove&quot;, &quot;get&quot;]
+</span><span>[[], [1, 1], [2, 2], [1], [3], [2, 1], [2], [2], [2]]
+</span><span>Output
+</span><span>[null, null, null, 1, -1, null, 1, null, -1]
+</span><span>
+</span><span>Explanation
+</span><span>MyHashMap myHashMap = new MyHashMap();
+</span><span>myHashMap.put(1, 1); // The map is now [[1,1]]
+</span><span>myHashMap.put(2, 2); // The map is now [[1,1], [2,2]]
+</span><span>myHashMap.get(1);    // return 1, The map is now [[1,1], [2,2]]
+</span><span>myHashMap.get(3);    // return -1 (i.e., not found), The map is now [[1,1], [2,2]]
+</span><span>myHashMap.put(2, 1); // The map is now [[1,1], [2,1]] (i.e., update the existing value)
+</span><span>myHashMap.get(2);    // return 1, The map is now [[1,1], [2,1]]
+</span><span>myHashMap.remove(2); // remove the mapping for 2, The map is now [[1,1]]
+</span><span>myHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= key, value &lt;= 10^6</code></li>
 <li>At most <code>10^4</code> calls will be made to <code>put</code>, <code>get</code>, and <code>remove</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-constexpr int MOD = 4001;
-class MyHashMap {
-  vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; container;
-public:
-  &#x2F;** Initialize your data structure here. *&#x2F;
-  MyHashMap(): container(MOD) {}
-  
-  &#x2F;** value will always be non-negative. *&#x2F;
-  void put(int key, int value) {
-    int val = key;
-    key %= MOD;
-    for(auto &amp;[k, v] : container[key]) {
-      if(k == val) {
-        v = value;
-        return;
-      }
-    }
-    container[key].push_back({val, value});
-  }
-  
-  &#x2F;** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key *&#x2F;
-  int get(int key) {
-    int val = key;
-    key %= MOD;
-    for(auto [k, v] : container[key]) {
-      if(k == val) return v;
-    }
-    return -1;
-  }
-  
-  &#x2F;** Removes the mapping of the specified value key if this map contains a mapping for the key *&#x2F;
-  void remove(int key) {
-    int val = key;
-    key %= MOD;
-    auto it = container[key].begin();
-    while(it != container[key].end() &amp;&amp; it-&gt;first != val) {
-      ++it;
-    }
-    if(it != container[key].end()) {
-      container[key].erase(it);
-    }
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 36&#x2F;36 cases passed (110 ms)
-&#x2F;&#x2F; Your runtime beats 94.72 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 60.03 % of cpp submissions (55.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">constexpr int</span><span> MOD = </span><span style="color:#d08770;">4001</span><span>;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MyHashMap </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;&gt; container;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Initialize your data structure here. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">MyHashMap</span><span style="color:#eff1f5;">(): </span><span style="color:#bf616a;">container</span><span style="color:#eff1f5;">(MOD) {}
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** value will always be non-negative. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">put</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>=</span><span style="color:#eff1f5;"> key;
+</span><span style="color:#eff1f5;">    key </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[k, v] </span><span>:</span><span style="color:#eff1f5;"> container[key]) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>==</span><span style="color:#eff1f5;"> val) {
+</span><span style="color:#eff1f5;">        v </span><span>=</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    container[key].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({val, value});
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">get</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>=</span><span style="color:#eff1f5;"> key;
+</span><span style="color:#eff1f5;">    key </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[k, v] </span><span>:</span><span style="color:#eff1f5;"> container[key]) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>==</span><span style="color:#eff1f5;"> val) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> v;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Removes the mapping of the specified value key if this map contains a mapping for the key */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">remove</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>=</span><span style="color:#eff1f5;"> key;
+</span><span style="color:#eff1f5;">    key </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> container[key].</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(it </span><span>!=</span><span style="color:#eff1f5;"> container[key].</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> it-&gt;</span><span style="color:#bf616a;">first </span><span>!=</span><span style="color:#eff1f5;"> val) {
+</span><span style="color:#eff1f5;">      </span><span>++</span><span style="color:#eff1f5;">it;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(it </span><span>!=</span><span style="color:#eff1f5;"> container[key].</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      container[key].</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(it);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 36/36 cases passed (110 ms)
+</span><span style="color:#65737e;">// Your runtime beats 94.72 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 60.03 % of cpp submissions (55.2 MB)
+</span></code></pre>
 
     </div>
   </div>

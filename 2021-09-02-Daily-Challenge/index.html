@@ -120,14 +120,14 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>an array of coordinates representing the positions of the grid in the order you visited them</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/08/24/example_1.png" alt="img" /></p>
-<pre><code>Input: rows = 1, cols = 4, rStart = 0, cStart = 0
-Output: [[0,0],[0,1],[0,2],[0,3]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: rows = 1, cols = 4, rStart = 0, cStart = 0
+</span><span>Output: [[0,0],[0,1],[0,2],[0,3]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/08/24/example_2.png" alt="img" /></p>
-<pre><code>Input: rows = 5, cols = 6, rStart = 1, cStart = 4
-Output: [[1,4],[1,5],[2,5],[2,4],[2,3],[1,3],[0,3],[0,4],[0,5],[3,5],[3,4],[3,3],[3,2],[2,2],[1,2],[0,2],[4,5],[4,4],[4,3],[4,2],[4,1],[3,1],[2,1],[1,1],[0,1],[4,0],[3,0],[2,0],[1,0],[0,0]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: rows = 5, cols = 6, rStart = 1, cStart = 4
+</span><span>Output: [[1,4],[1,5],[2,5],[2,4],[2,3],[1,3],[0,3],[0,4],[0,5],[3,5],[3,4],[3,3],[3,2],[2,2],[1,2],[0,2],[4,5],[4,4],[4,3],[4,2],[4,1],[3,1],[2,1],[1,1],[0,1],[4,0],[3,0],[2,0],[1,0],[0,0]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= rows, cols &lt;= 100</code></li>
@@ -135,103 +135,103 @@ Output: [[1,4],[1,5],[2,5],[2,4],[2,3],[1,3],[0,3],[0,4],[0,5],[3,5],[3,4],[3,3]
 <li><code>0 &lt;= cStart &lt; cols</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  vector&lt;vector&lt;int&gt;&gt; spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
-    int count = 0;
-    int moveX = 0;
-    int moveY = 1;
-    int dirMoves = 0;
-    int curMoves = 0;
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    int rPos = rStart;
-    int cPos = cStart;
-    while(answer.size() &lt; rows * cols) {
-      if(rPos &lt; rows &amp;&amp; rPos &gt;= 0 &amp;&amp; cPos &lt; cols &amp;&amp; cPos &gt;= 0) {
-        answer.push_back({rPos, cPos});
-      }
-      rPos += moveX;
-      cPos += moveY;
-      curMoves += 1;
-      if(curMoves &gt; dirMoves &#x2F; 2) {
-        int newMoveX = moveY;
-        int newMoveY = -moveX;
-        moveX = newMoveX;
-        moveY = newMoveY;
-        curMoves = 0;
-        dirMoves += 1;
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 73&#x2F;73 cases passed (21 ms)
-&#x2F;&#x2F; Your runtime beats 17.53 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 54.02 % of cpp submissions (12.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">spiralMatrixIII</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rows</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cols</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rStart</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cStart</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> moveX </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> moveY </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dirMoves </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curMoves </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rPos </span><span>=</span><span style="color:#eff1f5;"> rStart;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cPos </span><span>=</span><span style="color:#eff1f5;"> cStart;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> rows </span><span>*</span><span style="color:#eff1f5;"> cols) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rPos </span><span>&lt;</span><span style="color:#eff1f5;"> rows </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> rPos </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cPos </span><span>&lt;</span><span style="color:#eff1f5;"> cols </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cPos </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({rPos, cPos});
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      rPos </span><span>+=</span><span style="color:#eff1f5;"> moveX;
+</span><span style="color:#eff1f5;">      cPos </span><span>+=</span><span style="color:#eff1f5;"> moveY;
+</span><span style="color:#eff1f5;">      curMoves </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(curMoves </span><span>&gt;</span><span style="color:#eff1f5;"> dirMoves </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newMoveX </span><span>=</span><span style="color:#eff1f5;"> moveY;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newMoveY </span><span>= -</span><span style="color:#eff1f5;">moveX;
+</span><span style="color:#eff1f5;">        moveX </span><span>=</span><span style="color:#eff1f5;"> newMoveX;
+</span><span style="color:#eff1f5;">        moveY </span><span>=</span><span style="color:#eff1f5;"> newMoveY;
+</span><span style="color:#eff1f5;">        curMoves </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        dirMoves </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 73/73 cases passed (21 ms)
+</span><span style="color:#65737e;">// Your runtime beats 17.53 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 54.02 % of cpp submissions (12.3 MB)
+</span></code></pre>
 <h1 id="september-leetcoding-challenge-2">September LeetCoding Challenge 2</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Unique Binary Search Trees II</strong></p>
 <p>Given an integer <code>n</code>, return *all the structurally unique **BST'*<em>s (binary search trees), which has exactly</em> <code>n</code> <em>nodes of unique values from</em> <code>1</code> <em>to</em> <code>n</code>. Return the answer in <strong>any order</strong>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/01/18/uniquebstn3.jpg" alt="img" /></p>
-<pre><code>Input: n = 3
-Output: [[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3
+</span><span>Output: [[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 1
-Output: [[1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1
+</span><span>Output: [[1]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 8</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-TreeNode *copy(TreeNode *root) {
-  if(!root) return nullptr;
-  return new TreeNode(root-&gt;val, copy(root-&gt;left), copy(root-&gt;right));
-}
-class Solution {
-  vector&lt;TreeNode*&gt; solve(int mask) {
-    if(!mask) return {nullptr};
-    vector&lt;TreeNode*&gt; answer;
-    for(int i = 0; i &lt; 8; ++i) {
-      if(!(mask &amp; (1 &lt;&lt; i))) continue;
-      auto left = solve(mask &amp; ((1 &lt;&lt; i) - 1));
-      auto right = solve(mask &amp; (((1 &lt;&lt; 8) - 1) ^ ((1 &lt;&lt; (i + 1)) - 1)));
-      for(auto l : left) {
-        for(auto r : right) {
-          answer.push_back(new TreeNode(i + 1, copy(l), copy(r)));
-        }
-      }
-    }
-    return answer;
-  }
-public:
-  vector&lt;TreeNode*&gt; generateTrees(int n) {
-    return solve((1 &lt;&lt; n) - 1);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 8&#x2F;8 cases passed (20 ms)
-&#x2F;&#x2F; Your runtime beats 39.86 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 5.85 % of cpp submissions (19.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span>TreeNode *</span><span style="color:#8fa1b3;">copy</span><span>(TreeNode *</span><span style="color:#bf616a;">root</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(!root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span>;
+</span><span>  </span><span style="color:#b48ead;">return new </span><span style="color:#bf616a;">TreeNode</span><span>(root-&gt;</span><span style="color:#bf616a;">val</span><span>, </span><span style="color:#bf616a;">copy</span><span>(root-&gt;</span><span style="color:#bf616a;">left</span><span>), </span><span style="color:#bf616a;">copy</span><span>(root-&gt;</span><span style="color:#bf616a;">right</span><span>));
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">mask</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">mask) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    vector</span><span>&lt;</span><span style="color:#eff1f5;">TreeNode</span><span>*&gt;</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">8</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(mask </span><span>&amp; </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> i))) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> left </span><span>= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(mask </span><span>&amp; </span><span style="color:#eff1f5;">((</span><span style="color:#d08770;">1 </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> i) </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> right </span><span>= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(mask </span><span>&amp; </span><span style="color:#eff1f5;">(((</span><span style="color:#d08770;">1 </span><span>&lt;&lt; </span><span style="color:#d08770;">8</span><span style="color:#eff1f5;">) </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>^ </span><span style="color:#eff1f5;">((</span><span style="color:#d08770;">1 </span><span>&lt;&lt; </span><span style="color:#eff1f5;">(i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)));
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> l </span><span>:</span><span style="color:#eff1f5;"> left) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> r </span><span>:</span><span style="color:#eff1f5;"> right) {
+</span><span style="color:#eff1f5;">          answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">copy</span><span style="color:#eff1f5;">(l), </span><span style="color:#bf616a;">copy</span><span style="color:#eff1f5;">(r)));
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">generateTrees</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">((</span><span style="color:#d08770;">1 </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> n) </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 8/8 cases passed (20 ms)
+</span><span style="color:#65737e;">// Your runtime beats 39.86 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 5.85 % of cpp submissions (19.7 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -117,48 +117,48 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p>Implement function ToLowerCase() that has a string parameter str, and returns the same string in lowercase.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: &quot;Hello&quot;
-Output: &quot;hello&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;Hello&quot;
+</span><span>Output: &quot;hello&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: &quot;here&quot;
-Output: &quot;here&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;here&quot;
+</span><span>Output: &quot;here&quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: &quot;LOVELY&quot;
-Output: &quot;lovely&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;LOVELY&quot;
+</span><span>Output: &quot;lovely&quot;
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    string toLowerCase(string str) {
-        string answer;
-        for(auto c : str) {
-            if(c &gt; &#x27;Z&#x27; || c &lt; &#x27;A&#x27;) answer.push_back(c);
-            else answer.push_back(c + 32);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">toLowerCase</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">str</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        string answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> str) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>&gt; &#39;</span><span style="color:#a3be8c;">Z</span><span>&#39; ||</span><span style="color:#eff1f5;"> c </span><span>&lt; &#39;</span><span style="color:#a3be8c;">A</span><span>&#39;</span><span style="color:#eff1f5;">) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c </span><span>+ </span><span style="color:#d08770;">32</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="predict-the-winner">Predict the Winner</h1>
 <h2 id="description-1">Description</h2>
 <p>Given an array of scores that are non-negative integers. Player 1 picks one of the numbers from either end of the array followed by the player 2 and then player 1 and so on. Each time a player picks a number, that number will not be available for the next player. This continues until all the scores have been chosen. The player with the maximum score wins.</p>
 <p>Given an array of scores, predict whether player 1 is the winner. You can assume each player plays to maximize his score.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [1, 5, 2]
-Output: False
-Explanation: Initially, player 1 can choose between 1 and 2. 
-If he chooses 2 (or 1), then player 2 can choose from 1 (or 2) and 5. If player 2 chooses 5, then player 1 will be left with 1 (or 2). 
-So, final score of player 1 is 1 + 2 = 3, and player 2 is 5. 
-Hence, player 1 will never be the winner and you need to return False.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [1, 5, 2]
+</span><span>Output: False
+</span><span>Explanation: Initially, player 1 can choose between 1 and 2. 
+</span><span>If he chooses 2 (or 1), then player 2 can choose from 1 (or 2) and 5. If player 2 chooses 5, then player 1 will be left with 1 (or 2). 
+</span><span>So, final score of player 1 is 1 + 2 = 3, and player 2 is 5. 
+</span><span>Hence, player 1 will never be the winner and you need to return False.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [1, 5, 233, 7]
-Output: True
-Explanation: Player 1 first chooses 1. Then player 2 have to choose between 5 and 7. No matter which number player 2 choose, player 1 can choose 233.
-Finally, player 1 has more score (234) than player 2 (12), so you need to return True representing player1 can win.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [1, 5, 233, 7]
+</span><span>Output: True
+</span><span>Explanation: Player 1 first chooses 1. Then player 2 have to choose between 5 and 7. No matter which number player 2 choose, player 1 can choose 233.
+</span><span>Finally, player 1 has more score (234) than player 2 (12), so you need to return True representing player1 can win.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>1 &lt;= length of the array &lt;= 20.</li>
@@ -167,35 +167,35 @@ Finally, player 1 has more score (234) than player 2 (12), so you need to return
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>similar to interval dynamic programming, but only change at front and last.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool PredictTheWinner(vector&lt;int&gt;&amp; nums) {
-        int len = nums.size();
-        vector&lt;vector&lt;int&gt;&gt; dp[2];
-        dp[0].resize(len, vector&lt;int&gt;(len));
-        dp[1].resize(len, vector&lt;int&gt;(len));
-        for(int i = 0; i &lt; len; ++i) {
-            dp[1][i][i] = nums[i];
-        }
-        for(int i = 1; i &lt; len; ++i) {
-            for(int j = 0; j+i &lt; len; ++j) {
-                int takeFrontFirst = nums[j] + dp[0][j+1][j+i];
-                int takeFrontSecond = dp[1][j+1][j+i];
-                int takeLastFirst = nums[j+i] + dp[0][j][j+i-1];
-                int takeLastSecond = dp[1][j][j+i-1];
-                if(takeFrontFirst &gt; takeLastFirst) {
-                    dp[0][j][j+i] = takeFrontSecond;
-                    dp[1][j][j+i] = takeFrontFirst;
-                } else {
-                    dp[0][j][j+i] = takeLastSecond;
-                    dp[1][j][j+i] = takeLastFirst;
-                }
-            }
-        }
-        return dp[1][0][len-1] &gt;= dp[0][0][len-1];
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">PredictTheWinner</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; dp[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(len, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(len));
+</span><span style="color:#eff1f5;">        dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(len, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(len));
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][i][i] </span><span>=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j</span><span>+</span><span style="color:#eff1f5;">i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> takeFrontFirst </span><span>=</span><span style="color:#eff1f5;"> nums[j] </span><span>+</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][j</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j</span><span>+</span><span style="color:#eff1f5;">i];
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> takeFrontSecond </span><span>=</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j</span><span>+</span><span style="color:#eff1f5;">i];
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> takeLastFirst </span><span>=</span><span style="color:#eff1f5;"> nums[j</span><span>+</span><span style="color:#eff1f5;">i] </span><span>+</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][j][j</span><span>+</span><span style="color:#eff1f5;">i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> takeLastSecond </span><span>=</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j][j</span><span>+</span><span style="color:#eff1f5;">i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(takeFrontFirst </span><span>&gt;</span><span style="color:#eff1f5;"> takeLastFirst) {
+</span><span style="color:#eff1f5;">                    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][j][j</span><span>+</span><span style="color:#eff1f5;">i] </span><span>=</span><span style="color:#eff1f5;"> takeFrontSecond;
+</span><span style="color:#eff1f5;">                    dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j][j</span><span>+</span><span style="color:#eff1f5;">i] </span><span>=</span><span style="color:#eff1f5;"> takeFrontFirst;
+</span><span style="color:#eff1f5;">                } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][j][j</span><span>+</span><span style="color:#eff1f5;">i] </span><span>=</span><span style="color:#eff1f5;"> takeLastSecond;
+</span><span style="color:#eff1f5;">                    dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j][j</span><span>+</span><span style="color:#eff1f5;">i] </span><span>=</span><span style="color:#eff1f5;"> takeLastFirst;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][len</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&gt;=</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][len</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-22">January LeetCoding Challenge 22</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Find the Most Competitive Subsequence</strong></p>
@@ -215,56 +215,56 @@ public:
 <p>You can use the operations on either string as many times as necessary.</p>
 <p>Given two strings, <code>word1</code> and <code>word2</code>, return <code>true</code> <em>if</em> <code>word1</code> <em>and</em> <code>word2</code> <em>are <strong>close</strong>, and</em> <code>false</code> <em>otherwise.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: word1 = &quot;abc&quot;, word2 = &quot;bca&quot;
-Output: true
-Explanation: You can attain word2 from word1 in 2 operations.
-Apply Operation 1: &quot;abc&quot; -&gt; &quot;acb&quot;
-Apply Operation 1: &quot;acb&quot; -&gt; &quot;bca&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word1 = &quot;abc&quot;, word2 = &quot;bca&quot;
+</span><span>Output: true
+</span><span>Explanation: You can attain word2 from word1 in 2 operations.
+</span><span>Apply Operation 1: &quot;abc&quot; -&gt; &quot;acb&quot;
+</span><span>Apply Operation 1: &quot;acb&quot; -&gt; &quot;bca&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: word1 = &quot;a&quot;, word2 = &quot;aa&quot;
-Output: false
-Explanation: It is impossible to attain word2 from word1, or vice versa, in any number of operations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word1 = &quot;a&quot;, word2 = &quot;aa&quot;
+</span><span>Output: false
+</span><span>Explanation: It is impossible to attain word2 from word1, or vice versa, in any number of operations.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: word1 = &quot;cabbba&quot;, word2 = &quot;abbccc&quot;
-Output: true
-Explanation: You can attain word2 from word1 in 3 operations.
-Apply Operation 1: &quot;cabbba&quot; -&gt; &quot;caabbb&quot;
-Apply Operation 2: &quot;caabbb&quot; -&gt; &quot;baaccc&quot;
-Apply Operation 2: &quot;baaccc&quot; -&gt; &quot;abbccc&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word1 = &quot;cabbba&quot;, word2 = &quot;abbccc&quot;
+</span><span>Output: true
+</span><span>Explanation: You can attain word2 from word1 in 3 operations.
+</span><span>Apply Operation 1: &quot;cabbba&quot; -&gt; &quot;caabbb&quot;
+</span><span>Apply Operation 2: &quot;caabbb&quot; -&gt; &quot;baaccc&quot;
+</span><span>Apply Operation 2: &quot;baaccc&quot; -&gt; &quot;abbccc&quot;
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: word1 = &quot;cabbba&quot;, word2 = &quot;aabbss&quot;
-Output: false
-Explanation: It is impossible to attain word2 from word1, or vice versa, in any amount of operations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word1 = &quot;cabbba&quot;, word2 = &quot;aabbss&quot;
+</span><span>Output: false
+</span><span>Explanation: It is impossible to attain word2 from word1, or vice versa, in any amount of operations.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= word1.length, word2.length &lt;= 105</code></li>
 <li><code>word1</code> and <code>word2</code> contain only lowercase English letters.</li>
 </ul>
 <h2 id="solution-2">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool closeStrings(string word1, string word2) {
-        if(word1.length() != word2.length()) return false;
-        int cnt1[26] = {0};
-        int cnt2[26] = {0};
-        for(auto c : word1) cnt1[c-&#x27;a&#x27;] += 1;
-        for(auto c : word2) cnt2[c-&#x27;a&#x27;] += 1;
-        for(int i = 0; i &lt; 26; ++i) {
-            if((cnt1[i] &amp;&amp; !cnt2[i]) || (!cnt1[i] &amp;&amp; cnt2[i])) return false;
-        }
-        sort(cnt1, cnt1+26);
-        sort(cnt2, cnt2+26);
-        for(int i = 0; i &lt; 26; ++i) {
-            if(cnt1[i] != cnt2[i]) return false;
-        }
-        return true;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">closeStrings</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">word1</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">word2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(word1.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>!=</span><span style="color:#eff1f5;"> word2.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt1[</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt2[</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> word1) cnt1[c</span><span>-&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> word2) cnt2[c</span><span>-&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((cnt1[i] </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">cnt2[i]) </span><span>|| </span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cnt1[i] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cnt2[i])) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(cnt1, cnt1</span><span>+</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(cnt2, cnt2</span><span>+</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt1[i] </span><span>!=</span><span style="color:#eff1f5;"> cnt2[i]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

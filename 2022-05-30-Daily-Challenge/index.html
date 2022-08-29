@@ -140,43 +140,43 @@ renderMathInElement(document.body, katex_config);
 	<li><code>divisor != 0</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int answer = 0;
-  int minus(int current, int base, int resultBase) {
-    if(current &gt; base) {
-      return current;
-    }
-    if(base &gt;= INT_MIN &#x2F; 2) current = minus(current, base + base, resultBase + resultBase);
-    if(current &gt; base) {
-      return current;
-    }
-    current -= base;
-    answer += resultBase;
-    return current;
-  }
-public:
-  int divide(int dividend, int divisor) {
-    if(dividend == INT_MIN &amp;&amp; divisor == -1) return INT_MAX;
-    int sign = 1;
-    if(dividend &gt; 0) {
-      sign = -1;
-      dividend = 0 - dividend;
-    }
-    if(divisor &gt; 0) {
-      sign = sign == 1 ? -1 : 1;
-      divisor = 0 - divisor;
-    }
-    minus(dividend, divisor, -1);
-    answer = sign == 1 ? 0 - answer : answer;
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 992&#x2F;992 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 76.09 % of cpp submissions (5.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minus</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">base</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">resultBase</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current </span><span>&gt;</span><span style="color:#eff1f5;"> base) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(base </span><span>&gt;=</span><span style="color:#eff1f5;"> INT_MIN </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) current </span><span>= </span><span style="color:#bf616a;">minus</span><span style="color:#eff1f5;">(current, base </span><span>+</span><span style="color:#eff1f5;"> base, resultBase </span><span>+</span><span style="color:#eff1f5;"> resultBase);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current </span><span>&gt;</span><span style="color:#eff1f5;"> base) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    current </span><span>-=</span><span style="color:#eff1f5;"> base;
+</span><span style="color:#eff1f5;">    answer </span><span>+=</span><span style="color:#eff1f5;"> resultBase;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">divide</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">dividend</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">divisor</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dividend </span><span>==</span><span style="color:#eff1f5;"> INT_MIN </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> divisor </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sign </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dividend </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      sign </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      dividend </span><span>= </span><span style="color:#d08770;">0 </span><span>-</span><span style="color:#eff1f5;"> dividend;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(divisor </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      sign </span><span>=</span><span style="color:#eff1f5;"> sign </span><span>== </span><span style="color:#d08770;">1 </span><span>? -</span><span style="color:#d08770;">1 </span><span>: </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      divisor </span><span>= </span><span style="color:#d08770;">0 </span><span>-</span><span style="color:#eff1f5;"> divisor;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">minus</span><span style="color:#eff1f5;">(dividend, divisor, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    answer </span><span>=</span><span style="color:#eff1f5;"> sign </span><span>== </span><span style="color:#d08770;">1 </span><span>? </span><span style="color:#d08770;">0 </span><span>-</span><span style="color:#eff1f5;"> answer </span><span>:</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 992/992 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 76.09 % of cpp submissions (5.9 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -119,19 +119,19 @@ renderMathInElement(document.body, katex_config);
 <p>The digits are stored such that the most significant digit is at the head of the list, and each element in the array contains a single digit.</p>
 <p>You may assume the integer does not contain any leading zero, except the number 0 itself.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: digits = [1,2,3]
-Output: [1,2,4]
-Explanation: The array represents the integer 123.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: digits = [1,2,3]
+</span><span>Output: [1,2,4]
+</span><span>Explanation: The array represents the integer 123.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: digits = [4,3,2,1]
-Output: [4,3,2,2]
-Explanation: The array represents the integer 4321.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: digits = [4,3,2,1]
+</span><span>Output: [4,3,2,2]
+</span><span>Explanation: The array represents the integer 4321.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: digits = [0]
-Output: [1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: digits = [0]
+</span><span>Output: [1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= digits.length &lt;= 100</code></li>
@@ -139,33 +139,33 @@ Output: [1]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;int&gt; plusOne(vector&lt;int&gt;&amp; digits) {
-        int carry = 1;
-        for(auto it = digits.rbegin(); carry &amp;&amp; it != digits.rend(); ++it) {
-            int curVal = *it + carry;
-            carry = curVal &#x2F; 10;
-            *it = curVal % 10;
-        }
-        if(carry == 1) {
-            digits.insert(digits.begin(), 1, 1);
-        }
-        return digits;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">plusOne</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> carry </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> digits.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); carry </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> it </span><span>!=</span><span style="color:#eff1f5;"> digits.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curVal </span><span>= *</span><span style="color:#eff1f5;">it </span><span>+</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">            carry </span><span>=</span><span style="color:#eff1f5;"> curVal </span><span>/ </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span>*</span><span style="color:#eff1f5;">it </span><span>=</span><span style="color:#eff1f5;"> curVal </span><span>% </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(carry </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            digits.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(digits.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> digits;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-13">November LeetCoding Challenge 13</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Populating Next Right Pointers in Each Node</strong></p>
 <p>You are given a <strong>perfect binary tree</strong> where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:</p>
-<pre><code>struct Node {
-  int val;
-  Node *left;
-  Node *right;
-  Node *next;
-}
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>struct Node {
+</span><span>  int val;
+</span><span>  Node *left;
+</span><span>  Node *right;
+</span><span>  Node *next;
+</span><span>}
+</span></code></pre>
 <p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to <code>NULL</code>.</p>
 <p>Initially, all next pointers are set to <code>NULL</code>.</p>
 <p><strong>Follow up:</strong></p>
@@ -175,10 +175,10 @@ public:
 </ul>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/02/14/116_sample.png" alt="img" /></p>
-<pre><code>Input: root = [1,2,3,4,5,6,7]
-Output: [1,#,2,3,#,4,5,6,7,#]
-Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with &#x27;#&#x27; signifying the end of each level.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3,4,5,6,7]
+</span><span>Output: [1,#,2,3,#,4,5,6,7,#]
+</span><span>Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with &#39;#&#39; signifying the end of each level.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the given tree is less than <code>4096</code>.</li>
@@ -186,49 +186,49 @@ Explanation: Given the above perfect binary tree (Figure A), your function shoul
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>I failed to come up with solution with O(1) space complexity...</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;*
-&#x2F;&#x2F; Definition for a Node.
-class Node {
-public:
-    int val;
-    Node* left;
-    Node* right;
-    Node* next;
-
-    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val, Node* _left, Node* _right, Node* _next)
-        : val(_val), left(_left), right(_right), next(_next) {}
-};
-*&#x2F;
-
-class Solution {
-public:
-    Node* connect(Node* root, int level=0) {
-        if(!root) return root;
-        queue&lt;pair&lt;Node*, int&gt;&gt; q;
-        q.push(make_pair(root, 0));
-        Node *rightNode = NULL;
-        int nodeLevel = -1;
-        while(q.size()) {
-            auto [cur, level] = q.front();
-            q.pop();
-            if(nodeLevel == level) {
-                cur-&gt;next = rightNode;
-            } else {
-                cur-&gt;next = NULL;
-            }
-            rightNode = cur;
-            nodeLevel = level;
-            if(cur-&gt;right) q.push(make_pair(cur-&gt;right, level+1));
-            if(cur-&gt;left) q.push(make_pair(cur-&gt;left, level+1));
-        }
-        return root;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/*
+</span><span style="color:#65737e;">// Definition for a Node.
+</span><span style="color:#65737e;">class Node {
+</span><span style="color:#65737e;">public:
+</span><span style="color:#65737e;">    int val;
+</span><span style="color:#65737e;">    Node* left;
+</span><span style="color:#65737e;">    Node* right;
+</span><span style="color:#65737e;">    Node* next;
+</span><span style="color:#65737e;">
+</span><span style="color:#65737e;">    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+</span><span style="color:#65737e;">
+</span><span style="color:#65737e;">    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+</span><span style="color:#65737e;">
+</span><span style="color:#65737e;">    Node(int _val, Node* _left, Node* _right, Node* _next)
+</span><span style="color:#65737e;">        : val(_val), left(_left), right(_right), next(_next) {}
+</span><span style="color:#65737e;">};
+</span><span style="color:#65737e;">*/
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    Node</span><span>* </span><span style="color:#8fa1b3;">connect</span><span style="color:#eff1f5;">(Node</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">level</span><span>=</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">        queue</span><span>&lt;</span><span style="color:#eff1f5;">pair</span><span>&lt;</span><span style="color:#eff1f5;">Node</span><span>*</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span>&gt;&gt;</span><span style="color:#eff1f5;"> q;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(root, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        Node </span><span>*</span><span style="color:#eff1f5;">rightNode </span><span>= </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> nodeLevel </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[cur, level] </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nodeLevel </span><span>==</span><span style="color:#eff1f5;"> level) {
+</span><span style="color:#eff1f5;">                cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> rightNode;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                cur-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            rightNode </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">            nodeLevel </span><span>=</span><span style="color:#eff1f5;"> level;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, level</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, level</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

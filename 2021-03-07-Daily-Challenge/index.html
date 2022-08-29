@@ -124,16 +124,16 @@ renderMathInElement(document.body, katex_config);
 <li><code>remove(key)</code> : Remove the mapping for the value key if this map contains the mapping for the key.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code>MyHashMap hashMap = new MyHashMap();
-hashMap.put(1, 1);          
-hashMap.put(2, 2);         
-hashMap.get(1);            &#x2F;&#x2F; returns 1
-hashMap.get(3);            &#x2F;&#x2F; returns -1 (not found)
-hashMap.put(2, 1);          &#x2F;&#x2F; update the existing value
-hashMap.get(2);            &#x2F;&#x2F; returns 1 
-hashMap.remove(2);          &#x2F;&#x2F; remove the mapping for 2
-hashMap.get(2);            &#x2F;&#x2F; returns -1 (not found) 
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>MyHashMap hashMap = new MyHashMap();
+</span><span>hashMap.put(1, 1);          
+</span><span>hashMap.put(2, 2);         
+</span><span>hashMap.get(1);            // returns 1
+</span><span>hashMap.get(3);            // returns -1 (not found)
+</span><span>hashMap.put(2, 1);          // update the existing value
+</span><span>hashMap.get(2);            // returns 1 
+</span><span>hashMap.remove(2);          // remove the mapping for 2
+</span><span>hashMap.get(2);            // returns -1 (not found) 
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li>All keys and values will be in the range of <code>[0, 1000000]</code>.</li>
@@ -143,30 +143,30 @@ hashMap.get(2);            &#x2F;&#x2F; returns -1 (not found)
 <h2 id="solution">Solution</h2>
 <p>this is a great problem, but not a good leetcode problem.</p>
 <p>how to design a hash map is a classical data structure problem, you can learn from any of the textbooks, but when it comes to a leetcode problem with little statistics on data set, it's not as good as textbooks'.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class MyHashMap {
-    vector&lt;int&gt; table;
-public:
-    &#x2F;** Initialize your data structure here. *&#x2F;
-    MyHashMap() {
-        table.resize(1000001, -1);
-    }
-    
-    &#x2F;** value will always be non-negative. *&#x2F;
-    void put(int key, int value) {
-        table[key] = value;
-    }
-    
-    &#x2F;** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key *&#x2F;
-    int get(int key) {
-        return table[key];
-    }
-    
-    &#x2F;** Removes the mapping of the specified value key if this map contains a mapping for the key *&#x2F;
-    void remove(int key) {
-        table[key] = -1;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MyHashMap </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; table;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** Initialize your data structure here. */
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">MyHashMap</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        table.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1000001</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** value will always be non-negative. */
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">put</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        table[key] </span><span>=</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">get</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> table[key];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** Removes the mapping of the specified value key if this map contains a mapping for the key */
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">remove</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        table[key] </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

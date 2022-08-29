@@ -126,76 +126,76 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the minimum number of steps</em> to reach the <strong>last index</strong> of the array.</p>
 <p>Notice that you can not jump outside of the array at any time.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: arr = [100,-23,-23,404,100,23,23,23,3,404]
-Output: 3
-Explanation: You need three jumps from index 0 --&gt; 4 --&gt; 3 --&gt; 9. Note that index 9 is the last index of the array.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [100,-23,-23,404,100,23,23,23,3,404]
+</span><span>Output: 3
+</span><span>Explanation: You need three jumps from index 0 --&gt; 4 --&gt; 3 --&gt; 9. Note that index 9 is the last index of the array.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: arr = [7]
-Output: 0
-Explanation: Start index is the last index. You do not need to jump.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [7]
+</span><span>Output: 0
+</span><span>Explanation: Start index is the last index. You do not need to jump.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: arr = [7,6,9,6,9,6,9,7]
-Output: 1
-Explanation: You can jump directly from index 0 to index 7 which is last index of the array.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [7,6,9,6,9,6,9,7]
+</span><span>Output: 1
+</span><span>Explanation: You can jump directly from index 0 to index 7 which is last index of the array.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= arr.length &lt;= 5 * 10^4</code></li>
 <li><code>-10^8 &lt;= arr[i] &lt;= 10^8</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int minJumps(vector&lt;int&gt;&amp; arr) {
-    if(arr.size() &lt; 3) return arr.size() - 1;
-    unordered_map&lt;int, vector&lt;int&gt;&gt; positions;
-    int len = arr.size();
-    vector&lt;bool&gt; posVisit(len);
-    for(int i = 0; i &lt; len; ++i) {
-      positions[arr[i]].push_back(i);
-    }
-
-    queue&lt;pair&lt;int, int&gt;&gt; q;
-    q.push({0, 0});
-    posVisit[0] = true;
-
-    while(q.size()) {
-      auto [cnt, pos] = q.front();
-      if(pos == len - 1) return cnt;
-      q.pop();
-      if(pos &amp;&amp; !posVisit[pos - 1]) {
-        q.push({cnt + 1, pos - 1});
-        posVisit[pos - 1] = true;
-      }
-      if(pos &lt; len - 1 &amp;&amp; !posVisit[pos + 1]) {
-        q.push({cnt + 1, pos + 1});
-        posVisit[pos + 1] = true;
-      }
-      int num = arr[pos];
-      for(auto next : positions[num]) {
-        if(next == pos) continue;
-        posVisit[next] = true;
-        q.push({cnt + 1, next});
-      }
-      positions[num].clear();
-    }
-    return - 1;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 32&#x2F;32 cases passed (152 ms)
-&#x2F;&#x2F; Your runtime beats 90.78 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 42.32 % of cpp submissions (70.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minJumps</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; positions;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">posVisit</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      positions[arr[i]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    queue&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; q;
+</span><span style="color:#eff1f5;">    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">    posVisit[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[cnt, pos] </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">posVisit[pos </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({cnt </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, pos </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">        posVisit[pos </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1 </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">posVisit[pos </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({cnt </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, pos </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">        posVisit[pos </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> num </span><span>=</span><span style="color:#eff1f5;"> arr[pos];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> next </span><span>:</span><span style="color:#eff1f5;"> positions[num]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(next </span><span>==</span><span style="color:#eff1f5;"> pos) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        posVisit[next] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({cnt </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, next});
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      positions[num].</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 32/32 cases passed (152 ms)
+</span><span style="color:#65737e;">// Your runtime beats 90.78 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 42.32 % of cpp submissions (70.8 MB)
+</span></code></pre>
 
     </div>
   </div>

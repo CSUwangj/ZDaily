@@ -119,32 +119,32 @@ renderMathInElement(document.body, katex_config);
 <p>In one step, you can select any <strong>non-empty sub-array</strong> of <code>arr</code> and reverse it. You are allowed to make any number of steps.</p>
 <p>Return <em>True</em> if you can make <code>arr</code> equal to <code>target</code>, or <em>False</em> otherwise.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: target = [1,2,3,4], arr = [2,4,1,3]
-Output: true
-Explanation: You can follow the next steps to convert arr to target:
-1- Reverse sub-array [2,4,1], arr becomes [1,4,2,3]
-2- Reverse sub-array [4,2], arr becomes [1,2,4,3]
-3- Reverse sub-array [4,3], arr becomes [1,2,3,4]
-There are multiple ways to convert arr to target, this is not the only way to do so.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = [1,2,3,4], arr = [2,4,1,3]
+</span><span>Output: true
+</span><span>Explanation: You can follow the next steps to convert arr to target:
+</span><span>1- Reverse sub-array [2,4,1], arr becomes [1,4,2,3]
+</span><span>2- Reverse sub-array [4,2], arr becomes [1,2,4,3]
+</span><span>3- Reverse sub-array [4,3], arr becomes [1,2,3,4]
+</span><span>There are multiple ways to convert arr to target, this is not the only way to do so.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: target = [7], arr = [7]
-Output: true
-Explanation: arr is equal to target without any reverses.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = [7], arr = [7]
+</span><span>Output: true
+</span><span>Explanation: arr is equal to target without any reverses.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: target = [1,12], arr = [12,1]
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = [1,12], arr = [12,1]
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: target = [3,7,9], arr = [3,7,11]
-Output: false
-Explanation: arr doesn&#x27;t have value 9 and it can never be converted to target.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = [3,7,9], arr = [3,7,11]
+</span><span>Output: false
+</span><span>Explanation: arr doesn&#39;t have value 9 and it can never be converted to target.
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: target = [1,1,1,1,1], arr = [1,1,1,1,1]
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = [1,1,1,1,1], arr = [1,1,1,1,1]
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>target.length == arr.length</code></li>
@@ -154,33 +154,33 @@ Output: true
 </ul>
 <h2 id="solution">Solution</h2>
 <p>use count </p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool canBeEqual(vector&lt;int&gt;&amp; target, vector&lt;int&gt;&amp; arr) {
-        int cnt[1001] = {0};
-        for(auto i : target) {
-            cnt[i] += 1;
-        }
-        for(auto i : arr) {
-            cnt[i] -= 1;
-        }
-        for(int i = 0; i &lt;= 1000; ++i) {
-            if(cnt[i]) return false;
-        }
-        return true;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">canBeEqual</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">1001</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">            cnt[i] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> arr) {
+</span><span style="color:#eff1f5;">            cnt[i] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;= </span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt[i]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>or check if there are permutations of each other.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool canBeEqual(vector&lt;int&gt;&amp; target, vector&lt;int&gt;&amp; arr) {
-        sort(target.begin(), target.end());
-        sort(arr.begin(), arr.end());
-        return arr == target;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">canBeEqual</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(target.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), target.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(arr.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), arr.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> arr </span><span>==</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-22">December LeetCoding Challenge 22</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Balanced Binary Tree</strong></p>
@@ -191,18 +191,18 @@ public:
 </blockquote>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/06/balance_1.jpg" alt="img" /></p>
-<pre><code>Input: root = [3,9,20,null,null,15,7]
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [3,9,20,null,null,15,7]
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/06/balance_2.jpg" alt="img" /></p>
-<pre><code>Input: root = [1,2,2,3,3,null,null,4,4]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,2,3,3,null,null,4,4]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: root = []
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = []
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[0, 5000]</code>.</li>
@@ -210,22 +210,22 @@ Output: true
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>balanced binary tree is not balanced binary search tree</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    pair&lt;bool, int&gt; getMinMax(TreeNode* root) {
-        if(!root) return make_pair(true, 0);
-        auto [balancedLeft, heightLeft] = getMinMax(root-&gt;left);
-        auto [balancedRight, heightRight] = getMinMax(root-&gt;right);
-        int diff = abs(heightLeft-heightRight);
-        bool balanced = balancedLeft &amp;&amp; balancedRight &amp;&amp; diff &lt; 2;
-        return make_pair(balanced, 1+max(heightRight, heightLeft));
-    }
-public:
-    bool isBalanced(TreeNode* root) {
-        auto [balanced, _height] = getMinMax(root);
-        return balanced;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    pair&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">getMinMax</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[balancedLeft, heightLeft] </span><span>= </span><span style="color:#bf616a;">getMinMax</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[balancedRight, heightRight] </span><span>= </span><span style="color:#bf616a;">getMinMax</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span>= </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(heightLeft</span><span>-</span><span style="color:#eff1f5;">heightRight);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> balanced </span><span>=</span><span style="color:#eff1f5;"> balancedLeft </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> balancedRight </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> diff </span><span>&lt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(balanced, </span><span style="color:#d08770;">1</span><span>+</span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(heightRight, heightLeft));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isBalanced</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[balanced, _height] </span><span>= </span><span style="color:#bf616a;">getMinMax</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> balanced;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

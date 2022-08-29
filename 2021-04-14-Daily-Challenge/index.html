@@ -118,18 +118,18 @@ renderMathInElement(document.body, katex_config);
 <p>Given the <code>head</code> of a singly linked list, reverse the list, and return <em>the reversed list</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4,5]
-Output: [5,4,3,2,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5]
+</span><span>Output: [5,4,3,2,1]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/rev1ex2.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2]
-Output: [2,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2]
+</span><span>Output: [2,1]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: head = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
@@ -138,33 +138,33 @@ Output: []
 <p><strong>Follow up:</strong> A linked list can be reversed either iteratively or recursively. Could you implement both?</p>
 <h2 id="solution">Solution</h2>
 <p>reverse iteratively</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  ListNode* reverseList(ListNode* head) {
-    ListNode *newHead = nullptr;
-    ListNode *prev;
-    ListNode *cur = head;
-    while(cur) {
-      prev = cur;
-      cur = cur-&gt;next;
-      prev-&gt;next = newHead;
-      newHead = prev;
-    }
-    return newHead;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">reverseList</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">prev;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">      prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      prev-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">      newHead </span><span>=</span><span style="color:#eff1f5;"> prev;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>reverse recursively</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  ListNode* reverseList(ListNode* head, ListNode* tail = nullptr) {
-    if(!head) return tail;
-    ListNode *next = head-&gt;next;
-    head-&gt;next = tail;
-    return reverseList(next, head);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">reverseList</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, ListNode</span><span>* </span><span style="color:#bf616a;">tail </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">head) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> tail;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">next </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    head-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> tail;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">reverseList</span><span style="color:#eff1f5;">(next, head);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="april-leetcoding-challenge-14">April LeetCoding challenge 14</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Partition List</strong></p>
@@ -172,13 +172,13 @@ public:
 <p>You should <strong>preserve</strong> the original relative order of the nodes in each of the two partitions.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/01/04/partition.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,4,3,2,5,2], x = 3
-Output: [1,2,2,4,3,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,4,3,2,5,2], x = 3
+</span><span>Output: [1,2,2,4,3,5]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: head = [2,1], x = 2
-Output: [1,2]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [2,1], x = 2
+</span><span>Output: [1,2]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is in the range <code>[0, 200]</code>.</li>
@@ -186,32 +186,32 @@ Output: [1,2]
 <li><code>-200 &lt;= x &lt;= 200</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  ListNode* partition(ListNode* head, int x) {
-    ListNode *newFront = new ListNode(-1);
-    ListNode *frontTail = newFront;
-    ListNode *newBack = new ListNode(-1);
-    ListNode *backTail = newBack;
-    while(head) {
-      if(head-&gt;val &lt; x) {
-        frontTail-&gt;next = head;
-        frontTail = frontTail-&gt;next;
-      } else {
-        backTail-&gt;next = head;
-        backTail = backTail-&gt;next;
-      }
-      head = head-&gt;next;
-    } 
-    backTail-&gt;next = nullptr;
-    frontTail-&gt;next = newBack-&gt;next;
-    ListNode* answer = newFront-&gt;next;
-    delete newFront;
-    delete newBack;
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">partition</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newFront </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">frontTail </span><span>=</span><span style="color:#eff1f5;"> newFront;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newBack </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">backTail </span><span>=</span><span style="color:#eff1f5;"> newBack;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(head-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> x) {
+</span><span style="color:#eff1f5;">        frontTail-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        frontTail </span><span>=</span><span style="color:#eff1f5;"> frontTail-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        backTail-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        backTail </span><span>=</span><span style="color:#eff1f5;"> backTail-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    } 
+</span><span style="color:#eff1f5;">    backTail-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    frontTail-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> newBack-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode</span><span>*</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> newFront-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">delete</span><span style="color:#eff1f5;"> newFront;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">delete</span><span style="color:#eff1f5;"> newBack;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

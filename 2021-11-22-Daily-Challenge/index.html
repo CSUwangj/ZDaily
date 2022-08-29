@@ -124,21 +124,21 @@ renderMathInElement(document.body, katex_config);
 </ol>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/04/del_node_1.jpg" alt="img" /></p>
-<pre><code>Input: root = [5,3,6,2,4,null,7], key = 3
-Output: [5,4,6,2,null,null,7]
-Explanation: Given key to delete is 3. So we find the node with value 3 and delete it.
-One valid answer is [5,4,6,2,null,null,7], shown in the above BST.
-Please notice that another valid answer is [5,2,6,null,4,null,7] and it&#x27;s also accepted.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [5,3,6,2,4,null,7], key = 3
+</span><span>Output: [5,4,6,2,null,null,7]
+</span><span>Explanation: Given key to delete is 3. So we find the node with value 3 and delete it.
+</span><span>One valid answer is [5,4,6,2,null,null,7], shown in the above BST.
+</span><span>Please notice that another valid answer is [5,2,6,null,4,null,7] and it&#39;s also accepted.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: root = [5,3,6,2,4,null,7], key = 0
-Output: [5,3,6,2,4,null,7]
-Explanation: The tree does not contain a node with value = 0.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [5,3,6,2,4,null,7], key = 0
+</span><span>Output: [5,3,6,2,4,null,7]
+</span><span>Explanation: The tree does not contain a node with value = 0.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: root = [], key = 0
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [], key = 0
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[0, 104]</code>.</li>
@@ -149,96 +149,96 @@ Output: []
 </ul>
 <p><strong>Follow up:</strong> Could you solve it with time complexity <code>O(height of tree)</code>?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">static auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  void rebuildFromLeft(TreeNode *root) {
-    if(!root-&gt;left-&gt;right) {
-      root-&gt;val = root-&gt;left-&gt;val;
-      if(root-&gt;left-&gt;left) {
-        rebuildFromLeft(root-&gt;left);
-      } else {
-        root-&gt;left = nullptr;
-      }
-      return;
-    }
-    TreeNode *cur = root-&gt;left;
-    TreeNode *parent;
-    while(cur-&gt;right) {
-      parent = cur;
-      cur = cur-&gt;right;
-    }
-    root-&gt;val = cur-&gt;val;
-    if(cur-&gt;left) {
-      rebuildFromLeft(cur);
-    } else {
-      parent-&gt;right = nullptr;
-    }
-  }
-  
-  void rebuildFromRight(TreeNode *root) {
-    if(!root-&gt;right-&gt;left) {
-      root-&gt;val = root-&gt;right-&gt;val;
-      if(root-&gt;right-&gt;right) {
-        rebuildFromRight(root-&gt;right);
-      } else {
-        root-&gt;right = nullptr;
-      }
-      return;
-    }
-    TreeNode *cur = root-&gt;right;
-    TreeNode *parent;
-    while(cur-&gt;left) {
-      parent = cur;
-      cur = cur-&gt;left;
-    }
-    root-&gt;val = cur-&gt;val;
-    if(cur-&gt;right) {
-      rebuildFromRight(cur);
-    } else {
-      parent-&gt;left = nullptr;
-    }
-  }
-public:
-  TreeNode* deleteNode(TreeNode* root, int key) {
-    TreeNode *cur = root;
-    TreeNode *parent = nullptr;
-    while(cur &amp;&amp; cur-&gt;val != key) {
-      parent = cur;
-      if(key &gt; cur-&gt;val) {
-        cur = cur-&gt;right;
-      } else {
-        cur = cur-&gt;left;
-      }
-    }
-    if(!cur) return root;
-    if(!cur-&gt;left &amp;&amp; !cur-&gt;right) {
-      if(!parent) return nullptr;
-      if(parent-&gt;left == cur) {
-        parent-&gt;left = nullptr;
-      } else {
-        parent-&gt;right = nullptr;
-      }
-      return root;
-    }
-    if(cur-&gt;left) {
-      rebuildFromLeft(cur);
-    } else {
-      rebuildFromRight(cur);
-    }
-    return root;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 91&#x2F;91 cases passed (36 ms)
-&#x2F;&#x2F; Your runtime beats 48.74 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 30.07 % of cpp submissions (32.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">static auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">rebuildFromLeft</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      root-&gt;</span><span style="color:#bf616a;">val </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">rebuildFromLeft</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">parent;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      parent </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">val </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">rebuildFromLeft</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      parent-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">rebuildFromRight</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      root-&gt;</span><span style="color:#bf616a;">val </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">rebuildFromRight</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">parent;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      parent </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">val </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">rebuildFromRight</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      parent-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">deleteNode</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">parent </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val </span><span>!=</span><span style="color:#eff1f5;"> key) {
+</span><span style="color:#eff1f5;">      parent </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(key </span><span>&gt;</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur-&gt;</span><span style="color:#bf616a;">left </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">parent) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(parent-&gt;</span><span style="color:#bf616a;">left </span><span>==</span><span style="color:#eff1f5;"> cur) {
+</span><span style="color:#eff1f5;">        parent-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        parent-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">rebuildFromLeft</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">rebuildFromRight</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 91/91 cases passed (36 ms)
+</span><span style="color:#65737e;">// Your runtime beats 48.74 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 30.07 % of cpp submissions (32.9 MB)
+</span></code></pre>
 
     </div>
   </div>

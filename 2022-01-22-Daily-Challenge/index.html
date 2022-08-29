@@ -121,48 +121,48 @@ renderMathInElement(document.body, katex_config);
 <p>Also, if a player cannot make a move, he/she loses the game.</p>
 <p>Given a positive integer <code>n</code>, return <code>true</code> if and only if Alice wins the game otherwise return <code>false</code>, assuming both players play optimally.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 1
-Output: true
-Explanation: Alice can remove 1 stone winning the game because Bob doesn&#x27;t have any moves.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1
+</span><span>Output: true
+</span><span>Explanation: Alice can remove 1 stone winning the game because Bob doesn&#39;t have any moves.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 2
-Output: false
-Explanation: Alice can only remove 1 stone, after that Bob removes the last one winning the game (2 -&gt; 1 -&gt; 0).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2
+</span><span>Output: false
+</span><span>Explanation: Alice can only remove 1 stone, after that Bob removes the last one winning the game (2 -&gt; 1 -&gt; 0).
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 4
-Output: true
-Explanation: n is already a perfect square, Alice can win with one move, removing 4 stones (4 -&gt; 0).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 4
+</span><span>Output: true
+</span><span>Explanation: n is already a perfect square, Alice can win with one move, removing 4 stones (4 -&gt; 0).
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 10^5</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">constexpr int LIMIT = 100000;
-auto table = [](){
-  array&lt;bool, LIMIT + 1&gt; arr{false};
-  for(int i = 0; i &lt;= LIMIT; ++i) {
-    if(arr[i]) continue;
-    for(int j = 1; j * j + i &lt;= LIMIT; ++j) {
-      arr[i + j * j] = true;
-    }
-  }
-  return arr;
-}();
-class Solution {
-public:
-  bool winnerSquareGame(int n) {
-    return table[n];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 72&#x2F;72 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 93.92 % of cpp submissions (6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">constexpr int</span><span> LIMIT = </span><span style="color:#d08770;">100000</span><span>;
+</span><span style="color:#b48ead;">auto</span><span> table = [](){
+</span><span>  array&lt;</span><span style="color:#b48ead;">bool</span><span>, LIMIT + </span><span style="color:#d08770;">1</span><span>&gt; </span><span style="color:#bf616a;">arr</span><span>{</span><span style="color:#d08770;">false</span><span>};
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt;= LIMIT; ++i) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(arr[i]) </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> j = </span><span style="color:#d08770;">1</span><span>; j * j + i &lt;= LIMIT; ++j) {
+</span><span>      arr[i + j * j] = </span><span style="color:#d08770;">true</span><span>;
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> arr;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">winnerSquareGame</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> table[n];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 72/72 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 93.92 % of cpp submissions (6 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -128,105 +128,105 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p>Given a data stream input of non-negative integers a1, a2, ..., an, ..., summarize the numbers seen so far as a list of disjoint intervals.</p>
 <p>For example, suppose the integers from the data stream are 1, 3, 7, 2, 6, ..., then the summary will be:</p>
-<pre><code>[1, 1]
-[1, 1], [3, 3]
-[1, 1], [3, 3], [7, 7]
-[1, 3], [7, 7]
-[1, 3], [6, 7]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[1, 1]
+</span><span>[1, 1], [3, 3]
+</span><span>[1, 1], [3, 3], [7, 7]
+</span><span>[1, 3], [7, 7]
+</span><span>[1, 3], [6, 7]
+</span></code></pre>
 <p><strong>Follow up:</strong></p>
 <p>What if there are lots of merges and the number of disjoint intervals are small compared to the data stream's size?</p>
 <h2 id="solution">Solution</h2>
 <p>what a shitty description...</p>
 <p>I use binary search and vector to solve it.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class SummaryRanges {
-  vector&lt;vector&lt;int&gt;&gt; intervals = {{-2, -2}};
-public:
-  void addNum(int val) {
-    auto end = intervals.end(), begin = intervals.begin();
-    while(begin &lt; end) {
-      auto mid = begin;
-      advance(mid, distance(begin, end)&#x2F;2);
-      if((*mid)[0] &lt;= val &amp;&amp; (*mid)[1] &gt;= val) {
-        return;
-      } else if((*mid)[0] &gt; val) {
-        end = mid;
-      } else if((*mid)[1] &lt; val) {
-        begin = mid + 1;
-      }
-    }
-    if(begin != intervals.end() &amp;&amp; ((*(begin))[0] == val+1) &amp;&amp; ((*(begin-1))[1] == val-1)) {
-      (*(begin-1))[1] = (*(begin))[1];
-      intervals.erase(begin);
-    } else if(begin != intervals.end() &amp;&amp; (*(begin))[0] == val+1) {
-      (*(begin))[0] = val;
-    } else if((*(begin-1))[1] == val-1){
-      (*(begin-1))[1] = val;
-    } else {
-      intervals.insert(begin, {val, val});
-    }
-  }
-  
-  vector&lt;vector&lt;int&gt;&gt; getIntervals() {
-    return vector&lt;vector&lt;int&gt;&gt; {intervals.begin()+1, intervals.end()};
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">SummaryRanges </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; intervals </span><span>= </span><span style="color:#eff1f5;">{{</span><span>-</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">}};
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">addNum</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> intervals.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), begin </span><span>=</span><span style="color:#eff1f5;"> intervals.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> mid </span><span>=</span><span style="color:#eff1f5;"> begin;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">advance</span><span style="color:#eff1f5;">(mid, </span><span style="color:#bf616a;">distance</span><span style="color:#eff1f5;">(begin, end)</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((</span><span>*</span><span style="color:#eff1f5;">mid)[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&lt;=</span><span style="color:#eff1f5;"> val </span><span>&amp;&amp; </span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">mid)[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&gt;=</span><span style="color:#eff1f5;"> val) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">((</span><span>*</span><span style="color:#eff1f5;">mid)[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&gt;</span><span style="color:#eff1f5;"> val) {
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">((</span><span>*</span><span style="color:#eff1f5;">mid)[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> val) {
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span>!=</span><span style="color:#eff1f5;"> intervals.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">() </span><span>&amp;&amp; </span><span style="color:#eff1f5;">((</span><span>*</span><span style="color:#eff1f5;">(begin))[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> val</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>&amp;&amp; </span><span style="color:#eff1f5;">((</span><span>*</span><span style="color:#eff1f5;">(begin</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">))[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> val</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">      (</span><span>*</span><span style="color:#eff1f5;">(begin</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">))[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">(begin))[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      intervals.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(begin);
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(begin </span><span>!=</span><span style="color:#eff1f5;"> intervals.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">() </span><span>&amp;&amp; </span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">(begin))[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> val</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      (</span><span>*</span><span style="color:#eff1f5;">(begin))[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">((</span><span>*</span><span style="color:#eff1f5;">(begin</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">))[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> val</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">      (</span><span>*</span><span style="color:#eff1f5;">(begin</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">))[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      intervals.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(begin, {val, val});
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">getIntervals</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; {intervals.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">()</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, intervals.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()};
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-7">October LeetCoding Challenge 7</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Rotate List</strong></p>
 <p>Given a linked list, rotate the list to the right by <em>k</em> places, where <em>k</em> is non-negative.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, k = 2
-Output: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL
-Explanation:
-rotate 1 steps to the right: 5-&gt;1-&gt;2-&gt;3-&gt;4-&gt;NULL
-rotate 2 steps to the right: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, k = 2
+</span><span>Output: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL
+</span><span>Explanation:
+</span><span>rotate 1 steps to the right: 5-&gt;1-&gt;2-&gt;3-&gt;4-&gt;NULL
+</span><span>rotate 2 steps to the right: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: 0-&gt;1-&gt;2-&gt;NULL, k = 4
-Output: 2-&gt;0-&gt;1-&gt;NULL
-Explanation:
-rotate 1 steps to the right: 2-&gt;0-&gt;1-&gt;NULL
-rotate 2 steps to the right: 1-&gt;2-&gt;0-&gt;NULL
-rotate 3 steps to the right: 0-&gt;1-&gt;2-&gt;NULL
-rotate 4 steps to the right: 2-&gt;0-&gt;1-&gt;NULL
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 0-&gt;1-&gt;2-&gt;NULL, k = 4
+</span><span>Output: 2-&gt;0-&gt;1-&gt;NULL
+</span><span>Explanation:
+</span><span>rotate 1 steps to the right: 2-&gt;0-&gt;1-&gt;NULL
+</span><span>rotate 2 steps to the right: 1-&gt;2-&gt;0-&gt;NULL
+</span><span>rotate 3 steps to the right: 0-&gt;1-&gt;2-&gt;NULL
+</span><span>rotate 4 steps to the right: 2-&gt;0-&gt;1-&gt;NULL
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>my code is somewhat ugly, rewrite it later.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int length(ListNode* head) {
-        ListNode* cur = head;
-        int len = 0;
-        while(cur) {
-            cur = cur-&gt;next;
-            len += 1;
-        }
-        return len;
-    }
-    ListNode* rotateRight(ListNode* head, int k) {
-        ListNode* cur = head, *pre;
-        ListNode* newHead;
-        int l = length(head);
-        if(!l) return head;
-        k = (l - k%l)%l;
-        if(!k) return head;
-        while(k) {
-            pre = cur;
-            cur = cur-&gt;next;
-            k -= 1;
-        }
-        newHead = cur;
-        pre-&gt;next = nullptr;
-        while(cur-&gt;next) {
-            cur = cur-&gt;next;
-        }
-        cur-&gt;next = head;
-        return newHead;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">length</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode</span><span>*</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">rotateRight</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode</span><span>*</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> head, </span><span>*</span><span style="color:#eff1f5;">pre;
+</span><span style="color:#eff1f5;">        ListNode</span><span>*</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> l </span><span>= </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(head);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">l) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        k </span><span>= </span><span style="color:#eff1f5;">(l </span><span>-</span><span style="color:#eff1f5;"> k</span><span>%</span><span style="color:#eff1f5;">l)</span><span>%</span><span style="color:#eff1f5;">l;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">k) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(k) {
+</span><span style="color:#eff1f5;">            pre </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            k </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        newHead </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">        pre-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

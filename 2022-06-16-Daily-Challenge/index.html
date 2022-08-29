@@ -118,56 +118,56 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Longest Palindromic Substring</strong></p>
 <p>Given a string <code>s</code>, return <em>the longest palindromic substring</em> in <code>s</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;babad&quot;
-Output: &quot;bab&quot;
-Explanation: &quot;aba&quot; is also a valid answer.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;babad&quot;
+</span><span>Output: &quot;bab&quot;
+</span><span>Explanation: &quot;aba&quot; is also a valid answer.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;cbbd&quot;
-Output: &quot;bb&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;cbbd&quot;
+</span><span>Output: &quot;bb&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 1000</code></li>
 <li><code>s</code> consist of only digits and English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  string longestPalindrome(string s) {
-    int len = s.length();
-    int answer = 1;
-    int begin = 0;
-    for(int i = 0; i &lt; len; ++i) {
-      int left = i, right = i;
-      while(left &gt; 0 &amp;&amp; right &lt; len &amp;&amp; s[left-1] == s[right]) {
-        left -= 1;
-        right += 1;
-      }
-      if(right - left &gt; answer) {
-        answer = right - left;
-        begin = left;
-      }
-      left = i, right = i;
-      while(left &gt;= 0 &amp;&amp; right &lt; len &amp;&amp; s[left] == s[right]) {
-        left -= 1;
-        right += 1;
-      }
-      if(right - left - 1 &gt; answer) {
-        answer = right - left - 1;
-        begin = left + 1;
-      }
-      
-    }
-    return s.substr(begin, answer);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 180&#x2F;180 cases passed (34 ms)
-&#x2F;&#x2F; Your runtime beats 76.7 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 81.58 % of cpp submissions (7.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">longestPalindrome</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> left </span><span>=</span><span style="color:#eff1f5;"> i, right </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(left </span><span>&gt; </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> right </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> s[left</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> s[right]) {
+</span><span style="color:#eff1f5;">        left </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        right </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(right </span><span>-</span><span style="color:#eff1f5;"> left </span><span>&gt;</span><span style="color:#eff1f5;"> answer) {
+</span><span style="color:#eff1f5;">        answer </span><span>=</span><span style="color:#eff1f5;"> right </span><span>-</span><span style="color:#eff1f5;"> left;
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> left;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      left </span><span>=</span><span style="color:#eff1f5;"> i, right </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(left </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> right </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> s[left] </span><span>==</span><span style="color:#eff1f5;"> s[right]) {
+</span><span style="color:#eff1f5;">        left </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        right </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(right </span><span>-</span><span style="color:#eff1f5;"> left </span><span>- </span><span style="color:#d08770;">1 </span><span>&gt;</span><span style="color:#eff1f5;"> answer) {
+</span><span style="color:#eff1f5;">        answer </span><span>=</span><span style="color:#eff1f5;"> right </span><span>-</span><span style="color:#eff1f5;"> left </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> left </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(begin, answer);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 180/180 cases passed (34 ms)
+</span><span style="color:#65737e;">// Your runtime beats 76.7 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 81.58 % of cpp submissions (7.2 MB)
+</span></code></pre>
 
     </div>
   </div>

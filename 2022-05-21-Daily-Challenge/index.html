@@ -120,18 +120,18 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the fewest number of coins that you need to make up that amount</em>. If that amount of money cannot be made up by any combination of the coins, return <code>-1</code>.</p>
 <p>You may assume that you have an infinite number of each kind of coin.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: coins = [1,2,5], amount = 11
-Output: 3
-Explanation: 11 = 5 + 5 + 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: coins = [1,2,5], amount = 11
+</span><span>Output: 3
+</span><span>Explanation: 11 = 5 + 5 + 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: coins = [2], amount = 3
-Output: -1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: coins = [2], amount = 3
+</span><span>Output: -1
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: coins = [1], amount = 0
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: coins = [1], amount = 0
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 	<li><code>1 &lt;= coins.length &lt;= 12</code></li>
@@ -139,25 +139,25 @@ Output: 0
 	<li><code>0 &lt;= amount &lt;= 10<sup>4</sup></code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int coinChange(vector&lt;int&gt;&amp; coins, int amount) {
-    vector&lt;int&gt; dp(amount + 1, amount+1);
-    dp[0] = 0;
-    for(auto coin : coins){
-      for(int i = coin; i &lt;= amount; ++i) {
-        dp[i] = min(dp[i], dp[i - coin] + 1);
-      }
-    }
-    return dp.back() &gt; amount ? -1 : dp.back();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 188&#x2F;188 cases passed (108 ms)
-&#x2F;&#x2F; Your runtime beats 58.8 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 68.59 % of cpp submissions (14.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">coinChange</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">coins</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">amount</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(amount </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, amount</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> coin </span><span>:</span><span style="color:#eff1f5;"> coins){
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> coin; i </span><span>&lt;=</span><span style="color:#eff1f5;"> amount; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        dp[i] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[i], dp[i </span><span>-</span><span style="color:#eff1f5;"> coin] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> amount </span><span>? -</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 188/188 cases passed (108 ms)
+</span><span style="color:#65737e;">// Your runtime beats 58.8 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 68.59 % of cpp submissions (14.3 MB)
+</span></code></pre>
 
     </div>
   </div>

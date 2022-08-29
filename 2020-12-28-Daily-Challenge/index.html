@@ -118,17 +118,17 @@ renderMathInElement(document.body, katex_config);
 <p>Merge two sorted linked lists and return it as a new <strong>sorted</strong> list. The new list should be made by splicing together the nodes of the first two lists.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/03/merge_ex1.jpg" alt="img" /></p>
-<pre><code>Input: l1 = [1,2,4], l2 = [1,3,4]
-Output: [1,1,2,3,4,4]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: l1 = [1,2,4], l2 = [1,3,4]
+</span><span>Output: [1,1,2,3,4,4]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: l1 = [], l2 = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: l1 = [], l2 = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: l1 = [], l2 = [0]
-Output: [0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: l1 = [], l2 = [0]
+</span><span>Output: [0]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in both lists is in the range <code>[0, 50]</code>.</li>
@@ -137,27 +137,27 @@ Output: [0]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode *newHead = new ListNode();
-        ListNode *cur = newHead;
-        while(l1 &amp;&amp; l2) {
-            if(l1-&gt;val &lt; l2-&gt;val) {
-                cur-&gt;next = l1;
-                l1 = l1-&gt;next;
-            } else {
-                cur-&gt;next = l2;
-                l2 = l2-&gt;next;
-            }
-            cur = cur-&gt;next;
-        }
-        if(l1) cur-&gt;next = l1;
-        if(l2) cur-&gt;next = l2;
-        return newHead-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">mergeTwoLists</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">l1</span><span style="color:#eff1f5;">, ListNode</span><span>* </span><span style="color:#bf616a;">l2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(l1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> l2) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(l1-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> l2-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> l1;
+</span><span style="color:#eff1f5;">                l1 </span><span>=</span><span style="color:#eff1f5;"> l1-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> l2;
+</span><span style="color:#eff1f5;">                l2 </span><span>=</span><span style="color:#eff1f5;"> l2-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(l1) cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> l1;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(l2) cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> l2;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-28">December LeetCoding Challenge 28</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Reach a Number</strong></p>
@@ -165,20 +165,20 @@ public:
 <p>On each move, you can either go left or right. During the <em>n</em>-th move (starting from 1), you take <em>n</em> steps.</p>
 <p>Return the minimum number of steps required to reach the destination.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: target = 3
-Output: 2
-Explanation:
-On the first move we step from 0 to 1.
-On the second step we step from 1 to 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = 3
+</span><span>Output: 2
+</span><span>Explanation:
+</span><span>On the first move we step from 0 to 1.
+</span><span>On the second step we step from 1 to 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: target = 2
-Output: 3
-Explanation:
-On the first move we step from 0 to 1.
-On the second move we step  from 1 to -1.
-On the third move we step from -1 to 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = 2
+</span><span>Output: 3
+</span><span>Explanation:
+</span><span>On the first move we step from 0 to 1.
+</span><span>On the second move we step  from 1 to -1.
+</span><span>On the third move we step from -1 to 2.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <p><code>target</code> will be a non-zero integer in the range <code>[-10^9, 10^9]</code>.</p>
 <h2 id="solution-1">Solution</h2>
@@ -202,29 +202,29 @@ we'll take a negative move when it comes to $\frac{\frac{n*n(+1)}{2} - target}{2
 </ul>
 </li>
 </ul>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int reachNumber(int target) {
-        target = abs(target);
-        int start = 1, end = 45555;
-        while(start &lt; end) {
-            int mid = (start + end) &#x2F; 2;
-            int pos = mid * (mid + 1) &#x2F; 2;
-            if(pos &lt; target) {
-                start = mid + 1;
-            } else {
-                end = mid;
-            }
-        }
-        int answer = start;
-        int diff = abs(target - start * (start + 1) &#x2F; 2);
-        if(diff &amp; 1) {
-            answer += 1 + ((start&amp;1)^1);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">reachNumber</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        target </span><span>= </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(target);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> start </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end </span><span>= </span><span style="color:#d08770;">45555</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(start </span><span>+</span><span style="color:#eff1f5;"> end) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>* </span><span style="color:#eff1f5;">(mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">                start </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> start;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span>= </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(target </span><span>-</span><span style="color:#eff1f5;"> start </span><span>* </span><span style="color:#eff1f5;">(start </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(diff </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            answer </span><span>+= </span><span style="color:#d08770;">1 </span><span>+ </span><span style="color:#eff1f5;">((start</span><span>&amp;</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>^</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

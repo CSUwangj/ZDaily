@@ -118,70 +118,70 @@ renderMathInElement(document.body, katex_config);
 <p>Given an integer <code>n</code>, return all the numbers in the range <code>[1, n]</code> sorted in lexicographical order.</p>
 <p>You must write an algorithm that runs in <code>O(n)</code> time and uses <code>O(1)</code> extra space. </p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 13
-Output: [1,10,11,12,13,2,3,4,5,6,7,8,9]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 13
+</span><span>Output: [1,10,11,12,13,2,3,4,5,6,7,8,9]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 2
-Output: [1,2]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2
+</span><span>Output: [1,2]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 5 * 10^4</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  vector&lt;int&gt; lexicalOrder(int n) {
-    int curInt = 1;
-    vector&lt;int&gt; answer{1};
-    while(answer.size() &lt; n) {
-      if(curInt * 10 &lt;= n) {
-        curInt *= 10;
-        answer.push_back(curInt);
-      } else {
-        while(curInt % 10 == 9 || curInt == n) {
-          int count = 1;
-          curInt &#x2F;= 10;
-        }
-        curInt += 1;
-        answer.push_back(curInt);
-      }
-    }
-
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 26&#x2F;26 cases passed (8 ms)
-&#x2F;&#x2F; Your runtime beats 82.37 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 81.38 % of cpp submissions (11 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">lexicalOrder</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curInt </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> n) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(curInt </span><span>* </span><span style="color:#d08770;">10 </span><span>&lt;=</span><span style="color:#eff1f5;"> n) {
+</span><span style="color:#eff1f5;">        curInt </span><span>*= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(curInt);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(curInt </span><span>% </span><span style="color:#d08770;">10 </span><span>== </span><span style="color:#d08770;">9 </span><span>||</span><span style="color:#eff1f5;"> curInt </span><span>==</span><span style="color:#eff1f5;"> n) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          curInt </span><span>/= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        curInt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(curInt);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 26/26 cases passed (8 ms)
+</span><span style="color:#65737e;">// Your runtime beats 82.37 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 81.38 % of cpp submissions (11 MB)
+</span></code></pre>
 <h1 id="september-leetcoding-challenge-7">September LeetCoding Challenge 7</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Reverse Linked List</strong></p>
 <p>Given the <code>head</code> of a singly linked list, reverse the list, and return <em>the reversed list</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4,5]
-Output: [5,4,3,2,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5]
+</span><span>Output: [5,4,3,2,1]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/rev1ex2.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2]
-Output: [2,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2]
+</span><span>Output: [2,1]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: head = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
@@ -189,42 +189,42 @@ Output: []
 </ul>
 <p><strong>Follow up:</strong> A linked list can be reversed either iteratively or recursively. Could you implement both?</p>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  ListNode* reverseList(ListNode* head, ListNode* tail = nullptr) {
-    if(!head) return tail;
-    ListNode *next = head-&gt;next;
-    head-&gt;next = tail;
-    return reverseList(next, head);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 28&#x2F;28 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 96.22 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 97.51 % of cpp submissions (8.2 MB)
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  ListNode* reverseList(ListNode* head) {
-    ListNode *newHead = nullptr;
-    ListNode *prev;
-    ListNode *cur = head;
-    while(cur) {
-      prev = cur;
-      cur = cur-&gt;next;
-      prev-&gt;next = newHead;
-      newHead = prev;
-    }
-    return newHead;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 28&#x2F;28 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 96.22 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 97.51 % of cpp submissions (8.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">reverseList</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, ListNode</span><span>* </span><span style="color:#bf616a;">tail </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">head) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> tail;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">next </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    head-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> tail;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">reverseList</span><span style="color:#eff1f5;">(next, head);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 28/28 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 96.22 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 97.51 % of cpp submissions (8.2 MB)
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">reverseList</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">prev;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">      prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      prev-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">      newHead </span><span>=</span><span style="color:#eff1f5;"> prev;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 28/28 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 96.22 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 97.51 % of cpp submissions (8.2 MB)
+</span></code></pre>
 
     </div>
   </div>

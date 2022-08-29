@@ -124,17 +124,17 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return <em>the longest length of a set</em> <code>s[k]</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [5,4,0,3,1,6,2]
-Output: 4
-Explanation: 
-nums[0] = 5, nums[1] = 4, nums[2] = 0, nums[3] = 3, nums[4] = 1, nums[5] = 6, nums[6] = 2.
-One of the longest sets s[k]:
-s[0] = {nums[0], nums[5], nums[6], nums[2]} = {5, 6, 2, 0}
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [5,4,0,3,1,6,2]
+</span><span>Output: 4
+</span><span>Explanation: 
+</span><span>nums[0] = 5, nums[1] = 4, nums[2] = 0, nums[3] = 3, nums[4] = 1, nums[5] = 6, nums[6] = 2.
+</span><span>One of the longest sets s[k]:
+</span><span>s[0] = {nums[0], nums[5], nums[6], nums[2]} = {5, 6, 2, 0}
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0,1,2]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,1,2]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
@@ -143,33 +143,33 @@ Output: 1
 </ul>
 <h2 id="solution">Solution</h2>
 <p>simple simulation</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  return 0;
-}();
-class Solution {
-public:
-  int arrayNesting(vector&lt;int&gt;&amp; nums) {
-    int answer = 0;
-    int len = nums.size();
-    vector&lt;bool&gt; vis(len);
-    for(int i = 0; i &lt; len; ++i) {
-      if(vis[i]) continue;
-      int cur = i;
-      int chain = 0;
-      while(!vis[cur]) {
-        chain += 1;
-        vis[cur] = true;
-        cur = nums[cur];
-      }
-      answer = max(answer, chain);
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">arrayNesting</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">vis</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[i]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> chain </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">vis[cur]) {
+</span><span style="color:#eff1f5;">        chain </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        vis[cur] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> nums[cur];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, chain);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="june-leetcoding-challenge-7">June LeetCoding Challenge 7</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Min Cost Climbing Stairs</strong></p>
@@ -177,33 +177,33 @@ public:
 <p>You can either start from the step with index <code>0</code>, or the step with index <code>1</code>.</p>
 <p>Return <em>the minimum cost to reach the top of the floor</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: cost = [10,15,20]
-Output: 15
-Explanation: Cheapest is: start on cost[1], pay that cost, and go to the top.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: cost = [10,15,20]
+</span><span>Output: 15
+</span><span>Explanation: Cheapest is: start on cost[1], pay that cost, and go to the top.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: cost = [1,100,1,1,1,100,1,1,100,1]
-Output: 6
-Explanation: Cheapest is: start on cost[0], and only step on 1s, skipping cost[3].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: cost = [1,100,1,1,1,100,1,1,100,1]
+</span><span>Output: 6
+</span><span>Explanation: Cheapest is: start on cost[0], and only step on 1s, skipping cost[3].
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= cost.length &lt;= 1000</code></li>
 <li><code>0 &lt;= cost[i] &lt;= 999</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int minCostClimbingStairs(vector&lt;int&gt;&amp; cost) {
-    int dp[3];
-    int len = cost.size();
-    for(int i = 2; i &lt;= len; ++i) {
-      dp[i % 3] = min(dp[(i + 1) % 3] + cost[i - 2], dp[(i + 2) % 3] + cost[i - 1]);
-    }
-    return dp[len % 3];
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minCostClimbingStairs</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">cost</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> cost.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      dp[i </span><span>% </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[(i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>% </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> cost[i </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">], dp[(i </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>% </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> cost[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[len </span><span>% </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

@@ -115,103 +115,103 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Number letter counts</em> in <em>Rust</em> and <em>Reverse String</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Number letter counts
-
-Problem 17 
-
-If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
-
-If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
-
-
-NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) contains 20 letters. The use of &quot;and&quot; when writing out numbers is in compliance with British usage.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Number letter counts
+</span><span>
+</span><span>Problem 17 
+</span><span>
+</span><span>If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
+</span><span>
+</span><span>If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+</span><span>
+</span><span>
+</span><span>NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) contains 20 letters. The use of &quot;and&quot; when writing out numbers is in compliance with British usage.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>Emmmm, carefully simulation.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    assert!(nlc(342) == 23);
-    assert!(nlc(115) == 20);
-    assert!(nlc(1)+nlc(2)+nlc(3)+nlc(4)+nlc(5) == 19);
-    assert!(nlc(900) == 11);
-    let mut ans: i32 = 0;
-    for i in 1..1001 {
-        ans += nlc(i);
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-&#x2F;&#x2F; nlc means Number Letter Count
-&#x2F;&#x2F; only apply to positive number and less  than 1e9 + 1
-fn nlc(n: i32) -&gt; i32 {
-    match n {
-        &#x2F;&#x2F; one, two, six, ten
-        1 | 2 | 6 | 10 =&gt; return 3,
-        &#x2F;&#x2F; zero, four, five, nine
-        0 | 4 | 5 | 9 =&gt; return 4,
-        &#x2F;&#x2F; three, seven, eight, forty, fifty, sixty
-        3 | 7 | 8 | 40 | 50 | 60 =&gt; return 5,
-        &#x2F;&#x2F; eleven, twelve, twenty, thirty, eighty, ninety
-        11 | 12 | 20 | 30 | 80 | 90 =&gt; return 6,
-        &#x2F;&#x2F; fifteen, sixteen, seventy
-        15 | 16 | 70 =&gt; return 7,
-        &#x2F;&#x2F; thirteen, fourteen, eighteen, nineteen
-        13 | 14 | 18 | 19 =&gt; return 8,
-        &#x2F;&#x2F; seventeen
-        17 =&gt; return 9,
-        &#x2F;&#x2F; one million, one billion
-        1_000_000 | 1_000_000_000 =&gt; return 10,
-        &#x2F;&#x2F; one thouand
-        1000 =&gt; return 11,
-        &#x2F;&#x2F; (\d)0 but not 10
-        n if n &gt; 20 &amp;&amp; n &lt; 100 =&gt; return nlc(n-n%10) + nlc(n%10),
-        &#x2F;&#x2F; (\d)00
-        &#x2F;&#x2F; {} hundred
-        n if n &gt; 99 &amp;&amp; n &lt; 1000 &amp;&amp; n % 100 == 0 =&gt; return nlc(n&#x2F;100) + 7,
-        &#x2F;&#x2F; 101..999 but not 100&#x2F;200..
-        &#x2F;&#x2F; {} hundred and {}
-        n if n &gt; 100 &amp;&amp; n &lt; 1000 =&gt; return nlc(n&#x2F;100) + 7 + 3 + nlc(n%100),
-        &#x2F;&#x2F; (\d)000
-        n if n &gt; 999 &amp;&amp; n &lt; 1000000 &amp;&amp; n % 1000 == 0 =&gt; return nlc(n&#x2F;1000) + 8,
-        &#x2F;&#x2F; 1001..999999
-        &#x2F;&#x2F; {} thousand {} hundred and {}
-        n if n &gt; 1000 &amp;&amp; n &lt; 1_000_000 =&gt; return nlc(n&#x2F;1000) + 8 + nlc(n%1000),
-        &#x2F;&#x2F; (\d)000000
-        n if n &gt; 999_999 &amp;&amp; n &lt; 1_000_000_000 &amp;&amp; n % 1_000_000 == 0 =&gt; return nlc(n&#x2F;1_000_000) + 7,
-        &#x2F;&#x2F; 1000001..999999999
-        &#x2F;&#x2F; {} million {} thousand {} hundred and {}
-        n if n &gt; 1_000_000 &amp;&amp; n &lt; 1_000_000_000 =&gt; return nlc(n&#x2F;1_000_000) + 7 + nlc(n%1_000_000),
-        &#x2F;&#x2F; -1 for error
-        _ =&gt; return -1,
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    assert!(</span><span style="color:#96b5b4;">nlc</span><span>(</span><span style="color:#d08770;">342</span><span>) == </span><span style="color:#d08770;">23</span><span>);
+</span><span>    assert!(</span><span style="color:#96b5b4;">nlc</span><span>(</span><span style="color:#d08770;">115</span><span>) == </span><span style="color:#d08770;">20</span><span>);
+</span><span>    assert!(</span><span style="color:#96b5b4;">nlc</span><span>(</span><span style="color:#d08770;">1</span><span>)+</span><span style="color:#96b5b4;">nlc</span><span>(</span><span style="color:#d08770;">2</span><span>)+</span><span style="color:#96b5b4;">nlc</span><span>(</span><span style="color:#d08770;">3</span><span>)+</span><span style="color:#96b5b4;">nlc</span><span>(</span><span style="color:#d08770;">4</span><span>)+</span><span style="color:#96b5b4;">nlc</span><span>(</span><span style="color:#d08770;">5</span><span>) == </span><span style="color:#d08770;">19</span><span>);
+</span><span>    assert!(</span><span style="color:#96b5b4;">nlc</span><span>(</span><span style="color:#d08770;">900</span><span>) == </span><span style="color:#d08770;">11</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: </span><span style="color:#b48ead;">i32 </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">1001 </span><span>{
+</span><span>        ans += </span><span style="color:#96b5b4;">nlc</span><span>(i);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">// nlc means Number Letter Count
+</span><span style="color:#65737e;">// only apply to positive number and less  than 1e9 + 1
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">nlc</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">i32</span><span>) -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">match</span><span> n {
+</span><span>        </span><span style="color:#65737e;">// one, two, six, ten
+</span><span>        </span><span style="color:#d08770;">1 </span><span>| </span><span style="color:#d08770;">2 </span><span>| </span><span style="color:#d08770;">6 </span><span>| </span><span style="color:#d08770;">10 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">3</span><span>,
+</span><span>        </span><span style="color:#65737e;">// zero, four, five, nine
+</span><span>        </span><span style="color:#d08770;">0 </span><span>| </span><span style="color:#d08770;">4 </span><span>| </span><span style="color:#d08770;">5 </span><span>| </span><span style="color:#d08770;">9 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">4</span><span>,
+</span><span>        </span><span style="color:#65737e;">// three, seven, eight, forty, fifty, sixty
+</span><span>        </span><span style="color:#d08770;">3 </span><span>| </span><span style="color:#d08770;">7 </span><span>| </span><span style="color:#d08770;">8 </span><span>| </span><span style="color:#d08770;">40 </span><span>| </span><span style="color:#d08770;">50 </span><span>| </span><span style="color:#d08770;">60 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">5</span><span>,
+</span><span>        </span><span style="color:#65737e;">// eleven, twelve, twenty, thirty, eighty, ninety
+</span><span>        </span><span style="color:#d08770;">11 </span><span>| </span><span style="color:#d08770;">12 </span><span>| </span><span style="color:#d08770;">20 </span><span>| </span><span style="color:#d08770;">30 </span><span>| </span><span style="color:#d08770;">80 </span><span>| </span><span style="color:#d08770;">90 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">6</span><span>,
+</span><span>        </span><span style="color:#65737e;">// fifteen, sixteen, seventy
+</span><span>        </span><span style="color:#d08770;">15 </span><span>| </span><span style="color:#d08770;">16 </span><span>| </span><span style="color:#d08770;">70 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">7</span><span>,
+</span><span>        </span><span style="color:#65737e;">// thirteen, fourteen, eighteen, nineteen
+</span><span>        </span><span style="color:#d08770;">13 </span><span>| </span><span style="color:#d08770;">14 </span><span>| </span><span style="color:#d08770;">18 </span><span>| </span><span style="color:#d08770;">19 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">8</span><span>,
+</span><span>        </span><span style="color:#65737e;">// seventeen
+</span><span>        </span><span style="color:#d08770;">17 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">9</span><span>,
+</span><span>        </span><span style="color:#65737e;">// one million, one billion
+</span><span>        </span><span style="color:#d08770;">1_000_000 </span><span>| </span><span style="color:#d08770;">1_000_000_000 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">10</span><span>,
+</span><span>        </span><span style="color:#65737e;">// one thouand
+</span><span>        </span><span style="color:#d08770;">1000 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">11</span><span>,
+</span><span>        </span><span style="color:#65737e;">// (\d)0 but not 10
+</span><span>        n </span><span style="color:#b48ead;">if</span><span> n &gt; </span><span style="color:#d08770;">20 </span><span>&amp;&amp; n &lt; </span><span style="color:#d08770;">100 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">nlc</span><span>(n-n%</span><span style="color:#d08770;">10</span><span>) + </span><span style="color:#96b5b4;">nlc</span><span>(n%</span><span style="color:#d08770;">10</span><span>),
+</span><span>        </span><span style="color:#65737e;">// (\d)00
+</span><span>        </span><span style="color:#65737e;">// {} hundred
+</span><span>        n </span><span style="color:#b48ead;">if</span><span> n &gt; </span><span style="color:#d08770;">99 </span><span>&amp;&amp; n &lt; </span><span style="color:#d08770;">1000 </span><span>&amp;&amp; n % </span><span style="color:#d08770;">100 </span><span>== </span><span style="color:#d08770;">0 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">nlc</span><span>(n/</span><span style="color:#d08770;">100</span><span>) + </span><span style="color:#d08770;">7</span><span>,
+</span><span>        </span><span style="color:#65737e;">// 101..999 but not 100/200..
+</span><span>        </span><span style="color:#65737e;">// {} hundred and {}
+</span><span>        n </span><span style="color:#b48ead;">if</span><span> n &gt; </span><span style="color:#d08770;">100 </span><span>&amp;&amp; n &lt; </span><span style="color:#d08770;">1000 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">nlc</span><span>(n/</span><span style="color:#d08770;">100</span><span>) + </span><span style="color:#d08770;">7 </span><span>+ </span><span style="color:#d08770;">3 </span><span>+ </span><span style="color:#96b5b4;">nlc</span><span>(n%</span><span style="color:#d08770;">100</span><span>),
+</span><span>        </span><span style="color:#65737e;">// (\d)000
+</span><span>        n </span><span style="color:#b48ead;">if</span><span> n &gt; </span><span style="color:#d08770;">999 </span><span>&amp;&amp; n &lt; </span><span style="color:#d08770;">1000000 </span><span>&amp;&amp; n % </span><span style="color:#d08770;">1000 </span><span>== </span><span style="color:#d08770;">0 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">nlc</span><span>(n/</span><span style="color:#d08770;">1000</span><span>) + </span><span style="color:#d08770;">8</span><span>,
+</span><span>        </span><span style="color:#65737e;">// 1001..999999
+</span><span>        </span><span style="color:#65737e;">// {} thousand {} hundred and {}
+</span><span>        n </span><span style="color:#b48ead;">if</span><span> n &gt; </span><span style="color:#d08770;">1000 </span><span>&amp;&amp; n &lt; </span><span style="color:#d08770;">1_000_000 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">nlc</span><span>(n/</span><span style="color:#d08770;">1000</span><span>) + </span><span style="color:#d08770;">8 </span><span>+ </span><span style="color:#96b5b4;">nlc</span><span>(n%</span><span style="color:#d08770;">1000</span><span>),
+</span><span>        </span><span style="color:#65737e;">// (\d)000000
+</span><span>        n </span><span style="color:#b48ead;">if</span><span> n &gt; </span><span style="color:#d08770;">999_999 </span><span>&amp;&amp; n &lt; </span><span style="color:#d08770;">1_000_000_000 </span><span>&amp;&amp; n % </span><span style="color:#d08770;">1_000_000 </span><span>== </span><span style="color:#d08770;">0 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">nlc</span><span>(n/</span><span style="color:#d08770;">1_000_000</span><span>) + </span><span style="color:#d08770;">7</span><span>,
+</span><span>        </span><span style="color:#65737e;">// 1000001..999999999
+</span><span>        </span><span style="color:#65737e;">// {} million {} thousand {} hundred and {}
+</span><span>        n </span><span style="color:#b48ead;">if</span><span> n &gt; </span><span style="color:#d08770;">1_000_000 </span><span>&amp;&amp; n &lt; </span><span style="color:#d08770;">1_000_000_000 </span><span>=&gt; </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">nlc</span><span>(n/</span><span style="color:#d08770;">1_000_000</span><span>) + </span><span style="color:#d08770;">7 </span><span>+ </span><span style="color:#96b5b4;">nlc</span><span>(n%</span><span style="color:#d08770;">1_000_000</span><span>),
+</span><span>        </span><span style="color:#65737e;">// -1 for error
+</span><span>        _ =&gt; </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span>,
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>344. Reverse String
-
-Write a function that takes a string as input and returns the string reversed.
-
-Example 1:
-
-Input: &quot;hello&quot;
-Output: &quot;olleh&quot;
-Example 2:
-
-Input: &quot;A man, a plan, a canal: Panama&quot;
-Output: &quot;amanaP :lanac a ,nalp a ,nam A&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>344. Reverse String
+</span><span>
+</span><span>Write a function that takes a string as input and returns the string reversed.
+</span><span>
+</span><span>Example 1:
+</span><span>
+</span><span>Input: &quot;hello&quot;
+</span><span>Output: &quot;olleh&quot;
+</span><span>Example 2:
+</span><span>
+</span><span>Input: &quot;A man, a plan, a canal: Panama&quot;
+</span><span>Output: &quot;amanaP :lanac a ,nalp a ,nam A&quot;
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Nothing to say</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string} s
- * @return {string}
- *&#x2F;
-var reverseString = function(s) {
-  return s.split(&quot;&quot;).reverse().join(&quot;&quot;);
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">s
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{string}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">reverseString </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">s</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#96b5b4;">reverse</span><span>().</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;);
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

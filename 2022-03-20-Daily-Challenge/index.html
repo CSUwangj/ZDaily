@@ -145,36 +145,36 @@ In this case, it is not possible to rotate the dominoes to make one row of value
 	<li><code>1 &lt;= tops[i], bottoms[i] &lt;= 6</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int minDominoRotations(vector&lt;int&gt;&amp; A, vector&lt;int&gt;&amp; B) {
-    vector&lt;int&gt; AA(6), BB(6), same(6);
-    int len = A.size();
-    for(int i = 0; i &lt; len; ++i) {
-      AA[A[i] - 1] += 1;
-      BB[B[i] - 1] += 1;
-      if(A[i] == B[i]) same[A[i] - 1] += 1;
-    }
-    for(int i = 0; i &lt; 6; ++i) {
-      if(AA[i] + BB[i] - same[i] &gt;= len) {
-        return len - max(AA[i], BB[i]);
-      }
-    }
-    return -1;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 83&#x2F;83 cases passed (84 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 10.64 % of cpp submissions (111.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minDominoRotations</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">B</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">AA</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">BB</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">same</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      AA[A[i] </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      BB[B[i] </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(A[i] </span><span>==</span><span style="color:#eff1f5;"> B[i]) same[A[i] </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(AA[i] </span><span>+</span><span style="color:#eff1f5;"> BB[i] </span><span>-</span><span style="color:#eff1f5;"> same[i] </span><span>&gt;=</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(AA[i], BB[i]);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 83/83 cases passed (84 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 10.64 % of cpp submissions (111.7 MB)
+</span></code></pre>
 
     </div>
   </div>

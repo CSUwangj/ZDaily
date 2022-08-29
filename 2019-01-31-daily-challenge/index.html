@@ -124,32 +124,32 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashSet;
-
-fn main() {
-    let words = [&quot;A&quot;, &quot;ABILITY&quot;, &quot;ABLE&quot;, &quot;ABOUT&quot;, &quot;ABOVE&quot;, &quot;ABSENCE&quot;, &quot;ABSOLUTELY&quot;, &quot;ACADEMIC&quot;,
-&quot;ACCEPT&quot;, &quot;ACCESS&quot;, &quot;ACCIDENT&quot;, &quot;ACCOMPANY&quot;, &quot;ACCORDING&quot;, &quot;ACCOUNT&quot;, &quot;ACHIEVE&quot;, &quot;ACHIEVEMENT&quot;,
-&#x2F;* ... *&#x2F;
-&quot;YEAH&quot;, &quot;YEAR&quot;, &quot;YES&quot;, &quot;YESTERDAY&quot;, &quot;YET&quot;, &quot;YOU&quot;, &quot;YOUNG&quot;, &quot;YOUR&quot;,
-&quot;YOURSELF&quot;, &quot;YOUTH&quot;];
-    let mut set = HashSet::new();
-    let mut ans = HashSet::new();
-    const OFFSET: usize = &#x27;A&#x27; as usize - 1;
-    for i in 1..20 {
-        set.insert(i*(i+1)&#x2F;2);
-    }
-    for word in words.iter() {
-        let mut tmp = 0;
-        for c in word.chars() {
-            tmp += (c as usize) - OFFSET;
-        }
-        if set.contains(&amp;tmp) {
-            ans.insert(word);
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans.len());
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::collections::HashSet;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> words = [&quot;</span><span style="color:#a3be8c;">A</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ABILITY</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ABLE</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ABOUT</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ABOVE</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ABSENCE</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ABSOLUTELY</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ACADEMIC</span><span>&quot;,
+</span><span>&quot;</span><span style="color:#a3be8c;">ACCEPT</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ACCESS</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ACCIDENT</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ACCOMPANY</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ACCORDING</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ACCOUNT</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ACHIEVE</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">ACHIEVEMENT</span><span>&quot;,
+</span><span style="color:#65737e;">/* ... */
+</span><span>&quot;</span><span style="color:#a3be8c;">YEAH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">YEAR</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">YES</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">YESTERDAY</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">YET</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">YOU</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">YOUNG</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">YOUR</span><span>&quot;,
+</span><span>&quot;</span><span style="color:#a3be8c;">YOURSELF</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">YOUTH</span><span>&quot;];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> set = HashSet::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = HashSet::new();
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#d08770;">OFFSET</span><span>: </span><span style="color:#b48ead;">usize </span><span>= &#39;</span><span style="color:#a3be8c;">A</span><span>&#39; as </span><span style="color:#b48ead;">usize </span><span>- </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">20 </span><span>{
+</span><span>        set.</span><span style="color:#96b5b4;">insert</span><span>(i*(i+</span><span style="color:#d08770;">1</span><span>)/</span><span style="color:#d08770;">2</span><span>);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> word in words.</span><span style="color:#96b5b4;">iter</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> tmp = </span><span style="color:#d08770;">0</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> c in word.</span><span style="color:#96b5b4;">chars</span><span>() {
+</span><span>            tmp += (c as </span><span style="color:#b48ead;">usize</span><span>) - </span><span style="color:#d08770;">OFFSET</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if</span><span> set.</span><span style="color:#96b5b4;">contains</span><span>(&amp;tmp) {
+</span><span>            ans.</span><span style="color:#96b5b4;">insert</span><span>(word);
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans.</span><span style="color:#96b5b4;">len</span><span>());
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="310-minimum-height-trees">310. Minimum Height Trees</h3>
@@ -159,29 +159,29 @@ fn main() {
 The graph contains <code>n</code> nodes which are labeled from <code>0</code> to <code>n - 1</code>. You will be given the number <code>n</code> and a list of undirected <code>edges</code>(each edge is a pair of labels).</p>
 <p>You can assume that no duplicate edges will appear in <code>edges</code>. Since all edges are undirected, <code>[0, 1]</code> is the same as <code>[1, 0]</code>and thus will not appear together in <code>edges</code>.</p>
 <p><strong>Example 1 :</strong></p>
-<pre><code>Input: n = 4, edges = [[1, 0], [1, 2], [1, 3]]
-
-        0
-        |
-        1
-       &#x2F; \
-      2   3 
-
-Output: [1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 4, edges = [[1, 0], [1, 2], [1, 3]]
+</span><span>
+</span><span>        0
+</span><span>        |
+</span><span>        1
+</span><span>       / \
+</span><span>      2   3 
+</span><span>
+</span><span>Output: [1]
+</span></code></pre>
 <p><strong>Example 2 :</strong></p>
-<pre><code>Input: n = 6, edges = [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]]
-
-     0  1  2
-      \ | &#x2F;
-        3
-        |
-        4
-        |
-        5 
-
-Output: [3, 4]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 6, edges = [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]]
+</span><span>
+</span><span>     0  1  2
+</span><span>      \ | /
+</span><span>        3
+</span><span>        |
+</span><span>        4
+</span><span>        |
+</span><span>        5 
+</span><span>
+</span><span>Output: [3, 4]
+</span></code></pre>
 <p><strong>Note</strong>:</p>
 <ul>
 <li>According to the <a href="https://en.wikipedia.org/wiki/Tree_(graph_theory)">definition of tree on Wikipedia</a>: “a tree is an undirected graph in which any two vertices are connected by <em>exactly</em> one path. In other words, any connected graph without simple cycles is a tree.”</li>
@@ -191,49 +191,49 @@ Output: [3, 4]
 <p>Image that if we take all leaf nodes, then the tree will be smaller, and there comes new leaf nodes, over and over again, until all nodes can be leaves, then there are our roots.</p>
 <p>Use topological sort can solve it.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number} n
- * @param {number[][]} edges
- * @return {number[]}
- *&#x2F;
-var findMinHeightTrees = function(n, edges) {
-  if (n === 1) return [0];
-  let G = [];
-  let degree = new Array(n).fill(0);
-  for (let i = 0; i &lt; n; ++i) {
-    G.push([]);
-  }
-  for (const edge of edges) {
-    G[edge[0]].push(edge[1]);
-    G[edge[1]].push(edge[0]);
-    ++degree[edge[0]];
-    ++degree[edge[1]];
-  }
-  let queue = [];
-  let rmcnt = 0;
-  for (let i = 0; i &lt; n; ++i) {
-    if (degree[i] === 1) {
-      queue.push(i);
-      ++rmcnt;
-    }
-  }
-  while (rmcnt &lt; n) {
-    let cnt = queue.length;
-    while (cnt) {
-      --cnt;
-      let cur = queue.shift();
-      for (const i of G[cur]) {
-        --degree[i];
-        if (degree[i] === 1) {
-          queue.push(i);
-          ++rmcnt;
-        }
-      }
-    }
-  }
-  return queue;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">n
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[][]} </span><span style="color:#bf616a;">edges
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">findMinHeightTrees </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">n</span><span>, </span><span style="color:#bf616a;">edges</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">n </span><span>=== </span><span style="color:#d08770;">1</span><span>) </span><span style="color:#b48ead;">return </span><span>[</span><span style="color:#d08770;">0</span><span>];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">G </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">degree </span><span>= new Array(</span><span style="color:#bf616a;">n</span><span>).</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">0</span><span>);
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">n</span><span>; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#bf616a;">G</span><span>.</span><span style="color:#96b5b4;">push</span><span>([]);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">edge </span><span>of </span><span style="color:#bf616a;">edges</span><span>) {
+</span><span>    </span><span style="color:#bf616a;">G</span><span>[</span><span style="color:#bf616a;">edge</span><span>[</span><span style="color:#d08770;">0</span><span>]].</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">edge</span><span>[</span><span style="color:#d08770;">1</span><span>]);
+</span><span>    </span><span style="color:#bf616a;">G</span><span>[</span><span style="color:#bf616a;">edge</span><span>[</span><span style="color:#d08770;">1</span><span>]].</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">edge</span><span>[</span><span style="color:#d08770;">0</span><span>]);
+</span><span>    ++</span><span style="color:#bf616a;">degree</span><span>[</span><span style="color:#bf616a;">edge</span><span>[</span><span style="color:#d08770;">0</span><span>]];
+</span><span>    ++</span><span style="color:#bf616a;">degree</span><span>[</span><span style="color:#bf616a;">edge</span><span>[</span><span style="color:#d08770;">1</span><span>]];
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">queue </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">rmcnt </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">n</span><span>; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">degree</span><span>[</span><span style="color:#bf616a;">i</span><span>] === </span><span style="color:#d08770;">1</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">i</span><span>);
+</span><span>      ++</span><span style="color:#bf616a;">rmcnt</span><span>;
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#bf616a;">rmcnt </span><span>&lt; </span><span style="color:#bf616a;">n</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cnt </span><span>= </span><span style="color:#bf616a;">queue</span><span>.length;
+</span><span>    </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#bf616a;">cnt</span><span>) {
+</span><span>      --</span><span style="color:#bf616a;">cnt</span><span>;
+</span><span>      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">shift</span><span>();
+</span><span>      </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">i </span><span>of </span><span style="color:#bf616a;">G</span><span>[</span><span style="color:#bf616a;">cur</span><span>]) {
+</span><span>        --</span><span style="color:#bf616a;">degree</span><span>[</span><span style="color:#bf616a;">i</span><span>];
+</span><span>        </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">degree</span><span>[</span><span style="color:#bf616a;">i</span><span>] === </span><span style="color:#d08770;">1</span><span>) {
+</span><span>          </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">i</span><span>);
+</span><span>          ++</span><span style="color:#bf616a;">rmcnt</span><span>;
+</span><span>        }
+</span><span>      }
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">queue</span><span>;
+</span><span>};
+</span></code></pre>
 <p><img src="https://csuwangj.github.io/ZDaily/2019-01-31-daily-challenge/4.png" alt="ha" /></p>
 
     </div>

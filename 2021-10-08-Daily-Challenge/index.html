@@ -125,21 +125,21 @@ renderMathInElement(document.body, katex_config);
 <li><code>boolean startsWith(String prefix)</code> Returns <code>true</code> if there is a previously inserted string <code>word</code> that has the prefix <code>prefix</code>, and <code>false</code> otherwise.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;Trie&quot;, &quot;insert&quot;, &quot;search&quot;, &quot;search&quot;, &quot;startsWith&quot;, &quot;insert&quot;, &quot;search&quot;]
-[[], [&quot;apple&quot;], [&quot;apple&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;]]
-Output
-[null, null, true, false, true, null, true]
-
-Explanation
-Trie trie = new Trie();
-trie.insert(&quot;apple&quot;);
-trie.search(&quot;apple&quot;);   &#x2F;&#x2F; return True
-trie.search(&quot;app&quot;);     &#x2F;&#x2F; return False
-trie.startsWith(&quot;app&quot;); &#x2F;&#x2F; return True
-trie.insert(&quot;app&quot;);
-trie.search(&quot;app&quot;);     &#x2F;&#x2F; return True
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;Trie&quot;, &quot;insert&quot;, &quot;search&quot;, &quot;search&quot;, &quot;startsWith&quot;, &quot;insert&quot;, &quot;search&quot;]
+</span><span>[[], [&quot;apple&quot;], [&quot;apple&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;]]
+</span><span>Output
+</span><span>[null, null, true, false, true, null, true]
+</span><span>
+</span><span>Explanation
+</span><span>Trie trie = new Trie();
+</span><span>trie.insert(&quot;apple&quot;);
+</span><span>trie.search(&quot;apple&quot;);   // return True
+</span><span>trie.search(&quot;app&quot;);     // return False
+</span><span>trie.startsWith(&quot;app&quot;); // return True
+</span><span>trie.insert(&quot;app&quot;);
+</span><span>trie.search(&quot;app&quot;);     // return True
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= word.length, prefix.length &lt;= 2000</code></li>
@@ -147,67 +147,67 @@ trie.search(&quot;app&quot;);     &#x2F;&#x2F; return True
 <li>At most <code>3 * 10^4</code> calls <strong>in total</strong> will be made to <code>insert</code>, <code>search</code>, and <code>startsWith</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-struct TrieNode {
-  bool isEnd = false;
-  TrieNode *nodes[26] = {};
-  ~TrieNode() {
-    for(auto node : nodes) {
-      delete node;
-    }
-  }
-};
-class Trie {
-  TrieNode *root;
-public:
-    &#x2F;** Initialize your data structure here. *&#x2F;
-  Trie() {
-    root = new TrieNode();
-  }
-  
-  &#x2F;** Inserts a word into the trie. *&#x2F;
-  void insert(string word) {
-    TrieNode *cur = root;
-    for(auto c : word) {
-      if(cur-&gt;nodes[c - &#x27;a&#x27;] == nullptr) {
-        cur-&gt;nodes[c - &#x27;a&#x27;] = new TrieNode();
-      }
-      cur = cur-&gt;nodes[c - &#x27;a&#x27;];
-    }
-    cur-&gt;isEnd = true;
-  }
-
-  &#x2F;** Returns if the word is in the trie. *&#x2F;
-  bool search(string word) {
-    TrieNode *cur = root;
-    for(auto c : word) {
-      if(cur-&gt;nodes[c - &#x27;a&#x27;] == nullptr) return false;
-      cur = cur-&gt;nodes[c - &#x27;a&#x27;];
-    }
-    return cur-&gt;isEnd;
-  }
-
-  &#x2F;** Returns if there is any word in the trie that starts with the given prefix. *&#x2F;
-  bool startsWith(string prefix) {
-    TrieNode *cur = root;
-    for(auto c : prefix) {
-      if(cur-&gt;nodes[c - &#x27;a&#x27;] == nullptr) return false;
-      cur = cur-&gt;nodes[c - &#x27;a&#x27;];
-    }
-    return true;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 15&#x2F;15 cases passed (40 ms)
-&#x2F;&#x2F; Your runtime beats 99.23 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 73.15 % of cpp submissions (44.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">struct </span><span>TrieNode {
+</span><span>  </span><span style="color:#b48ead;">bool</span><span> isEnd = </span><span style="color:#d08770;">false</span><span>;
+</span><span>  TrieNode *nodes[</span><span style="color:#d08770;">26</span><span>] = {};
+</span><span>  </span><span style="color:#8fa1b3;">~TrieNode</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">auto</span><span> node : nodes) {
+</span><span>      </span><span style="color:#b48ead;">delete</span><span> node;
+</span><span>    }
+</span><span>  }
+</span><span>};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Trie </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  TrieNode </span><span>*</span><span style="color:#eff1f5;">root;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** Initialize your data structure here. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">Trie</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    root </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Inserts a word into the trie. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">insert</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">word</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    TrieNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> word) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">nodes</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>== </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        cur-&gt;</span><span style="color:#bf616a;">nodes</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">nodes</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    cur-&gt;</span><span style="color:#bf616a;">isEnd </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Returns if the word is in the trie. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">search</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">word</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    TrieNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> word) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">nodes</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>== </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">nodes</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">isEnd</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Returns if there is any word in the trie that starts with the given prefix. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">startsWith</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">prefix</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    TrieNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> prefix) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">nodes</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>== </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">nodes</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 15/15 cases passed (40 ms)
+</span><span style="color:#65737e;">// Your runtime beats 99.23 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 73.15 % of cpp submissions (44.9 MB)
+</span></code></pre>
 
     </div>
   </div>

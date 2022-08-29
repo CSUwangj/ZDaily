@@ -119,19 +119,19 @@ renderMathInElement(document.body, katex_config);
 <p>If there are multiple solutions, return the subsequence with <strong>minimum size</strong> and if there still exist multiple solutions, return the subsequence with the <strong>maximum total sum</strong> of all its elements. A subsequence of an array can be obtained by erasing some (possibly zero) elements from the array. </p>
 <p>Note that the solution with the given constraints is guaranteed to be <strong>unique</strong>. Also return the answer sorted in <strong>non-increasing</strong> order.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [4,3,10,9,8]
-Output: [10,9] 
-Explanation: The subsequences [10,9] and [10,8] are minimal such that the sum of their elements is strictly greater than the sum of elements not included, however, the subsequence [10,9] has the maximum total sum of its elements. 
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [4,3,10,9,8]
+</span><span>Output: [10,9] 
+</span><span>Explanation: The subsequences [10,9] and [10,8] are minimal such that the sum of their elements is strictly greater than the sum of elements not included, however, the subsequence [10,9] has the maximum total sum of its elements. 
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [4,4,7,6,7]
-Output: [7,7,6] 
-Explanation: The subsequence [7,7] has the sum of its elements equal to 14 which is not strictly greater than the sum of elements not included (14 = 4 + 4 + 6). Therefore, the subsequence [7,6,7] is the minimal satisfying the conditions. Note the subsequence has to returned in non-decreasing order.  
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [4,4,7,6,7]
+</span><span>Output: [7,7,6] 
+</span><span>Explanation: The subsequence [7,7] has the sum of its elements equal to 14 which is not strictly greater than the sum of elements not included (14 = 4 + 4 + 6). Therefore, the subsequence [7,6,7] is the minimal satisfying the conditions. Note the subsequence has to returned in non-decreasing order.  
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [6]
-Output: [6]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [6]
+</span><span>Output: [6]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 500</code></li>
@@ -139,46 +139,46 @@ Output: [6]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>little data...</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; minSubsequence(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    priority_queue&lt;int&gt; pq;
-    int sum = 0;
-    for(int i = 0; i &lt; nums.size(); ++i) {
-      pq.push(nums[i]);
-      sum += nums[i];
-    }
-    int cur = 0;
-    vector&lt;int&gt; answer;
-    while(cur &lt;= sum) {
-      answer.push_back(pq.top());
-      pq.pop();
-      cur += answer.back();
-      sum -= answer.back();
-    }
-
-    return answer;
-  }
-};
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; minSubsequence(vector&lt;int&gt;&amp; nums) {
-    int sum = accumulate(nums.begin(), nums.end(), 0);
-    sort(nums.begin(), nums.end(), greater&lt;int&gt;());
-    int cur = 0;
-    for(int i = 0; i &lt; nums.size(); ++i) {
-      if(cur * 2 &gt; sum) {
-        nums.resize(i);
-        return nums;
-      }
-      cur += nums[i];
-    }
-    return nums;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">minSubsequence</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    priority_queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; pq;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(nums[i]);
+</span><span style="color:#eff1f5;">      sum </span><span>+=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur </span><span>&lt;=</span><span style="color:#eff1f5;"> sum) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      cur </span><span>+=</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      sum </span><span>-=</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">minSubsequence</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#bf616a;">accumulate</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#bf616a;">greater</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>* </span><span style="color:#d08770;">2 </span><span>&gt;</span><span style="color:#eff1f5;"> sum) {
+</span><span style="color:#eff1f5;">        nums.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> nums;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cur </span><span>+=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> nums;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="july-leetcoding-challenge-23">July LeetCoding Challenge 23</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Binary Tree Pruning</strong></p>
@@ -186,39 +186,39 @@ public:
 <p>A subtree of a node <code>node</code> is <code>node</code> plus every node that is a descendant of <code>node</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/06/1028_2.png" alt="img" /></p>
-<pre><code>Input: root = [1,null,0,0,1]
-Output: [1,null,0,null,1]
-Explanation: 
-Only the red nodes satisfy the property &quot;every subtree not containing a 1&quot;.
-The diagram on the right represents the answer.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,null,0,0,1]
+</span><span>Output: [1,null,0,null,1]
+</span><span>Explanation: 
+</span><span>Only the red nodes satisfy the property &quot;every subtree not containing a 1&quot;.
+</span><span>The diagram on the right represents the answer.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/06/1028_1.png" alt="img" /></p>
-<pre><code>Input: root = [1,0,1,0,0,0,1]
-Output: [1,null,1,null,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,0,1,0,0,0,1]
+</span><span>Output: [1,null,1,null,1]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/05/1028.png" alt="img" /></p>
-<pre><code>Input: root = [1,1,0,1,1,0,1,0]
-Output: [1,1,0,1,1,null,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,1,0,1,1,0,1,0]
+</span><span>Output: [1,1,0,1,1,null,1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 200]</code>.</li>
 <li><code>Node.val</code> is either <code>0</code> or <code>1</code>.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  TreeNode* pruneTree(TreeNode* root) {
-    if(!root) return nullptr;
-    root-&gt;left = pruneTree(root-&gt;left);
-    root-&gt;right = pruneTree(root-&gt;right);
-    if(!root-&gt;val &amp;&amp; !root-&gt;left &amp;&amp; !root-&gt;right) return nullptr;
-    return root;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">pruneTree</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">pruneTree</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">pruneTree</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">val </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">left </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

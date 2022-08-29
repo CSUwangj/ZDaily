@@ -119,17 +119,17 @@ renderMathInElement(document.body, katex_config);
 <p>A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png" alt="img" /></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: digits = &quot;23&quot;
-Output: [&quot;ad&quot;,&quot;ae&quot;,&quot;af&quot;,&quot;bd&quot;,&quot;be&quot;,&quot;bf&quot;,&quot;cd&quot;,&quot;ce&quot;,&quot;cf&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: digits = &quot;23&quot;
+</span><span>Output: [&quot;ad&quot;,&quot;ae&quot;,&quot;af&quot;,&quot;bd&quot;,&quot;be&quot;,&quot;bf&quot;,&quot;cd&quot;,&quot;ce&quot;,&quot;cf&quot;]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: digits = &quot;&quot;
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: digits = &quot;&quot;
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: digits = &quot;2&quot;
-Output: [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: digits = &quot;2&quot;
+</span><span>Output: [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= digits.length &lt;= 4</code></li>
@@ -137,79 +137,79 @@ Output: [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>nothing to say.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;string&gt; letterCombinations(string digits) {
-        if(digits.empty()) return vector&lt;string&gt;();
-        vector&lt;string&gt; mp = {&quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;, &quot;jkl&quot;, &quot;mno&quot;, &quot;pqrs&quot;, &quot;tuv&quot;, &quot;wxyz&quot;};
-        vector&lt;string&gt; nxt;
-        vector&lt;string&gt; current{&quot;&quot;};
-        for(auto c : digits) {
-            for(auto &amp;s : current) {
-                for(auto letter : mp[c-&#x27;2&#x27;]) {
-                    nxt.push_back(s+letter);
-                }
-            }
-            current = nxt;
-            nxt.clear();
-        }
-        return current;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; </span><span style="color:#8fa1b3;">letterCombinations</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(digits.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;string&gt;();
+</span><span style="color:#eff1f5;">        vector&lt;string&gt; mp </span><span>= </span><span style="color:#eff1f5;">{</span><span>&quot;</span><span style="color:#a3be8c;">abc</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">def</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">ghi</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">jkl</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">mno</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">pqrs</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">tuv</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">wxyz</span><span>&quot;</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        vector&lt;string&gt; nxt;
+</span><span style="color:#eff1f5;">        vector&lt;string&gt; </span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">{</span><span>&quot;&quot;</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> digits) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">s </span><span>:</span><span style="color:#eff1f5;"> current) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> letter </span><span>:</span><span style="color:#eff1f5;"> mp[c</span><span>-&#39;</span><span style="color:#a3be8c;">2</span><span>&#39;</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                    nxt.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(s</span><span>+</span><span style="color:#eff1f5;">letter);
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            current </span><span>=</span><span style="color:#eff1f5;"> nxt;
+</span><span style="color:#eff1f5;">            nxt.</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="transpose-file">Transpose File</h1>
 <h2 id="description-1">Description</h2>
 <p>Given a text file <code>file.txt</code>, transpose its content.</p>
 <p>You may assume that each row has the same number of columns and each field is separated by the <code>' '</code> character.</p>
 <p><strong>Example:</strong></p>
 <p>If <code>file.txt</code> has the following content:</p>
-<pre><code>name age
-alice 21
-ryan 30
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>name age
+</span><span>alice 21
+</span><span>ryan 30
+</span></code></pre>
 <p>Output the following:</p>
-<pre><code>name alice ryan
-age 21 30
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>name alice ryan
+</span><span>age 21 30
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p><code>awk</code> solution</p>
-<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash"># Read from the file file.txt and print its transposed content to stdout.
-awk &#x27;
-{ 
-    for (i=1; i&lt;=NF; i++)  {
-        a[NR,i] = $i
-    }
-}
-NF&gt;p { p = NF }
-END {    
-    for(j=1; j&lt;=p; j++) {
-        str=a[1,j]
-        for(i=2; i&lt;=NR; i++){
-            str=str&quot; &quot;a[i,j];
-        }
-        print str
-    }
-}&#x27; file.txt
-</code></pre>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#65737e;"># Read from the file file.txt and print its transposed content to stdout.
+</span><span style="color:#bf616a;">awk </span><span>&#39;
+</span><span style="color:#a3be8c;">{ 
+</span><span style="color:#a3be8c;">    for (i=1; i&lt;=NF; i++)  {
+</span><span style="color:#a3be8c;">        a[NR,i] = $i
+</span><span style="color:#a3be8c;">    }
+</span><span style="color:#a3be8c;">}
+</span><span style="color:#a3be8c;">NF&gt;p { p = NF }
+</span><span style="color:#a3be8c;">END {    
+</span><span style="color:#a3be8c;">    for(j=1; j&lt;=p; j++) {
+</span><span style="color:#a3be8c;">        str=a[1,j]
+</span><span style="color:#a3be8c;">        for(i=2; i&lt;=NR; i++){
+</span><span style="color:#a3be8c;">            str=str&quot; &quot;a[i,j];
+</span><span style="color:#a3be8c;">        }
+</span><span style="color:#a3be8c;">        print str
+</span><span style="color:#a3be8c;">    }
+</span><span style="color:#a3be8c;">}</span><span>&#39; file.txt
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-18">December LeetCoding Challenge 18</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Increasing Triplet Subsequence</strong></p>
 <p>Given an integer array <code>nums</code>, return <code>true</code> <em>if there exists a triple of indices</em> <code>(i, j, k)</code> <em>such that</em> <code>i &lt; j &lt; k</code> <em>and</em> <code>nums[i] &lt; nums[j] &lt; nums[k]</code>. If no such indices exists, return <code>false</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,2,3,4,5]
-Output: true
-Explanation: Any triplet where i &lt; j &lt; k is valid.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3,4,5]
+</span><span>Output: true
+</span><span>Explanation: Any triplet where i &lt; j &lt; k is valid.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [5,4,3,2,1]
-Output: false
-Explanation: No triplet exists.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [5,4,3,2,1]
+</span><span>Output: false
+</span><span>Explanation: No triplet exists.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [2,1,5,0,4,6]
-Output: true
-Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 &lt; nums[4] == 4 &lt; nums[5] == 6.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,1,5,0,4,6]
+</span><span>Output: true
+</span><span>Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 &lt; nums[4] == 4 &lt; nums[5] == 6.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 105</code></li>
@@ -218,31 +218,31 @@ Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 &lt; nums[4] ==
 <p><strong>Follow up:</strong> Could you implement a solution that runs in <code>O(n)</code> time complexity and <code>O(1)</code> space complexity?</p>
 <h2 id="solution-2">Solution</h2>
 <p>could be more percise.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool increasingTriplet(vector&lt;int&gt;&amp; nums) {
-        bool hasMin = false, hasMiddle = false;
-        int min, middle;
-        for(auto i : nums) {
-            if(!hasMin) {
-                min = i;
-                hasMin = true;
-                continue;
-            }
-            if(i &lt; min) {
-                min = i;
-            } else if(!hasMiddle &amp;&amp; i &gt; min) {
-                middle = i;
-                hasMiddle = true;
-            } else if(hasMiddle &amp;&amp; i &gt; min &amp;&amp; i &lt; middle) {
-                middle = i;
-            }
-            if(hasMiddle &amp;&amp; i &gt; middle) return true;
-        }
-        return false;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">increasingTriplet</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> hasMin </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">, hasMiddle </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> min, middle;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">hasMin) {
+</span><span style="color:#eff1f5;">                min </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">                hasMin </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>&lt;</span><span style="color:#eff1f5;"> min) {
+</span><span style="color:#eff1f5;">                min </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">hasMiddle </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> i </span><span>&gt;</span><span style="color:#eff1f5;"> min) {
+</span><span style="color:#eff1f5;">                middle </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">                hasMiddle </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(hasMiddle </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> i </span><span>&gt;</span><span style="color:#eff1f5;"> min </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> i </span><span>&lt;</span><span style="color:#eff1f5;"> middle) {
+</span><span style="color:#eff1f5;">                middle </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(hasMiddle </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> i </span><span>&gt;</span><span style="color:#eff1f5;"> middle) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

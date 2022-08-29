@@ -119,23 +119,23 @@ renderMathInElement(document.body, katex_config);
 <p>Each number in <code>candidates</code> may only be used <strong>once</strong> in the combination.</p>
 <p><strong>Note:</strong> The solution set must not contain duplicate combinations.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: candidates = [10,1,2,7,6,1,5], target = 8
-Output: 
-[
-[1,1,6],
-[1,2,5],
-[1,7],
-[2,6]
-]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [10,1,2,7,6,1,5], target = 8
+</span><span>Output: 
+</span><span>[
+</span><span>[1,1,6],
+</span><span>[1,2,5],
+</span><span>[1,7],
+</span><span>[2,6]
+</span><span>]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: candidates = [2,5,2,1,2], target = 5
-Output: 
-[
-[1,2,2],
-[5]
-]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [2,5,2,1,2], target = 5
+</span><span>Output: 
+</span><span>[
+</span><span>[1,2,2],
+</span><span>[5]
+</span><span>]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= candidates.length &lt;= 100</code></li>
@@ -143,96 +143,96 @@ Output:
 <li><code>1 &lt;= target &lt;= 30</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int len;
-  void dfs(
-    vector&lt;vector&lt;int&gt;&gt; &amp;answer,
-    vector&lt;int&gt; &amp;cur,
-    vector&lt;int&gt; &amp;candidates,
-    int rest,
-    int index
-  ) {
-    &#x2F;&#x2F; cout &lt;&lt; rest &lt;&lt; &#x27; &#x27; &lt;&lt; index &lt;&lt; endl;
-    if(!rest) {
-      answer.push_back(cur);
-      return;
-    }
-    if(index == len) return;
-    for(int i = index; i &lt; len; ++i) {
-      if(candidates[i] &lt;= rest) {
-        cur.push_back(candidates[i]);
-        dfs(answer, cur, candidates, rest - candidates[i], i + 1);
-        cur.pop_back();
-      }
-    }
-  }
-public:
-  vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) {
-    len = candidates.size();
-    sort(candidates.rbegin(), candidates.rend());
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    vector&lt;int&gt; tmp;
-    dfs(answer, tmp, candidates, target, 0);
-    sort(answer.begin(), answer.end());
-    answer.resize(unique(answer.begin(), answer.end()) - answer.begin());
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 174&#x2F;174 cases passed (532 ms)
-&#x2F;&#x2F; Your runtime beats 16.38 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 34.76 % of cpp submissions (11.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">candidates</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rest</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> index
+</span><span style="color:#eff1f5;">  ) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; rest &lt;&lt; &#39; &#39; &lt;&lt; index &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">rest) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> len) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> index; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(candidates[i] </span><span>&lt;=</span><span style="color:#eff1f5;"> rest) {
+</span><span style="color:#eff1f5;">        cur.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(candidates[i]);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(answer, cur, candidates, rest </span><span>-</span><span style="color:#eff1f5;"> candidates[i], i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        cur.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">combinationSum2</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">candidates</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> candidates.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(candidates.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(), candidates.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; tmp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(answer, tmp, candidates, target, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    answer.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">unique</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) </span><span>-</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 174/174 cases passed (532 ms)
+</span><span style="color:#65737e;">// Your runtime beats 16.38 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 34.76 % of cpp submissions (11.6 MB)
+</span></code></pre>
 <h1 id="july-leetcoding-challenge-15">July LeetCoding Challenge 15</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Valid Triangle Number</strong></p>
 <p>Given an integer array <code>nums</code>, return <em>the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [2,2,3,4]
-Output: 3
-Explanation: Valid combinations are: 
-2,3,4 (using the first 2)
-2,3,4 (using the second 2)
-2,2,3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,2,3,4]
+</span><span>Output: 3
+</span><span>Explanation: Valid combinations are: 
+</span><span>2,3,4 (using the first 2)
+</span><span>2,3,4 (using the second 2)
+</span><span>2,2,3
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [4,2,3,4]
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [4,2,3,4]
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 1000</code></li>
 <li><code>0 &lt;= nums[i] &lt;= 1000</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int triangleNumber(vector&lt;int&gt;&amp; nums) {
-    sort(nums.begin(), nums.end());
-    int len = nums.size();
-    int answer = 0;
-    for(int i = 0; i &lt; len - 2; i++) {
-      for(int j = i + 1; j &lt; len - 1; j++) {
-        int l = nums[j] - nums[i];
-        int h = nums[i] + nums[j];
-        int low = upper_bound(nums.begin() + j + 1, nums.end(), l);
-        int high = lower_bound(nums.begin() + j + 1, nums.end(), h);
-        high -= 1;
-        answer += high &gt;= low ? high - low + 1 : 0；
-      }
-    }
-
-    return answer;
-  }
-};
-
-
-&#x2F;&#x2F; 233 &#x2F; 233 test cases passed.
-&#x2F;&#x2F; Status: Accepted
-&#x2F;&#x2F; Runtime: 968 ms
-&#x2F;&#x2F; Memory Usage: 12.9 MB
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">triangleNumber</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i</span><span>++</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j</span><span>++</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> l </span><span>=</span><span style="color:#eff1f5;"> nums[j] </span><span>-</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> h </span><span>=</span><span style="color:#eff1f5;"> nums[i] </span><span>+</span><span style="color:#eff1f5;"> nums[j];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> low </span><span>= </span><span style="color:#bf616a;">upper_bound</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">() </span><span>+</span><span style="color:#eff1f5;"> j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), l);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> high </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">() </span><span>+</span><span style="color:#eff1f5;"> j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), h);
+</span><span style="color:#eff1f5;">        high </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        answer </span><span>+=</span><span style="color:#eff1f5;"> high </span><span>&gt;=</span><span style="color:#eff1f5;"> low </span><span>?</span><span style="color:#eff1f5;"> high </span><span>-</span><span style="color:#eff1f5;"> low </span><span>+ </span><span style="color:#d08770;">1 </span><span>: </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">；
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span>
+</span><span style="color:#65737e;">// 233 / 233 test cases passed.
+</span><span style="color:#65737e;">// Status: Accepted
+</span><span style="color:#65737e;">// Runtime: 968 ms
+</span><span style="color:#65737e;">// Memory Usage: 12.9 MB
+</span></code></pre>
 
     </div>
   </div>

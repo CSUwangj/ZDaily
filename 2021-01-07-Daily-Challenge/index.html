@@ -130,37 +130,37 @@ insert into Orders (Id, CustomerId) values ('2', '1')
 </details>
 <p>Suppose that a website contains two tables, the <code>Customers</code> table and the <code>Orders</code> table. Write a SQL query to find all customers who never order anything.</p>
 <p>Table: <code>Customers</code>.</p>
-<pre><code>+----+-------+
-| Id | Name  |
-+----+-------+
-| 1  | Joe   |
-| 2  | Henry |
-| 3  | Sam   |
-| 4  | Max   |
-+----+-------+
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>+----+-------+
+</span><span>| Id | Name  |
+</span><span>+----+-------+
+</span><span>| 1  | Joe   |
+</span><span>| 2  | Henry |
+</span><span>| 3  | Sam   |
+</span><span>| 4  | Max   |
+</span><span>+----+-------+
+</span></code></pre>
 <p>Table: <code>Orders</code>.</p>
-<pre><code>+----+------------+
-| Id | CustomerId |
-+----+------------+
-| 1  | 3          |
-| 2  | 1          |
-+----+------------+
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>+----+------------+
+</span><span>| Id | CustomerId |
+</span><span>+----+------------+
+</span><span>| 1  | 3          |
+</span><span>| 2  | 1          |
+</span><span>+----+------------+
+</span></code></pre>
 <p>Using the above tables as example, return the following:</p>
-<pre><code>+-----------+
-| Customers |
-+-----------+
-| Henry     |
-| Max       |
-+-----------+
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>+-----------+
+</span><span>| Customers |
+</span><span>+-----------+
+</span><span>| Henry     |
+</span><span>| Max       |
+</span><span>+-----------+
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="sql" class="language-sql "><code class="language-sql" data-lang="sql"># Write your MySQL query statement below
-SELECT Name as Customers FROM Customers
-WHERE NOT EXISTS
-(SELECT Id FROM Orders WHERE Customers.Id = Orders.CustomerId)
-</code></pre>
+<pre data-lang="sql" style="background-color:#2b303b;color:#c0c5ce;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#65737e;"># Write your MySQL query statement below
+</span><span style="color:#b48ead;">SELECT</span><span> Name as Customers </span><span style="color:#b48ead;">FROM</span><span> Customers
+</span><span style="color:#b48ead;">WHERE</span><span> NOT EXISTS
+</span><span>(</span><span style="color:#b48ead;">SELECT</span><span> Id </span><span style="color:#b48ead;">FROM</span><span> Orders </span><span style="color:#b48ead;">WHERE </span><span style="color:#d08770;">Customers</span><span>.</span><span style="color:#d08770;">Id </span><span>= </span><span style="color:#d08770;">Orders</span><span>.</span><span style="color:#d08770;">CustomerId</span><span>)
+</span></code></pre>
 <h1 id="intersection-of-two-linked-lists">Intersection of Two Linked Lists</h1>
 <h2 id="description-1">Description</h2>
 <p>Write a program to find the node at which the intersection of two singly linked lists begins.</p>
@@ -169,23 +169,23 @@ WHERE NOT EXISTS
 <p>begin to intersect at node c1.</p>
 <p><strong>Example 1:</strong></p>
 <p><a href="https://assets.leetcode.com/uploads/2020/06/29/160_example_1_1.png"><img src="https://assets.leetcode.com/uploads/2020/06/29/160_example_1_1.png" alt="img" /></a></p>
-<pre><code>Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
-Output: Reference of the node with value = 8
-Input Explanation: The intersected node&#x27;s value is 8 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+</span><span>Output: Reference of the node with value = 8
+</span><span>Input Explanation: The intersected node&#39;s value is 8 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><a href="https://assets.leetcode.com/uploads/2020/06/29/160_example_2.png"><img src="https://assets.leetcode.com/uploads/2020/06/29/160_example_2.png" alt="img" /></a></p>
-<pre><code>Input: intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
-Output: Reference of the node with value = 2
-Input Explanation: The intersected node&#x27;s value is 2 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+</span><span>Output: Reference of the node with value = 2
+</span><span>Input Explanation: The intersected node&#39;s value is 2 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><a href="https://assets.leetcode.com/uploads/2018/12/13/160_example_3.png"><img src="https://assets.leetcode.com/uploads/2018/12/13/160_example_3.png" alt="img" /></a></p>
-<pre><code>Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
-Output: null
-Input Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
-Explanation: The two lists do not intersect, so return null.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+</span><span>Output: null
+</span><span>Input Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
+</span><span>Explanation: The two lists do not intersect, so return null.
+</span></code></pre>
 <p><strong>Notes:</strong></p>
 <ul>
 <li>If the two linked lists have no intersection at all, return <code>null</code>.</li>
@@ -195,92 +195,92 @@ Explanation: The two lists do not intersect, so return null.
 <li>Your code should preferably run in O(n) time and use only O(1) memory.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if(!headA || !headB) return nullptr;
-        ListNode *tailA = headA;
-        int lengthA = 0;
-        while(tailA-&gt;next) {
-            tailA = tailA-&gt;next;
-            lengthA += 1;
-        }
-        ListNode *tailB = headB;
-        int lengthB = 0;
-        while(tailB-&gt;next) {
-            tailB = tailB-&gt;next;
-            lengthB += 1;
-        }
-        if(tailB != tailA) return nullptr;
-        while(lengthA &gt; lengthB) {
-            headA = headA-&gt;next;
-            lengthA -= 1;
-        }
-        while(lengthB &gt; lengthA) {
-            headB = headB-&gt;next;
-            lengthB -= 1;
-        }
-        while(headA != headB) {
-            headA = headA-&gt;next;
-            headB = headB-&gt;next;
-        }
-        return headA;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#8fa1b3;">getIntersectionNode</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">headA</span><span style="color:#eff1f5;">, ListNode </span><span>*</span><span style="color:#bf616a;">headB</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">headA </span><span>|| !</span><span style="color:#eff1f5;">headB) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">tailA </span><span>=</span><span style="color:#eff1f5;"> headA;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lengthA </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(tailA-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            tailA </span><span>=</span><span style="color:#eff1f5;"> tailA-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            lengthA </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">tailB </span><span>=</span><span style="color:#eff1f5;"> headB;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lengthB </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(tailB-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            tailB </span><span>=</span><span style="color:#eff1f5;"> tailB-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            lengthB </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(tailB </span><span>!=</span><span style="color:#eff1f5;"> tailA) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(lengthA </span><span>&gt;</span><span style="color:#eff1f5;"> lengthB) {
+</span><span style="color:#eff1f5;">            headA </span><span>=</span><span style="color:#eff1f5;"> headA-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            lengthA </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(lengthB </span><span>&gt;</span><span style="color:#eff1f5;"> lengthA) {
+</span><span style="color:#eff1f5;">            headB </span><span>=</span><span style="color:#eff1f5;"> headB-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            lengthB </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(headA </span><span>!=</span><span style="color:#eff1f5;"> headB) {
+</span><span style="color:#eff1f5;">            headA </span><span>=</span><span style="color:#eff1f5;"> headA-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            headB </span><span>=</span><span style="color:#eff1f5;"> headB-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> headA;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-7">January LeetCoding Challenge 7</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Longest Substring Without Repeating Characters</strong></p>
 <p>Given a string <code>s</code>, find the length of the <strong>longest substring</strong> without repeating characters.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;abcabcbb&quot;
-Output: 3
-Explanation: The answer is &quot;abc&quot;, with the length of 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;abcabcbb&quot;
+</span><span>Output: 3
+</span><span>Explanation: The answer is &quot;abc&quot;, with the length of 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;bbbbb&quot;
-Output: 1
-Explanation: The answer is &quot;b&quot;, with the length of 1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;bbbbb&quot;
+</span><span>Output: 1
+</span><span>Explanation: The answer is &quot;b&quot;, with the length of 1.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;pwwkew&quot;
-Output: 3
-Explanation: The answer is &quot;wke&quot;, with the length of 3.
-Notice that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;pwwkew&quot;
+</span><span>Output: 3
+</span><span>Explanation: The answer is &quot;wke&quot;, with the length of 3.
+</span><span>Notice that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;&quot;
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;&quot;
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= s.length &lt;= 5 * 104</code></li>
 <li><code>s</code> consists of English letters, digits, symbols and spaces.</li>
 </ul>
 <h2 id="solution-2">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int lengthOfLongestSubstring(string s) {
-        bool has[128] = {false};
-        int head = 0, tail = 0;
-        int answer = 0;
-        int len = s.length();
-        while(head &lt; len) {
-            if(!has[s[head]]) {
-                has[s[head]] = true;
-                ++head;
-                answer = max(head-tail, answer);
-            } else {
-                while(has[s[head]]) {
-                    has[s[tail]] = false;
-                    ++tail;
-                }
-            }
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">lengthOfLongestSubstring</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> has[</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> head </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, tail </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">has[s[head]]) {
+</span><span style="color:#eff1f5;">                has[s[head]] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span>++</span><span style="color:#eff1f5;">head;
+</span><span style="color:#eff1f5;">                answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(head</span><span>-</span><span style="color:#eff1f5;">tail, answer);
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(has[s[head]]) {
+</span><span style="color:#eff1f5;">                    has[s[tail]] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span>++</span><span style="color:#eff1f5;">tail;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

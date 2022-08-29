@@ -119,13 +119,13 @@ renderMathInElement(document.body, katex_config);
 <p>Given a string <code>s</code>, consider all <em>duplicated substrings</em>: (contiguous) substrings of s that occur 2 or more times. The occurrences may overlap.</p>
 <p>Return <strong>any</strong> duplicated substring that has the longest possible length. If <code>s</code> does not have a duplicated substring, the answer is <code>&quot;&quot;</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;banana&quot;
-Output: &quot;ana&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;banana&quot;
+</span><span>Output: &quot;ana&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;abcd&quot;
-Output: &quot;&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;abcd&quot;
+</span><span>Output: &quot;&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= s.length &lt;= 3 * 10^4</code></li>
@@ -134,92 +134,92 @@ Output: &quot;&quot;
 <h2 id="solution">Solution</h2>
 <p>almost copied from <a href="https://leetcode.com/problems/longest-duplicate-substring/discuss/695101/C%2B%2B-short-O(n-log(n))-solution-with-std%3A%3Aunordered_setlessstd%3A%3Astring_viewgreater">https://leetcode.com/problems/longest-duplicate-substring/discuss/695101/C%2B%2B-short-O(n-log(n))-solution-with-std%3A%3Aunordered_setlessstd%3A%3Astring_viewgreater</a></p>
 <p><code>std::string_view</code> does not copy the whole string and <code>std::unordered_set</code> handles the logic of hashing and comparing <code>std::string_view</code>'s.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class rabinFingerprint {
-public:
-  size_t operator()(const string_view&amp; s)
-  {
-    if (m_clear) {
-      m_pow = 1;
-      for (size_t i = 1; i != s.size(); ++i) {
-        m_pow = (m_pow * base) % p;
-      }
-      m_cur = 0;
-      for (auto c : s) {
-        m_cur = ((m_cur * base) % p + (c - &#x27;a&#x27;)) % p;
-      }
-      m_clear = false;
-    } else {
-      m_cur = ((ssize_t(m_cur) - ssize_t(m_pow * (m_first - &#x27;a&#x27;))) % ssize_t(p) + p) % p;
-      m_cur = (m_cur * base + (s.back() - &#x27;a&#x27;)) % p;
-    }
-    m_first = s.front();
-    return m_cur;
-  };
-  
-  void clear() { m_clear = true; }
-
-private:
-  static constexpr size_t p = 19260817;
-  static constexpr size_t base = 26;
-
-  bool m_clear = true;
-  size_t m_cur;
-  size_t m_pow;
-  char m_first;
-};
-struct wrapper {
-  size_t operator()(const string_view&amp; s) const {
-    return m_hasher(s);
-  }
-  
-  rabinFingerprint&amp; m_hasher;  
-};
-class Solution {
-public:
-  string longestDupSubstring(string &amp;s) {
-    int len = s.length();
-    rabinFingerprint hasher;
-    unordered_set&lt;string_view, wrapper&gt; st{10, wrapper{hasher}};
-
-    string_view answer;
-    int low = 1;
-    int high = len;
-    while(low &lt;= high) {
-      int mid = (low + high) &gt;&gt; 1;
-      bool found = false;
-      for(int i = 0; i + mid &lt;= len; ++ i) {
-        const auto [it, inserted] = st.emplace(s.data() + i, mid);
-        if(!inserted) {
-          answer = *it;
-          found = true;
-          break;
-        }
-      }
-      if(found) {
-        low = mid + 1;
-      } else {
-        high = mid - 1;
-      }
-      
-      st.clear();
-      hasher.clear();
-    }
-
-    return {answer.begin(), answer.end()};
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 66&#x2F;66 cases passed (604 ms)
-&#x2F;&#x2F; Your runtime beats 91.95 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 80.2 % of cpp submissions (167.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">rabinFingerprint </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  size_t </span><span style="color:#8fa1b3;">operator()</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string_view</span><span>&amp; </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">)
+</span><span style="color:#eff1f5;">  {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">m_clear</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">m_pow </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(size_t i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>!=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">m_pow </span><span>= </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">m_pow </span><span>*</span><span style="color:#eff1f5;"> base) </span><span>%</span><span style="color:#eff1f5;"> p;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">m_cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">m_cur </span><span>= </span><span style="color:#eff1f5;">((</span><span style="color:#bf616a;">m_cur </span><span>*</span><span style="color:#eff1f5;"> base) </span><span>%</span><span style="color:#eff1f5;"> p </span><span>+ </span><span style="color:#eff1f5;">(c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">)) </span><span>%</span><span style="color:#eff1f5;"> p;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">m_clear </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">m_cur </span><span>= </span><span style="color:#eff1f5;">((ssize_t(</span><span style="color:#bf616a;">m_cur</span><span style="color:#eff1f5;">) </span><span>- </span><span style="color:#eff1f5;">ssize_t(</span><span style="color:#bf616a;">m_pow </span><span>* </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">m_first </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">))) </span><span>% </span><span style="color:#eff1f5;">ssize_t(p) </span><span>+</span><span style="color:#eff1f5;"> p) </span><span>%</span><span style="color:#eff1f5;"> p;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">m_cur </span><span>= </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">m_cur </span><span>*</span><span style="color:#eff1f5;"> base </span><span>+ </span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">)) </span><span>%</span><span style="color:#eff1f5;"> p;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">m_first </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">m_cur</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  };
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">clear</span><span style="color:#eff1f5;">() { </span><span style="color:#bf616a;">m_clear </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">; }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#b48ead;">private</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">static constexpr </span><span style="color:#eff1f5;">size_t p </span><span>= </span><span style="color:#d08770;">19260817</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">static constexpr </span><span style="color:#eff1f5;">size_t base </span><span>= </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> m_clear </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  size_t </span><span style="color:#bf616a;">m_cur</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  size_t </span><span style="color:#bf616a;">m_pow</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char </span><span style="color:#bf616a;">m_first</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span style="color:#b48ead;">struct </span><span>wrapper {
+</span><span>  size_t </span><span style="color:#8fa1b3;">operator()</span><span>(</span><span style="color:#b48ead;">const</span><span> string_view&amp; </span><span style="color:#bf616a;">s</span><span>) </span><span style="color:#b48ead;">const </span><span>{
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">m_hasher</span><span>(s);
+</span><span>  }
+</span><span>  
+</span><span>  rabinFingerprint&amp; </span><span style="color:#bf616a;">m_hasher</span><span>;  
+</span><span>};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">longestDupSubstring</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    rabinFingerprint hasher;
+</span><span style="color:#eff1f5;">    unordered_set&lt;string_view, wrapper&gt; </span><span style="color:#bf616a;">st</span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">wrapper</span><span style="color:#eff1f5;">{hasher}};
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    string_view answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> low </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> high </span><span>=</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(low </span><span>&lt;=</span><span style="color:#eff1f5;"> high) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(low </span><span>+</span><span style="color:#eff1f5;"> high) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> found </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>+</span><span style="color:#eff1f5;"> mid </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;"> i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">const auto </span><span style="color:#eff1f5;">[it, inserted] </span><span>=</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">emplace</span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">data</span><span style="color:#eff1f5;">() </span><span>+</span><span style="color:#eff1f5;"> i, mid);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">inserted) {
+</span><span style="color:#eff1f5;">          answer </span><span>= *</span><span style="color:#eff1f5;">it;
+</span><span style="color:#eff1f5;">          found </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(found) {
+</span><span style="color:#eff1f5;">        low </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        high </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      
+</span><span style="color:#eff1f5;">      st.</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      hasher.</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()};
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 66/66 cases passed (604 ms)
+</span><span style="color:#65737e;">// Your runtime beats 91.95 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 80.2 % of cpp submissions (167.4 MB)
+</span></code></pre>
 <p>will learn <a href="https://leetcode.com/problems/longest-duplicate-substring/discuss/1548070/solution-with-explanation-C%2B%2B-beats-99-time-85-memory-(suffix-array)">https://leetcode.com/problems/longest-duplicate-substring/discuss/1548070/solution-with-explanation-C%2B%2B-beats-99-time-85-memory-(suffix-array)</a> later</p>
 
     </div>

@@ -123,35 +123,35 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut ans = 0;
-    let mut cnt = 0;
-    for i in 12..1001 {
-        let mut tmp = 0;
-        for j in 1..i {
-            for k in (2..i).rev() {
-                let l = i-j-k;
-                if k &lt;= j {
-                    break;
-                }
-                if l &lt;= k {
-                    continue;
-                }
-                &#x2F;&#x2F; println!(&quot;{},{},{},{}&quot;, i, j, k, l);
-                if l*l == j*j+k*k {
-                    tmp += 1;
-                }
-            }
-        }
-        if tmp &gt; cnt {
-            ans = i;
-            cnt = tmp;
-        }
-        &#x2F;&#x2F; println!(&quot;{}, {}&quot;, i, tmp);
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">12</span><span>..</span><span style="color:#d08770;">1001 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> tmp = </span><span style="color:#d08770;">0</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">1</span><span>..i {
+</span><span>            </span><span style="color:#b48ead;">for</span><span> k in (</span><span style="color:#d08770;">2</span><span>..i).</span><span style="color:#96b5b4;">rev</span><span>() {
+</span><span>                </span><span style="color:#b48ead;">let</span><span> l = i-j-k;
+</span><span>                </span><span style="color:#b48ead;">if</span><span> k &lt;= j {
+</span><span>                    </span><span style="color:#b48ead;">break</span><span>;
+</span><span>                }
+</span><span>                </span><span style="color:#b48ead;">if</span><span> l &lt;= k {
+</span><span>                    </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>                }
+</span><span>                </span><span style="color:#65737e;">// println!(&quot;{},{},{},{}&quot;, i, j, k, l);
+</span><span>                </span><span style="color:#b48ead;">if</span><span> l*l == j*j+k*k {
+</span><span>                    tmp += </span><span style="color:#d08770;">1</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp &gt; cnt {
+</span><span>            ans = i;
+</span><span>            cnt = tmp;
+</span><span>        }
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{}, {}&quot;, i, tmp);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="676-implement-magic-dictionary">676. Implement Magic Dictionary</h3>
@@ -159,12 +159,12 @@ renderMathInElement(document.body, katex_config);
 <p>For the method <code>buildDict</code>, you'll be given a list of non-repetitive words to build a dictionary.</p>
 <p>For the method <code>search</code>, you'll be given a word, and judge whether if you modify <strong>exactly</strong> one character into <strong>another</strong> character in this word, the modified word is in the dictionary you just built.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: buildDict([&quot;hello&quot;, &quot;leetcode&quot;]), Output: Null
-Input: search(&quot;hello&quot;), Output: False
-Input: search(&quot;hhllo&quot;), Output: True
-Input: search(&quot;hell&quot;), Output: False
-Input: search(&quot;leetcoded&quot;), Output: False
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: buildDict([&quot;hello&quot;, &quot;leetcode&quot;]), Output: Null
+</span><span>Input: search(&quot;hello&quot;), Output: False
+</span><span>Input: search(&quot;hhllo&quot;), Output: True
+</span><span>Input: search(&quot;hell&quot;), Output: False
+</span><span>Input: search(&quot;leetcoded&quot;), Output: False
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>You may assume that all the inputs are consist of lowercase letters <code>a-z</code>.</li>
@@ -174,52 +174,52 @@ Input: search(&quot;leetcoded&quot;), Output: False
 <h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * Initialize your data structure here.
- *&#x2F;
-var MagicDictionary = function() {
-  if (this.set) this.set.clear();
-  else this.set = new Set();
-};
-
-&#x2F;**
- * Build a dictionary through a list of words
- * @param {string[]} dict
- * @return {void}
- *&#x2F;
-MagicDictionary.prototype.buildDict = function(dict) {
-  for (const w of dict) {
-    this.set.add(w);
-  }
-};
-
-&#x2F;**
- * Returns if there is any word in the trie that equals to the given word after modifying exactly one character
- * @param {string} word
- * @return {boolean}
- *&#x2F;
-MagicDictionary.prototype.search = function(word) {
-  const isOK = (w1, w2) =&gt; {
-    if (w1.length !== w2.length) return false;
-    let cnt = 0;
-    for (let i = 0; i &lt; w1.length; ++i) {
-      if (w1.charAt(i) !== w2.charAt(i)) ++cnt;
-    }
-    return cnt === 1;
-  };
-  for (const w of this.set) {
-    if (w.length === word.length &amp;&amp; isOK(w, word)) return true;
-  }
-  return false;
-};
-
-&#x2F;**
- * Your MagicDictionary object will be instantiated and called as such:
- * var obj = Object.create(MagicDictionary).createNew()
- * obj.buildDict(dict)
- * var param_2 = obj.search(word)
- *&#x2F;
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Initialize your data structure here.
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">MagicDictionary </span><span>= </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">set</span><span>) </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">clear</span><span>();
+</span><span>  </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">set </span><span>= new Set();
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Build a dictionary through a list of words
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string[]} </span><span style="color:#bf616a;">dict
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{void}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#ebcb8b;">MagicDictionary</span><span>.prototype.</span><span style="color:#8fa1b3;">buildDict </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">dict</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">w </span><span>of </span><span style="color:#bf616a;">dict</span><span>) {
+</span><span>    </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">w</span><span>);
+</span><span>  }
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Returns if there is any word in the trie that equals to the given word after modifying exactly one character
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">word
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{boolean}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#ebcb8b;">MagicDictionary</span><span>.prototype.</span><span style="color:#8fa1b3;">search </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">word</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">isOK </span><span>= (</span><span style="color:#bf616a;">w1</span><span>, </span><span style="color:#bf616a;">w2</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">w1</span><span>.length !== </span><span style="color:#bf616a;">w2</span><span>.length) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cnt </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">w1</span><span>.length; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">w1</span><span>.</span><span style="color:#96b5b4;">charAt</span><span>(</span><span style="color:#bf616a;">i</span><span>) !== </span><span style="color:#bf616a;">w2</span><span>.</span><span style="color:#96b5b4;">charAt</span><span>(</span><span style="color:#bf616a;">i</span><span>)) ++</span><span style="color:#bf616a;">cnt</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">cnt </span><span>=== </span><span style="color:#d08770;">1</span><span>;
+</span><span>  };
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">w </span><span>of </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">set</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">w</span><span>.length === </span><span style="color:#bf616a;">word</span><span>.length &amp;&amp; </span><span style="color:#8fa1b3;">isOK</span><span>(</span><span style="color:#bf616a;">w</span><span>, </span><span style="color:#bf616a;">word</span><span>)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Your MagicDictionary object will be instantiated and called as such:
+</span><span style="color:#65737e;"> * var obj = Object.create(MagicDictionary).createNew()
+</span><span style="color:#65737e;"> * obj.buildDict(dict)
+</span><span style="color:#65737e;"> * var param_2 = obj.search(word)
+</span><span style="color:#65737e;"> */
+</span></code></pre>
 
     </div>
   </div>

@@ -118,24 +118,24 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Counting Bits</strong></p>
 <p>Given an integer <code>n</code>, return <em>an array</em> <code>ans</code> <em>of length</em> <code>n + 1</code> <em>such that for each</em> <code>i</code> (<code>0 &lt;= i &lt;= n</code>)<em>,</em> <code>ans[i]</code> <em>is the <strong>number of</strong></em> <code>1</code><em><strong>'s</strong> in the binary representation of</em> <code>i</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 2
-Output: [0,1,1]
-Explanation:
-0 --&gt; 0
-1 --&gt; 1
-2 --&gt; 10
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2
+</span><span>Output: [0,1,1]
+</span><span>Explanation:
+</span><span>0 --&gt; 0
+</span><span>1 --&gt; 1
+</span><span>2 --&gt; 10
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 5
-Output: [0,1,1,2,1,2]
-Explanation:
-0 --&gt; 0
-1 --&gt; 1
-2 --&gt; 10
-3 --&gt; 11
-4 --&gt; 100
-5 --&gt; 101
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 5
+</span><span>Output: [0,1,1,2,1,2]
+</span><span>Explanation:
+</span><span>0 --&gt; 0
+</span><span>1 --&gt; 1
+</span><span>2 --&gt; 10
+</span><span>3 --&gt; 11
+</span><span>4 --&gt; 100
+</span><span>5 --&gt; 101
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= n &lt;= 10^5</code></li>
@@ -146,41 +146,41 @@ Explanation:
 <li>Can you do it without using any built-in function (i.e., like <code>__builtin_popcount</code> in C++)?</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-constexpr int pop_count(int x) {
-  const int m1  = 0X55555555;
-  const int m2  = 0X33333333;
-  const int m4  = 0X0F0F0F0F;
-  const int m8  = 0X00FF00FF;
-  const int m16 = 0X0000FFFF;
-  x = (x &amp;  m1) + ((x &gt;&gt;  1) &amp;  m1);
-  x = (x &amp;  m2) + ((x &gt;&gt;  2) &amp;  m2);
-  x = (x &amp;  m4) + ((x &gt;&gt;  4) &amp;  m4);
-  x = (x &amp;  m8) + ((x &gt;&gt;  8) &amp;  m8);
-  x = (x &amp; m16) + ((x &gt;&gt; 16) &amp; m16);
-  return x;
-}
-class Solution {
-public:
-  vector&lt;int&gt; countBits(int n) {
-    vector&lt;int&gt; answer(n + 1);
-    for(int i = 1; i &lt;= n; ++i) {
-      answer[i] = pop_count(i);
-    }
-    return move(answer);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 15&#x2F;15 cases passed (12 ms)
-&#x2F;&#x2F; Your runtime beats 25.62 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 48.88 % of cpp submissions (8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">constexpr int </span><span style="color:#8fa1b3;">pop_count</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">const int</span><span> m1  = </span><span style="color:#d08770;">0X55555555</span><span>;
+</span><span>  </span><span style="color:#b48ead;">const int</span><span> m2  = </span><span style="color:#d08770;">0X33333333</span><span>;
+</span><span>  </span><span style="color:#b48ead;">const int</span><span> m4  = </span><span style="color:#d08770;">0X0F0F0F0F</span><span>;
+</span><span>  </span><span style="color:#b48ead;">const int</span><span> m8  = </span><span style="color:#d08770;">0X00FF00FF</span><span>;
+</span><span>  </span><span style="color:#b48ead;">const int</span><span> m16 = </span><span style="color:#d08770;">0X0000FFFF</span><span>;
+</span><span>  x = (x &amp;  m1) + ((x &gt;&gt;  </span><span style="color:#d08770;">1</span><span>) &amp;  m1);
+</span><span>  x = (x &amp;  m2) + ((x &gt;&gt;  </span><span style="color:#d08770;">2</span><span>) &amp;  m2);
+</span><span>  x = (x &amp;  m4) + ((x &gt;&gt;  </span><span style="color:#d08770;">4</span><span>) &amp;  m4);
+</span><span>  x = (x &amp;  m8) + ((x &gt;&gt;  </span><span style="color:#d08770;">8</span><span>) &amp;  m8);
+</span><span>  x = (x &amp; m16) + ((x &gt;&gt; </span><span style="color:#d08770;">16</span><span>) &amp; m16);
+</span><span>  </span><span style="color:#b48ead;">return</span><span> x;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">countBits</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(n </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      answer[i] </span><span>= </span><span style="color:#bf616a;">pop_count</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(answer);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 15/15 cases passed (12 ms)
+</span><span style="color:#65737e;">// Your runtime beats 25.62 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 48.88 % of cpp submissions (8 MB)
+</span></code></pre>
 
     </div>
   </div>

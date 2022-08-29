@@ -130,96 +130,96 @@ renderMathInElement(document.body, katex_config);
 <p>OK I don't know how to use these,,,,,, so just...</p>
 <p>Brute Force?</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashSet;
-
-fn main() {
-    let mut set: HashSet&lt;i64&gt; = HashSet::new();
-    let mut arr: [i64; 5000] = [0; 5000];
-    for i in 1..5001 {
-        arr[i-1] = (i*(3*i-1)&#x2F;2) as i64;
-        set.insert((i*(3*i-1)&#x2F;2) as i64);
-    }
-    let mut offset: usize = 1;
-    let mut index: usize;
-    let mut found: bool = false;
-    let mut ans: i64 = 0;
-    while offset &lt; 5000 &amp;&amp; !found {
-        index = 0;
-        while index &lt; 5000 - offset &amp;&amp; !found {
-            if set.contains(&amp;(arr[index]+arr[index+offset])) &amp;&amp; set.contains(&amp;(arr[index+offset]-arr[index])) {
-                ans = arr[index+offset] - arr[index];
-                found = true;
-            }
-            index += 1;
-        }
-        offset += 1;
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::collections::HashSet;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> set: HashSet&lt;</span><span style="color:#b48ead;">i64</span><span>&gt; = HashSet::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> arr: [</span><span style="color:#b48ead;">i64</span><span>; </span><span style="color:#d08770;">5000</span><span>] = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">5000</span><span>];
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">5001 </span><span>{
+</span><span>        arr[i-</span><span style="color:#d08770;">1</span><span>] = (i*(</span><span style="color:#d08770;">3</span><span>*i-</span><span style="color:#d08770;">1</span><span>)/</span><span style="color:#d08770;">2</span><span>) as </span><span style="color:#b48ead;">i64</span><span>;
+</span><span>        set.</span><span style="color:#96b5b4;">insert</span><span>((i*(</span><span style="color:#d08770;">3</span><span>*i-</span><span style="color:#d08770;">1</span><span>)/</span><span style="color:#d08770;">2</span><span>) as </span><span style="color:#b48ead;">i64</span><span>);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> offset: </span><span style="color:#b48ead;">usize </span><span>= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> index: </span><span style="color:#b48ead;">usize</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> found: </span><span style="color:#b48ead;">bool </span><span>= </span><span style="color:#d08770;">false</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: </span><span style="color:#b48ead;">i64 </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span> offset &lt; </span><span style="color:#d08770;">5000 </span><span>&amp;&amp; !found {
+</span><span>        index = </span><span style="color:#d08770;">0</span><span>;
+</span><span>        </span><span style="color:#b48ead;">while</span><span> index &lt; </span><span style="color:#d08770;">5000 </span><span>- offset &amp;&amp; !found {
+</span><span>            </span><span style="color:#b48ead;">if</span><span> set.</span><span style="color:#96b5b4;">contains</span><span>(&amp;(arr[index]+arr[index+offset])) &amp;&amp; set.</span><span style="color:#96b5b4;">contains</span><span>(&amp;(arr[index+offset]-arr[index])) {
+</span><span>                ans = arr[index+offset] - arr[index];
+</span><span>                found = </span><span style="color:#d08770;">true</span><span>;
+</span><span>            }
+</span><span>            index += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>        offset += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="145-binary-tree-postorder-traversal">145. Binary Tree Postorder Traversal</h3>
 <p>Given a binary tree, return the postorder traversal of its nodes' values.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input: [1,null,2,3]
-   1
-    \
-     2
-    &#x2F;
-   3
-
-Output: [3,2,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [1,null,2,3]
+</span><span>   1
+</span><span>    \
+</span><span>     2
+</span><span>    /
+</span><span>   3
+</span><span>
+</span><span>Output: [3,2,1]
+</span></code></pre>
 <p><strong>Follow up:</strong> Recursive solution is trivial, could you do it iteratively?</p>
 <h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- *&#x2F;
-&#x2F;**
- * @param {TreeNode} root
- * @return {number[]}
- *&#x2F;
-var postorderTraversal = function(root) {
-  let ans = [];
-  const postTravel = (root) =&gt; {
-    if (root === null) return;
-    postTravel(root.left);
-    postTravel(root.right);
-    ans.push(root.val);
-  };
-  postTravel(root);
-  return ans;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * function TreeNode(val) {
+</span><span style="color:#65737e;"> *     this.val = val;
+</span><span style="color:#65737e;"> *     this.left = this.right = null;
+</span><span style="color:#65737e;"> * }
+</span><span style="color:#65737e;"> */
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{TreeNode} </span><span style="color:#bf616a;">root
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">postorderTraversal </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">root</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">postTravel </span><span>= (</span><span style="color:#bf616a;">root</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(root === </span><span style="color:#d08770;">null</span><span>) </span><span style="color:#b48ead;">return</span><span>;
+</span><span>    </span><span style="color:#8fa1b3;">postTravel</span><span>(root.left);
+</span><span>    </span><span style="color:#8fa1b3;">postTravel</span><span>(root.right);
+</span><span>    </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(root.</span><span style="color:#bf616a;">val</span><span>);
+</span><span>  };
+</span><span>  </span><span style="color:#8fa1b3;">postTravel</span><span>(root);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
 <p>non-recursive implementation</p>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {TreeNode} root
- * @return {number[]}
- *&#x2F;
-var postorderTraversal = function(root) {
-  if(root == null) return [];
-  let ans = [root.val];
-  let s = [];
-  s.push(root.left);
-  s.push(root.right);
-  while (s.length) {
-    let tmp = s.pop();
-    if (tmp === null) continue;
-    ans.unshift(tmp.val);
-    s.push(root.left);
-    s.push(root.right);
-  }
-  return ans;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{TreeNode} </span><span style="color:#bf616a;">root
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">postorderTraversal </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">root</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(root == </span><span style="color:#d08770;">null</span><span>) </span><span style="color:#b48ead;">return </span><span>[];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [root.</span><span style="color:#bf616a;">val</span><span>];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">s </span><span>= [];
+</span><span>  </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">push</span><span>(root.left);
+</span><span>  </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">push</span><span>(root.right);
+</span><span>  </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#bf616a;">s</span><span>.length) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">tmp </span><span>= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">pop</span><span>();
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">tmp </span><span>=== </span><span style="color:#d08770;">null</span><span>) </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>    </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">unshift</span><span>(</span><span style="color:#bf616a;">tmp</span><span>.</span><span style="color:#bf616a;">val</span><span>);
+</span><span>    </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">push</span><span>(root.left);
+</span><span>    </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">push</span><span>(root.right);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

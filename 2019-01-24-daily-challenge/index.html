@@ -123,37 +123,37 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-use primal::Sieve;
-use std::string::ToString;
-
-fn main() {
-    const LIMIT: usize = 1_000_000;
-    let sieve: Sieve = Sieve::new(LIMIT);
-    let count = sieve.prime_pi(LIMIT) + 1usize;
-    let mut ans = 0;
-    for i in 1..count {
-        let mut num = sieve.nth_prime(i);
-        let l = num.to_string().len();
-        let base = 10usize.pow(l as u32 - 1);
-        &#x2F;&#x2F; println!(&quot;{},{}&quot;,num,base);
-        let mut is_ok = true;
-        for _i in 1..l {
-            num = num &#x2F; base + num % base * 10;
-            &#x2F;&#x2F; println!(&quot;{}&quot;,num);
-            if !sieve.is_prime(num) {
-                is_ok = false;
-                break;
-            }
-        }
-        if is_ok {
-            ans += 1;
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>primal::Sieve;
+</span><span style="color:#b48ead;">use </span><span>std::string::ToString;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#d08770;">LIMIT</span><span>: </span><span style="color:#b48ead;">usize </span><span>= </span><span style="color:#d08770;">1_000_000</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sieve: Sieve = Sieve::new(</span><span style="color:#d08770;">LIMIT</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> count = sieve.</span><span style="color:#96b5b4;">prime_pi</span><span>(</span><span style="color:#d08770;">LIMIT</span><span>) + </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">usize</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..count {
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> num = sieve.</span><span style="color:#96b5b4;">nth_prime</span><span>(i);
+</span><span>        </span><span style="color:#b48ead;">let</span><span> l = num.</span><span style="color:#96b5b4;">to_string</span><span>().</span><span style="color:#96b5b4;">len</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> base = </span><span style="color:#d08770;">10</span><span style="color:#b48ead;">usize</span><span>.</span><span style="color:#96b5b4;">pow</span><span>(l as </span><span style="color:#b48ead;">u32 </span><span>- </span><span style="color:#d08770;">1</span><span>);
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{},{}&quot;,num,base);
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> is_ok = </span><span style="color:#d08770;">true</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> _i in </span><span style="color:#d08770;">1</span><span>..l {
+</span><span>            num = num / base + num % base * </span><span style="color:#d08770;">10</span><span>;
+</span><span>            </span><span style="color:#65737e;">// println!(&quot;{}&quot;,num);
+</span><span>            </span><span style="color:#b48ead;">if </span><span>!sieve.</span><span style="color:#96b5b4;">is_prime</span><span>(num) {
+</span><span>                is_ok = </span><span style="color:#d08770;">false</span><span>;
+</span><span>                </span><span style="color:#b48ead;">break</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if</span><span> is_ok {
+</span><span>            ans += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="313-super-ugly-number">313. Super Ugly Number</h3>
@@ -161,11 +161,11 @@ fn main() {
 <p>Write a program to find the <code>nth</code> super ugly number.</p>
 <p>Super ugly numbers are positive numbers whose all prime factors are in the given prime list <code>primes</code> of size <code>k</code>.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input: n = 12, primes = [2,7,13,19]
-Output: 32 
-Explanation: [1,2,4,7,8,13,14,16,19,26,28,32] is the sequence of the first 12 
-             super ugly numbers given primes = [2,7,13,19] of size 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 12, primes = [2,7,13,19]
+</span><span>Output: 32 
+</span><span>Explanation: [1,2,4,7,8,13,14,16,19,26,28,32] is the sequence of the first 12 
+</span><span>             super ugly numbers given primes = [2,7,13,19] of size 4.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>1</code> is a super ugly number for any given <code>primes</code>.</li>
@@ -177,30 +177,30 @@ Explanation: [1,2,4,7,8,13,14,16,19,26,28,32] is the sequence of the first 12
 <p>One way to solve it is priority queue, but ES6 doesn't have it.</p>
 <p>Another way is use a array to maintain every position which primes should multiply.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number} n
- * @param {number[]} primes
- * @return {number}
- *&#x2F;
-var nthSuperUglyNumber = function(n, primes) {
-  let pos = new Array(primes.length).fill(0);
-  let ugly = [1];
-  for (let i = 1; i &lt; n; ++i) {
-    let mn = Number.MAX_SAFE_INTEGER;
-    for (let j = 0; j &lt; primes.length; ++j) {
-      mn = Math.min(mn, primes[j] * ugly[pos[j]]);
-    }
-    for (let j = 0; j &lt; primes.length; ++j){
-      if (!(mn%primes[j]))
-        ++pos[j];
-    }
-    ugly[i] = mn;
-  }
-  return ugly[n-1];
-};
-
-&#x2F;&#x2F; console.log(nthSuperUglyNumber(n = 12, primes = [2,7,13,19]));
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">n
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">primes
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">nthSuperUglyNumber </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">n</span><span>, </span><span style="color:#bf616a;">primes</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">pos </span><span>= new Array(</span><span style="color:#bf616a;">primes</span><span>.length).</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">0</span><span>);
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ugly </span><span>= [</span><span style="color:#d08770;">1</span><span>];
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">1</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">n</span><span>; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">mn </span><span>= </span><span style="color:#ebcb8b;">Number</span><span>.MAX_SAFE_INTEGER;
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">j </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">j </span><span>&lt; </span><span style="color:#bf616a;">primes</span><span>.length; ++</span><span style="color:#bf616a;">j</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">mn </span><span>= Math.</span><span style="color:#96b5b4;">min</span><span>(</span><span style="color:#bf616a;">mn</span><span>, </span><span style="color:#bf616a;">primes</span><span>[</span><span style="color:#bf616a;">j</span><span>] * </span><span style="color:#bf616a;">ugly</span><span>[</span><span style="color:#bf616a;">pos</span><span>[</span><span style="color:#bf616a;">j</span><span>]]);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">j </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">j </span><span>&lt; </span><span style="color:#bf616a;">primes</span><span>.length; ++</span><span style="color:#bf616a;">j</span><span>){
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(!(</span><span style="color:#bf616a;">mn</span><span>%</span><span style="color:#bf616a;">primes</span><span>[</span><span style="color:#bf616a;">j</span><span>]))
+</span><span>        ++</span><span style="color:#bf616a;">pos</span><span>[</span><span style="color:#bf616a;">j</span><span>];
+</span><span>    }
+</span><span>    </span><span style="color:#bf616a;">ugly</span><span>[</span><span style="color:#bf616a;">i</span><span>] = </span><span style="color:#bf616a;">mn</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ugly</span><span>[</span><span style="color:#bf616a;">n</span><span>-</span><span style="color:#d08770;">1</span><span>];
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(nthSuperUglyNumber(n = 12, primes = [2,7,13,19]));
+</span></code></pre>
 
     </div>
   </div>

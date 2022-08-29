@@ -124,22 +124,22 @@ renderMathInElement(document.body, katex_config);
 <li><code>&quot;a&quot;</code> if <code>a == b</code></li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [0,1,2,4,5,7]
-Output: [&quot;0-&gt;2&quot;,&quot;4-&gt;5&quot;,&quot;7&quot;]
-Explanation: The ranges are:
-[0,2] --&gt; &quot;0-&gt;2&quot;
-[4,5] --&gt; &quot;4-&gt;5&quot;
-[7,7] --&gt; &quot;7&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,1,2,4,5,7]
+</span><span>Output: [&quot;0-&gt;2&quot;,&quot;4-&gt;5&quot;,&quot;7&quot;]
+</span><span>Explanation: The ranges are:
+</span><span>[0,2] --&gt; &quot;0-&gt;2&quot;
+</span><span>[4,5] --&gt; &quot;4-&gt;5&quot;
+</span><span>[7,7] --&gt; &quot;7&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0,2,3,4,6,8,9]
-Output: [&quot;0&quot;,&quot;2-&gt;4&quot;,&quot;6&quot;,&quot;8-&gt;9&quot;]
-Explanation: The ranges are:
-[0,0] --&gt; &quot;0&quot;
-[2,4] --&gt; &quot;2-&gt;4&quot;
-[6,6] --&gt; &quot;6&quot;
-[8,9] --&gt; &quot;8-&gt;9&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,2,3,4,6,8,9]
+</span><span>Output: [&quot;0&quot;,&quot;2-&gt;4&quot;,&quot;6&quot;,&quot;8-&gt;9&quot;]
+</span><span>Explanation: The ranges are:
+</span><span>[0,0] --&gt; &quot;0&quot;
+</span><span>[2,4] --&gt; &quot;2-&gt;4&quot;
+</span><span>[6,6] --&gt; &quot;6&quot;
+</span><span>[8,9] --&gt; &quot;8-&gt;9&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 	<li><code>0 &lt;= nums.length &lt;= 20</code></li>
@@ -148,35 +148,35 @@ Explanation: The ranges are:
 	<li><code>nums</code> is sorted in ascending order.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  string toRange(int begin, int end) {
-    if(begin == end) return to_string(begin);
-    return to_string(begin) + &quot;-&gt;&quot; + to_string(end);
-  }
-public:
-  vector&lt;string&gt; summaryRanges(vector&lt;int&gt;&amp; nums) {
-    if(nums.empty()) return {};
-    vector&lt;string&gt; answer;
-    int begin = nums.front();
-    int end = nums.front();
-    for(auto n : nums) {
-      if(n &gt; min(end, INT_MAX - 1) + 1) {
-        answer.push_back(toRange(begin, end));
-        begin = end = n;
-      } else {
-        end = n;
-      }
-    }
-    answer.push_back(toRange(begin, end));
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 28&#x2F;28 cases passed (5 ms)
-&#x2F;&#x2F; Your runtime beats 13.39 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 62.02 % of cpp submissions (6.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">toRange</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span>==</span><span style="color:#eff1f5;"> end) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(begin);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(begin) </span><span>+ &quot;</span><span style="color:#a3be8c;">-&gt;</span><span>&quot; + </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(end);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#8fa1b3;">summaryRanges</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> n </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>&gt; </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(end, INT_MAX </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">toRange</span><span style="color:#eff1f5;">(begin, end));
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">toRange</span><span style="color:#eff1f5;">(begin, end));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 28/28 cases passed (5 ms)
+</span><span style="color:#65737e;">// Your runtime beats 13.39 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 62.02 % of cpp submissions (6.8 MB)
+</span></code></pre>
 
     </div>
   </div>

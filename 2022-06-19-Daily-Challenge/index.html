@@ -120,26 +120,26 @@ renderMathInElement(document.body, katex_config);
 <p>Design a system that suggests at most three product names from <code>products</code> after each character of <code>searchWord</code> is typed. Suggested products should have common prefix with <code>searchWord</code>. If there are more than three products with a common prefix return the three lexicographically minimums products.</p>
 <p>Return <em>a list of lists of the suggested products after each character of</em> <code>searchWord</code> <em>is typed</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: products = [&quot;mobile&quot;,&quot;mouse&quot;,&quot;moneypot&quot;,&quot;monitor&quot;,&quot;mousepad&quot;], searchWord = &quot;mouse&quot;
-Output: [
-[&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;],
-[&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;],
-[&quot;mouse&quot;,&quot;mousepad&quot;],
-[&quot;mouse&quot;,&quot;mousepad&quot;],
-[&quot;mouse&quot;,&quot;mousepad&quot;]
-]
-Explanation: products sorted lexicographically = [&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;,&quot;mouse&quot;,&quot;mousepad&quot;]
-After typing m and mo all products match and we show user [&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;]
-After typing mou, mous and mouse the system suggests [&quot;mouse&quot;,&quot;mousepad&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: products = [&quot;mobile&quot;,&quot;mouse&quot;,&quot;moneypot&quot;,&quot;monitor&quot;,&quot;mousepad&quot;], searchWord = &quot;mouse&quot;
+</span><span>Output: [
+</span><span>[&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;],
+</span><span>[&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;],
+</span><span>[&quot;mouse&quot;,&quot;mousepad&quot;],
+</span><span>[&quot;mouse&quot;,&quot;mousepad&quot;],
+</span><span>[&quot;mouse&quot;,&quot;mousepad&quot;]
+</span><span>]
+</span><span>Explanation: products sorted lexicographically = [&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;,&quot;mouse&quot;,&quot;mousepad&quot;]
+</span><span>After typing m and mo all products match and we show user [&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;]
+</span><span>After typing mou, mous and mouse the system suggests [&quot;mouse&quot;,&quot;mousepad&quot;]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: products = [&quot;havana&quot;], searchWord = &quot;havana&quot;
-Output: [[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: products = [&quot;havana&quot;], searchWord = &quot;havana&quot;
+</span><span>Output: [[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;]]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: products = [&quot;bags&quot;,&quot;baggage&quot;,&quot;banner&quot;,&quot;box&quot;,&quot;cloths&quot;], searchWord = &quot;bags&quot;
-Output: [[&quot;baggage&quot;,&quot;bags&quot;,&quot;banner&quot;],[&quot;baggage&quot;,&quot;bags&quot;,&quot;banner&quot;],[&quot;baggage&quot;,&quot;bags&quot;],[&quot;bags&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: products = [&quot;bags&quot;,&quot;baggage&quot;,&quot;banner&quot;,&quot;box&quot;,&quot;cloths&quot;], searchWord = &quot;bags&quot;
+</span><span>Output: [[&quot;baggage&quot;,&quot;bags&quot;,&quot;banner&quot;],[&quot;baggage&quot;,&quot;bags&quot;,&quot;banner&quot;],[&quot;baggage&quot;,&quot;bags&quot;],[&quot;bags&quot;]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= products.length &lt;= 1000</code></li>
@@ -151,41 +151,41 @@ Output: [[&quot;baggage&quot;,&quot;bags&quot;,&quot;banner&quot;],[&quot;baggag
 <li><code>searchWord</code> consists of lowercase English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = []() {
-  std::ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  return nullptr;
-}();
-class Solution {
-public:
-  vector&lt;vector&lt;string&gt;&gt; suggestedProducts(vector&lt;string&gt;&amp; products, string searchWord) {
-    sort(products.begin(), products.end());
-    vector&lt;vector&lt;string&gt;&gt; answer;
-    auto begin = products.begin();
-    auto end = products.end();
-    for(int i = 0; i &lt; searchWord.length(); ++i) {
-      auto cmp = [=](string a, string b) {
-        return a[i] &lt; b[i];
-      };
-      auto newBegin = lower_bound(begin, end, searchWord, cmp);
-      auto newEnd = upper_bound(begin, end, searchWord, cmp);
-      begin = newBegin;
-      end = newEnd;
-      if(newEnd - newBegin &gt; 3) newEnd = newBegin + 3;
-      if(newEnd - newBegin &lt;= 0) break;
-      answer.push_back(vector&lt;string&gt;(newBegin, newEnd));
-    }
-    while(answer.size() &lt; searchWord.length()) answer.push_back({});
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 41&#x2F;41 cases passed (80 ms)
-&#x2F;&#x2F; Your runtime beats 72.27 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 64.07 % of cpp submissions (39.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = []() {
+</span><span>  std::ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;string&gt;&gt; </span><span style="color:#8fa1b3;">suggestedProducts</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">products</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">searchWord</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(products.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), products.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;string&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> begin </span><span>=</span><span style="color:#eff1f5;"> products.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> products.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> searchWord.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> cmp </span><span>= </span><span style="color:#eff1f5;">[</span><span>=</span><span style="color:#eff1f5;">](string a, string b) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a[i] </span><span>&lt;</span><span style="color:#eff1f5;"> b[i];
+</span><span style="color:#eff1f5;">      };
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> newBegin </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(begin, end, searchWord, cmp);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> newEnd </span><span>= </span><span style="color:#bf616a;">upper_bound</span><span style="color:#eff1f5;">(begin, end, searchWord, cmp);
+</span><span style="color:#eff1f5;">      begin </span><span>=</span><span style="color:#eff1f5;"> newBegin;
+</span><span style="color:#eff1f5;">      end </span><span>=</span><span style="color:#eff1f5;"> newEnd;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newEnd </span><span>-</span><span style="color:#eff1f5;"> newBegin </span><span>&gt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) newEnd </span><span>=</span><span style="color:#eff1f5;"> newBegin </span><span>+ </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newEnd </span><span>-</span><span style="color:#eff1f5;"> newBegin </span><span>&lt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;string&gt;(newBegin, newEnd));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> searchWord.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({});
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 41/41 cases passed (80 ms)
+</span><span style="color:#65737e;">// Your runtime beats 72.27 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 64.07 % of cpp submissions (39.2 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -118,14 +118,14 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Intersection of Two Arrays II</strong></p>
 <p>Given two integer arrays <code>nums1</code> and <code>nums2</code>, return <em>an array of their intersection</em>. Each element in the result must appear as many times as it shows in both arrays and you may return the result in <strong>any order</strong>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums1 = [1,2,2,1], nums2 = [2,2]
-Output: [2,2]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums1 = [1,2,2,1], nums2 = [2,2]
+</span><span>Output: [2,2]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
-Output: [4,9]
-Explanation: [9,4] is also accepted.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+</span><span>Output: [4,9]
+</span><span>Explanation: [9,4] is also accepted.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums1.length, nums2.length &lt;= 1000</code></li>
@@ -138,36 +138,36 @@ Explanation: [9,4] is also accepted.
 <li>What if elements of <code>nums2</code> are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; intersect(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
-    sort(nums1.begin(), nums1.end());
-    sort(nums2.begin(), nums2.end());
-
-    vector&lt;int&gt; answer;
-    auto it1 = nums1.begin();
-    auto it2 = nums2.begin();
-    while(it1 != nums1.end() &amp;&amp; it2 != nums2.end()) {
-      if(*it1 == *it2) {
-        answer.push_back(*it1);
-        ++it1;
-        ++it2;
-      } else if(*it1 &lt; *it2) {
-        ++it1;
-      } else {
-        ++it2;
-      }
-    }
-
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 55&#x2F;55 cases passed (3 ms)
-&#x2F;&#x2F; Your runtime beats 91.05 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 88.6 % of cpp submissions (9.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">intersect</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums1</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums1.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums1.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums2.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums2.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it1 </span><span>=</span><span style="color:#eff1f5;"> nums1.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it2 </span><span>=</span><span style="color:#eff1f5;"> nums2.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(it1 </span><span>!=</span><span style="color:#eff1f5;"> nums1.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> it2 </span><span>!=</span><span style="color:#eff1f5;"> nums2.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it1 </span><span>== *</span><span style="color:#eff1f5;">it2) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it1);
+</span><span style="color:#eff1f5;">        </span><span>++</span><span style="color:#eff1f5;">it1;
+</span><span style="color:#eff1f5;">        </span><span>++</span><span style="color:#eff1f5;">it2;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it1 </span><span>&lt; *</span><span style="color:#eff1f5;">it2) {
+</span><span style="color:#eff1f5;">        </span><span>++</span><span style="color:#eff1f5;">it1;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span>++</span><span style="color:#eff1f5;">it2;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 55/55 cases passed (3 ms)
+</span><span style="color:#65737e;">// Your runtime beats 91.05 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 88.6 % of cpp submissions (9.9 MB)
+</span></code></pre>
 
     </div>
   </div>

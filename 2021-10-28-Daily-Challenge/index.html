@@ -119,108 +119,108 @@ renderMathInElement(document.body, katex_config);
 <p>Given an integer array nums, return all the triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, and <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>
 <p>Notice that the solution set must not contain duplicate triplets.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [-1,0,1,2,-1,-4]
-Output: [[-1,-1,2],[-1,0,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [-1,0,1,2,-1,-4]
+</span><span>Output: [[-1,-1,2],[-1,0,1]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [0]
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0]
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 	<li><code>0 &lt;= nums.length &lt;= 3000</code></li>
 	<li><code>-10<sup>5</sup> &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  int len;
-  
-  vector&lt;vector&lt;int&gt;&gt; twoSum(vector&lt;int&gt; &amp;nums, int target, int start) {
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    unordered_set&lt;int&gt; st;
-    for(int i = start; i &lt; len; ++i) {
-      if(answer.size() &amp;&amp; answer.back()[1] == nums[i]) continue;
-      if(st.count(nums[i])) {
-        answer.push_back(vector&lt;int&gt;{target-nums[i], nums[i]});
-      }
-      st.insert(target-nums[i]);
-    }
-    return answer;
-  }
-  
-  vector&lt;vector&lt;int&gt;&gt; kSum(vector&lt;int&gt; &amp;nums, int target, int start, int k) {
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    if(nums[start] * k &gt; target || target &gt; nums.back() * k) return answer;
-    if(k == 2) return twoSum(nums, target, start);
-    for(int i = start; i &lt;= len-k; ++i) {
-      if(i != start &amp;&amp; nums[i] == nums[i-1]) continue;
-      for(auto &amp;vec : kSum(nums, target-nums[i], i+1, k-1)) {
-        answer.push_back({nums[i]});
-        answer.back().insert(answer.back().end(), vec.begin(), vec.end());
-      }
-    }
-    return answer;
-  }
-  
-  void init(vector&lt;int&gt; &amp;nums) {
-    len = nums.size();
-    sort(nums.begin(), nums.end());
-  }
-public:
-  vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) {
-    if(nums.size() &lt; 3) return vector&lt;vector&lt;int&gt;&gt;();
-    init(nums);
-    return kSum(nums, 0, 0, 3);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 318&#x2F;318 cases passed (1080 ms)
-&#x2F;&#x2F; Your runtime beats 11.23 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 5.06 % of cpp submissions (275.3 MB)
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    sort(nums.begin(), nums.end());
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    for(int i = 0; i &lt; len-2; ++i) {
-      if(i &amp;&amp; i &lt; len-2 &amp;&amp; nums[i] == nums[i-1]) continue;
-      int begin = i + 1, end = len - 1;
-      while(begin &lt; end) {
-        if(nums[begin]+nums[end] == -nums[i]) {
-          answer.push_back(vector&lt;int&gt;{nums[i], nums[begin], nums[end]});
-          int curBegin = nums[begin];
-          int curEnd = nums[end];
-          while(begin &lt; end &amp;&amp; nums[begin] == curBegin) ++begin;
-          while(begin &lt; end &amp;&amp; nums[end] == curEnd) --end;
-        } else if (nums[begin]+nums[end] &lt; -nums[i]) {
-          ++begin;
-        } else {
-          --end;
-        }
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 318&#x2F;318 cases passed (96 ms)
-&#x2F;&#x2F; Your runtime beats 63.5 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 67.25 % of cpp submissions (20.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">twoSum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">start</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    unordered_set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; st;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> start; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> nums[i]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(nums[i])) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;{target</span><span>-</span><span style="color:#eff1f5;">nums[i], nums[i]});
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      st.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(target</span><span>-</span><span style="color:#eff1f5;">nums[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">kSum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">start</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[start] </span><span>*</span><span style="color:#eff1f5;"> k </span><span>&gt;</span><span style="color:#eff1f5;"> target </span><span>||</span><span style="color:#eff1f5;"> target </span><span>&gt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>*</span><span style="color:#eff1f5;"> k) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>== </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">twoSum</span><span style="color:#eff1f5;">(nums, target, start);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> start; i </span><span>&lt;=</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#eff1f5;">k; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>!=</span><span style="color:#eff1f5;"> start </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[i] </span><span>==</span><span style="color:#eff1f5;"> nums[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">vec </span><span>: </span><span style="color:#d08770;">kSum</span><span style="color:#eff1f5;">(nums, target</span><span>-</span><span style="color:#eff1f5;">nums[i], i</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, k</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({nums[i]});
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), vec.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), vec.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">threeSum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;();
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(nums);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">kSum</span><span style="color:#eff1f5;">(nums, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 318/318 cases passed (1080 ms)
+</span><span style="color:#65737e;">// Your runtime beats 11.23 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 5.06 % of cpp submissions (275.3 MB)
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">threeSum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> i </span><span>&lt;</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">2 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[i] </span><span>==</span><span style="color:#eff1f5;"> nums[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>=</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[begin]</span><span>+</span><span style="color:#eff1f5;">nums[end] </span><span>== -</span><span style="color:#eff1f5;">nums[i]) {
+</span><span style="color:#eff1f5;">          answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;{nums[i], nums[begin], nums[end]});
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curBegin </span><span>=</span><span style="color:#eff1f5;"> nums[begin];
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curEnd </span><span>=</span><span style="color:#eff1f5;"> nums[end];
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[begin] </span><span>==</span><span style="color:#eff1f5;"> curBegin) </span><span>++</span><span style="color:#eff1f5;">begin;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[end] </span><span>==</span><span style="color:#eff1f5;"> curEnd) </span><span>--</span><span style="color:#eff1f5;">end;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else if </span><span style="color:#eff1f5;">(nums[begin]</span><span>+</span><span style="color:#eff1f5;">nums[end] </span><span>&lt; -</span><span style="color:#eff1f5;">nums[i]) {
+</span><span style="color:#eff1f5;">          </span><span>++</span><span style="color:#eff1f5;">begin;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          </span><span>--</span><span style="color:#eff1f5;">end;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 318/318 cases passed (96 ms)
+</span><span style="color:#65737e;">// Your runtime beats 63.5 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 67.25 % of cpp submissions (20.1 MB)
+</span></code></pre>
 
     </div>
   </div>

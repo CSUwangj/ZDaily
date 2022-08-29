@@ -115,80 +115,80 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Lattice paths</em> in <em>Rust</em> and <em>Robot Return to Origin</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Lattice paths
-
-Problem 15 
-
-Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
-
-
-How many such routes are there through a 20×20 grid?
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Lattice paths
+</span><span>
+</span><span>Problem 15 
+</span><span>
+</span><span>Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
+</span><span>
+</span><span>
+</span><span>How many such routes are there through a 20×20 grid?
+</span></code></pre>
 <p><img src="https://projecteuler.net/project/images/p015.gif" alt="img" /></p>
 <h2 id="solution">Solution</h2>
 <p>To a $n*n$ grid, the answer is $C_{2n}^{n}$.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate num_bigint;
-extern crate num_traits;
-
-use num_bigint::{BigUint};
-use num_traits::{One};
-
-fn main() {
-    let mut f1: BigUint = One::one();
-    for i in 21u32..41u32 {
-        let f2 = BigUint::from(i);
-        f1 = f1 * &amp;f2;
-    }
-    for i in 1u32..21u32 {
-        let f2 = BigUint::from(i);
-        f1 = f1 &#x2F; &amp;f2;
-    }
-    println!(&quot;Answer is {}&quot;, f1.to_str_radix(10));
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> num_bigint;
+</span><span style="color:#b48ead;">extern crate</span><span> num_traits;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>num_bigint::{BigUint};
+</span><span style="color:#b48ead;">use </span><span>num_traits::{One};
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> f1: BigUint = One::one();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">21</span><span style="color:#b48ead;">u32</span><span>..</span><span style="color:#d08770;">41</span><span style="color:#b48ead;">u32 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> f2 = BigUint::from(i);
+</span><span>        f1 = f1 * &amp;f2;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">u32</span><span>..</span><span style="color:#d08770;">21</span><span style="color:#b48ead;">u32 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> f2 = BigUint::from(i);
+</span><span>        f1 = f1 / &amp;f2;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, f1.</span><span style="color:#96b5b4;">to_str_radix</span><span>(</span><span style="color:#d08770;">10</span><span>));
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>657. Robot Return to Origin
-
-There is a robot starting at position (0, 0), the origin, on a 2D plane. Given a sequence of its moves, judge if this robot ends up at (0, 0) after it completes its moves.
-
-The move sequence is represented by a string, and the character moves[i] represents its ith move. Valid moves are R (right), L (left), U (up), and D (down). If the robot returns to the origin after it finishes all of its moves, return true. Otherwise, return false.
-
-Note: The way that the robot is &quot;facing&quot; is irrelevant. &quot;R&quot; will always make the robot move to the right once, &quot;L&quot; will always make it move left, etc. Also, assume that the magnitude of the robot&#x27;s movement is the same for each move.
-
-Example 1:
-
-Input: &quot;UD&quot;
-Output: true 
-Explanation: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.
- 
-
-Example 2:
-
-Input: &quot;LL&quot;
-Output: false
-Explanation: The robot moves left twice. It ends up two &quot;moves&quot; to the left of the origin. We return false because it is not at the origin at the end of its moves.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>657. Robot Return to Origin
+</span><span>
+</span><span>There is a robot starting at position (0, 0), the origin, on a 2D plane. Given a sequence of its moves, judge if this robot ends up at (0, 0) after it completes its moves.
+</span><span>
+</span><span>The move sequence is represented by a string, and the character moves[i] represents its ith move. Valid moves are R (right), L (left), U (up), and D (down). If the robot returns to the origin after it finishes all of its moves, return true. Otherwise, return false.
+</span><span>
+</span><span>Note: The way that the robot is &quot;facing&quot; is irrelevant. &quot;R&quot; will always make the robot move to the right once, &quot;L&quot; will always make it move left, etc. Also, assume that the magnitude of the robot&#39;s movement is the same for each move.
+</span><span>
+</span><span>Example 1:
+</span><span>
+</span><span>Input: &quot;UD&quot;
+</span><span>Output: true 
+</span><span>Explanation: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.
+</span><span> 
+</span><span>
+</span><span>Example 2:
+</span><span>
+</span><span>Input: &quot;LL&quot;
+</span><span>Output: false
+</span><span>Explanation: The robot moves left twice. It ends up two &quot;moves&quot; to the left of the origin. We return false because it is not at the origin at the end of its moves.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implemtation">Implemtation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string} moves
- * @return {boolean}
- *&#x2F;
-var judgeCircle = function(moves) {
-  let up = 0;
-  let left = 0;
-  for(const i of moves){
-    if(i === &quot;L&quot;) left++;
-    else if(i === &quot;R&quot;) left--;
-    else if(i === &quot;U&quot;) up++;
-    else up--;
-  }
-  return up==left&amp;&amp;up==0;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">moves
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{boolean}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">judgeCircle </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">moves</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">up </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">i </span><span>of </span><span style="color:#bf616a;">moves</span><span>){
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">i </span><span>=== &quot;</span><span style="color:#a3be8c;">L</span><span>&quot;) </span><span style="color:#bf616a;">left</span><span>++;
+</span><span>    </span><span style="color:#b48ead;">else if</span><span>(</span><span style="color:#bf616a;">i </span><span>=== &quot;</span><span style="color:#a3be8c;">R</span><span>&quot;) </span><span style="color:#bf616a;">left</span><span>--;
+</span><span>    </span><span style="color:#b48ead;">else if</span><span>(</span><span style="color:#bf616a;">i </span><span>=== &quot;</span><span style="color:#a3be8c;">U</span><span>&quot;) </span><span style="color:#bf616a;">up</span><span>++;
+</span><span>    </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">up</span><span>--;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">up</span><span>==</span><span style="color:#bf616a;">left</span><span>&amp;&amp;</span><span style="color:#bf616a;">up</span><span>==</span><span style="color:#d08770;">0</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

@@ -121,24 +121,24 @@ renderMathInElement(document.body, katex_config);
 <li>The substring size must be between <code>minSize</code> and <code>maxSize</code> inclusive.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;aababcaab&quot;, maxLetters = 2, minSize = 3, maxSize = 4
-Output: 2
-Explanation: Substring &quot;aab&quot; has 2 ocurrences in the original string.
-It satisfies the conditions, 2 unique letters and size 3 (between minSize and maxSize).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aababcaab&quot;, maxLetters = 2, minSize = 3, maxSize = 4
+</span><span>Output: 2
+</span><span>Explanation: Substring &quot;aab&quot; has 2 ocurrences in the original string.
+</span><span>It satisfies the conditions, 2 unique letters and size 3 (between minSize and maxSize).
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;aaaa&quot;, maxLetters = 1, minSize = 3, maxSize = 3
-Output: 2
-Explanation: Substring &quot;aaa&quot; occur 2 times in the string. It can overlap.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aaaa&quot;, maxLetters = 1, minSize = 3, maxSize = 3
+</span><span>Output: 2
+</span><span>Explanation: Substring &quot;aaa&quot; occur 2 times in the string. It can overlap.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;aabcabcab&quot;, maxLetters = 2, minSize = 2, maxSize = 3
-Output: 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aabcabcab&quot;, maxLetters = 2, minSize = 2, maxSize = 3
+</span><span>Output: 3
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;abcde&quot;, maxLetters = 2, minSize = 3, maxSize = 3
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;abcde&quot;, maxLetters = 2, minSize = 3, maxSize = 3
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 10^5</code></li>
@@ -148,56 +148,56 @@ Output: 0
 </ul>
 <h2 id="solution">Solution</h2>
 <p>why this problem is <code>medium</code>?</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maxFreq(string s, int maxLetters, int minSize, int maxSize) {
-    int len = s.length();
-    for(int i = minSize; i &lt;= maxSize; ++i) {
-      vector&lt;int&gt; cnt(26);
-      unordered_map&lt;string, int&gt; sCnt;
-      int letters = 0;
-      for(int j = 0; j &lt; i; ++j) {
-        if(!cnt[s[j] - &#x27;a&#x27;]) letters += 1;
-        cnt[s[j] - &#x27;a&#x27;] += 1;
-      }
-      if(letters &lt;= maxLetters) sCnt[s.substr(0, i)] += 1;
-      for(int j = i; j &lt; len; ++j) {
-        if(!cnt[s[j] - &#x27;a&#x27;]) letters += 1;
-        cnt[s[j] - &#x27;a&#x27;] += 1;
-        cnt[s[j - i] - &#x27;a&#x27;] -= 1;
-        if(!cnt[s[j - i] - &#x27;a&#x27;]) letters -= 1;
-        if(letters &lt;= maxLetters) sCnt[s.substr(j - i + 1, i)] += 1;
-      }
-      if(sCnt.size()) {
-        int answer = 0;
-        for(auto &amp;[s, c] : sCnt) answer = max(answer, c);
-        return answer;
-      }
-    }
-    return 0;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxFreq</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">maxLetters</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">minSize</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">maxSize</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> minSize; i </span><span>&lt;=</span><span style="color:#eff1f5;"> maxSize; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">cnt</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">sCnt</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> letters </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> i; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cnt[s[j] </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">]) letters </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cnt[s[j] </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(letters </span><span>&lt;=</span><span style="color:#eff1f5;"> maxLetters) </span><span style="color:#bf616a;">sCnt</span><span style="color:#eff1f5;">[s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i)] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i; j </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cnt[s[j] </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">]) letters </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cnt[s[j] </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cnt[s[j </span><span>-</span><span style="color:#eff1f5;"> i] </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cnt[s[j </span><span>-</span><span style="color:#eff1f5;"> i] </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">]) letters </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(letters </span><span>&lt;=</span><span style="color:#eff1f5;"> maxLetters) </span><span style="color:#bf616a;">sCnt</span><span style="color:#eff1f5;">[s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(j </span><span>-</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, i)] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sCnt</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[s, c] </span><span>: </span><span style="color:#bf616a;">sCnt</span><span style="color:#eff1f5;">) answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, c);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="april-leetcoding-challenge-9">April LeetCoding challenge 9</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Verifying an Alien Dictionary</strong></p>
 <p>In an alien language, surprisingly they also use english lowercase letters, but possibly in a different <code>order</code>. The <code>order</code> of the alphabet is some permutation of lowercase letters.</p>
 <p>Given a sequence of <code>words</code> written in the alien language, and the <code>order</code> of the alphabet, return <code>true</code> if and only if the given <code>words</code> are sorted lexicographicaly in this alien language.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: words = [&quot;hello&quot;,&quot;leetcode&quot;], order = &quot;hlabcdefgijkmnopqrstuvwxyz&quot;
-Output: true
-Explanation: As &#x27;h&#x27; comes before &#x27;l&#x27; in this language, then the sequence is sorted.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;hello&quot;,&quot;leetcode&quot;], order = &quot;hlabcdefgijkmnopqrstuvwxyz&quot;
+</span><span>Output: true
+</span><span>Explanation: As &#39;h&#39; comes before &#39;l&#39; in this language, then the sequence is sorted.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: words = [&quot;word&quot;,&quot;world&quot;,&quot;row&quot;], order = &quot;worldabcefghijkmnpqstuvxyz&quot;
-Output: false
-Explanation: As &#x27;d&#x27; comes after &#x27;l&#x27; in this language, then words[0] &gt; words[1], hence the sequence is unsorted.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;word&quot;,&quot;world&quot;,&quot;row&quot;], order = &quot;worldabcefghijkmnpqstuvxyz&quot;
+</span><span>Output: false
+</span><span>Explanation: As &#39;d&#39; comes after &#39;l&#39; in this language, then words[0] &gt; words[1], hence the sequence is unsorted.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: words = [&quot;apple&quot;,&quot;app&quot;], order = &quot;abcdefghijklmnopqrstuvwxyz&quot;
-Output: false
-Explanation: The first three characters &quot;app&quot; match, and the second string is shorter (in size.) According to lexicographical rules &quot;apple&quot; &gt; &quot;app&quot;, because &#x27;l&#x27; &gt; &#x27;∅&#x27;, where &#x27;∅&#x27; is defined as the blank character which is less than any other character (More info).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;apple&quot;,&quot;app&quot;], order = &quot;abcdefghijklmnopqrstuvwxyz&quot;
+</span><span>Output: false
+</span><span>Explanation: The first three characters &quot;app&quot; match, and the second string is shorter (in size.) According to lexicographical rules &quot;apple&quot; &gt; &quot;app&quot;, because &#39;l&#39; &gt; &#39;∅&#39;, where &#39;∅&#39; is defined as the blank character which is less than any other character (More info).
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= words.length &lt;= 100</code></li>
@@ -206,21 +206,21 @@ Explanation: The first three characters &quot;app&quot; match, and the second st
 <li>All characters in <code>words[i]</code> and <code>order</code> are English lowercase letters.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool isAlienSorted(vector&lt;string&gt;&amp; words, string order) {
-    int orderIndex[128] = {};
-    int pos = 0;
-    for(auto c : order) orderIndex[c] = pos++;
-    return is_sorted(words.begin(), words.end(), [&amp;](const string &amp;a, const string &amp;b) {
-      for(int i = 0; i &lt; min(a.length(), b.length()); ++i) {
-        if(a[i] != b[i]) return orderIndex[a[i]] &lt; orderIndex[b[i]];
-      }
-      return a.length() &lt; b.length();
-    });
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isAlienSorted</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">order</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> orderIndex[</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> order) orderIndex[c] </span><span>=</span><span style="color:#eff1f5;"> pos</span><span>++</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">is_sorted</span><span style="color:#eff1f5;">(words.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), words.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">](</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string </span><span>&amp;</span><span style="color:#eff1f5;">a, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string </span><span>&amp;</span><span style="color:#eff1f5;">b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(a.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(), b.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(a[i] </span><span>!=</span><span style="color:#eff1f5;"> b[i]) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> orderIndex[a[i]] </span><span>&lt;</span><span style="color:#eff1f5;"> orderIndex[b[i]];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

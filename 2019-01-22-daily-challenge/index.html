@@ -124,27 +124,27 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>Brute force.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut numerator = 1;
-    let mut denominator = 1;
-    for i in 1..9 {
-        for j in i+1..10 {
-            for k in 1..10 {
-                if (i*10 + k)*j == (k*10 + j)*i {
-                    println!(&quot;{}&#x2F;{} = {}&#x2F;{}&quot;,i*10+k,k*10+j,i,j);
-                    numerator *= i;
-                    denominator *= j;
-                }
-            }
-        }
-    }
-    println!(&quot;Answer is {}&quot;, denominator&#x2F;gcd(denominator, numerator));
-}
-
-fn gcd(a: usize, b: usize) -&gt; usize {
-    return if b == 0 { a } else { gcd(b, a%b) }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> numerator = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> denominator = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">9 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">for</span><span> j in i+</span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">10 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">for</span><span> k in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">10 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">if </span><span>(i*</span><span style="color:#d08770;">10 </span><span>+ k)*j == (k*</span><span style="color:#d08770;">10 </span><span>+ j)*i {
+</span><span>                    println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">/</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> = </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">/</span><span style="color:#d08770;">{}</span><span>&quot;,i*</span><span style="color:#d08770;">10</span><span>+k,k*</span><span style="color:#d08770;">10</span><span>+j,i,j);
+</span><span>                    numerator *= i;
+</span><span>                    denominator *= j;
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, denominator/</span><span style="color:#96b5b4;">gcd</span><span>(denominator, numerator));
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">gcd</span><span>(</span><span style="color:#bf616a;">a</span><span>: </span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#bf616a;">b</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; </span><span style="color:#b48ead;">usize </span><span>{
+</span><span>    </span><span style="color:#b48ead;">return if</span><span> b == </span><span style="color:#d08770;">0 </span><span>{ a } </span><span style="color:#b48ead;">else </span><span>{ </span><span style="color:#96b5b4;">gcd</span><span>(b, a%b) }
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="686-repeated-string-match">686. Repeated String Match</h3>
@@ -156,19 +156,19 @@ The length of <code>A</code> and <code>B</code> will be between 1 and 10000.</p>
 <h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string} A
- * @param {string} B
- * @return {number}
- *&#x2F;
-var repeatedStringMatch = function(A, B) {
-  let nstr = A;
-  while(nstr.length &lt; B.length) nstr += A;
-  return nstr.indexOf(B) !== -1 ? Math.ceil(B.length&#x2F;A.length):((nstr+A).indexOf(B) === -1? -1:Math.ceil(B.length&#x2F;A.length)+1);
-};
-
-&#x2F;&#x2F; console.log(repeatedStringMatch(&quot;abcd&quot;,&quot;cdabcdab&quot;));
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">A
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">B
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">repeatedStringMatch </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">A</span><span>, </span><span style="color:#bf616a;">B</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">nstr </span><span>= </span><span style="color:#bf616a;">A</span><span>;
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(</span><span style="color:#bf616a;">nstr</span><span>.length &lt; </span><span style="color:#bf616a;">B</span><span>.length) </span><span style="color:#bf616a;">nstr </span><span>+= </span><span style="color:#bf616a;">A</span><span>;
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">nstr</span><span>.</span><span style="color:#96b5b4;">indexOf</span><span>(</span><span style="color:#bf616a;">B</span><span>) !== -</span><span style="color:#d08770;">1 </span><span>? Math.</span><span style="color:#96b5b4;">ceil</span><span>(</span><span style="color:#bf616a;">B</span><span>.length/</span><span style="color:#bf616a;">A</span><span>.length):((</span><span style="color:#bf616a;">nstr</span><span>+</span><span style="color:#bf616a;">A</span><span>).</span><span style="color:#96b5b4;">indexOf</span><span>(</span><span style="color:#bf616a;">B</span><span>) === -</span><span style="color:#d08770;">1</span><span>? -</span><span style="color:#d08770;">1</span><span>:Math.</span><span style="color:#96b5b4;">ceil</span><span>(</span><span style="color:#bf616a;">B</span><span>.length/</span><span style="color:#bf616a;">A</span><span>.length)+</span><span style="color:#d08770;">1</span><span>);
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(repeatedStringMatch(&quot;abcd&quot;,&quot;cdabcdab&quot;));
+</span></code></pre>
 
     </div>
   </div>

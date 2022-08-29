@@ -130,87 +130,87 @@ renderMathInElement(document.body, katex_config);
 <p>no need to review</p>
 <h2 id="largest-rectangle-in-histogram">Largest Rectangle in Histogram</h2>
 <p>use a stack just need one iteration</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int largestRectangleArea(vector&lt;int&gt;&amp; heights) {
-        vector&lt;int&gt; st{-1};
-        heights.push_back(0);
-        int len = heights.size();
-        int answer = 0;
-        for(int i = 0; i &lt; len; ++i) {
-            while(st.size() &amp;&amp; st.back() != -1 &amp;&amp; heights[i] &lt; heights[st.back()]) {
-                int index = st.back();
-                st.pop_back();
-                int h = heights[index];
-                int w = i - st.back() - 1;
-                answer = max(answer, h*w);
-            }
-            st.push_back(i);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">largestRectangleArea</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">heights</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">st</span><span style="color:#eff1f5;">{</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        heights.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>!= -</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> heights[i] </span><span>&lt;</span><span style="color:#eff1f5;"> heights[st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()]) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> index </span><span>=</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">                st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> h </span><span>=</span><span style="color:#eff1f5;"> heights[index];
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> w </span><span>=</span><span style="color:#eff1f5;"> i </span><span>-</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, h</span><span>*</span><span style="color:#eff1f5;">w);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            st.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="game-of-life">Game of Life</h2>
 <p>another way to enumerate</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    void gameOfLife(vector&lt;vector&lt;int&gt;&gt;&amp; board) {
-        int rows = board.size();
-        int cols = board[0].size();
-        for(int i = 0; i &lt; rows; ++i) {
-            for(int j = 0; j &lt; cols; ++j) {
-                int count = 0;
-                for(int row = max(0, i-1); row &lt;= min(rows-1, i+1); ++row) {
-                    for(int col = max(0, j-1); col &lt;= min(cols-1, j+1); ++col) {
-                        count += (board[row][col]&amp;1);
-                    }
-                }
-                count -= board[i][j];
-                if(count == 3 || (count == 2 &amp;&amp; board[i][j] == 1)) {
-                    board[i][j] |= 2;
-                }
-            }
-        }
-        for(auto &amp;row : board) {
-            for(auto &amp;cell : row) {
-                cell &gt;&gt;= 1;
-            }
-        }
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">gameOfLife</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">board</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows </span><span>=</span><span style="color:#eff1f5;"> board.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols </span><span>=</span><span style="color:#eff1f5;"> board[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> cols; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> row </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">); row </span><span>&lt;= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(rows</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, i</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">); </span><span>++</span><span style="color:#eff1f5;">row) {
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> col </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">); col </span><span>&lt;= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(cols</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, j</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">); </span><span>++</span><span style="color:#eff1f5;">col) {
+</span><span style="color:#eff1f5;">                        count </span><span>+= </span><span style="color:#eff1f5;">(board[row][col]</span><span>&amp;</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">                    }
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                count </span><span>-=</span><span style="color:#eff1f5;"> board[i][j];
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(count </span><span>== </span><span style="color:#d08770;">3 </span><span>|| </span><span style="color:#eff1f5;">(count </span><span>== </span><span style="color:#d08770;">2 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> board[i][j] </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">                    board[i][j] </span><span>|= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">row </span><span>:</span><span style="color:#eff1f5;"> board) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">cell </span><span>:</span><span style="color:#eff1f5;"> row) {
+</span><span style="color:#eff1f5;">                cell </span><span>&gt;&gt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="lowest-common-ancestor-of-a-binary-tree">Lowest Common Ancestor of a Binary Tree</h2>
 <p>using parent pointers</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    unordered_map&lt;TreeNode*, int&gt; level;
-    unordered_map&lt;TreeNode*, TreeNode*&gt; parent;
-    void build(TreeNode *root) {
-        if(!root) return;
-        if(root-&gt;left) {
-            level[root-&gt;left] = level[root] + 1;
-            parent[root-&gt;left] = root;
-            build(root-&gt;left);
-        }
-        if(root-&gt;right) {
-            level[root-&gt;right] = level[root] + 1;
-            parent[root-&gt;right] = root;
-            build(root-&gt;right);
-        }
-    }
-public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        build(root);
-        while(level[p] &gt; level[q]) p = parent[p];
-        while(level[q] &gt; level[p]) q = parent[q];
-        while(q != p) {
-            p = parent[p];
-            q = parent[q];
-        }
-        return q;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    unordered_map&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; level;
+</span><span style="color:#eff1f5;">    unordered_map&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">, TreeNode</span><span>*</span><span style="color:#eff1f5;">&gt; parent;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">build</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            level[root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> level[root] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            parent[root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            level[root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> level[root] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            parent[root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    TreeNode</span><span>* </span><span style="color:#8fa1b3;">lowestCommonAncestor</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">p</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">q</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(level[p] </span><span>&gt;</span><span style="color:#eff1f5;"> level[q]) p </span><span>=</span><span style="color:#eff1f5;"> parent[p];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(level[q] </span><span>&gt;</span><span style="color:#eff1f5;"> level[p]) q </span><span>=</span><span style="color:#eff1f5;"> parent[q];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q </span><span>!=</span><span style="color:#eff1f5;"> p) {
+</span><span style="color:#eff1f5;">            p </span><span>=</span><span style="color:#eff1f5;"> parent[p];
+</span><span style="color:#eff1f5;">            q </span><span>=</span><span style="color:#eff1f5;"> parent[q];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> q;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-2">January LeetCoding Challenge 2</h1>
 <h2 id="description">Description</h2>
 <p><strong>Find a Corresponding Node of a Binary Tree in a Clone of That Tree</strong></p>
@@ -221,30 +221,30 @@ public:
 <p><strong>Follow up:</strong> Solve the problem if repeated values on the tree are allowed.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/02/21/e1.png" alt="img" /></p>
-<pre><code>Input: tree = [7,4,3,null,null,6,19], target = 3
-Output: 3
-Explanation: In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tree = [7,4,3,null,null,6,19], target = 3
+</span><span>Output: 3
+</span><span>Explanation: In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/02/21/e2.png" alt="img" /></p>
-<pre><code>Input: tree = [7], target =  7
-Output: 7
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tree = [7], target =  7
+</span><span>Output: 7
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/02/21/e3.png" alt="img" /></p>
-<pre><code>Input: tree = [8,null,6,null,5,null,4,null,3,null,2,null,1], target = 4
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tree = [8,null,6,null,5,null,4,null,3,null,2,null,1], target = 4
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/02/21/e4.png" alt="img" /></p>
-<pre><code>Input: tree = [1,2,3,4,5,6,7,8,9,10], target = 5
-Output: 5
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tree = [1,2,3,4,5,6,7,8,9,10], target = 5
+</span><span>Output: 5
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/02/21/e5.png" alt="img" /></p>
-<pre><code>Input: tree = [1,2,null,3], target = 2
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tree = [1,2,null,3], target = 2
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the <code>tree</code> is in the range <code>[1, 10^4]</code>.</li>
@@ -252,19 +252,19 @@ Output: 2
 <li><code>target</code> node is a node from the <code>original</code> tree and is not <code>null</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
-        if(!original) return nullptr;
-        if(original == target) return cloned;
-        TreeNode *left = getTargetCopy(original-&gt;left, cloned-&gt;left, target);
-        if(left) return left;
-        TreeNode *right = getTargetCopy(original-&gt;right, cloned-&gt;right, target);
-        if(right) return right;
-        return nullptr;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    TreeNode</span><span>* </span><span style="color:#8fa1b3;">getTargetCopy</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">original</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">cloned</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">original) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(original </span><span>==</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cloned;
+</span><span style="color:#eff1f5;">        TreeNode </span><span>*</span><span style="color:#eff1f5;">left </span><span>= </span><span style="color:#bf616a;">getTargetCopy</span><span style="color:#eff1f5;">(original-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, cloned-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, target);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(left) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> left;
+</span><span style="color:#eff1f5;">        TreeNode </span><span>*</span><span style="color:#eff1f5;">right </span><span>= </span><span style="color:#bf616a;">getTargetCopy</span><span style="color:#eff1f5;">(original-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, cloned-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, target);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(right) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> right;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

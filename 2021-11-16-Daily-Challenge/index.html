@@ -120,59 +120,59 @@ renderMathInElement(document.body, katex_config);
 <p>Given three integers <code>m</code>, <code>n</code>, and <code>k</code>, return <em>the</em> <code>kth</code> <em>smallest element in the</em> <code>m x n</code> <em>multiplication table</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/05/02/multtable1-grid.jpg" alt="img" /></p>
-<pre><code>Input: m = 3, n = 3, k = 5
-Output: 3
-Explanation: The 5th smallest number is 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 3, n = 3, k = 5
+</span><span>Output: 3
+</span><span>Explanation: The 5th smallest number is 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/05/02/multtable2-grid.jpg" alt="img" /></p>
-<pre><code>Input: m = 2, n = 3, k = 6
-Output: 6
-Explanation: The 6th smallest number is 6.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 2, n = 3, k = 6
+</span><span>Output: 6
+</span><span>Explanation: The 6th smallest number is 6.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= m, n &lt;= 3 * 10^4</code></li>
 <li><code>1 &lt;= k &lt;= m * n</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int count(int rows, int col, int num) {
-    int row = 1;
-    int cnt = 0;
-    while(row &lt;= rows &amp;&amp; col) {
-      if(row * col &lt;= num) {
-        cnt += col;
-        row += 1;
-      } else {
-        col -= 1;
-      }
-    }
-    return cnt;
-  }
-public:
-  int findKthNumber(int m, int n, int k) {
-    int low = 1;
-    int high = m * n;
-    if(k == 1) return low;
-    if(k == n * m) return high;
-    while(low &lt; high) {
-      int mid = (low + high) &gt;&gt; 1;
-      if(count(m, n, mid) &lt; k) {
-        low = mid + 1;
-      }else{
-        high = mid;
-      }
-    }
-    return low;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 70&#x2F;70 cases passed (12 ms)
-&#x2F;&#x2F; Your runtime beats 95.06 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 68.64 % of cpp submissions (5.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">count</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rows</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">col</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> row </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(row </span><span>&lt;=</span><span style="color:#eff1f5;"> rows </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> col) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(row </span><span>*</span><span style="color:#eff1f5;"> col </span><span>&lt;=</span><span style="color:#eff1f5;"> num) {
+</span><span style="color:#eff1f5;">        cnt </span><span>+=</span><span style="color:#eff1f5;"> col;
+</span><span style="color:#eff1f5;">        row </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        col </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findKthNumber</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> low </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> high </span><span>=</span><span style="color:#eff1f5;"> m </span><span>*</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> low;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>==</span><span style="color:#eff1f5;"> n </span><span>*</span><span style="color:#eff1f5;"> m) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> high;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(low </span><span>&lt;</span><span style="color:#eff1f5;"> high) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(low </span><span>+</span><span style="color:#eff1f5;"> high) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(m, n, mid) </span><span>&lt;</span><span style="color:#eff1f5;"> k) {
+</span><span style="color:#eff1f5;">        low </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }</span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        high </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> low;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 70/70 cases passed (12 ms)
+</span><span style="color:#65737e;">// Your runtime beats 95.06 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 68.64 % of cpp submissions (5.9 MB)
+</span></code></pre>
 
     </div>
   </div>

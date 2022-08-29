@@ -122,49 +122,49 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return <em>the <strong>maximum number of points</strong> you can earn by applying the above operation some number of times</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [3,4,2]
-Output: 6
-Explanation: You can perform the following operations:
-- Delete 4 to earn 4 points. Consequently, 3 is also deleted. nums = [2].
-- Delete 2 to earn 2 points. nums = [].
-You earn a total of 6 points.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,4,2]
+</span><span>Output: 6
+</span><span>Explanation: You can perform the following operations:
+</span><span>- Delete 4 to earn 4 points. Consequently, 3 is also deleted. nums = [2].
+</span><span>- Delete 2 to earn 2 points. nums = [].
+</span><span>You earn a total of 6 points.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [2,2,3,3,3,4]
-Output: 9
-Explanation: You can perform the following operations:
-- Delete a 3 to earn 3 points. All 2&#x27;s and 4&#x27;s are also deleted. nums = [3,3].
-- Delete a 3 again to earn 3 points. nums = [3].
-- Delete a 3 once more to earn 3 points. nums = [].
-You earn a total of 9 points.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,2,3,3,3,4]
+</span><span>Output: 9
+</span><span>Explanation: You can perform the following operations:
+</span><span>- Delete a 3 to earn 3 points. All 2&#39;s and 4&#39;s are also deleted. nums = [3,3].
+</span><span>- Delete a 3 again to earn 3 points. nums = [3].
+</span><span>- Delete a 3 once more to earn 3 points. nums = [].
+</span><span>You earn a total of 9 points.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 2 * 10^4</code></li>
 <li><code>1 &lt;= nums[i] &lt;= 10^4</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int deleteAndEarn(vector&lt;int&gt;&amp; nums) {
-    int dp[10001] = {};
-    int count[10001] = {};
-    for(auto num : nums) {
-      count[num] += 1;
-    }
-    dp[1] = count[1];
-    for(int i = 2; i &lt;= 10000; ++i) {
-      dp[i] = max(dp[i - 1], dp[i - 2] + i * count[i]);
-    }
-    return dp[10000];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 48&#x2F;48 cases passed (3 ms)
-&#x2F;&#x2F; Your runtime beats 97.58 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 90.77 % of cpp submissions (9.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">deleteAndEarn</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">10001</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count[</span><span style="color:#d08770;">10001</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> num </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      count[num] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> count[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&lt;= </span><span style="color:#d08770;">10000</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      dp[i] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], dp[i </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> i </span><span>*</span><span style="color:#eff1f5;"> count[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">10000</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 48/48 cases passed (3 ms)
+</span><span style="color:#65737e;">// Your runtime beats 97.58 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 90.77 % of cpp submissions (9.2 MB)
+</span></code></pre>
 
     </div>
   </div>

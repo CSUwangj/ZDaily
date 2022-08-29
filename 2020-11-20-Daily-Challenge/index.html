@@ -123,28 +123,28 @@ renderMathInElement(document.body, katex_config);
 <p>Please note that if course <strong>a</strong> is a prerequisite of course <strong>b</strong> and course <strong>b</strong> is a prerequisite of course <strong>c</strong>, then, course <strong>a</strong> is a prerequisite of course <strong>c</strong>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/04/17/graph.png" alt="img" /></p>
-<pre><code>Input: n = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]
-Output: [false,true]
-Explanation: course 0 is not a prerequisite of course 1 but the opposite is true.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]
+</span><span>Output: [false,true]
+</span><span>Explanation: course 0 is not a prerequisite of course 1 but the opposite is true.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 2, prerequisites = [], queries = [[1,0],[0,1]]
-Output: [false,false]
-Explanation: There are no prerequisites and each course is independent.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2, prerequisites = [], queries = [[1,0],[0,1]]
+</span><span>Output: [false,false]
+</span><span>Explanation: There are no prerequisites and each course is independent.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/04/17/graph-1.png" alt="img" /></p>
-<pre><code>Input: n = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]
-Output: [true,true]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]
+</span><span>Output: [true,true]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: n = 3, prerequisites = [[1,0],[2,0]], queries = [[0,1],[2,0]]
-Output: [false,true]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, prerequisites = [[1,0],[2,0]], queries = [[0,1],[2,0]]
+</span><span>Output: [false,true]
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: n = 5, prerequisites = [[0,1],[1,2],[2,3],[3,4]], queries = [[0,4],[4,0],[1,3],[3,0]]
-Output: [true,false,true,false]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 5, prerequisites = [[0,1],[1,2],[2,3],[3,4]], queries = [[0,4],[4,0],[1,3],[3,0]]
+</span><span>Output: [true,false,true,false]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= n &lt;= 100</code></li>
@@ -158,62 +158,62 @@ Output: [true,false,true,false]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>not so elegant</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  vector&lt;vector&lt;bool&gt;&gt; isPrerequisite;
-  vector&lt;vector&lt;int&gt;&gt; followUp;
-  vector&lt;int&gt; inDegree;
-  vector&lt;int&gt; topologicalSort(int n, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
-    inDegree.resize(n);
-    fill(inDegree.begin(), inDegree.end(), 0);
-    for(auto &amp;p : prerequisites) {
-      inDegree[p[1]] += 1;
-    }
-    queue&lt;int&gt; q;
-    for(int i = 0; i &lt; n; ++i) {
-      if(inDegree[i] == 0) {
-        q.push(i);
-      }
-    }
-    vector&lt;int&gt; result;
-    while(q.size()) {
-      int cur = q.front();
-      q.pop();
-      result.push_back(cur);
-      for(auto follow: followUp[cur]) {
-        inDegree[follow] -= 1;
-        if(inDegree[follow] == 0) q.push(follow);
-      }
-    }
-    return result;
-  }
-  void init(int n, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
-    followUp.resize(n);
-    isPrerequisite.resize(n, vector&lt;bool&gt;(n));
-    for(auto &amp;p : prerequisites) {
-      followUp[p[0]].push_back(p[1]);
-    }
-  }
-public:
-  vector&lt;bool&gt; checkIfPrerequisite(int n, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites, vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
-    init(n, prerequisites);
-    auto sortedCourse = topologicalSort(n, prerequisites);
-    for(auto course : sortedCourse) {
-      for(auto follow : followUp[course]) {
-        for(int i = 0; i &lt; n; ++i) {
-          isPrerequisite[follow][i] = isPrerequisite[follow][i] | isPrerequisite[course][i];
-        }
-        isPrerequisite[follow][course] = true;
-      }
-    }
-
-    vector&lt;bool&gt; answer;
-    for(auto &amp;query : queries) {
-      answer.push_back(isPrerequisite[query[1]][query[0]]);
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;&gt; isPrerequisite;
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; followUp;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; inDegree;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">topologicalSort</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">prerequisites</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    inDegree.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">fill</span><span style="color:#eff1f5;">(inDegree.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), inDegree.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">p </span><span>:</span><span style="color:#eff1f5;"> prerequisites) {
+</span><span style="color:#eff1f5;">      inDegree[p[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(inDegree[i] </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> follow</span><span>:</span><span style="color:#eff1f5;"> followUp[cur]) {
+</span><span style="color:#eff1f5;">        inDegree[follow] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(inDegree[follow] </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(follow);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">prerequisites</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    followUp.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    isPrerequisite.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;(n));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">p </span><span>:</span><span style="color:#eff1f5;"> prerequisites) {
+</span><span style="color:#eff1f5;">      followUp[p[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(p[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">checkIfPrerequisite</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">prerequisites</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">queries</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(n, prerequisites);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> sortedCourse </span><span>= </span><span style="color:#bf616a;">topologicalSort</span><span style="color:#eff1f5;">(n, prerequisites);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> course </span><span>:</span><span style="color:#eff1f5;"> sortedCourse) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> follow </span><span>:</span><span style="color:#eff1f5;"> followUp[course]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">          isPrerequisite[follow][i] </span><span>=</span><span style="color:#eff1f5;"> isPrerequisite[follow][i] </span><span>|</span><span style="color:#eff1f5;"> isPrerequisite[course][i];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        isPrerequisite[follow][course] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">query </span><span>:</span><span style="color:#eff1f5;"> queries) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(isPrerequisite[query[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]][query[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-20">November LeetCoding Challenge 20</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Search in Rotated Sorted Array II</strong></p>
@@ -221,13 +221,13 @@ public:
 <p>(i.e., <code>[0,0,1,2,2,5,6]</code> might become <code>[2,5,6,0,0,1,2]</code>).</p>
 <p>You are given a target value to search. If found in the array return <code>true</code>, otherwise return <code>false</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [2,5,6,0,0,1,2], target = 0
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,5,6,0,0,1,2], target = 0
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [2,5,6,0,0,1,2], target = 3
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,5,6,0,0,1,2], target = 3
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Follow up:</strong></p>
 <ul>
 <li>This is a follow up problem to <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/description/">Search in Rotated Sorted Array</a>, where <code>nums</code> may contain duplicates.</li>
@@ -238,31 +238,31 @@ Output: false
 <ul>
 <li>I don't feel the affect.</li>
 </ul>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool search(vector&lt;int&gt;&amp; nums, int target) {
-        if(nums.empty()) return false;
-        int offset = 0, len = nums.size();
-        for(int i = 1; i &lt; len; ++i) {
-            if(nums[i] &lt; nums[i-1]) {
-                offset = i;
-            }
-        }
-        int start = 0, end = len - 1;
-        while(start &lt; end) {
-            int mid = (start + end) &#x2F; 2;
-            int pos = (mid + offset) % len;
-            if(nums[pos] &lt; target) {
-                start = mid + 1;
-            } else {
-                end = mid;
-            }
-        }
-        int pos = (end + offset) % len;
-        return nums[pos] == target;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">search</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> offset </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&lt;</span><span style="color:#eff1f5;"> nums[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                offset </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> start </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, end </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(start </span><span>+</span><span style="color:#eff1f5;"> end) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#eff1f5;">(mid </span><span>+</span><span style="color:#eff1f5;"> offset) </span><span>%</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[pos] </span><span>&lt;</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">                start </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#eff1f5;">(end </span><span>+</span><span style="color:#eff1f5;"> offset) </span><span>%</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> nums[pos] </span><span>==</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

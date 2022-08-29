@@ -121,23 +121,23 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the minimum <strong>effort</strong> required to travel from the top-left cell to the bottom-right cell.</em></p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/04/ex1.png" alt="img" /></p>
-<pre><code>Input: heights = [[1,2,2],[3,8,2],[5,3,5]]
-Output: 2
-Explanation: The route of [1,3,5,3,5] has a maximum absolute difference of 2 in consecutive cells.
-This is better than the route of [1,2,2,2,5], where the maximum absolute difference is 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: heights = [[1,2,2],[3,8,2],[5,3,5]]
+</span><span>Output: 2
+</span><span>Explanation: The route of [1,3,5,3,5] has a maximum absolute difference of 2 in consecutive cells.
+</span><span>This is better than the route of [1,2,2,2,5], where the maximum absolute difference is 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/04/ex2.png" alt="img" /></p>
-<pre><code>Input: heights = [[1,2,3],[3,8,4],[5,3,5]]
-Output: 1
-Explanation: The route of [1,2,3,4,5] has a maximum absolute difference of 1 in consecutive cells, which is better than route [1,3,5,3,5].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: heights = [[1,2,3],[3,8,4],[5,3,5]]
+</span><span>Output: 1
+</span><span>Explanation: The route of [1,2,3,4,5] has a maximum absolute difference of 1 in consecutive cells, which is better than route [1,3,5,3,5].
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/04/ex3.png" alt="img" /></p>
-<pre><code>Input: heights = [[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]
-Output: 0
-Explanation: This route does not require any effort.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: heights = [[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]
+</span><span>Output: 0
+</span><span>Explanation: This route does not require any effort.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>rows == heights.length</code></li>
@@ -146,57 +146,57 @@ Explanation: This route does not require any effort.
 <li><code>1 &lt;= heights[i][j] &lt;= 10^6</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = []() {
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-
-using pi = pair&lt;int, int&gt;;
-bool vis[2][100][100];
-int efforts[2][100][100];
-class Solution {
-  int moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-public:
-  int minimumEffortPath(vector&lt;vector&lt;int&gt;&gt;&amp; heights) {
-    memset(vis, 0, sizeof(vis));
-    int rows = heights.size();
-    int cols = heights.front().size();
-    priority_queue&lt;pi, vector&lt;pi&gt;, greater&lt;pi&gt;&gt; q[2];
-    q[0].push({0, 0});
-    q[1].push({0, rows * cols - 1});
-    while(true) {
-      for(int parity = 0; parity &lt; 2; ++parity) {
-        while(q[parity].size()) {
-          auto [effort, pos] = q[parity].top();
-          q[parity].pop();
-          int row = pos &#x2F; cols;
-          int col = pos % cols;
-          if(vis[!parity][row][col]) return max(effort, efforts[!parity][row][col]);
-          if(vis[parity][row][col]) continue;
-          vis[parity][row][col] = true;
-          efforts[parity][row][col] = effort;
-          for(int i = 0; i &lt; 4; ++i) {
-            int newRow = row + moves[i][0];
-            int newCol = col + moves[i][1];
-            if(newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= rows || newCol &gt;= cols) continue;
-            if(vis[parity][newRow][newCol]) continue;
-            q[parity].push({max(effort, abs(heights[newRow][newCol] - heights[row][col])), newRow * cols + newCol});
-          }
-          break;
-        }
-      }
-    }
-    return -1;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 75&#x2F;75 cases passed (36 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 93.52 % of cpp submissions (16.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = []() {
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span>
+</span><span style="color:#b48ead;">using </span><span>pi = pair&lt;</span><span style="color:#b48ead;">int</span><span>, </span><span style="color:#b48ead;">int</span><span>&gt;;
+</span><span style="color:#b48ead;">bool</span><span> vis[</span><span style="color:#d08770;">2</span><span>][</span><span style="color:#d08770;">100</span><span>][</span><span style="color:#d08770;">100</span><span>];
+</span><span style="color:#b48ead;">int</span><span> efforts[</span><span style="color:#d08770;">2</span><span>][</span><span style="color:#d08770;">100</span><span>][</span><span style="color:#d08770;">100</span><span>];
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> moves[</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}, {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}, {</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}, {</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}};
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minimumEffortPath</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">heights</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(vis, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(vis));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows </span><span>=</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols </span><span>=</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    priority_queue</span><span>&lt;</span><span style="color:#eff1f5;">pi, vector&lt;pi&gt;, greater&lt;pi&gt;</span><span>&gt;</span><span style="color:#eff1f5;"> q[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    q[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">    q[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, rows </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> parity </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; parity </span><span>&lt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">parity) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q[parity].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[effort, pos] </span><span>=</span><span style="color:#eff1f5;"> q[parity].</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">          q[parity].</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> row </span><span>=</span><span style="color:#eff1f5;"> pos </span><span>/</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> col </span><span>=</span><span style="color:#eff1f5;"> pos </span><span>%</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[</span><span>!</span><span style="color:#eff1f5;">parity][row][col]) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(effort, efforts[</span><span>!</span><span style="color:#eff1f5;">parity][row][col]);
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[parity][row][col]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          vis[parity][row][col] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          efforts[parity][row][col] </span><span>=</span><span style="color:#eff1f5;"> effort;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> rows </span><span>||</span><span style="color:#eff1f5;"> newCol </span><span>&gt;=</span><span style="color:#eff1f5;"> cols) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[parity][newRow][newCol]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            q[parity].</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({</span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(effort, </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(heights[newRow][newCol] </span><span>-</span><span style="color:#eff1f5;"> heights[row][col])), newRow </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> newCol});
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 75/75 cases passed (36 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 93.52 % of cpp submissions (16.8 MB)
+</span></code></pre>
 
     </div>
   </div>

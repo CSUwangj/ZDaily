@@ -122,20 +122,20 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Note</strong> that you are <strong>not allowed</strong> to change any of the two trees or the <code>target</code> node and the answer <strong>must be</strong> a reference to a node in the <code>cloned</code> tree.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/02/21/e1.png" alt="img" /></p>
-<pre><code>Input: tree = [7,4,3,null,null,6,19], target = 3
-Output: 3
-Explanation: In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tree = [7,4,3,null,null,6,19], target = 3
+</span><span>Output: 3
+</span><span>Explanation: In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/02/21/e2.png" alt="img" /></p>
-<pre><code>Input: tree = [7], target =  7
-Output: 7
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tree = [7], target =  7
+</span><span>Output: 7
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/02/21/e3.png" alt="img" /></p>
-<pre><code>Input: tree = [8,null,6,null,5,null,4,null,3,null,2,null,1], target = 4
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tree = [8,null,6,null,5,null,4,null,3,null,2,null,1], target = 4
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the <code>tree</code> is in the range <code>[1, 10^4]</code>.</li>
@@ -144,24 +144,24 @@ Output: 4
 </ul>
 <p><strong>Follow up:</strong> Could you solve the problem if repeated values on the tree are allowed?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
-    if(!original) return nullptr;
-    if(original == target) return cloned;
-    TreeNode *left = getTargetCopy(original-&gt;left, cloned-&gt;left, target);
-    if(left) return left;
-    TreeNode *right = getTargetCopy(original-&gt;right, cloned-&gt;right, target);
-    if(right) return right;
-    return nullptr;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 56&#x2F;56 cases passed (599 ms)
-&#x2F;&#x2F; Your runtime beats 70.48 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 81.24 % of cpp submissions (163.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">getTargetCopy</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">original</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">cloned</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">original) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(original </span><span>==</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cloned;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">left </span><span>= </span><span style="color:#bf616a;">getTargetCopy</span><span style="color:#eff1f5;">(original-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, cloned-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, target);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(left) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> left;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">right </span><span>= </span><span style="color:#bf616a;">getTargetCopy</span><span style="color:#eff1f5;">(original-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, cloned-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, target);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(right) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> right;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 56/56 cases passed (599 ms)
+</span><span style="color:#65737e;">// Your runtime beats 70.48 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 81.24 % of cpp submissions (163.8 MB)
+</span></code></pre>
 
     </div>
   </div>

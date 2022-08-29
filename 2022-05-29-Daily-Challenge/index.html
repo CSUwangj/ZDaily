@@ -118,20 +118,20 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Maximum Product of Word Lengths</strong></p>
 <p>​Given a string array <code>words</code>, return <em>the maximum value of</em> <code>length(word[i]) * length(word[j])</code> <em>where the two words do not share common letters</em>. If no such two words exist, return <code>0</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: words = [&quot;abcw&quot;,&quot;baz&quot;,&quot;foo&quot;,&quot;bar&quot;,&quot;xtfn&quot;,&quot;abcdef&quot;]
-Output: 16
-Explanation: The two words can be &quot;abcw&quot;, &quot;xtfn&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;abcw&quot;,&quot;baz&quot;,&quot;foo&quot;,&quot;bar&quot;,&quot;xtfn&quot;,&quot;abcdef&quot;]
+</span><span>Output: 16
+</span><span>Explanation: The two words can be &quot;abcw&quot;, &quot;xtfn&quot;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: words = [&quot;a&quot;,&quot;ab&quot;,&quot;abc&quot;,&quot;d&quot;,&quot;cd&quot;,&quot;bcd&quot;,&quot;abcd&quot;]
-Output: 4
-Explanation: The two words can be &quot;ab&quot;, &quot;cd&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;a&quot;,&quot;ab&quot;,&quot;abc&quot;,&quot;d&quot;,&quot;cd&quot;,&quot;bcd&quot;,&quot;abcd&quot;]
+</span><span>Output: 4
+</span><span>Explanation: The two words can be &quot;ab&quot;, &quot;cd&quot;.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: words = [&quot;a&quot;,&quot;aa&quot;,&quot;aaa&quot;,&quot;aaaa&quot;]
-Output: 0
-Explanation: No such pair of words.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;a&quot;,&quot;aa&quot;,&quot;aaa&quot;,&quot;aaaa&quot;]
+</span><span>Output: 0
+</span><span>Explanation: No such pair of words.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= words.length &lt;= 1000</code></li>
@@ -139,31 +139,31 @@ Explanation: No such pair of words.
 <li><code>words[i]</code> consists only of lowercase English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maxProduct(vector&lt;string&gt;&amp; words) {
-    int sz = words.size();
-    vector&lt;int&gt; mask(sz);
-    vector&lt;int&gt; len(sz);
-    for(int i = 0; i &lt; sz; ++i) {
-      for(auto c : words[i]) mask[i] |= (1 &lt;&lt; (c - &#x27;a&#x27;));
-      len[i] = words[i].length();
-    }
-    int answer = 0;
-    for(int i = 0; i &lt; sz - 1; ++i) {
-      for(int j = i + 1; j &lt; sz; ++j) {
-        if(!(mask[i] &amp; mask[j])) answer = max(answer, len[i] * len[j]);
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 167&#x2F;167 cases passed (62 ms)
-&#x2F;&#x2F; Your runtime beats 67.22 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 59.25 % of cpp submissions (15.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxProduct</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> words.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">mask</span><span style="color:#eff1f5;">(sz);
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">len</span><span style="color:#eff1f5;">(sz);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> sz; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> words[i]) mask[i] </span><span>|= </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span>&lt;&lt; </span><span style="color:#eff1f5;">(c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">      len[i] </span><span>=</span><span style="color:#eff1f5;"> words[i].</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> sz </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> sz; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(mask[i] </span><span>&amp;</span><span style="color:#eff1f5;"> mask[j])) answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, len[i] </span><span>*</span><span style="color:#eff1f5;"> len[j]);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 167/167 cases passed (62 ms)
+</span><span style="color:#65737e;">// Your runtime beats 67.22 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 59.25 % of cpp submissions (15.8 MB)
+</span></code></pre>
 
     </div>
   </div>

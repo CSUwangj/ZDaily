@@ -143,35 +143,35 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>I &quot;borrow&quot; something from wikipedia but don't get it known...</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut ans = 0;
-    for i in 1..10001 {
-        ans += get_period(i) &amp; 1;
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn get_period(n: i32) -&gt; i32 {
-    let root = (n as f64).sqrt() as i32;
-    if root * root == n {
-        return 0;
-    }
-    let mut extra = root;
-    let mut numerator = 0;
-    let mut denominator = 1;
-    let mut period = 0;
-    while extra != 2 * root {
-        numerator = denominator * extra - numerator;
-        if (n - numerator * numerator) % denominator != 0 &amp;&amp; (root + numerator) % denominator != 0 {
-            panic!(&quot;???&quot;);
-        }
-        denominator = (n - numerator * numerator) &#x2F; denominator;
-        extra = (root + numerator) &#x2F; denominator;
-        period += 1;
-    }
-    period
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">10001 </span><span>{
+</span><span>        ans += </span><span style="color:#96b5b4;">get_period</span><span>(i) &amp; </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">get_period</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">i32</span><span>) -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let</span><span> root = (n as </span><span style="color:#b48ead;">f64</span><span>).</span><span style="color:#96b5b4;">sqrt</span><span>() as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if</span><span> root * root == n {
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> extra = root;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> numerator = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> denominator = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> period = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span> extra != </span><span style="color:#d08770;">2 </span><span>* root {
+</span><span>        numerator = denominator * extra - numerator;
+</span><span>        </span><span style="color:#b48ead;">if </span><span>(n - numerator * numerator) % denominator != </span><span style="color:#d08770;">0 </span><span>&amp;&amp; (root + numerator) % denominator != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>            panic!(&quot;</span><span style="color:#a3be8c;">???</span><span>&quot;);
+</span><span>        }
+</span><span>        denominator = (n - numerator * numerator) / denominator;
+</span><span>        extra = (root + numerator) / denominator;
+</span><span>        period += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    period
+</span><span>}
+</span></code></pre>
 <h1 id="codewar">Codewar</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="jaden-casing-strings">Jaden Casing Strings</h3>
@@ -180,17 +180,17 @@ fn get_period(n: i32) -&gt; i32 {
 <p>Jaden Smith, the son of Will Smith, is the star of films such as The Karate Kid (2010) and After Earth (2013). Jaden is also known for <a href="https://twitter.com/officialjaden">some of his philosophy that he delivers via Twitter</a>. When writing on Twitter, he is known for almost always capitalizing every word.</p>
 <p>Your task is to convert strings to how they would be written by Jaden Smith. The strings are actual quotes from Jaden Smith, but they are not capitalized in the same way he originally typed them.</p>
 <p>Example:</p>
-<pre><code>Not Jaden-Cased: &quot;How can mirrors be real if our eyes aren&#x27;t real&quot;
-Jaden-Cased:     &quot;How Can Mirrors Be Real If Our Eyes Aren&#x27;t Real&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Not Jaden-Cased: &quot;How can mirrors be real if our eyes aren&#39;t real&quot;
+</span><span>Jaden-Cased:     &quot;How Can Mirrors Be Real If Our Eyes Aren&#39;t Real&quot;
+</span></code></pre>
 <p>Note that the <strong>Java version</strong> expects a return value of null for an empty string or null</p>
 </li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">String.prototype.toJadenCase = function () {
-  return this.split(&quot; &quot;).map(([a, ...i]) =&gt; [a.toUpperCase(), ...i].join(&quot;&quot;)).join(&quot; &quot;);
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#ebcb8b;">String</span><span>.prototype.</span><span style="color:#8fa1b3;">toJadenCase </span><span>= </span><span style="color:#b48ead;">function </span><span>() {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot; &quot;).</span><span style="color:#8fa1b3;">map</span><span>(([</span><span style="color:#bf616a;">a</span><span>, ...</span><span style="color:#bf616a;">i</span><span>]) </span><span style="color:#b48ead;">=&gt; </span><span>[</span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">toUpperCase</span><span>(), ...</span><span style="color:#bf616a;">i</span><span>].</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;)).</span><span style="color:#96b5b4;">join</span><span>(&quot; &quot;);
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

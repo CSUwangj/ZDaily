@@ -126,29 +126,29 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the number of 4-directional walks from the starting square to the ending square, that walk over every non-obstacle square exactly once</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/08/02/lc-unique1.jpg" alt="img" /></p>
-<pre><code>Input: grid = [[1,0,0,0],[0,0,0,0],[0,0,2,-1]]
-Output: 2
-Explanation: We have the following two paths: 
-1. (0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2)
-2. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[1,0,0,0],[0,0,0,0],[0,0,2,-1]]
+</span><span>Output: 2
+</span><span>Explanation: We have the following two paths: 
+</span><span>1. (0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2)
+</span><span>2. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2)
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/08/02/lc-unique2.jpg" alt="img" /></p>
-<pre><code>Input: grid = [[1,0,0,0],[0,0,0,0],[0,0,0,2]]
-Output: 4
-Explanation: We have the following four paths: 
-1. (0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2),(2,3)
-2. (0,0),(0,1),(1,1),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,3),(1,3),(2,3)
-3. (0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(1,1),(0,1),(0,2),(0,3),(1,3),(2,3)
-4. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2),(2,3)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[1,0,0,0],[0,0,0,0],[0,0,0,2]]
+</span><span>Output: 4
+</span><span>Explanation: We have the following four paths: 
+</span><span>1. (0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2),(2,3)
+</span><span>2. (0,0),(0,1),(1,1),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,3),(1,3),(2,3)
+</span><span>3. (0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(1,1),(0,1),(0,2),(0,3),(1,3),(2,3)
+</span><span>4. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2),(2,3)
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/08/02/lc-unique3-.jpg" alt="img" /></p>
-<pre><code>Input: grid = [[0,1],[2,0]]
-Output: 0
-Explanation: There is no path that walks over every empty square exactly once.
-Note that the starting and ending square can be anywhere in the grid.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[0,1],[2,0]]
+</span><span>Output: 0
+</span><span>Explanation: There is no path that walks over every empty square exactly once.
+</span><span>Note that the starting and ending square can be anywhere in the grid.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == grid.length</code></li>
@@ -159,178 +159,178 @@ Note that the starting and ending square can be anywhere in the grid.
 <li>There is exactly one starting cell and one ending cell.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const char moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-class Solution {
-  char rows;
-  char cols;
-  char start;
-  char finish;
-  char obstacles;
-  char target;
-  char answer;
-  unordered_set&lt;string&gt; cache;
-  vector&lt;bool&gt; visit;
-  string path;
-  void init(vector&lt;vector&lt;int&gt;&gt; &amp;grid) {
-    rows = grid.size();
-    cols = grid.front().size();
-    for(int i = 0; i &lt; rows; ++i) {
-      for(char j = 0; j &lt; cols; ++j) {
-        switch(grid[i][j]) {
-          case 1:
-            start = i * cols + j;
-            break;
-          case 2:
-            finish = i * cols + j;
-            break;
-          case -1:
-            obstacles += 1;
-          default:
-            ;
-        }
-      }
-    }
-    target = rows * cols - obstacles;
-  }
-  bool checkConnection(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
-    queue&lt;pair&lt;char, char&gt;&gt; q;
-    bool vis[rows][cols];
-    memset(vis, 0, sizeof(vis));
-    vis[start &#x2F; cols][start % cols] = true;
-    q.push({start &#x2F; cols, start % cols});
-
-    while(q.size()) {
-      auto [row, col] = q.front();
-      if(row * cols + col == finish) return true;
-      q.pop();
-      for(char i = 0 ; i &lt; 4; ++i) {
-        char newRow = row + moves[i][0];
-        char newCol = col + moves[i][1];
-        if(newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= rows || newCol &gt;= cols) continue;
-        if(vis[newRow][newCol] || grid[newRow][newCol] == -1) continue;
-        vis[newRow][newCol] = true;
-        q.push({newRow, newCol});
-      }
-    }
-    return false;
-  }
-  void solve(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
-    if(cache.count(path)) return;
-    cache.insert(path);
-    &#x2F;&#x2F; cout &lt;&lt; ToHex(path) &lt;&lt; endl;
-
-    char row = path.back() &#x2F; cols;
-    char col = path.back() % cols;
-    if(path.back() == finish) {
-      answer += path.length() == target;
-      return;
-    }
-
-    for(char i = 0; i &lt; 4; ++i) {
-      char newRow = row + moves[i][0];
-      char newCol = col + moves[i][1];
-      if(newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= rows || newCol &gt;= cols) continue;
-      if(visit[newRow * cols + newCol] || grid[newRow][newCol] == -1) continue;
-      visit[newRow * cols + newCol] = true;
-      path.push_back(newRow * cols + newCol);
-      solve(grid);
-      path.pop_back();
-      visit[newRow * cols + newCol] = false;
-    }
-  }
-public:
-  int uniquePathsIII(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
-
-    init(grid);
-    if(!checkConnection(grid)) {
-      return 0;
-    }
-
-    unordered_set&lt;string&gt; cache;
-    visit.resize(rows * cols);
-    path.push_back(start);
-    visit[start] = true;
-    solve(grid);
-
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 39&#x2F;39 cases passed (8 ms)
-&#x2F;&#x2F; Your runtime beats 32.66 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 22.59 % of cpp submissions (10 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const char</span><span> moves[</span><span style="color:#d08770;">4</span><span>][</span><span style="color:#d08770;">2</span><span>] = {{</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>}, {</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}, {</span><span style="color:#d08770;">0</span><span>, -</span><span style="color:#d08770;">1</span><span>}, {-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> rows;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> start;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> finish;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> obstacles;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  unordered_set&lt;string&gt; cache;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; visit;
+</span><span style="color:#eff1f5;">  string path;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    rows </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    cols </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> cols; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">switch</span><span style="color:#eff1f5;">(grid[i][j]) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">case </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">            start </span><span>=</span><span style="color:#eff1f5;"> i </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> j;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">case </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">            finish </span><span>=</span><span style="color:#eff1f5;"> i </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> j;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">case </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">            obstacles </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">default</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">            ;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    target </span><span>=</span><span style="color:#eff1f5;"> rows </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>-</span><span style="color:#eff1f5;"> obstacles;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">checkConnection</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    queue&lt;pair&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt; q;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> vis[rows][cols];
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(vis, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(vis));
+</span><span style="color:#eff1f5;">    vis[start </span><span>/</span><span style="color:#eff1f5;"> cols][start </span><span>%</span><span style="color:#eff1f5;"> cols] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({start </span><span>/</span><span style="color:#eff1f5;"> cols, start </span><span>%</span><span style="color:#eff1f5;"> cols});
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[row, col] </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(row </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> col </span><span>==</span><span style="color:#eff1f5;"> finish) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0 </span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> rows </span><span>||</span><span style="color:#eff1f5;"> newCol </span><span>&gt;=</span><span style="color:#eff1f5;"> cols) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[newRow][newCol] </span><span>||</span><span style="color:#eff1f5;"> grid[newRow][newCol] </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        vis[newRow][newCol] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({newRow, newCol});
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cache.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(path)) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    cache.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(path);
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; ToHex(path) &lt;&lt; endl;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> row </span><span>=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>/</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> col </span><span>=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>%</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(path.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> finish) {
+</span><span style="color:#eff1f5;">      answer </span><span>+=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> rows </span><span>||</span><span style="color:#eff1f5;"> newCol </span><span>&gt;=</span><span style="color:#eff1f5;"> cols) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(visit[newRow </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> newCol] </span><span>||</span><span style="color:#eff1f5;"> grid[newRow][newCol] </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      visit[newRow </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> newCol] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      path.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(newRow </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> newCol);
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(grid);
+</span><span style="color:#eff1f5;">      path.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      visit[newRow </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> newCol] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">uniquePathsIII</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(grid);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#bf616a;">checkConnection</span><span style="color:#eff1f5;">(grid)) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    unordered_set&lt;string&gt; cache;
+</span><span style="color:#eff1f5;">    visit.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(rows </span><span>*</span><span style="color:#eff1f5;"> cols);
+</span><span style="color:#eff1f5;">    path.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(start);
+</span><span style="color:#eff1f5;">    visit[start] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(grid);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 39/39 cases passed (8 ms)
+</span><span style="color:#65737e;">// Your runtime beats 32.66 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 22.59 % of cpp submissions (10 MB)
+</span></code></pre>
 <p>and do some optimization</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const char moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-class Solution {
-  char rows;
-  char cols;
-  char start;
-  char finish;
-  char obstacles;
-  char target;
-  char answer;
-  char count = 1;
-  void init(vector&lt;vector&lt;int&gt;&gt; &amp;grid) {
-    rows = grid.size();
-    cols = grid.front().size();
-    for(int i = 0; i &lt; rows; ++i) {
-      for(char j = 0; j &lt; cols; ++j) {
-        switch(grid[i][j]) {
-          case 1:
-            start = i * cols + j;
-            break;
-          case 2:
-            finish = i * cols + j;
-            break;
-          case -1:
-            obstacles += 1;
-          default:
-            ;
-        }
-      }
-    }
-    target = rows * cols - obstacles;
-  }
-  void solve(vector&lt;vector&lt;int&gt;&gt;&amp; grid, char pos) {
-    &#x2F;&#x2F; cout &lt;&lt; ToHex(path) &lt;&lt; endl;
-
-    char row = pos &#x2F; cols;
-    char col = pos % cols;
-    if(pos == finish) {
-      answer += count == target;
-      return;
-    }
-    grid[row][col] = -1;
-
-    for(char i = 0; i &lt; 4; ++i) {
-      char newRow = row + moves[i][0];
-      char newCol = col + moves[i][1];
-      if(newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= rows || newCol &gt;= cols) continue;
-      if(grid[newRow][newCol] == -1) continue;
-      count += 1;
-      solve(grid, newRow * cols + newCol);
-      count -= 1;
-    }
-    grid[row][col] = 0;
-  }
-public:
-  int uniquePathsIII(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
-
-    init(grid);
-
-    solve(grid, start);
-
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 39&#x2F;39 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 67.27 % of cpp submissions (7.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const char</span><span> moves[</span><span style="color:#d08770;">4</span><span>][</span><span style="color:#d08770;">2</span><span>] = {{</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>}, {</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}, {</span><span style="color:#d08770;">0</span><span>, -</span><span style="color:#d08770;">1</span><span>}, {-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> rows;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> start;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> finish;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> obstacles;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    rows </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    cols </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> cols; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">switch</span><span style="color:#eff1f5;">(grid[i][j]) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">case </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">            start </span><span>=</span><span style="color:#eff1f5;"> i </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> j;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">case </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">            finish </span><span>=</span><span style="color:#eff1f5;"> i </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> j;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">case </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">            obstacles </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">default</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">            ;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    target </span><span>=</span><span style="color:#eff1f5;"> rows </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>-</span><span style="color:#eff1f5;"> obstacles;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char </span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; ToHex(path) &lt;&lt; endl;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> row </span><span>=</span><span style="color:#eff1f5;"> pos </span><span>/</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> col </span><span>=</span><span style="color:#eff1f5;"> pos </span><span>%</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> finish) {
+</span><span style="color:#eff1f5;">      answer </span><span>+=</span><span style="color:#eff1f5;"> count </span><span>==</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    grid[row][col] </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> rows </span><span>||</span><span style="color:#eff1f5;"> newCol </span><span>&gt;=</span><span style="color:#eff1f5;"> cols) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(grid[newRow][newCol] </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(grid, newRow </span><span>*</span><span style="color:#eff1f5;"> cols </span><span>+</span><span style="color:#eff1f5;"> newCol);
+</span><span style="color:#eff1f5;">      count </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    grid[row][col] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">uniquePathsIII</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(grid);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(grid, start);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 39/39 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 67.27 % of cpp submissions (7.1 MB)
+</span></code></pre>
 
     </div>
   </div>

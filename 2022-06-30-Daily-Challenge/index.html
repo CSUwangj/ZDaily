@@ -120,16 +120,16 @@ renderMathInElement(document.body, katex_config);
 <p>In one move, you can increment or decrement an element of the array by <code>1</code>.</p>
 <p>Test cases are designed so that the answer will fit in a <strong>32-bit</strong> integer.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,2,3]
-Output: 2
-Explanation:
-Only two moves are needed (remember each move increments or decrements one element):
-[1,2,3]  =&gt;  [2,2,3]  =&gt;  [2,2,2]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3]
+</span><span>Output: 2
+</span><span>Explanation:
+</span><span>Only two moves are needed (remember each move increments or decrements one element):
+</span><span>[1,2,3]  =&gt;  [2,2,3]  =&gt;  [2,2,2]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1,10,2,9]
-Output: 16
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,10,2,9]
+</span><span>Output: 16
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == nums.length</code></li>
@@ -137,28 +137,28 @@ Output: 16
 <li><code>-10^9 &lt;= nums[i] &lt;= 10^9</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int minMoves2(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    sort(nums.begin(), nums.end());
-    long long sum = 0;
-    for(auto i : nums) sum += i;
-    long long cur = 0;
-    long long answer = INT_MAX;
-    for(long long i = 0; i &lt; len; ++i) {
-      answer = min(answer, (nums[i] * i - cur) + (sum - cur - (len - i) * nums[i]));
-      cur += nums[i];
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 30&#x2F;30 cases passed (16 ms)
-&#x2F;&#x2F; Your runtime beats 55.47 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 15.75 % of cpp submissions (10.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minMoves2</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) sum </span><span>+=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, (nums[i] </span><span>*</span><span style="color:#eff1f5;"> i </span><span>-</span><span style="color:#eff1f5;"> cur) </span><span>+ </span><span style="color:#eff1f5;">(sum </span><span>-</span><span style="color:#eff1f5;"> cur </span><span>- </span><span style="color:#eff1f5;">(len </span><span>-</span><span style="color:#eff1f5;"> i) </span><span>*</span><span style="color:#eff1f5;"> nums[i]));
+</span><span style="color:#eff1f5;">      cur </span><span>+=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 30/30 cases passed (16 ms)
+</span><span style="color:#65737e;">// Your runtime beats 55.47 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 15.75 % of cpp submissions (10.9 MB)
+</span></code></pre>
 
     </div>
   </div>

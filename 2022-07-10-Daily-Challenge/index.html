@@ -148,23 +148,23 @@ The total cost is 6.
 	<li><code>0 &lt;= cost[i] &lt;= 999</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int minCostClimbingStairs(vector&lt;int&gt;&amp; cost) {
-    int dp[3];
-    int len = cost.size();
-    for(int i = 2; i &lt;= len; ++i) {
-      dp[i % 3] = min(dp[(i + 1) % 3] + cost[i - 2], dp[(i + 2) % 3] + cost[i - 1]);
-    }
-    return dp[len % 3];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 283&#x2F;283 cases passed (11 ms)
-&#x2F;&#x2F; Your runtime beats 53.51 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 79.79 % of cpp submissions (13.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minCostClimbingStairs</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">cost</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> cost.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      dp[i </span><span>% </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[(i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>% </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> cost[i </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">], dp[(i </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>% </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> cost[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[len </span><span>% </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 283/283 cases passed (11 ms)
+</span><span style="color:#65737e;">// Your runtime beats 53.51 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 79.79 % of cpp submissions (13.6 MB)
+</span></code></pre>
 
     </div>
   </div>

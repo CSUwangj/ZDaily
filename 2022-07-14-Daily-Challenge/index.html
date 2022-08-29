@@ -119,13 +119,13 @@ renderMathInElement(document.body, katex_config);
 <p>Given two integer arrays <code>preorder</code> and <code>inorder</code> where <code>preorder</code> is the preorder traversal of a binary tree and <code>inorder</code> is the inorder traversal of the same tree, construct and return <em>the binary tree</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg" alt="img" /></p>
-<pre><code>Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
-Output: [3,9,20,null,null,15,7]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+</span><span>Output: [3,9,20,null,null,15,7]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: preorder = [-1], inorder = [-1]
-Output: [-1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: preorder = [-1], inorder = [-1]
+</span><span>Output: [-1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= preorder.length &lt;= 3000</code></li>
@@ -137,41 +137,41 @@ Output: [-1]
 <li><code>inorder</code> is <strong>guaranteed</strong> to be the inorder traversal of the tree.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  TreeNode *build(
-    vector&lt;int&gt;&amp; preorder,
-    int preBegin,
-    int preEnd,
-    vector&lt;int&gt;&amp; inorder,
-    int inBegin,
-    int inEnd
-  ) {
-    if(preBegin &gt; preEnd) return nullptr;
-    int rootIdx = -1;
-    for(int i = inBegin; i &lt;= inEnd; ++i) {
-      if(inorder[i] == preorder[preBegin]) {
-        rootIdx = i;
-        break;
-      }
-    }
-    int offset = rootIdx - inBegin;
-    TreeNode *root = new TreeNode(preorder[preBegin]);
-    root-&gt;left = build(preorder, preBegin + 1, preBegin + offset, inorder, inBegin, inBegin + offset - 1);
-    root-&gt;right = build(preorder, preBegin + offset + 1, preEnd, inorder, inBegin + offset + 1, inEnd);
-    return root;
-  }
-public:
-  TreeNode* buildTree(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) {
-    int len = preorder.size();
-    return build(preorder, 0, len - 1, inorder, 0, len - 1);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 203&#x2F;203 cases passed (44 ms)
-&#x2F;&#x2F; Your runtime beats 40.32 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 79.05 % of cpp submissions (25.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#8fa1b3;">build</span><span style="color:#eff1f5;">(
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">preorder</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">preBegin</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">preEnd</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">inorder</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">inBegin</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> inEnd
+</span><span style="color:#eff1f5;">  ) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(preBegin </span><span>&gt;</span><span style="color:#eff1f5;"> preEnd) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rootIdx </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> inBegin; i </span><span>&lt;=</span><span style="color:#eff1f5;"> inEnd; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(inorder[i] </span><span>==</span><span style="color:#eff1f5;"> preorder[preBegin]) {
+</span><span style="color:#eff1f5;">        rootIdx </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> offset </span><span>=</span><span style="color:#eff1f5;"> rootIdx </span><span>-</span><span style="color:#eff1f5;"> inBegin;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">root </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(preorder[preBegin]);
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(preorder, preBegin </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, preBegin </span><span>+</span><span style="color:#eff1f5;"> offset, inorder, inBegin, inBegin </span><span>+</span><span style="color:#eff1f5;"> offset </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(preorder, preBegin </span><span>+</span><span style="color:#eff1f5;"> offset </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, preEnd, inorder, inBegin </span><span>+</span><span style="color:#eff1f5;"> offset </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, inEnd);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">buildTree</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">preorder</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">inorder</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> preorder.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(preorder, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, inorder, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 203/203 cases passed (44 ms)
+</span><span style="color:#65737e;">// Your runtime beats 40.32 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 79.05 % of cpp submissions (25.9 MB)
+</span></code></pre>
 
     </div>
   </div>

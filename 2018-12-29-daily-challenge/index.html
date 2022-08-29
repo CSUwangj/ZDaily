@@ -115,166 +115,166 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Special Pythagorean triplet</em> in <em>Rust</em> and <em>Dota2 Senate</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Special Pythagorean triplet
-
-Problem 9 
-
-A Pythagorean triplet is a set of three natural numbers, a &lt; b &lt; c, for which,
-
-a^2 + b^2 = c^2
-For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
-
-There exists exactly one Pythagorean triplet for which a + b + c = 1000.
-Find the product abc.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Special Pythagorean triplet
+</span><span>
+</span><span>Problem 9 
+</span><span>
+</span><span>A Pythagorean triplet is a set of three natural numbers, a &lt; b &lt; c, for which,
+</span><span>
+</span><span>a^2 + b^2 = c^2
+</span><span>For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
+</span><span>
+</span><span>There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+</span><span>Find the product abc.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>Brute force is still enough.</p>
 <p>And I implicated the solution in the overview, but I need some time to digest it.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut a: (i32, i32, i32);
-    a = pythagorean_triplet_brute(1000);
-    println!(&quot;a = {}\nb = {}\nc = {}\nAnswer is {}&quot;,a.0,a.1,a.2,a.0*a.1*a.2);
-    a = pythagorean_triplet(1000);
-    println!(&quot;a = {}\nb = {}\nc = {}\nAnswer is {}&quot;,a.0,a.1,a.2,a.0*a.1*a.2);
-}
-
-fn pythagorean_triplet_brute(n: i32) -&gt; (i32, i32, i32) {
-    let mut a = 0;
-    let mut b = 0;
-    let mut c = 0;
-    for i in 1..(n&#x2F;3)+1 {
-        for j in 1..(n-i)&#x2F;2 {
-            let k = n - i - j;
-            if !(i&lt;j&amp;&amp;j&lt;k) {
-                continue;
-            }
-            if i*i + j*j == k*k {
-                c = k;
-                b = j;
-                a = i;
-            }
-        }
-    }
-    (a, b, c)
-}
-
-&#x2F;&#x2F; Only return first Pythagorean triplet
-fn pythagorean_triplet(s: i32) -&gt; (i32, i32, i32) {
-    let s2: i32 = s &#x2F;2;
-    let mut sm: i32;
-    let mut k: i32;
-    let mut tmp: f64 = (s2 as f64) &#x2F; 2f64;
-    let d: i32;
-    let n: i32;
-    tmp = tmp.sqrt().ceil();
-    let mlimit: i32 = tmp as i32;
-    for m in 2..mlimit {
-        if s2 % m == 0 {
-            sm = s2 &#x2F; m;
-            while sm % 2 == 0 {
-                sm &#x2F;= 2;
-            }
-            if m % 2 == 1 {
-                k = m + 2;
-            }else {
-                k = m + 1;
-            }
-            while k &lt; 2*m &amp;&amp; k &lt;= sm {
-                if sm % k == 0 &amp;&amp; gcd(k, m) == 1 {
-                    d = s2 &#x2F; (k*m);
-                    n = k-m;
-                    return (d*(m*m-n*n),2*d*m*n,d*(m*m+n*n));
-                }
-                k += 2;
-            }
-        }
-    }
-    (0, 0, 0)
-}
-
-fn gcd(mut a: i32, mut b: i32) -&gt; i32 {
-    let mut tmp: i32;
-    while b!= 0 {
-        tmp = a;
-        a = b;
-        b = tmp % b;
-    }
-    a
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> a: (</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">i32</span><span>);
+</span><span>    a = </span><span style="color:#96b5b4;">pythagorean_triplet_brute</span><span>(</span><span style="color:#d08770;">1000</span><span>);
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">a = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">b = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">c = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;,a.</span><span style="color:#d08770;">0</span><span>,a.</span><span style="color:#d08770;">1</span><span>,a.</span><span style="color:#d08770;">2</span><span>,a.</span><span style="color:#d08770;">0</span><span>*a.</span><span style="color:#d08770;">1</span><span>*a.</span><span style="color:#d08770;">2</span><span>);
+</span><span>    a = </span><span style="color:#96b5b4;">pythagorean_triplet</span><span>(</span><span style="color:#d08770;">1000</span><span>);
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">a = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">b = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">c = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;,a.</span><span style="color:#d08770;">0</span><span>,a.</span><span style="color:#d08770;">1</span><span>,a.</span><span style="color:#d08770;">2</span><span>,a.</span><span style="color:#d08770;">0</span><span>*a.</span><span style="color:#d08770;">1</span><span>*a.</span><span style="color:#d08770;">2</span><span>);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">pythagorean_triplet_brute</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">i32</span><span>) -&gt; (</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">i32</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> a = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> b = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> c = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..(n/</span><span style="color:#d08770;">3</span><span>)+</span><span style="color:#d08770;">1 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">1</span><span>..(n-i)/</span><span style="color:#d08770;">2 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">let</span><span> k = n - i - j;
+</span><span>            </span><span style="color:#b48ead;">if </span><span>!(i&lt;j&amp;&amp;j&lt;k) </span><span style="background-color:#bf616a;color:#2b303b;">{</span><span>
+</span><span>                continue</span><span style="background-color:#bf616a;color:#2b303b;">;</span><span>
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if</span><span> i*i + j*j == k*k {
+</span><span>                c = k;
+</span><span>                b = j;
+</span><span>                a = i;
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    (a, b, c)
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">// Only return first Pythagorean triplet
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">pythagorean_triplet</span><span>(</span><span style="color:#bf616a;">s</span><span>: </span><span style="color:#b48ead;">i32</span><span>) -&gt; (</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">i32</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> s2: </span><span style="color:#b48ead;">i32 </span><span>= s /</span><span style="color:#d08770;">2</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> sm: </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> k: </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> tmp: </span><span style="color:#b48ead;">f64 </span><span>= (s2 as </span><span style="color:#b48ead;">f64</span><span>) / </span><span style="color:#d08770;">2</span><span style="color:#b48ead;">f64</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> d: </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> n: </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>    tmp = tmp.</span><span style="color:#96b5b4;">sqrt</span><span>().</span><span style="color:#96b5b4;">ceil</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let</span><span> mlimit: </span><span style="color:#b48ead;">i32 </span><span>= tmp as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> m in </span><span style="color:#d08770;">2</span><span>..mlimit {
+</span><span>        </span><span style="color:#b48ead;">if</span><span> s2 % m == </span><span style="color:#d08770;">0 </span><span>{
+</span><span>            sm = s2 / m;
+</span><span>            </span><span style="color:#b48ead;">while</span><span> sm % </span><span style="color:#d08770;">2 </span><span>== </span><span style="color:#d08770;">0 </span><span>{
+</span><span>                sm /= </span><span style="color:#d08770;">2</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if</span><span> m % </span><span style="color:#d08770;">2 </span><span>== </span><span style="color:#d08770;">1 </span><span>{
+</span><span>                k = m + </span><span style="color:#d08770;">2</span><span>;
+</span><span>            }</span><span style="color:#b48ead;">else </span><span>{
+</span><span>                k = m + </span><span style="color:#d08770;">1</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">while</span><span> k &lt; </span><span style="color:#d08770;">2</span><span>*m &amp;&amp; k &lt;= sm {
+</span><span>                </span><span style="color:#b48ead;">if</span><span> sm % k == </span><span style="color:#d08770;">0 </span><span>&amp;&amp; </span><span style="color:#96b5b4;">gcd</span><span>(k, m) == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>                    d = s2 / (k*m);
+</span><span>                    n = k-m;
+</span><span>                    </span><span style="color:#b48ead;">return </span><span>(d*(m*m-n*n),</span><span style="color:#d08770;">2</span><span>*d*m*n,d*(m*m+n*n));
+</span><span>                }
+</span><span>                k += </span><span style="color:#d08770;">2</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    (</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">gcd</span><span>(</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">a</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">b</span><span>: </span><span style="color:#b48ead;">i32</span><span>) -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> tmp: </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span> b!= </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        tmp = a;
+</span><span>        a = b;
+</span><span>        b = tmp % b;
+</span><span>    }
+</span><span>    a
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>649. Dota2 Senate
-
-In the world of Dota2, there are two parties: the Radiant and the Dire.
-
-The Dota2 senate consists of senators coming from two parties. Now the senate wants to make a decision about a change in the Dota2 game. The voting for this change is a round-based procedure. In each round, each senator can exercise one of the two rights:
-
-Ban one senator&#x27;s right: 
-A senator can make another senator lose all his rights in this and all the following rounds.
-Announce the victory: 
-If this senator found the senators who still have rights to vote are all from the same party, he can announce the victory and make the decision about the change in the game.
-Given a string representing each senator&#x27;s party belonging. The character &#x27;R&#x27; and &#x27;D&#x27; represent the Radiant party and the Dire party respectively. Then if there are n senators, the size of the given string will be n.
-
-The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.
-
-Suppose every senator is smart enough and will play the best strategy for his own party, you need to predict which party will finally announce the victory and make the change in the Dota2 game. The output should be Radiant or Dire.
-
-Example 1:
-Input: &quot;RD&quot;
-Output: &quot;Radiant&quot;
-Explanation: The first senator comes from Radiant and he can just ban the next senator&#x27;s right in the round 1. 
-And the second senator can&#x27;t exercise any rights any more since his right has been banned. 
-And in the round 2, the first senator can just announce the victory since he is the only guy in the senate who can vote.
-Example 2:
-Input: &quot;RDD&quot;
-Output: &quot;Dire&quot;
-Explanation: 
-The first senator comes from Radiant and he can just ban the next senator&#x27;s right in the round 1. 
-And the second senator can&#x27;t exercise any rights anymore since his right has been banned. 
-And the third senator comes from Dire and he can ban the first senator&#x27;s right in the round 1. 
-And in the round 2, the third senator can just announce the victory since he is the only guy in the senate who can vote.
-Note:
-The length of the given string will in the range [1, 10,000].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>649. Dota2 Senate
+</span><span>
+</span><span>In the world of Dota2, there are two parties: the Radiant and the Dire.
+</span><span>
+</span><span>The Dota2 senate consists of senators coming from two parties. Now the senate wants to make a decision about a change in the Dota2 game. The voting for this change is a round-based procedure. In each round, each senator can exercise one of the two rights:
+</span><span>
+</span><span>Ban one senator&#39;s right: 
+</span><span>A senator can make another senator lose all his rights in this and all the following rounds.
+</span><span>Announce the victory: 
+</span><span>If this senator found the senators who still have rights to vote are all from the same party, he can announce the victory and make the decision about the change in the game.
+</span><span>Given a string representing each senator&#39;s party belonging. The character &#39;R&#39; and &#39;D&#39; represent the Radiant party and the Dire party respectively. Then if there are n senators, the size of the given string will be n.
+</span><span>
+</span><span>The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.
+</span><span>
+</span><span>Suppose every senator is smart enough and will play the best strategy for his own party, you need to predict which party will finally announce the victory and make the change in the Dota2 game. The output should be Radiant or Dire.
+</span><span>
+</span><span>Example 1:
+</span><span>Input: &quot;RD&quot;
+</span><span>Output: &quot;Radiant&quot;
+</span><span>Explanation: The first senator comes from Radiant and he can just ban the next senator&#39;s right in the round 1. 
+</span><span>And the second senator can&#39;t exercise any rights any more since his right has been banned. 
+</span><span>And in the round 2, the first senator can just announce the victory since he is the only guy in the senate who can vote.
+</span><span>Example 2:
+</span><span>Input: &quot;RDD&quot;
+</span><span>Output: &quot;Dire&quot;
+</span><span>Explanation: 
+</span><span>The first senator comes from Radiant and he can just ban the next senator&#39;s right in the round 1. 
+</span><span>And the second senator can&#39;t exercise any rights anymore since his right has been banned. 
+</span><span>And the third senator comes from Dire and he can ban the first senator&#39;s right in the round 1. 
+</span><span>And in the round 2, the third senator can just announce the victory since he is the only guy in the senate who can vote.
+</span><span>Note:
+</span><span>The length of the given string will in the range [1, 10,000].
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>I came up a Greedy method which said that when it comes to an unbanned senator, its best choice is ban the opponent which near him most but behind it. If no opponent is behind it, then the best choice is ban the front unbanned opponent.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;**
- * @param {string} senate
- * @return {string}
- *&#x2F;
-var predictPartyVictory = (senate) =&gt; {
-  let q = [];
-  let banQ = 0;
-  let banR = 0;
-  for(const s of senate){
-    q.push(s);
-  }
-  let last_round_len;
-  do {
-    last_round_len = q.length;
-    for(let i = 0; i &lt; last_round_len; ++i){
-      const tmp = q.shift();
-      if(tmp === &quot;R&quot;){
-        if(banR) --banR;
-        else{
-          ++banQ;
-          q.push(tmp);
-        }
-      }else{
-        if(banQ) --banQ;
-        else{
-          ++banR;
-          q.push(tmp);
-        }
-      }
-    }
-  }while(q.length != last_round_len);
-  return (q[0]===&quot;R&quot;)?&quot;Radiant&quot;:&quot;Dire&quot;;
-};
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">senate
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{string}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">predictPartyVictory </span><span>= (</span><span style="color:#bf616a;">senate</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">q </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">banQ </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">banR </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">s </span><span>of </span><span style="color:#bf616a;">senate</span><span>){
+</span><span>    </span><span style="color:#bf616a;">q</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">s</span><span>);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">last_round_len</span><span>;
+</span><span>  </span><span style="color:#b48ead;">do </span><span>{
+</span><span>    </span><span style="color:#bf616a;">last_round_len </span><span>= </span><span style="color:#bf616a;">q</span><span>.length;
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">last_round_len</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">tmp </span><span>= </span><span style="color:#bf616a;">q</span><span>.</span><span style="color:#96b5b4;">shift</span><span>();
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">tmp </span><span>=== &quot;</span><span style="color:#a3be8c;">R</span><span>&quot;){
+</span><span>        </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">banR</span><span>) --</span><span style="color:#bf616a;">banR</span><span>;
+</span><span>        </span><span style="color:#b48ead;">else</span><span>{
+</span><span>          ++</span><span style="color:#bf616a;">banQ</span><span>;
+</span><span>          </span><span style="color:#bf616a;">q</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">tmp</span><span>);
+</span><span>        }
+</span><span>      }</span><span style="color:#b48ead;">else</span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">banQ</span><span>) --</span><span style="color:#bf616a;">banQ</span><span>;
+</span><span>        </span><span style="color:#b48ead;">else</span><span>{
+</span><span>          ++</span><span style="color:#bf616a;">banR</span><span>;
+</span><span>          </span><span style="color:#bf616a;">q</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">tmp</span><span>);
+</span><span>        }
+</span><span>      }
+</span><span>    }
+</span><span>  }</span><span style="color:#b48ead;">while</span><span>(</span><span style="color:#bf616a;">q</span><span>.length != </span><span style="color:#bf616a;">last_round_len</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span>(</span><span style="color:#bf616a;">q</span><span>[</span><span style="color:#d08770;">0</span><span>]===&quot;</span><span style="color:#a3be8c;">R</span><span>&quot;)?&quot;</span><span style="color:#a3be8c;">Radiant</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">Dire</span><span>&quot;;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

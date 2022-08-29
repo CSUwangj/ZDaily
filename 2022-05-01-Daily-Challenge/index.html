@@ -119,20 +119,20 @@ renderMathInElement(document.body, katex_config);
 <p>Given two strings <code>s</code> and <code>t</code>, return <code>true</code> <em>if they are equal when both are typed into empty text editors</em>. <code>'#'</code> means a backspace character.</p>
 <p>Note that after backspacing an empty text, the text will continue empty.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;ab#c&quot;, t = &quot;ad#c&quot;
-Output: true
-Explanation: Both s and t become &quot;ac&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;ab#c&quot;, t = &quot;ad#c&quot;
+</span><span>Output: true
+</span><span>Explanation: Both s and t become &quot;ac&quot;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;ab##&quot;, t = &quot;c#d#&quot;
-Output: true
-Explanation: Both s and t become &quot;&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;ab##&quot;, t = &quot;c#d#&quot;
+</span><span>Output: true
+</span><span>Explanation: Both s and t become &quot;&quot;.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;a#c&quot;, t = &quot;b&quot;
-Output: false
-Explanation: s becomes &quot;c&quot; while t becomes &quot;b&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;a#c&quot;, t = &quot;b&quot;
+</span><span>Output: false
+</span><span>Explanation: s becomes &quot;c&quot; while t becomes &quot;b&quot;.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length, t.length &lt;= 200</code></li>
@@ -140,40 +140,40 @@ Explanation: s becomes &quot;c&quot; while t becomes &quot;b&quot;.
 </ul>
 <p><strong>Follow up:</strong> Can you solve it in <code>O(n)</code> time and <code>O(1)</code> space?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  char nextChar(const string &amp;s, int &amp;pos) {
-    int backspace = 0;
-    while(pos &gt;= 0 &amp;&amp; (backspace || s[pos] == &#x27;#&#x27;)) {
-      if(s[pos] == &#x27;#&#x27;) {
-        backspace += 1;
-      } else {
-        backspace -= 1;
-      }
-      pos -= 1;
-    }
-    if(pos &lt; 0) return -1;
-    return s[pos];
-  }
-public:
-  bool backspaceCompare(string s, string t) {
-    int sPos = s.length() - 1;
-    int tPos = t.length() - 1;
-    while(sPos &gt;= 0 || tPos &gt;= 0) {
-      char cS = nextChar(s, sPos);
-      char cT = nextChar(t, tPos);
-      if(cS != cT) return false;
-      sPos -= 1;
-      tPos -= 1;
-    }
-    return true;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 114&#x2F;114 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 27.99 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 88.07 % of cpp submissions (6.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">char </span><span style="color:#8fa1b3;">nextChar</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> backspace </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp; </span><span style="color:#eff1f5;">(backspace </span><span>||</span><span style="color:#eff1f5;"> s[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">#</span><span>&#39;</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">#</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        backspace </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        backspace </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      pos </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> s[pos];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">backspaceCompare</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">t</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sPos </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tPos </span><span>=</span><span style="color:#eff1f5;"> t.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sPos </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> tPos </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> cS </span><span>= </span><span style="color:#bf616a;">nextChar</span><span style="color:#eff1f5;">(s, </span><span style="color:#bf616a;">sPos</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> cT </span><span>= </span><span style="color:#bf616a;">nextChar</span><span style="color:#eff1f5;">(t, tPos);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cS </span><span>!=</span><span style="color:#eff1f5;"> cT) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">sPos </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      tPos </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 114/114 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 27.99 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 88.07 % of cpp submissions (6.1 MB)
+</span></code></pre>
 
     </div>
   </div>

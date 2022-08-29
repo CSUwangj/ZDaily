@@ -128,20 +128,20 @@ renderMathInElement(document.body, katex_config);
 <li><code>double findMedian()</code> returns the median of all elements so far. Answers within <code>10-5</code> of the actual answer will be accepted.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;MedianFinder&quot;, &quot;addNum&quot;, &quot;addNum&quot;, &quot;findMedian&quot;, &quot;addNum&quot;, &quot;findMedian&quot;]
-[[], [1], [2], [], [3], []]
-Output
-[null, null, null, 1.5, null, 2.0]
-
-Explanation
-MedianFinder medianFinder = new MedianFinder();
-medianFinder.addNum(1);    &#x2F;&#x2F; arr = [1]
-medianFinder.addNum(2);    &#x2F;&#x2F; arr = [1, 2]
-medianFinder.findMedian(); &#x2F;&#x2F; return 1.5 (i.e., (1 + 2) &#x2F; 2)
-medianFinder.addNum(3);    &#x2F;&#x2F; arr[1, 2, 3]
-medianFinder.findMedian(); &#x2F;&#x2F; return 2.0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;MedianFinder&quot;, &quot;addNum&quot;, &quot;addNum&quot;, &quot;findMedian&quot;, &quot;addNum&quot;, &quot;findMedian&quot;]
+</span><span>[[], [1], [2], [], [3], []]
+</span><span>Output
+</span><span>[null, null, null, 1.5, null, 2.0]
+</span><span>
+</span><span>Explanation
+</span><span>MedianFinder medianFinder = new MedianFinder();
+</span><span>medianFinder.addNum(1);    // arr = [1]
+</span><span>medianFinder.addNum(2);    // arr = [1, 2]
+</span><span>medianFinder.findMedian(); // return 1.5 (i.e., (1 + 2) / 2)
+</span><span>medianFinder.addNum(3);    // arr[1, 2, 3]
+</span><span>medianFinder.findMedian(); // return 2.0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 	<li><code>-10<sup>5</sup> &lt;= num &lt;= 10<sup>5</sup></code></li>
@@ -154,114 +154,114 @@ medianFinder.findMedian(); &#x2F;&#x2F; return 2.0
 <li>If <code>99%</code> of all integer numbers from the stream are in the range <code>[0, 100]</code>, how would you optimize your solution?</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class MedianFinder {
-  priority_queue&lt;int&gt; greaterQ;
-  priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; lessQ;
-public:
-  &#x2F;** initialize your data structure here. *&#x2F;
-  MedianFinder() { }
-  
-  void addNum(int num) {
-    if(greaterQ.size() &amp;&amp; greaterQ.top() &lt;= num) {
-      lessQ.push(num);
-    } else {
-      if(greaterQ.size()) {
-        lessQ.push(greaterQ.top());
-        greaterQ.pop();
-      }
-      greaterQ.push(num);
-    }
-    if(lessQ.size() &gt; greaterQ.size()) {
-      greaterQ.push(lessQ.top());
-      lessQ.pop();
-    }
-  }
-  
-  double findMedian() {
-    if(greaterQ.size() &gt; lessQ.size()) {
-      return greaterQ.top();
-    } else {
-      return (greaterQ.top() + lessQ.top()) &#x2F; 2.0;
-    }
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 18&#x2F;18 cases passed (180 ms)
-&#x2F;&#x2F; Your runtime beats 15.97 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 20.18 % of cpp submissions (47.1 MB)
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-#define lowbit(x) (x &amp; (-x))
-const int SIZE = 200002;
-int BITS[SIZE];
-void add(int x) {
-  while(x &lt; SIZE) {
-    BITS[x] += 1;
-    x += lowbit(x);
-  }
-}
-int sum(int x) {
-  int result = 0;
-  while(x) {
-    result += BITS[x];
-    x -= lowbit(x);
-  }
-  return result;
-}
-class MedianFinder {
-  int size = 0;
-  int low = INT_MAX;
-  int high = INT_MIN;
-  int get(int cnt) {
-    int start = low;
-    int end = high;
-    while(start &lt; end) {
-      int mid = (start + end) &gt;&gt; 1;
-      if(sum(mid) &lt; cnt) {
-        start = mid + 1;
-      } else {
-        end = mid;
-      }
-    }
-    return start;
-  }
-public:
-  &#x2F;** initialize your data structure here. *&#x2F;
-  MedianFinder() { 
-    memset(BITS, 0, sizeof(BITS));
-  }
-  
-  void addNum(int num) {
-    low = min(low, num + 100001);
-    high = max(high, num + 100001);
-    size += 1;
-    add(num + 100001);
-  }
-  
-  double findMedian() {
-    if(low == high) return low - 100001;
-    if(size &amp; 1) return get(size &#x2F; 2 + 1) - 100001;
-    return (get(size &#x2F; 2) + get(size &#x2F; 2 + 1)) &#x2F; 2.0 - 100001;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 18&#x2F;18 cases passed (88 ms)
-&#x2F;&#x2F; Your runtime beats 97.8 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 19.92 % of cpp submissions (47.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MedianFinder </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  priority_queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; greaterQ;
+</span><span style="color:#eff1f5;">  priority_queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;, greater&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; lessQ;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** initialize your data structure here. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">MedianFinder</span><span style="color:#eff1f5;">() { }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">addNum</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(greaterQ.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> greaterQ.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">() </span><span>&lt;=</span><span style="color:#eff1f5;"> num) {
+</span><span style="color:#eff1f5;">      lessQ.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(num);
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(greaterQ.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        lessQ.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(greaterQ.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        greaterQ.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      greaterQ.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(num);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lessQ.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> greaterQ.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      greaterQ.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(lessQ.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      lessQ.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">double </span><span style="color:#8fa1b3;">findMedian</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(greaterQ.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> lessQ.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> greaterQ.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(greaterQ.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">() </span><span>+</span><span style="color:#eff1f5;"> lessQ.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">()) </span><span>/ </span><span style="color:#d08770;">2.0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 18/18 cases passed (180 ms)
+</span><span style="color:#65737e;">// Your runtime beats 15.97 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 20.18 % of cpp submissions (47.1 MB)
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">#define </span><span style="color:#8fa1b3;">lowbit</span><span>(</span><span style="color:#bf616a;">x</span><span>) (x &amp; (-x))
+</span><span style="color:#b48ead;">const int</span><span> SIZE = </span><span style="color:#d08770;">200002</span><span>;
+</span><span style="color:#b48ead;">int</span><span> BITS[SIZE];
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">add</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(x &lt; SIZE) {
+</span><span>    BITS[x] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    x += </span><span style="color:#bf616a;">lowbit</span><span>(x);
+</span><span>  }
+</span><span>}
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sum</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> result = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(x) {
+</span><span>    result += BITS[x];
+</span><span>    x -= </span><span style="color:#bf616a;">lowbit</span><span>(x);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> result;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MedianFinder </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> size </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> low </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> high </span><span>=</span><span style="color:#eff1f5;"> INT_MIN;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">get</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cnt</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> start </span><span>=</span><span style="color:#eff1f5;"> low;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> high;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(start </span><span>+</span><span style="color:#eff1f5;"> end) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">(mid) </span><span>&lt;</span><span style="color:#eff1f5;"> cnt) {
+</span><span style="color:#eff1f5;">        start </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> start;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** initialize your data structure here. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">MedianFinder</span><span style="color:#eff1f5;">() { 
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(BITS, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(BITS));
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">addNum</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    low </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(low, num </span><span>+ </span><span style="color:#d08770;">100001</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    high </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(high, num </span><span>+ </span><span style="color:#d08770;">100001</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    size </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(num </span><span>+ </span><span style="color:#d08770;">100001</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">double </span><span style="color:#8fa1b3;">findMedian</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(low </span><span>==</span><span style="color:#eff1f5;"> high) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> low </span><span>- </span><span style="color:#d08770;">100001</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(size </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">get</span><span style="color:#eff1f5;">(size </span><span>/ </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>- </span><span style="color:#d08770;">100001</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">get</span><span style="color:#eff1f5;">(size </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>+ </span><span style="color:#bf616a;">get</span><span style="color:#eff1f5;">(size </span><span>/ </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) </span><span>/ </span><span style="color:#d08770;">2.0 </span><span>- </span><span style="color:#d08770;">100001</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 18/18 cases passed (88 ms)
+</span><span style="color:#65737e;">// Your runtime beats 97.8 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 19.92 % of cpp submissions (47.1 MB)
+</span></code></pre>
 
     </div>
   </div>

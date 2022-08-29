@@ -121,23 +121,23 @@ renderMathInElement(document.body, katex_config);
 <p>Each special offer is represented in the form of an array, the last number represents the price you need to pay for this special offer, other numbers represents how many specific items you could get if you buy this offer.</p>
 <p>You could use any of special offers as many times as you want.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [2,5], [[3,0,5],[1,2,10]], [3,2]
-Output: 14
-Explanation: 
-There are two kinds of items, A and B. Their prices are $2 and $5 respectively. 
-In special offer 1, you can pay $5 for 3A and 0B
-In special offer 2, you can pay $10 for 1A and 2B. 
-You need to buy 3A and 2B, so you may pay $10 for 1A and 2B (special offer #2), and $4 for 2A.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [2,5], [[3,0,5],[1,2,10]], [3,2]
+</span><span>Output: 14
+</span><span>Explanation: 
+</span><span>There are two kinds of items, A and B. Their prices are $2 and $5 respectively. 
+</span><span>In special offer 1, you can pay $5 for 3A and 0B
+</span><span>In special offer 2, you can pay $10 for 1A and 2B. 
+</span><span>You need to buy 3A and 2B, so you may pay $10 for 1A and 2B (special offer #2), and $4 for 2A.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [2,3,4], [[1,1,0,4],[2,2,1,9]], [1,2,1]
-Output: 11
-Explanation: 
-The price of A is $2, and $3 for B, $4 for C. 
-You may pay $4 for 1A and 1B, and $9 for 2A ,2B and 1C. 
-You need to buy 1A ,2B and 1C, so you may pay $4 for 1A and 1B (special offer #1), and $3 for 1B, $4 for 1C. 
-You cannot add more items, though only $9 for 2A ,2B and 1C.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [2,3,4], [[1,1,0,4],[2,2,1,9]], [1,2,1]
+</span><span>Output: 11
+</span><span>Explanation: 
+</span><span>The price of A is $2, and $3 for B, $4 for C. 
+</span><span>You may pay $4 for 1A and 1B, and $9 for 2A ,2B and 1C. 
+</span><span>You need to buy 1A ,2B and 1C, so you may pay $4 for 1A and 1B (special offer #1), and $3 for 1B, $4 for 1C. 
+</span><span>You cannot add more items, though only $9 for 2A ,2B and 1C.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>There are at most 6 kinds of items, 100 special offers.</li>
@@ -146,49 +146,49 @@ You cannot add more items, though only $9 for 2A ,2B and 1C.
 </ol>
 <h2 id="solution">Solution</h2>
 <p>DFS</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    int answer = INT_MAX;
-    void plus(vector&lt;int&gt; &amp;current, vector&lt;int&gt; &amp;offer) {
-        for(int i = 0; i &lt; current.size(); ++i) {
-            current[i] += offer[i];
-        }
-    }
-    
-    void minus(vector&lt;int&gt; &amp;current, vector&lt;int&gt; &amp;offer) {
-        for(int i = 0; i &lt; current.size(); ++i) {
-            current[i] -= offer[i];
-        }
-    }
-    
-    bool sat(vector&lt;int&gt; &amp;current, vector&lt;int&gt; &amp;needs) {
-        for(int i = 0; i &lt; needs.size(); ++i) {
-            if(current[i] &gt; needs[i]) return false;
-        }
-        return true;
-    }
-    
-    void dfs(vector&lt;int&gt; &amp;price, vector&lt;vector&lt;int&gt;&gt; &amp;special, vector&lt;int&gt; &amp;needs, vector&lt;int&gt; &amp;current) {
-        int result = current.back();
-        for(int i = 0; i &lt; needs.size(); ++i) {
-            result += (needs[i]-current[i])*price[i];
-        }
-        answer = min(answer, result);
-        for(auto &amp;offer : special) {
-            plus(current, offer);
-            if(sat(current, needs)) {
-                dfs(price, special, needs, current);
-            }
-            minus(current, offer);
-        }
-    }
-public:
-    int shoppingOffers(vector&lt;int&gt; &amp;price, vector&lt;vector&lt;int&gt;&gt; &amp;special, vector&lt;int&gt; &amp;needs) {
-        vector&lt;int&gt; current(needs.size()+1);
-        dfs(price, special, needs, current);
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">plus</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">offer</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> current.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            current[i] </span><span>+=</span><span style="color:#eff1f5;"> offer[i];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">minus</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">offer</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> current.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            current[i] </span><span>-=</span><span style="color:#eff1f5;"> offer[i];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">sat</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">needs</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> needs.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current[i] </span><span>&gt;</span><span style="color:#eff1f5;"> needs[i]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">price</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">special</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">needs</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>=</span><span style="color:#eff1f5;"> current.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> needs.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            result </span><span>+= </span><span style="color:#eff1f5;">(needs[i]</span><span>-</span><span style="color:#eff1f5;">current[i])</span><span>*</span><span style="color:#eff1f5;">price[i];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, result);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">offer </span><span>:</span><span style="color:#eff1f5;"> special) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">plus</span><span style="color:#eff1f5;">(current, offer);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sat</span><span style="color:#eff1f5;">(current, needs)) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(price, special, needs, current);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">minus</span><span style="color:#eff1f5;">(current, offer);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">shoppingOffers</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">price</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">special</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">needs</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">(needs.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(price, special, needs, current);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="smallest-range-i">Smallest Range I</h1>
 <h2 id="description-1">Description</h2>
 <p>Given an array A of integers, for each integer A[i] we may choose any x with -K &lt;= x &lt;= K, and add x to A[i].</p>
@@ -212,18 +212,18 @@ Explanation: B = [3,3,3] or B = [4,4,4]</p>
 0 &lt;= K &lt;= 10000</p>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int smallestRangeI(vector&lt;int&gt;&amp; A, int K) {
-        int mmin = INT_MAX, mmax = INT_MIN;
-        for(auto i : A) {
-            mmin = min(i, mmin);
-            mmax = max(i, mmax);
-        }
-        return max(0, mmax-mmin-2*K);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">smallestRangeI</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">K</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mmin </span><span>=</span><span style="color:#eff1f5;"> INT_MAX, mmax </span><span>=</span><span style="color:#eff1f5;"> INT_MIN;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> A) {
+</span><span style="color:#eff1f5;">            mmin </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(i, mmin);
+</span><span style="color:#eff1f5;">            mmax </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(i, mmax);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, mmax</span><span>-</span><span style="color:#eff1f5;">mmin</span><span>-</span><span style="color:#d08770;">2</span><span>*</span><span style="color:#eff1f5;">K);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-21">December LeetCoding Challenge 21</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Smallest Range II</strong></p>
@@ -231,20 +231,20 @@ public:
 <p>After this process, we have some array <code>B</code>.</p>
 <p>Return the smallest possible difference between the maximum value of <code>B</code> and the minimum value of <code>B</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: A = [1], K = 0
-Output: 0
-Explanation: B = [1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: A = [1], K = 0
+</span><span>Output: 0
+</span><span>Explanation: B = [1]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: A = [0,10], K = 2
-Output: 6
-Explanation: B = [2,8]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: A = [0,10], K = 2
+</span><span>Output: 6
+</span><span>Explanation: B = [2,8]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: A = [1,3,6], K = 3
-Output: 3
-Explanation: B = [4,6,3]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: A = [1,3,6], K = 3
+</span><span>Output: 3
+</span><span>Explanation: B = [4,6,3]
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>1 &lt;= A.length &lt;= 10000</code></li>
@@ -253,22 +253,22 @@ Explanation: B = [4,6,3]
 </ol>
 <h2 id="solution-2">Solution</h2>
 <p>need more time to think.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int smallestRangeII(vector&lt;int&gt;&amp; A, int K) {
-        int mmin = INT_MAX, mmax = INT_MIN;
-        sort(A.begin(), A.end());
-        int len = A.size();
-        int answer = A.back()-A.front();
-        for(int i = 0; i &lt; len-1; ++i) {
-            int high = max(A.back()-K, A[i]+K);
-            int low = min(A.front()+K, A[i+1]-K);
-            answer = min(high-low, answer);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">smallestRangeII</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">K</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mmin </span><span>=</span><span style="color:#eff1f5;"> INT_MAX, mmax </span><span>=</span><span style="color:#eff1f5;"> INT_MIN;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(A.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), A.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()</span><span>-</span><span style="color:#eff1f5;">A.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> high </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(A.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()</span><span>-</span><span style="color:#eff1f5;">K, A[i]</span><span>+</span><span style="color:#eff1f5;">K);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> low </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(A.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">()</span><span>+</span><span style="color:#eff1f5;">K, A[i</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#eff1f5;">K);
+</span><span style="color:#eff1f5;">            answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(high</span><span>-</span><span style="color:#eff1f5;">low, answer);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

@@ -120,19 +120,19 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the minimum possible value</em> of <code>|func(arr, l, r) - target|</code>.</p>
 <p>Notice that <code>func</code> should be called with the values <code>l</code> and <code>r</code> where <code>0 &lt;= l, r &lt; arr.length</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: arr = [9,12,3,7,15], target = 5
-Output: 2
-Explanation: Calling func with all the pairs of [l,r] = [[0,0],[1,1],[2,2],[3,3],[4,4],[0,1],[1,2],[2,3],[3,4],[0,2],[1,3],[2,4],[0,3],[1,4],[0,4]], Winston got the following results [9,12,3,7,15,8,0,3,7,0,0,3,0,0,0]. The value closest to 5 is 7 and 3, thus the minimum difference is 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [9,12,3,7,15], target = 5
+</span><span>Output: 2
+</span><span>Explanation: Calling func with all the pairs of [l,r] = [[0,0],[1,1],[2,2],[3,3],[4,4],[0,1],[1,2],[2,3],[3,4],[0,2],[1,3],[2,4],[0,3],[1,4],[0,4]], Winston got the following results [9,12,3,7,15,8,0,3,7,0,0,3,0,0,0]. The value closest to 5 is 7 and 3, thus the minimum difference is 2.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: arr = [1000000,1000000,1000000], target = 1
-Output: 999999
-Explanation: Winston called the func with all possible values of [l,r] and he always got 1000000, thus the min difference is 999999.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [1000000,1000000,1000000], target = 1
+</span><span>Output: 999999
+</span><span>Explanation: Winston called the func with all possible values of [l,r] and he always got 1000000, thus the min difference is 999999.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: arr = [1,2,4,8,16], target = 0
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [1,2,4,8,16], target = 0
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= arr.length &lt;= 10<sup>5</sup></code></li>
@@ -141,52 +141,52 @@ Output: 0
 </ul>
 <h2 id="solution">Solution</h2>
 <p>because union operation can only make value smaller, just enumerate every possible bit</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int maxBit(int x) {
-  for(int i = 30; i &gt;= 0 ; --i){
-    if((1 &lt;&lt; i) &amp; x) return (1 &lt;&lt; i);
-  }
-  return -1;
-}
-class Solution {
-  int len;
-  int closestToOneBit(vector&lt;int&gt;&amp; arr, int bit, int target) {
-    int pos = 0;
-    int result = INT_MAX;
-    while(pos &lt; len) {
-      if(!(arr[pos] &amp; bit)) {
-        pos += 1;
-      } else {
-        int res = arr[pos];
-        while(pos &lt; len &amp;&amp; (arr[pos] &amp; bit)) {
-          res &amp;= arr[pos];
-          pos += 1;
-        }
-        result = min(result, abs(res - target));
-      }
-    }
-    return result;
-  }
-public:
-  int closestToTarget(vector&lt;int&gt;&amp; arr, int target) {
-    int all = (1 &lt;&lt; 26) - 1;
-    len = arr.size();
-    int mmax = 0;
-    for(auto n : arr) {
-      mmax = max(n, mmax);
-      all &amp;= n;
-    }
-    if(mmax &lt;= target) return target - mmax;
-    if(all &gt;= target) return all - target;
-    int bit = (maxBit(target) &lt;&lt; 1);
-    int answer = INT_MAX;
-    while(bit) {
-      answer = min(answer, closestToOneBit(arr, bit, target));
-      bit &gt;&gt;= 1;
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int </span><span style="color:#8fa1b3;">maxBit</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">30</span><span>; i &gt;= </span><span style="color:#d08770;">0 </span><span>; --i){
+</span><span>    </span><span style="color:#b48ead;">if</span><span>((</span><span style="color:#d08770;">1 </span><span>&lt;&lt; i) &amp; x) </span><span style="color:#b48ead;">return </span><span>(</span><span style="color:#d08770;">1 </span><span>&lt;&lt; i);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span>;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">closestToOneBit</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">bit</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(arr[pos] </span><span>&amp;</span><span style="color:#eff1f5;"> bit)) {
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> res </span><span>=</span><span style="color:#eff1f5;"> arr[pos];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#eff1f5;">(arr[pos] </span><span>&amp;</span><span style="color:#eff1f5;"> bit)) {
+</span><span style="color:#eff1f5;">          res </span><span>&amp;=</span><span style="color:#eff1f5;"> arr[pos];
+</span><span style="color:#eff1f5;">          pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        result </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(result, </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(res </span><span>-</span><span style="color:#eff1f5;"> target));
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">closestToTarget</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> all </span><span>= </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span>&lt;&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">) </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mmax </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> n </span><span>:</span><span style="color:#eff1f5;"> arr) {
+</span><span style="color:#eff1f5;">      mmax </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(n, mmax);
+</span><span style="color:#eff1f5;">      all </span><span>&amp;=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mmax </span><span>&lt;=</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> target </span><span>-</span><span style="color:#eff1f5;"> mmax;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(all </span><span>&gt;=</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> all </span><span>-</span><span style="color:#eff1f5;"> target;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> bit </span><span>= </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">maxBit</span><span style="color:#eff1f5;">(target) </span><span>&lt;&lt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(bit) {
+</span><span style="color:#eff1f5;">      answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, </span><span style="color:#bf616a;">closestToOneBit</span><span style="color:#eff1f5;">(arr, bit, target));
+</span><span style="color:#eff1f5;">      bit </span><span>&gt;&gt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="april-leetcoding-challenge-12">April LeetCoding challenge 12</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Beautiful Arrangement II</strong></p>
@@ -194,45 +194,45 @@ public:
 Suppose this list is [a1, a2, a3, ... , an], then the list [|a1 - a2|, |a2 - a3|, |a3 - a4|, ... , |an-1 - an|] has exactly <code>k</code> distinct integers.</p>
 <p>If there are multiple answers, print any of them.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 3, k = 1
-Output: [1, 2, 3]
-Explanation: The [1, 2, 3] has three different positive integers ranging from 1 to 3, and the [1, 1] has exactly 1 distinct integer: 1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, k = 1
+</span><span>Output: [1, 2, 3]
+</span><span>Explanation: The [1, 2, 3] has three different positive integers ranging from 1 to 3, and the [1, 1] has exactly 1 distinct integer: 1.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 3, k = 2
-Output: [1, 3, 2]
-Explanation: The [1, 3, 2] has three different positive integers ranging from 1 to 3, and the [2, 1] has exactly 2 distinct integers: 1 and 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, k = 2
+</span><span>Output: [1, 3, 2]
+</span><span>Explanation: The [1, 3, 2] has three different positive integers ranging from 1 to 3, and the [2, 1] has exactly 2 distinct integers: 1 and 2.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>The <code>n</code> and <code>k</code> are in the range 1 &lt;= k &lt; n &lt;= 10<sup>4</sup>.</li>
 </ol>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; constructArray(int n, int k) {
-    vector&lt;int&gt; answer;
-    while(n &gt; k + 1) {
-      answer.push_back(n);
-      n -= 1;
-    }
-    if(k == 1) {
-      answer.push_back(2);
-      answer.push_back(1);
-      return answer;
-    }
-    int cur = (n + 1) &gt;&gt; 1;
-    int sign = 1;
-    answer.push_back(cur);
-    for(int i = 1; i &lt;= k; ++i) {
-      cur += sign * i;
-      answer.push_back(cur);
-      sign = -sign;
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">constructArray</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(n </span><span>&gt;</span><span style="color:#eff1f5;"> k </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">      n </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#eff1f5;">(n </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sign </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> k; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      cur </span><span>+=</span><span style="color:#eff1f5;"> sign </span><span>*</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">      sign </span><span>= -</span><span style="color:#eff1f5;">sign;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

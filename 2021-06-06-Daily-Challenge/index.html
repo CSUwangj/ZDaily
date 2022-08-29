@@ -115,152 +115,152 @@ renderMathInElement(document.body, katex_config);
       <p>Today is Sunday, I gonna review the tasks I've done this week, and finish today's leetcode's <a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge-2021/603/week-1-june-1st-june-7th/3769/">June LeetCoding Challenge</a> with <code>cpp</code>.</p>
 <span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
 <h2 id="rectangle-area-ii">Rectangle Area II</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int MOD = 1e9 + 7;
-struct Node {
-  int l, r, y, v;
-  bool operator&lt;(const Node&amp; a) const {
-    return this-&gt;y &lt; a.y;
-  }
-};
-struct SegTree {
-  vector&lt;int&gt; lazy;
-  vector&lt;int&gt; sum;
-  vector&lt;int&gt; mp;
-  vector&lt;Node&gt; nodes;
-  int n;
-  int id(int x) {
-    return lower_bound(mp.begin(), mp.end(), x) - mp.begin();
-  }
-
-  SegTree(vector&lt;vector&lt;int&gt;&gt;&amp; rectangles) {
-    int len = rectangles.size();
-    nodes.resize(len * 2);
-    mp.resize(len * 2);
-    for(int i = 0; i &lt; len; ++i) {
-      nodes[i * 2].l = rectangles[i][0];
-      nodes[i * 2].r = rectangles[i][2];
-      nodes[i * 2].y = rectangles[i][1];
-      nodes[i * 2].v = 1;
-      mp[i * 2] = rectangles[i][0];
-      nodes[i * 2 + 1].l = rectangles[i][0];
-      nodes[i * 2 + 1].r = rectangles[i][2];
-      nodes[i * 2 + 1].y = rectangles[i][3];
-      nodes[i * 2 + 1].v = -1;
-      mp[i * 2 + 1] = rectangles[i][2];
-    }
-    sort(nodes.begin(), nodes.end());
-    sort(mp.begin(), mp.end());
-    mp.resize(unique(mp.begin(), mp.end()) - mp.begin());
-    n = mp.size();
-    lazy.resize(n * 8);
-    sum.resize(n * 8);
-    for(auto &amp;node : nodes) {
-      node.l = id(node.l);
-      node.r = id(node.r);
-    }
-  }
-
-  void pull(int l, int r, int o) {
-    if(lazy[o] &gt; 0) sum[o] = mp[r + 1] - mp[l];
-    else sum[o] = sum[o * 2 + 1] + sum[o * 2 + 2];
-  }
-
-  void update(int l, int r, int ql, int qr, int v, int o = 0) {
-    cout&lt;&lt; &quot;?&quot; &lt;&lt; l &lt;&lt; &#x27; &#x27;  &lt;&lt; r &lt;&lt; &#x27; &#x27; &lt;&lt; ql &lt;&lt; &#x27; &#x27; &lt;&lt; qr &lt;&lt; endl;
-    if(l &gt;= ql &amp;&amp; r &lt;= qr) {
-      lazy[o] += v;
-    } else {
-    &#x2F;&#x2F; cout &lt;&lt; l &lt;&lt; &#x27; &#x27;  &lt;&lt; r &lt;&lt; &#x27; &#x27; &lt;&lt; ql &lt;&lt; &#x27; &#x27; &lt;&lt; qr &lt;&lt; endl;
-      int mid = (l + r) &gt;&gt; 1;
-      if(mid &gt;= ql) update(l, mid, ql, qr, v, o * 2 + 1);
-      if(mid &lt; qr) update(mid + 1, r, ql, qr, v, o * 2 + 2);
-    }
-    pull(l, r, o);
-  }
-
-  int solve() {
-    long long prevY = nodes[0].y;
-    long long area = 0;
-    for(auto &amp;node : nodes) {
-      area += sum[0] * (node.y - prevY);
-      &#x2F;&#x2F; cout &lt;&lt; node.l &lt;&lt; &#x27; &#x27; &lt;&lt; node.r &lt;&lt; &#x27; &#x27; &lt;&lt; sum[0] &lt;&lt; &#x27; &#x27; &lt;&lt; node.y &lt;&lt; &#x27; &#x27; &lt;&lt; prevY &lt;&lt; endl;
-      update(0, n - 1, node.l, node.r - 1, node.v);
-      prevY = node.y;
-    }
-    return area % MOD;
-  }
-};
-
-class Solution {
-public:
-  int rectangleArea(vector&lt;vector&lt;int&gt;&gt;&amp; rectangles) {
-    auto segTree = SegTree(rectangles);
-    return segTree.solve();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> MOD = </span><span style="color:#d08770;">1e9 </span><span>+ </span><span style="color:#d08770;">7</span><span>;
+</span><span style="color:#b48ead;">struct </span><span>Node {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> l, r, y, v;
+</span><span>  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">operator&lt;</span><span>(</span><span style="color:#b48ead;">const</span><span> Node&amp; </span><span style="color:#bf616a;">a</span><span>) </span><span style="color:#b48ead;">const </span><span>{
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span>-&gt;</span><span style="color:#bf616a;">y </span><span>&lt; a.</span><span style="color:#bf616a;">y</span><span>;
+</span><span>  }
+</span><span>};
+</span><span style="color:#b48ead;">struct </span><span>SegTree {
+</span><span>  vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; lazy;
+</span><span>  vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; sum;
+</span><span>  vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; mp;
+</span><span>  vector&lt;Node&gt; nodes;
+</span><span>  </span><span style="color:#b48ead;">int</span><span> n;
+</span><span>  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">id</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">lower_bound</span><span>(mp.</span><span style="color:#bf616a;">begin</span><span>(), mp.</span><span style="color:#bf616a;">end</span><span>(), x) - mp.</span><span style="color:#bf616a;">begin</span><span>();
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8fa1b3;">SegTree</span><span>(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt;&gt;&amp; </span><span style="color:#bf616a;">rectangles</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">int</span><span> len = rectangles.</span><span style="color:#bf616a;">size</span><span>();
+</span><span>    nodes.</span><span style="color:#bf616a;">resize</span><span>(len * </span><span style="color:#d08770;">2</span><span>);
+</span><span>    mp.</span><span style="color:#bf616a;">resize</span><span>(len * </span><span style="color:#d08770;">2</span><span>);
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; len; ++i) {
+</span><span>      nodes[i * </span><span style="color:#d08770;">2</span><span>].</span><span style="color:#bf616a;">l </span><span>= rectangles[i][</span><span style="color:#d08770;">0</span><span>];
+</span><span>      nodes[i * </span><span style="color:#d08770;">2</span><span>].</span><span style="color:#bf616a;">r </span><span>= rectangles[i][</span><span style="color:#d08770;">2</span><span>];
+</span><span>      nodes[i * </span><span style="color:#d08770;">2</span><span>].</span><span style="color:#bf616a;">y </span><span>= rectangles[i][</span><span style="color:#d08770;">1</span><span>];
+</span><span>      nodes[i * </span><span style="color:#d08770;">2</span><span>].</span><span style="color:#bf616a;">v </span><span>= </span><span style="color:#d08770;">1</span><span>;
+</span><span>      mp[i * </span><span style="color:#d08770;">2</span><span>] = rectangles[i][</span><span style="color:#d08770;">0</span><span>];
+</span><span>      nodes[i * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">l </span><span>= rectangles[i][</span><span style="color:#d08770;">0</span><span>];
+</span><span>      nodes[i * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">r </span><span>= rectangles[i][</span><span style="color:#d08770;">2</span><span>];
+</span><span>      nodes[i * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">y </span><span>= rectangles[i][</span><span style="color:#d08770;">3</span><span>];
+</span><span>      nodes[i * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">v </span><span>= -</span><span style="color:#d08770;">1</span><span>;
+</span><span>      mp[i * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span>] = rectangles[i][</span><span style="color:#d08770;">2</span><span>];
+</span><span>    }
+</span><span>    </span><span style="color:#bf616a;">sort</span><span>(nodes.</span><span style="color:#bf616a;">begin</span><span>(), nodes.</span><span style="color:#bf616a;">end</span><span>());
+</span><span>    </span><span style="color:#bf616a;">sort</span><span>(mp.</span><span style="color:#bf616a;">begin</span><span>(), mp.</span><span style="color:#bf616a;">end</span><span>());
+</span><span>    mp.</span><span style="color:#bf616a;">resize</span><span>(</span><span style="color:#bf616a;">unique</span><span>(mp.</span><span style="color:#bf616a;">begin</span><span>(), mp.</span><span style="color:#bf616a;">end</span><span>()) - mp.</span><span style="color:#bf616a;">begin</span><span>());
+</span><span>    n = mp.</span><span style="color:#bf616a;">size</span><span>();
+</span><span>    lazy.</span><span style="color:#bf616a;">resize</span><span>(n * </span><span style="color:#d08770;">8</span><span>);
+</span><span>    sum.</span><span style="color:#bf616a;">resize</span><span>(n * </span><span style="color:#d08770;">8</span><span>);
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">auto </span><span>&amp;node : nodes) {
+</span><span>      node.</span><span style="color:#bf616a;">l </span><span>= </span><span style="color:#bf616a;">id</span><span>(node.</span><span style="color:#bf616a;">l</span><span>);
+</span><span>      node.</span><span style="color:#bf616a;">r </span><span>= </span><span style="color:#bf616a;">id</span><span>(node.</span><span style="color:#bf616a;">r</span><span>);
+</span><span>    }
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">pull</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">l</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">r</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">o</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(lazy[o] &gt; </span><span style="color:#d08770;">0</span><span>) sum[o] = mp[r + </span><span style="color:#d08770;">1</span><span>] - mp[l];
+</span><span>    </span><span style="color:#b48ead;">else</span><span> sum[o] = sum[o * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span>] + sum[o * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span>];
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">update</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">l</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">r</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">ql</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">qr</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">v</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">o </span><span>= </span><span style="color:#d08770;">0</span><span>) {
+</span><span>    cout&lt;&lt; &quot;</span><span style="color:#a3be8c;">?</span><span>&quot; &lt;&lt; l &lt;&lt; &#39; &#39;  &lt;&lt; r &lt;&lt; &#39; &#39; &lt;&lt; ql &lt;&lt; &#39; &#39; &lt;&lt; qr &lt;&lt; endl;
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(l &gt;= ql &amp;&amp; r &lt;= qr) {
+</span><span>      lazy[o] += v;
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>    </span><span style="color:#65737e;">// cout &lt;&lt; l &lt;&lt; &#39; &#39;  &lt;&lt; r &lt;&lt; &#39; &#39; &lt;&lt; ql &lt;&lt; &#39; &#39; &lt;&lt; qr &lt;&lt; endl;
+</span><span>      </span><span style="color:#b48ead;">int</span><span> mid = (l + r) &gt;&gt; </span><span style="color:#d08770;">1</span><span>;
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(mid &gt;= ql) </span><span style="color:#bf616a;">update</span><span>(l, mid, ql, qr, v, o * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span>);
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(mid &lt; qr) </span><span style="color:#bf616a;">update</span><span>(mid + </span><span style="color:#d08770;">1</span><span>, r, ql, qr, v, o * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span>);
+</span><span>    }
+</span><span>    </span><span style="color:#bf616a;">pull</span><span>(l, r, o);
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">solve</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">long long</span><span> prevY = nodes[</span><span style="color:#d08770;">0</span><span>].</span><span style="color:#bf616a;">y</span><span>;
+</span><span>    </span><span style="color:#b48ead;">long long</span><span> area = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">auto </span><span>&amp;node : nodes) {
+</span><span>      area += sum[</span><span style="color:#d08770;">0</span><span>] * (node.</span><span style="color:#bf616a;">y </span><span>- prevY);
+</span><span>      </span><span style="color:#65737e;">// cout &lt;&lt; node.l &lt;&lt; &#39; &#39; &lt;&lt; node.r &lt;&lt; &#39; &#39; &lt;&lt; sum[0] &lt;&lt; &#39; &#39; &lt;&lt; node.y &lt;&lt; &#39; &#39; &lt;&lt; prevY &lt;&lt; endl;
+</span><span>      </span><span style="color:#bf616a;">update</span><span>(</span><span style="color:#d08770;">0</span><span>, n - </span><span style="color:#d08770;">1</span><span>, node.</span><span style="color:#bf616a;">l</span><span>, node.</span><span style="color:#bf616a;">r </span><span>- </span><span style="color:#d08770;">1</span><span>, node.</span><span style="color:#bf616a;">v</span><span>);
+</span><span>      prevY = node.</span><span style="color:#bf616a;">y</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">return</span><span> area % MOD;
+</span><span>  }
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">rectangleArea</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">rectangles</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> segTree </span><span>= </span><span style="color:#bf616a;">SegTree</span><span style="color:#eff1f5;">(rectangles);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> segTree.</span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="june-leetcoding-challenge-6">June LeetCoding Challenge 6</h1>
 <h2 id="description">Description</h2>
 <p><strong>Longest Consecutive Sequence</strong></p>
 <p>Given an unsorted array of integers <code>nums</code>, return <em>the length of the longest consecutive elements sequence.</em></p>
 <p>You must write an algorithm that runs in <code>O(n)</code> time.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [100,4,200,1,3,2]
-Output: 4
-Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [100,4,200,1,3,2]
+</span><span>Output: 4
+</span><span>Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0,3,7,2,5,8,4,6,0,1]
-Output: 9
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,3,7,2,5,8,4,6,0,1]
+</span><span>Output: 9
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= nums.length &lt;= 10^5</code></li>
 <li><code>-10^9 &lt;= nums[i] &lt;= 10^9</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int longestConsecutive(vector&lt;int&gt;&amp; nums) {
-    if(nums.empty()) return 0;
-    sort(nums.begin(), nums.end());
-    int cur = nums.front();
-    int len = 0;
-    int answer = 1;
-    for(auto i : nums) {
-      if(i == cur + 1) {
-        len += 1;
-        answer = max(answer, len);
-      } else if(i == cur) {
-        continue;
-      } else {
-        len = 1;
-      }
-      cur = i;
-    }
-    return answer;
-  }
-};
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int longestConsecutive(vector&lt;int&gt;&amp; nums) {
-    unordered_set&lt;int&gt; st(nums.begin(), nums.end());
-    int answer = 0;
-    for(auto i : st) {
-      if(st.count(i - 1)) continue;
-      int cur = i;
-      int len = 0;
-      while(st.count(cur)) {
-        len += 1;
-        cur += 1;
-      }
-      answer = max(answer, len);
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">longestConsecutive</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>==</span><span style="color:#eff1f5;"> cur </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, len);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(i </span><span>==</span><span style="color:#eff1f5;"> cur) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        len </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">longestConsecutive</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">st</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> st) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(cur)) {
+</span><span style="color:#eff1f5;">        len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, len);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

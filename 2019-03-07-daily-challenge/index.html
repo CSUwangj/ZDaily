@@ -118,18 +118,18 @@ renderMathInElement(document.body, katex_config);
 <h2 id="problem">Problem</h2>
 <h3 id="extract-the-domain-name-from-a-url">Extract the domain name from a URL</h3>
 <p>Write a function that when given a URL as a string, parses out just the domain name and returns it as a string. For example:</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">domainName(&quot;http:&#x2F;&#x2F;github.com&#x2F;carbonfive&#x2F;raygun&quot;) == &quot;github&quot; 
-domainName(&quot;http:&#x2F;&#x2F;www.zombie-bites.com&quot;) == &quot;zombie-bites&quot;
-domainName(&quot;https:&#x2F;&#x2F;www.cnet.com&quot;) == &quot;cnet&quot;
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#8fa1b3;">domainName</span><span>(&quot;</span><span style="color:#a3be8c;">http://github.com/carbonfive/raygun</span><span>&quot;) == &quot;</span><span style="color:#a3be8c;">github</span><span>&quot; 
+</span><span style="color:#8fa1b3;">domainName</span><span>(&quot;</span><span style="color:#a3be8c;">http://www.zombie-bites.com</span><span>&quot;) == &quot;</span><span style="color:#a3be8c;">zombie-bites</span><span>&quot;
+</span><span style="color:#8fa1b3;">domainName</span><span>(&quot;</span><span style="color:#a3be8c;">https://www.cnet.com</span><span>&quot;) == &quot;</span><span style="color:#a3be8c;">cnet</span><span>&quot;
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">function domainName(url){
-  let s = url.replace(&#x2F;https?:\&#x2F;\&#x2F;&#x2F;, &quot;&quot;).split(&quot;&#x2F;&quot;)[0];
-  s = s.split(&quot;.&quot;);
-  if (s.length &gt; 2 &amp;&amp; s[s.length-2] == &quot;co&quot;) return s[s.length-3];
-  else return s[s.length-2];
-}
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">domainName</span><span>(</span><span style="color:#bf616a;">url</span><span>){
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">s </span><span>= </span><span style="color:#bf616a;">url</span><span>.</span><span style="color:#96b5b4;">replace</span><span>(/</span><span style="color:#96b5b4;">https</span><span>?</span><span style="color:#96b5b4;">:\/\/</span><span>/, &quot;&quot;).</span><span style="color:#96b5b4;">split</span><span>(&quot;</span><span style="color:#a3be8c;">/</span><span>&quot;)[</span><span style="color:#d08770;">0</span><span>];
+</span><span>  </span><span style="color:#bf616a;">s </span><span>= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;</span><span style="color:#a3be8c;">.</span><span>&quot;);
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">s</span><span>.length &gt; </span><span style="color:#d08770;">2 </span><span>&amp;&amp; </span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">s</span><span>.length-</span><span style="color:#d08770;">2</span><span>] == &quot;</span><span style="color:#a3be8c;">co</span><span>&quot;) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">s</span><span>.length-</span><span style="color:#d08770;">3</span><span>];
+</span><span>  </span><span style="color:#b48ead;">else return </span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">s</span><span>.length-</span><span style="color:#d08770;">2</span><span>];
+</span><span>}
+</span></code></pre>
 <p>In fact subdomain does not need to be &quot;www&quot;, so...</p>
 <p>Shit problem</p>
 <p>{% asset_img 1.png %}</p>

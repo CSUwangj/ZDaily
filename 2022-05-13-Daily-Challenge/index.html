@@ -117,25 +117,25 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p><strong>Populating Next Right Pointers in Each Node II</strong></p>
 <p>Given a binary tree</p>
-<pre><code>struct Node {
-  int val;
-  Node *left;
-  Node *right;
-  Node *next;
-}
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>struct Node {
+</span><span>  int val;
+</span><span>  Node *left;
+</span><span>  Node *right;
+</span><span>  Node *next;
+</span><span>}
+</span></code></pre>
 <p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to <code>NULL</code>.</p>
 <p>Initially, all next pointers are set to <code>NULL</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/02/15/117_sample.png" alt="img" /></p>
-<pre><code>Input: root = [1,2,3,4,5,null,7]
-Output: [1,#,2,3,#,4,5,7,#]
-Explanation: Given the above binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with &#x27;#&#x27; signifying the end of each level.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3,4,5,null,7]
+</span><span>Output: [1,#,2,3,#,4,5,7,#]
+</span><span>Explanation: Given the above binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with &#39;#&#39; signifying the end of each level.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: root = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[0, 6000]</code>.</li>
@@ -147,54 +147,54 @@ Output: []
 <li>The recursive approach is fine. You may assume implicit stack space does not count as extra space for this problem.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  Node* connect(Node* root) {
-    Node *parent = root;
-    Node *cur;
-    Node *first;
-    while(parent) {
-      first = NULL;
-      while(parent &amp;&amp; !(parent-&gt;left || parent-&gt;right)) parent = parent-&gt;next;
-      if(!parent) break;
-      if(parent-&gt;left) {
-        cur = parent-&gt;left;
-        first = cur;
-        if(parent-&gt;right) {
-          cur-&gt;next = parent-&gt;right;
-          cur = cur-&gt;next;
-        }
-      } else {
-        cur = parent-&gt;right;
-        first = cur;
-      }
-      parent = parent-&gt;next;
-      while(cur) {
-        while(parent &amp;&amp; !(parent-&gt;left || parent-&gt;right)) parent = parent-&gt;next;
-        if(!parent) break;
-        if(parent-&gt;left) {
-          cur-&gt;next = parent-&gt;left;
-          if(parent-&gt;right) {
-            cur = cur-&gt;next;
-            cur-&gt;next = parent-&gt;right;
-          }
-        } else {
-          cur-&gt;next = parent-&gt;right;
-        }
-        parent = parent-&gt;next;
-        cur = cur-&gt;next;
-      }
-      parent = first;
-    }
-    return root;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 55&#x2F;55 cases passed (18 ms)
-&#x2F;&#x2F; Your runtime beats 54.04 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 94.51 % of cpp submissions (17.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  Node</span><span>* </span><span style="color:#8fa1b3;">connect</span><span style="color:#eff1f5;">(Node</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    Node </span><span>*</span><span style="color:#eff1f5;">parent </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    Node </span><span>*</span><span style="color:#eff1f5;">cur;
+</span><span style="color:#eff1f5;">    Node </span><span>*</span><span style="color:#eff1f5;">first;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(parent) {
+</span><span style="color:#eff1f5;">      first </span><span>= </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(parent </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">(parent-&gt;</span><span style="color:#bf616a;">left </span><span>||</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">)) parent </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">parent) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(parent-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        first </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(parent-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        first </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      parent </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(parent </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">(parent-&gt;</span><span style="color:#bf616a;">left </span><span>||</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">)) parent </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">parent) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(parent-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(parent-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        parent </span><span>=</span><span style="color:#eff1f5;"> parent-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      parent </span><span>=</span><span style="color:#eff1f5;"> first;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 55/55 cases passed (18 ms)
+</span><span style="color:#65737e;">// Your runtime beats 54.04 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 94.51 % of cpp submissions (17.2 MB)
+</span></code></pre>
 
     </div>
   </div>

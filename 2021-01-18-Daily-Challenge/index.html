@@ -122,29 +122,29 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>The matching should cover the <strong>entire</strong> input string (not partial).</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;aa&quot;, p = &quot;a&quot;
-Output: false
-Explanation: &quot;a&quot; does not match the entire string &quot;aa&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aa&quot;, p = &quot;a&quot;
+</span><span>Output: false
+</span><span>Explanation: &quot;a&quot; does not match the entire string &quot;aa&quot;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;aa&quot;, p = &quot;a*&quot;
-Output: true
-Explanation: &#x27;*&#x27; means zero or more of the preceding element, &#x27;a&#x27;. Therefore, by repeating &#x27;a&#x27; once, it becomes &quot;aa&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aa&quot;, p = &quot;a*&quot;
+</span><span>Output: true
+</span><span>Explanation: &#39;*&#39; means zero or more of the preceding element, &#39;a&#39;. Therefore, by repeating &#39;a&#39; once, it becomes &quot;aa&quot;.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;ab&quot;, p = &quot;.*&quot;
-Output: true
-Explanation: &quot;.*&quot; means &quot;zero or more (*) of any character (.)&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;ab&quot;, p = &quot;.*&quot;
+</span><span>Output: true
+</span><span>Explanation: &quot;.*&quot; means &quot;zero or more (*) of any character (.)&quot;.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;aab&quot;, p = &quot;c*a*b&quot;
-Output: true
-Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore, it matches &quot;aab&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aab&quot;, p = &quot;c*a*b&quot;
+</span><span>Output: true
+</span><span>Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore, it matches &quot;aab&quot;.
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: s = &quot;mississippi&quot;, p = &quot;mis*is*p*.&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;mississippi&quot;, p = &quot;mis*is*p*.&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= s.length &lt;= 20</code></li>
@@ -157,44 +157,44 @@ Output: false
 <p>recursive way without optimization</p>
 <p>Runtime: 24 ms, faster than 31.41% of C++ online submissions</p>
 <p>Memory Usage: 6.3 MB, less than 98.57% of C++ online submissions</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    string source;
-    string regex;
-    int lenS;
-    int lenR;
-    
-    bool match(char s, char r) {
-        return r == &#x27;.&#x27; || s == r;
-    }
-    
-    bool helper(int posS, int posR) {
-        &#x2F;&#x2F; cout &lt;&lt; posS &lt;&lt; &#x27; &#x27; &lt;&lt; posR &lt;&lt; endl;
-        if(posS == lenS &amp;&amp; posR == lenR) return true;
-        if(posS == lenS) {
-            if((lenR - posR) % 2 == 1 || regex[posR + 1] != &#x27;*&#x27;) return false;
-            return helper(posS, posR + 2);
-        }
-        if(posR == lenR) return false;
-        if(posR &lt; lenR-1 &amp;&amp; regex[posR + 1] == &#x27;*&#x27;) {
-            if(helper(posS, posR + 2)) return true;
-            for(int i = posS; i &lt; lenS &amp;&amp; match(source[i], regex[posR]); ++i) {
-                if(helper(i + 1, posR + 2)) return true;
-            }
-        } else if(match(source[posS], regex[posR])) {
-            return helper(posS + 1, posR + 1);
-        }
-        return false;
-    }
-public:
-    bool isMatch(string s, string p) {
-        source = s;
-        regex = p;
-        lenS = s.length();
-        lenR = p.length();
-        return helper(0, 0);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    string source;
+</span><span style="color:#eff1f5;">    string regex;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lenS;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lenR;
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">match</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">char </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char </span><span style="color:#bf616a;">r</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> r </span><span>== &#39;</span><span style="color:#a3be8c;">.</span><span>&#39; ||</span><span style="color:#eff1f5;"> s </span><span>==</span><span style="color:#eff1f5;"> r;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">helper</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">posS</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">posR</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// cout &lt;&lt; posS &lt;&lt; &#39; &#39; &lt;&lt; posR &lt;&lt; endl;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(posS </span><span>==</span><span style="color:#eff1f5;"> lenS </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> posR </span><span>==</span><span style="color:#eff1f5;"> lenR) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(posS </span><span>==</span><span style="color:#eff1f5;"> lenS) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((lenR </span><span>-</span><span style="color:#eff1f5;"> posR) </span><span>% </span><span style="color:#d08770;">2 </span><span>== </span><span style="color:#d08770;">1 </span><span>||</span><span style="color:#eff1f5;"> regex[posR </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>!= &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(posS, posR </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(posR </span><span>==</span><span style="color:#eff1f5;"> lenR) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(posR </span><span>&lt;</span><span style="color:#eff1f5;"> lenR</span><span>-</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> regex[posR </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(posS, posR </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> posS; i </span><span>&lt;</span><span style="color:#eff1f5;"> lenS </span><span>&amp;&amp; </span><span style="color:#bf616a;">match</span><span style="color:#eff1f5;">(source[i], regex[posR]); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, posR </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">match</span><span style="color:#eff1f5;">(source[posS], regex[posR])) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(posS </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, posR </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isMatch</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">p</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        source </span><span>=</span><span style="color:#eff1f5;"> s;
+</span><span style="color:#eff1f5;">        regex </span><span>=</span><span style="color:#eff1f5;"> p;
+</span><span style="color:#eff1f5;">        lenS </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        lenR </span><span>=</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-18">January LeetCoding Challenge 18</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Max Number of K-Sum Pairs</strong></p>
@@ -202,20 +202,20 @@ public:
 <p>In one operation, you can pick two numbers from the array whose sum equals <code>k</code> and remove them from the array.</p>
 <p>Return <em>the maximum number of operations you can perform on the array</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,2,3,4], k = 5
-Output: 2
-Explanation: Starting with nums = [1,2,3,4]:
-- Remove numbers 1 and 4, then nums = [2,3]
-- Remove numbers 2 and 3, then nums = []
-There are no more pairs that sum up to 5, hence a total of 2 operations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3,4], k = 5
+</span><span>Output: 2
+</span><span>Explanation: Starting with nums = [1,2,3,4]:
+</span><span>- Remove numbers 1 and 4, then nums = [2,3]
+</span><span>- Remove numbers 2 and 3, then nums = []
+</span><span>There are no more pairs that sum up to 5, hence a total of 2 operations.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [3,1,3,4,3], k = 6
-Output: 1
-Explanation: Starting with nums = [3,1,3,4,3]:
-- Remove the first two 3&#x27;s, then nums = [1,4,3]
-There are no more pairs that sum up to 6, hence a total of 1 operation.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,1,3,4,3], k = 6
+</span><span>Output: 1
+</span><span>Explanation: Starting with nums = [3,1,3,4,3]:
+</span><span>- Remove the first two 3&#39;s, then nums = [1,4,3]
+</span><span>There are no more pairs that sum up to 6, hence a total of 1 operation.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 105</code></li>
@@ -223,21 +223,21 @@ There are no more pairs that sum up to 6, hence a total of 1 operation.
 <li><code>1 &lt;= k &lt;= 109</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    unordered_map&lt;int, int&gt; count;
-public:
-    int maxOperations(vector&lt;int&gt;&amp; nums, int k) {
-        for(auto i : nums) count[i] += 1;
-        int answer = 0;
-        for(auto [num, cnt] : count) {
-            if(!count.count(k-num)) continue;
-            answer += min(cnt, count[k-num]);
-        }
-        answer &#x2F;= 2;
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; count;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxOperations</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) count[i] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[num, cnt] </span><span>:</span><span style="color:#eff1f5;"> count) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">count.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(k</span><span>-</span><span style="color:#eff1f5;">num)) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            answer </span><span>+= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(cnt, count[k</span><span>-</span><span style="color:#eff1f5;">num]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        answer </span><span>/= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

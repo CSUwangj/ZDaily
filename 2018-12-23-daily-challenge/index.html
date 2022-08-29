@@ -115,94 +115,94 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Largest prime factor</em> in <em>Rust</em> and <em>Coin Change</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Largest prime factor
-
-Problem 3 
-
-The prime factors of 13195 are 5, 7, 13 and 29.
-
-What is the largest prime factor of the number 600851475143 ?
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Largest prime factor
+</span><span>
+</span><span>Problem 3 
+</span><span>
+</span><span>The prime factors of 13195 are 5, 7, 13 and 29.
+</span><span>
+</span><span>What is the largest prime factor of the number 600851475143 ?
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>At least we know we can factorize one number $n$ in roughly $O(\sqrt{n})$time.</p>
 <p>There is also more complicated, more fast algorithm like Pollard's rho algorithm, but writing a implication on my own cost too much and need more knowledge with Rust, so just leave it.</p>
 <p>There is already some tools like <a href="http://factordb.com/">factordb</a>, <a href="https://github.com/DarkenCode/yafu">yafu</a>.</p>
 <p>By the way, I found optimization of Rust is incredible!</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-use std::vec::Vec;
-
-fn main() {
-    let mut cur_num:u64 = 2;
-    let mut ans:u64 = 0;
-    let mut target:u64 = 600851475143;
-    let mx:u64 = 600851475143;
-    while cur_num &lt;= target &amp;&amp; cur_num*cur_num &lt;= mx {
-        while target % cur_num == 0 {
-            target &#x2F;= cur_num;
-            ans = cur_num;
-        }
-        cur_num += 1;
-    }
-    println!(&quot;answer is {}&quot;, ans);
-
-    let mx:usize = 600851475143;
-    let sieve = primal::Sieve::new(1&lt;&lt;311475143);
-    let ans: Vec&lt;(usize, usize)&gt; = match sieve.factor(mx) {
-        Ok(v) =&gt; v,
-        Err(_) =&gt; Vec::new(),
-    };
-    for factor in ans {
-        println!(&quot;({}, {})&quot;, factor.0, factor.1)
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>std::vec::Vec;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> cur_num:</span><span style="color:#b48ead;">u64 </span><span>= </span><span style="color:#d08770;">2</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans:</span><span style="color:#b48ead;">u64 </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> target:</span><span style="color:#b48ead;">u64 </span><span>= </span><span style="color:#d08770;">600851475143</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> mx:</span><span style="color:#b48ead;">u64 </span><span>= </span><span style="color:#d08770;">600851475143</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span> cur_num &lt;= target &amp;&amp; cur_num*cur_num &lt;= mx {
+</span><span>        </span><span style="color:#b48ead;">while</span><span> target % cur_num == </span><span style="color:#d08770;">0 </span><span>{
+</span><span>            target /= cur_num;
+</span><span>            ans = cur_num;
+</span><span>        }
+</span><span>        cur_num += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> mx:</span><span style="color:#b48ead;">usize </span><span>= </span><span style="color:#d08770;">600851475143</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sieve = primal::Sieve::new(</span><span style="color:#d08770;">1</span><span>&lt;&lt;</span><span style="color:#d08770;">311475143</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> ans: Vec&lt;(</span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#b48ead;">usize</span><span>)&gt; = </span><span style="color:#b48ead;">match</span><span> sieve.</span><span style="color:#96b5b4;">factor</span><span>(mx) {
+</span><span>        Ok(v) =&gt; v,
+</span><span>        Err(_) =&gt; Vec::new(),
+</span><span>    };
+</span><span>    </span><span style="color:#b48ead;">for</span><span> factor in ans {
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">(</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">)</span><span>&quot;, factor.</span><span style="color:#d08770;">0</span><span>, factor.</span><span style="color:#d08770;">1</span><span>)
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>322. Coin Change
-
-You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
-
-Example 1:
-
-Input: coins = [1, 2, 5], amount = 11
-Output: 3 
-Explanation: 11 = 5 + 5 + 1
-Example 2:
-
-Input: coins = [2], amount = 3
-Output: -1
-Note:
-You may assume that you have an infinite number of each kind of coin.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>322. Coin Change
+</span><span>
+</span><span>You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+</span><span>
+</span><span>Example 1:
+</span><span>
+</span><span>Input: coins = [1, 2, 5], amount = 11
+</span><span>Output: 3 
+</span><span>Explanation: 11 = 5 + 5 + 1
+</span><span>Example 2:
+</span><span>
+</span><span>Input: coins = [2], amount = 3
+</span><span>Output: -1
+</span><span>Note:
+</span><span>You may assume that you have an infinite number of each kind of coin.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>I have a vague feeling this problem could be a $NP$ problem.</p>
 <p>I guess I can do it with Dynamic Programming approach, and its time complexity is $O(coins.length*amount)$.</p>
 <hr />
 <p>With the help of qt, I figure out that this question is the equivalence of Knapsack Problem, so it's a $NP-Hard$ problem. Dynamic Programming is the only way I know to deal with it.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;**
- * @param {number[]} coins
- * @param {number} amount
- * @return {number}
- *&#x2F;
-var coinChange = (coins = [], amount) =&gt; {
-  let dp = [0];
-  for(let i = 1; i &lt;= amount; ++i){
-    dp.push(0x7F7F7F7F);
-  }
-  for(const v of coins){
-    for(let i = v; i &lt;= amount; ++i){
-      if(dp[i-v]!=0x7F7F7F7F &amp;&amp; dp[i-v] + 1 &lt; dp[i]) dp[i] = dp[i-v] + 1;
-    }
-  }
-  return dp[amount] == 0x7F7F7F7F? -1: dp[amount];
-};
-
-&#x2F;&#x2F; console.log(coinChange([1, 2, 5],11));
-&#x2F;&#x2F; console.log(coinChange([2],3))
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">coins
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">amount
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">coinChange </span><span>= (</span><span style="color:#bf616a;">coins </span><span>= [], </span><span style="color:#bf616a;">amount</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">dp </span><span>= [</span><span style="color:#d08770;">0</span><span>];
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">1</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt;= </span><span style="color:#bf616a;">amount</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>    </span><span style="color:#bf616a;">dp</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#d08770;">0x7F7F7F7F</span><span>);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">v </span><span>of </span><span style="color:#bf616a;">coins</span><span>){
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#bf616a;">v</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt;= </span><span style="color:#bf616a;">amount</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i</span><span>-</span><span style="color:#bf616a;">v</span><span>]!=</span><span style="color:#d08770;">0x7F7F7F7F </span><span>&amp;&amp; </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i</span><span>-</span><span style="color:#bf616a;">v</span><span>] + </span><span style="color:#d08770;">1 </span><span>&lt; </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i</span><span>]) </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i</span><span>] = </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i</span><span>-</span><span style="color:#bf616a;">v</span><span>] + </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">amount</span><span>] == </span><span style="color:#d08770;">0x7F7F7F7F</span><span>? -</span><span style="color:#d08770;">1</span><span>: </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">amount</span><span>];
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(coinChange([1, 2, 5],11));
+</span><span style="color:#65737e;">// console.log(coinChange([2],3))
+</span></code></pre>
 
     </div>
   </div>

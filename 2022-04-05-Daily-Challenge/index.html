@@ -122,14 +122,14 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Notice</strong> that you may not slant the container.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg" alt="img" /></p>
-<pre><code>Input: height = [1,8,6,2,5,4,8,3,7]
-Output: 49
-Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: height = [1,8,6,2,5,4,8,3,7]
+</span><span>Output: 49
+</span><span>Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: height = [1,1]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: height = [1,1]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == height.length</code></li>
@@ -137,38 +137,38 @@ Output: 1
 <li><code>0 &lt;= height[i] &lt;= 10^4</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int maxArea(vector&lt;int&gt;&amp; height) {
-    int len = height.size();
-    int left = 0, right = len - 1;
-    int answer = (right - left) * min(height[left], height[right]);
-    while(left &lt; right) {
-      if(height[left] &lt; height[right]) {
-        int tmp = height[left];
-        while(left &lt; right &amp;&amp; height[left] &lt;= tmp) ++left;
-        answer = max(answer, (right - left) * min(height[left], height[right]));
-      } else {
-        int tmp = height[right];
-        while(left &lt; right &amp;&amp; height[right] &lt;= tmp) --right;
-        answer = max(answer, (right - left) * min(height[left], height[right]));
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 60&#x2F;60 cases passed (150 ms)
-&#x2F;&#x2F; Your runtime beats 25.72 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 38.72 % of cpp submissions (59.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxArea</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">height</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> height.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> left </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, right </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#eff1f5;">(right </span><span>-</span><span style="color:#eff1f5;"> left) </span><span>* </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(height[left], height[right]);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(left </span><span>&lt;</span><span style="color:#eff1f5;"> right) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(height[left] </span><span>&lt;</span><span style="color:#eff1f5;"> height[right]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tmp </span><span>=</span><span style="color:#eff1f5;"> height[left];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(left </span><span>&lt;</span><span style="color:#eff1f5;"> right </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> height[left] </span><span>&lt;=</span><span style="color:#eff1f5;"> tmp) </span><span>++</span><span style="color:#eff1f5;">left;
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, (right </span><span>-</span><span style="color:#eff1f5;"> left) </span><span>* </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(height[left], height[right]));
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tmp </span><span>=</span><span style="color:#eff1f5;"> height[right];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(left </span><span>&lt;</span><span style="color:#eff1f5;"> right </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> height[right] </span><span>&lt;=</span><span style="color:#eff1f5;"> tmp) </span><span>--</span><span style="color:#eff1f5;">right;
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, (right </span><span>-</span><span style="color:#eff1f5;"> left) </span><span>* </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(height[left], height[right]));
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 60/60 cases passed (150 ms)
+</span><span style="color:#65737e;">// Your runtime beats 25.72 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 38.72 % of cpp submissions (59.4 MB)
+</span></code></pre>
 
     </div>
   </div>

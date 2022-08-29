@@ -142,32 +142,32 @@ the leading zeros are ignored when comparing their decimal values.
 	<li><code>word</code> consists of digits and lowercase English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  string getNumber(const string &amp;s, int &amp;pos) {
-    string result;
-    int len = s.length();
-    while(pos &lt; len &amp;&amp; s[pos] == &#x27;0&#x27;) pos += 1;
-    while(pos &lt; len &amp;&amp; isdigit(s[pos])) {
-      result.push_back(s[pos]);
-      pos += 1;
-    }
-    if(result.length() &gt; 0) return result;
-    return &quot;0&quot;;
-  }
-public:
-  int numDifferentIntegers(string word) {
-    int pos = 0;
-    int len = word.length();
-    unordered_set&lt;string&gt; st;
-    while(pos &lt; len) {
-      while(pos &lt; len &amp;&amp; !isdigit(word[pos])) pos += 1;
-      if(pos &lt; len) st.insert(getNumber(word, pos));
-    }
-
-    return st.size();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">getNumber</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    string result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> s[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(s[pos])) {
+</span><span style="color:#eff1f5;">      result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(s[pos]);
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">0</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numDifferentIntegers</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">word</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    unordered_set&lt;string&gt; st;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; !</span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(word[pos])) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) st.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">getNumber</span><span style="color:#eff1f5;">(word, pos));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="july-leetcoding-challenge-5">July LeetCoding Challenge 5</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Reshape the Matrix</strong></p>
@@ -177,14 +177,14 @@ public:
 <p>If the <code>reshape</code> operation with given parameters is possible and legal, output the new reshaped matrix; Otherwise, output the original matrix.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/24/reshape1-grid.jpg" alt="img" /></p>
-<pre><code>Input: mat = [[1,2],[3,4]], r = 1, c = 4
-Output: [[1,2,3,4]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[1,2],[3,4]], r = 1, c = 4
+</span><span>Output: [[1,2,3,4]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/24/reshape2-grid.jpg" alt="img" /></p>
-<pre><code>Input: mat = [[1,2],[3,4]], r = 2, c = 4
-Output: [[1,2],[3,4]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[1,2],[3,4]], r = 2, c = 4
+</span><span>Output: [[1,2],[3,4]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == mat.length</code></li>
@@ -194,26 +194,26 @@ Output: [[1,2],[3,4]]
 <li><code>1 &lt;= r, c &lt;= 300</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;vector&lt;int&gt;&gt; matrixReshape(vector&lt;vector&lt;int&gt;&gt;&amp; mat, int r, int c) {
-    if(r * c != mat.size() * mat.front().size()) return mat;
-    int cnt = 0;
-    vector&lt;int&gt; tmp;
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    for(auto &amp;row : mat) {
-      for(auto num : row) {
-        tmp.push_back(num);
-        if(++cnt % c == 0) {
-          answer.push_back(tmp);
-          tmp.clear();
-        }
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">matrixReshape</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">mat</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">r</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">c</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(r </span><span>*</span><span style="color:#eff1f5;"> c </span><span>!=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>*</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> mat;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; tmp;
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">row </span><span>:</span><span style="color:#eff1f5;"> mat) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> num </span><span>:</span><span style="color:#eff1f5;"> row) {
+</span><span style="color:#eff1f5;">        tmp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(num);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>++</span><span style="color:#eff1f5;">cnt </span><span>%</span><span style="color:#eff1f5;"> c </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(tmp);
+</span><span style="color:#eff1f5;">          tmp.</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

@@ -124,21 +124,21 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/03/16/getrand-linked-list.jpg" alt="img" /></p>
-<pre><code>Input
-[&quot;Solution&quot;, &quot;getRandom&quot;, &quot;getRandom&quot;, &quot;getRandom&quot;, &quot;getRandom&quot;, &quot;getRandom&quot;]
-[[[1, 2, 3]], [], [], [], [], []]
-Output
-[null, 1, 3, 2, 2, 3]
-
-Explanation
-Solution solution = new Solution([1, 2, 3]);
-solution.getRandom(); &#x2F;&#x2F; return 1
-solution.getRandom(); &#x2F;&#x2F; return 3
-solution.getRandom(); &#x2F;&#x2F; return 2
-solution.getRandom(); &#x2F;&#x2F; return 2
-solution.getRandom(); &#x2F;&#x2F; return 3
-&#x2F;&#x2F; getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;Solution&quot;, &quot;getRandom&quot;, &quot;getRandom&quot;, &quot;getRandom&quot;, &quot;getRandom&quot;, &quot;getRandom&quot;]
+</span><span>[[[1, 2, 3]], [], [], [], [], []]
+</span><span>Output
+</span><span>[null, 1, 3, 2, 2, 3]
+</span><span>
+</span><span>Explanation
+</span><span>Solution solution = new Solution([1, 2, 3]);
+</span><span>solution.getRandom(); // return 1
+</span><span>solution.getRandom(); // return 3
+</span><span>solution.getRandom(); // return 2
+</span><span>solution.getRandom(); // return 2
+</span><span>solution.getRandom(); // return 3
+</span><span>// getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 	<li>The number of nodes in the linked list will be in the range <code>[1, 10<sup>4</sup>]</code>.</li>
@@ -152,43 +152,43 @@ solution.getRandom(); &#x2F;&#x2F; return 3
 	<li>Could you solve this efficiently without using extra space?</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  ListNode* head;
-  mt19937 generator;
-  uniform_real_distribution&lt;double&gt; distribution = uniform_real_distribution&lt;double&gt;(0.0, 1.0);
-  function&lt;double(void)&gt; rng = bind(distribution, generator);
-public:
-  &#x2F;** @param head The linked list&#x27;s head.
-      Note that the head is guaranteed to be not null, so it contains at least one node. *&#x2F;
-  Solution(ListNode* head) {
-    this-&gt;head = head;
-  }
-  
-  &#x2F;** Returns a random node&#x27;s value. *&#x2F;
-  int getRandom() {
-    ListNode *cur = head;
-    double curIndex = 1;
-    int result = -1;
-    while(cur) {
-      if(rng() &lt; 1 &#x2F; curIndex) result = cur-&gt;val;
-      cur = cur-&gt;next;
-      curIndex += 1;
-    }
-    return result;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 8&#x2F;8 cases passed (58 ms)
-&#x2F;&#x2F; Your runtime beats 5.11 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 21.97 % of cpp submissions (16.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  ListNode</span><span>*</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">  mt19937 generator;
+</span><span style="color:#eff1f5;">  uniform_real_distribution&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt; distribution </span><span>=</span><span style="color:#eff1f5;"> uniform_real_distribution&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt;(</span><span style="color:#d08770;">0.0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1.0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  function&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">void</span><span style="color:#eff1f5;">)&gt; rng </span><span>= </span><span style="color:#bf616a;">bind</span><span style="color:#eff1f5;">(distribution, generator);
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** @param head The linked list&#39;s head.
+</span><span style="color:#65737e;">      Note that the head is guaranteed to be not null, so it contains at least one node. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">Solution</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">head </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Returns a random node&#39;s value. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">getRandom</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> curIndex </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">rng</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">1 </span><span>/</span><span style="color:#eff1f5;"> curIndex) result </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      curIndex </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 8/8 cases passed (58 ms)
+</span><span style="color:#65737e;">// Your runtime beats 5.11 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 21.97 % of cpp submissions (16.9 MB)
+</span></code></pre>
 
     </div>
   </div>

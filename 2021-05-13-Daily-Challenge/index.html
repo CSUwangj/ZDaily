@@ -120,55 +120,55 @@ renderMathInElement(document.body, katex_config);
 <p>We had some 2-dimensional coordinates, like <code>&quot;(1, 3)&quot;</code> or <code>&quot;(2, 0.5)&quot;</code>. Then, we removed all commas, decimal points, and spaces, and ended up with the string <code>s</code>. Return a list of strings representing all possibilities for what our original coordinates could have been.</p>
 <p>Our original representation never had extraneous zeroes, so we never started with numbers like &quot;00&quot;, &quot;0.0&quot;, &quot;0.00&quot;, &quot;1.0&quot;, &quot;001&quot;, &quot;00.01&quot;, or any other number that can be represented with less digits. Also, a decimal point within a number never occurs without at least one digit occuring before it, so we never started with numbers like &quot;.1&quot;.</p>
 <p>The final answer list can be returned in any order. Also note that all coordinates in the final answer have exactly one space between them (occurring after the comma.)</p>
-<pre><code>Example 1:
-Input: s = &quot;(123)&quot;
-Output: [&quot;(1, 23)&quot;, &quot;(12, 3)&quot;, &quot;(1.2, 3)&quot;, &quot;(1, 2.3)&quot;]
-Example 2:
-Input: s = &quot;(00011)&quot;
-Output:  [&quot;(0.001, 1)&quot;, &quot;(0, 0.011)&quot;]
-Explanation: 
-0.0, 00, 0001 or 00.01 are not allowed.
-Example 3:
-Input: s = &quot;(0123)&quot;
-Output: [&quot;(0, 123)&quot;, &quot;(0, 12.3)&quot;, &quot;(0, 1.23)&quot;, &quot;(0.1, 23)&quot;, &quot;(0.1, 2.3)&quot;, &quot;(0.12, 3)&quot;]
-Example 4:
-Input: s = &quot;(100)&quot;
-Output: [(10, 0)]
-Explanation: 
-1.0 is not allowed.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Example 1:
+</span><span>Input: s = &quot;(123)&quot;
+</span><span>Output: [&quot;(1, 23)&quot;, &quot;(12, 3)&quot;, &quot;(1.2, 3)&quot;, &quot;(1, 2.3)&quot;]
+</span><span>Example 2:
+</span><span>Input: s = &quot;(00011)&quot;
+</span><span>Output:  [&quot;(0.001, 1)&quot;, &quot;(0, 0.011)&quot;]
+</span><span>Explanation: 
+</span><span>0.0, 00, 0001 or 00.01 are not allowed.
+</span><span>Example 3:
+</span><span>Input: s = &quot;(0123)&quot;
+</span><span>Output: [&quot;(0, 123)&quot;, &quot;(0, 12.3)&quot;, &quot;(0, 1.23)&quot;, &quot;(0.1, 23)&quot;, &quot;(0.1, 2.3)&quot;, &quot;(0.12, 3)&quot;]
+</span><span>Example 4:
+</span><span>Input: s = &quot;(100)&quot;
+</span><span>Output: [(10, 0)]
+</span><span>Explanation: 
+</span><span>1.0 is not allowed.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>4 &lt;= s.length &lt;= 12</code>.</li>
 <li><code>s[0]</code> = &quot;(&quot;, <code>s[s.length - 1]</code> = &quot;)&quot;, and the other elements in <code>s</code> are digits.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  vector&lt;string&gt; getCoordinate(string num) {
-    if(num.length() &gt; 1 &amp;&amp; num.front() == &#x27;0&#x27; &amp;&amp; num.back() == &#x27;0&#x27;) return {};
-    if(num.back() == &#x27;0&#x27;) return {num};
-    if(num.front() == &#x27;0&#x27;) return {&quot;0.&quot; + num.substr(1)};
-    vector&lt;string&gt; result{num};
-    for(int i = 1; i &lt; num.length(); ++i) {
-      result.push_back(num.substr(0, i) + &quot;.&quot; + num.substr(i));
-    }
-    return result;
-  }
-public:
-  vector&lt;string&gt; ambiguousCoordinates(string s) {
-    int len = s.length();
-    vector&lt;string&gt; answer;
-    for(int i = 1; i &lt; s.length() - 2; ++i) {
-      for(auto first : getCoordinate(s.substr(1, i))) {
-        for(auto second : getCoordinate(s.substr(1 + i, len - 2 - i))) {
-          answer.push_back(&quot;(&quot; + first + &quot;, &quot; + second + &quot;)&quot;);
-        }
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#8fa1b3;">getCoordinate</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&gt; </span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> num.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span>== &#39;</span><span style="color:#a3be8c;">0</span><span>&#39; &amp;&amp;</span><span style="color:#eff1f5;"> num.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>== &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>== &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{num};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span>== &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{</span><span>&quot;</span><span style="color:#a3be8c;">0.</span><span>&quot; +</span><span style="color:#eff1f5;"> num.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)};
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; </span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">{num};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> num.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(num.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i) </span><span>+ &quot;</span><span style="color:#a3be8c;">.</span><span>&quot; +</span><span style="color:#eff1f5;"> num.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(i));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#8fa1b3;">ambiguousCoordinates</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> first </span><span>: </span><span style="color:#bf616a;">getCoordinate</span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, i))) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> second </span><span>: </span><span style="color:#bf616a;">getCoordinate</span><span style="color:#eff1f5;">(s.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span>+</span><span style="color:#eff1f5;"> i, len </span><span>- </span><span style="color:#d08770;">2 </span><span>-</span><span style="color:#eff1f5;"> i))) {
+</span><span style="color:#eff1f5;">          answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">(</span><span>&quot; +</span><span style="color:#eff1f5;"> first </span><span>+ &quot;</span><span style="color:#a3be8c;">, </span><span>&quot; +</span><span style="color:#eff1f5;"> second </span><span>+ &quot;</span><span style="color:#a3be8c;">)</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

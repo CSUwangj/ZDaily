@@ -128,8 +128,8 @@ to numbers. The weight of a number will be from now on the sum of its digits.</p
 the list <code>100</code> will come before <code>99</code>. Given a string with the weights of FFC 
 members in normal order can you give this string ordered by &quot;weights&quot; of these numbers?</p>
 <h4 id="example">Example:</h4>
-<pre><code>&quot;56 65 74 100 99 68 86 180 90&quot;` ordered by numbers weights becomes: `&quot;100 180 90 56 65 74 68 86 99&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>&quot;56 65 74 100 99 68 86 180 90&quot;` ordered by numbers weights becomes: `&quot;100 180 90 56 65 74 68 86 99&quot;
+</span></code></pre>
 <p>When two numbers have the same &quot;weight&quot;, let us class them as if they were 
 strings and not numbers: <code>100</code> is before <code>180</code> because its &quot;weight&quot; (1) is 
 less than the one of <code>180</code> (9) and <code>180</code> is before <code>90</code> since, having the 
@@ -142,65 +142,65 @@ same &quot;weight&quot; (9), it comes before as a <em>string</em>.</p>
 <li>For C: The result is freed.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">function orderWeight(strng) {
-  return strng.match(&#x2F;[^ ]+&#x2F;gi)
-    .map(Number)
-    .map(a =&gt; a.toString())
-    .sort((a, b) =&gt; {
-      return a.split(&quot;&quot;).map(e =&gt; +e).reduce((a, b) =&gt; a + b) - b.split(&quot;&quot;).map(e =&gt; +e).reduce((a, b) =&gt; a + b) ?
-        a.split(&quot;&quot;).map(e =&gt; +e).reduce((a, b) =&gt; a + b) - b.split(&quot;&quot;).map(e =&gt; +e).reduce((a, b) =&gt; a + b) :
-        (a &lt; b ? -1 : (a &gt; b ? 1 : 0));
-    }).join(&quot; &quot;)
-}
-
-function orderWeight(strng) {
-  const digitsum = (num) =&gt; num.split(&quot;&quot;).map(e =&gt; +e).reduce((a, b) =&gt; a + b);
-  if (strng.search(&#x2F;[^ ]+&#x2F;) === -1) return &quot;&quot;;
-  return strng.match(&#x2F;[^ ]+&#x2F;gi)
-    .map(Number)
-    .map(a =&gt; a.toString())
-    .sort((a, b) =&gt; {
-      return digitsum(a)-digitsum(b) ?
-        digitsum(a)-digitsum(b) :
-        (a &lt; b ? -1 : (a &gt; b ? 1 : 0));
-    }).join(&quot; &quot;)
-}
-
-function orderWeight(strng) {
-  const digitsum = (num) =&gt; num.split(&quot;&quot;).map(e =&gt; +e).reduce((a, b) =&gt; a + b);
-  if (strng.search(&#x2F;[^ ]+&#x2F;) === -1) return &quot;&quot;;
-  return strng.match(&#x2F;[^ ]+&#x2F;gi)
-    .map(Number)
-    .map(a =&gt; a.toString())
-    .sort((a, b) =&gt; {
-      return digitsum(a)-digitsum(b) ?
-        digitsum(a)-digitsum(b) :
-        a.localeCompare(b);
-    }).join(&quot; &quot;)
-}
-
-function orderWeight(strng) {
-  return strng
-    .split(&quot; &quot;)
-    .map(function(v) {  
-      return {
-        val: v,
-        key: v.split(&quot;&quot;).reduce(function(prev, curr) {
-          return parseInt(prev) + parseInt(curr);
-        }, 0)
-      };
-    })
-    .sort(function(a, b) {
-      return a.key == b.key 
-        ? a.val.localeCompare(b.val)
-        : (a.key - b.key);
-    })
-    .map(function(v) {
-      return v.val;
-    })
-    .join(&quot; &quot;);
-}
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">orderWeight</span><span>(</span><span style="color:#bf616a;">strng</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">strng</span><span>.</span><span style="color:#96b5b4;">match</span><span>(/</span><span style="color:#d08770;">[</span><span>^ </span><span style="color:#d08770;">]</span><span>+/</span><span style="color:#b48ead;">gi</span><span>)
+</span><span>    .</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#ebcb8b;">Number</span><span>)
+</span><span>    .</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">a </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">toString</span><span>())
+</span><span>    .</span><span style="color:#96b5b4;">sort</span><span>((</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>      </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">e </span><span style="color:#b48ead;">=&gt; </span><span>+</span><span style="color:#bf616a;">e</span><span>).</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a </span><span>+ </span><span style="color:#bf616a;">b</span><span>) - </span><span style="color:#bf616a;">b</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">e </span><span style="color:#b48ead;">=&gt; </span><span>+</span><span style="color:#bf616a;">e</span><span>).</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a </span><span>+ </span><span style="color:#bf616a;">b</span><span>) ?
+</span><span>        </span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">e </span><span style="color:#b48ead;">=&gt; </span><span>+</span><span style="color:#bf616a;">e</span><span>).</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a </span><span>+ </span><span style="color:#bf616a;">b</span><span>) - </span><span style="color:#bf616a;">b</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">e </span><span style="color:#b48ead;">=&gt; </span><span>+</span><span style="color:#bf616a;">e</span><span>).</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a </span><span>+ </span><span style="color:#bf616a;">b</span><span>) :
+</span><span>        (</span><span style="color:#bf616a;">a </span><span>&lt; </span><span style="color:#bf616a;">b </span><span>? -</span><span style="color:#d08770;">1 </span><span>: (</span><span style="color:#bf616a;">a </span><span>&gt; </span><span style="color:#bf616a;">b </span><span>? </span><span style="color:#d08770;">1 </span><span>: </span><span style="color:#d08770;">0</span><span>));
+</span><span>    }).</span><span style="color:#96b5b4;">join</span><span>(&quot; &quot;)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">orderWeight</span><span>(</span><span style="color:#bf616a;">strng</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">digitsum </span><span>= (</span><span style="color:#bf616a;">num</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">num</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">e </span><span style="color:#b48ead;">=&gt; </span><span>+</span><span style="color:#bf616a;">e</span><span>).</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a </span><span>+ </span><span style="color:#bf616a;">b</span><span>);
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">strng</span><span>.</span><span style="color:#96b5b4;">search</span><span>(/</span><span style="color:#d08770;">[</span><span>^ </span><span style="color:#d08770;">]</span><span>+/) === -</span><span style="color:#d08770;">1</span><span>) </span><span style="color:#b48ead;">return </span><span>&quot;&quot;;
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">strng</span><span>.</span><span style="color:#96b5b4;">match</span><span>(/</span><span style="color:#d08770;">[</span><span>^ </span><span style="color:#d08770;">]</span><span>+/</span><span style="color:#b48ead;">gi</span><span>)
+</span><span>    .</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#ebcb8b;">Number</span><span>)
+</span><span>    .</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">a </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">toString</span><span>())
+</span><span>    .</span><span style="color:#96b5b4;">sort</span><span>((</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>      </span><span style="color:#b48ead;">return </span><span style="color:#8fa1b3;">digitsum</span><span>(</span><span style="color:#bf616a;">a</span><span>)-</span><span style="color:#8fa1b3;">digitsum</span><span>(</span><span style="color:#bf616a;">b</span><span>) ?
+</span><span>        </span><span style="color:#8fa1b3;">digitsum</span><span>(</span><span style="color:#bf616a;">a</span><span>)-</span><span style="color:#8fa1b3;">digitsum</span><span>(</span><span style="color:#bf616a;">b</span><span>) :
+</span><span>        (</span><span style="color:#bf616a;">a </span><span>&lt; </span><span style="color:#bf616a;">b </span><span>? -</span><span style="color:#d08770;">1 </span><span>: (</span><span style="color:#bf616a;">a </span><span>&gt; </span><span style="color:#bf616a;">b </span><span>? </span><span style="color:#d08770;">1 </span><span>: </span><span style="color:#d08770;">0</span><span>));
+</span><span>    }).</span><span style="color:#96b5b4;">join</span><span>(&quot; &quot;)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">orderWeight</span><span>(</span><span style="color:#bf616a;">strng</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">digitsum </span><span>= (</span><span style="color:#bf616a;">num</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">num</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">e </span><span style="color:#b48ead;">=&gt; </span><span>+</span><span style="color:#bf616a;">e</span><span>).</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a </span><span>+ </span><span style="color:#bf616a;">b</span><span>);
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">strng</span><span>.</span><span style="color:#96b5b4;">search</span><span>(/</span><span style="color:#d08770;">[</span><span>^ </span><span style="color:#d08770;">]</span><span>+/) === -</span><span style="color:#d08770;">1</span><span>) </span><span style="color:#b48ead;">return </span><span>&quot;&quot;;
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">strng</span><span>.</span><span style="color:#96b5b4;">match</span><span>(/</span><span style="color:#d08770;">[</span><span>^ </span><span style="color:#d08770;">]</span><span>+/</span><span style="color:#b48ead;">gi</span><span>)
+</span><span>    .</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#ebcb8b;">Number</span><span>)
+</span><span>    .</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">a </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">toString</span><span>())
+</span><span>    .</span><span style="color:#96b5b4;">sort</span><span>((</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>      </span><span style="color:#b48ead;">return </span><span style="color:#8fa1b3;">digitsum</span><span>(</span><span style="color:#bf616a;">a</span><span>)-</span><span style="color:#8fa1b3;">digitsum</span><span>(</span><span style="color:#bf616a;">b</span><span>) ?
+</span><span>        </span><span style="color:#8fa1b3;">digitsum</span><span>(</span><span style="color:#bf616a;">a</span><span>)-</span><span style="color:#8fa1b3;">digitsum</span><span>(</span><span style="color:#bf616a;">b</span><span>) :
+</span><span>        </span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#8fa1b3;">localeCompare</span><span>(</span><span style="color:#bf616a;">b</span><span>);
+</span><span>    }).</span><span style="color:#96b5b4;">join</span><span>(&quot; &quot;)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">orderWeight</span><span>(</span><span style="color:#bf616a;">strng</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">strng
+</span><span>    .</span><span style="color:#96b5b4;">split</span><span>(&quot; &quot;)
+</span><span>    .</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">v</span><span>) {  
+</span><span>      </span><span style="color:#b48ead;">return </span><span>{
+</span><span>        val: </span><span style="color:#bf616a;">v</span><span>,
+</span><span>        key: </span><span style="color:#bf616a;">v</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#8fa1b3;">reduce</span><span>(</span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">prev</span><span>, </span><span style="color:#bf616a;">curr</span><span>) {
+</span><span>          </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">parseInt</span><span>(</span><span style="color:#bf616a;">prev</span><span>) + </span><span style="color:#96b5b4;">parseInt</span><span>(</span><span style="color:#bf616a;">curr</span><span>);
+</span><span>        }, </span><span style="color:#d08770;">0</span><span>)
+</span><span>      };
+</span><span>    })
+</span><span>    .</span><span style="color:#96b5b4;">sort</span><span>(</span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) {
+</span><span>      </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#bf616a;">key </span><span>== </span><span style="color:#bf616a;">b</span><span>.</span><span style="color:#bf616a;">key 
+</span><span>        ? </span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#bf616a;">val</span><span>.</span><span style="color:#8fa1b3;">localeCompare</span><span>(</span><span style="color:#bf616a;">b</span><span>.</span><span style="color:#bf616a;">val</span><span>)
+</span><span>        : (</span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#bf616a;">key </span><span>- </span><span style="color:#bf616a;">b</span><span>.</span><span style="color:#bf616a;">key</span><span>);
+</span><span>    })
+</span><span>    .</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">v</span><span>) {
+</span><span>      </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">v</span><span>.</span><span style="color:#bf616a;">val</span><span>;
+</span><span>    })
+</span><span>    .</span><span style="color:#96b5b4;">join</span><span>(&quot; &quot;);
+</span><span>}
+</span></code></pre>
 
     </div>
   </div>

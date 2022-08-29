@@ -117,23 +117,23 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p>You are given coins of different denominations and a total amount of money. Write a function to compute the number of combinations that make up that amount. You may assume that you have infinite number of each kind of coin.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: amount = 5, coins = [1, 2, 5]
-Output: 4
-Explanation: there are four ways to make up the amount:
-5=5
-5=2+2+1
-5=2+1+1+1
-5=1+1+1+1+1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: amount = 5, coins = [1, 2, 5]
+</span><span>Output: 4
+</span><span>Explanation: there are four ways to make up the amount:
+</span><span>5=5
+</span><span>5=2+2+1
+</span><span>5=2+1+1+1
+</span><span>5=1+1+1+1+1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: amount = 3, coins = [2]
-Output: 0
-Explanation: the amount of 3 cannot be made up just with coins of 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: amount = 3, coins = [2]
+</span><span>Output: 0
+</span><span>Explanation: the amount of 3 cannot be made up just with coins of 2.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: amount = 10, coins = [10] 
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: amount = 10, coins = [10] 
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <p>You can assume that</p>
 <ul>
@@ -143,23 +143,23 @@ Output: 1
 <li>the answer is guaranteed to fit into signed 32-bit integer</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int change(int amount, vector&lt;int&gt;&amp; coins) {
-    int dp[amount + 1];
-    for(int i = 0; i &lt;= amount; ++i) dp[i] = 0;
-    dp[0] = 1;
-    for(auto c : coins) {
-      for(int i = c; i &lt;= amount; ++i) {
-        dp[i] += dp[i - c];
-      }
-    }
-    return dp[amount];
-  }
-};
-
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">change</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">amount</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">coins</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[amount </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> amount; </span><span>++</span><span style="color:#eff1f5;">i) dp[i] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> coins) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> c; i </span><span>&lt;=</span><span style="color:#eff1f5;"> amount; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        dp[i] </span><span>+=</span><span style="color:#eff1f5;"> dp[i </span><span>-</span><span style="color:#eff1f5;"> c];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[amount];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span>
+</span></code></pre>
 <h1 id="march-leetcoding-challenge-31">March LeetCoding challenge 31</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Stamping The Sequence</strong></p>
@@ -171,14 +171,14 @@ public:
 <p>For example, if the sequence is &quot;ababc&quot;, and the stamp is <code>&quot;abc&quot;</code>, then we could return the answer <code>[0, 2]</code>, corresponding to the moves &quot;?????&quot; -&gt; &quot;abc??&quot; -&gt; &quot;ababc&quot;.</p>
 <p>Also, if the sequence is possible to stamp, it is guaranteed it is possible to stamp within <code>10 * target.length</code> moves. Any answers specifying more than this number of moves will not be accepted.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: stamp = &quot;abc&quot;, target = &quot;ababc&quot;
-Output: [0,2]
-([1,0,2] would also be accepted as an answer, as well as some other answers.)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: stamp = &quot;abc&quot;, target = &quot;ababc&quot;
+</span><span>Output: [0,2]
+</span><span>([1,0,2] would also be accepted as an answer, as well as some other answers.)
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: stamp = &quot;abca&quot;, target = &quot;aabcaca&quot;
-Output: [3,0,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: stamp = &quot;abca&quot;, target = &quot;aabcaca&quot;
+</span><span>Output: [3,0,1]
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>1 &lt;= stamp.length &lt;= target.length &lt;= 1000</code></li>
@@ -187,133 +187,133 @@ Output: [3,0,1]
 <h2 id="solution-1">Solution</h2>
 <p>I come up with work backward solution, but fail to write a elegant solution. At least I've done it myself!</p>
 <p>it's a struggle debugging this</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">template&lt;typename T&gt;
-std::ostream&amp; operator&lt;&lt;(std::ostream &amp;out, const std::vector&lt;T&gt; &amp;v) {
-  if(v.size() == 0) {
-    out &lt;&lt; &quot;[]&quot; &lt;&lt; std::endl;
-    return out;
-  }
-  out &lt;&lt; &#x27;[&#x27; &lt;&lt; v[0];
-  for(int i = 1; i &lt; v.size(); ++i) {
-    out &lt;&lt; &quot;, &quot; &lt;&lt; v[i];
-  }
-  out &lt;&lt; &#x27;]&#x27; &lt;&lt; std::endl;
-  return out;
-}
-
-class Solution {
-  int sLen;
-  int tLen;
-  int rightMost = -1;
-  
-  int findStart(string &amp;s, string &amp;t) {
-    for(int i = rightMost + 1; i &lt;= tLen - sLen; ++i) {
-      bool eq = true;
-      for(int j = 0; j &lt; sLen; ++j) eq &amp;= t[i + j] == s[j];
-      if(eq) return i;
-    }
-    return -1;
-  }
-  
-  void findLeft(int start, string &amp;s, string &amp;t, vector&lt;int&gt; &amp;answer) {
-    while(start &gt; rightMost + 1) {
-      int find = 0;
-      for(int i = 1; i &lt; sLen &amp;&amp; start - i &gt; rightMost; ++i) {
-        bool ok = true;
-        for(int j = 0; start - i + j &lt; start; ++j) {
-          ok &amp;= t[start - i + j] == s[j];
-        }
-        &#x2F;&#x2F; cout &lt;&lt; start &lt;&lt; &#x27; &#x27; &lt;&lt; i &lt;&lt; &#x27; &#x27; &lt;&lt; ok &lt;&lt; endl;
-        if(ok) find = i;
-      }
-      if(!find) return;
-      start -= find;
-      
-      &#x2F;&#x2F; cout &lt;&lt; &quot;[left]: push &quot; &lt;&lt; start &lt;&lt; endl;
-      answer.push_back(start);
-    }
-    &#x2F;&#x2F; cout &lt;&lt; &quot;[left] true&quot; &lt;&lt; endl;
-    return;
-  }
-  
-  void findRight(int start, string &amp;s, string &amp;t, vector&lt;int&gt; &amp;answer) {
-    while(start &lt; tLen - sLen) {
-      int find = 0;
-      for(int i = 1; i &lt; sLen &amp;&amp; start + i + sLen &lt;= tLen; ++i) {
-        bool ok = true;
-        for(int j = 1; start + i - j &gt;= start; ++j) {
-          ok &amp;= t[start + i - j + sLen] == s[sLen - j];
-        }
-        if(ok) find = i;
-      }
-      if(!find) return;
-      start += find;
-      rightMost = start + sLen - 1;
-      &#x2F;&#x2F; cout &lt;&lt; &quot;[right]: push &quot; &lt;&lt; start &lt;&lt; endl;
-      answer.push_back(start);
-    }
-    &#x2F;&#x2F; cout &lt;&lt; &quot;[right] true&quot; &lt;&lt; endl;
-    return;
-  }
-  
-  void findEdge(string &amp;stamp, string &amp;helper, string &amp;target,vector&lt;int&gt; &amp;answer) {
-    if(sLen &lt; 3) return;
-    for(int i = 0; i &lt;= tLen - sLen; ++i) {
-      bool ok = true;
-      bool need = false;
-      for(int j = 0; j &lt; sLen; ++j) {
-        if(helper[i + j] == &#x27;?&#x27;) need = true;
-        if(helper[i + j] == &#x27;?&#x27;) ok &amp;= target[i + j] == stamp[j];
-      }
-      if(need &amp;&amp; ok) answer.push_back(i);
-    }
-  }
-  
-  void apply(string &amp;stamp, string &amp;helper, int pos) {
-    for(int i = 0; i &lt; sLen; ++i) {
-      helper[pos + i] = stamp[i];
-    }
-  }
-public:
-  vector&lt;int&gt; movesToStamp(string stamp, string target) {
-    sLen = stamp.length();
-    tLen = target.length();
-    string helper(tLen, &#x27;?&#x27;);
-    vector&lt;int&gt; answer;
-    
-    int start = -1;
-    while(rightMost &lt; tLen - sLen) {
-      int prevStart = start;
-      start = findStart(stamp, target);
-      &#x2F;&#x2F; cout &lt;&lt; &quot;[start]: &quot; &lt;&lt; start &lt;&lt; endl;
-      &#x2F;&#x2F; cout &lt;&lt; &quot;[right most]: &quot; &lt;&lt; rightMost &lt;&lt; endl;
-      if(start == -1) break;
-      answer.push_back(start);
-      
-      findLeft(start, stamp, target, answer);
-      findRight(start, stamp, target, answer);
-      rightMost = max(rightMost, start + sLen - 1);
-    }
-    
-    for(auto it = answer.rbegin(); it != answer.rend(); ++it) {
-      apply(stamp, helper, *it);
-    }
-    &#x2F;&#x2F; cout &lt;&lt; answer &lt;&lt; endl;
-    &#x2F;&#x2F; cout &lt;&lt; &quot;[result]: &quot; &lt;&lt; helper &lt;&lt; endl;
-    &#x2F;&#x2F; cout &lt;&lt; &quot;[expect]: &quot; &lt;&lt; target &lt;&lt; endl;
-    findEdge(stamp, helper, target, answer);
-    for(auto it = answer.rbegin(); it != answer.rend(); ++it) {
-      apply(stamp, helper, *it);
-    }
-    &#x2F;&#x2F; cout &lt;&lt; answer &lt;&lt; endl;
-    &#x2F;&#x2F; cout &lt;&lt; &quot;[result]: &quot; &lt;&lt; helper &lt;&lt; endl;
-    &#x2F;&#x2F; cout &lt;&lt; &quot;[expect]: &quot; &lt;&lt; target &lt;&lt; endl;
-    if(helper != target) return {};
-    reverse(answer.begin(), answer.end());
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">template</span><span>&lt;</span><span style="color:#b48ead;">typename</span><span> T&gt;
+</span><span>std::ostream&amp; </span><span style="color:#8fa1b3;">operator&lt;&lt;</span><span>(std::ostream &amp;</span><span style="color:#bf616a;">out</span><span>, </span><span style="color:#b48ead;">const</span><span> std::vector&lt;T&gt; &amp;</span><span style="color:#bf616a;">v</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(v.</span><span style="color:#bf616a;">size</span><span>() == </span><span style="color:#d08770;">0</span><span>) {
+</span><span>    out &lt;&lt; &quot;</span><span style="color:#a3be8c;">[]</span><span>&quot; &lt;&lt; std::endl;
+</span><span>    </span><span style="color:#b48ead;">return</span><span> out;
+</span><span>  }
+</span><span>  out &lt;&lt; &#39;</span><span style="color:#a3be8c;">[</span><span>&#39; &lt;&lt; v[</span><span style="color:#d08770;">0</span><span>];
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">1</span><span>; i &lt; v.</span><span style="color:#bf616a;">size</span><span>(); ++i) {
+</span><span>    out &lt;&lt; &quot;</span><span style="color:#a3be8c;">, </span><span>&quot; &lt;&lt; v[i];
+</span><span>  }
+</span><span>  out &lt;&lt; &#39;</span><span style="color:#a3be8c;">]</span><span>&#39; &lt;&lt; std::endl;
+</span><span>  </span><span style="color:#b48ead;">return</span><span> out;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sLen</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tLen;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rightMost </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findStart</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">t</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> rightMost </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> tLen </span><span>- </span><span style="color:#bf616a;">sLen</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> eq </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt; </span><span style="color:#bf616a;">sLen</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">j) eq </span><span>&amp;=</span><span style="color:#eff1f5;"> t[i </span><span>+</span><span style="color:#eff1f5;"> j] </span><span>==</span><span style="color:#eff1f5;"> s[j];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(eq) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">findLeft</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">start</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">t</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span>&gt;</span><span style="color:#eff1f5;"> rightMost </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> find </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#bf616a;">sLen </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> start </span><span>-</span><span style="color:#eff1f5;"> i </span><span>&gt;</span><span style="color:#eff1f5;"> rightMost; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> ok </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; start </span><span>-</span><span style="color:#eff1f5;"> i </span><span>+</span><span style="color:#eff1f5;"> j </span><span>&lt;</span><span style="color:#eff1f5;"> start; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          ok </span><span>&amp;=</span><span style="color:#eff1f5;"> t[start </span><span>-</span><span style="color:#eff1f5;"> i </span><span>+</span><span style="color:#eff1f5;"> j] </span><span>==</span><span style="color:#eff1f5;"> s[j];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// cout &lt;&lt; start &lt;&lt; &#39; &#39; &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; ok &lt;&lt; endl;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(ok) find </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">find) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      start </span><span>-=</span><span style="color:#eff1f5;"> find;
+</span><span style="color:#eff1f5;">      
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[left]: push &quot; &lt;&lt; start &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(start);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[left] true&quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">findRight</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">start</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">t</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span>&lt;</span><span style="color:#eff1f5;"> tLen </span><span>- </span><span style="color:#bf616a;">sLen</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> find </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#bf616a;">sLen </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> start </span><span>+</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#bf616a;">sLen </span><span>&lt;=</span><span style="color:#eff1f5;"> tLen; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> ok </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; start </span><span>+</span><span style="color:#eff1f5;"> i </span><span>-</span><span style="color:#eff1f5;"> j </span><span>&gt;=</span><span style="color:#eff1f5;"> start; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          ok </span><span>&amp;=</span><span style="color:#eff1f5;"> t[start </span><span>+</span><span style="color:#eff1f5;"> i </span><span>-</span><span style="color:#eff1f5;"> j </span><span>+ </span><span style="color:#bf616a;">sLen</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> s[</span><span style="color:#bf616a;">sLen </span><span>-</span><span style="color:#eff1f5;"> j];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(ok) find </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">find) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      start </span><span>+=</span><span style="color:#eff1f5;"> find;
+</span><span style="color:#eff1f5;">      rightMost </span><span>=</span><span style="color:#eff1f5;"> start </span><span>+ </span><span style="color:#bf616a;">sLen </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[right]: push &quot; &lt;&lt; start &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(start);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[right] true&quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">findEdge</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">stamp</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">,vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sLen </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> tLen </span><span>- </span><span style="color:#bf616a;">sLen</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> ok </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> need </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt; </span><span style="color:#bf616a;">sLen</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(helper[i </span><span>+</span><span style="color:#eff1f5;"> j] </span><span>== &#39;</span><span style="color:#a3be8c;">?</span><span>&#39;</span><span style="color:#eff1f5;">) need </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(helper[i </span><span>+</span><span style="color:#eff1f5;"> j] </span><span>== &#39;</span><span style="color:#a3be8c;">?</span><span>&#39;</span><span style="color:#eff1f5;">) ok </span><span>&amp;=</span><span style="color:#eff1f5;"> target[i </span><span>+</span><span style="color:#eff1f5;"> j] </span><span>==</span><span style="color:#eff1f5;"> stamp[j];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(need </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> ok) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">apply</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">stamp</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#bf616a;">sLen</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      helper[pos </span><span>+</span><span style="color:#eff1f5;"> i] </span><span>=</span><span style="color:#eff1f5;"> stamp[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">movesToStamp</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">stamp</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sLen </span><span>=</span><span style="color:#eff1f5;"> stamp.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    tLen </span><span>=</span><span style="color:#eff1f5;"> target.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    string </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(tLen, </span><span>&#39;</span><span style="color:#a3be8c;">?</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> start </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(rightMost </span><span>&lt;</span><span style="color:#eff1f5;"> tLen </span><span>- </span><span style="color:#bf616a;">sLen</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> prevStart </span><span>=</span><span style="color:#eff1f5;"> start;
+</span><span style="color:#eff1f5;">      start </span><span>= </span><span style="color:#bf616a;">findStart</span><span style="color:#eff1f5;">(stamp, target);
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[start]: &quot; &lt;&lt; start &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[right most]: &quot; &lt;&lt; rightMost &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(start </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(start);
+</span><span style="color:#eff1f5;">      
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">findLeft</span><span style="color:#eff1f5;">(start, stamp, target, answer);
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">findRight</span><span style="color:#eff1f5;">(start, stamp, target, answer);
+</span><span style="color:#eff1f5;">      rightMost </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(rightMost, start </span><span>+ </span><span style="color:#bf616a;">sLen </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); it </span><span>!=</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">apply</span><span style="color:#eff1f5;">(stamp, helper, </span><span>*</span><span style="color:#eff1f5;">it);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; answer &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[result]: &quot; &lt;&lt; helper &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[expect]: &quot; &lt;&lt; target &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">findEdge</span><span style="color:#eff1f5;">(stamp, helper, target, answer);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); it </span><span>!=</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">apply</span><span style="color:#eff1f5;">(stamp, helper, </span><span>*</span><span style="color:#eff1f5;">it);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; answer &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[result]: &quot; &lt;&lt; helper &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;[expect]: &quot; &lt;&lt; target &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(helper </span><span>!=</span><span style="color:#eff1f5;"> target) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

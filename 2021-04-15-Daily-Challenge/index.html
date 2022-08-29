@@ -125,33 +125,33 @@ renderMathInElement(document.body, katex_config);
 <p>To determine the least frequently used key, a <strong>use counter</strong> is maintained for each key in the cache. The key with the smallest <strong>use counter</strong> is the least frequently used key.</p>
 <p>When a key is first inserted into the cache, its <strong>use counter</strong> is set to <code>1</code> (due to the <code>put</code> operation). The <strong>use counter</strong> for a key in the cache is incremented either a <code>get</code> or <code>put</code> operation is called on it.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;LFUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]
-[[2], [1, 1], [2, 2], [1], [3, 3], [2], [3], [4, 4], [1], [3], [4]]
-Output
-[null, null, null, 1, null, -1, 3, null, -1, 3, 4]
-
-Explanation
-&#x2F;&#x2F; cnt(x) = the use counter for key x
-&#x2F;&#x2F; cache=[] will show the last used order for tiebreakers (leftmost element is  most recent)
-LFUCache lfu = new LFUCache(2);
-lfu.put(1, 1);   &#x2F;&#x2F; cache=[1,_], cnt(1)=1
-lfu.put(2, 2);   &#x2F;&#x2F; cache=[2,1], cnt(2)=1, cnt(1)=1
-lfu.get(1);      &#x2F;&#x2F; return 1
-                 &#x2F;&#x2F; cache=[1,2], cnt(2)=1, cnt(1)=2
-lfu.put(3, 3);   &#x2F;&#x2F; 2 is the LFU key because cnt(2)=1 is the smallest, invalidate 2.
-                 &#x2F;&#x2F; cache=[3,1], cnt(3)=1, cnt(1)=2
-lfu.get(2);      &#x2F;&#x2F; return -1 (not found)
-lfu.get(3);      &#x2F;&#x2F; return 3
-                 &#x2F;&#x2F; cache=[3,1], cnt(3)=2, cnt(1)=2
-lfu.put(4, 4);   &#x2F;&#x2F; Both 1 and 3 have the same cnt, but 1 is LRU, invalidate 1.
-                 &#x2F;&#x2F; cache=[4,3], cnt(4)=1, cnt(3)=2
-lfu.get(1);      &#x2F;&#x2F; return -1 (not found)
-lfu.get(3);      &#x2F;&#x2F; return 3
-                 &#x2F;&#x2F; cache=[3,4], cnt(4)=1, cnt(3)=3
-lfu.get(4);      &#x2F;&#x2F; return 4
-                 &#x2F;&#x2F; cache=[3,4], cnt(4)=2, cnt(3)=3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;LFUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]
+</span><span>[[2], [1, 1], [2, 2], [1], [3, 3], [2], [3], [4, 4], [1], [3], [4]]
+</span><span>Output
+</span><span>[null, null, null, 1, null, -1, 3, null, -1, 3, 4]
+</span><span>
+</span><span>Explanation
+</span><span>// cnt(x) = the use counter for key x
+</span><span>// cache=[] will show the last used order for tiebreakers (leftmost element is  most recent)
+</span><span>LFUCache lfu = new LFUCache(2);
+</span><span>lfu.put(1, 1);   // cache=[1,_], cnt(1)=1
+</span><span>lfu.put(2, 2);   // cache=[2,1], cnt(2)=1, cnt(1)=1
+</span><span>lfu.get(1);      // return 1
+</span><span>                 // cache=[1,2], cnt(2)=1, cnt(1)=2
+</span><span>lfu.put(3, 3);   // 2 is the LFU key because cnt(2)=1 is the smallest, invalidate 2.
+</span><span>                 // cache=[3,1], cnt(3)=1, cnt(1)=2
+</span><span>lfu.get(2);      // return -1 (not found)
+</span><span>lfu.get(3);      // return 3
+</span><span>                 // cache=[3,1], cnt(3)=2, cnt(1)=2
+</span><span>lfu.put(4, 4);   // Both 1 and 3 have the same cnt, but 1 is LRU, invalidate 1.
+</span><span>                 // cache=[4,3], cnt(4)=1, cnt(3)=2
+</span><span>lfu.get(1);      // return -1 (not found)
+</span><span>lfu.get(3);      // return 3
+</span><span>                 // cache=[3,4], cnt(4)=1, cnt(3)=3
+</span><span>lfu.get(4);      // return 4
+</span><span>                 // cache=[3,4], cnt(4)=2, cnt(3)=3
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= capacity, key, value &lt;= 104</code></li>
@@ -160,343 +160,343 @@ lfu.get(4);      &#x2F;&#x2F; return 4
 <p><strong>Follow up:</strong> Could you do both operations in <code>O(1)</code> time complexity?</p>
 <h2 id="solution">Solution</h2>
 <p>worst case with $O(n)$ <code>get</code> and $O(n)$ <code>put</code>, average with $O(log n)$ <code>get</code> and $O(log n)$ <code>put</code></p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class LFUCache {
-  int capacity;
-  multimap&lt;int, int, greater&lt;int&gt;&gt; mp;
-  unordered_map&lt;int, int&gt; freq;
-  unordered_map&lt;int, int&gt; kv;
-  unordered_map&lt;int, multimap&lt;int, int, greater&lt;int&gt;&gt;::iterator&gt; its;
-  void updateFreq(int key) {
-    int f = freq[key];
-    auto it = its[key];
-    mp.erase(it);
-    it = mp.emplace_hint(mp.lower_bound(f + 1), make_pair(f + 1, key)); 
-    freq[key] = f + 1;
-    its[key] = it;
-  }
-public:
-  LFUCache(int cap) : capacity(cap) {}
-
-  int get(int key) {
-    if(!kv.count(key)) return -1;
-    updateFreq(key);
-    return kv[key];
-  }
-
-  void put(int key, int value) {
-    &#x2F;&#x2F; cout &lt;&lt; &quot;put :&quot; &lt;&lt; key &lt;&lt; endl;
-    if(!capacity) return;
-    if(kv.count(key)) {
-      updateFreq(key);
-    } else{
-      if(mp.size() == capacity) {
-        auto it = mp.end();
-        --it;
-        kv.erase(it-&gt;second);
-        mp.erase(it);
-      }
-      auto it = mp.emplace_hint(mp.lower_bound(1), make_pair(1, key));
-      its[key] = it;
-      freq[key] = 1;
-    } 
-    kv[key] = value;
-  }
-};
-
-&#x2F;**
- * Your LFUCache object will be instantiated and called as such:
- * LFUCache* obj = new LFUCache(capacity);
- * int param_1 = obj-&gt;get(key);
- * obj-&gt;put(key,value);
- *&#x2F;
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">LFUCache </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> capacity;
+</span><span style="color:#eff1f5;">  multimap&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, greater&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; mp;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; freq;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; kv;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, multimap&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, greater&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;::iterator&gt; its;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">updateFreq</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> f </span><span>=</span><span style="color:#eff1f5;"> freq[key];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> its[key];
+</span><span style="color:#eff1f5;">    mp.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(it);
+</span><span style="color:#eff1f5;">    it </span><span>=</span><span style="color:#eff1f5;"> mp.</span><span style="color:#bf616a;">emplace_hint</span><span style="color:#eff1f5;">(mp.</span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(f </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(f </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, key)); 
+</span><span style="color:#eff1f5;">    freq[key] </span><span>=</span><span style="color:#eff1f5;"> f </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    its[key] </span><span>=</span><span style="color:#eff1f5;"> it;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">LFUCache</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cap</span><span style="color:#eff1f5;">) : </span><span style="color:#bf616a;">capacity</span><span style="color:#eff1f5;">(cap) {}
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">get</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">kv.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(key)) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">updateFreq</span><span style="color:#eff1f5;">(key);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> kv[key];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">put</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;put :&quot; &lt;&lt; key &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">capacity) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(kv.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(key)) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">updateFreq</span><span style="color:#eff1f5;">(key);
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> capacity) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> mp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span>--</span><span style="color:#eff1f5;">it;
+</span><span style="color:#eff1f5;">        kv.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(it-&gt;</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        mp.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(it);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> mp.</span><span style="color:#bf616a;">emplace_hint</span><span style="color:#eff1f5;">(mp.</span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, key));
+</span><span style="color:#eff1f5;">      its[key] </span><span>=</span><span style="color:#eff1f5;"> it;
+</span><span style="color:#eff1f5;">      freq[key] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    } 
+</span><span style="color:#eff1f5;">    kv[key] </span><span>=</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Your LFUCache object will be instantiated and called as such:
+</span><span style="color:#65737e;"> * LFUCache* obj = new LFUCache(capacity);
+</span><span style="color:#65737e;"> * int param_1 = obj-&gt;get(key);
+</span><span style="color:#65737e;"> * obj-&gt;put(key,value);
+</span><span style="color:#65737e;"> */
+</span></code></pre>
 <p>$O(1)$ <code>get</code> and $O(1)$ <code>put</code></p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class LFUCache {
-  int capacity;
-  list&lt;int&gt; container;
-  unordered_map&lt;int, int&gt; freq;
-  unordered_map&lt;int, int&gt; kv;
-  unordered_map&lt;int, list&lt;int&gt;::iterator&gt; its;
-  unordered_map&lt;int, list&lt;int&gt;::iterator&gt; freqIts;
-  void updateFreq(int key) {
-    auto it = its[key];
-    list&lt;int&gt;::iterator newIt;
-    int f = freq[key];
-    if(freqIts.count(f + 1)) {
-      newIt = container.insert(freqIts[f + 1], key);
-    } else {
-      newIt = container.insert(freqIts[f], key);
-    }
-    if(freqIts[f] == it) {
-      auto nextIt = freqIts[f];
-      ++nextIt;
-      if(nextIt != container.end() &amp;&amp; freq[*nextIt] == f) {
-        freqIts[f] = nextIt;
-      } else {
-        freqIts.erase(f);
-      }
-    }
-    freqIts[f + 1] = newIt;
-    freq[key] = f + 1;
-    its[key] = newIt;
-    container.erase(it);
-  }
-  
-  void removeLast() {
-    auto it = container.end();
-    --it;
-    kv.erase(*it);
-    int f = freq[*it];
-    if(freqIts[f] == it){
-      freqIts.erase(f);
-    }
-    container.erase(it);
-  }
-public:
-  LFUCache(int cap) : capacity(cap) {}
-
-  int get(int key) {
-    &#x2F;&#x2F; cout &lt;&lt; &quot;get :&quot; &lt;&lt; container.size() &lt;&lt; endl;
-    if(!kv.count(key)) return -1;
-    &#x2F;&#x2F; cout &lt;&lt; &quot;get update&quot; &lt;&lt; endl;
-    updateFreq(key);
-    &#x2F;&#x2F; cout &lt;&lt; &quot;get update success&quot; &lt;&lt; endl;
-    return kv[key];
-  }
-
-  void put(int key, int value) {
-    &#x2F;&#x2F; cout &lt;&lt; &quot;put :&quot; &lt;&lt; container.size() &lt;&lt; endl;
-    if(!capacity) return;
-    if(kv.count(key)) {
-      updateFreq(key);
-    } else {
-      if(container.size() == capacity) {
-        removeLast();
-      }
-      freq[key] = 1;
-      list&lt;int&gt;::iterator newIt;
-      if(freqIts.count(1)) {
-        newIt = container.insert(freqIts[1], key);
-      } else {
-        newIt = container.insert(container.end(), key);
-      }
-      its[key] = newIt;
-      freqIts[1] = newIt;
-    }
-    kv[key] = value;
-  }
-};
-
-&#x2F;**
- * Your LFUCache object will be instantiated and called as such:
- * LFUCache* obj = new LFUCache(capacity);
- * int param_1 = obj-&gt;get(key);
- * obj-&gt;put(key,value);
- *&#x2F;
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">LFUCache </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> capacity;
+</span><span style="color:#eff1f5;">  list&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; container;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; freq;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; kv;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, list&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;::iterator&gt; its;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, list&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;::iterator&gt; freqIts;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">updateFreq</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> its[key];
+</span><span style="color:#eff1f5;">    list&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;::iterator newIt;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> f </span><span>=</span><span style="color:#eff1f5;"> freq[key];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(freqIts.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(f </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">      newIt </span><span>=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(freqIts[f </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], key);
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      newIt </span><span>=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(freqIts[f], key);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(freqIts[f] </span><span>==</span><span style="color:#eff1f5;"> it) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> nextIt </span><span>=</span><span style="color:#eff1f5;"> freqIts[f];
+</span><span style="color:#eff1f5;">      </span><span>++</span><span style="color:#eff1f5;">nextIt;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nextIt </span><span>!=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> freq[</span><span>*</span><span style="color:#eff1f5;">nextIt] </span><span>==</span><span style="color:#eff1f5;"> f) {
+</span><span style="color:#eff1f5;">        freqIts[f] </span><span>=</span><span style="color:#eff1f5;"> nextIt;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        freqIts.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(f);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    freqIts[f </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> newIt;
+</span><span style="color:#eff1f5;">    freq[key] </span><span>=</span><span style="color:#eff1f5;"> f </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    its[key] </span><span>=</span><span style="color:#eff1f5;"> newIt;
+</span><span style="color:#eff1f5;">    container.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(it);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">removeLast</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span>--</span><span style="color:#eff1f5;">it;
+</span><span style="color:#eff1f5;">    kv.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> f </span><span>=</span><span style="color:#eff1f5;"> freq[</span><span>*</span><span style="color:#eff1f5;">it];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(freqIts[f] </span><span>==</span><span style="color:#eff1f5;"> it){
+</span><span style="color:#eff1f5;">      freqIts.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(f);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    container.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(it);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">LFUCache</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cap</span><span style="color:#eff1f5;">) : </span><span style="color:#bf616a;">capacity</span><span style="color:#eff1f5;">(cap) {}
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">get</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;get :&quot; &lt;&lt; container.size() &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">kv.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(key)) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;get update&quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">updateFreq</span><span style="color:#eff1f5;">(key);
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;get update success&quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> kv[key];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">put</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;put :&quot; &lt;&lt; container.size() &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">capacity) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(kv.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(key)) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">updateFreq</span><span style="color:#eff1f5;">(key);
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(container.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> capacity) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">removeLast</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      freq[key] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      list&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;::iterator newIt;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(freqIts.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">        newIt </span><span>=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(freqIts[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], key);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        newIt </span><span>=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(container.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), key);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      its[key] </span><span>=</span><span style="color:#eff1f5;"> newIt;
+</span><span style="color:#eff1f5;">      freqIts[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> newIt;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    kv[key] </span><span>=</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Your LFUCache object will be instantiated and called as such:
+</span><span style="color:#65737e;"> * LFUCache* obj = new LFUCache(capacity);
+</span><span style="color:#65737e;"> * int param_1 = obj-&gt;get(key);
+</span><span style="color:#65737e;"> * obj-&gt;put(key,value);
+</span><span style="color:#65737e;"> */
+</span></code></pre>
 <p>I copy the fastest here for my further learning</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">#include&lt;bits&#x2F;stdc++.h&gt;
-using namespace std;
-int const N = (int)1e4 + 1;
-
-struct Data{
-  int value, count, time, pq_idx;
-  Data(){
-    value = -1, count = 0, time = 0, pq_idx = -1;
-  }
-};
-
-Data db[N];
-
-void init(){
-  for(int i=0; i&lt;N; i++){
-    db[i].value = -1, db[i].count = 0, db[i].time = 0, db[i].pq_idx = -1;
-  }
-}
-
-bool operator&gt; (const Data&amp; a, const Data&amp; b){
-  if(a.count != b.count) return a.count &gt; b.count;
-  return a.time &gt; b.time;
-}
-
-class LFUCache {
-private:
-  int heap[N];
-  int size = 0;
-  int tCnt = 0;
-  int time = 0;
-  int capacity = 0;
-
-  void bubbleDown(int idx){
-    while(2*idx+1 &lt; size){
-      int left = 2*idx+1;
-      if(left+1 &lt; size &amp;&amp; db[heap[left]] &gt; db[heap[left+1]]) left += 1;
-      if(db[heap[idx]] &gt; db[heap[left]]){
-        swap(db[heap[idx]].pq_idx, db[heap[left]].pq_idx);
-        swap(heap[idx], heap[left]);
-        idx = left;
-      }else{
-        break;
-      }
-    }
-  }
-
-  void update(int pidx){
-    bubbleDown(pidx);
-  }
-
-  int pop(){
-    swap(db[heap[0]].pq_idx, db[heap[size-1]].pq_idx);
-    swap(heap[0], heap[size-1]);
-    size--;
-    bubbleDown(0);
-    return heap[size];
-  }
-
-  void bubbleUp(int idx){
-    while(idx &gt; 0 &amp;&amp; db[heap[(idx-1)&#x2F;2]] &gt; db[heap[idx]]){
-      swap(db[heap[(idx-1)&#x2F;2]].pq_idx, db[heap[idx]].pq_idx);
-      swap(heap[idx], heap[(idx-1)&#x2F;2]);
-      idx = (idx-1)&#x2F;2;
-    } 
-  }
-
-  void push(int key){
-    db[key].pq_idx = size;
-    heap[size] = key;
-    size++;
-    bubbleUp(size-1);
-  }
-      
-public:
-  LFUCache(int c) {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int size = 0;
-    int tCnt = 0;
-    int time = 0;
-    capacity = c;
-    init();
-  }
-  
-  int get(int key) {
-    time++;
-    if(db[key].value == -1) return -1;
-    db[key].count += 1;
-    db[key].time = time;
-    update(db[key].pq_idx);
-    return db[key].value;
-  }
-  
-  void put(int key, int value) {
-    if(capacity == 0) return;
-    time++;
-    if(db[key].value != -1){
-      db[key].count += 1;
-      db[key].value = value;
-      db[key].time = time;
-      update(db[key].pq_idx);
-      return;
-    }else if(tCnt == capacity){
-      int idx = pop();
-      db[idx].value = -1;
-      tCnt--;
-    }
-    db[key].count = 1;
-    db[key].value = value;
-    db[key].time = time;
-    push(key);
-    tCnt++;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">#include</span><span>&lt;</span><span style="color:#a3be8c;">bits/stdc++.h</span><span>&gt;
+</span><span style="color:#b48ead;">using namespace</span><span> std;
+</span><span style="color:#b48ead;">int const</span><span> N = (</span><span style="color:#b48ead;">int</span><span>)</span><span style="color:#d08770;">1e4 </span><span>+ </span><span style="color:#d08770;">1</span><span>;
+</span><span>
+</span><span style="color:#b48ead;">struct </span><span>Data{
+</span><span>  </span><span style="color:#b48ead;">int</span><span> value, count, time, pq_idx;
+</span><span>  </span><span style="color:#8fa1b3;">Data</span><span>(){
+</span><span>    value = -</span><span style="color:#d08770;">1</span><span>, count = </span><span style="color:#d08770;">0</span><span>, time = </span><span style="color:#d08770;">0</span><span>, pq_idx = -</span><span style="color:#d08770;">1</span><span>;
+</span><span>  }
+</span><span>};
+</span><span>
+</span><span>Data db[N];
+</span><span>
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span>(){
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i=</span><span style="color:#d08770;">0</span><span>; i&lt;N; i++){
+</span><span>    db[i].</span><span style="color:#bf616a;">value </span><span>= -</span><span style="color:#d08770;">1</span><span>, db[i].</span><span style="color:#bf616a;">count </span><span>= </span><span style="color:#d08770;">0</span><span>, db[i].</span><span style="color:#bf616a;">time </span><span>= </span><span style="color:#d08770;">0</span><span>, db[i].</span><span style="color:#bf616a;">pq_idx </span><span>= -</span><span style="color:#d08770;">1</span><span>;
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">operator&gt; </span><span>(</span><span style="color:#b48ead;">const</span><span> Data&amp; </span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#b48ead;">const</span><span> Data&amp; </span><span style="color:#bf616a;">b</span><span>){
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(a.</span><span style="color:#bf616a;">count </span><span>!= b.</span><span style="color:#bf616a;">count</span><span>) </span><span style="color:#b48ead;">return</span><span> a.</span><span style="color:#bf616a;">count </span><span>&gt; b.</span><span style="color:#bf616a;">count</span><span>;
+</span><span>  </span><span style="color:#b48ead;">return</span><span> a.</span><span style="color:#bf616a;">time </span><span>&gt; b.</span><span style="color:#bf616a;">time</span><span>;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">LFUCache </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">private</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> heap[N];
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> size </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tCnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> time </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> capacity </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">bubbleDown</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">idx</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">2</span><span>*</span><span style="color:#eff1f5;">idx</span><span>+</span><span style="color:#d08770;">1 </span><span>&lt;</span><span style="color:#eff1f5;"> size){
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> left </span><span>= </span><span style="color:#d08770;">2</span><span>*</span><span style="color:#eff1f5;">idx</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(left</span><span>+</span><span style="color:#d08770;">1 </span><span>&lt;</span><span style="color:#eff1f5;"> size </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> db[heap[left]] </span><span>&gt;</span><span style="color:#eff1f5;"> db[heap[left</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]]) left </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(db[heap[idx]] </span><span>&gt;</span><span style="color:#eff1f5;"> db[heap[left]]){
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(db[heap[idx]].</span><span style="color:#bf616a;">pq_idx</span><span style="color:#eff1f5;">, db[heap[left]].</span><span style="color:#bf616a;">pq_idx</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(heap[idx], heap[left]);
+</span><span style="color:#eff1f5;">        idx </span><span>=</span><span style="color:#eff1f5;"> left;
+</span><span style="color:#eff1f5;">      }</span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">update</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">pidx</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">bubbleDown</span><span style="color:#eff1f5;">(pidx);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">(){
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(db[heap[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">pq_idx</span><span style="color:#eff1f5;">, db[heap[size</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">pq_idx</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(heap[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], heap[size</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    size</span><span>--</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">bubbleDown</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> heap[size];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">bubbleUp</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">idx</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(idx </span><span>&gt; </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> db[heap[(idx</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">]] </span><span>&gt;</span><span style="color:#eff1f5;"> db[heap[idx]]){
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(db[heap[(idx</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">pq_idx</span><span style="color:#eff1f5;">, db[heap[idx]].</span><span style="color:#bf616a;">pq_idx</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(heap[idx], heap[(idx</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">      idx </span><span>= </span><span style="color:#eff1f5;">(idx</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    } 
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">    db[key].</span><span style="color:#bf616a;">pq_idx </span><span>=</span><span style="color:#eff1f5;"> size;
+</span><span style="color:#eff1f5;">    heap[size] </span><span>=</span><span style="color:#eff1f5;"> key;
+</span><span style="color:#eff1f5;">    size</span><span>++</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">bubbleUp</span><span style="color:#eff1f5;">(size</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">      
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">LFUCache</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">c</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    cin.</span><span style="color:#bf616a;">tie</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> size </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tCnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> time </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    capacity </span><span>=</span><span style="color:#eff1f5;"> c;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">get</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    time</span><span>++</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(db[key].</span><span style="color:#bf616a;">value </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    db[key].</span><span style="color:#bf616a;">count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    db[key].</span><span style="color:#bf616a;">time </span><span>=</span><span style="color:#eff1f5;"> time;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">update</span><span style="color:#eff1f5;">(db[key].</span><span style="color:#bf616a;">pq_idx</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> db[key].</span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">put</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">key</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(capacity </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    time</span><span>++</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(db[key].</span><span style="color:#bf616a;">value </span><span>!= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">      db[key].</span><span style="color:#bf616a;">count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      db[key].</span><span style="color:#bf616a;">value </span><span>=</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">      db[key].</span><span style="color:#bf616a;">time </span><span>=</span><span style="color:#eff1f5;"> time;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">update</span><span style="color:#eff1f5;">(db[key].</span><span style="color:#bf616a;">pq_idx</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }</span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(tCnt </span><span>==</span><span style="color:#eff1f5;"> capacity){
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> idx </span><span>= </span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      db[idx].</span><span style="color:#bf616a;">value </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      tCnt</span><span>--</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    db[key].</span><span style="color:#bf616a;">count </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    db[key].</span><span style="color:#bf616a;">value </span><span>=</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">    db[key].</span><span style="color:#bf616a;">time </span><span>=</span><span style="color:#eff1f5;"> time;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(key);
+</span><span style="color:#eff1f5;">    tCnt</span><span>++</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="april-leetcoding-challenge-15">April LeetCoding challenge 15</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Fibonacci Number</strong></p>
 <p>The <strong>Fibonacci numbers</strong>, commonly denoted <code>F(n)</code> form a sequence, called the <strong>Fibonacci sequence</strong>, such that each number is the sum of the two preceding ones, starting from <code>0</code> and <code>1</code>. That is,</p>
-<pre><code>F(0) = 0, F(1) = 1
-F(n) = F(n - 1) + F(n - 2), for n &gt; 1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>F(0) = 0, F(1) = 1
+</span><span>F(n) = F(n - 1) + F(n - 2), for n &gt; 1.
+</span></code></pre>
 <p>Given <code>n</code>, calculate <code>F(n)</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 2
-Output: 1
-Explanation: F(2) = F(1) + F(0) = 1 + 0 = 1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2
+</span><span>Output: 1
+</span><span>Explanation: F(2) = F(1) + F(0) = 1 + 0 = 1.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 3
-Output: 2
-Explanation: F(3) = F(2) + F(1) = 1 + 1 = 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3
+</span><span>Output: 2
+</span><span>Explanation: F(3) = F(2) + F(1) = 1 + 1 = 2.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 4
-Output: 3
-Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 4
+</span><span>Output: 3
+</span><span>Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= n &lt;= 30</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>iterative way</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int fib(int n) {
-    int a = 0;
-    int b = 1;
-    for(int i = 0; i &lt; n; ++i) {
-      int c = a + b;
-      a = b;
-      b = c;
-    }
-    return a;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">fib</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> b </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> c </span><span>=</span><span style="color:#eff1f5;"> a </span><span>+</span><span style="color:#eff1f5;"> b;
+</span><span style="color:#eff1f5;">      a </span><span>=</span><span style="color:#eff1f5;"> b;
+</span><span style="color:#eff1f5;">      b </span><span>=</span><span style="color:#eff1f5;"> c;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>divide and conquer way</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">struct mat {
-  int val[2][2] = {};
-};
-
-const mat base = {
-  .val = {{1, 1}, {1, 0}}
-};
-
-constexpr mat multiply(mat a, mat b) {
-  mat result;
-  result.val[0][0] = a.val[0][0] * b.val[0][0] + a.val[0][1] * b.val[1][0];
-  result.val[0][1] = a.val[0][0] * b.val[0][1] + a.val[0][1] * b.val[1][1];
-  result.val[1][0] = a.val[1][0] * b.val[0][0] + a.val[1][1] * b.val[1][0];
-  result.val[1][1] = a.val[1][0] * b.val[0][1] + a.val[1][1] * b.val[1][1];
-  return result;
-}
-
-constexpr mat exp(mat b, int e) {
-  mat result = {
-    .val = {{1, 0}, {0, 1}}
-  };
-  while(e) {
-    if(e &amp; 1) {
-      result = multiply(result, b);
-    }
-    b = multiply(b, b);
-    e &gt;&gt;= 1;
-  }
-  return result;
-}
-
-class Solution {
-public:
-  int fib(int n) {
-    mat result = { .val = {{1, 0}, {0, 0}} };
-    result = multiply(result, exp(base, n));
-    return result.val[0][1];
-  }
-};
-
-&#x2F;&#x2F;  a b  \&#x2F;  1 1  --  a+b b
-&#x2F;&#x2F;  0 0  &#x2F;\  1 0  --   0  0
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">struct </span><span>mat {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> val[</span><span style="color:#d08770;">2</span><span>][</span><span style="color:#d08770;">2</span><span>] = {};
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">const</span><span> mat base = {
+</span><span>  .</span><span style="color:#bf616a;">val </span><span>= {{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1</span><span>}, {</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}}
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">constexpr</span><span> mat </span><span style="color:#8fa1b3;">multiply</span><span>(mat </span><span style="color:#bf616a;">a</span><span>, mat </span><span style="color:#bf616a;">b</span><span>) {
+</span><span>  mat result;
+</span><span>  result.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">0</span><span>] = a.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">0</span><span>] * b.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">0</span><span>] + a.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">1</span><span>] * b.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>];
+</span><span>  result.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">1</span><span>] = a.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">0</span><span>] * b.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">1</span><span>] + a.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">1</span><span>] * b.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">1</span><span>];
+</span><span>  result.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>] = a.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>] * b.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">0</span><span>] + a.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">1</span><span>] * b.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>];
+</span><span>  result.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">1</span><span>] = a.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">0</span><span>] * b.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">1</span><span>] + a.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">1</span><span>] * b.</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>][</span><span style="color:#d08770;">1</span><span>];
+</span><span>  </span><span style="color:#b48ead;">return</span><span> result;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">constexpr</span><span> mat </span><span style="color:#8fa1b3;">exp</span><span>(mat </span><span style="color:#bf616a;">b</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">e</span><span>) {
+</span><span>  mat result = {
+</span><span>    .</span><span style="color:#bf616a;">val </span><span>= {{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}, {</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>}}
+</span><span>  };
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(e) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(e &amp; </span><span style="color:#d08770;">1</span><span>) {
+</span><span>      result = </span><span style="color:#bf616a;">multiply</span><span>(result, b);
+</span><span>    }
+</span><span>    b = </span><span style="color:#bf616a;">multiply</span><span>(b, b);
+</span><span>    e &gt;&gt;= </span><span style="color:#d08770;">1</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> result;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">fib</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    mat result </span><span>= </span><span style="color:#eff1f5;">{ .</span><span style="color:#bf616a;">val </span><span>= </span><span style="color:#eff1f5;">{{</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}, {</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}} };
+</span><span style="color:#eff1f5;">    result </span><span>= </span><span style="color:#bf616a;">multiply</span><span style="color:#eff1f5;">(result, </span><span style="color:#96b5b4;">exp</span><span style="color:#eff1f5;">(base, n));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result.</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">//  a b  \/  1 1  --  a+b b
+</span><span style="color:#65737e;">//  0 0  /\  1 0  --   0  0
+</span></code></pre>
 
     </div>
   </div>

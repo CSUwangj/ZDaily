@@ -154,53 +154,53 @@ return: [6.0, 0.5, -1.0, 1.0, -1.0 ]
 	<li><code>A<sub>i</sub>, B<sub>i</sub>, C<sub>j</sub>, D<sub>j</sub></code> consist of lower case English letters and digits.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;double&gt; calcEquation(vector&lt;vector&lt;string&gt;&gt;&amp; equations, vector&lt;double&gt;&amp; values, vector&lt;vector&lt;string&gt;&gt;&amp; queries) {
-    unordered_map&lt;string, unordered_map&lt;string, double&gt;&gt; fractions;
-    queue&lt;pair&lt;string, string&gt;&gt; q;
-    int len = equations.size();
-    for(int i = 0; i &lt; len; ++i) {
-      if(equations[i][0] == equations[i][1]) continue;
-      fractions[equations[i][0]][equations[i][1]] = values[i];
-      fractions[equations[i][1]][equations[i][0]] = 1.0 &#x2F; values[i];
-      fractions[equations[i][0]][equations[i][0]] = 1.0;
-      fractions[equations[i][1]][equations[i][1]] = 1.0;
-      &#x2F;&#x2F; (a &#x2F; b) * (b &#x2F; c) = a &#x2F; c
-      &#x2F;&#x2F; (a &#x2F; b) &#x2F; (c &#x2F; b) = a &#x2F; c
-      &#x2F;&#x2F; add both fraction itself and its reciprocal so
-      &#x2F;&#x2F; we don&#x27;t need to concern about so much case
-      q.push({equations[i][0], equations[i][1]});
-      q.push({equations[i][1], equations[i][0]});
-    }
-    while(q.size()) {
-      const auto [numerator1, denominator1] = q.front();
-      q.pop();
-      &#x2F;&#x2F; numerator2 == denominator1
-      for(const auto &amp;[denominator2, value] : fractions[denominator1]) {
-        if(fractions[numerator1].count(denominator2)) continue;
-        fractions[numerator1][denominator2] = value * fractions[numerator1][denominator1];
-        q.push({numerator1, denominator2});
-      }
-    }
-    vector&lt;double&gt; answer;
-    answer.reserve(queries.size());
-    for(const auto &amp;query : queries) {
-      if(fractions.count(query[0]) &amp;&amp; fractions[query[0]].count(query[1])) {
-        answer.push_back(fractions[query[0]][query[1]]);
-      } else {
-        answer.push_back(-1);
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 24&#x2F;24 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 51.34 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 18.38 % of cpp submissions (8.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">calcEquation</span><span style="color:#eff1f5;">(vector&lt;vector&lt;string&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">equations</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">values</span><span style="color:#eff1f5;">, vector&lt;vector&lt;string&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">queries</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;string, unordered_map&lt;string, </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt;&gt; fractions;
+</span><span style="color:#eff1f5;">    queue&lt;pair&lt;string, string&gt;&gt; q;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> equations.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(equations[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> equations[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      fractions[equations[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]][equations[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>=</span><span style="color:#eff1f5;"> values[i];
+</span><span style="color:#eff1f5;">      fractions[equations[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]][equations[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>= </span><span style="color:#d08770;">1.0 </span><span>/</span><span style="color:#eff1f5;"> values[i];
+</span><span style="color:#eff1f5;">      fractions[equations[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]][equations[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>= </span><span style="color:#d08770;">1.0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      fractions[equations[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]][equations[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>= </span><span style="color:#d08770;">1.0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// (a / b) * (b / c) = a / c
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// (a / b) / (c / b) = a / c
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// add both fraction itself and its reciprocal so
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// we don&#39;t need to concern about so much case
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({equations[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], equations[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]});
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({equations[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], equations[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]});
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">const auto </span><span style="color:#eff1f5;">[numerator1, denominator1] </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// numerator2 == denominator1
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const auto </span><span>&amp;</span><span style="color:#eff1f5;">[denominator2, value] </span><span>:</span><span style="color:#eff1f5;"> fractions[denominator1]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(fractions[numerator1].</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(denominator2)) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        fractions[numerator1][denominator2] </span><span>=</span><span style="color:#eff1f5;"> value </span><span>*</span><span style="color:#eff1f5;"> fractions[numerator1][denominator1];
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({numerator1, denominator2});
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    answer.</span><span style="color:#bf616a;">reserve</span><span style="color:#eff1f5;">(queries.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const auto </span><span>&amp;</span><span style="color:#eff1f5;">query </span><span>:</span><span style="color:#eff1f5;"> queries) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(fractions.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(query[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> fractions[query[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(query[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">])) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(fractions[query[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]][query[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]]);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 24/24 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 51.34 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 18.38 % of cpp submissions (8.6 MB)
+</span></code></pre>
 
     </div>
   </div>

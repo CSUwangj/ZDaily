@@ -123,54 +123,54 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Given an integer <code>n</code>, return <em>the number of the beautiful arrangements that you can construct</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 2
-Output: 2
-Explanation: 
-The first beautiful arrangement is [1, 2]:
-Number at the 1st position (i=1) is 1, and 1 is divisible by i (i=1).
-Number at the 2nd position (i=2) is 2, and 2 is divisible by i (i=2).
-The second beautiful arrangement is [2, 1]:
-Number at the 1st position (i=1) is 2, and 2 is divisible by i (i=1).
-Number at the 2nd position (i=2) is 1, and i (i=2) is divisible by 1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2
+</span><span>Output: 2
+</span><span>Explanation: 
+</span><span>The first beautiful arrangement is [1, 2]:
+</span><span>Number at the 1st position (i=1) is 1, and 1 is divisible by i (i=1).
+</span><span>Number at the 2nd position (i=2) is 2, and 2 is divisible by i (i=2).
+</span><span>The second beautiful arrangement is [2, 1]:
+</span><span>Number at the 1st position (i=1) is 2, and 2 is divisible by i (i=1).
+</span><span>Number at the 2nd position (i=2) is 1, and i (i=2) is divisible by 1.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 1
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 15</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
 <p>simple dfs</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    int answer;
-    int n;
-    vector&lt;bool&gt; used;
-    void dfs(int index) {
-        if(index == n+1) {
-            answer += 1;
-            return;
-        }
-        for(int i = 1; i &lt;= n; ++i) {
-            if(!used[i] &amp;&amp; (i % index == 0 || index % i == 0)) {
-                &#x2F;&#x2F; cout &lt;&lt; i &lt;&lt; &#x27; &#x27; &lt;&lt; index &lt;&lt; endl;
-                used[i] = true;
-                dfs(index + 1);
-                used[i] = false;
-            }
-        }
-    }
-public:
-    int countArrangement(int n) {
-        this-&gt;n = n;
-        answer = 0;
-        used.resize(n+1);
-        dfs(1);
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; used;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> n</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            answer </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">used[i] </span><span>&amp;&amp; </span><span style="color:#eff1f5;">(i </span><span>%</span><span style="color:#eff1f5;"> index </span><span>== </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> index </span><span>%</span><span style="color:#eff1f5;"> i </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#65737e;">// cout &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; index &lt;&lt; endl;
+</span><span style="color:#eff1f5;">                used[i] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(index </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">                used[i] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">countArrangement</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">n </span><span>=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        used.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(n</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

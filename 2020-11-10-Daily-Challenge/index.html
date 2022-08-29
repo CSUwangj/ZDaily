@@ -122,24 +122,24 @@ renderMathInElement(document.body, katex_config);
 <p>A formula placed in parentheses, and a count (optionally added) is also a formula. For example, (H2O2) and (H2O2)3 are formulas.</p>
 <p>Given a <code>formula</code>, return <em>the count of all elements as a string in the following form</em>: the first name (in sorted order), followed by its count (if that count is more than 1), followed by the second name (in sorted order), followed by its count (if that count is more than 1), and so on.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: formula = &quot;H2O&quot;
-Output: &quot;H2O&quot;
-Explanation: The count of elements are {&#x27;H&#x27;: 2, &#x27;O&#x27;: 1}.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: formula = &quot;H2O&quot;
+</span><span>Output: &quot;H2O&quot;
+</span><span>Explanation: The count of elements are {&#39;H&#39;: 2, &#39;O&#39;: 1}.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: formula = &quot;Mg(OH)2&quot;
-Output: &quot;H2MgO2&quot;
-Explanation: The count of elements are {&#x27;H&#x27;: 2, &#x27;Mg&#x27;: 1, &#x27;O&#x27;: 2}.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: formula = &quot;Mg(OH)2&quot;
+</span><span>Output: &quot;H2MgO2&quot;
+</span><span>Explanation: The count of elements are {&#39;H&#39;: 2, &#39;Mg&#39;: 1, &#39;O&#39;: 2}.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: formula = &quot;K4(ON(SO3)2)2&quot;
-Output: &quot;K4N2O14S4&quot;
-Explanation: The count of elements are {&#x27;K&#x27;: 4, &#x27;N&#x27;: 2, &#x27;O&#x27;: 14, &#x27;S&#x27;: 4}.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: formula = &quot;K4(ON(SO3)2)2&quot;
+</span><span>Output: &quot;K4N2O14S4&quot;
+</span><span>Explanation: The count of elements are {&#39;K&#39;: 4, &#39;N&#39;: 2, &#39;O&#39;: 14, &#39;S&#39;: 4}.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: formula = &quot;Be32&quot;
-Output: &quot;Be32&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: formula = &quot;Be32&quot;
+</span><span>Output: &quot;Be32&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= formula.length &lt;= 1000</code></li>
@@ -148,63 +148,63 @@ Output: &quot;Be32&quot;
 </ul>
 <h2 id="solution">Solution</h2>
 <p>writing this solution make me feel excited</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  string parseAtom(string &amp;formula, int &amp;position) {
-    string atom = &quot;&quot;;
-    atom += formula[position];
-    position += 1;
-    while(position &lt; formula.size() &amp;&amp; islower(formula[position])) {
-      atom += formula[position];
-      position += 1;
-    }
-    return atom;
-  }
-  
-  map&lt;string, int&gt; parseFormula(string &amp;formula, int &amp;position) {
-    map&lt;string, int&gt; currentCount;
-    while(position &lt; formula.size() &amp;&amp; formula[position] != &#x27;)&#x27;) {
-      if(isupper(formula[position])) {
-        string atom = parseAtom(formula, position);
-        int count = parseCount(formula, position);
-        currentCount[atom] += count;
-      } else if(formula[position] == &#x27;(&#x27;) {
-        position += 1;
-        map&lt;string, int&gt; subCount = parseFormula(formula, position);
-        int count = parseCount(formula, position);
-        for(auto &amp;[atom, acount] : subCount) {
-          currentCount[atom] += acount * count;
-        }
-      }
-    }
-    if(position &lt; formula.size()) position += 1;
-    return currentCount;
-  }
-  
-  int parseCount(string &amp;formula, int &amp;position) {
-    if(position &gt;= formula.size() || !isdigit(formula[position])) return 1;
-    int count = 0;
-    while(position &lt; formula.size() &amp;&amp; isdigit(formula[position])) {
-      count *= 10;
-      count += formula[position] - &#x27;0&#x27;;
-      position += 1;
-    }
-    return count;
-  }
-public:
-  string countOfAtoms(string formula) {
-    int position = 0;
-    map&lt;string, int&gt; count = parseFormula(formula, position);
-
-    string answer = &quot;&quot;;
-    for(auto &amp;[atom, acount] : count) {
-      answer += atom;
-      if(acount != 1) answer += to_string(acount);
-    }
-
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">parseAtom</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">formula</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">position</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    string atom </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    atom </span><span>+=</span><span style="color:#eff1f5;"> formula[position];
+</span><span style="color:#eff1f5;">    position </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(position </span><span>&lt;</span><span style="color:#eff1f5;"> formula.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp; </span><span style="color:#96b5b4;">islower</span><span style="color:#eff1f5;">(formula[position])) {
+</span><span style="color:#eff1f5;">      atom </span><span>+=</span><span style="color:#eff1f5;"> formula[position];
+</span><span style="color:#eff1f5;">      position </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> atom;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">parseFormula</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">formula</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">position</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; currentCount;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(position </span><span>&lt;</span><span style="color:#eff1f5;"> formula.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> formula[position] </span><span>!= &#39;</span><span style="color:#a3be8c;">)</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">isupper</span><span style="color:#eff1f5;">(formula[position])) {
+</span><span style="color:#eff1f5;">        string atom </span><span>= </span><span style="color:#bf616a;">parseAtom</span><span style="color:#eff1f5;">(formula, position);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#bf616a;">parseCount</span><span style="color:#eff1f5;">(formula, position);
+</span><span style="color:#eff1f5;">        currentCount[atom] </span><span>+=</span><span style="color:#eff1f5;"> count;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(formula[position] </span><span>== &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        position </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; subCount </span><span>= </span><span style="color:#bf616a;">parseFormula</span><span style="color:#eff1f5;">(formula, position);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#bf616a;">parseCount</span><span style="color:#eff1f5;">(formula, position);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[atom, acount] </span><span>:</span><span style="color:#eff1f5;"> subCount) {
+</span><span style="color:#eff1f5;">          currentCount[atom] </span><span>+=</span><span style="color:#eff1f5;"> acount </span><span>*</span><span style="color:#eff1f5;"> count;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(position </span><span>&lt;</span><span style="color:#eff1f5;"> formula.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) position </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> currentCount;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">parseCount</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">formula</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">position</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(position </span><span>&gt;=</span><span style="color:#eff1f5;"> formula.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>|| !</span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(formula[position])) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(position </span><span>&lt;</span><span style="color:#eff1f5;"> formula.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(formula[position])) {
+</span><span style="color:#eff1f5;">      count </span><span>*= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      count </span><span>+=</span><span style="color:#eff1f5;"> formula[position] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      position </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> count;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">countOfAtoms</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">formula</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> position </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; count </span><span>= </span><span style="color:#bf616a;">parseFormula</span><span style="color:#eff1f5;">(formula, position);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    string answer </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[atom, acount] </span><span>:</span><span style="color:#eff1f5;"> count) {
+</span><span style="color:#eff1f5;">      answer </span><span>+=</span><span style="color:#eff1f5;"> atom;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(acount </span><span>!= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) answer </span><span>+= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(acount);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-10">November LeetCoding Challenge 10</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Flipping an Image</strong></p>
@@ -212,17 +212,17 @@ public:
 <p>To flip an image horizontally means that each row of the image is reversed. For example, flipping <code>[1, 1, 0]</code> horizontally results in <code>[0, 1, 1]</code>.</p>
 <p>To invert an image means that each <code>0</code> is replaced by <code>1</code>, and each <code>1</code> is replaced by <code>0</code>. For example, inverting <code>[0, 1, 1]</code> results in <code>[1, 0, 0]</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [[1,1,0],[1,0,1],[0,0,0]]
-Output: [[1,0,0],[0,1,0],[1,1,1]]
-Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
-Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[1,1,0],[1,0,1],[0,0,0]]
+</span><span>Output: [[1,0,0],[0,1,0],[1,1,1]]
+</span><span>Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
+</span><span>Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
-Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
-Explanation: First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].
-Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
+</span><span>Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+</span><span>Explanation: First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].
+</span><span>Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+</span></code></pre>
 <p><strong>Notes:</strong></p>
 <ul>
 <li><code>1 &lt;= A.length = A[0].length &lt;= 20</code></li>
@@ -230,21 +230,21 @@ Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; flipAndInvertImage(vector&lt;vector&lt;int&gt;&gt;&amp; A) {
-        vector&lt;vector&lt;int&gt;&gt; answer;
-        for(auto &amp;row : A) {
-            vector&lt;int&gt; newRow;
-            for(auto it = row.rbegin(); it != row.rend(); ++it) {
-                newRow.push_back(!(*it));
-            }
-            answer.push_back(newRow);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">flipAndInvertImage</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">row </span><span>:</span><span style="color:#eff1f5;"> A) {
+</span><span style="color:#eff1f5;">            vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; newRow;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> row.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); it </span><span>!=</span><span style="color:#eff1f5;"> row.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">                newRow.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it));
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(newRow);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

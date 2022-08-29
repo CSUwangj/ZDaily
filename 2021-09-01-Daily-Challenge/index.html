@@ -120,28 +120,28 @@ renderMathInElement(document.body, katex_config);
 <p>Answers within <code>10<sup>-5</sup></code> of the actual answer will be accepted.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/21/1a.png" alt="img" /></p>
-<pre><code>Input: points = [[1,2],[2,1],[1,0],[0,1]]
-Output: 2.00000
-Explanation: The minimum area rectangle occurs at [1,2],[2,1],[1,0],[0,1], with an area of 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: points = [[1,2],[2,1],[1,0],[0,1]]
+</span><span>Output: 2.00000
+</span><span>Explanation: The minimum area rectangle occurs at [1,2],[2,1],[1,0],[0,1], with an area of 2.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/22/2.png" alt="img" /></p>
-<pre><code>Input: points = [[0,1],[2,1],[1,1],[1,0],[2,0]]
-Output: 1.00000
-Explanation: The minimum area rectangle occurs at [1,0],[1,1],[2,1],[2,0], with an area of 1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: points = [[0,1],[2,1],[1,1],[1,0],[2,0]]
+</span><span>Output: 1.00000
+</span><span>Explanation: The minimum area rectangle occurs at [1,0],[1,1],[2,1],[2,0], with an area of 1.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/22/3.png" alt="img" /></p>
-<pre><code>Input: points = [[0,3],[1,2],[3,1],[1,3],[2,1]]
-Output: 0
-Explanation: There is no possible rectangle to form from these points.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: points = [[0,3],[1,2],[3,1],[1,3],[2,1]]
+</span><span>Output: 0
+</span><span>Explanation: There is no possible rectangle to form from these points.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/21/4c.png" alt="img" /></p>
-<pre><code>Input: points = [[3,1],[1,1],[0,1],[2,1],[3,3],[3,2],[0,2],[2,3]]
-Output: 2.00000
-Explanation: The minimum area rectangle occurs at [2,1],[2,3],[3,3],[3,1], with an area of 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: points = [[3,1],[1,1],[0,1],[2,1],[3,3],[3,2],[0,2],[2,3]]
+</span><span>Output: 2.00000
+</span><span>Explanation: The minimum area rectangle occurs at [2,1],[2,3],[3,3],[3,1], with an area of 2.
+</span></code></pre>
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 <ul>
@@ -151,52 +151,52 @@ Explanation: The minimum area rectangle occurs at [2,1],[2,3],[3,3],[3,1], with 
 	<li>All the given points are <strong>unique</strong>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-	double minAreaFreeRect(vector&lt;vector&lt;int&gt;&gt;&amp; points) {
-		set&lt;vector&lt;int&gt;&gt;num;
-		for(auto &amp;s : points) {
-      num.insert(s);
-    }
-
-		double answer = DBL_MAX;
-    int len = points.size();
-		for(int i = 0; i &lt; len - 2; ++i){
-			for(int j = i + 1; j &lt; len - 1; ++j){
-				for(int k = j + 1; k &lt; len; ++k){
-					double slop_y1 = points[j][1] - points[i][1];
-					double slop_x1 = points[j][0] - points[i][0];
-					double slop_y2 = points[k][1] - points[i][1];
-					double slop_x2 = points[k][0] - points[i][0];
-          &#x2F;&#x2F; cout &lt;&lt; slop_y1 &lt;&lt; &quot; &quot; &lt;&lt; slop_y2 &lt;&lt; &quot; &quot; &lt;&lt; slop_x1 &lt;&lt; &quot; &quot; &lt;&lt; slop_x2 &lt;&lt; endl;
-					if(slop_y1 * slop_y2 + slop_x1 * slop_x2 != 0) continue;
-
-					int lasty = slop_y1 + points[k][1];
-					int lastx = slop_x1 + points[k][0];
-          &#x2F;&#x2F; cout &lt;&lt; lasty &lt;&lt; &quot; &quot; &lt;&lt; lastx &lt;&lt; endl;
-
-					if(num.count({lastx, lasty})){                        
-						answer = min(answer, sqrt(slop_y1 * slop_y1 + slop_x1 * slop_x1) * sqrt(slop_y2 * slop_y2 + slop_x2 * slop_x2));
-					}
-				}
-			}
-		}
-
-		return answer == DBL_MAX ? 0 : answer;
-	}
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 109&#x2F;109 cases passed (32 ms)
-&#x2F;&#x2F; Your runtime beats 89.34 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 71.31 % of cpp submissions (9.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">	</span><span style="color:#b48ead;">double </span><span style="color:#8fa1b3;">minAreaFreeRect</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">points</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">		set&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;num;
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">s </span><span>:</span><span style="color:#eff1f5;"> points) {
+</span><span style="color:#eff1f5;">      num.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(s);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> DBL_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> points.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i){
+</span><span style="color:#eff1f5;">			</span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">j){
+</span><span style="color:#eff1f5;">				</span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> k </span><span>=</span><span style="color:#eff1f5;"> j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; k </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">k){
+</span><span style="color:#eff1f5;">					</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> slop_y1 </span><span>=</span><span style="color:#eff1f5;"> points[j][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">					</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> slop_x1 </span><span>=</span><span style="color:#eff1f5;"> points[j][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">					</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> slop_y2 </span><span>=</span><span style="color:#eff1f5;"> points[k][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">					</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> slop_x2 </span><span>=</span><span style="color:#eff1f5;"> points[k][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          </span><span style="color:#65737e;">// cout &lt;&lt; slop_y1 &lt;&lt; &quot; &quot; &lt;&lt; slop_y2 &lt;&lt; &quot; &quot; &lt;&lt; slop_x1 &lt;&lt; &quot; &quot; &lt;&lt; slop_x2 &lt;&lt; endl;
+</span><span style="color:#eff1f5;">					</span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(slop_y1 </span><span>*</span><span style="color:#eff1f5;"> slop_y2 </span><span>+</span><span style="color:#eff1f5;"> slop_x1 </span><span>*</span><span style="color:#eff1f5;"> slop_x2 </span><span>!= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">					</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lasty </span><span>=</span><span style="color:#eff1f5;"> slop_y1 </span><span>+</span><span style="color:#eff1f5;"> points[k][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">					</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lastx </span><span>=</span><span style="color:#eff1f5;"> slop_x1 </span><span>+</span><span style="color:#eff1f5;"> points[k][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          </span><span style="color:#65737e;">// cout &lt;&lt; lasty &lt;&lt; &quot; &quot; &lt;&lt; lastx &lt;&lt; endl;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">					</span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">({lastx, lasty})){                        
+</span><span style="color:#eff1f5;">						answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, </span><span style="color:#96b5b4;">sqrt</span><span style="color:#eff1f5;">(slop_y1 </span><span>*</span><span style="color:#eff1f5;"> slop_y1 </span><span>+</span><span style="color:#eff1f5;"> slop_x1 </span><span>*</span><span style="color:#eff1f5;"> slop_x1) </span><span>* </span><span style="color:#96b5b4;">sqrt</span><span style="color:#eff1f5;">(slop_y2 </span><span>*</span><span style="color:#eff1f5;"> slop_y2 </span><span>+</span><span style="color:#eff1f5;"> slop_x2 </span><span>*</span><span style="color:#eff1f5;"> slop_x2));
+</span><span style="color:#eff1f5;">					}
+</span><span style="color:#eff1f5;">				}
+</span><span style="color:#eff1f5;">			}
+</span><span style="color:#eff1f5;">		}
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer </span><span>==</span><span style="color:#eff1f5;"> DBL_MAX </span><span>? </span><span style="color:#d08770;">0 </span><span>:</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">	}
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 109/109 cases passed (32 ms)
+</span><span style="color:#65737e;">// Your runtime beats 89.34 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 71.31 % of cpp submissions (9.8 MB)
+</span></code></pre>
 <h1 id="september-leetcoding-challenge-1">September LeetCoding Challenge 1</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Array Nesting</strong></p>
@@ -209,17 +209,17 @@ public:
 </ul>
 <p>Return <em>the longest length of a set</em> <code>s[k]</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [5,4,0,3,1,6,2]
-Output: 4
-Explanation: 
-nums[0] = 5, nums[1] = 4, nums[2] = 0, nums[3] = 3, nums[4] = 1, nums[5] = 6, nums[6] = 2.
-One of the longest sets s[k]:
-s[0] = {nums[0], nums[5], nums[6], nums[2]} = {5, 6, 2, 0}
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [5,4,0,3,1,6,2]
+</span><span>Output: 4
+</span><span>Explanation: 
+</span><span>nums[0] = 5, nums[1] = 4, nums[2] = 0, nums[3] = 3, nums[4] = 1, nums[5] = 6, nums[6] = 2.
+</span><span>One of the longest sets s[k]:
+</span><span>s[0] = {nums[0], nums[5], nums[6], nums[2]} = {5, 6, 2, 0}
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0,1,2]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,1,2]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
@@ -227,38 +227,38 @@ Output: 1
 <li>All the values of <code>nums</code> are <strong>unique</strong>.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  return 0;
-}();
-class Solution {
-public:
-  int arrayNesting(vector&lt;int&gt;&amp; nums) {
-    int answer = 0;
-    int len = nums.size();
-    vector&lt;bool&gt; vis(len);
-    for(int i = 0; i &lt; len; ++i) {
-      if(vis[i]) continue;
-      int cur = i;
-      int chain = 0;
-      while(!vis[cur]) {
-        chain += 1;
-        vis[cur] = true;
-        cur = nums[cur];
-      }
-      answer = max(answer, chain);
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 856&#x2F;856 cases passed (12 ms)
-&#x2F;&#x2F; Your runtime beats 96.44 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 37.89 % of cpp submissions (30.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">arrayNesting</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">vis</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[i]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> chain </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">vis[cur]) {
+</span><span style="color:#eff1f5;">        chain </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        vis[cur] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> nums[cur];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, chain);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 856/856 cases passed (12 ms)
+</span><span style="color:#65737e;">// Your runtime beats 96.44 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 37.89 % of cpp submissions (30.3 MB)
+</span></code></pre>
 
     </div>
   </div>

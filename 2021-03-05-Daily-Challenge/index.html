@@ -119,24 +119,24 @@ renderMathInElement(document.body, katex_config);
 <p>Only include the sum of all the elements on the primary diagonal and all the elements on the secondary diagonal that are not part of the primary diagonal.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/08/14/sample_1911.png" alt="img" /></p>
-<pre><code>Input: mat = [[1,2,3],
-              [4,5,6],
-              [7,8,9]]
-Output: 25
-Explanation: Diagonals sum: 1 + 5 + 9 + 3 + 7 = 25
-Notice that element mat[1][1] = 5 is counted only once.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[1,2,3],
+</span><span>              [4,5,6],
+</span><span>              [7,8,9]]
+</span><span>Output: 25
+</span><span>Explanation: Diagonals sum: 1 + 5 + 9 + 3 + 7 = 25
+</span><span>Notice that element mat[1][1] = 5 is counted only once.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: mat = [[1,1,1,1],
-              [1,1,1,1],
-              [1,1,1,1],
-              [1,1,1,1]]
-Output: 8
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[1,1,1,1],
+</span><span>              [1,1,1,1],
+</span><span>              [1,1,1,1],
+</span><span>              [1,1,1,1]]
+</span><span>Output: 8
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: mat = [[5]]
-Output: 5
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[5]]
+</span><span>Output: 5
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == mat.length == mat[i].length</code></li>
@@ -144,60 +144,60 @@ Output: 5
 <li><code>1 &lt;= mat[i][j] &lt;= 100</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int diagonalSum(vector&lt;vector&lt;int&gt;&gt;&amp; mat) {
-        int len = mat.size();
-        int sum = 0;
-        for(int i = 0; i &lt; len; ++i) {
-            sum += mat[i][i] + mat[i][len - 1 - i];
-        }
-        if(len &amp; 1) sum -= mat[len&#x2F;2][len&#x2F;2];
-        return sum;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">diagonalSum</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">mat</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            sum </span><span>+=</span><span style="color:#eff1f5;"> mat[i][i] </span><span>+</span><span style="color:#eff1f5;"> mat[i][len </span><span>- </span><span style="color:#d08770;">1 </span><span>-</span><span style="color:#eff1f5;"> i];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) sum </span><span>-=</span><span style="color:#eff1f5;"> mat[len</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][len</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> sum;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="march-leetcoding-challenge-5">March LeetCoding Challenge 5</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Average of Levels in Binary Tree</strong></p>
 <p>Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input:
-    3
-   &#x2F; \
-  9  20
-    &#x2F;  \
-   15   7
-Output: [3, 14.5, 11]
-Explanation:
-The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input:
+</span><span>    3
+</span><span>   / \
+</span><span>  9  20
+</span><span>    /  \
+</span><span>   15   7
+</span><span>Output: [3, 14.5, 11]
+</span><span>Explanation:
+</span><span>The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>The range of node's value is in the range of 32-bit signed integer.</li>
 </ol>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    vector&lt;pair&lt;int, double&gt;&gt; count;
-    void traversal(TreeNode *root, int level) {
-        if(!root) return;
-        if(count.size() &lt;= level) count.push_back(make_pair(0, 0));
-        count[level].first += 1;
-        count[level].second += root-&gt;val;
-        traversal(root-&gt;left, level + 1);
-        traversal(root-&gt;right, level + 1);
-    }
-public:
-    vector&lt;double&gt; averageOfLevels(TreeNode* root) {
-        traversal(root, 0);
-        vector&lt;double&gt; answer;
-        for(auto [cnt, sum] : count) {
-            answer.push_back(sum &#x2F; cnt);
-        }
-        return move(answer);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt;&gt; count;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">traversal</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">level</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(count.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt;=</span><span style="color:#eff1f5;"> level) count.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        count[level].</span><span style="color:#bf616a;">first </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        count[level].</span><span style="color:#bf616a;">second </span><span>+=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, level </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, level </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">averageOfLevels</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[cnt, sum] </span><span>:</span><span style="color:#eff1f5;"> count) {
+</span><span style="color:#eff1f5;">            answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(sum </span><span>/</span><span style="color:#eff1f5;"> cnt);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(answer);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

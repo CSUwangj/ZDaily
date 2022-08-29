@@ -115,72 +115,72 @@ renderMathInElement(document.body, katex_config);
       <p>Today is Sunday, I gonna review the tasks I've done this week, and finish today's leetcode's <a href="https://leetcode.com/explore/challenge/card/february-leetcoding-challenge-2021/587/week-4-february-22nd-february-28th/3654/">February LeetCoding Challenge</a> with <code>cpp</code>.</p>
 <span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
 <h2 id="furthest-building-you-can-reach">Furthest Building You Can Reach</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int furthestBuilding(vector&lt;int&gt;&amp; heights, int bricks, int ladders) {
-        priority_queue&lt;int&gt; q;
-        int len = heights.size();
-        for(int i = 0; i &lt; len - 1; ++i) {
-            if(heights[i] &lt; heights[i + 1]) {
-                q.push(heights[i] - heights[i + 1]);
-            }
-            if(q.size() &gt; ladders) {
-                bricks += q.top();
-                q.pop();
-            }
-            if(bricks &lt; 0) return i;
-        }
-        return len - 1;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">furthestBuilding</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">heights</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">bricks</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">ladders</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        priority_queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(heights[i] </span><span>&lt;</span><span style="color:#eff1f5;"> heights[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(heights[i] </span><span>-</span><span style="color:#eff1f5;"> heights[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> ladders) {
+</span><span style="color:#eff1f5;">                bricks </span><span>+=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">                q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(bricks </span><span>&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="smallest-subsequence-of-distinct-characters">Smallest Subsequence of Distinct Characters</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    string smallestSubsequence(string s) {
-        vector&lt;int&gt; cnt(26);
-        for(auto c : s) cnt[c - &#x27;a&#x27;] += 1;
-        vector&lt;bool&gt; used(26);
-        string answer;
-        for(auto c : s) {
-            if(used[c - &#x27;a&#x27;]) {
-                cnt[c - &#x27;a&#x27;] -= 1;
-                continue;
-            }
-            while(answer.length() &amp;&amp; answer.back() &gt; c &amp;&amp; cnt[answer.back() - &#x27;a&#x27;]) {
-                used[answer.back() - &#x27;a&#x27;] = false;
-                answer.pop_back();
-            }
-            answer.push_back(c);
-            used[c - &#x27;a&#x27;] = true;
-            cnt[c - &#x27;a&#x27;] -= 1;
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">smallestSubsequence</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">cnt</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) cnt[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">used</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        string answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(used[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                cnt[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> c </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cnt[answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                used[answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                answer.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">            used[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cnt[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="delete-nodes-and-return-forest">Delete Nodes And Return Forest</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    TreeNode* delRoot(TreeNode *root, vector&lt;TreeNode*&gt; &amp;answer, unordered_set&lt;int&gt; &amp;to_delete) {
-        if(!root) return nullptr;
-        root-&gt;left = delRoot(root-&gt;left, answer, to_delete);
-        root-&gt;right = delRoot(root-&gt;right, answer, to_delete);
-        if(to_delete.count(root-&gt;val)) {
-            if(root-&gt;left) answer.push_back(root-&gt;left);
-            if(root-&gt;right) answer.push_back(root-&gt;right);
-            return nullptr;
-        }
-        return root;
-    }
-public:
-    vector&lt;TreeNode*&gt; delNodes(TreeNode* root, vector&lt;int&gt;&amp; to_delete) {
-        vector&lt;TreeNode*&gt; answer;
-        unordered_set&lt;int&gt; st(to_delete.begin(), to_delete.end());
-        if(delRoot(root, answer, st)) answer.push_back(root);
-        return move(answer);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    TreeNode</span><span>* </span><span style="color:#8fa1b3;">delRoot</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, vector&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">, unordered_set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">to_delete</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">delRoot</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, answer, to_delete);
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">delRoot</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, answer, to_delete);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(to_delete.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">delNodes</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">to_delete</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector</span><span>&lt;</span><span style="color:#eff1f5;">TreeNode</span><span>*&gt;</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">        unordered_set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">st</span><span style="color:#eff1f5;">(to_delete.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), to_delete.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">delRoot</span><span style="color:#eff1f5;">(root, answer, st)) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(answer);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="bulb-switcher-iii">Bulb Switcher III</h2>
 <p>too easy to review</p>
 <h2 id="dungeon-game">Dungeon Game</h2>
@@ -198,26 +198,26 @@ public:
     </tr>
 </tbody></table>
 <p>but if we dp backwords, we can get a optimal structure. instead of finding path towards destination, we try to find the way from the princess to knight. we keep track of minimum HP needed for pass through the rest of path.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int calculateMinimumHP(vector&lt;vector&lt;int&gt;&gt;&amp; dungeon) {
-        int rows = dungeon.size();
-        int cols = dungeon.front().size();
-        if(dungeon.back().back() &gt; 0) dungeon.back().back() = 0;
-        for(int row = rows - 1; row &gt;= 0; row -= 1) {
-            for(int col = cols - 1; col &gt;= 0; col -= 1) {
-                if(col == cols - 1 &amp;&amp; row == rows - 1) continue;
-                int maxDown = row == rows - 1 ? INT_MIN : dungeon[row + 1][col];
-                int maxRight = col == cols - 1 ? INT_MIN : dungeon[row][col + 1];
-                int target = max(maxDown, maxRight) + dungeon[row][col];
-                dungeon[row][col] = target &lt; 0 ? target : 0;
-            }
-        }
-        return dungeon.front().front() &lt; 1 ? 1 - dungeon.front().front() : 1;
-    }
-};
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">calculateMinimumHP</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">dungeon</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows </span><span>=</span><span style="color:#eff1f5;"> dungeon.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols </span><span>=</span><span style="color:#eff1f5;"> dungeon.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dungeon.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) dungeon.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> row </span><span>=</span><span style="color:#eff1f5;"> rows </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; row </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; row </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> col </span><span>=</span><span style="color:#eff1f5;"> cols </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; col </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; col </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(col </span><span>==</span><span style="color:#eff1f5;"> cols </span><span>- </span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> row </span><span>==</span><span style="color:#eff1f5;"> rows </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxDown </span><span>=</span><span style="color:#eff1f5;"> row </span><span>==</span><span style="color:#eff1f5;"> rows </span><span>- </span><span style="color:#d08770;">1 </span><span>?</span><span style="color:#eff1f5;"> INT_MIN </span><span>:</span><span style="color:#eff1f5;"> dungeon[row </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][col];
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxRight </span><span>=</span><span style="color:#eff1f5;"> col </span><span>==</span><span style="color:#eff1f5;"> cols </span><span>- </span><span style="color:#d08770;">1 </span><span>?</span><span style="color:#eff1f5;"> INT_MIN </span><span>:</span><span style="color:#eff1f5;"> dungeon[row][col </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> target </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(maxDown, maxRight) </span><span>+</span><span style="color:#eff1f5;"> dungeon[row][col];
+</span><span style="color:#eff1f5;">                dungeon[row][col] </span><span>=</span><span style="color:#eff1f5;"> target </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>?</span><span style="color:#eff1f5;"> target </span><span>: </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dungeon.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">1 </span><span>? </span><span style="color:#d08770;">1 </span><span>-</span><span style="color:#eff1f5;"> dungeon.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span>: </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span></code></pre>
 <h1 id="february-leetcoding-challenge-28">February LeetCoding Challenge 28</h1>
 <h2 id="description">Description</h2>
 <p><strong>Maximum Frequency Stack</strong></p>
@@ -235,25 +235,25 @@ public:
 </li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: 
-[&quot;FreqStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;pop&quot;,&quot;pop&quot;,&quot;pop&quot;,&quot;pop&quot;],
-[[],[5],[7],[5],[7],[4],[5],[],[],[],[]]
-Output: [null,null,null,null,null,null,null,5,7,5,4]
-Explanation:
-After making six .push operations, the stack is [5,7,5,7,4,5] from bottom to top.  Then:
-
-pop() -&gt; returns 5, as 5 is the most frequent.
-The stack becomes [5,7,5,7,4].
-
-pop() -&gt; returns 7, as 5 and 7 is the most frequent, but 7 is closest to the top.
-The stack becomes [5,7,5,4].
-
-pop() -&gt; returns 5.
-The stack becomes [5,7,4].
-
-pop() -&gt; returns 4.
-The stack becomes [5,7].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 
+</span><span>[&quot;FreqStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;pop&quot;,&quot;pop&quot;,&quot;pop&quot;,&quot;pop&quot;],
+</span><span>[[],[5],[7],[5],[7],[4],[5],[],[],[],[]]
+</span><span>Output: [null,null,null,null,null,null,null,5,7,5,4]
+</span><span>Explanation:
+</span><span>After making six .push operations, the stack is [5,7,5,7,4,5] from bottom to top.  Then:
+</span><span>
+</span><span>pop() -&gt; returns 5, as 5 is the most frequent.
+</span><span>The stack becomes [5,7,5,7,4].
+</span><span>
+</span><span>pop() -&gt; returns 7, as 5 and 7 is the most frequent, but 7 is closest to the top.
+</span><span>The stack becomes [5,7,5,4].
+</span><span>
+</span><span>pop() -&gt; returns 5.
+</span><span>The stack becomes [5,7,4].
+</span><span>
+</span><span>pop() -&gt; returns 4.
+</span><span>The stack becomes [5,7].
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li>Calls to <code>FreqStack.push(int x)</code> will be such that <code>0 &lt;= x &lt;= 10^9</code>.</li>
@@ -264,162 +264,162 @@ The stack becomes [5,7].
 </ul>
 <h2 id="solution">Solution</h2>
 <p>I first come up with a solution using list and insert, just like <a href="https://leetcode.com/problems/lru-cache/">LRU Cache</a></p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class FreqStack {
-    unordered_map&lt;int, vector&lt;list&lt;pair&lt;int, int&gt;&gt;::iterator&gt;&gt; pos;
-    list&lt;pair&lt;int, int&gt;&gt; count;
-public:
-    FreqStack() {}
-    
-    void push(int x) {
-        int sz = pos[x].size();
-        auto p = make_pair(sz, x);
-        auto it = lower_bound(count.begin(), count.end(), p, [](const pair&lt;int, int&gt; &amp;a, const pair&lt;int, int&gt; &amp;b) {
-            return a.first &gt; b.first;
-        });
-        it = count.insert(it, p);
-        pos[x].push_back(it);
-    }
-    
-    int pop() {
-        int result = count.front().second;
-        count.pop_front();
-        pos[result].pop_back();
-        return result;
-    }
-};
-
-&#x2F;&#x2F; 37 &#x2F; 37 test cases passed, but took too long.
-&#x2F;&#x2F; Status: Time Limit Exceeded
-&#x2F;&#x2F; Submitted: 20 minutes ago
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">FreqStack </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, vector&lt;list&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;::iterator&gt;&gt; pos;
+</span><span style="color:#eff1f5;">    list&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; count;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">FreqStack</span><span style="color:#eff1f5;">() {}
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> pos[x].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> p </span><span>= </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(sz, x);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(count.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), count.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), p, [](</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">a, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">b) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">first </span><span>&gt;</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        });
+</span><span style="color:#eff1f5;">        it </span><span>=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(it, p);
+</span><span style="color:#eff1f5;">        pos[x].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(it);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        count.</span><span style="color:#bf616a;">pop_front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        pos[result].</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 37 / 37 test cases passed, but took too long.
+</span><span style="color:#65737e;">// Status: Time Limit Exceeded
+</span><span style="color:#65737e;">// Submitted: 20 minutes ago
+</span></code></pre>
 <p>then I'm trying to optimize this solution</p>
 <p>I found that iterator is useless</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class FreqStack {
-    unordered_map&lt;int, int&gt; pos;
-    list&lt;pair&lt;int, int&gt;&gt; count;
-public:
-    FreqStack() {}
-    
-    void push(int x) {
-        int sz = pos[x];
-        auto p = make_pair(sz, x);
-        auto it = lower_bound(count.begin(), count.end(), p, [](const pair&lt;int, int&gt; &amp;a, const pair&lt;int, int&gt; &amp;b) {
-            return a.first &gt; b.first;
-        });
-        it = count.insert(it, p);
-        pos[x] += 1;
-    }
-    
-    int pop() {
-        int result = count.front().second;
-        count.pop_front();
-        pos[result] -= 1;
-        return result;
-    }
-};
-
-&#x2F;&#x2F; 37 &#x2F; 37 test cases passed, but took too long.
-&#x2F;&#x2F; Status: Time Limit Exceeded
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">FreqStack </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; pos;
+</span><span style="color:#eff1f5;">    list&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; count;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">FreqStack</span><span style="color:#eff1f5;">() {}
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> pos[x];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> p </span><span>= </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(sz, x);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(count.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), count.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), p, [](</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">a, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">b) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">first </span><span>&gt;</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        });
+</span><span style="color:#eff1f5;">        it </span><span>=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(it, p);
+</span><span style="color:#eff1f5;">        pos[x] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        count.</span><span style="color:#bf616a;">pop_front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        pos[result] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 37 / 37 test cases passed, but took too long.
+</span><span style="color:#65737e;">// Status: Time Limit Exceeded
+</span><span>
+</span></code></pre>
 <p>I thought pair was too slow</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class FreqStack {
-    struct p {
-        int size;
-        int value;
-        bool operator &lt;(const p &amp;other) const {
-            return this-&gt;size &gt; other.size;
-        }
-    };
-    unordered_map&lt;int, int&gt; pos;
-    list&lt;p&gt; count;
-public:
-    FreqStack() {}
-    
-    void push(int x) {
-        int sz = pos[x];
-        auto pa = p{sz, x};
-        auto it = lower_bound(count.begin(), count.end(), pa);
-        it = count.insert(it, pa);
-        pos[x] += 1;
-    }
-    
-    int pop() {
-        int result = count.front().value;
-        count.pop_front();
-        pos[result] -= 1;
-        return result;
-    }
-};
-
-&#x2F;&#x2F; 37 &#x2F; 37 test cases passed, but took too long.
-&#x2F;&#x2F; Status: Time Limit Exceeded
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">FreqStack </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">struct </span><span style="color:#eff1f5;">p {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> size;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">operator &lt;</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> p </span><span>&amp;</span><span style="color:#bf616a;">other</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">const </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">size </span><span>&gt;</span><span style="color:#eff1f5;"> other.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    };
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; pos;
+</span><span style="color:#eff1f5;">    list&lt;p&gt; count;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">FreqStack</span><span style="color:#eff1f5;">() {}
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> pos[x];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> pa </span><span>= </span><span style="color:#bf616a;">p</span><span style="color:#eff1f5;">{sz, x};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(count.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), count.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), pa);
+</span><span style="color:#eff1f5;">        it </span><span>=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(it, pa);
+</span><span style="color:#eff1f5;">        pos[x] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>=</span><span style="color:#eff1f5;"> count.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        count.</span><span style="color:#bf616a;">pop_front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        pos[result] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 37 / 37 test cases passed, but took too long.
+</span><span style="color:#65737e;">// Status: Time Limit Exceeded
+</span><span>
+</span></code></pre>
 <p>I found I can use <code>priority_queue</code></p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class FreqStack {
-    struct p {
-        int size;
-        int pos;
-        int value;
-        bool operator &lt;(const p &amp;other) const {
-            return this-&gt;size &lt; other.size || (this-&gt;size == other.size &amp;&amp; this-&gt;pos &lt; other.pos);
-        }
-    };
-    int pos = 0;
-    unordered_map&lt;int, int&gt; count;
-    priority_queue&lt;p&gt; q;
-public:
-    FreqStack() {}
-    
-    void push(int x) {
-        int sz = count[x];
-        auto pa = p{sz, pos++, x};
-        q.push(pa);
-        count[x] += 1;
-    }
-    
-    int pop() {
-        int result = q.top().value;
-        q.pop();
-        count[result] -= 1;
-        return result;
-    }
-};
-
-&#x2F;&#x2F; 37 &#x2F; 37 test cases passed.
-&#x2F;&#x2F; Status: Accepted
-&#x2F;&#x2F; Runtime: 180 ms
-&#x2F;&#x2F; Memory Usage: 79.1 MB
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">FreqStack </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">struct </span><span style="color:#eff1f5;">p {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> size;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">operator &lt;</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> p </span><span>&amp;</span><span style="color:#bf616a;">other</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">const </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">size </span><span>&lt;</span><span style="color:#eff1f5;"> other.</span><span style="color:#bf616a;">size </span><span>|| </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">size </span><span>==</span><span style="color:#eff1f5;"> other.</span><span style="color:#bf616a;">size </span><span>&amp;&amp; </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">pos </span><span>&lt;</span><span style="color:#eff1f5;"> other.</span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    };
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; count;
+</span><span style="color:#eff1f5;">    priority_queue&lt;p&gt; q;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">FreqStack</span><span style="color:#eff1f5;">() {}
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> count[x];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> pa </span><span>= </span><span style="color:#bf616a;">p</span><span style="color:#eff1f5;">{sz, pos</span><span>++</span><span style="color:#eff1f5;">, x};
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(pa);
+</span><span style="color:#eff1f5;">        count[x] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        count[result] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 37 / 37 test cases passed.
+</span><span style="color:#65737e;">// Status: Accepted
+</span><span style="color:#65737e;">// Runtime: 180 ms
+</span><span style="color:#65737e;">// Memory Usage: 79.1 MB
+</span><span>
+</span></code></pre>
 <p>And I learned from solution to use stack to solve it.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class FreqStack {
-    unordered_map&lt;int, int&gt; freq;
-    unordered_map&lt;int, vector&lt;int&gt;&gt; stacks;
-    int maxFreq = 0;
-public:    
-    void push(int x) {
-        freq[x] += 1;
-        stacks[freq[x]].push_back(x);
-        maxFreq = max(maxFreq, freq[x]);
-    }
-    
-    int pop() {
-        int value = stacks[maxFreq].back();
-        stacks[maxFreq].pop_back();
-        freq[value] -= 1;
-        if(stacks[maxFreq].empty()) maxFreq -= 1;
-        return value;
-    }
-};
-
-&#x2F;&#x2F; 37 &#x2F; 37 test cases passed.
-&#x2F;&#x2F; Status: Accepted
-&#x2F;&#x2F; Runtime: 168 ms
-&#x2F;&#x2F; Memory Usage: 79.7 MB
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">FreqStack </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; freq;
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; stacks;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxFreq </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        freq[x] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        stacks[freq[x]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(x);
+</span><span style="color:#eff1f5;">        maxFreq </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(maxFreq, freq[x]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> value </span><span>=</span><span style="color:#eff1f5;"> stacks[maxFreq].</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        stacks[maxFreq].</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        freq[value] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(stacks[maxFreq].</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) maxFreq </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> value;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 37 / 37 test cases passed.
+</span><span style="color:#65737e;">// Status: Accepted
+</span><span style="color:#65737e;">// Runtime: 168 ms
+</span><span style="color:#65737e;">// Memory Usage: 79.7 MB
+</span><span>
+</span></code></pre>
 
     </div>
   </div>

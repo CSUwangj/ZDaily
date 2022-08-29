@@ -140,30 +140,30 @@ renderMathInElement(document.body, katex_config);
 	<li><code>1 &lt;= w<sub>i</sub>, h<sub>i</sub> &lt;= 10<sup>5</sup></code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maxEnvelopes(vector&lt;vector&lt;int&gt;&gt;&amp; envelopes) {
-    sort(envelopes.begin(), envelopes.end(), [](vector&lt;int&gt; &amp;a, vector&lt;int&gt; &amp;b){
-      return a[0] &lt; b[0] || (a[0] == b[0] &amp;&amp; a[1] &gt; b[1]);
-    });
-    vector&lt;int&gt; dp;
-    for(auto &amp;e : envelopes) {
-      auto it = lower_bound(dp.begin(), dp.end(), e[1]);
-      if(it == dp.end()) {
-        dp.push_back(e[1]);
-      } else {
-        *it = e[1];
-      }
-    }
-    return dp.size();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 231&#x2F;231 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 73.76 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 96.04 % of cpp submissions (6.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxEnvelopes</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">envelopes</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(envelopes.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), envelopes.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [](vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">a, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">b){
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> b[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>|| </span><span style="color:#eff1f5;">(a[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> b[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> a[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&gt;</span><span style="color:#eff1f5;"> b[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; dp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">e </span><span>:</span><span style="color:#eff1f5;"> envelopes) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(dp.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), dp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), e[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(it </span><span>==</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        dp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(e[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span>*</span><span style="color:#eff1f5;">it </span><span>=</span><span style="color:#eff1f5;"> e[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 231/231 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 73.76 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 96.04 % of cpp submissions (6.7 MB)
+</span></code></pre>
 
     </div>
   </div>

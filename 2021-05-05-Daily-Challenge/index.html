@@ -118,17 +118,17 @@ renderMathInElement(document.body, katex_config);
 <p>An integer interval <code>[a, b]</code> (for integers <code>a &lt; b</code>) is a set of all consecutive integers from <code>a</code> to <code>b</code>, including <code>a</code> and <code>b</code>.</p>
 <p>Find the minimum size of a set S such that for every integer interval A in <code>intervals</code>, the intersection of S with A has a size of at least two.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: intervals = [[1,3],[1,4],[2,5],[3,5]]
-Output: 3
-Explanation: Consider the set S = {2, 3, 4}.  For each interval, there are at least 2 elements from S in the interval.
-Also, there isn&#x27;t a smaller size set that fulfills the above condition.
-Thus, we output the size of this set, which is 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: intervals = [[1,3],[1,4],[2,5],[3,5]]
+</span><span>Output: 3
+</span><span>Explanation: Consider the set S = {2, 3, 4}.  For each interval, there are at least 2 elements from S in the interval.
+</span><span>Also, there isn&#39;t a smaller size set that fulfills the above condition.
+</span><span>Thus, we output the size of this set, which is 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: intervals = [[1,2],[2,3],[2,4],[4,5]]
-Output: 5
-Explanation: An example of a minimum sized set is {1, 2, 3, 4, 5}.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: intervals = [[1,2],[2,3],[2,4],[4,5]]
+</span><span>Output: 5
+</span><span>Explanation: An example of a minimum sized set is {1, 2, 3, 4, 5}.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= intervals.length &lt;= 3000</code></li>
@@ -137,32 +137,32 @@ Explanation: An example of a minimum sized set is {1, 2, 3, 4, 5}.
 </ul>
 <h2 id="solution">Solution</h2>
 <p>sort the intervals by end ascending then by start descending. always take the higher two number as subset, and maintain the current higher two number in our subset. check the code for more details.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int intersectionSizeTwo(vector&lt;vector&lt;int&gt;&gt;&amp; intervalsVector) {
-    vector&lt;pair&lt;int, int&gt;&gt; intervals;
-    for(auto &amp;interval : intervalsVector) {
-      intervals.push_back(make_pair(interval[0], interval[1]));
-    }
-    sort(intervals.begin(), intervals.end(), [](const pair&lt;int, int&gt; &amp;a, const pair&lt;int, int&gt; &amp;b) {
-      return a.second &lt; b.second || (a.second == b.second &amp;&amp; a.first &gt; b.first);
-    });
-    int answer = 0;
-    pair&lt;int, int&gt; pre = {-1, -1};
-    for(auto [start, end] : intervals) {
-      if(pre.second &lt; start) {
-        answer += 2;
-        pre.first = end - 1;
-        pre.second = end;
-      } else if(pre.first &lt; start) {
-        pre = {pre.second, end};
-        answer += 1;
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">intersectionSizeTwo</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">intervalsVector</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; intervals;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">interval </span><span>:</span><span style="color:#eff1f5;"> intervalsVector) {
+</span><span style="color:#eff1f5;">      intervals.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(interval[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], interval[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(intervals.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), intervals.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [](</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">a, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">second </span><span>&lt;</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">second </span><span>|| </span><span style="color:#eff1f5;">(a.</span><span style="color:#bf616a;">second </span><span>==</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">second </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">first </span><span>&gt;</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; pre </span><span>= </span><span style="color:#eff1f5;">{</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[start, end] </span><span>:</span><span style="color:#eff1f5;"> intervals) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pre.</span><span style="color:#bf616a;">second </span><span>&lt;</span><span style="color:#eff1f5;"> start) {
+</span><span style="color:#eff1f5;">        answer </span><span>+= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        pre.</span><span style="color:#bf616a;">first </span><span>=</span><span style="color:#eff1f5;"> end </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        pre.</span><span style="color:#bf616a;">second </span><span>=</span><span style="color:#eff1f5;"> end;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(pre.</span><span style="color:#bf616a;">first </span><span>&lt;</span><span style="color:#eff1f5;"> start) {
+</span><span style="color:#eff1f5;">        pre </span><span>= </span><span style="color:#eff1f5;">{pre.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">, end};
+</span><span style="color:#eff1f5;">        answer </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="may-leetcoding-challenge-5">May LeetCoding Challenge 5</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Jump Game II</strong></p>
@@ -171,49 +171,49 @@ public:
 <p>Your goal is to reach the last index in the minimum number of jumps.</p>
 <p>You can assume that you can always reach the last index.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [2,3,1,1,4]
-Output: 2
-Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,3,1,1,4]
+</span><span>Output: 2
+</span><span>Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [2,3,0,1,4]
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,3,0,1,4]
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 1000</code></li>
 <li><code>0 &lt;= nums[i] &lt;= 10^5</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int jump(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    queue&lt;pair&lt;int, int&gt;&gt; q;
-    q.push({0, nums[0]});
-    nums[0] = -1;
-    int answer = 0;
-    while(q.size()) {
-      int sz = q.size();
-      &#x2F;&#x2F; cout &lt;&lt; &quot;round &quot; &lt;&lt; answer &lt;&lt; &quot;: &quot; &lt;&lt; endl;
-      for(int i = 0; i &lt; sz; ++i) {
-        auto [index, offset] = q.front();
-        &#x2F;&#x2F; cout &lt;&lt; index &lt;&lt; &#x27; &#x27; &lt;&lt; offset &lt;&lt; endl;
-        if(index == len - 1) return answer;
-        q.pop();
-        for(int j = max(0, index - offset); j &lt; min(len, index + offset + 1); ++j) {
-          if(nums[j] &lt; 0) continue;
-          q.push({j, nums[j]});
-          nums[j] = - 1;
-        }
-      }
-      &#x2F;&#x2F; cout &lt;&lt; endl;
-      answer += 1;
-    }
-    return -1;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">jump</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    queue&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; q;
+</span><span style="color:#eff1f5;">    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]});
+</span><span style="color:#eff1f5;">    nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; &quot;round &quot; &lt;&lt; answer &lt;&lt; &quot;: &quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> sz; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[index, offset] </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// cout &lt;&lt; index &lt;&lt; &#39; &#39; &lt;&lt; offset &lt;&lt; endl;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, index </span><span>-</span><span style="color:#eff1f5;"> offset); j </span><span>&lt; </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(len, index </span><span>+</span><span style="color:#eff1f5;"> offset </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">); </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[j] </span><span>&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({j, nums[j]});
+</span><span style="color:#eff1f5;">          nums[j] </span><span>= - </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      answer </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

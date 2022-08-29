@@ -120,10 +120,10 @@ renderMathInElement(document.body, katex_config);
 <p>Given the integer <code>n</code>, return <em>the number of <strong>complete rows</strong> of the staircase you will build</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/09/arrangecoins1-grid.jpg" alt="img" /></p>
-<pre><code>Input: n = 5
-Output: 2
-Explanation: Because the 3rd row is incomplete, we return 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 5
+</span><span>Output: 2
+</span><span>Explanation: Because the 3rd row is incomplete, we return 2.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/09/arrangecoins2-grid.jpg" alt="img" /></p>
 <p><code><pre>
@@ -137,29 +137,29 @@ Explanation: Because the 3rd row is incomplete, we return 2.
 	<li><code>1 &lt;= n &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int arrangeCoins(int n) {
-    long long begin = 0, end = n;
-    while(begin &lt; end) {
-      long long mid = (begin + end) &#x2F; 2;
-      long long need = (mid + 1LL) * mid &#x2F; 2;
-      if(need &lt; n) {
-        begin = mid + 1;
-      } else {
-        end = mid;
-      }
-    }
-    if(begin * (begin + 1) &#x2F; 2 &gt; n) begin -= 1;
-    return begin;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 1335&#x2F;1335 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 96.1 % of cpp submissions (5.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">arrangeCoins</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, end </span><span>=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(begin </span><span>+</span><span style="color:#eff1f5;"> end) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> need </span><span>= </span><span style="color:#eff1f5;">(mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">LL</span><span style="color:#eff1f5;">) </span><span>*</span><span style="color:#eff1f5;"> mid </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(need </span><span>&lt;</span><span style="color:#eff1f5;"> n) {
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span>* </span><span style="color:#eff1f5;">(begin </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2 </span><span>&gt;</span><span style="color:#eff1f5;"> n) begin </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> begin;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 1335/1335 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 96.1 % of cpp submissions (5.8 MB)
+</span></code></pre>
 
     </div>
   </div>

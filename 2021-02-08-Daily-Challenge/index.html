@@ -121,12 +121,12 @@ renderMathInElement(document.body, katex_config);
 <p>Return a list of the words in <code>words</code> that match the given pattern. </p>
 <p>You may return the answer in any order.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: words = [&quot;abc&quot;,&quot;deq&quot;,&quot;mee&quot;,&quot;aqq&quot;,&quot;dkd&quot;,&quot;ccc&quot;], pattern = &quot;abb&quot;
-Output: [&quot;mee&quot;,&quot;aqq&quot;]
-Explanation: &quot;mee&quot; matches the pattern because there is a permutation {a -&gt; m, b -&gt; e, ...}. 
-&quot;ccc&quot; does not match the pattern because {a -&gt; c, b -&gt; c, ...} is not a permutation,
-since a and b map to the same letter.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;abc&quot;,&quot;deq&quot;,&quot;mee&quot;,&quot;aqq&quot;,&quot;dkd&quot;,&quot;ccc&quot;], pattern = &quot;abb&quot;
+</span><span>Output: [&quot;mee&quot;,&quot;aqq&quot;]
+</span><span>Explanation: &quot;mee&quot; matches the pattern because there is a permutation {a -&gt; m, b -&gt; e, ...}. 
+</span><span>&quot;ccc&quot; does not match the pattern because {a -&gt; c, b -&gt; c, ...} is not a permutation,
+</span><span>since a and b map to the same letter.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>1 &lt;= words.length &lt;= 50</code></li>
@@ -135,66 +135,66 @@ since a and b map to the same letter.
 <h2 id="solution">Solution</h2>
 <p>instead of check if a word can be matched by pattern, we can perform strightforward permutation: replace characters with continuous letters.</p>
 <p>check <code>repermute()</code> for more information</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    string repermute(vector&lt;int&gt; &amp;mp, string word) {
-        fill(mp.begin(), mp.end(), 0);
-        char letter = &#x27;a&#x27;;
-        for(auto &amp;c : word) {
-            if(mp[c - &#x27;a&#x27;] == 0) {
-                mp[c - &#x27;a&#x27;] = letter++;
-            }
-            c = mp[c - &#x27;a&#x27;];
-        }
-        return word;
-    }
-public:
-    vector&lt;string&gt; findAndReplacePattern(vector&lt;string&gt;&amp; words, string pattern) {
-        vector&lt;int&gt; mp(26);
-        pattern = repermute(mp, pattern);
-        
-        int len = words.size();
-        vector&lt;string&gt; answer;
-        for(auto word : words) {
-            if(word.length() != pattern.length()) continue;
-            if(repermute(mp, word) == pattern) {
-                answer.push_back(word);
-            }
-        }
-        
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">repermute</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">mp</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">word</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">fill</span><span style="color:#eff1f5;">(mp.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), mp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> letter </span><span>= &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">c </span><span>:</span><span style="color:#eff1f5;"> word) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                mp[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> letter</span><span>++</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            c </span><span>=</span><span style="color:#eff1f5;"> mp[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> word;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; </span><span style="color:#8fa1b3;">findAndReplacePattern</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">pattern</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">mp</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        pattern </span><span>= </span><span style="color:#bf616a;">repermute</span><span style="color:#eff1f5;">(mp, pattern);
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> words.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;string&gt; answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> word </span><span>:</span><span style="color:#eff1f5;"> words) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>!=</span><span style="color:#eff1f5;"> pattern.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">repermute</span><span style="color:#eff1f5;">(mp, word) </span><span>==</span><span style="color:#eff1f5;"> pattern) {
+</span><span style="color:#eff1f5;">                answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(word);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="february-leetcoding-challenge-8">February LeetCoding Challenge 8</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Peeking Iterator</strong></p>
 <p>Given an Iterator class interface with methods: <code>next()</code> and <code>hasNext()</code>, design and implement a PeekingIterator that support the <code>peek()</code> operation -- it essentially peek() at the element that will be returned by the next call to next().</p>
 <p><strong>Example:</strong></p>
-<pre><code>Assume that the iterator is initialized to the beginning of the list: [1,2,3].
-
-Call next() gets you 1, the first element in the list.
-Now you call peek() and it returns 2, the next element. Calling next() after that still return 2. 
-You call next() the final time and it returns 3, the last element. 
-Calling hasNext() after that should return false.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Assume that the iterator is initialized to the beginning of the list: [1,2,3].
+</span><span>
+</span><span>Call next() gets you 1, the first element in the list.
+</span><span>Now you call peek() and it returns 2, the next element. Calling next() after that still return 2. 
+</span><span>You call next() the final time and it returns 3, the last element. 
+</span><span>Calling hasNext() after that should return false.
+</span></code></pre>
 <p><strong>Follow up</strong>: How would you extend your design to be generic and work with all types, not just integer?</p>
 <h2 id="solution-1">Solution</h2>
 <p>this problem is kind of weird</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class PeekingIterator : public Iterator {
-public:
-	PeekingIterator(const vector&lt;int&gt;&amp; nums) : Iterator(nums) {}
-
-	int peek() {
-        auto it = *this;
-        return it.next();
-	}
-};
-</code></pre>
-<pre><code>13 &#x2F; 13 test cases passed.
-Status: Accepted
-Runtime: 0 ms
-Memory Usage: 7.7 MB
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">PeekingIterator </span><span style="color:#eff1f5;">: </span><span style="color:#b48ead;">public </span><span style="color:#a3be8c;">Iterator </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">	</span><span style="color:#8fa1b3;">PeekingIterator</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) : </span><span style="color:#bf616a;">Iterator</span><span style="color:#eff1f5;">(nums) {}
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">	</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">peek</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>= *</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> it.</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">	}
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>13 / 13 test cases passed.
+</span><span>Status: Accepted
+</span><span>Runtime: 0 ms
+</span><span>Memory Usage: 7.7 MB
+</span></code></pre>
 
     </div>
   </div>

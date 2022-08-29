@@ -119,13 +119,13 @@ renderMathInElement(document.body, katex_config);
 <p>Given two non-negative integers <code>num1</code> and <code>num2</code> represented as strings, return the product of <code>num1</code> and <code>num2</code>, also represented as a string.</p>
 <p><strong>Note:</strong> You must not use any built-in BigInteger library or convert the inputs to integer directly.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: num1 = &quot;2&quot;, num2 = &quot;3&quot;
-Output: &quot;6&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num1 = &quot;2&quot;, num2 = &quot;3&quot;
+</span><span>Output: &quot;6&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: num1 = &quot;123&quot;, num2 = &quot;456&quot;
-Output: &quot;56088&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num1 = &quot;123&quot;, num2 = &quot;456&quot;
+</span><span>Output: &quot;56088&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= num1.length, num2.length &lt;= 200</code></li>
@@ -133,135 +133,135 @@ Output: &quot;56088&quot;
 <li>Both <code>num1</code> and <code>num2</code> do not contain any leading zero, except the number <code>0</code> itself.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int MOD = 10000;
-inline void ltrim(string &amp;s) {
-  s.erase(s.begin(), find_if(s.begin(), s.end(), [](unsigned char ch) {
-    return ch != &#x27;0&#x27;;
-  }));
-}
-class BigInt {
-  vector&lt;int&gt; digits;
-public:
-  BigInt(vector&lt;int&gt; digits = {}) noexcept : digits(move(digits)) {}
-  BigInt(string &amp;num) {
-    int count = 0;
-    int digit = 0;
-    reverse(num.begin(), num.end());
-    while(num.length() % 4) num.push_back(&#x27;0&#x27;);
-    reverse(num.begin(), num.end());
-    for(auto c : num) {
-      digit *= 10;
-      digit += c - &#x27;0&#x27;;
-      count += 1;
-      if(count == 4) {
-        digits.push_back(digit);
-        digit = 0;
-        count = 0;
-      }
-    }
-    if(digit || digits.empty()) {
-      digits.push_back(digit);
-    }
-    reverse(digits.begin(), digits.end());
-  }
-
-  BigInt operator+(const BigInt&amp; other) const {
-    int lenT = this-&gt;digits.size();
-    int lenO = other.digits.size();
-    int carry = 0;
-    vector&lt;int&gt; results;
-    int pos;
-    for(pos = 0; pos &lt; lenT &amp;&amp; pos &lt; lenO; ++pos) {
-      cout &lt;&lt; pos &lt;&lt; endl;
-      int result = this-&gt;digits[pos] + other.digits[pos] + carry;
-      results.push_back(result % MOD);
-      carry = result &#x2F; MOD;
-    }
-    while(pos &lt; lenT) {
-      results.push_back(this-&gt;digits[pos]);
-      pos += 1;
-    }
-    while(pos &lt; lenO) {
-      results.push_back(other.digits[pos]);
-      pos += 1;
-    }
-    cout &lt;&lt; pos &lt;&lt; endl;
-    pos = min(lenO, lenT);
-    while(carry) {
-      cout &lt;&lt; pos &lt;&lt; &#x27; &#x27; &lt;&lt; carry &lt;&lt; endl;
-      if(results.size() &lt;= pos) results.push_back(0);
-      results[pos] += carry;
-      carry = results[pos] &#x2F; MOD;
-      results[pos] %= MOD;
-      pos += 1;
-    }
-    if(results.empty()) results.push_back(0);
-    return BigInt(results);
-  }
-
-  BigInt operator*(const BigInt&amp; other) const {
-    int lenT = this-&gt;digits.size();
-    int lenO = other.digits.size();
-    int carry = 0;
-    vector&lt;int&gt; results;
-    for(int i = 0; i &lt; lenT; ++i) {
-      int carry = 0;
-      for(int j = 0; j &lt; lenO; ++j) {
-        int result = this-&gt;digits[i] * other.digits[j] + carry;
-        if(results.size() &lt;= i + j) results.push_back(0);
-        results[i + j] += result;
-        carry = results[i + j] &#x2F; MOD;
-        results[i + j] %= MOD;
-      }
-      int pos = lenO;
-      while(carry) {
-        if(results.size() &lt;= i + pos) results.push_back(0);
-        results[i + pos] += carry;
-        carry = results[i + pos] &#x2F; MOD;
-        results[i + pos] %= MOD;
-        pos += 1;
-      }
-    }
-    
-    if(results.empty()) results.push_back(0);
-    return BigInt(results);
-  }
-  
-  string to_string() {
-    string result;
-    for(auto digit : digits) {
-      for(int i = 0; i &lt; 4; ++i) {
-        result.push_back(digit % 10 + &#x27;0&#x27;);
-        digit &#x2F;= 10;
-      }
-    }
-    reverse(result.begin(), result.end());
-    ltrim(result);
-    if(result.empty()) result.push_back(&#x27;0&#x27;);
-    return result;
-  }
-  
-  friend ostream&amp; operator&lt;&lt;(ostream &amp;out, const BigInt &amp;i) {
-    for(auto it = i.digits.rbegin(); it != i.digits.rend(); ++it) {
-      out &lt;&lt; setfill(&#x27;0&#x27;) &lt;&lt; setw(4)  &lt;&lt; *it;
-    }
-    return out;
-  }
-};
-
-class Solution {
-public:
-  string multiply(string num1, string num2) {
-    BigInt a(num1), b(num2);
-    return (a * b).to_string();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 311&#x2F;311 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 37.23 % of cpp submissions (6.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> MOD = </span><span style="color:#d08770;">10000</span><span>;
+</span><span style="color:#b48ead;">inline void </span><span style="color:#8fa1b3;">ltrim</span><span>(string &amp;</span><span style="color:#bf616a;">s</span><span>) {
+</span><span>  s.</span><span style="color:#bf616a;">erase</span><span>(s.</span><span style="color:#bf616a;">begin</span><span>(), </span><span style="color:#bf616a;">find_if</span><span>(s.</span><span style="color:#bf616a;">begin</span><span>(), s.</span><span style="color:#bf616a;">end</span><span>(), [](</span><span style="color:#b48ead;">unsigned char</span><span> ch) {
+</span><span>    </span><span style="color:#b48ead;">return</span><span> ch != &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;;
+</span><span>  }));
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">BigInt </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; digits;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">BigInt</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">digits </span><span>= </span><span style="color:#eff1f5;">{}) </span><span style="color:#b48ead;">noexcept </span><span style="color:#eff1f5;">: </span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(digits)) {}
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">BigInt</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> digit </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(num.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), num.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(num.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>% </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">) num.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(num.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), num.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> num) {
+</span><span style="color:#eff1f5;">      digit </span><span>*= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      digit </span><span>+=</span><span style="color:#eff1f5;"> c </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(count </span><span>== </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        digits.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(digit);
+</span><span style="color:#eff1f5;">        digit </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(digit </span><span>||</span><span style="color:#eff1f5;"> digits.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      digits.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(digit);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(digits.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), digits.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  BigInt </span><span style="color:#8fa1b3;">operator+</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> BigInt</span><span>&amp; </span><span style="color:#bf616a;">other</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">const </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lenT </span><span>= </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lenO </span><span>=</span><span style="color:#eff1f5;"> other.</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> carry </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; results;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; pos </span><span>&lt;</span><span style="color:#eff1f5;"> lenT </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> pos </span><span>&lt;</span><span style="color:#eff1f5;"> lenO; </span><span>++</span><span style="color:#eff1f5;">pos) {
+</span><span style="color:#eff1f5;">      cout </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> pos </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> endl;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">[pos] </span><span>+</span><span style="color:#eff1f5;"> other.</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">[pos] </span><span>+</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">      results.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(result </span><span>%</span><span style="color:#eff1f5;"> MOD);
+</span><span style="color:#eff1f5;">      carry </span><span>=</span><span style="color:#eff1f5;"> result </span><span>/</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> lenT) {
+</span><span style="color:#eff1f5;">      results.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">[pos]);
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> lenO) {
+</span><span style="color:#eff1f5;">      results.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(other.</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">[pos]);
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    cout </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> pos </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> endl;
+</span><span style="color:#eff1f5;">    pos </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(lenO, lenT);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(carry) {
+</span><span style="color:#eff1f5;">      cout </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> pos </span><span>&lt;&lt; &#39; &#39; &lt;&lt;</span><span style="color:#eff1f5;"> carry </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> endl;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(results.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt;=</span><span style="color:#eff1f5;"> pos) results.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      results[pos] </span><span>+=</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">      carry </span><span>=</span><span style="color:#eff1f5;"> results[pos] </span><span>/</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">      results[pos] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(results.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) results.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">BigInt</span><span style="color:#eff1f5;">(results);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  BigInt </span><span style="color:#8fa1b3;">operator*</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> BigInt</span><span>&amp; </span><span style="color:#bf616a;">other</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">const </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lenT </span><span>= </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lenO </span><span>=</span><span style="color:#eff1f5;"> other.</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> carry </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; results;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> lenT; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> carry </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> lenO; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">[i] </span><span>*</span><span style="color:#eff1f5;"> other.</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">[j] </span><span>+</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(results.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt;=</span><span style="color:#eff1f5;"> i </span><span>+</span><span style="color:#eff1f5;"> j) results.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        results[i </span><span>+</span><span style="color:#eff1f5;"> j] </span><span>+=</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">        carry </span><span>=</span><span style="color:#eff1f5;"> results[i </span><span>+</span><span style="color:#eff1f5;"> j] </span><span>/</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        results[i </span><span>+</span><span style="color:#eff1f5;"> j] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>=</span><span style="color:#eff1f5;"> lenO;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(carry) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(results.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt;=</span><span style="color:#eff1f5;"> i </span><span>+</span><span style="color:#eff1f5;"> pos) results.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        results[i </span><span>+</span><span style="color:#eff1f5;"> pos] </span><span>+=</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">        carry </span><span>=</span><span style="color:#eff1f5;"> results[i </span><span>+</span><span style="color:#eff1f5;"> pos] </span><span>/</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        results[i </span><span>+</span><span style="color:#eff1f5;"> pos] </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(results.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) results.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">BigInt</span><span style="color:#eff1f5;">(results);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">to_string</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    string result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> digit </span><span>:</span><span style="color:#eff1f5;"> digits) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(digit </span><span>% </span><span style="color:#d08770;">10 </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        digit </span><span>/= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), result.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">ltrim</span><span style="color:#eff1f5;">(result);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">friend</span><span style="color:#eff1f5;"> ostream</span><span>&amp; </span><span style="color:#8fa1b3;">operator&lt;&lt;</span><span style="color:#eff1f5;">(ostream </span><span>&amp;</span><span style="color:#bf616a;">out</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> BigInt </span><span>&amp;</span><span style="color:#bf616a;">i</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> i.</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); it </span><span>!=</span><span style="color:#eff1f5;"> i.</span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">      out </span><span>&lt;&lt; </span><span style="color:#bf616a;">setfill</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span>&lt;&lt; </span><span style="color:#bf616a;">setw</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">)  </span><span>&lt;&lt; *</span><span style="color:#eff1f5;">it;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> out;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">multiply</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">num1</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">num2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    BigInt </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">(num1), </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">(num2);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(a </span><span>*</span><span style="color:#eff1f5;"> b).</span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 311/311 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 37.23 % of cpp submissions (6.9 MB)
+</span></code></pre>
 
     </div>
   </div>

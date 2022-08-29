@@ -120,26 +120,26 @@ renderMathInElement(document.body, katex_config);
 <p>How many possible unique paths are there?</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/10/22/robot_maze.png" alt="img" /></p>
-<pre><code>Input: m = 3, n = 7
-Output: 28
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 3, n = 7
+</span><span>Output: 28
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: m = 3, n = 2
-Output: 3
-Explanation:
-From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
-1. Right -&gt; Down -&gt; Down
-2. Down -&gt; Down -&gt; Right
-3. Down -&gt; Right -&gt; Down
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 3, n = 2
+</span><span>Output: 3
+</span><span>Explanation:
+</span><span>From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+</span><span>1. Right -&gt; Down -&gt; Down
+</span><span>2. Down -&gt; Down -&gt; Right
+</span><span>3. Down -&gt; Right -&gt; Down
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: m = 7, n = 3
-Output: 28
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 7, n = 3
+</span><span>Output: 28
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: m = 3, n = 3
-Output: 6
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 3, n = 3
+</span><span>Output: 6
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= m, n &lt;= 100</code></li>
@@ -147,72 +147,72 @@ Output: 6
 </ul>
 <h2 id="solution">Solution</h2>
 <p>using constexpr to get a precomputed table</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">template&lt;int N&gt;
-struct Table {
-  constexpr Table() : values() {
-    for(int i = 0; i &lt; N; ++i) {
-      for(int j = 0; j &lt; N; ++j) {
-        if(!i || !j) values[i][j] = 1;
-        else {
-          if(INT_MAX - values[i - 1][j] &gt; values[i][j - 1]) {
-            values[i][j] = values[i - 1][j] + values[i][j - 1];         
-          } else {
-            values[i][j] = 1;  
-          }
-        }
-      }
-    }
-  }
-  int values[N][N];
-};
-
-constexpr auto table = Table&lt;100&gt;();
-
-class Solution {
-public:
-  int uniquePaths(int m, int n) {
-    return table.values[m - 1][n - 1];
-  }
-};
-
-&#x2F;&#x2F; Runtime: 0 ms, faster than 100.00% of C++ online submissions for Unique Paths.
-&#x2F;&#x2F; Memory Usage: 6 MB, less than 66.04% of C++ online submissions for Unique Paths.
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">template</span><span>&lt;</span><span style="color:#b48ead;">int</span><span> N&gt;
+</span><span style="color:#b48ead;">struct </span><span>Table {
+</span><span>  </span><span style="color:#b48ead;">constexpr </span><span style="color:#8fa1b3;">Table</span><span>() : </span><span style="color:#bf616a;">values</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; N; ++i) {
+</span><span>      </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> j = </span><span style="color:#d08770;">0</span><span>; j &lt; N; ++j) {
+</span><span>        </span><span style="color:#b48ead;">if</span><span>(!i || !j) values[i][j] = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">else </span><span>{
+</span><span>          </span><span style="color:#b48ead;">if</span><span>(INT_MAX - values[i - </span><span style="color:#d08770;">1</span><span>][j] &gt; values[i][j - </span><span style="color:#d08770;">1</span><span>]) {
+</span><span>            values[i][j] = values[i - </span><span style="color:#d08770;">1</span><span>][j] + values[i][j - </span><span style="color:#d08770;">1</span><span>];         
+</span><span>          } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>            values[i][j] = </span><span style="color:#d08770;">1</span><span>;  
+</span><span>          }
+</span><span>        }
+</span><span>      }
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">int</span><span> values[N][N];
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">constexpr auto</span><span> table = Table&lt;</span><span style="color:#d08770;">100</span><span>&gt;();
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">uniquePaths</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> table.</span><span style="color:#bf616a;">values</span><span style="color:#eff1f5;">[m </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][n </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Unique Paths.
+</span><span style="color:#65737e;">// Memory Usage: 6 MB, less than 66.04% of C++ online submissions for Unique Paths.
+</span></code></pre>
 <p>or just dp</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int uniquePaths(int m, int n) {
-    int dp[2][m];
-    for(int i = 0; i &lt; n; ++i) {
-      for(int j = 0; j &lt; m; ++j) {
-        if(!i || !j) {
-          dp[i &amp; 1][j] = 1;
-        } else {
-          dp[i &amp; 1][j] = dp[(i &amp; 1) ^ 1][j] + dp[i &amp; 1][j - 1];
-        }
-      }
-    }
-    return dp[(n &amp; 1) ^ 1][m - 1];
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">uniquePaths</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][m];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> m; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">i </span><span>|| !</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          dp[i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          dp[i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j] </span><span>=</span><span style="color:#eff1f5;"> dp[(i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>^ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j] </span><span>+</span><span style="color:#eff1f5;"> dp[i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[(n </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>^ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][m </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="longest-increasing-subsequence">Longest Increasing Subsequence</h1>
 <h2 id="description-1">Description</h2>
 <p>Given an integer array <code>nums</code>, return the length of the longest strictly increasing subsequence.</p>
 <p>A <strong>subsequence</strong> is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, <code>[3,6,2,7]</code> is a subsequence of the array <code>[0,3,1,6,2,2,7]</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [10,9,2,5,3,7,101,18]
-Output: 4
-Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [10,9,2,5,3,7,101,18]
+</span><span>Output: 4
+</span><span>Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0,1,0,3,2,3]
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,1,0,3,2,3]
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [7,7,7,7,7,7,7]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [7,7,7,7,7,7,7]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 2500</code></li>
@@ -224,80 +224,80 @@ Output: 1
 <li>Could you improve it to $O(n \log (n))$ time complexity?</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int lengthOfLIS(vector&lt;int&gt;&amp; nums) {
-    vector&lt;int&gt; dp;
-    for(auto i : nums) {
-      auto it = lower_bound(dp.begin(), dp.end(), i);
-      if(it == dp.end()) {
-        dp.push_back(i);
-      } else {
-        *it = i;
-      }
-    }
-    return dp.size();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">lengthOfLIS</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; dp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(dp.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), dp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), i);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(it </span><span>==</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        dp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span>*</span><span style="color:#eff1f5;">it </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="search-suggestions-system">Search Suggestions System</h1>
 <p>yesterday's problems</p>
 <h2 id="solution-2">Solution</h2>
 <p>I knew it! hahahahaha gotcha!</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">struct TrieNode {
-  bool isEnd;
-  TrieNode *next[26];
-  TrieNode() : isEnd(false) {
-    for(int i = 0; i &lt; 26; ++i) next[i] = nullptr;
-  }
-};
-
-void insertTrie(string &amp;s, TrieNode *root) {
-  TrieNode *cur = root;
-  for(auto c : s) {
-    if(!cur-&gt;next[c - &#x27;a&#x27;]) {
-      cur-&gt;next[c - &#x27;a&#x27;] = new TrieNode();
-    }
-    cur = cur-&gt;next[c - &#x27;a&#x27;];
-  }
-  cur-&gt;isEnd = true;
-}
-
-void getWords(vector&lt;string&gt; &amp;words, TrieNode *root, int count, string &amp;cur) {
-  if(root == nullptr) return;
-  if(root-&gt;isEnd) words.push_back(cur);
-  for(int i = 0; i &lt; 26 &amp;&amp; words.size() &lt; count; ++i) {
-    if(root-&gt;next[i]) {
-      cur.push_back(i + &#x27;a&#x27;);
-      getWords(words, root-&gt;next[i], count, cur);
-      cur.pop_back();
-    }
-  }
-}
-
-class Solution {
-public:
-  vector&lt;vector&lt;string&gt;&gt; suggestedProducts(vector&lt;string&gt;&amp; products, string searchWord) {
-    auto root = new TrieNode();
-    for(auto &amp;product : products) {
-      insertTrie(product, root);
-    }
-    
-    auto cur = root;
-    vector&lt;vector&lt;string&gt;&gt; answer;
-      string word;
-    for(auto c : searchWord) {
-      vector&lt;string&gt; words;
-      word.push_back(c);
-      cur = cur ? cur-&gt;next[c - &#x27;a&#x27;] : cur;
-      getWords(words, cur, 3, word);
-      answer.push_back(words);
-    }
-    
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">struct </span><span>TrieNode {
+</span><span>  </span><span style="color:#b48ead;">bool</span><span> isEnd;
+</span><span>  TrieNode *next[</span><span style="color:#d08770;">26</span><span>];
+</span><span>  </span><span style="color:#8fa1b3;">TrieNode</span><span>() : </span><span style="color:#bf616a;">isEnd</span><span>(</span><span style="color:#d08770;">false</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; </span><span style="color:#d08770;">26</span><span>; ++i) next[i] = </span><span style="color:#d08770;">nullptr</span><span>;
+</span><span>  }
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">insertTrie</span><span>(string &amp;</span><span style="color:#bf616a;">s</span><span>, TrieNode *</span><span style="color:#bf616a;">root</span><span>) {
+</span><span>  TrieNode *cur = root;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">auto</span><span> c : s) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(!cur-&gt;</span><span style="color:#bf616a;">next</span><span>[c - &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;]) {
+</span><span>      cur-&gt;</span><span style="color:#bf616a;">next</span><span>[c - &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;] = </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span>();
+</span><span>    }
+</span><span>    cur = cur-&gt;</span><span style="color:#bf616a;">next</span><span>[c - &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;];
+</span><span>  }
+</span><span>  cur-&gt;</span><span style="color:#bf616a;">isEnd </span><span>= </span><span style="color:#d08770;">true</span><span>;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">getWords</span><span>(vector&lt;string&gt; &amp;</span><span style="color:#bf616a;">words</span><span>, TrieNode *</span><span style="color:#bf616a;">root</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">count</span><span>, string &amp;</span><span style="color:#bf616a;">cur</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(root == </span><span style="color:#d08770;">nullptr</span><span>) </span><span style="color:#b48ead;">return</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(root-&gt;</span><span style="color:#bf616a;">isEnd</span><span>) words.</span><span style="color:#bf616a;">push_back</span><span>(cur);
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; </span><span style="color:#d08770;">26 </span><span>&amp;&amp; words.</span><span style="color:#bf616a;">size</span><span>() &lt; count; ++i) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(root-&gt;</span><span style="color:#bf616a;">next</span><span>[i]) {
+</span><span>      cur.</span><span style="color:#bf616a;">push_back</span><span>(i + &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;);
+</span><span>      </span><span style="color:#bf616a;">getWords</span><span>(words, root-&gt;</span><span style="color:#bf616a;">next</span><span>[i], count, cur);
+</span><span>      cur.</span><span style="color:#bf616a;">pop_back</span><span>();
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;string&gt;&gt; </span><span style="color:#8fa1b3;">suggestedProducts</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">products</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">searchWord</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> root </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">product </span><span>:</span><span style="color:#eff1f5;"> products) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">insertTrie</span><span style="color:#eff1f5;">(product, root);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;string&gt;&gt; answer;
+</span><span style="color:#eff1f5;">      string word;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> searchWord) {
+</span><span style="color:#eff1f5;">      vector&lt;string&gt; words;
+</span><span style="color:#eff1f5;">      word.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur </span><span>?</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>:</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">getWords</span><span style="color:#eff1f5;">(words, cur, </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">, word);
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(words);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="march-leetcoding-challenge-30">March LeetCoding challenge 30</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Russian Doll Envelopes</strong></p>
@@ -306,14 +306,14 @@ public:
 <p>Return <em>the maximum number of envelopes can you Russian doll (i.e., put one inside the other)</em>.</p>
 <p><strong>Note:</strong> You cannot rotate an envelope.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: envelopes = [[5,4],[6,4],[6,7],[2,3]]
-Output: 3
-Explanation: The maximum number of envelopes you can Russian doll is 3 ([2,3] =&gt; [5,4] =&gt; [6,7]).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: envelopes = [[5,4],[6,4],[6,7],[2,3]]
+</span><span>Output: 3
+</span><span>Explanation: The maximum number of envelopes you can Russian doll is 3 ([2,3] =&gt; [5,4] =&gt; [6,7]).
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: envelopes = [[1,1],[1,1],[1,1]]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: envelopes = [[1,1],[1,1],[1,1]]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= envelopes.length &lt;= 5000</code></li>
@@ -322,45 +322,45 @@ Output: 1
 </ul>
 <h2 id="solution-3">Solution</h2>
 <p>$O(n^2)$ solution</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maxEnvelopes(vector&lt;vector&lt;int&gt;&gt;&amp; envelopes) {
-    sort(envelopes.begin(), envelopes.end());
-    int len = envelopes.size();
-    int dp[len];
-    dp[0] = 1;
-    for(int i = 1; i &lt; len; ++i) {
-      dp[i] = 1;
-      for(int j = 0; j &lt; i; ++j) {
-        if(envelopes[i][0] &gt; envelopes[j][0] &amp;&amp; envelopes[i][1] &gt; envelopes[j][1] &amp;&amp; dp[i] &lt;= dp[j]) {
-          dp[i] = dp[j] + 1;
-        }
-      }
-    }
-    return *max_element(dp, dp + len);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxEnvelopes</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">envelopes</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(envelopes.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), envelopes.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> envelopes.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[len];
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      dp[i] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> i; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(envelopes[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&gt;</span><span style="color:#eff1f5;"> envelopes[j][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> envelopes[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&gt;</span><span style="color:#eff1f5;"> envelopes[j][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> dp[i] </span><span>&lt;=</span><span style="color:#eff1f5;"> dp[j]) {
+</span><span style="color:#eff1f5;">          dp[i] </span><span>=</span><span style="color:#eff1f5;"> dp[j] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>*</span><span style="color:#bf616a;">max_element</span><span style="color:#eff1f5;">(dp, dp </span><span>+</span><span style="color:#eff1f5;"> len);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>$O(n\log n)$ solution</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maxEnvelopes(vector&lt;vector&lt;int&gt;&gt;&amp; envelopes) {
-    sort(envelopes.begin(), envelopes.end(), [](vector&lt;int&gt; &amp;a, vector&lt;int&gt; &amp;b) {
-      return a[0] &lt; b[0] || (a[0] == b[0] &amp;&amp; a[1] &gt; b[1]);
-    });
-    vector&lt;int&gt; dp;
-    for(auto &amp;e : envelopes) {
-      auto it = lower_bound(dp.begin(), dp.end(), e[1]);
-      if(it == dp.end()) {
-        dp.push_back(e[1]);
-      } else {
-        *it = e[1];
-      }
-    }
-    return dp.size();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxEnvelopes</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">envelopes</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(envelopes.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), envelopes.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [](vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">a, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> b[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>|| </span><span style="color:#eff1f5;">(a[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> b[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> a[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&gt;</span><span style="color:#eff1f5;"> b[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; dp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">e </span><span>:</span><span style="color:#eff1f5;"> envelopes) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(dp.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), dp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), e[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(it </span><span>==</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        dp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(e[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span>*</span><span style="color:#eff1f5;">it </span><span>=</span><span style="color:#eff1f5;"> e[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

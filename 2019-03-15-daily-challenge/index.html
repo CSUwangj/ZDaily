@@ -119,31 +119,31 @@ renderMathInElement(document.body, katex_config);
 <p>Pete likes to bake some cakes. He has some recipes and ingredients. Unfortunately he is not good in maths. Can you help him to find out, how many cakes he could bake considering his recipes?</p>
 <p>Write a function <code>cakes()</code>, which takes the recipe (object) and the available ingredients (also an object) and returns the maximum number of cakes Pete can bake (integer). For simplicity there are no units for the amounts (e.g. 1 lb of flour or 200 g of sugar are simply 1 or 200). Ingredients that are not present in the objects, can be considered as 0.</p>
 <p>Examples:</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;&#x2F; must return 2
-cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}); 
-&#x2F;&#x2F; must return 0
-cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}); 
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#65737e;">// must return 2
+</span><span style="color:#8fa1b3;">cakes</span><span>({flour: </span><span style="color:#d08770;">500</span><span>, sugar: </span><span style="color:#d08770;">200</span><span>, eggs: </span><span style="color:#d08770;">1</span><span>}, {flour: </span><span style="color:#d08770;">1200</span><span>, sugar: </span><span style="color:#d08770;">1200</span><span>, eggs: </span><span style="color:#d08770;">5</span><span>, milk: </span><span style="color:#d08770;">200</span><span>}); 
+</span><span style="color:#65737e;">// must return 0
+</span><span style="color:#8fa1b3;">cakes</span><span>({apples: </span><span style="color:#d08770;">3</span><span>, flour: </span><span style="color:#d08770;">300</span><span>, sugar: </span><span style="color:#d08770;">150</span><span>, milk: </span><span style="color:#d08770;">100</span><span>, oil: </span><span style="color:#d08770;">100</span><span>}, {sugar: </span><span style="color:#d08770;">500</span><span>, flour: </span><span style="color:#d08770;">2000</span><span>, milk: </span><span style="color:#d08770;">2000</span><span>}); 
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">function cakes(recipe, available) {
-  let ans = Object.keys(recipe)
-    .reduce(
-      (a, b) =&gt; Math.min(a, Math.floor(available[b] &#x2F; recipe[b])),
-      Number.MAX_SAFE_INTEGER
-    );
-  return isNaN(ans) ? 0 : ans;
-}
-
-&#x2F;&#x2F;&#x2F;&#x2F;
-
-function cakes(recipe, available) {
-  return Object.keys(recipe)
-    .reduce(
-      (a, b) =&gt; Math.min(a, Math.floor(available[b] &#x2F; recipe[b]) || 0),
-      Infinity
-    );
-}
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">cakes</span><span>(</span><span style="color:#bf616a;">recipe</span><span>, </span><span style="color:#bf616a;">available</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#96b5b4;">keys</span><span>(</span><span style="color:#bf616a;">recipe</span><span>)
+</span><span>    .</span><span style="color:#8fa1b3;">reduce</span><span>(
+</span><span>      (</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>Math.</span><span style="color:#96b5b4;">min</span><span>(</span><span style="color:#bf616a;">a</span><span>, Math.</span><span style="color:#96b5b4;">floor</span><span>(</span><span style="color:#bf616a;">available</span><span>[</span><span style="color:#bf616a;">b</span><span>] / </span><span style="color:#bf616a;">recipe</span><span>[</span><span style="color:#bf616a;">b</span><span>])),
+</span><span>      </span><span style="color:#ebcb8b;">Number</span><span>.MAX_SAFE_INTEGER
+</span><span>    );
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">isNaN</span><span>(</span><span style="color:#bf616a;">ans</span><span>) ? </span><span style="color:#d08770;">0 </span><span>: </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">////
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">cakes</span><span>(</span><span style="color:#bf616a;">recipe</span><span>, </span><span style="color:#bf616a;">available</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#96b5b4;">keys</span><span>(</span><span style="color:#bf616a;">recipe</span><span>)
+</span><span>    .</span><span style="color:#8fa1b3;">reduce</span><span>(
+</span><span>      (</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>Math.</span><span style="color:#96b5b4;">min</span><span>(</span><span style="color:#bf616a;">a</span><span>, Math.</span><span style="color:#96b5b4;">floor</span><span>(</span><span style="color:#bf616a;">available</span><span>[</span><span style="color:#bf616a;">b</span><span>] / </span><span style="color:#bf616a;">recipe</span><span>[</span><span style="color:#bf616a;">b</span><span>]) || </span><span style="color:#d08770;">0</span><span>),
+</span><span>      </span><span style="color:#d08770;">Infinity
+</span><span>    );
+</span><span>}
+</span></code></pre>
 
     </div>
   </div>

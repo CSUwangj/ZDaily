@@ -124,50 +124,50 @@ renderMathInElement(document.body, katex_config);
 <p>A student could be rewarded if his attendance record doesn't contain <strong>more than one 'A' (absent)</strong> or <strong>more than two continuous 'L' (late)</strong>.</p>
 <p>You need to return whether the student could be rewarded according to his attendance record.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: &quot;PPALLP&quot;
-Output: True
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;PPALLP&quot;
+</span><span>Output: True
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: &quot;PPALLL&quot;
-Output: False
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;PPALLL&quot;
+</span><span>Output: False
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool checkRecord(string s) {
-        int aCnt = 0, continousLCnt = 0;
-        for(auto c : s) {
-            if(c == &#x27;L&#x27;) {
-                continousLCnt += 1;
-                if(continousLCnt &gt; 2) return false;
-                continue;
-            }
-            continousLCnt = 0;
-            if(c == &#x27;A&#x27;) {
-                aCnt += 1;
-                if(aCnt &gt; 1) return false;
-            }
-        }
-        return true;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">checkRecord</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> aCnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, continousLCnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">L</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                continousLCnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(continousLCnt </span><span>&gt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            continousLCnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">A</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                aCnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(aCnt </span><span>&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-12">November LeetCoding Challenge 12</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Permutations II</strong></p>
 <p>Given a collection of numbers, <code>nums</code>, that might contain duplicates, return <em>all possible unique permutations <strong>in any order</strong>.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,1,2]
-Output:
-[[1,1,2],
- [1,2,1],
- [2,1,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,1,2]
+</span><span>Output:
+</span><span>[[1,1,2],
+</span><span> [1,2,1],
+</span><span> [2,1,1]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1,2,3]
-Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3]
+</span><span>Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 8</code></li>
@@ -175,18 +175,18 @@ Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; permuteUnique(vector&lt;int&gt;&amp; nums) {
-        sort(nums.begin(), nums.end());
-        vector&lt;vector&lt;int&gt;&gt; answer;
-        do{
-            answer.push_back(nums);
-        }while(next_permutation(nums.begin(), nums.end()));
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">permuteUnique</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">do</span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(nums);
+</span><span style="color:#eff1f5;">        }</span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">next_permutation</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()));
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

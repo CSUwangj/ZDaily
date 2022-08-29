@@ -119,26 +119,26 @@ renderMathInElement(document.body, katex_config);
 <p>You are given an <code>m x n</code> integer grid <code>accounts</code> where <code>accounts[i][j]</code> is the amount of money the <code>ith</code> customer has in the <code>jth</code> bank. Return <em>the <strong>wealth</strong> that the richest customer has.</em></p>
 <p>A customer's <strong>wealth</strong> is the amount of money they have in all their bank accounts. The richest customer is the customer that has the maximum <strong>wealth</strong>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: accounts = [[1,2,3],[3,2,1]]
-Output: 6
-Explanation:
-1st customer has wealth = 1 + 2 + 3 = 6
-2nd customer has wealth = 3 + 2 + 1 = 6
-Both customers are considered the richest with a wealth of 6 each, so return 6.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: accounts = [[1,2,3],[3,2,1]]
+</span><span>Output: 6
+</span><span>Explanation:
+</span><span>1st customer has wealth = 1 + 2 + 3 = 6
+</span><span>2nd customer has wealth = 3 + 2 + 1 = 6
+</span><span>Both customers are considered the richest with a wealth of 6 each, so return 6.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: accounts = [[1,5],[7,3],[3,5]]
-Output: 10
-Explanation: 
-1st customer has wealth = 6
-2nd customer has wealth = 10 
-3rd customer has wealth = 8
-The 2nd customer is the richest with a wealth of 10.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: accounts = [[1,5],[7,3],[3,5]]
+</span><span>Output: 10
+</span><span>Explanation: 
+</span><span>1st customer has wealth = 6
+</span><span>2nd customer has wealth = 10 
+</span><span>3rd customer has wealth = 8
+</span><span>The 2nd customer is the richest with a wealth of 10.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: accounts = [[2,8,7],[7,1,3],[1,9,5]]
-Output: 17
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: accounts = [[2,8,7],[7,1,3],[1,9,5]]
+</span><span>Output: 17
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == accounts.length</code></li>
@@ -147,28 +147,28 @@ Output: 17
 <li><code>1 &lt;= accounts[i][j] &lt;= 100</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int maximumWealth(vector&lt;vector&lt;int&gt;&gt;&amp; accounts) {
-    int answer = 0;
-    for(auto &amp;account : accounts) {
-      answer = max(answer, accumulate(account.begin(), account.end(), 0));
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 34&#x2F;34 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 90.57 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 49.93 % of cpp submissions (7.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maximumWealth</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">accounts</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">account </span><span>:</span><span style="color:#eff1f5;"> accounts) {
+</span><span style="color:#eff1f5;">      answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, </span><span style="color:#bf616a;">accumulate</span><span style="color:#eff1f5;">(account.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), account.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 34/34 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 90.57 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 49.93 % of cpp submissions (7.9 MB)
+</span></code></pre>
 
     </div>
   </div>

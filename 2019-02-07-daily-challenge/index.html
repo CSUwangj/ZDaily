@@ -124,124 +124,124 @@ renderMathInElement(document.body, katex_config);
 <p>I thought there is only (i) and (ii) required, but <code>each of the terms increases by 3330</code> is required, too......</p>
 <h2 id="implementation">Implementation</h2>
 <p>Wrong solution</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-use primal::Sieve;
-use std::collections::HashMap;
-use std::string::String;
-
-fn main() {
-    let sieve: Sieve = Sieve::new(10000);
-    let up_bound = sieve.prime_pi(10000) + 1;
-    let down_bound = sieve.prime_pi(1000) + 1;
-    let mut map: HashMap&lt;usize, usize&gt; = HashMap::new();
-    for i in down_bound..up_bound {
-        let tmp = sieve.nth_prime(i);
-        if tmp != 1487 &amp;&amp; tmp != 4817 &amp;&amp; tmp != 8147 {
-            let key = f(tmp);
-            if map.contains_key(&amp;key) {
-                *map.get_mut(&amp;key).unwrap() += 1;
-            } else {
-                map.insert(key, 1);
-            }
-        }
-    }
-    let mut k = 0;
-    let mut ans: String = String::new();
-    for (key, value) in map {
-        if value == 3 {
-            k = key;
-        }
-    }
-    for i in down_bound..up_bound {
-        let tmp = sieve.nth_prime(i);
-        if f(tmp) == k {
-            ans = format!(&quot;{}{}&quot;, ans, tmp);
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn f(mut tmp: usize) -&gt; usize {
-    let mut tmp_vec = vec![];
-    while tmp != 0 {
-        tmp_vec.push(tmp % 10);
-        tmp &#x2F;= 10;
-    }
-    tmp_vec.sort();
-    let mut key = 0;
-    for i in tmp_vec {
-        key *= 10;
-        key += i;
-    }
-    key
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>primal::Sieve;
+</span><span style="color:#b48ead;">use </span><span>std::collections::HashMap;
+</span><span style="color:#b48ead;">use </span><span>std::string::String;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sieve: Sieve = Sieve::new(</span><span style="color:#d08770;">10000</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> up_bound = sieve.</span><span style="color:#96b5b4;">prime_pi</span><span>(</span><span style="color:#d08770;">10000</span><span>) + </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> down_bound = sieve.</span><span style="color:#96b5b4;">prime_pi</span><span>(</span><span style="color:#d08770;">1000</span><span>) + </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> map: HashMap&lt;</span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#b48ead;">usize</span><span>&gt; = HashMap::new();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in down_bound..up_bound {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = sieve.</span><span style="color:#96b5b4;">nth_prime</span><span>(i);
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp != </span><span style="color:#d08770;">1487 </span><span>&amp;&amp; tmp != </span><span style="color:#d08770;">4817 </span><span>&amp;&amp; tmp != </span><span style="color:#d08770;">8147 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">let</span><span> key = </span><span style="color:#96b5b4;">f</span><span>(tmp);
+</span><span>            </span><span style="color:#b48ead;">if</span><span> map.</span><span style="color:#96b5b4;">contains_key</span><span>(&amp;key) {
+</span><span>                *map.</span><span style="color:#96b5b4;">get_mut</span><span>(&amp;key).</span><span style="color:#96b5b4;">unwrap</span><span>() += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>                map.</span><span style="color:#96b5b4;">insert</span><span>(key, </span><span style="color:#d08770;">1</span><span>);
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> k = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: String = String::new();
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(key, value) in map {
+</span><span>        </span><span style="color:#b48ead;">if</span><span> value == </span><span style="color:#d08770;">3 </span><span>{
+</span><span>            k = key;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in down_bound..up_bound {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = sieve.</span><span style="color:#96b5b4;">nth_prime</span><span>(i);
+</span><span>        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">f</span><span>(tmp) == k {
+</span><span>            ans = format!(&quot;</span><span style="color:#d08770;">{}{}</span><span>&quot;, ans, tmp);
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">f</span><span>(</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">tmp</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; </span><span style="color:#b48ead;">usize </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> tmp_vec = vec![];
+</span><span>    </span><span style="color:#b48ead;">while</span><span> tmp != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        tmp_vec.</span><span style="color:#96b5b4;">push</span><span>(tmp % </span><span style="color:#d08770;">10</span><span>);
+</span><span>        tmp /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>    }
+</span><span>    tmp_vec.</span><span style="color:#96b5b4;">sort</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> key = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in tmp_vec {
+</span><span>        key *= </span><span style="color:#d08770;">10</span><span>;
+</span><span>        key += i;
+</span><span>    }
+</span><span>    key
+</span><span>}
+</span></code></pre>
 <p>Right solution:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-use primal::Sieve;
-use std::string::String;
-
-fn main() {
-    let sieve: Sieve = Sieve::new(10000);
-    let up_bound = sieve.prime_pi(3330) + 1;
-    let down_bound = sieve.prime_pi(1000) + 1;
-    let mut ans: String = String::new();
-    for i in down_bound..up_bound {
-        let tmp = sieve.nth_prime(i);
-        if tmp != 1487 {
-            if f(tmp) == f(tmp+3330) &amp;&amp; sieve.is_prime(tmp+3330) &amp;&amp; f(tmp) == f(tmp+6660) &amp;&amp; sieve.is_prime(tmp+6660) {
-                ans = format!(&quot;{}{}{}&quot;, tmp, tmp+3330, tmp+6660)
-            }
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn f(mut tmp: usize) -&gt; usize {
-    let mut tmp_vec = vec![];
-    while tmp != 0 {
-        tmp_vec.push(tmp % 10);
-        tmp &#x2F;= 10;
-    }
-    tmp_vec.sort();
-    let mut key = 0;
-    for i in tmp_vec {
-        key *= 10;
-        key += i;
-    }
-    key
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>primal::Sieve;
+</span><span style="color:#b48ead;">use </span><span>std::string::String;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sieve: Sieve = Sieve::new(</span><span style="color:#d08770;">10000</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> up_bound = sieve.</span><span style="color:#96b5b4;">prime_pi</span><span>(</span><span style="color:#d08770;">3330</span><span>) + </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> down_bound = sieve.</span><span style="color:#96b5b4;">prime_pi</span><span>(</span><span style="color:#d08770;">1000</span><span>) + </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: String = String::new();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in down_bound..up_bound {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = sieve.</span><span style="color:#96b5b4;">nth_prime</span><span>(i);
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp != </span><span style="color:#d08770;">1487 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">f</span><span>(tmp) == </span><span style="color:#96b5b4;">f</span><span>(tmp+</span><span style="color:#d08770;">3330</span><span>) &amp;&amp; sieve.</span><span style="color:#96b5b4;">is_prime</span><span>(tmp+</span><span style="color:#d08770;">3330</span><span>) &amp;&amp; </span><span style="color:#96b5b4;">f</span><span>(tmp) == </span><span style="color:#96b5b4;">f</span><span>(tmp+</span><span style="color:#d08770;">6660</span><span>) &amp;&amp; sieve.</span><span style="color:#96b5b4;">is_prime</span><span>(tmp+</span><span style="color:#d08770;">6660</span><span>) {
+</span><span>                ans = format!(&quot;</span><span style="color:#d08770;">{}{}{}</span><span>&quot;, tmp, tmp+</span><span style="color:#d08770;">3330</span><span>, tmp+</span><span style="color:#d08770;">6660</span><span>)
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">f</span><span>(</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">tmp</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; </span><span style="color:#b48ead;">usize </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> tmp_vec = vec![];
+</span><span>    </span><span style="color:#b48ead;">while</span><span> tmp != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        tmp_vec.</span><span style="color:#96b5b4;">push</span><span>(tmp % </span><span style="color:#d08770;">10</span><span>);
+</span><span>        tmp /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>    }
+</span><span>    tmp_vec.</span><span style="color:#96b5b4;">sort</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> key = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in tmp_vec {
+</span><span>        key *= </span><span style="color:#d08770;">10</span><span>;
+</span><span>        key += i;
+</span><span>    }
+</span><span>    key
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="125-valid-palindrome">125. Valid Palindrome</h3>
 <p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.</p>
 <p><strong>Note:</strong> For the purpose of this problem, we define empty string as valid palindrome.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: &quot;A man, a plan, a canal: Panama&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;A man, a plan, a canal: Panama&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: &quot;race a car&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;race a car&quot;
+</span><span>Output: false
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string} s
- * @return {boolean}
- *&#x2F;
-var isPalindrome = function(s) {
-  s = s.replace(&#x2F;[^0-9a-zA-Z]&#x2F;gm, &quot;&quot;).toLocaleLowerCase();
-  return s.split(&quot;&quot;).reverse().join(&quot;&quot;) === s;
-};
-
-&#x2F;&#x2F; console.log(isPalindrome(&quot;A man, a plan, a canal: Panama&quot;));
-&#x2F;&#x2F; console.log(isPalindrome(&quot;race a car&quot;));
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">s
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{boolean}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">isPalindrome </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">s</span><span>) {
+</span><span>  </span><span style="color:#bf616a;">s </span><span>= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">replace</span><span>(/</span><span style="color:#d08770;">[</span><span>^</span><span style="color:#d08770;">0-9a-zA-Z]</span><span>/</span><span style="color:#b48ead;">gm</span><span>, &quot;&quot;).</span><span style="color:#8fa1b3;">toLocaleLowerCase</span><span>();
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#96b5b4;">reverse</span><span>().</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;) === </span><span style="color:#bf616a;">s</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(isPalindrome(&quot;A man, a plan, a canal: Panama&quot;));
+</span><span style="color:#65737e;">// console.log(isPalindrome(&quot;race a car&quot;));
+</span></code></pre>
 
     </div>
   </div>

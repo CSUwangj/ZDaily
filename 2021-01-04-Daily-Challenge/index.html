@@ -118,39 +118,39 @@ renderMathInElement(document.body, katex_config);
 <p>Given a linked list and a value <em>x</em>, partition it such that all nodes less than <em>x</em> come before nodes greater than or equal to <em>x</em>.</p>
 <p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input: head = 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2, x = 3
-Output: 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2, x = 3
+</span><span>Output: 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>partition of quick sort</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    ListNode* partition(ListNode* head, int x) {
-        ListNode *newHead = new ListNode(-1, head);
-        ListNode *front = newHead;
-        while(front-&gt;next &amp;&amp; front-&gt;next-&gt;val &lt; x) front = front-&gt;next;
-        ListNode *cur = front-&gt;next, *prev = front;
-        while(cur &amp;&amp; cur-&gt;val &gt;= x) {
-            prev = cur;
-            cur = cur-&gt;next;
-        }
-        if(!cur) return newHead-&gt;next;
-        while(cur) {
-            if(cur-&gt;val &gt;= x) {
-                prev = cur;
-                cur = cur-&gt;next;
-            } else {
-                prev-&gt;next = cur-&gt;next;
-                cur-&gt;next = front-&gt;next;
-                front-&gt;next = cur;
-                front = front-&gt;next;
-                cur = prev-&gt;next;
-            }
-        }
-        return newHead-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">partition</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, head);
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">front </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(front-&gt;</span><span style="color:#bf616a;">next </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> front-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> x) front </span><span>=</span><span style="color:#eff1f5;"> front-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> front-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">, </span><span>*</span><span style="color:#eff1f5;">prev </span><span>=</span><span style="color:#eff1f5;"> front;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val </span><span>&gt;=</span><span style="color:#eff1f5;"> x) {
+</span><span style="color:#eff1f5;">            prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">val </span><span>&gt;=</span><span style="color:#eff1f5;"> x) {
+</span><span style="color:#eff1f5;">                prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">                cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                prev-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> front-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                front-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">                front </span><span>=</span><span style="color:#eff1f5;"> front-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                cur </span><span>=</span><span style="color:#eff1f5;"> prev-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="minimum-remove-to-make-valid-parentheses">Minimum Remove to Make Valid Parentheses</h1>
 <h2 id="description-1">Description</h2>
 <p>Given a string s of <code>'('</code> , <code>')'</code> and lowercase English characters. </p>
@@ -162,57 +162,57 @@ public:
 <li>It can be written as <code>(A)</code>, where <code>A</code> is a valid string.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;lee(t(c)o)de)&quot;
-Output: &quot;lee(t(c)o)de&quot;
-Explanation: &quot;lee(t(co)de)&quot; , &quot;lee(t(c)ode)&quot; would also be accepted.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;lee(t(c)o)de)&quot;
+</span><span>Output: &quot;lee(t(c)o)de&quot;
+</span><span>Explanation: &quot;lee(t(co)de)&quot; , &quot;lee(t(c)ode)&quot; would also be accepted.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;a)b(c)d&quot;
-Output: &quot;ab(c)d&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;a)b(c)d&quot;
+</span><span>Output: &quot;ab(c)d&quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;))((&quot;
-Output: &quot;&quot;
-Explanation: An empty string is also valid.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;))((&quot;
+</span><span>Output: &quot;&quot;
+</span><span>Explanation: An empty string is also valid.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;(a(b(c)d)&quot;
-Output: &quot;a(b(c)d)&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;(a(b(c)d)&quot;
+</span><span>Output: &quot;a(b(c)d)&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 10^5</code></li>
 <li><code>s[i]</code> is one of <code>'('</code> , <code>')'</code> and lowercase English letters<code>.</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    string minRemoveToMakeValid(string s) {
-        string current = &quot;&quot;;
-        stack&lt;string&gt; st;
-        for(auto c : s) {
-            if(c == &#x27;)&#x27;) {
-                if(!st.empty()) {
-                    string newCurrent = st.top();
-                    st.pop();
-                    current = newCurrent + &quot;(&quot; + current + &quot;)&quot;;
-                }
-            } else if(c == &#x27;(&#x27;) {
-                st.push(current);
-                current = &quot;&quot;;
-            } else {
-                current.push_back(c);
-            }
-        }
-        while(!st.empty()) {
-            string newCurrent = st.top();
-            st.pop();
-            current = newCurrent + current;
-        }
-        return current;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">minRemoveToMakeValid</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        string current </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        stack&lt;string&gt; st;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">)</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">                    string newCurrent </span><span>=</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">                    st.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">                    current </span><span>=</span><span style="color:#eff1f5;"> newCurrent </span><span>+ &quot;</span><span style="color:#a3be8c;">(</span><span>&quot; +</span><span style="color:#eff1f5;"> current </span><span>+ &quot;</span><span style="color:#a3be8c;">)</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                st.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(current);
+</span><span style="color:#eff1f5;">                current </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                current.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">            string newCurrent </span><span>=</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            st.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            current </span><span>=</span><span style="color:#eff1f5;"> newCurrent </span><span>+</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

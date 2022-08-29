@@ -120,15 +120,15 @@ renderMathInElement(document.body, katex_config);
 <p>A word matches the pattern if there exists a permutation of letters <code>p</code> so that after replacing every letter <code>x</code> in the pattern with <code>p(x)</code>, we get the desired word.</p>
 <p>Recall that a permutation of letters is a bijection from letters to  letters: every letter maps to another letter, and no two letters map to  the same letter.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: words = [&quot;abc&quot;,&quot;deq&quot;,&quot;mee&quot;,&quot;aqq&quot;,&quot;dkd&quot;,&quot;ccc&quot;], pattern = &quot;abb&quot;
-Output: [&quot;mee&quot;,&quot;aqq&quot;]
-Explanation: &quot;mee&quot; matches the pattern because there is a permutation {a -&gt; m, b -&gt; e, ...}. 
-&quot;ccc&quot; does not match the pattern because {a -&gt; c, b -&gt; c, ...} is not a permutation, since a and b map to the same letter.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;abc&quot;,&quot;deq&quot;,&quot;mee&quot;,&quot;aqq&quot;,&quot;dkd&quot;,&quot;ccc&quot;], pattern = &quot;abb&quot;
+</span><span>Output: [&quot;mee&quot;,&quot;aqq&quot;]
+</span><span>Explanation: &quot;mee&quot; matches the pattern because there is a permutation {a -&gt; m, b -&gt; e, ...}. 
+</span><span>&quot;ccc&quot; does not match the pattern because {a -&gt; c, b -&gt; c, ...} is not a permutation, since a and b map to the same letter.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: words = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;], pattern = &quot;a&quot;
-Output: [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;], pattern = &quot;a&quot;
+</span><span>Output: [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= pattern.length &lt;= 20</code></li>
@@ -137,35 +137,35 @@ Output: [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
 <li><code>pattern</code> and <code>words[i]</code> are lowercase English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">string unify(string s) {
-  char mp[26] = {};
-  int cnt = 0;
-  for(auto &amp;c : s) {
-    if(!mp[c - &#x27;a&#x27;]) {
-      mp[c - &#x27;a&#x27;] = &#x27;a&#x27; + cnt;
-      cnt += 1;
-    }
-    c = mp[c - &#x27;a&#x27;];
-  }
-  return s;
-}
-class Solution {
-public:
-  vector&lt;string&gt; findAndReplacePattern(vector&lt;string&gt;&amp; words, string pattern) {
-    vector&lt;string&gt; answer;
-    pattern = unify(pattern);
-    for(auto &amp;word : words) {
-      if(unify(word) == pattern) answer.push_back(word);
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 47&#x2F;47 cases passed (10 ms)
-&#x2F;&#x2F; Your runtime beats 28.33 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 98.2 % of cpp submissions (7.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span>string </span><span style="color:#8fa1b3;">unify</span><span>(string </span><span style="color:#bf616a;">s</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">char</span><span> mp[</span><span style="color:#d08770;">26</span><span>] = {};
+</span><span>  </span><span style="color:#b48ead;">int</span><span> cnt = </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">auto </span><span>&amp;c : s) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(!mp[c - &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;]) {
+</span><span>      mp[c - &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;] = &#39;</span><span style="color:#a3be8c;">a</span><span>&#39; + cnt;
+</span><span>      cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    c = mp[c - &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;];
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> s;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#8fa1b3;">findAndReplacePattern</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">pattern</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; answer;
+</span><span style="color:#eff1f5;">    pattern </span><span>= </span><span style="color:#bf616a;">unify</span><span style="color:#eff1f5;">(pattern);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> words) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">unify</span><span style="color:#eff1f5;">(word) </span><span>==</span><span style="color:#eff1f5;"> pattern) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(word);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 47/47 cases passed (10 ms)
+</span><span style="color:#65737e;">// Your runtime beats 28.33 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 98.2 % of cpp submissions (7.7 MB)
+</span></code></pre>
 
     </div>
   </div>

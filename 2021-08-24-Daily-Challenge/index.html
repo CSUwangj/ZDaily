@@ -124,23 +124,23 @@ renderMathInElement(document.body, katex_config);
 <p>A <strong>leaf</strong> node is a node with no children.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/num1tree.jpg" alt="img" /></p>
-<pre><code>Input: root = [1,2,3]
-Output: 25
-Explanation:
-The root-to-leaf path 1-&gt;2 represents the number 12.
-The root-to-leaf path 1-&gt;3 represents the number 13.
-Therefore, sum = 12 + 13 = 25.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3]
+</span><span>Output: 25
+</span><span>Explanation:
+</span><span>The root-to-leaf path 1-&gt;2 represents the number 12.
+</span><span>The root-to-leaf path 1-&gt;3 represents the number 13.
+</span><span>Therefore, sum = 12 + 13 = 25.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/num2tree.jpg" alt="img" /></p>
-<pre><code>Input: root = [4,9,0,5,1]
-Output: 1026
-Explanation:
-The root-to-leaf path 4-&gt;9-&gt;5 represents the number 495.
-The root-to-leaf path 4-&gt;9-&gt;1 represents the number 491.
-The root-to-leaf path 4-&gt;0 represents the number 40.
-Therefore, sum = 495 + 491 + 40 = 1026.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [4,9,0,5,1]
+</span><span>Output: 1026
+</span><span>Explanation:
+</span><span>The root-to-leaf path 4-&gt;9-&gt;5 represents the number 495.
+</span><span>The root-to-leaf path 4-&gt;9-&gt;1 represents the number 491.
+</span><span>The root-to-leaf path 4-&gt;0 represents the number 40.
+</span><span>Therefore, sum = 495 + 491 + 40 = 1026.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>
@@ -148,21 +148,21 @@ Therefore, sum = 495 + 491 + 40 = 1026.
 <li>The depth of the tree will not exceed <code>10</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int sumNumbers(TreeNode* root, int cur = 0) {
-      if(!root) return 0;
-      cur = cur * 10 + root-&gt;val;
-      if(root-&gt;left || root-&gt;right) return sumNumbers(root-&gt;left, cur) + sumNumbers(root-&gt;right, cur);
-      return cur;
-    }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 108&#x2F;108 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 80.09 % of cpp submissions (9.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sumNumbers</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur </span><span>* </span><span style="color:#d08770;">10 </span><span>+</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left </span><span>||</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">sumNumbers</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, cur) </span><span>+ </span><span style="color:#bf616a;">sumNumbers</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, cur);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 108/108 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 80.09 % of cpp submissions (9.1 MB)
+</span></code></pre>
 <h1 id="august-leetcoding-challenge-24">August LeetCoding Challenge 24</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Complex Number Multiplication</strong></p>
@@ -174,114 +174,114 @@ public:
 </ul>
 <p>Given two complex numbers <code>num1</code> and <code>num2</code> as strings, return <em>a string of the complex number that represents their multiplications</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: num1 = &quot;1+1i&quot;, num2 = &quot;1+1i&quot;
-Output: &quot;0+2i&quot;
-Explanation: (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i, and you need convert it to the form of 0+2i.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num1 = &quot;1+1i&quot;, num2 = &quot;1+1i&quot;
+</span><span>Output: &quot;0+2i&quot;
+</span><span>Explanation: (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i, and you need convert it to the form of 0+2i.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: num1 = &quot;1+-1i&quot;, num2 = &quot;1+-1i&quot;
-Output: &quot;0+-2i&quot;
-Explanation: (1 - i) * (1 - i) = 1 + i2 - 2 * i = -2i, and you need convert it to the form of 0+-2i.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num1 = &quot;1+-1i&quot;, num2 = &quot;1+-1i&quot;
+</span><span>Output: &quot;0+-2i&quot;
+</span><span>Explanation: (1 - i) * (1 - i) = 1 + i2 - 2 * i = -2i, and you need convert it to the form of 0+-2i.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>num1</code> and <code>num2</code> are valid complex numbers.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Complex {
-private:
-  int real;
-  int imag;
-public:
-  Complex() : real(0), imag(0) {}
-  Complex(string s): real(0), imag(0) {
-    int pos = 0;
-    bool realNegative = false;
-    bool imagNegative = false;
-    if(s[pos] == &#x27;-&#x27;) {
-      realNegative = true;
-      pos += 1;
-    }
-    while(s[pos] != &#x27;+&#x27;) {
-      real *= 10;
-      real += s[pos++] - &#x27;0&#x27;;
-    }
-    pos += 1;
-    if(s[pos] == &#x27;-&#x27;) {
-      imagNegative = true;
-      pos += 1;
-    }
-    while(s[pos] != &#x27;i&#x27;) {
-      imag *= 10;
-      imag += s[pos++] - &#x27;0&#x27;;
-    }
-    if(realNegative) real *= -1;
-    if(imagNegative) imag *= -1;
-  }
-  string to_string() {
-    bool realNegative = false;
-    bool imagNegative = false;
-    int real = this-&gt;real;
-    int imag = this-&gt;imag;
-    if(real &lt; 0) {
-      real = -real;
-      realNegative = true;
-    }
-    if(imag &lt; 0) {
-      imag = -imag;
-      imagNegative = true;
-    }
-    string result{&#x27;i&#x27;};
-    if(imag) {
-      while(imag) {
-        result.push_back(imag % 10 + &#x27;0&#x27;);
-        imag &#x2F;= 10;
-      }
-    } else {
-      result.push_back(&#x27;0&#x27;);
-    }
-    if(imagNegative) result.push_back(&#x27;-&#x27;);
-    result.push_back(&#x27;+&#x27;);
-    if(real) {
-      while(real) {
-        result.push_back(real % 10 + &#x27;0&#x27;);
-        real &#x2F;= 10;
-      } 
-    } else {
-      result.push_back(&#x27;0&#x27;);
-    }
-    if(realNegative) result.push_back(&#x27;-&#x27;);
-    reverse(result.begin(), result.end());
-    return result;
-  }
-  Complex operator*(const Complex&amp; b) {
-    Complex result;
-    result.real =  this-&gt;real * b.real - this-&gt;imag * b.imag;
-    result.imag = this-&gt;imag * b.real + b.imag * this-&gt;real;
-    return result;
-  }
-  &#x2F;&#x2F; friend ostream &amp; operator&lt;&lt;(ostream &amp;os, const Complex &amp;a);
-};
-&#x2F;&#x2F; ostream &amp; operator&lt;&lt;(ostream &amp;os, const Complex &amp;a) {
-&#x2F;&#x2F;   os &lt;&lt; &#x27;(&#x27; &lt;&lt; a.real &lt;&lt; &#x27;,&#x27; &lt;&lt; a.imag &lt;&lt; &#x27;)&#x27;;
-&#x2F;&#x2F;   return os;
-&#x2F;&#x2F; }
-class Solution {
-public:
-  string complexNumberMultiply(string num1, string num2) {
-    Complex n1(num1), n2(num2);
-    &#x2F;&#x2F; cout &lt;&lt; n1.to_string() &lt;&lt; &#x27; &#x27; &lt;&lt; n2.to_string() &lt;&lt; endl;
-    &#x2F;&#x2F; cout &lt;&lt; n1 &lt;&lt; &#x27; &#x27; &lt;&lt; n2 &lt;&lt; endl;
-    auto result = n1 * n2;
-    return result.to_string();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 55&#x2F;55 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 62.22 % of cpp submissions (6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Complex </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">private</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> real;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> imag;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">Complex</span><span style="color:#eff1f5;">() : </span><span style="color:#bf616a;">real</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">imag</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {}
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">Complex</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">): </span><span style="color:#bf616a;">real</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">imag</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> realNegative </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> imagNegative </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">-</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      realNegative </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(s[pos] </span><span>!= &#39;</span><span style="color:#a3be8c;">+</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      real </span><span>*= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      real </span><span>+=</span><span style="color:#eff1f5;"> s[pos</span><span>++</span><span style="color:#eff1f5;">] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">-</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      imagNegative </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(s[pos] </span><span>!= &#39;</span><span style="color:#a3be8c;">i</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      imag </span><span>*= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      imag </span><span>+=</span><span style="color:#eff1f5;"> s[pos</span><span>++</span><span style="color:#eff1f5;">] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(realNegative) real </span><span>*= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(imagNegative) imag </span><span>*= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">to_string</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> realNegative </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> imagNegative </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> real </span><span>= </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">real</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> imag </span><span>= </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">imag</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(real </span><span>&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      real </span><span>= -</span><span style="color:#eff1f5;">real;
+</span><span style="color:#eff1f5;">      realNegative </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(imag </span><span>&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      imag </span><span>= -</span><span style="color:#eff1f5;">imag;
+</span><span style="color:#eff1f5;">      imagNegative </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    string </span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">{</span><span>&#39;</span><span style="color:#a3be8c;">i</span><span>&#39;</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(imag) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(imag) {
+</span><span style="color:#eff1f5;">        result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(imag </span><span>% </span><span style="color:#d08770;">10 </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        imag </span><span>/= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(imagNegative) result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">-</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">+</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(real) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(real) {
+</span><span style="color:#eff1f5;">        result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(real </span><span>% </span><span style="color:#d08770;">10 </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        real </span><span>/= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } 
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(realNegative) result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">-</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), result.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  Complex </span><span style="color:#8fa1b3;">operator*</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> Complex</span><span>&amp; </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    Complex result;
+</span><span style="color:#eff1f5;">    result.</span><span style="color:#bf616a;">real </span><span>=  </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">real </span><span>*</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">real </span><span>- </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">imag </span><span>*</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">imag</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    result.</span><span style="color:#bf616a;">imag </span><span>= </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">imag </span><span>*</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">real </span><span>+</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">imag </span><span>* </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">real</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">// friend ostream &amp; operator&lt;&lt;(ostream &amp;os, const Complex &amp;a);
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span style="color:#65737e;">// ostream &amp; operator&lt;&lt;(ostream &amp;os, const Complex &amp;a) {
+</span><span style="color:#65737e;">//   os &lt;&lt; &#39;(&#39; &lt;&lt; a.real &lt;&lt; &#39;,&#39; &lt;&lt; a.imag &lt;&lt; &#39;)&#39;;
+</span><span style="color:#65737e;">//   return os;
+</span><span style="color:#65737e;">// }
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">complexNumberMultiply</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">num1</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">num2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    Complex </span><span style="color:#bf616a;">n1</span><span style="color:#eff1f5;">(num1), </span><span style="color:#bf616a;">n2</span><span style="color:#eff1f5;">(num2);
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; n1.to_string() &lt;&lt; &#39; &#39; &lt;&lt; n2.to_string() &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; n1 &lt;&lt; &#39; &#39; &lt;&lt; n2 &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> result </span><span>=</span><span style="color:#eff1f5;"> n1 </span><span>*</span><span style="color:#eff1f5;"> n2;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result.</span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 55/55 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 62.22 % of cpp submissions (6 MB)
+</span></code></pre>
 
     </div>
   </div>

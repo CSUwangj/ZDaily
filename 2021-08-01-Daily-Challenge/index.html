@@ -120,20 +120,20 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the size of the largest <strong>island</strong> in</em> <code>grid</code> <em>after applying this operation</em>.</p>
 <p>An <strong>island</strong> is a 4-directionally connected group of <code>1</code>s.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: grid = [[1,0],[0,1]]
-Output: 3
-Explanation: Change one 0 to 1 and connect two 1s, then we get an island with area = 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[1,0],[0,1]]
+</span><span>Output: 3
+</span><span>Explanation: Change one 0 to 1 and connect two 1s, then we get an island with area = 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: grid = [[1,1],[1,0]]
-Output: 4
-Explanation: Change the 0 to 1 and make the island bigger, only one island with area = 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[1,1],[1,0]]
+</span><span>Output: 4
+</span><span>Explanation: Change the 0 to 1 and make the island bigger, only one island with area = 4.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: grid = [[1,1],[1,1]]
-Output: 4
-Explanation: Can&#x27;t change any 0 to 1, only one island with area = 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[1,1],[1,1]]
+</span><span>Output: 4
+</span><span>Explanation: Can&#39;t change any 0 to 1, only one island with area = 4.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == grid.length</code></li>
@@ -142,82 +142,82 @@ Explanation: Can&#x27;t change any 0 to 1, only one island with area = 4.
 <li><code>grid[i][j]</code> is either <code>0</code> or <code>1</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-const int moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-int part[500][500];
-bool vis[500][500];
-class Solution {
-  int n;
-  vector&lt;int&gt; lands;
-  void travelIsland(
-    vector&lt;vector&lt;int&gt;&gt; &amp;grid,
-    int row,
-    int col,
-    int id
-  ) {
-    vis[row][col] = true;
-    lands[id] += 1;
-    part[row][col] = id;
-    for(int i = 0; i &lt; 4; ++i) {
-      int newRow = row + moves[i][0];
-      int newCol = col + moves[i][1];
-      if(newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= n || newCol &gt;= n) continue;
-      if(vis[newRow][newCol]) continue;
-      if(!grid[newRow][newCol]) continue;
-      travelIsland(grid, newRow, newCol, id);
-    }
-  }
-public:
-  int largestIsland(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
-    n = grid.size();
-    memset(vis, 0, sizeof(vis));
-    memset(part, -1, sizeof(part));
-    int cnt = 0;
-    for(int i = 0; i &lt; n; ++i) {
-      for(int j = 0; j &lt; n; ++j) {
-        if(!vis[i][j] &amp;&amp; grid[i][j]) {
-          lands.push_back(0);
-          travelIsland(grid, i, j, cnt);
-          cnt += 1;
-        }
-      }
-    }
-    if(!lands.size()) return 1;
-    if(lands.size() == 1) return min(n * n, lands[0] + 1);
-
-    int answer = 0;
-    for(int i = 0; i &lt; n; ++i) {
-      for(int j = 0; j &lt; n; ++j) {
-        if(grid[i][j]) continue;
-        unordered_set&lt;int&gt; neighbors;
-        int result = 1;
-        for(int k = 0; k &lt; 4; ++k) {
-          int newRow = i + moves[k][0];
-          int newCol = j + moves[k][1];
-          if(newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= n || newCol &gt;= n) continue;
-          if(!grid[newRow][newCol]) continue;
-          if(neighbors.count(part[newRow][newCol])) continue;
-          result += lands[part[newRow][newCol]];
-          neighbors.insert(part[newRow][newCol]);
-        }
-        answer = max(answer, result);
-      }
-    }
-
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 75&#x2F;75 cases passed (392 ms)
-&#x2F;&#x2F; Your runtime beats 91.75 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 77.94 % of cpp submissions (143.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">const int</span><span> moves[</span><span style="color:#d08770;">4</span><span>][</span><span style="color:#d08770;">2</span><span>] = {{</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>}, {</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}, {</span><span style="color:#d08770;">0</span><span>, -</span><span style="color:#d08770;">1</span><span>}, {-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}};
+</span><span style="color:#b48ead;">int</span><span> part[</span><span style="color:#d08770;">500</span><span>][</span><span style="color:#d08770;">500</span><span>];
+</span><span style="color:#b48ead;">bool</span><span> vis[</span><span style="color:#d08770;">500</span><span>][</span><span style="color:#d08770;">500</span><span>];
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; lands;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">travelIsland</span><span style="color:#eff1f5;">(
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">row</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">col</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> id
+</span><span style="color:#eff1f5;">  ) {
+</span><span style="color:#eff1f5;">    vis[row][col] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    lands[id] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    part[row][col] </span><span>=</span><span style="color:#eff1f5;"> id;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> n </span><span>||</span><span style="color:#eff1f5;"> newCol </span><span>&gt;=</span><span style="color:#eff1f5;"> n) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[newRow][newCol]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">grid[newRow][newCol]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">travelIsland</span><span style="color:#eff1f5;">(grid, newRow, newCol, id);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">largestIsland</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    n </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(vis, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(vis));
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(part, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(part));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">vis[i][j] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> grid[i][j]) {
+</span><span style="color:#eff1f5;">          lands.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">          </span><span style="color:#bf616a;">travelIsland</span><span style="color:#eff1f5;">(grid, i, j, cnt);
+</span><span style="color:#eff1f5;">          cnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">lands.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lands.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(n </span><span>*</span><span style="color:#eff1f5;"> n, lands[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(grid[i][j]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        unordered_set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; neighbors;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> k </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; k </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">k) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> i </span><span>+</span><span style="color:#eff1f5;"> moves[k][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> j </span><span>+</span><span style="color:#eff1f5;"> moves[k][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> n </span><span>||</span><span style="color:#eff1f5;"> newCol </span><span>&gt;=</span><span style="color:#eff1f5;"> n) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">grid[newRow][newCol]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(neighbors.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(part[newRow][newCol])) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          result </span><span>+=</span><span style="color:#eff1f5;"> lands[part[newRow][newCol]];
+</span><span style="color:#eff1f5;">          neighbors.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(part[newRow][newCol]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, result);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 75/75 cases passed (392 ms)
+</span><span style="color:#65737e;">// Your runtime beats 91.75 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 77.94 % of cpp submissions (143.7 MB)
+</span></code></pre>
 
     </div>
   </div>

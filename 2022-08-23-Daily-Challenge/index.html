@@ -119,14 +119,14 @@ renderMathInElement(document.body, katex_config);
 <p>Given the <code>head</code> of a singly linked list, return <code>true</code> if it is a palindrome.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/03/03/pal1linked-list.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,2,1]
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,2,1]
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/03/03/pal2linked-list.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is in the range <code>[1, 10^5]</code>.</li>
@@ -134,45 +134,45 @@ Output: false
 </ul>
 <p><strong>Follow up:</strong> Could you do it in <code>O(n)</code> time and <code>O(1)</code> space?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  ListNode* reverseList(ListNode* head) {
-    ListNode* prev=nullptr;
-    ListNode* curr=head;
-    while(curr) {
-      ListNode* next=curr-&gt;next;
-      curr-&gt;next=prev;
-      prev=curr;
-      curr=next;
-    }
-    return prev;
-  }
-public:
-  bool isPalindrome(ListNode* head) {
-    int n=0;
-    ListNode* iter=head;
-    while(iter) iter=iter-&gt;next, n++;
-    if(n&lt;2) return true;
-    &#x2F;&#x2F; printf(&quot;--&gt;%d\n&quot;, n);
-    iter=head;
-    for(int i=1;i&lt;n&#x2F;2;++i) iter=iter-&gt;next;
-    ListNode* iter2 = (n%2) ? iter-&gt;next-&gt;next : iter-&gt;next;
-    iter-&gt;next=nullptr;
-    &#x2F;&#x2F; printf(&quot;iter2-&gt;val=%d\n&quot;,xiter2-&gt;val);
-    iter=reverseList(head);
-    while(iter) {
-      if(iter-&gt;val!=iter2-&gt;val) return false;
-      iter=iter-&gt;next;
-      iter2=iter2-&gt;next;
-    }
-    return true;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 87&#x2F;87 cases passed (401 ms)
-&#x2F;&#x2F; Your runtime beats 41.44 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 95.63 % of cpp submissions (110.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">reverseList</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ListNode</span><span>*</span><span style="color:#eff1f5;"> prev</span><span>=</span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode</span><span>*</span><span style="color:#eff1f5;"> curr</span><span>=</span><span style="color:#eff1f5;">head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(curr) {
+</span><span style="color:#eff1f5;">      ListNode</span><span>*</span><span style="color:#eff1f5;"> next</span><span>=</span><span style="color:#eff1f5;">curr-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      curr-&gt;</span><span style="color:#bf616a;">next</span><span>=</span><span style="color:#eff1f5;">prev;
+</span><span style="color:#eff1f5;">      prev</span><span>=</span><span style="color:#eff1f5;">curr;
+</span><span style="color:#eff1f5;">      curr</span><span>=</span><span style="color:#eff1f5;">next;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> prev;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isPalindrome</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n</span><span>=</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode</span><span>*</span><span style="color:#eff1f5;"> iter</span><span>=</span><span style="color:#eff1f5;">head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(iter) iter</span><span>=</span><span style="color:#eff1f5;">iter-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">, n</span><span>++</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n</span><span>&lt;</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// printf(&quot;--&gt;%d\n&quot;, n);
+</span><span style="color:#eff1f5;">    iter</span><span>=</span><span style="color:#eff1f5;">head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i</span><span>=</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;i</span><span>&lt;</span><span style="color:#eff1f5;">n</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;</span><span>++</span><span style="color:#eff1f5;">i) iter</span><span>=</span><span style="color:#eff1f5;">iter-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode</span><span>*</span><span style="color:#eff1f5;"> iter2 </span><span>= </span><span style="color:#eff1f5;">(n</span><span>%</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>?</span><span style="color:#eff1f5;"> iter-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next </span><span>:</span><span style="color:#eff1f5;"> iter-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    iter-&gt;</span><span style="color:#bf616a;">next</span><span>=</span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// printf(&quot;iter2-&gt;val=%d\n&quot;,xiter2-&gt;val);
+</span><span style="color:#eff1f5;">    iter</span><span>=</span><span style="color:#bf616a;">reverseList</span><span style="color:#eff1f5;">(head);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(iter) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(iter-&gt;</span><span style="color:#bf616a;">val</span><span>!=</span><span style="color:#eff1f5;">iter2-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      iter</span><span>=</span><span style="color:#eff1f5;">iter-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      iter2</span><span>=</span><span style="color:#eff1f5;">iter2-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 87/87 cases passed (401 ms)
+</span><span style="color:#65737e;">// Your runtime beats 41.44 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 95.63 % of cpp submissions (110.3 MB)
+</span></code></pre>
 
     </div>
   </div>

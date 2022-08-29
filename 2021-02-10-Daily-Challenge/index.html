@@ -122,16 +122,16 @@ renderMathInElement(document.body, katex_config);
 <p><em>Build the result list and return its head.</em></p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/05/merge_linked_list_ex1.png" alt="img" /></p>
-<pre><code>Input: list1 = [0,1,2,3,4,5], a = 3, b = 4, list2 = [1000000,1000001,1000002]
-Output: [0,1,2,1000000,1000001,1000002,5]
-Explanation: We remove the nodes 3 and 4 and put the entire list2 in their place. The blue edges and nodes in the above figure indicate the result.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: list1 = [0,1,2,3,4,5], a = 3, b = 4, list2 = [1000000,1000001,1000002]
+</span><span>Output: [0,1,2,1000000,1000001,1000002,5]
+</span><span>Explanation: We remove the nodes 3 and 4 and put the entire list2 in their place. The blue edges and nodes in the above figure indicate the result.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/05/merge_linked_list_ex2.png" alt="img" /></p>
-<pre><code>Input: list1 = [0,1,2,3,4,5,6], a = 2, b = 5, list2 = [1000000,1000001,1000002,1000003,1000004]
-Output: [0,1,1000000,1000001,1000002,1000003,1000004,6]
-Explanation: The blue edges and nodes in the above figure indicate the result.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: list1 = [0,1,2,3,4,5,6], a = 2, b = 5, list2 = [1000000,1000001,1000002,1000003,1000004]
+</span><span>Output: [0,1,1000000,1000001,1000002,1000003,1000004,6]
+</span><span>Explanation: The blue edges and nodes in the above figure indicate the result.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>$3 \le list1.length \le 10^4$</li>
@@ -139,29 +139,29 @@ Explanation: The blue edges and nodes in the above figure indicate the result.
 <li>$1 \le list2.length \le 10^4$</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
-        ListNode *head = list1;
-        &#x2F;&#x2F; find remove position
-        while(--a &amp;&amp; --b) {
-            list1 = list1-&gt;next;
-        }
-        ListNode *rest = list1-&gt;next;
-        &#x2F;&#x2F; link two lists
-        list1-&gt;next = list2;
-        
-        &#x2F;&#x2F; move to tail
-        while(list1-&gt;next) list1 = list1-&gt;next;
-        
-        &#x2F;&#x2F; find rest list1
-        while(b--) rest = rest-&gt;next;
-        list1-&gt;next = rest;
-        
-        return head;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">mergeInBetween</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">list1</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">, ListNode</span><span>* </span><span style="color:#bf616a;">list2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">head </span><span>=</span><span style="color:#eff1f5;"> list1;
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// find remove position
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>--</span><span style="color:#eff1f5;">a </span><span>&amp;&amp; --</span><span style="color:#eff1f5;">b) {
+</span><span style="color:#eff1f5;">            list1 </span><span>=</span><span style="color:#eff1f5;"> list1-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">rest </span><span>=</span><span style="color:#eff1f5;"> list1-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// link two lists
+</span><span style="color:#eff1f5;">        list1-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> list2;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// move to tail
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(list1-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) list1 </span><span>=</span><span style="color:#eff1f5;"> list1-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// find rest list1
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(b</span><span>--</span><span style="color:#eff1f5;">) rest </span><span>=</span><span style="color:#eff1f5;"> rest-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        list1-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> rest;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="february-leetcoding-challenge-10">February LeetCoding Challenge 10</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Copy List with Random Pointer</strong></p>
@@ -177,24 +177,24 @@ public:
 <p>Your code will <strong>only</strong> be given the <code>head</code> of the original linked list.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/12/18/e1.png" alt="img" /></p>
-<pre><code>Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
-Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+</span><span>Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/12/18/e2.png" alt="img" /></p>
-<pre><code>Input: head = [[1,1],[2,1]]
-Output: [[1,1],[2,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [[1,1],[2,1]]
+</span><span>Output: [[1,1],[2,1]]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/12/18/e3.png" alt="img" /></strong></p>
-<pre><code>Input: head = [[3,null],[3,0],[3,null]]
-Output: [[3,null],[3,0],[3,null]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [[3,null],[3,0],[3,null]]
+</span><span>Output: [[3,null],[3,0],[3,null]]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: head = []
-Output: []
-Explanation: The given linked list is empty (null pointer), so return null.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = []
+</span><span>Output: []
+</span><span>Explanation: The given linked list is empty (null pointer), so return null.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= n &lt;= 1000</code></li>
@@ -202,43 +202,43 @@ Explanation: The given linked list is empty (null pointer), so return null.
 <li><code>Node.random</code> is <code>null</code> or is pointing to some node in the linked list.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    Node* copyRandomList(Node* head) {
-        if(!head) return nullptr;
-        &#x2F;&#x2F; copy nodes
-        Node *cur = head;
-        while(cur) {
-            Node *newNode = new Node(cur-&gt;val);
-            newNode-&gt;next = cur-&gt;next;
-            newNode-&gt;random = cur-&gt;random;
-            cur-&gt;next = newNode;
-            cur = newNode-&gt;next;
-        }
-
-        &#x2F;&#x2F; fix random
-        cur = head;
-        while(cur) {
-            cur = cur-&gt;next;
-            if(cur-&gt;random) cur-&gt;random = cur-&gt;random-&gt;next;
-            cur = cur-&gt;next;
-        }
-        
-        &#x2F;&#x2F; separate two list
-        Node *newHead = head-&gt;next;
-        cur = head;
-        Node *newCur = newHead;
-        while(cur) {
-            cur-&gt;next = newCur-&gt;next;
-            cur = cur-&gt;next;
-            newCur-&gt;next = cur ? cur-&gt;next : nullptr;
-            newCur = newCur-&gt;next;
-        }
-        
-        return newHead;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    Node</span><span>* </span><span style="color:#8fa1b3;">copyRandomList</span><span style="color:#eff1f5;">(Node</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">head) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// copy nodes
+</span><span style="color:#eff1f5;">        Node </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            Node </span><span>*</span><span style="color:#eff1f5;">newNode </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">Node</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            newNode-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            newNode-&gt;</span><span style="color:#bf616a;">random </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">random</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> newNode;
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> newNode-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// fix random
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">random</span><span style="color:#eff1f5;">) cur-&gt;</span><span style="color:#bf616a;">random </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">random</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// separate two list
+</span><span style="color:#eff1f5;">        Node </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        Node </span><span>*</span><span style="color:#eff1f5;">newCur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> newCur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            newCur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur </span><span>?</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next </span><span>: </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            newCur </span><span>=</span><span style="color:#eff1f5;"> newCur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

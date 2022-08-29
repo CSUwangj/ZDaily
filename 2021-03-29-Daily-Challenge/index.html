@@ -118,30 +118,30 @@ renderMathInElement(document.body, katex_config);
 <p>Given an array of strings <code>products</code> and a string <code>searchWord</code>. We want to design a system that suggests at most three product names from <code>products</code> after each character of <code>searchWord</code> is typed. Suggested products should have common prefix with the searchWord. If there are more than three products with a common prefix return the three lexicographically minimums products.</p>
 <p>Return <em>list of lists</em> of the suggested <code>products</code> after each character of <code>searchWord</code> is typed. </p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: products = [&quot;mobile&quot;,&quot;mouse&quot;,&quot;moneypot&quot;,&quot;monitor&quot;,&quot;mousepad&quot;], searchWord = &quot;mouse&quot;
-Output: [
-[&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;],
-[&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;],
-[&quot;mouse&quot;,&quot;mousepad&quot;],
-[&quot;mouse&quot;,&quot;mousepad&quot;],
-[&quot;mouse&quot;,&quot;mousepad&quot;]
-]
-Explanation: products sorted lexicographically = [&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;,&quot;mouse&quot;,&quot;mousepad&quot;]
-After typing m and mo all products match and we show user [&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;]
-After typing mou, mous and mouse the system suggests [&quot;mouse&quot;,&quot;mousepad&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: products = [&quot;mobile&quot;,&quot;mouse&quot;,&quot;moneypot&quot;,&quot;monitor&quot;,&quot;mousepad&quot;], searchWord = &quot;mouse&quot;
+</span><span>Output: [
+</span><span>[&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;],
+</span><span>[&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;],
+</span><span>[&quot;mouse&quot;,&quot;mousepad&quot;],
+</span><span>[&quot;mouse&quot;,&quot;mousepad&quot;],
+</span><span>[&quot;mouse&quot;,&quot;mousepad&quot;]
+</span><span>]
+</span><span>Explanation: products sorted lexicographically = [&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;,&quot;mouse&quot;,&quot;mousepad&quot;]
+</span><span>After typing m and mo all products match and we show user [&quot;mobile&quot;,&quot;moneypot&quot;,&quot;monitor&quot;]
+</span><span>After typing mou, mous and mouse the system suggests [&quot;mouse&quot;,&quot;mousepad&quot;]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: products = [&quot;havana&quot;], searchWord = &quot;havana&quot;
-Output: [[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: products = [&quot;havana&quot;], searchWord = &quot;havana&quot;
+</span><span>Output: [[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;],[&quot;havana&quot;]]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: products = [&quot;bags&quot;,&quot;baggage&quot;,&quot;banner&quot;,&quot;box&quot;,&quot;cloths&quot;], searchWord = &quot;bags&quot;
-Output: [[&quot;baggage&quot;,&quot;bags&quot;,&quot;banner&quot;],[&quot;baggage&quot;,&quot;bags&quot;,&quot;banner&quot;],[&quot;baggage&quot;,&quot;bags&quot;],[&quot;bags&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: products = [&quot;bags&quot;,&quot;baggage&quot;,&quot;banner&quot;,&quot;box&quot;,&quot;cloths&quot;], searchWord = &quot;bags&quot;
+</span><span>Output: [[&quot;baggage&quot;,&quot;bags&quot;,&quot;banner&quot;],[&quot;baggage&quot;,&quot;bags&quot;,&quot;banner&quot;],[&quot;baggage&quot;,&quot;bags&quot;],[&quot;bags&quot;]]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: products = [&quot;havana&quot;], searchWord = &quot;tatiana&quot;
-Output: [[],[],[],[],[],[],[]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: products = [&quot;havana&quot;], searchWord = &quot;tatiana&quot;
+</span><span>Output: [[],[],[],[],[],[],[]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= products.length &lt;= 1000</code></li>
@@ -153,33 +153,33 @@ Output: [[],[],[],[],[],[],[]]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>I've solved the problem in my interview. But that problem don't limit return amount.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;vector&lt;string&gt;&gt; suggestedProducts(vector&lt;string&gt;&amp; products, string searchWord) {
-    sort(products.begin(), products.end());
-    vector&lt;vector&lt;string&gt;&gt; answer;
-    auto begin = products.begin();
-    auto end = products.end();
-    for(int i = 0; i &lt; searchWord.length(); ++i) {
-      auto cmp = [=](string a, string b) {
-        return a[i] &lt; b[i];
-      };
-      auto newBegin = lower_bound(begin, end, searchWord, cmp);
-      auto newEnd = upper_bound(begin, end, searchWord, cmp);
-      begin = newBegin;
-      end = newEnd;
-      if(newEnd - newBegin &gt; 3) newEnd = newBegin + 3;
-      if(newEnd - newBegin &lt;= 0) break;
-      answer.push_back(vector&lt;string&gt;(newBegin, newEnd));
-    }
-    while(answer.size() &lt; searchWord.length()) answer.push_back({});
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Runtime: 32 ms, faster than 96.84% of C++ online submissions for Search Suggestions System.
-&#x2F;&#x2F; Memory Usage: 39.2 MB, less than 62.45% of C++ online submissions for Search Suggestions System.
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;string&gt;&gt; </span><span style="color:#8fa1b3;">suggestedProducts</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">products</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">searchWord</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(products.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), products.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;string&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> begin </span><span>=</span><span style="color:#eff1f5;"> products.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> products.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> searchWord.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> cmp </span><span>= </span><span style="color:#eff1f5;">[</span><span>=</span><span style="color:#eff1f5;">](string a, string b) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a[i] </span><span>&lt;</span><span style="color:#eff1f5;"> b[i];
+</span><span style="color:#eff1f5;">      };
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> newBegin </span><span>= </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(begin, end, searchWord, cmp);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> newEnd </span><span>= </span><span style="color:#bf616a;">upper_bound</span><span style="color:#eff1f5;">(begin, end, searchWord, cmp);
+</span><span style="color:#eff1f5;">      begin </span><span>=</span><span style="color:#eff1f5;"> newBegin;
+</span><span style="color:#eff1f5;">      end </span><span>=</span><span style="color:#eff1f5;"> newEnd;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newEnd </span><span>-</span><span style="color:#eff1f5;"> newBegin </span><span>&gt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) newEnd </span><span>=</span><span style="color:#eff1f5;"> newBegin </span><span>+ </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newEnd </span><span>-</span><span style="color:#eff1f5;"> newBegin </span><span>&lt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;string&gt;(newBegin, newEnd));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> searchWord.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({});
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Runtime: 32 ms, faster than 96.84% of C++ online submissions for Search Suggestions System.
+</span><span style="color:#65737e;">// Memory Usage: 39.2 MB, less than 62.45% of C++ online submissions for Search Suggestions System.
+</span></code></pre>
 <p>trie tree looks great, but actually, cost of reconstructing string is huge.</p>
 <h1 id="march-leetcoding-challenge-29">March LeetCoding challenge 29</h1>
 <h2 id="description-1">Description</h2>
@@ -191,22 +191,22 @@ public:
 <p>Return <em>a list of the values of all <strong>flipped</strong> nodes. You may return the answer in <strong>any order</strong>. If it is <strong>impossible</strong> to flip the nodes in the tree to make the pre-order traversal match</em> <code>voyage</code><em>, return the list</em> <code>[-1]</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/01/02/1219-01.png" alt="img" /></p>
-<pre><code>Input: root = [1,2], voyage = [2,1]
-Output: [-1]
-Explanation: It is impossible to flip the nodes such that the pre-order traversal matches voyage.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2], voyage = [2,1]
+</span><span>Output: [-1]
+</span><span>Explanation: It is impossible to flip the nodes such that the pre-order traversal matches voyage.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/01/02/1219-02.png" alt="img" /></p>
-<pre><code>Input: root = [1,2,3], voyage = [1,3,2]
-Output: [1]
-Explanation: Flipping node 1 swaps nodes 2 and 3, so the pre-order traversal matches voyage.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3], voyage = [1,3,2]
+</span><span>Output: [1]
+</span><span>Explanation: Flipping node 1 swaps nodes 2 and 3, so the pre-order traversal matches voyage.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/01/02/1219-02.png" alt="img" /></p>
-<pre><code>Input: root = [1,2,3], voyage = [1,2,3]
-Output: []
-Explanation: The tree&#x27;s pre-order traversal already matches voyage, so no nodes need to be flipped.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3], voyage = [1,2,3]
+</span><span>Output: []
+</span><span>Explanation: The tree&#39;s pre-order traversal already matches voyage, so no nodes need to be flipped.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is <code>n</code>.</li>
@@ -219,33 +219,33 @@ Explanation: The tree&#x27;s pre-order traversal already matches voyage, so no n
 <h2 id="solution-1">Solution</h2>
 <p>simulate traversal</p>
 <p>code is not elegant...</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  bool traversal(TreeNode* root, vector&lt;int&gt;&amp; voyage, vector&lt;int&gt;&amp; answer, int &amp;idx) {
-    if(!root) return true;
-    if(root-&gt;val != voyage[idx]) return false;
-    idx += 1;
-    if(root-&gt;left == nullptr &amp;&amp; root-&gt;right == nullptr) return true;
-    if(root-&gt;left == nullptr) {
-      return traversal(root-&gt;right, voyage, answer, idx);
-    }
-    if(root-&gt;left-&gt;val != voyage[idx]) {
-      if(!traversal(root-&gt;right, voyage, answer, idx) || !traversal(root-&gt;left, voyage, answer, idx)) {
-        return false;
-      }
-      answer.push_back(root-&gt;val);
-      return true;
-    }
-    return traversal(root-&gt;left, voyage, answer, idx) &amp;&amp; traversal(root-&gt;right, voyage, answer, idx);
-  }
-public:
-  vector&lt;int&gt; flipMatchVoyage(TreeNode* root, vector&lt;int&gt;&amp; voyage) {
-    vector&lt;int&gt; answer;
-    int idx = 0;
-    if(traversal(root, voyage, answer, idx)) return answer;
-    return {-1};
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">traversal</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">voyage</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">idx</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val </span><span>!=</span><span style="color:#eff1f5;"> voyage[idx]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    idx </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left </span><span>== </span><span style="color:#d08770;">nullptr </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right </span><span>== </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left </span><span>== </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, voyage, answer, idx);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">val </span><span>!=</span><span style="color:#eff1f5;"> voyage[idx]) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, voyage, answer, idx) </span><span>|| !</span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, voyage, answer, idx)) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, voyage, answer, idx) </span><span>&amp;&amp; </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, voyage, answer, idx);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">flipMatchVoyage</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">voyage</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> idx </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root, voyage, answer, idx)) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

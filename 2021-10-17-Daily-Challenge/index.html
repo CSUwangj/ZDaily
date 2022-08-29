@@ -120,14 +120,14 @@ renderMathInElement(document.body, katex_config);
 <p>The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/09/pathsum3-1-tree.jpg" alt="img" /></p>
-<pre><code>Input: root = [10,5,-3,3,2,null,11,3,-2,null,1], targetSum = 8
-Output: 3
-Explanation: The paths that sum to 8 are shown.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [10,5,-3,3,2,null,11,3,-2,null,1], targetSum = 8
+</span><span>Output: 3
+</span><span>Explanation: The paths that sum to 8 are shown.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
-Output: 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
+</span><span>Output: 3
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[0, 1000]</code>.</li>
@@ -135,33 +135,33 @@ Output: 3
 <li><code>-1000 &lt;= targetSum &lt;= 1000</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int sum;
-  int ans;
-  void dfs(TreeNode* root, int cur, bool inPath) {
-    if(!root) return;
-    if(cur == root-&gt;val) ans += 1;
-    if(!inPath) {
-      dfs(root-&gt;left, cur, false);
-      dfs(root-&gt;right, cur, false);
-    }
-    dfs(root-&gt;left, cur-root-&gt;val, true);
-    dfs(root-&gt;right, cur-root-&gt;val, true);
-  }
-public:
-  int pathSum(TreeNode* root, int sum) {
-    if(!root) return 0;
-    this-&gt;sum = sum;
-    dfs(root, sum, false);
-    return ans;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 126&#x2F;126 cases passed (20 ms)
-&#x2F;&#x2F; Your runtime beats 66.65 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 77.5 % of cpp submissions (15.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">bool </span><span style="color:#bf616a;">inPath</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>==</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) ans </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">inPath) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, cur, </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, cur, </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, cur</span><span>-</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, cur</span><span>-</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pathSum</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">sum </span><span>=</span><span style="color:#eff1f5;"> sum;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(root, sum, </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 126/126 cases passed (20 ms)
+</span><span style="color:#65737e;">// Your runtime beats 66.65 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 77.5 % of cpp submissions (15.7 MB)
+</span></code></pre>
 
     </div>
   </div>

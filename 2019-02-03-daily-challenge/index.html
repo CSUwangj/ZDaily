@@ -128,24 +128,24 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>Brute Force!!!!</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashSet;
-
-fn main() {
-    let mut trangular: HashSet&lt;usize&gt; = HashSet::new();
-    let mut pentagonal:HashSet&lt;usize&gt; = HashSet::new();
-    for i in 165..100000 {
-        trangular.insert(i*(i+1)&#x2F;2);
-        pentagonal.insert(i*(3*i-1)&#x2F;2);
-    }
-    for i in 144..100000 {
-        let tmp = i*(2*i-1);
-        if trangular.contains(&amp;tmp) &amp;&amp; pentagonal.contains(&amp;tmp) {
-            println!(&quot;Answer is {}&quot;, tmp);
-            return;
-        }
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::collections::HashSet;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> trangular: HashSet&lt;</span><span style="color:#b48ead;">usize</span><span>&gt; = HashSet::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> pentagonal:HashSet&lt;</span><span style="color:#b48ead;">usize</span><span>&gt; = HashSet::new();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">165</span><span>..</span><span style="color:#d08770;">100000 </span><span>{
+</span><span>        trangular.</span><span style="color:#96b5b4;">insert</span><span>(i*(i+</span><span style="color:#d08770;">1</span><span>)/</span><span style="color:#d08770;">2</span><span>);
+</span><span>        pentagonal.</span><span style="color:#96b5b4;">insert</span><span>(i*(</span><span style="color:#d08770;">3</span><span>*i-</span><span style="color:#d08770;">1</span><span>)/</span><span style="color:#d08770;">2</span><span>);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">144</span><span>..</span><span style="color:#d08770;">100000 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = i*(</span><span style="color:#d08770;">2</span><span>*i-</span><span style="color:#d08770;">1</span><span>);
+</span><span>        </span><span style="color:#b48ead;">if</span><span> trangular.</span><span style="color:#96b5b4;">contains</span><span>(&amp;tmp) &amp;&amp; pentagonal.</span><span style="color:#96b5b4;">contains</span><span>(&amp;tmp) {
+</span><span>            println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, tmp);
+</span><span>            </span><span style="color:#b48ead;">return</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="146-lru-cache">146. LRU Cache</h3>
@@ -155,75 +155,75 @@ fn main() {
 <p><strong>Follow up:</strong>
 Could you do both operations in <strong>O(1)</strong> time complexity?</p>
 <p><strong>Example:</strong></p>
-<pre><code>LRUCache cache = new LRUCache( 2 &#x2F;* capacity *&#x2F; );
-
-cache.put(1, 1);
-cache.put(2, 2);
-cache.get(1);       &#x2F;&#x2F; returns 1
-cache.put(3, 3);    &#x2F;&#x2F; evicts key 2
-cache.get(2);       &#x2F;&#x2F; returns -1 (not found)
-cache.put(4, 4);    &#x2F;&#x2F; evicts key 1
-cache.get(1);       &#x2F;&#x2F; returns -1 (not found)
-cache.get(3);       &#x2F;&#x2F; returns 3
-cache.get(4);       &#x2F;&#x2F; returns 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>LRUCache cache = new LRUCache( 2 /* capacity */ );
+</span><span>
+</span><span>cache.put(1, 1);
+</span><span>cache.put(2, 2);
+</span><span>cache.get(1);       // returns 1
+</span><span>cache.put(3, 3);    // evicts key 2
+</span><span>cache.get(2);       // returns -1 (not found)
+</span><span>cache.put(4, 4);    // evicts key 1
+</span><span>cache.get(1);       // returns -1 (not found)
+</span><span>cache.get(3);       // returns 3
+</span><span>cache.get(4);       // returns 4
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>A map with count will be enough for this problem.</p>
 <p>A list will be better, but I don't know it in js.</p>
 <p>Leave it for later or... Maybe?</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number} capacity
- *&#x2F;
-var LRUCache = function(capacity) {
-  this.cap = capacity;
-  this.cnt = 0;
-  this.container = new Map();
-};
-
-&#x2F;**
- * @param {number} key
- * @return {number}
- *&#x2F;
-LRUCache.prototype.get = function(key) {
-  this.cnt += 1;
-  if (this.container.has(key)){
-    let tmp = this.container.get(key);
-    tmp[1] = this.cnt;
-    return tmp[0];
-  }
-  return -1;
-};
-
-&#x2F;**
- * @param {number} key
- * @param {number} value
- * @return {void}
- *&#x2F;
-LRUCache.prototype.put = function(key, value) {
-  this.cnt += 1;
-  this.container.set(key, [value, this.cnt]);
-  if (this.container.size &gt; this.cap) {
-    let mn = 1e9;
-    let index = -1;
-    for (const [key, val] of this.container) {
-      if (val[1] &lt; mn) {
-        mn = val[1];
-        index = key;
-      }
-    }
-    this.container.delete(index);
-    this.container.set(key, [value, this.cnt]);
-  }
-};
-
-&#x2F;**
- * Your LRUCache object will be instantiated and called as such:
- * var obj = Object.create(LRUCache).createNew(capacity)
- * var param_1 = obj.get(key)
- * obj.put(key,value)
- *&#x2F;
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">capacity
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">LRUCache </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">capacity</span><span>) {
+</span><span>  </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">cap </span><span>= </span><span style="color:#bf616a;">capacity</span><span>;
+</span><span>  </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">cnt </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">container </span><span>= new Map();
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">key
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#ebcb8b;">LRUCache</span><span>.prototype.</span><span style="color:#8fa1b3;">get </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">key</span><span>) {
+</span><span>  </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">cnt </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">container</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">key</span><span>)){
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">tmp </span><span>= </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">container</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">key</span><span>);
+</span><span>    </span><span style="color:#bf616a;">tmp</span><span>[</span><span style="color:#d08770;">1</span><span>] = </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">cnt</span><span>;
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">tmp</span><span>[</span><span style="color:#d08770;">0</span><span>];
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">key
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">value
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{void}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#ebcb8b;">LRUCache</span><span>.prototype.</span><span style="color:#8fa1b3;">put </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">key</span><span>, </span><span style="color:#bf616a;">value</span><span>) {
+</span><span>  </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">cnt </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">container</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">key</span><span>, [</span><span style="color:#bf616a;">value</span><span>, </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">cnt</span><span>]);
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">container</span><span>.size &gt; </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">cap</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">mn </span><span>= </span><span style="color:#d08770;">1e9</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">index </span><span>= -</span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span>[</span><span style="color:#bf616a;">key</span><span>, </span><span style="color:#bf616a;">val</span><span>] of </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">container</span><span>) {
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>] &lt; </span><span style="color:#bf616a;">mn</span><span>) {
+</span><span>        </span><span style="color:#bf616a;">mn </span><span>= </span><span style="color:#bf616a;">val</span><span>[</span><span style="color:#d08770;">1</span><span>];
+</span><span>        </span><span style="color:#bf616a;">index </span><span>= </span><span style="color:#bf616a;">key</span><span>;
+</span><span>      }
+</span><span>    }
+</span><span>    </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">container</span><span>.</span><span style="color:#96b5b4;">delete</span><span>(</span><span style="color:#bf616a;">index</span><span>);
+</span><span>    </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">container</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">key</span><span>, [</span><span style="color:#bf616a;">value</span><span>, </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">cnt</span><span>]);
+</span><span>  }
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Your LRUCache object will be instantiated and called as such:
+</span><span style="color:#65737e;"> * var obj = Object.create(LRUCache).createNew(capacity)
+</span><span style="color:#65737e;"> * var param_1 = obj.get(key)
+</span><span style="color:#65737e;"> * obj.put(key,value)
+</span><span style="color:#65737e;"> */
+</span></code></pre>
 
     </div>
   </div>

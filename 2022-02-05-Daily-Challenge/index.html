@@ -119,25 +119,25 @@ renderMathInElement(document.body, katex_config);
 <p>You are given an array of <code>k</code> linked-lists <code>lists</code>, each linked-list is sorted in ascending order.</p>
 <p><em>Merge all the linked-lists into one sorted linked-list and return it.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: lists = [[1,4,5],[1,3,4],[2,6]]
-Output: [1,1,2,3,4,4,5,6]
-Explanation: The linked-lists are:
-[
-  1-&gt;4-&gt;5,
-  1-&gt;3-&gt;4,
-  2-&gt;6
-]
-merging them into one sorted list:
-1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: lists = [[1,4,5],[1,3,4],[2,6]]
+</span><span>Output: [1,1,2,3,4,4,5,6]
+</span><span>Explanation: The linked-lists are:
+</span><span>[
+</span><span>  1-&gt;4-&gt;5,
+</span><span>  1-&gt;3-&gt;4,
+</span><span>  2-&gt;6
+</span><span>]
+</span><span>merging them into one sorted list:
+</span><span>1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: lists = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: lists = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: lists = [[]]
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: lists = [[]]
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>k == lists.length</code></li>
@@ -148,74 +148,74 @@ Output: []
 <li>The sum of <code>lists[i].length</code> won't exceed <code>10^4</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">struct cmp {
-  bool operator()(const ListNode *a, const ListNode *b) const {
-    return a-&gt;val &gt; b-&gt;val;
-  }
-};
-class Solution {
-public:
-  ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
-    priority_queue&lt;ListNode *, vector&lt;ListNode *&gt;, cmp&gt; pq;
-    for(auto list : lists) {
-      if(list) pq.push(list);
-    }
-    ListNode *newHead = new ListNode();
-    ListNode *cur = newHead;
-    while(pq.size()) {
-      auto nxt = pq.top();
-      pq.pop();
-      if(nxt-&gt;next) {
-        pq.push(nxt-&gt;next);
-      }
-      cur-&gt;next = nxt;
-      cur = cur-&gt;next;
-    }
-    return newHead-&gt;next;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 133&#x2F;133 cases passed (23 ms)
-&#x2F;&#x2F; Your runtime beats 78.38 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 74.95 % of cpp submissions (13.3 MB)
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  ListNode *merge2Lists(ListNode *a, ListNode *b) {
-    ListNode *newHead = new ListNode(0);
-    ListNode *cur = newHead;
-    while(a &amp;&amp; b) {
-      if(a-&gt;val &lt; b-&gt;val) {
-        cur-&gt;next = a;
-        a = a-&gt;next;
-      } else {
-        cur-&gt;next = b;
-        b = b-&gt;next;
-      }
-      cur = cur-&gt;next;
-    }
-    if(a) cur-&gt;next = a;
-    else cur-&gt;next = b;
-    return newHead-&gt;next;
-  }
-public:
-  ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
-    if(lists.empty()) return nullptr;
-    int len = lists.size();
-    for(int step = 1; step &lt; len; step &lt;&lt;= 1) {
-      for(int first = 0; first + step &lt; len; first += 2 * step) {
-        lists[first] = merge2Lists(lists[first], lists[first + step]);
-      }
-    }
-    return lists.front();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 133&#x2F;133 cases passed (12 ms)
-&#x2F;&#x2F; Your runtime beats 99.77 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 58.51 % of cpp submissions (13.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">struct </span><span>cmp {
+</span><span>  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">operator()</span><span>(</span><span style="color:#b48ead;">const</span><span> ListNode *</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#b48ead;">const</span><span> ListNode *</span><span style="color:#bf616a;">b</span><span>) </span><span style="color:#b48ead;">const </span><span>{
+</span><span>    </span><span style="color:#b48ead;">return</span><span> a-&gt;</span><span style="color:#bf616a;">val </span><span>&gt; b-&gt;</span><span style="color:#bf616a;">val</span><span>;
+</span><span>  }
+</span><span>};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">mergeKLists</span><span style="color:#eff1f5;">(vector&lt;ListNode</span><span>*</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">lists</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    priority_queue</span><span>&lt;</span><span style="color:#eff1f5;">ListNode </span><span>*</span><span style="color:#eff1f5;">, vector</span><span>&lt;</span><span style="color:#eff1f5;">ListNode </span><span>*&gt;</span><span style="color:#eff1f5;">, cmp</span><span>&gt;</span><span style="color:#eff1f5;"> pq;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> list </span><span>:</span><span style="color:#eff1f5;"> lists) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(list) pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(list);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> nxt </span><span>=</span><span style="color:#eff1f5;"> pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nxt-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(nxt-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> nxt;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 133/133 cases passed (23 ms)
+</span><span style="color:#65737e;">// Your runtime beats 78.38 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 74.95 % of cpp submissions (13.3 MB)
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  ListNode </span><span>*</span><span style="color:#8fa1b3;">merge2Lists</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, ListNode </span><span>*</span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(a </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(a-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> b-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> a;
+</span><span style="color:#eff1f5;">        a </span><span>=</span><span style="color:#eff1f5;"> a-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> b;
+</span><span style="color:#eff1f5;">        b </span><span>=</span><span style="color:#eff1f5;"> b-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(a) cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> a;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> b;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">mergeKLists</span><span style="color:#eff1f5;">(vector&lt;ListNode</span><span>*</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">lists</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lists.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> lists.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> step </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; step </span><span>&lt;</span><span style="color:#eff1f5;"> len; step </span><span>&lt;&lt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> first </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; first </span><span>+</span><span style="color:#eff1f5;"> step </span><span>&lt;</span><span style="color:#eff1f5;"> len; first </span><span>+= </span><span style="color:#d08770;">2 </span><span>*</span><span style="color:#eff1f5;"> step) {
+</span><span style="color:#eff1f5;">        lists[first] </span><span>= </span><span style="color:#bf616a;">merge2Lists</span><span style="color:#eff1f5;">(lists[first], lists[first </span><span>+</span><span style="color:#eff1f5;"> step]);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> lists.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 133/133 cases passed (12 ms)
+</span><span style="color:#65737e;">// Your runtime beats 99.77 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 58.51 % of cpp submissions (13.3 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -125,23 +125,23 @@ renderMathInElement(document.body, katex_config);
 <li><code>int getMin()</code> retrieves the minimum element in the stack.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;MinStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;getMin&quot;,&quot;pop&quot;,&quot;top&quot;,&quot;getMin&quot;]
-[[],[-2],[0],[-3],[],[],[],[]]
-
-Output
-[null,null,null,null,-3,null,0,-2]
-
-Explanation
-MinStack minStack = new MinStack();
-minStack.push(-2);
-minStack.push(0);
-minStack.push(-3);
-minStack.getMin(); &#x2F;&#x2F; return -3
-minStack.pop();
-minStack.top();    &#x2F;&#x2F; return 0
-minStack.getMin(); &#x2F;&#x2F; return -2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;MinStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;getMin&quot;,&quot;pop&quot;,&quot;top&quot;,&quot;getMin&quot;]
+</span><span>[[],[-2],[0],[-3],[],[],[],[]]
+</span><span>
+</span><span>Output
+</span><span>[null,null,null,null,-3,null,0,-2]
+</span><span>
+</span><span>Explanation
+</span><span>MinStack minStack = new MinStack();
+</span><span>minStack.push(-2);
+</span><span>minStack.push(0);
+</span><span>minStack.push(-3);
+</span><span>minStack.getMin(); // return -3
+</span><span>minStack.pop();
+</span><span>minStack.top();    // return 0
+</span><span>minStack.getMin(); // return -2
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 	<li><code>-2<sup>31</sup> &lt;= val &lt;= 2<sup>31</sup> - 1</code></li>
@@ -149,47 +149,47 @@ minStack.getMin(); &#x2F;&#x2F; return -2
 	<li>At most <code>3 * 10<sup>4</sup></code> calls will be made to <code>push</code>, <code>pop</code>, <code>top</code>, and <code>getMin</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class MinStack {
-  vector&lt;int&gt; st;
-  vector&lt;int&gt; minSt;
-public:
-  &#x2F;** initialize your data structure here. *&#x2F;
-  MinStack(){}
-  
-  void push(int val) {
-    st.push_back(val);
-    if(minSt.empty() || val &lt;= minSt.back()) {
-      minSt.push_back(val);
-    }
-  }
-  
-  void pop() {
-    if(st.back() == minSt.back()) {
-      minSt.pop_back();
-    }
-    st.pop_back();
-  }
-  
-  int top() {
-    return st.back();
-  }
-  
-  int getMin() {
-    return minSt.back();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 31&#x2F;31 cases passed (12 ms)
-&#x2F;&#x2F; Your runtime beats 99.73 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 33.29 % of cpp submissions (16.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MinStack </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; st;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; minSt;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** initialize your data structure here. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">MinStack</span><span style="color:#eff1f5;">(){}
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    st.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(val);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(minSt.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> val </span><span>&lt;=</span><span style="color:#eff1f5;"> minSt.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      minSt.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(val);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> minSt.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      minSt.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">top</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">getMin</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> minSt.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 31/31 cases passed (12 ms)
+</span><span style="color:#65737e;">// Your runtime beats 99.73 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 33.29 % of cpp submissions (16.5 MB)
+</span></code></pre>
 <h1 id="august-leetcoding-challenge-19">August LeetCoding Challenge 19</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Maximum Product of Splitted Binary Tree</strong></p>
@@ -198,74 +198,74 @@ public:
 <p><strong>Note</strong> that you need to maximize the answer before taking the mod and not after taking it.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/01/21/sample_1_1699.png" alt="img" /></p>
-<pre><code>Input: root = [1,2,3,4,5,6]
-Output: 110
-Explanation: Remove the red edge and get 2 binary trees with sum 11 and 10. Their product is 110 (11*10)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3,4,5,6]
+</span><span>Output: 110
+</span><span>Explanation: Remove the red edge and get 2 binary trees with sum 11 and 10. Their product is 110 (11*10)
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/01/21/sample_2_1699.png" alt="img" /></p>
-<pre><code>Input: root = [1,null,2,3,4,null,null,5,6]
-Output: 90
-Explanation: Remove the red edge and get 2 binary trees with sum 15 and 6.Their product is 90 (15*6)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,null,2,3,4,null,null,5,6]
+</span><span>Output: 90
+</span><span>Explanation: Remove the red edge and get 2 binary trees with sum 15 and 6.Their product is 90 (15*6)
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: root = [2,3,9,10,7,8,6,5,4,11,1]
-Output: 1025
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [2,3,9,10,7,8,6,5,4,11,1]
+</span><span>Output: 1025
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: root = [1,1]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,1]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[2, 5 * 10^4]</code>.</li>
 <li><code>1 &lt;= Node.val &lt;= 10^4</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-const int MOD = 1e9 + 7;
-class Solution {
-  int sum = 0;
-  int cur = 0;
-  void add(TreeNode *root) {
-    if(!root) return;
-    sum += root-&gt;val;
-    add(root-&gt;left);
-    add(root-&gt;right);
-  }
-  int solve(TreeNode *root) {
-    if(!root) return 0;
-    int left = solve(root-&gt;left);
-    int right = solve(root-&gt;right);
-    if(abs(left + right + root-&gt;val - sum &#x2F; 2) &lt; abs(cur - sum &#x2F; 2)) {
-      cur = left + right + root-&gt;val;
-    }
-    if (abs(left - sum &#x2F; 2) &lt; abs(cur - sum &#x2F; 2)) {
-      cur = left;
-    }
-    if (abs(right - sum &#x2F; 2) &lt; abs(cur - sum &#x2F; 2)) {
-      cur = right;
-    }
-    return left + right + root-&gt;val;
-  }
-public:
-  int maxProduct(TreeNode* root) {
-    add(root);
-    solve(root);
-    return 1LL * (sum - cur) * cur % MOD;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 54&#x2F;54 cases passed (84 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 63.53 % of cpp submissions (77.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">const int</span><span> MOD = </span><span style="color:#d08770;">1e9 </span><span>+ </span><span style="color:#d08770;">7</span><span>;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">add</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    sum </span><span>+=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> left </span><span>= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> right </span><span>= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(left </span><span>+</span><span style="color:#eff1f5;"> right </span><span>+</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val </span><span>-</span><span style="color:#eff1f5;"> sum </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>&lt; </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(cur </span><span>-</span><span style="color:#eff1f5;"> sum </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> left </span><span>+</span><span style="color:#eff1f5;"> right </span><span>+</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(left </span><span>-</span><span style="color:#eff1f5;"> sum </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>&lt; </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(cur </span><span>-</span><span style="color:#eff1f5;"> sum </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> left;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(right </span><span>-</span><span style="color:#eff1f5;"> sum </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>&lt; </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(cur </span><span>-</span><span style="color:#eff1f5;"> sum </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> right;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> left </span><span>+</span><span style="color:#eff1f5;"> right </span><span>+</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxProduct</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">LL </span><span>* </span><span style="color:#eff1f5;">(sum </span><span>-</span><span style="color:#eff1f5;"> cur) </span><span>*</span><span style="color:#eff1f5;"> cur </span><span>%</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 54/54 cases passed (84 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 63.53 % of cpp submissions (77.5 MB)
+</span></code></pre>
 
     </div>
   </div>

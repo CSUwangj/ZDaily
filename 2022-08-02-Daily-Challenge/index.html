@@ -120,14 +120,14 @@ renderMathInElement(document.body, katex_config);
 <p>Note that it is the <code>kth</code> smallest element <strong>in the sorted order</strong>, not the <code>kth</code> <strong>distinct</strong> element.</p>
 <p>You must find a solution with a memory complexity better than <code>O(n2)</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8
-Output: 13
-Explanation: The elements in the matrix are [1,5,9,10,11,12,13,13,15], and the 8th smallest number is 13
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8
+</span><span>Output: 13
+</span><span>Explanation: The elements in the matrix are [1,5,9,10,11,12,13,13,15], and the 8th smallest number is 13
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: matrix = [[-5]], k = 1
-Output: -5
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[-5]], k = 1
+</span><span>Output: -5
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == matrix.length == matrix[i].length</code></li>
@@ -142,28 +142,28 @@ Output: -5
 <li>Could you solve the problem in <code>O(n)</code> time complexity? The solution may be too advanced for an interview but you may find reading <a href="http://www.cse.yorku.ca/~andy/pubs/X+Y.pdf">this paper</a> fun.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int kthSmallest(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int k) {
-    int n = matrix.size();
-    if(k == 1) return matrix.front().front();
-    if(k == n * n) return matrix.back().back();
-    priority_queue&lt;int&gt; pq;
-    for(auto &amp;row : matrix) {
-      for(auto i : row) {
-        pq.push(i);
-        while(pq.size() &gt; k) pq.pop();
-      }
-    }
-    return pq.top();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 85&#x2F;85 cases passed (36 ms)
-&#x2F;&#x2F; Your runtime beats 54.31 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 33.33 % of cpp submissions (14.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">kthSmallest</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">matrix</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>=</span><span style="color:#eff1f5;"> matrix.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> matrix.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>==</span><span style="color:#eff1f5;"> n </span><span>*</span><span style="color:#eff1f5;"> n) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> matrix.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    priority_queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; pq;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">row </span><span>:</span><span style="color:#eff1f5;"> matrix) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> row) {
+</span><span style="color:#eff1f5;">        pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> k) pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 85/85 cases passed (36 ms)
+</span><span style="color:#65737e;">// Your runtime beats 54.31 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 33.33 % of cpp submissions (14.3 MB)
+</span></code></pre>
 
     </div>
   </div>

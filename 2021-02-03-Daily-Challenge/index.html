@@ -117,174 +117,174 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p>Convert a non-negative integer <code>num</code> to its English words representation.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: num = 123
-Output: &quot;One Hundred Twenty Three&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num = 123
+</span><span>Output: &quot;One Hundred Twenty Three&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: num = 12345
-Output: &quot;Twelve Thousand Three Hundred Forty Five&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num = 12345
+</span><span>Output: &quot;Twelve Thousand Three Hundred Forty Five&quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: num = 1234567
-Output: &quot;One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num = 1234567
+</span><span>Output: &quot;One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven&quot;
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: num = 1234567891
-Output: &quot;One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num = 1234567891
+</span><span>Output: &quot;One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>$0 \le num \le 2^{31} - 1$</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    const string ZERO = &quot;Zero&quot;;
-    const string B = &quot;Billion&quot;;
-    const int b = 1000000000;
-    const string M = &quot;Million&quot;;
-    const int m = 1000000;
-    const string K = &quot;Thousand&quot;;
-    const int k = 1000;
-    unordered_map&lt;int, string&gt; mp = {
-        {1, &quot;One&quot;},
-        {2, &quot;Two&quot;},
-        {3, &quot;Three&quot;},
-        {4, &quot;Four&quot;},
-        {5, &quot;Five&quot;},
-        {6, &quot;Six&quot;},
-        {7, &quot;Seven&quot;},
-        {8, &quot;Eight&quot;},
-        {9, &quot;Nine&quot;},
-        {10, &quot;Ten&quot;},
-        {11, &quot;Eleven&quot;},
-        {12, &quot;Twelve&quot;},
-        {13, &quot;Thirteen&quot;},
-        {14, &quot;Fourteen&quot;},
-        {15, &quot;Fifteen&quot;},
-        {16, &quot;Sixteen&quot;},
-        {17, &quot;Seventeen&quot;},
-        {18, &quot;Eighteen&quot;},
-        {19, &quot;Nineteen&quot;},
-        {20, &quot;Twenty&quot;},
-        {30, &quot;Thirty&quot;},
-        {40, &quot;Forty&quot;},
-        {50, &quot;Fifty&quot;},
-        {60, &quot;Sixty&quot;},
-        {70, &quot;Seventy&quot;},
-        {80, &quot;Eighty&quot;},
-        {90, &quot;Ninety&quot;}
-    };
-    string numberLT1000ToWords(int num) {
-        string result;
-        if(num &gt;= 100) {
-            result += mp[num &#x2F; 100] + &quot; Hundred&quot;;
-            if(num % 100 == 0) return result;
-            result += &quot; &quot;;
-        }
-        if(mp.count(num%100)) {
-            result += mp[num % 100];
-        } else {
-            result += mp[(num % 100) &#x2F; 10 * 10] + &quot; &quot; + mp[(num % 10)];
-        }
-        return result;
-    }
-public:
-    string numberToWords(int num) {
-        if(!num) return move(ZERO);
-        string answer = &quot;&quot;;
-        if(num &gt;= b) {
-            answer += numberLT1000ToWords(num &#x2F; b) + &quot; &quot; + B;
-            num %= b;
-        }
-        if(num &gt;= m) {
-            if(answer.length()) answer += &quot; &quot;;
-            answer += numberLT1000ToWords(num &#x2F; m) + &quot; &quot; + M;
-            num %= m;
-        }
-        if(num &gt;= k) {
-            if(answer.length()) answer += &quot; &quot;;
-            answer += numberLT1000ToWords(num &#x2F; k) + &quot; &quot; + K;
-            num %= k;
-        }
-        if(num) {
-            if(answer.length()) answer += &quot; &quot;;
-            answer += numberLT1000ToWords(num);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string ZERO </span><span>= &quot;</span><span style="color:#a3be8c;">Zero</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string B </span><span>= &quot;</span><span style="color:#a3be8c;">Billion</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const int</span><span style="color:#eff1f5;"> b </span><span>= </span><span style="color:#d08770;">1000000000</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string M </span><span>= &quot;</span><span style="color:#a3be8c;">Million</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const int</span><span style="color:#eff1f5;"> m </span><span>= </span><span style="color:#d08770;">1000000</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string K </span><span>= &quot;</span><span style="color:#a3be8c;">Thousand</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const int</span><span style="color:#eff1f5;"> k </span><span>= </span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, string&gt; mp </span><span>= </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">One</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Two</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Three</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Four</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">5</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Five</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Six</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">7</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Seven</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">8</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Eight</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Nine</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Ten</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">11</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Eleven</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">12</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Twelve</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">13</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Thirteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">14</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Fourteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">15</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Fifteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">16</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Sixteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">17</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Seventeen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">18</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Eighteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">19</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Nineteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">20</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Twenty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">30</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Thirty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">40</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Forty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">50</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Fifty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">60</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Sixty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">70</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Seventy</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">80</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Eighty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">90</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Ninety</span><span>&quot;</span><span style="color:#eff1f5;">}
+</span><span style="color:#eff1f5;">    };
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">numberLT1000ToWords</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        string result;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&gt;= </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            result </span><span>+=</span><span style="color:#eff1f5;"> mp[num </span><span>/ </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">] </span><span>+ &quot;</span><span style="color:#a3be8c;"> Hundred</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>% </span><span style="color:#d08770;">100 </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">            result </span><span>+= &quot; &quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(num</span><span>%</span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">            result </span><span>+=</span><span style="color:#eff1f5;"> mp[num </span><span>% </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            result </span><span>+=</span><span style="color:#eff1f5;"> mp[(num </span><span>% </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">10 </span><span>* </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span>+ &quot; &quot; +</span><span style="color:#eff1f5;"> mp[(num </span><span>% </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">)];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">numberToWords</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">num) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(ZERO);
+</span><span style="color:#eff1f5;">        string answer </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&gt;=</span><span style="color:#eff1f5;"> b) {
+</span><span style="color:#eff1f5;">            answer </span><span>+= </span><span style="color:#bf616a;">numberLT1000ToWords</span><span style="color:#eff1f5;">(num </span><span>/</span><span style="color:#eff1f5;"> b) </span><span>+ &quot; &quot; +</span><span style="color:#eff1f5;"> B;
+</span><span style="color:#eff1f5;">            num </span><span>%=</span><span style="color:#eff1f5;"> b;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&gt;=</span><span style="color:#eff1f5;"> m) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) answer </span><span>+= &quot; &quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            answer </span><span>+= </span><span style="color:#bf616a;">numberLT1000ToWords</span><span style="color:#eff1f5;">(num </span><span>/</span><span style="color:#eff1f5;"> m) </span><span>+ &quot; &quot; +</span><span style="color:#eff1f5;"> M;
+</span><span style="color:#eff1f5;">            num </span><span>%=</span><span style="color:#eff1f5;"> m;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&gt;=</span><span style="color:#eff1f5;"> k) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) answer </span><span>+= &quot; &quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            answer </span><span>+= </span><span style="color:#bf616a;">numberLT1000ToWords</span><span style="color:#eff1f5;">(num </span><span>/</span><span style="color:#eff1f5;"> k) </span><span>+ &quot; &quot; +</span><span style="color:#eff1f5;"> K;
+</span><span style="color:#eff1f5;">            num </span><span>%=</span><span style="color:#eff1f5;"> k;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) answer </span><span>+= &quot; &quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            answer </span><span>+= </span><span style="color:#bf616a;">numberLT1000ToWords</span><span style="color:#eff1f5;">(num);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>oh, so many repeat, should do some refactor</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    const string ZERO = &quot;Zero&quot;;
-    const vector&lt;pair&lt;int, string&gt;&gt; units= {
-        {1000000000, &quot;Billion&quot;},
-        {1000000, &quot;Million&quot;},
-        {1000, &quot;Thousand&quot;},
-        {1, &quot;&quot;}
-    };
-    unordered_map&lt;int, string&gt; mp = {
-        {1, &quot;One&quot;},
-        {2, &quot;Two&quot;},
-        {3, &quot;Three&quot;},
-        {4, &quot;Four&quot;},
-        {5, &quot;Five&quot;},
-        {6, &quot;Six&quot;},
-        {7, &quot;Seven&quot;},
-        {8, &quot;Eight&quot;},
-        {9, &quot;Nine&quot;},
-        {10, &quot;Ten&quot;},
-        {11, &quot;Eleven&quot;},
-        {12, &quot;Twelve&quot;},
-        {13, &quot;Thirteen&quot;},
-        {14, &quot;Fourteen&quot;},
-        {15, &quot;Fifteen&quot;},
-        {16, &quot;Sixteen&quot;},
-        {17, &quot;Seventeen&quot;},
-        {18, &quot;Eighteen&quot;},
-        {19, &quot;Nineteen&quot;},
-        {20, &quot;Twenty&quot;},
-        {30, &quot;Thirty&quot;},
-        {40, &quot;Forty&quot;},
-        {50, &quot;Fifty&quot;},
-        {60, &quot;Sixty&quot;},
-        {70, &quot;Seventy&quot;},
-        {80, &quot;Eighty&quot;},
-        {90, &quot;Ninety&quot;}
-    };
-    string numberLT1000ToWords(int num) {
-        string result;
-        if(num &gt;= 100) {
-            result += mp[num &#x2F; 100] + &quot; Hundred&quot;;
-            if(num % 100 == 0) return result;
-            result += &quot; &quot;;
-        }
-        if(mp.count(num%100)) {
-            result += mp[num % 100];
-        } else {
-            result += mp[(num % 100) &#x2F; 10 * 10] + &quot; &quot; + mp[(num % 10)];
-        }
-        return result;
-    }
-    void numberPartToWords(string &amp;result, int &amp;num, const int threshold, const string &amp;unit) {
-        if(num &gt;= threshold) {
-            if(result.length()) result += &quot; &quot;;
-            result += numberLT1000ToWords(num &#x2F; threshold);
-            if(unit.length()) result += &quot; &quot; +unit;
-            num %= threshold;
-        }
-    }
-public:
-    string numberToWords(int num) {
-        if(!num) return move(ZERO);
-        string answer = &quot;&quot;;
-        for(const auto &amp;[threshold, unit] : units) {
-            numberPartToWords(answer, num, threshold, unit);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string ZERO </span><span>= &quot;</span><span style="color:#a3be8c;">Zero</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, string&gt;&gt; units</span><span>= </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1000000000</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Billion</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1000000</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Million</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Thousand</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>&quot;&quot;</span><span style="color:#eff1f5;">}
+</span><span style="color:#eff1f5;">    };
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, string&gt; mp </span><span>= </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">One</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Two</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Three</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Four</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">5</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Five</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Six</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">7</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Seven</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">8</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Eight</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Nine</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Ten</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">11</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Eleven</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">12</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Twelve</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">13</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Thirteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">14</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Fourteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">15</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Fifteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">16</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Sixteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">17</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Seventeen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">18</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Eighteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">19</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Nineteen</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">20</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Twenty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">30</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Thirty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">40</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Forty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">50</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Fifty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">60</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Sixty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">70</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Seventy</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">80</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Eighty</span><span>&quot;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">90</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Ninety</span><span>&quot;</span><span style="color:#eff1f5;">}
+</span><span style="color:#eff1f5;">    };
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">numberLT1000ToWords</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        string result;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&gt;= </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            result </span><span>+=</span><span style="color:#eff1f5;"> mp[num </span><span>/ </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">] </span><span>+ &quot;</span><span style="color:#a3be8c;"> Hundred</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>% </span><span style="color:#d08770;">100 </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">            result </span><span>+= &quot; &quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(num</span><span>%</span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">            result </span><span>+=</span><span style="color:#eff1f5;"> mp[num </span><span>% </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            result </span><span>+=</span><span style="color:#eff1f5;"> mp[(num </span><span>% </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">10 </span><span>* </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span>+ &quot; &quot; +</span><span style="color:#eff1f5;"> mp[(num </span><span>% </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">)];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">numberPartToWords</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">const int </span><span style="color:#bf616a;">threshold</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string </span><span>&amp;</span><span style="color:#bf616a;">unit</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&gt;=</span><span style="color:#eff1f5;"> threshold) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) result </span><span>+= &quot; &quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            result </span><span>+= </span><span style="color:#bf616a;">numberLT1000ToWords</span><span style="color:#eff1f5;">(num </span><span>/</span><span style="color:#eff1f5;"> threshold);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(unit.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) result </span><span>+= &quot; &quot; +</span><span style="color:#eff1f5;">unit;
+</span><span style="color:#eff1f5;">            num </span><span>%=</span><span style="color:#eff1f5;"> threshold;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">numberToWords</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">num) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(ZERO);
+</span><span style="color:#eff1f5;">        string answer </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const auto </span><span>&amp;</span><span style="color:#eff1f5;">[threshold, unit] </span><span>:</span><span style="color:#eff1f5;"> units) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">numberPartToWords</span><span style="color:#eff1f5;">(answer, num, threshold, unit);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="february-leetcoding-challenge-3">February LeetCoding Challenge 3</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Linked List Cycle</strong></p>
@@ -293,22 +293,22 @@ public:
 <p>Return <code>true</code> <em>if there is a cycle in the linked list</em>. Otherwise, return <code>false</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png" alt="img" /></p>
-<pre><code>Input: head = [3,2,0,-4], pos = 1
-Output: true
-Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [3,2,0,-4], pos = 1
+</span><span>Output: true
+</span><span>Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test2.png" alt="img" /></p>
-<pre><code>Input: head = [1,2], pos = 0
-Output: true
-Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2], pos = 0
+</span><span>Output: true
+</span><span>Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test3.png" alt="img" /></p>
-<pre><code>Input: head = [1], pos = -1
-Output: false
-Explanation: There is no cycle in the linked list.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1], pos = -1
+</span><span>Output: false
+</span><span>Explanation: There is no cycle in the linked list.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of the nodes in the list is in the range <code>[0, 104]</code>.</li>
@@ -317,22 +317,22 @@ Explanation: There is no cycle in the linked list.
 </ul>
 <p><strong>Follow up:</strong> Can you solve it using <code>O(1)</code> (i.e. constant) memory?</p>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool hasCycle(ListNode *head) {
-        if (!head) return false;
-        ListNode *fast = head, *slow = head;
-        do {
-            if(fast-&gt;next == nullptr) return false;
-            fast = fast-&gt;next;
-            if(fast-&gt;next == nullptr) return false;
-            fast = fast-&gt;next;
-            slow = slow-&gt;next;
-        }while(fast != slow);
-        return true;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">hasCycle</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">head) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">fast </span><span>=</span><span style="color:#eff1f5;"> head, </span><span>*</span><span style="color:#eff1f5;">slow </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">do </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(fast-&gt;</span><span style="color:#bf616a;">next </span><span>== </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            fast </span><span>=</span><span style="color:#eff1f5;"> fast-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(fast-&gt;</span><span style="color:#bf616a;">next </span><span>== </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            fast </span><span>=</span><span style="color:#eff1f5;"> fast-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            slow </span><span>=</span><span style="color:#eff1f5;"> slow-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }</span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(fast </span><span>!=</span><span style="color:#eff1f5;"> slow);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

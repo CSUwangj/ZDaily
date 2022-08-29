@@ -118,31 +118,31 @@ renderMathInElement(document.body, katex_config);
 <p>Given a string <code>s</code> and an integer <code>k</code>. You should construct <code>k</code> non-empty <strong>palindrome</strong> strings using <strong>all the characters</strong> in <code>s</code>.</p>
 <p>Return <em><strong>True</strong></em> if you can use all the characters in <code>s</code> to construct <code>k</code> palindrome strings or <em><strong>False</strong></em> otherwise.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;annabelle&quot;, k = 2
-Output: true
-Explanation: You can construct two palindromes using all characters in s.
-Some possible constructions &quot;anna&quot; + &quot;elble&quot;, &quot;anbna&quot; + &quot;elle&quot;, &quot;anellena&quot; + &quot;b&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;annabelle&quot;, k = 2
+</span><span>Output: true
+</span><span>Explanation: You can construct two palindromes using all characters in s.
+</span><span>Some possible constructions &quot;anna&quot; + &quot;elble&quot;, &quot;anbna&quot; + &quot;elle&quot;, &quot;anellena&quot; + &quot;b&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;leetcode&quot;, k = 3
-Output: false
-Explanation: It is impossible to construct 3 palindromes using all the characters of s.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;leetcode&quot;, k = 3
+</span><span>Output: false
+</span><span>Explanation: It is impossible to construct 3 palindromes using all the characters of s.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;true&quot;, k = 4
-Output: true
-Explanation: The only possible solution is to put each character in a separate string.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;true&quot;, k = 4
+</span><span>Output: true
+</span><span>Explanation: The only possible solution is to put each character in a separate string.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;yzyzyzyzyzyzyzy&quot;, k = 2
-Output: true
-Explanation: Simply you can put all z&#x27;s in one string and all y&#x27;s in the other string. Both strings will be palindrome.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;yzyzyzyzyzyzyzy&quot;, k = 2
+</span><span>Output: true
+</span><span>Explanation: Simply you can put all z&#39;s in one string and all y&#39;s in the other string. Both strings will be palindrome.
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: s = &quot;cr&quot;, k = 7
-Output: false
-Explanation: We don&#x27;t have enough characters in s to construct 7 palindromes.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;cr&quot;, k = 7
+</span><span>Output: false
+</span><span>Explanation: We don&#39;t have enough characters in s to construct 7 palindromes.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 10^5</code></li>
@@ -150,56 +150,56 @@ Explanation: We don&#x27;t have enough characters in s to construct 7 palindrome
 <li><code>1 &lt;= k &lt;= 10^5</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool canConstruct(string s, int k) {
-    int cnt[26] = {};
-    for(auto c : s) cnt[c - &#x27;a&#x27;] += 1;
-    int mmin = 0;
-    for(int i = 0; i &lt; 26; ++i) mmin += cnt[i] &amp; 1;
-    mmin = max(mmin, 1);
-    return k &gt;= mmin &amp;&amp; k &lt;= s.length();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">canConstruct</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) cnt[c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mmin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) mmin </span><span>+=</span><span style="color:#eff1f5;"> cnt[i] </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    mmin </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(mmin, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> k </span><span>&gt;=</span><span style="color:#eff1f5;"> mmin </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> k </span><span>&lt;=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="may-leetcoding-challenge-10">May LeetCoding Challenge 10</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Count Primes</strong></p>
 <p>Count the number of prime numbers less than a non-negative number, <code>n</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 10
-Output: 4
-Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 10
+</span><span>Output: 4
+</span><span>Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 0
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 0
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 1
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= n &lt;= 5 * 10^6</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int countPrimes(int n) {
-    bool isPrime[n + 2];
-    memset(isPrime, 1, sizeof(isPrime));
-    isPrime[0] = isPrime[1] = false;
-    for(int i = 2; i * i &lt;= n; ++i) {
-      if(!isPrime[i]) continue;
-      for(int j = i * i; j &lt;= n; j += i) {
-        isPrime[j] = false;
-      }
-    }
-    return accumulate(isPrime, isPrime + n, 0);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">countPrimes</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> isPrime[n </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(isPrime, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(isPrime));
+</span><span style="color:#eff1f5;">    isPrime[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> isPrime[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>*</span><span style="color:#eff1f5;"> i </span><span>&lt;=</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">isPrime[i]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i </span><span>*</span><span style="color:#eff1f5;"> i; j </span><span>&lt;=</span><span style="color:#eff1f5;"> n; j </span><span>+=</span><span style="color:#eff1f5;"> i) {
+</span><span style="color:#eff1f5;">        isPrime[j] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">accumulate</span><span style="color:#eff1f5;">(isPrime, isPrime </span><span>+</span><span style="color:#eff1f5;"> n, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

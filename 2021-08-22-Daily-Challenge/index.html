@@ -120,15 +120,15 @@ renderMathInElement(document.body, katex_config);
 <p>Find the total area covered by all <code>rectangles</code> in the plane. Since the answer may be too large, return it <strong>modulo</strong> <code>109 + 7</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/06/06/rectangle_area_ii_pic.png" alt="img" /></p>
-<pre><code>Input: rectangles = [[0,0,2,2],[1,0,2,3],[1,0,3,1]]
-Output: 6
-Explanation: As illustrated in the picture.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: rectangles = [[0,0,2,2],[1,0,2,3],[1,0,3,1]]
+</span><span>Output: 6
+</span><span>Explanation: As illustrated in the picture.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: rectangles = [[0,0,1000000000,1000000000]]
-Output: 49
-Explanation: The answer is 1018 modulo (109 + 7), which is (109)2 = (-7)2 = 49.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: rectangles = [[0,0,1000000000,1000000000]]
+</span><span>Output: 49
+</span><span>Explanation: The answer is 1018 modulo (109 + 7), which is (109)2 = (-7)2 = 49.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= rectangles.length &lt;= 200</code></li>
@@ -137,99 +137,99 @@ Explanation: The answer is 1018 modulo (109 + 7), which is (109)2 = (-7)2 = 49.
 <li>The total area covered by all rectangles will never exceed <code>263 - 1</code> and thus will fit in a <strong>64-bit</strong> signed integer.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-struct Node {
-  int l, r, y, v;
-  bool operator&lt;(const Node&amp; a) const {
-    return this-&gt;y &lt; a.y;
-  }
-};
-Node segTree[400];
-int sum[1600];
-int lazy[1600];
-int mp[200];
-int mappingLen;
-int id(int x) {
-  return lower_bound(mp, mp + mappingLen, x) - mp;
-}
-int query() {
-  return sum[0];
-}
-void pull(int l, int r, int o) {
-  &#x2F;&#x2F; cout &lt;&lt; &quot;P &quot; &lt;&lt; mp[l] &lt;&lt; &#x27; &#x27; &lt;&lt; mp[r] &lt;&lt; endl;
-  if(lazy[o] &gt; 0) sum[o] = mp[r + 1] - mp[l];
-  else sum[o] = sum[o * 2 + 1] + sum[o * 2 + 2]; 
-}
-void update(int l, int r, int ql, int qr, int v, int o = 0) {
-  if(ql &lt;= l &amp;&amp; r &lt;= qr) {
-    lazy[o] += v;
-  } else {
-    cout &lt;&lt; l &lt;&lt; &#x27; &#x27;  &lt;&lt; r &lt;&lt; &#x27; &#x27; &lt;&lt; ql &lt;&lt; &#x27; &#x27; &lt;&lt; qr &lt;&lt; endl;
-    int mid = (l + r) &gt;&gt; 1;
-    if(ql &lt;= mid) update(l, mid, ql, qr, v, o * 2 + 1);
-    if(qr &gt; mid) update(mid + 1, r, ql, qr, v, o * 2 + 2);
-  }
-  &#x2F;&#x2F; cout &lt;&lt; &quot;#&quot; &lt;&lt; o &lt;&lt; &#x27; &#x27; &lt;&lt; lazy[o] &lt;&lt; &#x27; &#x27;;
-  pull(l, r, o);
-  &#x2F;&#x2F; cout &lt;&lt;&quot;#&quot; &lt;&lt; o &lt;&lt; &#x27; &#x27;&lt;&lt; sum[o] &lt;&lt; endl;
-}
-const int MOD = 1e9 + 7;
-class Solution {
-  int n;
-  long long prevY;
-  void init(vector&lt;vector&lt;int&gt;&gt;&amp; rectangles) {
-    n = rectangles.size();
-    for(int i = 0; i &lt; n ; ++i) {
-      segTree[i * 2].l = rectangles[i][0];
-      segTree[i * 2].r = rectangles[i][2];
-      segTree[i * 2].y = rectangles[i][1];
-      segTree[i * 2].v = 1;
-      segTree[i * 2 + 1].l = rectangles[i][0];
-      segTree[i * 2 + 1].r = rectangles[i][2];
-      segTree[i * 2 + 1].y = rectangles[i][3];
-      segTree[i * 2 + 1].v = -1;
-      mp[i * 2] = rectangles[i][0];
-      mp[i * 2 + 1] = rectangles[i][2];
-    }
-    sort(segTree, segTree + n * 2);
-    sort(mp, mp + n * 2);
-    mappingLen = unique(mp, mp + n * 2) - mp;
-    for(int i = 0; i &lt; 2 * n; ++i) {
-      segTree[i].l = id(segTree[i].l);
-      segTree[i].r = id(segTree[i].r);
-    }
-    prevY = segTree[0].y;
-  }
-  int solve() {
-    long long answer = 0;
-    &#x2F;&#x2F; cout &lt;&lt; mappingLen &lt;&lt; endl;
-    for(int i = 0; i &lt; n * 2; ++i) {
-      &#x2F;&#x2F; cout &lt;&lt; sum[0] &lt;&lt; &#x27; &#x27; &lt;&lt; prevY &lt;&lt; &#x27; &#x27; &lt;&lt; segTree[i].y &lt;&lt; endl;
-      &#x2F;&#x2F; cout &lt;&lt; mp[segTree[i].l] &lt;&lt; &#x27; &#x27;&lt;&lt; mp[segTree[i].r] &lt;&lt; &#x27; &#x27; &lt;&lt; segTree[i].v &lt;&lt;endl;
-      answer += query() * (segTree[i].y - prevY);
-      update(0, mappingLen - 1, segTree[i].l, segTree[i].r - 1, segTree[i].v);
-      prevY = segTree[i].y;
-    }
-    answer %= MOD;
-    return answer;
-  }
-public:
-  int rectangleArea(vector&lt;vector&lt;int&gt;&gt;&amp; rectangles) {
-    init(rectangles);
-    return solve();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 78&#x2F;78 cases passed (24 ms)
-&#x2F;&#x2F; Your runtime beats 23.46 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 100 % of cpp submissions (8.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">struct </span><span>Node {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> l, r, y, v;
+</span><span>  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">operator&lt;</span><span>(</span><span style="color:#b48ead;">const</span><span> Node&amp; </span><span style="color:#bf616a;">a</span><span>) </span><span style="color:#b48ead;">const </span><span>{
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span>-&gt;</span><span style="color:#bf616a;">y </span><span>&lt; a.</span><span style="color:#bf616a;">y</span><span>;
+</span><span>  }
+</span><span>};
+</span><span>Node segTree[</span><span style="color:#d08770;">400</span><span>];
+</span><span style="color:#b48ead;">int</span><span> sum[</span><span style="color:#d08770;">1600</span><span>];
+</span><span style="color:#b48ead;">int</span><span> lazy[</span><span style="color:#d08770;">1600</span><span>];
+</span><span style="color:#b48ead;">int</span><span> mp[</span><span style="color:#d08770;">200</span><span>];
+</span><span style="color:#b48ead;">int</span><span> mappingLen;
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">id</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">lower_bound</span><span>(mp, mp + mappingLen, x) - mp;
+</span><span>}
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">query</span><span>() {
+</span><span>  </span><span style="color:#b48ead;">return</span><span> sum[</span><span style="color:#d08770;">0</span><span>];
+</span><span>}
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">pull</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">l</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">r</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">o</span><span>) {
+</span><span>  </span><span style="color:#65737e;">// cout &lt;&lt; &quot;P &quot; &lt;&lt; mp[l] &lt;&lt; &#39; &#39; &lt;&lt; mp[r] &lt;&lt; endl;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(lazy[o] &gt; </span><span style="color:#d08770;">0</span><span>) sum[o] = mp[r + </span><span style="color:#d08770;">1</span><span>] - mp[l];
+</span><span>  </span><span style="color:#b48ead;">else</span><span> sum[o] = sum[o * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span>] + sum[o * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span>]; 
+</span><span>}
+</span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">update</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">l</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">r</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">ql</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">qr</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">v</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">o </span><span>= </span><span style="color:#d08770;">0</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(ql &lt;= l &amp;&amp; r &lt;= qr) {
+</span><span>    lazy[o] += v;
+</span><span>  } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>    cout &lt;&lt; l &lt;&lt; &#39; &#39;  &lt;&lt; r &lt;&lt; &#39; &#39; &lt;&lt; ql &lt;&lt; &#39; &#39; &lt;&lt; qr &lt;&lt; endl;
+</span><span>    </span><span style="color:#b48ead;">int</span><span> mid = (l + r) &gt;&gt; </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(ql &lt;= mid) </span><span style="color:#bf616a;">update</span><span>(l, mid, ql, qr, v, o * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span>);
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(qr &gt; mid) </span><span style="color:#bf616a;">update</span><span>(mid + </span><span style="color:#d08770;">1</span><span>, r, ql, qr, v, o * </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span>);
+</span><span>  }
+</span><span>  </span><span style="color:#65737e;">// cout &lt;&lt; &quot;#&quot; &lt;&lt; o &lt;&lt; &#39; &#39; &lt;&lt; lazy[o] &lt;&lt; &#39; &#39;;
+</span><span>  </span><span style="color:#bf616a;">pull</span><span>(l, r, o);
+</span><span>  </span><span style="color:#65737e;">// cout &lt;&lt;&quot;#&quot; &lt;&lt; o &lt;&lt; &#39; &#39;&lt;&lt; sum[o] &lt;&lt; endl;
+</span><span>}
+</span><span style="color:#b48ead;">const int</span><span> MOD = </span><span style="color:#d08770;">1e9 </span><span>+ </span><span style="color:#d08770;">7</span><span>;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> prevY;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">rectangles</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    n </span><span>=</span><span style="color:#eff1f5;"> rectangles.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n ; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      segTree[i </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">l </span><span>=</span><span style="color:#eff1f5;"> rectangles[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      segTree[i </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">r </span><span>=</span><span style="color:#eff1f5;"> rectangles[i][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      segTree[i </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">y </span><span>=</span><span style="color:#eff1f5;"> rectangles[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      segTree[i </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">v </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      segTree[i </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">l </span><span>=</span><span style="color:#eff1f5;"> rectangles[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      segTree[i </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">r </span><span>=</span><span style="color:#eff1f5;"> rectangles[i][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      segTree[i </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">y </span><span>=</span><span style="color:#eff1f5;"> rectangles[i][</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      segTree[i </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">v </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      mp[i </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> rectangles[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      mp[i </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> rectangles[i][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(segTree, segTree </span><span>+</span><span style="color:#eff1f5;"> n </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(mp, mp </span><span>+</span><span style="color:#eff1f5;"> n </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    mappingLen </span><span>= </span><span style="color:#bf616a;">unique</span><span style="color:#eff1f5;">(mp, mp </span><span>+</span><span style="color:#eff1f5;"> n </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>-</span><span style="color:#eff1f5;"> mp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">2 </span><span>*</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      segTree[i].</span><span style="color:#bf616a;">l </span><span>= </span><span style="color:#bf616a;">id</span><span style="color:#eff1f5;">(segTree[i].</span><span style="color:#bf616a;">l</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      segTree[i].</span><span style="color:#bf616a;">r </span><span>= </span><span style="color:#bf616a;">id</span><span style="color:#eff1f5;">(segTree[i].</span><span style="color:#bf616a;">r</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    prevY </span><span>=</span><span style="color:#eff1f5;"> segTree[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">y</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; mappingLen &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; sum[0] &lt;&lt; &#39; &#39; &lt;&lt; prevY &lt;&lt; &#39; &#39; &lt;&lt; segTree[i].y &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; mp[segTree[i].l] &lt;&lt; &#39; &#39;&lt;&lt; mp[segTree[i].r] &lt;&lt; &#39; &#39; &lt;&lt; segTree[i].v &lt;&lt;endl;
+</span><span style="color:#eff1f5;">      answer </span><span>+= </span><span style="color:#bf616a;">query</span><span style="color:#eff1f5;">() </span><span>* </span><span style="color:#eff1f5;">(segTree[i].</span><span style="color:#bf616a;">y </span><span>-</span><span style="color:#eff1f5;"> prevY);
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">update</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, mappingLen </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, segTree[i].</span><span style="color:#bf616a;">l</span><span style="color:#eff1f5;">, segTree[i].</span><span style="color:#bf616a;">r </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, segTree[i].</span><span style="color:#bf616a;">v</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      prevY </span><span>=</span><span style="color:#eff1f5;"> segTree[i].</span><span style="color:#bf616a;">y</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    answer </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">rectangleArea</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">rectangles</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(rectangles);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 78/78 cases passed (24 ms)
+</span><span style="color:#65737e;">// Your runtime beats 23.46 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 100 % of cpp submissions (8.3 MB)
+</span></code></pre>
 
     </div>
   </div>

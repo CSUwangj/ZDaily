@@ -118,13 +118,13 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Find All Numbers Disappeared in an Array</strong></p>
 <p>Given an array <code>nums</code> of <code>n</code> integers where <code>nums[i]</code> is in the range <code>[1, n]</code>, return <em>an array of all the integers in the range</em> <code>[1, n]</code> <em>that do not appear in</em> <code>nums</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [4,3,2,7,8,2,3,1]
-Output: [5,6]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [4,3,2,7,8,2,3,1]
+</span><span>Output: [5,6]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1,1]
-Output: [2]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,1]
+</span><span>Output: [2]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == nums.length</code></li>
@@ -133,34 +133,34 @@ Output: [2]
 </ul>
 <p><strong>Follow up:</strong> Could you do it without extra space and in <code>O(n)</code> runtime? You may assume the returned list does not count as extra space.</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  vector&lt;int&gt; findDisappearedNumbers(vector&lt;int&gt;&amp; nums) {
-    for(auto i : nums) {
-      i = i &lt; 0 ? -i : i;
-      nums[i - 1] = nums[i - 1] &lt; 0 ? nums[i - 1] : -nums[i - 1];    
-    }
-    vector&lt;int&gt; answer;
-    for(int i = 0; i &lt; nums.size(); ++i) {
-      if(nums[i] &gt; 0) {
-        answer.push_back(i + 1);
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 33&#x2F;33 cases passed (28 ms)
-&#x2F;&#x2F; Your runtime beats 99.89 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 54.3 % of cpp submissions (33.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">findDisappearedNumbers</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      i </span><span>=</span><span style="color:#eff1f5;"> i </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>? -</span><span style="color:#eff1f5;">i </span><span>:</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      nums[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> nums[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>?</span><span style="color:#eff1f5;"> nums[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>: -</span><span style="color:#eff1f5;">nums[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];    
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 33/33 cases passed (28 ms)
+</span><span style="color:#65737e;">// Your runtime beats 99.89 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 54.3 % of cpp submissions (33.8 MB)
+</span></code></pre>
 
     </div>
   </div>

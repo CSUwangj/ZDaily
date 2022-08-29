@@ -120,16 +120,16 @@ renderMathInElement(document.body, katex_config);
 <p>A <strong>height-balanced</strong> binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/18/btree1.jpg" alt="img" /></p>
-<pre><code>Input: nums = [-10,-3,0,5,9]
-Output: [0,-3,9,-10,null,5]
-Explanation: [0,-10,5,null,-3,null,9] is also accepted:
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [-10,-3,0,5,9]
+</span><span>Output: [0,-3,9,-10,null,5]
+</span><span>Explanation: [0,-10,5,null,-3,null,9] is also accepted:
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/18/btree.jpg" alt="img" /></p>
-<pre><code>Input: nums = [1,3]
-Output: [3,1]
-Explanation: [1,null,3] and [3,1] are both height-balanced BSTs.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,3]
+</span><span>Output: [3,1]
+</span><span>Explanation: [1,null,3] and [3,1] are both height-balanced BSTs.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^4</code></li>
@@ -137,27 +137,27 @@ Explanation: [1,null,3] and [3,1] are both height-balanced BSTs.
 <li><code>nums</code> is sorted in a <strong>strictly increasing</strong> order.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  TreeNode *construct(vector&lt;int&gt; &amp;nums, int begin, int end) {
-    if(begin &gt; end) return nullptr;
-    int mid = (begin + end) &gt;&gt; 1;
-    TreeNode *root = new TreeNode(nums[mid]);
-    root-&gt;left = construct(nums, begin, mid - 1);
-    root-&gt;right = construct(nums, mid + 1, end);
-    return root;
-  }
-public:
-  TreeNode* sortedArrayToBST(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    return construct(nums, 0, len - 1);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 31&#x2F;31 cases passed (8 ms)
-&#x2F;&#x2F; Your runtime beats 95.55 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 75.67 % of cpp submissions (21.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#8fa1b3;">construct</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span>&gt;</span><span style="color:#eff1f5;"> end) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(begin </span><span>+</span><span style="color:#eff1f5;"> end) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">root </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(nums[mid]);
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">construct</span><span style="color:#eff1f5;">(nums, begin, mid </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">construct</span><span style="color:#eff1f5;">(nums, mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">sortedArrayToBST</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">construct</span><span style="color:#eff1f5;">(nums, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 31/31 cases passed (8 ms)
+</span><span style="color:#65737e;">// Your runtime beats 95.55 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 75.67 % of cpp submissions (21.4 MB)
+</span></code></pre>
 
     </div>
   </div>

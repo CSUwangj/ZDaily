@@ -121,63 +121,63 @@ renderMathInElement(document.body, katex_config);
 <p>Each solution contains a distinct board configuration of the n-queens' placement, where <code>'Q'</code> and <code>'.'</code> both indicate a queen and an empty space, respectively.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/13/queens.jpg" alt="img" /></p>
-<pre><code>Input: n = 4
-Output: [[&quot;.Q..&quot;,&quot;...Q&quot;,&quot;Q...&quot;,&quot;..Q.&quot;],[&quot;..Q.&quot;,&quot;Q...&quot;,&quot;...Q&quot;,&quot;.Q..&quot;]]
-Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 4
+</span><span>Output: [[&quot;.Q..&quot;,&quot;...Q&quot;,&quot;Q...&quot;,&quot;..Q.&quot;],[&quot;..Q.&quot;,&quot;Q...&quot;,&quot;...Q&quot;,&quot;.Q..&quot;]]
+</span><span>Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 1
-Output: [[&quot;Q&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1
+</span><span>Output: [[&quot;Q&quot;]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 9</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">int rows[9];
-bool check(int row, int col) {
-  for(int i = 0; i &lt; row; ++i) {
-    if(abs(i - row) == abs(rows[i] - col) || col == rows[i]) return false;
-  }
-  return true;
-}
-class Solution {
-  vector&lt;vector&lt;string&gt;&gt; answer;
-
-  void addResult(int n) {
-    vector&lt;string&gt; result;
-    for(int i = 0; i &lt; n; ++i) {
-      string row(n, &#x27;.&#x27;);
-      row[rows[i]] = &#x27;Q&#x27;;
-      result.emplace_back(row);
-    }
-    answer.emplace_back(result);
-  }
-
-  void solve(int cur, int n) {
-    if(cur == n) {
-      addResult(n);
-      return;
-    }
-    for(int i = 0; i &lt; n; ++i) {
-      if(check(cur, i)) {
-        rows[cur] = i;
-        solve(cur + 1, n);
-      }
-    }
-  }
-public:
-  vector&lt;vector&lt;string&gt;&gt; solveNQueens(int n) {
-    solve(0, n);
-    return move(answer);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 9&#x2F;9 cases passed (5 ms)
-&#x2F;&#x2F; Your runtime beats 81.60 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 36.63 % of cpp submissions (8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">int</span><span> rows[</span><span style="color:#d08770;">9</span><span>];
+</span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">check</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">row</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">col</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; row; ++i) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#96b5b4;">abs</span><span>(i - row) == </span><span style="color:#96b5b4;">abs</span><span>(rows[i] - col) || col == rows[i]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;string&gt;&gt; answer;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">addResult</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      string </span><span style="color:#bf616a;">row</span><span style="color:#eff1f5;">(n, </span><span>&#39;</span><span style="color:#a3be8c;">.</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      row[rows[i]] </span><span>= &#39;</span><span style="color:#a3be8c;">Q</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      result.</span><span style="color:#bf616a;">emplace_back</span><span style="color:#eff1f5;">(row);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    answer.</span><span style="color:#bf616a;">emplace_back</span><span style="color:#eff1f5;">(result);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>==</span><span style="color:#eff1f5;"> n) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">addResult</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">check</span><span style="color:#eff1f5;">(cur, i)) {
+</span><span style="color:#eff1f5;">        rows[cur] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(cur </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, n);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;string&gt;&gt; </span><span style="color:#8fa1b3;">solveNQueens</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, n);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(answer);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 9/9 cases passed (5 ms)
+</span><span style="color:#65737e;">// Your runtime beats 81.60 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 36.63 % of cpp submissions (8 MB)
+</span></code></pre>
 
     </div>
   </div>

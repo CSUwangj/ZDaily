@@ -121,53 +121,53 @@ renderMathInElement(document.body, katex_config);
 <p>How many possible unique paths are there?</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/10/22/robot_maze.png" alt="img" /></p>
-<pre><code>Input: m = 3, n = 7
-Output: 28
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 3, n = 7
+</span><span>Output: 28
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: m = 3, n = 2
-Output: 3
-Explanation:
-From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
-1. Right -&gt; Down -&gt; Down
-2. Down -&gt; Down -&gt; Right
-3. Down -&gt; Right -&gt; Down
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 3, n = 2
+</span><span>Output: 3
+</span><span>Explanation:
+</span><span>From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+</span><span>1. Right -&gt; Down -&gt; Down
+</span><span>2. Down -&gt; Down -&gt; Right
+</span><span>3. Down -&gt; Right -&gt; Down
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: m = 7, n = 3
-Output: 28
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 7, n = 3
+</span><span>Output: 28
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: m = 3, n = 3
-Output: 6
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: m = 3, n = 3
+</span><span>Output: 6
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= m, n &lt;= 100</code></li>
 <li>It's guaranteed that the answer will be less than or equal to <code>2 * 10^9</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">constexpr int combination(int total, int pick) {
-  long long result = 1;
-  for(int i = 0; i &lt; pick; ++i) {
-    result *= (total - i);
-    result &#x2F;= (i + 1);
-  }
-  return result;
-}
-
-class Solution {
-public:
-  int uniquePaths(int m, int n) {
-    return combination(m + n - 2, min(n - 1, m - 1));
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 62&#x2F;62 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 88.67 % of cpp submissions (5.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">constexpr int </span><span style="color:#8fa1b3;">combination</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">total</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">pick</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">long long</span><span> result = </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; pick; ++i) {
+</span><span>    result *= (total - i);
+</span><span>    result /= (i + </span><span style="color:#d08770;">1</span><span>);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return</span><span> result;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">uniquePaths</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">combination</span><span style="color:#eff1f5;">(m </span><span>+</span><span style="color:#eff1f5;"> n </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(n </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, m </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 62/62 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 88.67 % of cpp submissions (5.8 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -128,19 +128,19 @@ renderMathInElement(document.body, katex_config);
 <p>Your code will <strong>only</strong> be given the <code>head</code> of the original linked list.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/12/18/e1.png" alt="img" /></p>
-<pre><code>Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
-Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+</span><span>Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/12/18/e2.png" alt="img" /></p>
-<pre><code>Input: head = [[1,1],[2,1]]
-Output: [[1,1],[2,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [[1,1],[2,1]]
+</span><span>Output: [[1,1],[2,1]]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/12/18/e3.png" alt="img" /></strong></p>
-<pre><code>Input: head = [[3,null],[3,0],[3,null]]
-Output: [[3,null],[3,0],[3,null]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [[3,null],[3,0],[3,null]]
+</span><span>Output: [[3,null],[3,0],[3,null]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= n &lt;= 1000</code></li>
@@ -148,48 +148,48 @@ Output: [[3,null],[3,0],[3,null]]
 <li><code>Node.random</code> is <code>null</code> or is pointing to some node in the linked list.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  Node* copyRandomList(Node* head) {
-    if(!head) return nullptr;
-    &#x2F;&#x2F; copy nodes
-    Node *cur = head;
-    while(cur) {
-      Node *newNode = new Node(cur-&gt;val);
-      newNode-&gt;next = cur-&gt;next;
-      newNode-&gt;random = cur-&gt;random;
-      cur-&gt;next = newNode;
-      cur = newNode-&gt;next;
-    }
-
-    &#x2F;&#x2F; fix random
-    cur = head;
-    while(cur) {
-      cur = cur-&gt;next;
-      if(cur-&gt;random) cur-&gt;random = cur-&gt;random-&gt;next;
-      cur = cur-&gt;next;
-    }
-    
-    &#x2F;&#x2F; separate two list
-    Node *newHead = head-&gt;next;
-    cur = head;
-    Node *newCur = newHead;
-    while(cur) {
-      cur-&gt;next = newCur-&gt;next;
-      cur = cur-&gt;next;
-      newCur-&gt;next = cur ? cur-&gt;next : nullptr;
-      newCur = newCur-&gt;next;
-    }
-    
-    return newHead;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 19&#x2F;19 cases passed (8 ms)
-&#x2F;&#x2F; Your runtime beats 84.2 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 98.36 % of cpp submissions (11.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  Node</span><span>* </span><span style="color:#8fa1b3;">copyRandomList</span><span style="color:#eff1f5;">(Node</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">head) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// copy nodes
+</span><span style="color:#eff1f5;">    Node </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">      Node </span><span>*</span><span style="color:#eff1f5;">newNode </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">Node</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      newNode-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      newNode-&gt;</span><span style="color:#bf616a;">random </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">random</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> newNode;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> newNode-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// fix random
+</span><span style="color:#eff1f5;">    cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">random</span><span style="color:#eff1f5;">) cur-&gt;</span><span style="color:#bf616a;">random </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">random</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// separate two list
+</span><span style="color:#eff1f5;">    Node </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    Node </span><span>*</span><span style="color:#eff1f5;">newCur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">      cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> newCur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      newCur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur </span><span>?</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next </span><span>: </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      newCur </span><span>=</span><span style="color:#eff1f5;"> newCur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 19/19 cases passed (8 ms)
+</span><span style="color:#65737e;">// Your runtime beats 84.2 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 98.36 % of cpp submissions (11.1 MB)
+</span></code></pre>
 
     </div>
   </div>

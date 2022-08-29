@@ -125,8 +125,8 @@ renderMathInElement(document.body, katex_config);
 <li>
 <p><code>void push(int val)</code> pushes an integer <code>val</code> onto the top of the stack.</p>
 </li>
-<li><pre><code>int pop()
-</code></pre>
+<li><pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>int pop()
+</span></code></pre>
 <p>removes and returns the most frequent element in the stack. </p>
 <ul>
 <li>If there is a tie for the most frequent element, the element closest to the stack's top is removed and returned.</li>
@@ -134,25 +134,25 @@ renderMathInElement(document.body, katex_config);
 </li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;FreqStack&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;]
-[[], [5], [7], [5], [7], [4], [5], [], [], [], []]
-Output
-[null, null, null, null, null, null, null, 5, 7, 5, 4]
-
-Explanation
-FreqStack freqStack = new FreqStack();
-freqStack.push(5); &#x2F;&#x2F; The stack is [5]
-freqStack.push(7); &#x2F;&#x2F; The stack is [5,7]
-freqStack.push(5); &#x2F;&#x2F; The stack is [5,7,5]
-freqStack.push(7); &#x2F;&#x2F; The stack is [5,7,5,7]
-freqStack.push(4); &#x2F;&#x2F; The stack is [5,7,5,7,4]
-freqStack.push(5); &#x2F;&#x2F; The stack is [5,7,5,7,4,5]
-freqStack.pop();   &#x2F;&#x2F; return 5, as 5 is the most frequent. The stack becomes [5,7,5,7,4].
-freqStack.pop();   &#x2F;&#x2F; return 7, as 5 and 7 is the most frequent, but 7 is closest to the top. The stack becomes [5,7,5,4].
-freqStack.pop();   &#x2F;&#x2F; return 5, as 5 is the most frequent. The stack becomes [5,7,4].
-freqStack.pop();   &#x2F;&#x2F; return 4, as 4, 5 and 7 is the most frequent, but 4 is closest to the top. The stack becomes [5,7].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;FreqStack&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;]
+</span><span>[[], [5], [7], [5], [7], [4], [5], [], [], [], []]
+</span><span>Output
+</span><span>[null, null, null, null, null, null, null, 5, 7, 5, 4]
+</span><span>
+</span><span>Explanation
+</span><span>FreqStack freqStack = new FreqStack();
+</span><span>freqStack.push(5); // The stack is [5]
+</span><span>freqStack.push(7); // The stack is [5,7]
+</span><span>freqStack.push(5); // The stack is [5,7,5]
+</span><span>freqStack.push(7); // The stack is [5,7,5,7]
+</span><span>freqStack.push(4); // The stack is [5,7,5,7,4]
+</span><span>freqStack.push(5); // The stack is [5,7,5,7,4,5]
+</span><span>freqStack.pop();   // return 5, as 5 is the most frequent. The stack becomes [5,7,5,7,4].
+</span><span>freqStack.pop();   // return 7, as 5 and 7 is the most frequent, but 7 is closest to the top. The stack becomes [5,7,5,4].
+</span><span>freqStack.pop();   // return 5, as 5 is the most frequent. The stack becomes [5,7,4].
+</span><span>freqStack.pop();   // return 4, as 4, 5 and 7 is the most frequent, but 4 is closest to the top. The stack becomes [5,7].
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= val &lt;= 10^9</code></li>
@@ -160,45 +160,45 @@ freqStack.pop();   &#x2F;&#x2F; return 4, as 4, 5 and 7 is the most frequent, bu
 <li>It is guaranteed that there will be at least one element in the stack before calling <code>pop</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class FreqStack {
-  vector&lt;vector&lt;int&gt;&gt; stack;
-  unordered_map&lt;int, int&gt; count;
-  int maxCount;
-public:
-  FreqStack(): maxCount(0) {}
-  
-  void push(int val) {
-    if(maxCount == count[val]) {
-      stack.push_back({});
-    }
-    stack[count[val]].push_back(val);
-    count[val] += 1;
-    maxCount = max(maxCount, count[val]);
-  }
-  
-  int pop() {
-    int val = stack.back().back();
-    count[val] -= 1;
-    stack.back().pop_back();
-    if(stack.back().empty()) {
-      stack.pop_back();
-      maxCount -= 1;
-    }
-    return val;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 37&#x2F;37 cases passed (196 ms)
-&#x2F;&#x2F; Your runtime beats 82.29 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 82.96 % of cpp submissions (79.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">FreqStack </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; stack;
+</span><span style="color:#eff1f5;">  unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; count;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxCount;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">FreqStack</span><span style="color:#eff1f5;">(): </span><span style="color:#bf616a;">maxCount</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {}
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(maxCount </span><span>==</span><span style="color:#eff1f5;"> count[val]) {
+</span><span style="color:#eff1f5;">      stack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({});
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    stack[count[val]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(val);
+</span><span style="color:#eff1f5;">    count[val] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    maxCount </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(maxCount, count[val]);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>=</span><span style="color:#eff1f5;"> stack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    count[val] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    stack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(stack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      stack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      maxCount </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 37/37 cases passed (196 ms)
+</span><span style="color:#65737e;">// Your runtime beats 82.29 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 82.96 % of cpp submissions (79.9 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -127,81 +127,81 @@ renderMathInElement(document.body, katex_config);
 <p>Fence cipher.</p>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>210. Course Schedule II
-
-There are a total of n courses you have to take, labeled from 0 to n-1.
-
-Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
-
-Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.
-
-There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.
-
-Example 1:
-
-Input: 2, [[1,0]] 
-Output: [0,1]
-Explanation: There are a total of 2 courses to take. To take course 1 you should have finished   
-             course 0. So the correct course order is [0,1] .
-Example 2:
-
-Input: 4, [[1,0],[2,0],[3,1],[3,2]]
-Output: [0,1,2,3] or [0,2,1,3]
-Explanation: There are a total of 4 courses to take. To take course 3 you should have finished both     
-             courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. 
-             So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3] .
-Note:
-
-The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
-You may assume that there are no duplicate edges in the input prerequisites.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>210. Course Schedule II
+</span><span>
+</span><span>There are a total of n courses you have to take, labeled from 0 to n-1.
+</span><span>
+</span><span>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+</span><span>
+</span><span>Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.
+</span><span>
+</span><span>There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.
+</span><span>
+</span><span>Example 1:
+</span><span>
+</span><span>Input: 2, [[1,0]] 
+</span><span>Output: [0,1]
+</span><span>Explanation: There are a total of 2 courses to take. To take course 1 you should have finished   
+</span><span>             course 0. So the correct course order is [0,1] .
+</span><span>Example 2:
+</span><span>
+</span><span>Input: 4, [[1,0],[2,0],[3,1],[3,2]]
+</span><span>Output: [0,1,2,3] or [0,2,1,3]
+</span><span>Explanation: There are a total of 4 courses to take. To take course 3 you should have finished both     
+</span><span>             courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. 
+</span><span>             So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3] .
+</span><span>Note:
+</span><span>
+</span><span>The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+</span><span>You may assume that there are no duplicate edges in the input prerequisites.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>Just do a topological sort.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;**
- * @param {number} numCourses
- * @param {number[][]} prerequisites
- * @return {number[]}
- *&#x2F;
-var findOrder = (numCourses, prerequisites) =&gt; {
-  let iDegree = [];
-  let iG = [];
-  let queue = [];
-  let ans = [];
-  for(let i = 0; i &lt; numCourses ; ++i){
-    iDegree.push(0);
-    iG.push([]);
-  }
-  for(const i of prerequisites){
-    iDegree[i[0]] += 1;
-    iG[i[1]].push(i[0]);
-  }
-  &#x2F;&#x2F; console.log(iG);
-  &#x2F;&#x2F; console.log(iDegree);
-  for(const [index, value] of iDegree.entries()){
-    if(value == 0) {
-      queue.push(index);
-    }
-  }
-  console.log(queue);
-  while(queue.length){
-    let i = queue.shift();
-    ans.push(i);
-    for(const j of iG[i]){
-      iDegree[j] -= 1;
-      if(!iDegree[j]){
-        queue.push(j);
-      }
-    }
-  }
-  return ans.length == numCourses? ans:[];
-};
-
-&#x2F;&#x2F; console.log(findOrder(2, [[0,1]]));
-&#x2F;&#x2F; console.log(findOrder(2, [[1,0]]));
-&#x2F;&#x2F; console.log(findOrder(4, [[1,0],[2,0],[3,1],[3,2]]));
-&#x2F;&#x2F; console.log(findOrder(3, [[1,0],[1,2],[0,1]]));
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">numCourses
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[][]} </span><span style="color:#bf616a;">prerequisites
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">findOrder </span><span>= (</span><span style="color:#bf616a;">numCourses</span><span>, </span><span style="color:#bf616a;">prerequisites</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">iDegree </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">iG </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">queue </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">numCourses </span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>    </span><span style="color:#bf616a;">iDegree</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#d08770;">0</span><span>);
+</span><span>    </span><span style="color:#bf616a;">iG</span><span>.</span><span style="color:#96b5b4;">push</span><span>([]);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">i </span><span>of </span><span style="color:#bf616a;">prerequisites</span><span>){
+</span><span>    </span><span style="color:#bf616a;">iDegree</span><span>[</span><span style="color:#bf616a;">i</span><span>[</span><span style="color:#d08770;">0</span><span>]] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#bf616a;">iG</span><span>[</span><span style="color:#bf616a;">i</span><span>[</span><span style="color:#d08770;">1</span><span>]].</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">i</span><span>[</span><span style="color:#d08770;">0</span><span>]);
+</span><span>  }
+</span><span>  </span><span style="color:#65737e;">// console.log(iG);
+</span><span>  </span><span style="color:#65737e;">// console.log(iDegree);
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span>[</span><span style="color:#bf616a;">index</span><span>, </span><span style="color:#bf616a;">value</span><span>] of </span><span style="color:#bf616a;">iDegree</span><span>.</span><span style="color:#96b5b4;">entries</span><span>()){
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">value </span><span>== </span><span style="color:#d08770;">0</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">index</span><span>);
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">queue</span><span>);
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(</span><span style="color:#bf616a;">queue</span><span>.length){
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">shift</span><span>();
+</span><span>    </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">i</span><span>);
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">j </span><span>of </span><span style="color:#bf616a;">iG</span><span>[</span><span style="color:#bf616a;">i</span><span>]){
+</span><span>      </span><span style="color:#bf616a;">iDegree</span><span>[</span><span style="color:#bf616a;">j</span><span>] -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(!</span><span style="color:#bf616a;">iDegree</span><span>[</span><span style="color:#bf616a;">j</span><span>]){
+</span><span>        </span><span style="color:#bf616a;">queue</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">j</span><span>);
+</span><span>      }
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>.length == </span><span style="color:#bf616a;">numCourses</span><span>? </span><span style="color:#bf616a;">ans</span><span>:[];
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(findOrder(2, [[0,1]]));
+</span><span style="color:#65737e;">// console.log(findOrder(2, [[1,0]]));
+</span><span style="color:#65737e;">// console.log(findOrder(4, [[1,0],[2,0],[3,1],[3,2]]));
+</span><span style="color:#65737e;">// console.log(findOrder(3, [[1,0],[1,2],[0,1]]));
+</span></code></pre>
 
     </div>
   </div>

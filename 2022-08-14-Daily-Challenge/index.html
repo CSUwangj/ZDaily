@@ -124,17 +124,17 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Given two words, <code>beginWord</code> and <code>endWord</code>, and a dictionary <code>wordList</code>, return <em>all the <strong>shortest transformation sequences</strong> from</em> <code>beginWord</code> <em>to</em> <code>endWord</code><em>, or an empty list if no such sequence exists. Each sequence should be returned as a list of the words</em> <code>[beginWord, s1, s2, ..., sk]</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]
-Output: [[&quot;hit&quot;,&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;cog&quot;],[&quot;hit&quot;,&quot;hot&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]]
-Explanation: There are 2 shortest transformation sequences:
-&quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;
-&quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;lot&quot; -&gt; &quot;log&quot; -&gt; &quot;cog&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]
+</span><span>Output: [[&quot;hit&quot;,&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;cog&quot;],[&quot;hit&quot;,&quot;hot&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]]
+</span><span>Explanation: There are 2 shortest transformation sequences:
+</span><span>&quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;
+</span><span>&quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;lot&quot; -&gt; &quot;log&quot; -&gt; &quot;cog&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]
-Output: []
-Explanation: The endWord &quot;cog&quot; is not in wordList, therefore there is no valid transformation sequence.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]
+</span><span>Output: []
+</span><span>Explanation: The endWord &quot;cog&quot; is not in wordList, therefore there is no valid transformation sequence.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= beginWord.length &lt;= 5</code></li>
@@ -146,99 +146,99 @@ Explanation: The endWord &quot;cog&quot; is not in wordList, therefore there is 
 <li>All the words in <code>wordList</code> are <strong>unique</strong>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  unordered_map&lt;string, vector&lt;string&gt;&gt; neighbor;
-  unordered_set&lt;string&gt; vis;
-  unordered_map&lt;string, unordered_map&lt;int, vector&lt;vector&lt;string&gt;&gt;&gt;&gt; cache;
-  vector&lt;vector&lt;string&gt;&gt; transform(string beginWord, string endWord, int rest) {
-    if(rest == 2) {
-      return {{endWord, beginWord}};
-    }
-    if(cache[beginWord].count(rest)) return cache[beginWord][rest];
-    vector&lt;vector&lt;string&gt;&gt; answer;
-    for(auto &amp;nxt : neighbor[beginWord]) {
-      if(diff(nxt, endWord) &gt; rest - 2 || vis.count(nxt)) continue;
-      vis.insert(nxt);
-      for(auto &amp;result : transform(nxt, endWord, rest - 1)) {
-        result.push_back(beginWord);
-        answer.emplace_back(result);
-      }
-      vis.erase(nxt);
-    }
-    cache[beginWord][rest] = answer;
-    return answer;
-  }
-  int diff(const string &amp;a, const string &amp;b) {
-    int cnt = 0;
-    for(int i = 0; i &lt; a.length(); ++i) {
-      cnt += a[i] != b[i];
-    }
-    return cnt;
-  }
-public:
-  vector&lt;vector&lt;string&gt;&gt; findLadders(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList) {
-    int len = wordList.size();
-    if(find(wordList.begin(), wordList.end(), endWord) == wordList.end()) return {};
-    &#x2F;&#x2F; cout &lt;&lt; &quot;###########&quot; &lt;&lt; endl;
-    for(auto &amp;word : wordList) {
-      if(diff(beginWord, word) == 1) neighbor[beginWord].push_back(word);
-    }
-    for(int i = 0; i &lt; len - 1; ++i) {
-      if(wordList[i] == beginWord) continue;
-      for(int j = i + 1; j &lt; len; ++j) {
-        if(wordList[j] != beginWord &amp;&amp; diff(wordList[i], wordList[j]) == 1) {
-          neighbor[wordList[i]].push_back(wordList[j]);
-          neighbor[wordList[j]].push_back(wordList[i]);
-        }
-      }
-    }
-    &#x2F;&#x2F; for(auto [cur, n] : neighbor) {
-    &#x2F;&#x2F;   cout &lt;&lt; cur &lt;&lt; &#x27; &#x27; &lt;&lt; n &lt;&lt; endl;
-    &#x2F;&#x2F; }
-    queue&lt;string&gt; q;
-    vis.insert(beginWord);
-    q.push(beginWord);
-    int step = 0;
-    int round = 0;
-    for(int round = 1; !step &amp;&amp; q.size(); ++round) {
-      int sz = q.size();
-      for(int i = 0; i &lt; sz; ++i) {
-        auto cur = q.front();
-        q.pop();
-        if(cur == endWord) {
-          step = round;
-          break;
-        }
-        for(auto nxt : neighbor[cur]) {
-          if(vis.count(nxt)) continue;
-          vis.insert(nxt);
-          q.push(nxt);
-        }
-      }
-    }
-    &#x2F;&#x2F; cout &lt;&lt; step &lt;&lt; endl;
-    if(!step) return {};
-    vis.clear();
-    vis.insert(beginWord);
-    auto answer = transform(beginWord, endWord, step);
-    for(auto &amp;result : answer) {
-      reverse(result.begin(), result.end());
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 35&#x2F;35 cases passed (144 ms)
-&#x2F;&#x2F; Your runtime beats 7.11 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 9.2 % of cpp submissions (21.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  unordered_map&lt;string, vector&lt;string&gt;&gt; neighbor;
+</span><span style="color:#eff1f5;">  unordered_set&lt;string&gt; vis;
+</span><span style="color:#eff1f5;">  unordered_map&lt;string, unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, vector&lt;vector&lt;string&gt;&gt;&gt;&gt; cache;
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;string&gt;&gt; </span><span style="color:#8fa1b3;">transform</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">beginWord</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">endWord</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rest</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rest </span><span>== </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{{endWord, beginWord}};
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cache[beginWord].</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(rest)) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cache[beginWord][rest];
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;string&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">nxt </span><span>:</span><span style="color:#eff1f5;"> neighbor[beginWord]) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">diff</span><span style="color:#eff1f5;">(nxt, endWord) </span><span>&gt;</span><span style="color:#eff1f5;"> rest </span><span>- </span><span style="color:#d08770;">2 </span><span>||</span><span style="color:#eff1f5;"> vis.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(nxt)) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      vis.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(nxt);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">result </span><span>: </span><span style="color:#bf616a;">transform</span><span style="color:#eff1f5;">(nxt, endWord, rest </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">        result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(beginWord);
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">emplace_back</span><span style="color:#eff1f5;">(result);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      vis.</span><span style="color:#bf616a;">erase</span><span style="color:#eff1f5;">(nxt);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    cache[beginWord][rest] </span><span>=</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">diff</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string </span><span>&amp;</span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string </span><span>&amp;</span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      cnt </span><span>+=</span><span style="color:#eff1f5;"> a[i] </span><span>!=</span><span style="color:#eff1f5;"> b[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;string&gt;&gt; </span><span style="color:#8fa1b3;">findLadders</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">beginWord</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">endWord</span><span style="color:#eff1f5;">, vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">wordList</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> wordList.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(wordList.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), wordList.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), endWord) </span><span>==</span><span style="color:#eff1f5;"> wordList.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;###########&quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> wordList) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">diff</span><span style="color:#eff1f5;">(beginWord, word) </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) neighbor[beginWord].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(word);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(wordList[i] </span><span>==</span><span style="color:#eff1f5;"> beginWord) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(wordList[j] </span><span>!=</span><span style="color:#eff1f5;"> beginWord </span><span>&amp;&amp; </span><span style="color:#bf616a;">diff</span><span style="color:#eff1f5;">(wordList[i], wordList[j]) </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          neighbor[wordList[i]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(wordList[j]);
+</span><span style="color:#eff1f5;">          neighbor[wordList[j]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(wordList[i]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// for(auto [cur, n] : neighbor) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">//   cout &lt;&lt; cur &lt;&lt; &#39; &#39; &lt;&lt; n &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// }
+</span><span style="color:#eff1f5;">    queue&lt;string&gt; q;
+</span><span style="color:#eff1f5;">    vis.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(beginWord);
+</span><span style="color:#eff1f5;">    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(beginWord);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> step </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> round </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> round </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>!</span><span style="color:#eff1f5;">step </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">round) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> sz; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>==</span><span style="color:#eff1f5;"> endWord) {
+</span><span style="color:#eff1f5;">          step </span><span>=</span><span style="color:#eff1f5;"> round;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> nxt </span><span>:</span><span style="color:#eff1f5;"> neighbor[cur]) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(nxt)) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          vis.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(nxt);
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(nxt);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; step &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">step) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    vis.</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vis.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(beginWord);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#bf616a;">transform</span><span style="color:#eff1f5;">(beginWord, endWord, step);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">result </span><span>:</span><span style="color:#eff1f5;"> answer) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), result.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 35/35 cases passed (144 ms)
+</span><span style="color:#65737e;">// Your runtime beats 7.11 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 9.2 % of cpp submissions (21.6 MB)
+</span></code></pre>
 
     </div>
   </div>

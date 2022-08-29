@@ -119,17 +119,17 @@ renderMathInElement(document.body, katex_config);
 <p>​	You are given an integer array <code>arr</code>. You can choose a set of integers and remove all the occurrences of these integers in the array.</p>
 <p>Return <em>the minimum size of the set so that <strong>at least</strong> half of the integers of the array are removed</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: arr = [3,3,3,3,5,5,5,2,2,7]
-Output: 2
-Explanation: Choosing {3,7} will make the new array [5,5,5,2,2] which has size 5 (i.e equal to half of the size of the old array).
-Possible sets of size 2 are {3,5},{3,2},{5,2}.
-Choosing set {2,7} is not possible as it will make the new array [3,3,3,3,5,5,5] which has a size greater than half of the size of the old array.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [3,3,3,3,5,5,5,2,2,7]
+</span><span>Output: 2
+</span><span>Explanation: Choosing {3,7} will make the new array [5,5,5,2,2] which has size 5 (i.e equal to half of the size of the old array).
+</span><span>Possible sets of size 2 are {3,5},{3,2},{5,2}.
+</span><span>Choosing set {2,7} is not possible as it will make the new array [3,3,3,3,5,5,5] which has a size greater than half of the size of the old array.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: arr = [7,7,7,7,7,7]
-Output: 1
-Explanation: The only possible set you can choose is {7}. This will make the new array empty.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [7,7,7,7,7,7]
+</span><span>Output: 1
+</span><span>Explanation: The only possible set you can choose is {7}. This will make the new array empty.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= arr.length &lt;= 10^5</code></li>
@@ -137,36 +137,36 @@ Explanation: The only possible set you can choose is {7}. This will make the new
 <li><code>1 &lt;= arr[i] &lt;= 10^5</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = []() {
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int minSetSize(vector&lt;int&gt;&amp; arr) {
-    unordered_map&lt;int, int&gt; cnt;
-    for(auto i : arr) cnt[i] += 1;
-    vector&lt;int&gt; amount;
-    for(auto [_, c] : cnt) {
-      cout &lt;&lt; _ &lt;&lt; &#x27; &#x27;&lt;&lt; c &lt;&lt; endl;
-      amount.push_back(c);
-    }
-    sort(amount.begin(), amount.end(), greater&lt;int&gt;());
-    for(int i = 1; i &lt; amount.size(); ++i) {
-      amount[i] += amount[i-1];
-    }
-    int target = (arr.size() + 1) &#x2F; 2;
-    return lower_bound(amount.begin(), amount.end(), target) - amount.begin() + 1;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 33&#x2F;33 cases passed (574 ms)
-&#x2F;&#x2F; Your runtime beats 10.13 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 48.79 % of cpp submissions (78.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = []() {
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minSetSize</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cnt;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> arr) cnt[i] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; amount;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[_, c] </span><span>:</span><span style="color:#eff1f5;"> cnt) {
+</span><span style="color:#eff1f5;">      cout </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> _ </span><span>&lt;&lt; &#39; &#39;&lt;&lt;</span><span style="color:#eff1f5;"> c </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> endl;
+</span><span style="color:#eff1f5;">      amount.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(amount.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), amount.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#bf616a;">greater</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> amount.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      amount[i] </span><span>+=</span><span style="color:#eff1f5;"> amount[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> target </span><span>= </span><span style="color:#eff1f5;">(arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(amount.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), amount.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), target) </span><span>-</span><span style="color:#eff1f5;"> amount.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">() </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 33/33 cases passed (574 ms)
+</span><span style="color:#65737e;">// Your runtime beats 10.13 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 48.79 % of cpp submissions (78.4 MB)
+</span></code></pre>
 
     </div>
   </div>

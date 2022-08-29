@@ -118,25 +118,25 @@ renderMathInElement(document.body, katex_config);
 <p>Given an array of <strong>unique</strong> integers <code>salary</code> where <code>salary[i]</code> is the salary of the employee <code>i</code>.</p>
 <p>Return the average salary of employees excluding the minimum and maximum salary.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: salary = [4000,3000,1000,2000]
-Output: 2500.00000
-Explanation: Minimum salary and maximum salary are 1000 and 4000 respectively.
-Average salary excluding minimum and maximum salary is (2000+3000)&#x2F;2= 2500
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: salary = [4000,3000,1000,2000]
+</span><span>Output: 2500.00000
+</span><span>Explanation: Minimum salary and maximum salary are 1000 and 4000 respectively.
+</span><span>Average salary excluding minimum and maximum salary is (2000+3000)/2= 2500
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: salary = [1000,2000,3000]
-Output: 2000.00000
-Explanation: Minimum salary and maximum salary are 1000 and 3000 respectively.
-Average salary excluding minimum and maximum salary is (2000)&#x2F;1= 2000
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: salary = [1000,2000,3000]
+</span><span>Output: 2000.00000
+</span><span>Explanation: Minimum salary and maximum salary are 1000 and 3000 respectively.
+</span><span>Average salary excluding minimum and maximum salary is (2000)/1= 2000
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: salary = [6000,5000,4000,3000,2000,1000]
-Output: 3500.00000
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: salary = [6000,5000,4000,3000,2000,1000]
+</span><span>Output: 3500.00000
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: salary = [8000,9000,2000,3000,6000,1000]
-Output: 4750.00000
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: salary = [8000,9000,2000,3000,6000,1000]
+</span><span>Output: 4750.00000
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>3 &lt;= salary.length &lt;= 100</code></li>
@@ -145,15 +145,15 @@ Output: 4750.00000
 <li>Answers within <code>10^-5</code> of the actual value will be accepted as correct.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  double average(vector&lt;int&gt;&amp; salary) {
-    return (accumulate(salary.begin(), salary.end(), 0) - (*max_element(salary.begin(), salary.end())) - (*min_element(salary.begin(), salary.end()))) 
-              * 1.0 
-              &#x2F; (salary.size() - 2);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">double </span><span style="color:#8fa1b3;">average</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">salary</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">accumulate</span><span style="color:#eff1f5;">(salary.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), salary.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span>- </span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#bf616a;">max_element</span><span style="color:#eff1f5;">(salary.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), salary.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">())) </span><span>- </span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#bf616a;">min_element</span><span style="color:#eff1f5;">(salary.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), salary.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()))) 
+</span><span style="color:#eff1f5;">              </span><span>* </span><span style="color:#d08770;">1.0 
+</span><span style="color:#eff1f5;">              </span><span>/ </span><span style="color:#eff1f5;">(salary.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="april-leetcoding-challenge-13">April LeetCoding challenge 13</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Flatten Nested List Iterator</strong></p>
@@ -165,15 +165,15 @@ public:
 <li><code>boolean hasNext()</code> Returns <code>true</code> if there are still some integers in the nested list and <code>false</code> otherwise.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nestedList = [[1,1],2,[1,1]]
-Output: [1,1,2,1,1]
-Explanation: By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nestedList = [[1,1],2,[1,1]]
+</span><span>Output: [1,1,2,1,1]
+</span><span>Explanation: By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nestedList = [1,[4,[6]]]
-Output: [1,4,6]
-Explanation: By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nestedList = [1,[4,[6]]]
+</span><span>Output: [1,4,6]
+</span><span>Explanation: By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nestedList.length &lt;= 500</code></li>
@@ -181,100 +181,100 @@ Explanation: By calling next repeatedly until hasNext returns false, the order o
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>pre flatten, but not a iterator</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class NestedIterator {
-  vector&lt;int&gt; integers;
-  vector&lt;int&gt;::iterator it;
-  void solve(NestedInteger &amp;nestedInt) {
-    if(nestedInt.isInteger()) {
-      integers.push_back(nestedInt.getInteger());
-      return;
-    }
-    for(auto &amp;l : nestedInt.getList()) {
-      solve(l);
-    }
-  }
-public:
-  NestedIterator(vector&lt;NestedInteger&gt; &amp;nestedList) {
-    for(auto &amp;nestedInt : nestedList) solve(nestedInt);
-    it = integers.begin();
-  }
-
-  int next() {
-    &#x2F;&#x2F; int result = *it;
-    &#x2F;&#x2F; ++it;
-    return *it++;
-  }
-
-  bool hasNext() {
-    return it != integers.end();
-  }
-};
-
-&#x2F;&#x2F; 43 &#x2F; 43 test cases passed.
-&#x2F;&#x2F; Status: Accepted
-&#x2F;&#x2F; Runtime: 16 ms
-&#x2F;&#x2F; Memory Usage: 12.8 MB
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">NestedIterator </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; integers;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;::iterator it;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(NestedInteger </span><span>&amp;</span><span style="color:#bf616a;">nestedInt</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nestedInt.</span><span style="color:#bf616a;">isInteger</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      integers.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(nestedInt.</span><span style="color:#bf616a;">getInteger</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">l </span><span>:</span><span style="color:#eff1f5;"> nestedInt.</span><span style="color:#bf616a;">getList</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(l);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">NestedIterator</span><span style="color:#eff1f5;">(vector&lt;NestedInteger&gt; </span><span>&amp;</span><span style="color:#bf616a;">nestedList</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">nestedInt </span><span>:</span><span style="color:#eff1f5;"> nestedList) </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(nestedInt);
+</span><span style="color:#eff1f5;">    it </span><span>=</span><span style="color:#eff1f5;"> integers.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">next</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// int result = *it;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// ++it;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>*</span><span style="color:#eff1f5;">it</span><span>++</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">hasNext</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> it </span><span>!=</span><span style="color:#eff1f5;"> integers.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 43 / 43 test cases passed.
+</span><span style="color:#65737e;">// Status: Accepted
+</span><span style="color:#65737e;">// Runtime: 16 ms
+</span><span style="color:#65737e;">// Memory Usage: 12.8 MB
+</span></code></pre>
 <p>then try to be iterator</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">using it = vector&lt;NestedInteger&gt;::iterator;
-class NestedIterator {
-  it cur;
-  it curEnd;
-  vector&lt;pair&lt;it, it&gt;&gt; st;
-  bool findInteger() {
-    if(cur == curEnd) return false;
-    while(cur != curEnd &amp;&amp; !(cur-&gt;isInteger())) {
-      st.push_back(make_pair(cur, curEnd));
-      curEnd = cur-&gt;getList().end();
-      cur = cur-&gt;getList().begin();
-    }
-    return cur != curEnd;
-  }
-  bool goUp() {
-    if(!st.size()) return false;
-    while(st.size() &amp;&amp; cur == curEnd) {
-      curEnd = st.back().second;
-      cur = st.back().first;
-      st.pop_back();
-      cur += 1;
-    }
-    return true;
-  }
-  void moveForward() {
-    cur += 1;
-  }
-public:
-  NestedIterator(vector&lt;NestedInteger&gt; &amp;nestedList) {
-    &#x2F;&#x2F; cout &lt;&lt; &quot;#########&quot; &lt;&lt; endl;
-    cur = nestedList.begin();
-    curEnd = nestedList.end();
-    while(!findInteger()) {
-      if(!goUp()) break;
-    }
-  }
-
-  int next() {
-    int result = cur-&gt;getInteger();
-    &#x2F;&#x2F; cout &lt;&lt; &quot;next&quot; &lt;&lt; &#x27; &#x27; &lt;&lt; result &lt;&lt; endl;
-    moveForward();
-    goUp();
-    while(!findInteger()) {
-      if(!goUp()) break;
-    }
-    return result;
-  }
-
-  bool hasNext() {
-    &#x2F;&#x2F; cout &lt;&lt; &quot;hasNext&quot; &lt;&lt; endl;
-    return st.size() || cur != curEnd;
-  }
-};
-
-&#x2F;&#x2F; 43 &#x2F; 43 test cases passed.
-&#x2F;&#x2F; Status: Accepted
-&#x2F;&#x2F; Runtime: 16 ms
-&#x2F;&#x2F; Memory Usage: 13 MB
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">using </span><span>it = vector&lt;NestedInteger&gt;::iterator;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">NestedIterator </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  it cur;
+</span><span style="color:#eff1f5;">  it curEnd;
+</span><span style="color:#eff1f5;">  vector&lt;pair&lt;it, it&gt;&gt; st;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">findInteger</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>==</span><span style="color:#eff1f5;"> curEnd) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur </span><span>!=</span><span style="color:#eff1f5;"> curEnd </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">isInteger</span><span style="color:#eff1f5;">())) {
+</span><span style="color:#eff1f5;">      st.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(cur, curEnd));
+</span><span style="color:#eff1f5;">      curEnd </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">getList</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">getList</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur </span><span>!=</span><span style="color:#eff1f5;"> curEnd;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">goUp</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">st.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cur </span><span>==</span><span style="color:#eff1f5;"> curEnd) {
+</span><span style="color:#eff1f5;">      curEnd </span><span>=</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      cur </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">moveForward</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    cur </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">NestedIterator</span><span style="color:#eff1f5;">(vector&lt;NestedInteger&gt; </span><span>&amp;</span><span style="color:#bf616a;">nestedList</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;#########&quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    cur </span><span>=</span><span style="color:#eff1f5;"> nestedList.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    curEnd </span><span>=</span><span style="color:#eff1f5;"> nestedList.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#bf616a;">findInteger</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#bf616a;">goUp</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">next</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">getInteger</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;next&quot; &lt;&lt; &#39; &#39; &lt;&lt; result &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">moveForward</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">goUp</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#bf616a;">findInteger</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#bf616a;">goUp</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">hasNext</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;hasNext&quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> cur </span><span>!=</span><span style="color:#eff1f5;"> curEnd;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// 43 / 43 test cases passed.
+</span><span style="color:#65737e;">// Status: Accepted
+</span><span style="color:#65737e;">// Runtime: 16 ms
+</span><span style="color:#65737e;">// Memory Usage: 13 MB
+</span></code></pre>
 
     </div>
   </div>

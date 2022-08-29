@@ -120,51 +120,51 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the resulting string. If there is no way to replace a character to make it not a palindrome, return an <strong>empty string</strong>.</em></p>
 <p>A string <code>a</code> is lexicographically smaller than a string <code>b</code> (of the same length) if in the first position where <code>a</code> and <code>b</code> differ, <code>a</code> has a character strictly smaller than the corresponding character in <code>b</code>. For example, <code>&quot;abcc&quot;</code> is lexicographically smaller than <code>&quot;abcd&quot;</code> because the first position they differ is at the fourth character, and <code>'c'</code> is smaller than <code>'d'</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: palindrome = &quot;abccba&quot;
-Output: &quot;aaccba&quot;
-Explanation: There are many ways to make &quot;abccba&quot; not a palindrome, such as &quot;zbccba&quot;, &quot;aaccba&quot;, and &quot;abacba&quot;.
-Of all the ways, &quot;aaccba&quot; is the lexicographically smallest.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: palindrome = &quot;abccba&quot;
+</span><span>Output: &quot;aaccba&quot;
+</span><span>Explanation: There are many ways to make &quot;abccba&quot; not a palindrome, such as &quot;zbccba&quot;, &quot;aaccba&quot;, and &quot;abacba&quot;.
+</span><span>Of all the ways, &quot;aaccba&quot; is the lexicographically smallest.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: palindrome = &quot;a&quot;
-Output: &quot;&quot;
-Explanation: There is no way to replace a single character to make &quot;a&quot; not a palindrome, so return an empty string.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: palindrome = &quot;a&quot;
+</span><span>Output: &quot;&quot;
+</span><span>Explanation: There is no way to replace a single character to make &quot;a&quot; not a palindrome, so return an empty string.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: palindrome = &quot;aa&quot;
-Output: &quot;ab&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: palindrome = &quot;aa&quot;
+</span><span>Output: &quot;ab&quot;
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: palindrome = &quot;aba&quot;
-Output: &quot;abb&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: palindrome = &quot;aba&quot;
+</span><span>Output: &quot;abb&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= palindrome.length &lt;= 1000</code></li>
 <li><code>palindrome</code> consists of only lowercase English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  string breakPalindrome(string palindrome) {
-    int len = palindrome.length();
-    if(len == 1) return &quot;&quot;;
-    for(int i = 0; i * 2 + 1 &lt; len; ++i) {
-      if(palindrome[i] != &#x27;a&#x27;) {
-        palindrome[i] = &#x27;a&#x27;;
-        return palindrome;
-      }
-    }
-    palindrome.back() = &#x27;b&#x27;;
-    return palindrome;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 30&#x2F;30 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 45.58 % of cpp submissions (6.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">breakPalindrome</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">palindrome</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> palindrome.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span>&quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1 </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(palindrome[i] </span><span>!= &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        palindrome[i] </span><span>= &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> palindrome;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    palindrome.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>= &#39;</span><span style="color:#a3be8c;">b</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> palindrome;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 30/30 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 45.58 % of cpp submissions (6.2 MB)
+</span></code></pre>
 
     </div>
   </div>

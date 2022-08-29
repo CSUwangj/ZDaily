@@ -122,51 +122,51 @@ renderMathInElement(document.body, katex_config);
 <h3 id="what-is-considered-valid">What is considered Valid?</h3>
 <p>A string of braces is considered valid if all braces are matched with the correct brace.</p>
 <h2 id="examples">Examples</h2>
-<pre data-lang="py" class="language-py "><code class="language-py" data-lang="py">&quot;(){}[]&quot;   =&gt;  True
-&quot;([{}])&quot;   =&gt;  True
-&quot;(}&quot;       =&gt;  False
-&quot;[(])&quot;     =&gt;  False
-&quot;[({})](]&quot; =&gt;  False
-</code></pre>
+<pre data-lang="py" style="background-color:#2b303b;color:#c0c5ce;" class="language-py "><code class="language-py" data-lang="py"><span>&quot;</span><span style="color:#a3be8c;">()</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">[]</span><span>&quot;   =&gt;  </span><span style="color:#d08770;">True
+</span><span>&quot;</span><span style="color:#a3be8c;">([</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">])</span><span>&quot;   =&gt;  </span><span style="color:#d08770;">True
+</span><span>&quot;</span><span style="color:#a3be8c;">(}</span><span>&quot;       =&gt;  </span><span style="color:#d08770;">False
+</span><span>&quot;</span><span style="color:#a3be8c;">[(])</span><span>&quot;     =&gt;  </span><span style="color:#d08770;">False
+</span><span>&quot;</span><span style="color:#a3be8c;">[(</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">)](]</span><span>&quot; =&gt;  </span><span style="color:#d08770;">False
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">function validBraces(braces){
-  let stack = [];
-  for (let i = 0; i &lt; braces.length; ++i) {
-    if (braces[i] === &quot;(&quot; || braces[i] === &quot;[&quot; || braces[i] === &quot;{&quot;) {
-      stack.push(braces[i]);
-    } else {
-      if (!stack.length) return false;
-      if (braces[i] === &quot;)&quot;) {
-        if (stack[stack.length-1] !== &quot;(&quot;) return false;
-        stack.pop();
-      } else if (braces[i] === &quot;]&quot;) {
-        if (stack[stack.length-1] !== &quot;[&quot;) return false;
-        stack.pop();
-      } else {
-        if (stack[stack.length-1] !== &quot;{&quot;) return false;
-        stack.pop();
-      } 
-    }
-  }
-  return !stack.length;
-}
-
-function validBraces(braces){
-  let matches = { &#x27;(&#x27;:&#x27;)&#x27;, &#x27;{&#x27;:&#x27;}&#x27;, &#x27;[&#x27;:&#x27;]&#x27; };
-  let stack = [];
-  for (let i = 0; i &lt; braces.length; i++) {
-    let currentChar = braces[i];
-    if (matches[currentChar]) stack.push(currentChar);
-    else if (currentChar !== matches[stack.pop()]) return false;
-  }
-  return stack.length === 0; 
-}
-
-function validBraces(braces){
-  while(&#x2F;\(\)|\[\]|\{\}&#x2F;g.test(braces)){braces = braces.replace(&#x2F;\(\)|\[\]|\{\}&#x2F;g,&quot;&quot;)}
-  return !braces.length;
- }
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">validBraces</span><span>(</span><span style="color:#bf616a;">braces</span><span>){
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">stack </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">braces</span><span>.length; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">braces</span><span>[</span><span style="color:#bf616a;">i</span><span>] === &quot;</span><span style="color:#a3be8c;">(</span><span>&quot; || </span><span style="color:#bf616a;">braces</span><span>[</span><span style="color:#bf616a;">i</span><span>] === &quot;</span><span style="color:#a3be8c;">[</span><span>&quot; || </span><span style="color:#bf616a;">braces</span><span>[</span><span style="color:#bf616a;">i</span><span>] === &quot;</span><span style="color:#a3be8c;">{</span><span>&quot;) {
+</span><span>      </span><span style="color:#bf616a;">stack</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">braces</span><span>[</span><span style="color:#bf616a;">i</span><span>]);
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(!</span><span style="color:#bf616a;">stack</span><span>.length) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">braces</span><span>[</span><span style="color:#bf616a;">i</span><span>] === &quot;</span><span style="color:#a3be8c;">)</span><span>&quot;) {
+</span><span>        </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">stack</span><span>[</span><span style="color:#bf616a;">stack</span><span>.length-</span><span style="color:#d08770;">1</span><span>] !== &quot;</span><span style="color:#a3be8c;">(</span><span>&quot;) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        </span><span style="color:#bf616a;">stack</span><span>.</span><span style="color:#96b5b4;">pop</span><span>();
+</span><span>      } </span><span style="color:#b48ead;">else if </span><span>(</span><span style="color:#bf616a;">braces</span><span>[</span><span style="color:#bf616a;">i</span><span>] === &quot;</span><span style="color:#a3be8c;">]</span><span>&quot;) {
+</span><span>        </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">stack</span><span>[</span><span style="color:#bf616a;">stack</span><span>.length-</span><span style="color:#d08770;">1</span><span>] !== &quot;</span><span style="color:#a3be8c;">[</span><span>&quot;) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        </span><span style="color:#bf616a;">stack</span><span>.</span><span style="color:#96b5b4;">pop</span><span>();
+</span><span>      } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">stack</span><span>[</span><span style="color:#bf616a;">stack</span><span>.length-</span><span style="color:#d08770;">1</span><span>] !== &quot;</span><span style="color:#a3be8c;">{</span><span>&quot;) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        </span><span style="color:#bf616a;">stack</span><span>.</span><span style="color:#96b5b4;">pop</span><span>();
+</span><span>      } 
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span>!</span><span style="color:#bf616a;">stack</span><span>.length;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">validBraces</span><span>(</span><span style="color:#bf616a;">braces</span><span>){
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">matches </span><span>= { &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;:&#39;</span><span style="color:#a3be8c;">)</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">{</span><span>&#39;:&#39;</span><span style="color:#a3be8c;">}</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">[</span><span>&#39;:&#39;</span><span style="color:#a3be8c;">]</span><span>&#39; };
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">stack </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">braces</span><span>.length; </span><span style="color:#bf616a;">i</span><span>++) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">currentChar </span><span>= </span><span style="color:#bf616a;">braces</span><span>[</span><span style="color:#bf616a;">i</span><span>];
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">matches</span><span>[</span><span style="color:#bf616a;">currentChar</span><span>]) </span><span style="color:#bf616a;">stack</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">currentChar</span><span>);
+</span><span>    </span><span style="color:#b48ead;">else if </span><span>(</span><span style="color:#bf616a;">currentChar </span><span>!== </span><span style="color:#bf616a;">matches</span><span>[</span><span style="color:#bf616a;">stack</span><span>.</span><span style="color:#96b5b4;">pop</span><span>()]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">stack</span><span>.length === </span><span style="color:#d08770;">0</span><span>; 
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">validBraces</span><span>(</span><span style="color:#bf616a;">braces</span><span>){
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(/</span><span style="color:#96b5b4;">\(\)</span><span>|</span><span style="color:#96b5b4;">\[\]</span><span>|</span><span style="color:#96b5b4;">\{\}</span><span>/</span><span style="color:#b48ead;">g</span><span>.</span><span style="color:#96b5b4;">test</span><span>(</span><span style="color:#bf616a;">braces</span><span>)){</span><span style="color:#bf616a;">braces </span><span>= </span><span style="color:#bf616a;">braces</span><span>.</span><span style="color:#96b5b4;">replace</span><span>(/</span><span style="color:#96b5b4;">\(\)</span><span>|</span><span style="color:#96b5b4;">\[\]</span><span>|</span><span style="color:#96b5b4;">\{\}</span><span>/</span><span style="color:#b48ead;">g</span><span>,&quot;&quot;)}
+</span><span>  </span><span style="color:#b48ead;">return </span><span>!</span><span style="color:#bf616a;">braces</span><span>.length;
+</span><span> }
+</span></code></pre>
 
     </div>
   </div>

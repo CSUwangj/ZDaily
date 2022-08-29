@@ -118,23 +118,23 @@ renderMathInElement(document.body, katex_config);
 <p>Given an <code>m x n</code> 2d <code>grid</code> map of <code>'1'</code>s (land) and <code>'0'</code>s (water), return <em>the number of islands</em>.</p>
 <p>An <strong>island</strong> is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: grid = [
-  [&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;0&quot;],
-  [&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;],
-  [&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;],
-  [&quot;0&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;]
-]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [
+</span><span>  [&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;0&quot;],
+</span><span>  [&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;],
+</span><span>  [&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;],
+</span><span>  [&quot;0&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;]
+</span><span>]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: grid = [
-  [&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;],
-  [&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;],
-  [&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;],
-  [&quot;0&quot;,&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;1&quot;]
-]
-Output: 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [
+</span><span>  [&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;],
+</span><span>  [&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;],
+</span><span>  [&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;],
+</span><span>  [&quot;0&quot;,&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;1&quot;]
+</span><span>]
+</span><span>Output: 3
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == grid.length</code></li>
@@ -144,47 +144,47 @@ Output: 3
 </ul>
 <h2 id="solution">Solution</h2>
 <p>simple bfs</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  vector&lt;vector&lt;int&gt;&gt; move{{1,0},{0,1},{-1,0},{0,-1}};
-public:
-  int numIslands(vector&lt;vector&lt;char&gt;&gt;&amp; grid) {
-    int sz = grid.size() * grid[0].size(), width = grid[0].size(), height = grid.size(), ans = 0;
-    vector&lt;vector&lt;bool&gt;&gt; visited(height, vector&lt;bool&gt;(width));
-    queue&lt;pair&lt;int, int&gt;&gt; start_points, q;
-    for(int i = 0; i &lt; height; ++i) {
-      for(int j = 0; j &lt; width; ++j) {
-        if(grid[i][j] == &#x27;1&#x27;) {
-          start_points.push(make_pair(i, j));
-        }
-      }
-    }
-    while(start_points.size()) {
-      auto start_point = start_points.front();
-      start_points.pop();
-      if(visited[start_point.first][start_point.second]) {
-        continue;
-      }
-      ans += 1;
-      visited[start_point.first][start_point.second] = true;
-      q.push(start_point);
-      while(q.size()) {
-        auto tmp = q.front();
-        int row = tmp.first, col = tmp.second;
-        q.pop();
-        for(int i = 0; i &lt; 4; ++i) {
-          int nrow = row+move[i][0], ncol = col+move[i][1];
-          if(nrow &lt; height &amp;&amp; nrow &gt;=0 &amp;&amp; ncol &lt; width &amp;&amp; ncol &gt;=0 &amp;&amp;
-            grid[nrow][ncol] == &#x27;1&#x27; &amp;&amp; !visited[nrow][ncol]) {
-            q.push(make_pair(nrow, ncol));
-            visited[nrow][ncol] = true;
-          }
-        }
-      }
-    }
-    return ans;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">{{</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">,</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">},{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">,</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">},{</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">,</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">},{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">,</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}};
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numIslands</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>*</span><span style="color:#eff1f5;"> grid[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), width </span><span>=</span><span style="color:#eff1f5;"> grid[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), height </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), ans </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">visited</span><span style="color:#eff1f5;">(height, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;(width));
+</span><span style="color:#eff1f5;">    queue&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; start_points, q;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> height; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> width; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(grid[i][j] </span><span>== &#39;</span><span style="color:#a3be8c;">1</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          start_points.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(i, j));
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start_points.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> start_point </span><span>=</span><span style="color:#eff1f5;"> start_points.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      start_points.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(visited[start_point.</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">][start_point.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      ans </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      visited[start_point.</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">][start_point.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(start_point);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> tmp </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> row </span><span>=</span><span style="color:#eff1f5;"> tmp.</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">, col </span><span>=</span><span style="color:#eff1f5;"> tmp.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> nrow </span><span>=</span><span style="color:#eff1f5;"> row</span><span>+</span><span style="color:#eff1f5;">move[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], ncol </span><span>=</span><span style="color:#eff1f5;"> col</span><span>+</span><span style="color:#eff1f5;">move[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nrow </span><span>&lt;</span><span style="color:#eff1f5;"> height </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nrow </span><span>&gt;=</span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> ncol </span><span>&lt;</span><span style="color:#eff1f5;"> width </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> ncol </span><span>&gt;=</span><span style="color:#d08770;">0 </span><span>&amp;&amp;
+</span><span style="color:#eff1f5;">            grid[nrow][ncol] </span><span>== &#39;</span><span style="color:#a3be8c;">1</span><span>&#39; &amp;&amp; !</span><span style="color:#eff1f5;">visited[nrow][ncol]) {
+</span><span style="color:#eff1f5;">            q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(nrow, ncol));
+</span><span style="color:#eff1f5;">            visited[nrow][ncol] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-27">October LeetCoding Challenge 27</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Linked List Cycle II</strong></p>
@@ -195,22 +195,22 @@ public:
 <p>Can you solve it using <code>O(1)</code> (i.e. constant) memory?</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png" alt="img" /></p>
-<pre><code>Input: head = [3,2,0,-4], pos = 1
-Output: tail connects to node index 1
-Explanation: There is a cycle in the linked list, where tail connects to the second node.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [3,2,0,-4], pos = 1
+</span><span>Output: tail connects to node index 1
+</span><span>Explanation: There is a cycle in the linked list, where tail connects to the second node.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test2.png" alt="img" /></p>
-<pre><code>Input: head = [1,2], pos = 0
-Output: tail connects to node index 0
-Explanation: There is a cycle in the linked list, where tail connects to the first node.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2], pos = 0
+</span><span>Output: tail connects to node index 0
+</span><span>Explanation: There is a cycle in the linked list, where tail connects to the first node.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test3.png" alt="img" /></p>
-<pre><code>Input: head = [1], pos = -1
-Output: no cycle
-Explanation: There is no cycle in the linked list.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1], pos = -1
+</span><span>Output: no cycle
+</span><span>Explanation: There is no cycle in the linked list.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of the nodes in the list is in the range <code>[0, 104]</code>.</li>
@@ -219,29 +219,29 @@ Explanation: There is no cycle in the linked list.
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>will try O(1) space when reviewing.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- *&#x2F;
-class Solution {
-    set&lt;ListNode*&gt; st;
-public:
-    ListNode *detectCycle(ListNode *head) {
-        if(!head) return NULL;
-        ListNode* cur = head;
-        while(cur) {
-            if(st.count(cur)) return cur;
-            st.insert(cur);
-            cur = cur-&gt;next;
-        }
-        return NULL;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(NULL) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    set&lt;ListNode</span><span>*</span><span style="color:#eff1f5;">&gt; st;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#8fa1b3;">detectCycle</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">head) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        ListNode</span><span>*</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(cur)) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">            st.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

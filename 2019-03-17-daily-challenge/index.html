@@ -118,44 +118,44 @@ renderMathInElement(document.body, katex_config);
 <h2 id="problem">Problem</h2>
 <h3 id="counting-change-combinations">Counting Change Combinations</h3>
 <p>Write a function that counts how many different ways you can make change for an amount of money, given an array of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2:</p>
-<pre><code>1+1+1+1, 1+1+2, 2+2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>1+1+1+1, 1+1+2, 2+2.
+</span></code></pre>
 <p>The order of coins does not matter:</p>
-<pre><code>1+1+2 == 2+1+1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>1+1+2 == 2+1+1
+</span></code></pre>
 <p>Also, assume that you have an infinite amount of coins.</p>
 <p>Your function should take an amount to change and an array of unique denominations for the coins:</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">  countChange(4, [1,2]) &#x2F;&#x2F; =&gt; 3
-  countChange(10, [5,2,3]) &#x2F;&#x2F; =&gt; 4
-  countChange(11, [5,7]) &#x2F;&#x2F;  =&gt; 0
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>  </span><span style="color:#8fa1b3;">countChange</span><span>(</span><span style="color:#d08770;">4</span><span>, [</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>]) </span><span style="color:#65737e;">// =&gt; 3
+</span><span>  </span><span style="color:#8fa1b3;">countChange</span><span>(</span><span style="color:#d08770;">10</span><span>, [</span><span style="color:#d08770;">5</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>]) </span><span style="color:#65737e;">// =&gt; 4
+</span><span>  </span><span style="color:#8fa1b3;">countChange</span><span>(</span><span style="color:#d08770;">11</span><span>, [</span><span style="color:#d08770;">5</span><span>,</span><span style="color:#d08770;">7</span><span>]) </span><span style="color:#65737e;">//  =&gt; 0
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">var countChange = function (money, coins) {
-  let dp = new Array(money + 1).fill(0);
-  dp[0] = 1;
-  for (let coin of coins) {
-    for (let i = 0; i &lt;= money - coin; ++i) {
-      if (dp[i]) dp[i + coin] += dp[i];
-    }
-  }
-  return dp[money];
-}
-
-&#x2F;&#x2F;&#x2F;&#x2F;
-
-const countChange = (money, coins) =&gt; money === 0 ? 1 : coins.filter(e =&gt; e &lt;= money).reduce((s, _, i, coins) =&gt; s + countChange(money - coins[i], coins.slice(i)), 0);
-
-&#x2F;&#x2F;&#x2F;&#x2F;
-
-let countChange = (money, coins) =&gt; {
-  let [coin, ...rest] = coins;
-  if (!coin) return 0;
-  if (money &lt; 0) return 0;
-  if (money === 0) return 1;
-  return countChange(money - coin, coins) +
-    countChange(money, rest);
-}
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">countChange </span><span>= </span><span style="color:#b48ead;">function </span><span>(</span><span style="color:#bf616a;">money</span><span>, </span><span style="color:#bf616a;">coins</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">dp </span><span>= new Array(</span><span style="color:#bf616a;">money </span><span>+ </span><span style="color:#d08770;">1</span><span>).</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">0</span><span>);
+</span><span>  </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">coin </span><span>of </span><span style="color:#bf616a;">coins</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt;= </span><span style="color:#bf616a;">money </span><span>- </span><span style="color:#bf616a;">coin</span><span>; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i</span><span>]) </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i </span><span>+ </span><span style="color:#bf616a;">coin</span><span>] += </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">i</span><span>];
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dp</span><span>[</span><span style="color:#bf616a;">money</span><span>];
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">////
+</span><span>
+</span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">countChange </span><span>= (</span><span style="color:#bf616a;">money</span><span>, </span><span style="color:#bf616a;">coins</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">money </span><span>=== </span><span style="color:#d08770;">0 </span><span>? </span><span style="color:#d08770;">1 </span><span>: </span><span style="color:#bf616a;">coins</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">e </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">e </span><span>&lt;= </span><span style="color:#bf616a;">money</span><span>).</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">s</span><span>, </span><span style="color:#bf616a;">_</span><span>, </span><span style="color:#bf616a;">i</span><span>, </span><span style="color:#bf616a;">coins</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">s </span><span>+ </span><span style="color:#8fa1b3;">countChange</span><span>(</span><span style="color:#bf616a;">money </span><span>- </span><span style="color:#bf616a;">coins</span><span>[</span><span style="color:#bf616a;">i</span><span>], </span><span style="color:#bf616a;">coins</span><span>.</span><span style="color:#96b5b4;">slice</span><span>(</span><span style="color:#bf616a;">i</span><span>)), </span><span style="color:#d08770;">0</span><span>);
+</span><span>
+</span><span style="color:#65737e;">////
+</span><span>
+</span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">countChange </span><span>= (</span><span style="color:#bf616a;">money</span><span>, </span><span style="color:#bf616a;">coins</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  </span><span style="color:#b48ead;">let </span><span>[</span><span style="color:#bf616a;">coin</span><span>, ...</span><span style="color:#bf616a;">rest</span><span>] = </span><span style="color:#bf616a;">coins</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(!</span><span style="color:#bf616a;">coin</span><span>) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">money </span><span>&lt; </span><span style="color:#d08770;">0</span><span>) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">money </span><span>=== </span><span style="color:#d08770;">0</span><span>) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#8fa1b3;">countChange</span><span>(</span><span style="color:#bf616a;">money </span><span>- </span><span style="color:#bf616a;">coin</span><span>, </span><span style="color:#bf616a;">coins</span><span>) +
+</span><span>    </span><span style="color:#8fa1b3;">countChange</span><span>(</span><span style="color:#bf616a;">money</span><span>, </span><span style="color:#bf616a;">rest</span><span>);
+</span><span>}
+</span></code></pre>
 
     </div>
   </div>

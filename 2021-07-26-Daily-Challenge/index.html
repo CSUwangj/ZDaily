@@ -120,27 +120,27 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the shuffled string</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/07/09/q1.jpg" alt="img" /></p>
-<pre><code>Input: s = &quot;codeleet&quot;, indices = [4,5,6,7,0,2,1,3]
-Output: &quot;leetcode&quot;
-Explanation: As shown, &quot;codeleet&quot; becomes &quot;leetcode&quot; after shuffling.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;codeleet&quot;, indices = [4,5,6,7,0,2,1,3]
+</span><span>Output: &quot;leetcode&quot;
+</span><span>Explanation: As shown, &quot;codeleet&quot; becomes &quot;leetcode&quot; after shuffling.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;abc&quot;, indices = [0,1,2]
-Output: &quot;abc&quot;
-Explanation: After shuffling, each character remains in its position.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;abc&quot;, indices = [0,1,2]
+</span><span>Output: &quot;abc&quot;
+</span><span>Explanation: After shuffling, each character remains in its position.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;aiohn&quot;, indices = [3,1,4,2,0]
-Output: &quot;nihao&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aiohn&quot;, indices = [3,1,4,2,0]
+</span><span>Output: &quot;nihao&quot;
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;aaiougrt&quot;, indices = [4,0,2,6,7,3,1,5]
-Output: &quot;arigatou&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;aaiougrt&quot;, indices = [4,0,2,6,7,3,1,5]
+</span><span>Output: &quot;arigatou&quot;
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: s = &quot;art&quot;, indices = [1,0,2]
-Output: &quot;rat&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;art&quot;, indices = [1,0,2]
+</span><span>Output: &quot;rat&quot;
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>s.length == indices.length == n</code></li>
@@ -150,23 +150,23 @@ Output: &quot;rat&quot;
 <li>All values of <code>indices</code> are unique (i.e. <code>indices</code> is a permutation of the integers from <code>0</code> to <code>n - 1</code>).</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  string restoreString(string s, vector&lt;int&gt;&amp; indices) {
-    int len = s.length();
-    string answer(len, &#x27;a&#x27;);
-    for(int i = 0; i &lt; len; ++i) {
-      answer[indices[i]] = s[i];
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 399&#x2F;399 cases passed (8 ms)
-&#x2F;&#x2F; Your runtime beats 73.74 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 74.87 % of cpp submissions (15.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">restoreString</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">indices</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    string </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(len, </span><span>&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      answer[indices[i]] </span><span>=</span><span style="color:#eff1f5;"> s[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 399/399 cases passed (8 ms)
+</span><span style="color:#65737e;">// Your runtime beats 73.74 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 74.87 % of cpp submissions (15.2 MB)
+</span></code></pre>
 <h1 id="july-leetcoding-challenge-27">July LeetCoding Challenge 27</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Convert Sorted Array to Binary Search Tree</strong></p>
@@ -174,16 +174,16 @@ public:
 <p>A <strong>height-balanced</strong> binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/18/btree1.jpg" alt="img" /></p>
-<pre><code>Input: nums = [-10,-3,0,5,9]
-Output: [0,-3,9,-10,null,5]
-Explanation: [0,-10,5,null,-3,null,9] is also accepted:
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [-10,-3,0,5,9]
+</span><span>Output: [0,-3,9,-10,null,5]
+</span><span>Explanation: [0,-10,5,null,-3,null,9] is also accepted:
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/18/btree.jpg" alt="img" /></p>
-<pre><code>Input: nums = [1,3]
-Output: [3,1]
-Explanation: [1,3] and [3,1] are both a height-balanced BSTs.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,3]
+</span><span>Output: [3,1]
+</span><span>Explanation: [1,3] and [3,1] are both a height-balanced BSTs.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^4</code></li>
@@ -191,27 +191,27 @@ Explanation: [1,3] and [3,1] are both a height-balanced BSTs.
 <li><code>nums</code> is sorted in a <strong>strictly increasing</strong> order.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  TreeNode *construct(vector&lt;int&gt; &amp;nums, int begin, int end) {
-    if(begin &gt; end) return nullptr;
-    int mid = (begin + end) &gt;&gt; 1;
-    TreeNode *root = new TreeNode(nums[mid]);
-    root-&gt;left = construct(nums, begin, mid - 1);
-    root-&gt;right = construct(nums, mid + 1, end);
-    return root;
-  }
-public:
-  TreeNode* sortedArrayToBST(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    return construct(nums, 0, len - 1);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 31&#x2F;31 cases passed (8 ms)
-&#x2F;&#x2F; Your runtime beats 95.55 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 75.67 % of cpp submissions (21.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#8fa1b3;">construct</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span>&gt;</span><span style="color:#eff1f5;"> end) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(begin </span><span>+</span><span style="color:#eff1f5;"> end) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">root </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(nums[mid]);
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">construct</span><span style="color:#eff1f5;">(nums, begin, mid </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">construct</span><span style="color:#eff1f5;">(nums, mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">sortedArrayToBST</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">construct</span><span style="color:#eff1f5;">(nums, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 31/31 cases passed (8 ms)
+</span><span style="color:#65737e;">// Your runtime beats 95.55 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 75.67 % of cpp submissions (21.4 MB)
+</span></code></pre>
 
     </div>
   </div>

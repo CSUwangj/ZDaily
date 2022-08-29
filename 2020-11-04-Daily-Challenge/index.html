@@ -118,20 +118,20 @@ renderMathInElement(document.body, katex_config);
 <p>Given a <code>matrix</code> consisting of 0s and 1s, we may choose any number of columns in the matrix and flip <strong>every</strong> cell in that column. Flipping a cell changes the value of that cell from 0 to 1 or from 1 to 0.</p>
 <p>Return the maximum number of rows that have all values equal after some number of flips.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [[0,1],[1,1]]
-Output: 1
-Explanation: After flipping no values, 1 row has all values equal.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[0,1],[1,1]]
+</span><span>Output: 1
+</span><span>Explanation: After flipping no values, 1 row has all values equal.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [[0,1],[1,0]]
-Output: 2
-Explanation: After flipping values in the first column, both rows have equal values.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[0,1],[1,0]]
+</span><span>Output: 2
+</span><span>Explanation: After flipping values in the first column, both rows have equal values.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: [[0,0,0],[0,0,1],[1,1,0]]
-Output: 2
-Explanation: After flipping values in the first two columns, the last two rows have equal values.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [[0,0,0],[0,0,1],[1,1,0]]
+</span><span>Output: 2
+</span><span>Explanation: After flipping values in the first two columns, the last two rows have equal values.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>1 &lt;= matrix.length &lt;= 300</code></li>
@@ -141,29 +141,29 @@ Explanation: After flipping values in the first two columns, the last two rows h
 </ol>
 <h2 id="solution">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maxEqualRowsAfterFlips(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
-    unordered_map&lt;bitset&lt;300&gt;, int&gt; cnt;
-    for(auto &amp;curRow: matrix) {
-      bitset&lt;300&gt; row(0);
-      bool fliped = curRow.front();
-      for(auto cur : curRow) {
-        row &lt;&lt;= 1;
-        row |= (cur ^ fliped);
-      }
-      cnt[row] += 1;
-    }
-    int ans = max_element(
-      cnt.begin(),
-      cnt.end(),
-      [] (const pair&lt;bitset&lt;300&gt;, int&gt; &amp; p1, const pair&lt;bitset&lt;300&gt;, int&gt; &amp; p2) {
-        return p1.second &lt; p2.second;
-      })-&gt;second;
-    return ans;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxEqualRowsAfterFlips</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">matrix</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;bitset&lt;</span><span style="color:#d08770;">300</span><span style="color:#eff1f5;">&gt;, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cnt;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">curRow</span><span>:</span><span style="color:#eff1f5;"> matrix) {
+</span><span style="color:#eff1f5;">      bitset&lt;</span><span style="color:#d08770;">300</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">row</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> fliped </span><span>=</span><span style="color:#eff1f5;"> curRow.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> cur </span><span>:</span><span style="color:#eff1f5;"> curRow) {
+</span><span style="color:#eff1f5;">        row </span><span>&lt;&lt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        row </span><span>|= </span><span style="color:#eff1f5;">(cur </span><span>^</span><span style="color:#eff1f5;"> fliped);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cnt[row] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans </span><span>= </span><span style="color:#bf616a;">max_element</span><span style="color:#eff1f5;">(
+</span><span style="color:#eff1f5;">      cnt.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(),
+</span><span style="color:#eff1f5;">      cnt.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(),
+</span><span style="color:#eff1f5;">      [] (</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;bitset&lt;</span><span style="color:#d08770;">300</span><span style="color:#eff1f5;">&gt;, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;"> p1, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;bitset&lt;</span><span style="color:#d08770;">300</span><span style="color:#eff1f5;">&gt;, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;"> p2) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> p1.</span><span style="color:#bf616a;">second </span><span>&lt;</span><span style="color:#eff1f5;"> p2.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      })-&gt;</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-4">November LeetCoding Challenge 4</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Minimum Height Trees</strong></p>
@@ -173,23 +173,23 @@ public:
 <p>The <strong>height</strong> of a rooted tree is the number of edges on the longest downward path between the root and a leaf.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/01/e1.jpg" alt="img" /></p>
-<pre><code>Input: n = 4, edges = [[1,0],[1,2],[1,3]]
-Output: [1]
-Explanation: As shown, the height of the tree is 1 when the root is the node with label 1 which is the only MHT.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 4, edges = [[1,0],[1,2],[1,3]]
+</span><span>Output: [1]
+</span><span>Explanation: As shown, the height of the tree is 1 when the root is the node with label 1 which is the only MHT.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/01/e2.jpg" alt="img" /></p>
-<pre><code>Input: n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]
-Output: [3,4]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]
+</span><span>Output: [3,4]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 1, edges = []
-Output: [0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1, edges = []
+</span><span>Output: [0]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: n = 2, edges = [[0,1]]
-Output: [0,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2, edges = [[0,1]]
+</span><span>Output: [0,1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 2 * 104</code></li>
@@ -201,65 +201,65 @@ Output: [0,1]
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>find diameter of tree then find center of that path.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  vector&lt;vector&lt;int&gt;&gt; neighbors;
-  vector&lt;bool&gt; visited;
-  map&lt;int, int&gt; previous_node; 
-  int max_length;
-  int farthest_node;
-
-  void add_neightbors(vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
-    for(auto &amp;edge : edges) {
-      neighbors[edge[0]].push_back(edge[1]);
-      neighbors[edge[1]].push_back(edge[0]);
-    }
-  }
-
-  void find_farthest_node(int cur_node, int cur_length) {
-    visited[cur_node] = true;
-    if(cur_length &gt; max_length) {
-      max_length = cur_length;
-      farthest_node = cur_node;
-    }
-    for(auto neighbor : neighbors[cur_node]) {
-      if(!visited[neighbor]) {
-        previous_node[neighbor] = cur_node;
-        find_farthest_node(neighbor, cur_length+1);
-      }
-    }
-  }
-public:
-  vector&lt;int&gt; findMinHeightTrees(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
-    if(n == 1) return vector&lt;int&gt;{0};
-
-    neighbors = vector&lt;vector&lt;int&gt;&gt;(n, vector&lt;int&gt;());
-    visited = vector&lt;bool&gt;(n);
-    add_neightbors(edges);
-
-    fill(visited.begin(), visited.end(), false);
-    find_farthest_node(0, 0);
-
-    int far_node = farthest_node;
-    max_length = 0;
-
-    fill(visited.begin(), visited.end(), false);
-    find_farthest_node(far_node, 0);
-
-    int mid_length = max_length &#x2F; 2, cur_node = farthest_node;
-    set&lt;int&gt; ans;
-    for(int i = 0; i &lt;= max_length; ++i) {
-      if(i == mid_length || (max_length-i) == mid_length) {
-        ans.insert(cur_node);
-      }
-      cur_node = previous_node[cur_node];
-    }
-
-    vector&lt;int&gt; answer;
-    copy(ans.begin(), ans.end(), back_inserter(answer));
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; neighbors;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; visited;
+</span><span style="color:#eff1f5;">  map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; previous_node; 
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> max_length;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> farthest_node;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">add_neightbors</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">edges</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">edge </span><span>:</span><span style="color:#eff1f5;"> edges) {
+</span><span style="color:#eff1f5;">      neighbors[edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">      neighbors[edge[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(edge[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">find_farthest_node</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cur_node</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cur_length</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    visited[cur_node] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur_length </span><span>&gt;</span><span style="color:#eff1f5;"> max_length) {
+</span><span style="color:#eff1f5;">      max_length </span><span>=</span><span style="color:#eff1f5;"> cur_length;
+</span><span style="color:#eff1f5;">      farthest_node </span><span>=</span><span style="color:#eff1f5;"> cur_node;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> neighbor </span><span>:</span><span style="color:#eff1f5;"> neighbors[cur_node]) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">visited[neighbor]) {
+</span><span style="color:#eff1f5;">        previous_node[neighbor] </span><span>=</span><span style="color:#eff1f5;"> cur_node;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">find_farthest_node</span><span style="color:#eff1f5;">(neighbor, cur_length</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">findMinHeightTrees</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">edges</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    neighbors </span><span>= </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;(n, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;());
+</span><span style="color:#eff1f5;">    visited </span><span>= </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;(n);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">add_neightbors</span><span style="color:#eff1f5;">(edges);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">fill</span><span style="color:#eff1f5;">(visited.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), visited.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">find_farthest_node</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> far_node </span><span>=</span><span style="color:#eff1f5;"> farthest_node;
+</span><span style="color:#eff1f5;">    max_length </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">fill</span><span style="color:#eff1f5;">(visited.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), visited.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">find_farthest_node</span><span style="color:#eff1f5;">(far_node, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid_length </span><span>=</span><span style="color:#eff1f5;"> max_length </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">, cur_node </span><span>=</span><span style="color:#eff1f5;"> farthest_node;
+</span><span style="color:#eff1f5;">    set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; ans;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> max_length; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>==</span><span style="color:#eff1f5;"> mid_length </span><span>|| </span><span style="color:#eff1f5;">(max_length</span><span>-</span><span style="color:#eff1f5;">i) </span><span>==</span><span style="color:#eff1f5;"> mid_length) {
+</span><span style="color:#eff1f5;">        ans.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(cur_node);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cur_node </span><span>=</span><span style="color:#eff1f5;"> previous_node[cur_node];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">copy</span><span style="color:#eff1f5;">(ans.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), ans.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#bf616a;">back_inserter</span><span style="color:#eff1f5;">(answer));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

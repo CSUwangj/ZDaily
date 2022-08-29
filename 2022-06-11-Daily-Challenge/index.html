@@ -119,19 +119,19 @@ renderMathInElement(document.body, katex_config);
 <p>You are given an integer array <code>nums</code> and an integer <code>x</code>. In one operation, you can either remove the leftmost or the rightmost element from the array <code>nums</code> and subtract its value from <code>x</code>. Note that this <strong>modifies</strong> the array for future operations.</p>
 <p>Return <em>the <strong>minimum number</strong> of operations to reduce</em> <code>x</code> <em>to <strong>exactly</strong></em> <code>0</code> <em>if it is possible</em>*, otherwise, return* <code>-1</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,1,4,2,3], x = 5
-Output: 2
-Explanation: The optimal solution is to remove the last two elements to reduce x to zero.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,1,4,2,3], x = 5
+</span><span>Output: 2
+</span><span>Explanation: The optimal solution is to remove the last two elements to reduce x to zero.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [5,6,7,8,9], x = 4
-Output: -1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [5,6,7,8,9], x = 4
+</span><span>Output: -1
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [3,2,20,1,1,3], x = 10
-Output: 5
-Explanation: The optimal solution is to remove the last three elements and the first two elements (5 operations in total) to reduce x to zero.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,2,20,1,1,3], x = 10
+</span><span>Output: 5
+</span><span>Explanation: The optimal solution is to remove the last three elements and the first two elements (5 operations in total) to reduce x to zero.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
@@ -139,37 +139,37 @@ Explanation: The optimal solution is to remove the last three elements and the f
 <li><code>1 &lt;= x &lt;= 10^9</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int minOperations(vector&lt;int&gt;&amp; nums, int x) {
-    unordered_map&lt;int, int&gt; sumLeft, sumRight;
-    int len = nums.size();
-    int sum = 0;
-    for(int i = 0; i &lt; len; ++i) {
-      sum += nums[i];
-      sumLeft[sum] = i+1;
-    }
-    sumLeft[0] = 0;
-    sum = 0;
-    for(int i = 1; i &lt;= len; ++i) {
-      sum += nums[len-i];
-      sumRight[sum] = i;
-    }
-    sumRight[0] = 0;
-    
-    int answer = INT_MAX;
-    for(auto [sum, cnt] : sumLeft) {
-      if(sumRight.count(x-sum) &amp;&amp; cnt+sumRight[x-sum] &lt;= len) answer = min(answer, cnt+sumRight[x-sum]);
-    }
-    return answer == INT_MAX ? -1 : answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 93&#x2F;93 cases passed (1576 ms)
-&#x2F;&#x2F; Your runtime beats 5.09 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 5.08 % of cpp submissions (237.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minOperations</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; sumLeft, sumRight;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      sum </span><span>+=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">      sumLeft[sum] </span><span>=</span><span style="color:#eff1f5;"> i</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    sumLeft[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      sum </span><span>+=</span><span style="color:#eff1f5;"> nums[len</span><span>-</span><span style="color:#eff1f5;">i];
+</span><span style="color:#eff1f5;">      sumRight[sum] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    sumRight[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[sum, cnt] </span><span>:</span><span style="color:#eff1f5;"> sumLeft) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sumRight.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(x</span><span>-</span><span style="color:#eff1f5;">sum) </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> cnt</span><span>+</span><span style="color:#eff1f5;">sumRight[x</span><span>-</span><span style="color:#eff1f5;">sum] </span><span>&lt;=</span><span style="color:#eff1f5;"> len) answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, cnt</span><span>+</span><span style="color:#eff1f5;">sumRight[x</span><span>-</span><span style="color:#eff1f5;">sum]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer </span><span>==</span><span style="color:#eff1f5;"> INT_MAX </span><span>? -</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 93/93 cases passed (1576 ms)
+</span><span style="color:#65737e;">// Your runtime beats 5.09 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 5.08 % of cpp submissions (237.8 MB)
+</span></code></pre>
 
     </div>
   </div>

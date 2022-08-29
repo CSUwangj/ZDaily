@@ -120,13 +120,13 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the head of the linked list after <strong>swapping</strong> the values of the</em> <code>kth</code> <em>node from the beginning and the</em> <code>kth</code> <em>node from the end (the list is <strong>1-indexed</strong>).</em></p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/21/linked1.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4,5], k = 2
-Output: [1,4,3,2,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5], k = 2
+</span><span>Output: [1,4,3,2,5]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: head = [7,9,6,6,7,8,3,0,9,5], k = 5
-Output: [7,9,6,6,8,7,3,0,9,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [7,9,6,6,7,8,3,0,9,5], k = 5
+</span><span>Output: [7,9,6,6,8,7,3,0,9,5]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is <code>n</code>.</li>
@@ -134,40 +134,40 @@ Output: [7,9,6,6,8,7,3,0,9,5]
 <li><code>0 &lt;= Node.val &lt;= 100</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  int listLength(ListNode *head) {
-    int len = 0;
-    while(head) {
-      len += 1;
-      head = head-&gt;next;
-    }
-    return len;
-  }
-public:
-  ListNode* swapNodes(ListNode* head, int k) {
-    int len = listLength(head);
-    int first = k - 1;
-    int second = len - k;
-    ListNode *nodeFirst = head;
-    while(first--) nodeFirst = nodeFirst-&gt;next;
-    ListNode *nodeSecond = head;
-    while(second--) nodeSecond = nodeSecond-&gt;next;
-    swap(nodeFirst-&gt;val, nodeSecond-&gt;val);
-    return head;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 132&#x2F;132 cases passed (548 ms)
-&#x2F;&#x2F; Your runtime beats 99.93 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 15.97 % of cpp submissions (180.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">listLength</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">      len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">swapNodes</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#bf616a;">listLength</span><span style="color:#eff1f5;">(head);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> first </span><span>=</span><span style="color:#eff1f5;"> k </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> second </span><span>=</span><span style="color:#eff1f5;"> len </span><span>-</span><span style="color:#eff1f5;"> k;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">nodeFirst </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(first</span><span>--</span><span style="color:#eff1f5;">) nodeFirst </span><span>=</span><span style="color:#eff1f5;"> nodeFirst-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">nodeSecond </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(second</span><span>--</span><span style="color:#eff1f5;">) nodeSecond </span><span>=</span><span style="color:#eff1f5;"> nodeSecond-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(nodeFirst-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">, nodeSecond-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 132/132 cases passed (548 ms)
+</span><span style="color:#65737e;">// Your runtime beats 99.93 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 15.97 % of cpp submissions (180.3 MB)
+</span></code></pre>
 
     </div>
   </div>

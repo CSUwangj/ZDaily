@@ -122,14 +122,14 @@ renderMathInElement(document.body, katex_config);
 </ol>
 <p>Given a number <code>n</code>. You have to get <strong>exactly</strong> <code>n</code> 'A' on the notepad by performing the minimum number of steps permitted. Output the minimum number of steps to get <code>n</code> 'A'.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: 3
-Output: 3
-Explanation:
-Intitally, we have one character &#x27;A&#x27;.
-In step 1, we use Copy All operation.
-In step 2, we use Paste operation to get &#x27;AA&#x27;.
-In step 3, we use Paste operation to get &#x27;AAA&#x27;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 3
+</span><span>Output: 3
+</span><span>Explanation:
+</span><span>Intitally, we have one character &#39;A&#39;.
+</span><span>In step 1, we use Copy All operation.
+</span><span>In step 2, we use Paste operation to get &#39;AA&#39;.
+</span><span>In step 3, we use Paste operation to get &#39;AAA&#39;.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>The <code>n</code> will be in the range [1, 1000].</li>
@@ -137,23 +137,23 @@ In step 3, we use Paste operation to get &#x27;AAA&#x27;.
 <h2 id="solution">Solution</h2>
 <p>it's obvious that final result comes from it's factor, so all we need do is factorize it and add all non-one factors,
 if there are only one and itself are its factors, answer is n.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int minSteps(int n) {
-        if(n == 1) return 0;
-        int ans = 0;
-        for(int i = 2; i &lt;= n; ++i) {
-            if(n % i == 0) {
-                while(n % i == 0) {
-                    n &#x2F;= i;
-                    ans += i;
-                }
-            }
-        }
-        return ans;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minSteps</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>%</span><span style="color:#eff1f5;"> i </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(n </span><span>%</span><span style="color:#eff1f5;"> i </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    n </span><span>/=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">                    ans </span><span>+=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-2">November LeetCoding Challenge 2</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Insertion Sort List</strong></p>
@@ -168,45 +168,45 @@ With each iteration one element (red) is removed from the input data and inserte
 <li>It repeats until no input elements remain.
 <strong>Example 1:</strong></li>
 </ol>
-<pre><code>Input: 4-&gt;2-&gt;1-&gt;3
-Output: 1-&gt;2-&gt;3-&gt;4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 4-&gt;2-&gt;1-&gt;3
+</span><span>Output: 1-&gt;2-&gt;3-&gt;4
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: -1-&gt;5-&gt;3-&gt;4-&gt;0
-Output: -1-&gt;0-&gt;3-&gt;4-&gt;5
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: -1-&gt;5-&gt;3-&gt;4-&gt;0
+</span><span>Output: -1-&gt;0-&gt;3-&gt;4-&gt;5
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- *&#x2F;
-class Solution {
-public:
-    ListNode* insertionSortList(ListNode* head) {
-        ListNode *new_head = new ListNode(INT_MIN);
-        ListNode *cur_head = head, *cur_node;
-        while(cur_head) {
-            cur_node = cur_head;
-            cur_head = cur_head-&gt;next;
-            ListNode *insert_pos = new_head-&gt;next, *prev_pos = new_head;
-            while(insert_pos &amp;&amp; insert_pos-&gt;val &lt; cur_node-&gt;val) {
-                prev_pos = insert_pos;
-                insert_pos = insert_pos-&gt;next;
-            }
-            cur_node-&gt;next = insert_pos;
-            prev_pos-&gt;next = cur_node;
-        }
-        return new_head-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode() : val(0), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">insertionSortList</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">new_head </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(INT_MIN);
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">cur_head </span><span>=</span><span style="color:#eff1f5;"> head, </span><span>*</span><span style="color:#eff1f5;">cur_node;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur_head) {
+</span><span style="color:#eff1f5;">            cur_node </span><span>=</span><span style="color:#eff1f5;"> cur_head;
+</span><span style="color:#eff1f5;">            cur_head </span><span>=</span><span style="color:#eff1f5;"> cur_head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            ListNode </span><span>*</span><span style="color:#eff1f5;">insert_pos </span><span>=</span><span style="color:#eff1f5;"> new_head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">, </span><span>*</span><span style="color:#eff1f5;">prev_pos </span><span>=</span><span style="color:#eff1f5;"> new_head;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(insert_pos </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> insert_pos-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> cur_node-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                prev_pos </span><span>=</span><span style="color:#eff1f5;"> insert_pos;
+</span><span style="color:#eff1f5;">                insert_pos </span><span>=</span><span style="color:#eff1f5;"> insert_pos-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            cur_node-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> insert_pos;
+</span><span style="color:#eff1f5;">            prev_pos-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur_node;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> new_head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

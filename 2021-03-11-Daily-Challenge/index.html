@@ -124,66 +124,66 @@ renderMathInElement(document.body, katex_config);
 <li><code>randPoint</code> returns a size 2 array containing x-position and y-position of the random point, in that order.</li>
 </ol>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: 
-[&quot;Solution&quot;,&quot;randPoint&quot;,&quot;randPoint&quot;,&quot;randPoint&quot;]
-[[1,0,0],[],[],[]]
-Output: [null,[-0.72939,-0.65505],[-0.78502,-0.28626],[-0.83119,-0.19803]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 
+</span><span>[&quot;Solution&quot;,&quot;randPoint&quot;,&quot;randPoint&quot;,&quot;randPoint&quot;]
+</span><span>[[1,0,0],[],[],[]]
+</span><span>Output: [null,[-0.72939,-0.65505],[-0.78502,-0.28626],[-0.83119,-0.19803]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: 
-[&quot;Solution&quot;,&quot;randPoint&quot;,&quot;randPoint&quot;,&quot;randPoint&quot;]
-[[10,5,-7.5],[],[],[]]
-Output: [null,[11.52438,-8.33273],[2.46992,-16.21705],[11.13430,-12.42337]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 
+</span><span>[&quot;Solution&quot;,&quot;randPoint&quot;,&quot;randPoint&quot;,&quot;randPoint&quot;]
+</span><span>[[10,5,-7.5],[],[],[]]
+</span><span>Output: [null,[11.52438,-8.33273],[2.46992,-16.21705],[11.13430,-12.42337]]
+</span></code></pre>
 <p><strong>Explanation of Input Syntax:</strong></p>
 <p>The input is two lists: the subroutines called and their arguments. <code>Solution</code>'s constructor has three arguments, the radius, x-position of the center, and y-position of the center of the circle. <code>randPoint</code> has no arguments. Arguments are always wrapped with a list, even if there aren't any.</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">constexpr double pi = 3.14159265358979732384626433832795;
-
-class Solution {
-  mt19937 gen;
-  double x;
-  double y;
-  double r;
-  uniform_real_distribution&lt;double&gt; distr;
-  
-public:
-  Solution(double radius, double x_center, double y_center): r(radius), x(x_center), y(y_center), distr(0.0, 1.0){}
-    
-  vector&lt;double&gt; randPoint() {
-    double angle = 2 * pi * distr(gen);
-    double length = r * sqrt(distr(gen));
-    return vector&lt;double&gt;{x + length * cos(angle), y + length * sin(angle)};
-  }
-};
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">constexpr double</span><span> pi = </span><span style="color:#d08770;">3.14159265358979732384626433832795</span><span>;
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  mt19937 gen;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> x;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> y;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> r;
+</span><span style="color:#eff1f5;">  uniform_real_distribution&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt; distr;
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">Solution</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">double </span><span style="color:#bf616a;">radius</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">double </span><span style="color:#bf616a;">x_center</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">double </span><span style="color:#bf616a;">y_center</span><span style="color:#eff1f5;">): </span><span style="color:#bf616a;">r</span><span style="color:#eff1f5;">(radius), </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">(x_center), </span><span style="color:#bf616a;">y</span><span style="color:#eff1f5;">(y_center), </span><span style="color:#bf616a;">distr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0.0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1.0</span><span style="color:#eff1f5;">){}
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">randPoint</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> angle </span><span>= </span><span style="color:#d08770;">2 </span><span>*</span><span style="color:#eff1f5;"> pi </span><span>* </span><span style="color:#bf616a;">distr</span><span style="color:#eff1f5;">(gen);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> length </span><span>=</span><span style="color:#eff1f5;"> r </span><span>* </span><span style="color:#96b5b4;">sqrt</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">distr</span><span style="color:#eff1f5;">(gen));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt;{x </span><span>+</span><span style="color:#eff1f5;"> length </span><span>* </span><span style="color:#96b5b4;">cos</span><span style="color:#eff1f5;">(angle), y </span><span>+</span><span style="color:#eff1f5;"> length </span><span>* </span><span style="color:#96b5b4;">sin</span><span style="color:#eff1f5;">(angle)};
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span></code></pre>
 <h1 id="march-leetcoding-challenge-11">March LeetCoding Challenge 11</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Coin Change</strong></p>
 <p>You are given coins of different denominations and a total amount of money <em>amount</em>. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return <code>-1</code>.</p>
 <p>You may assume that you have an infinite number of each kind of coin.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: coins = [1,2,5], amount = 11
-Output: 3
-Explanation: 11 = 5 + 5 + 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: coins = [1,2,5], amount = 11
+</span><span>Output: 3
+</span><span>Explanation: 11 = 5 + 5 + 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: coins = [2], amount = 3
-Output: -1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: coins = [2], amount = 3
+</span><span>Output: -1
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: coins = [1], amount = 0
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: coins = [1], amount = 0
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: coins = [1], amount = 1
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: coins = [1], amount = 1
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: coins = [1], amount = 2
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: coins = [1], amount = 2
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>$1 \le coins.length \le 12$</li>
@@ -191,20 +191,20 @@ Output: 2
 <li>$0 \le amount \le 10^4$</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int coinChange(vector&lt;int&gt;&amp; coins, int amount) {
-    vector&lt;int&gt; dp(amount + 1, amount+1);
-    dp[0] = 0;
-    for(auto coin : coins){
-      for(int i = coin; i &lt;= amount; ++i) {
-        dp[i] = min(dp[i], dp[i - coin] + 1);
-      }
-    }
-    return dp.back() &gt; amount ? -1 : dp.back();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">coinChange</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">coins</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">amount</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(amount </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, amount</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> coin </span><span>:</span><span style="color:#eff1f5;"> coins){
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> coin; i </span><span>&lt;=</span><span style="color:#eff1f5;"> amount; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        dp[i] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[i], dp[i </span><span>-</span><span style="color:#eff1f5;"> coin] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> amount </span><span>? -</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> dp.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

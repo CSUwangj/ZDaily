@@ -140,73 +140,73 @@ heptagonal, and octagonal, is represented by a different number in the set.</p>
 <p>BTW, before I wrote the right code, I wrote some shit.</p>
 <p><img src="https://csuwangj.github.io/ZDaily/2019-02-19-daily-challenge/shit.png" alt="&quot;shit&quot;" /></p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap;
-
-fn main() {
-    let mut num: HashMap&lt;i32, u8&gt; = HashMap::new();
-    let mut ans: [i32; 6] = [0; 6];
-    let mut t = 10;
-    loop {
-        let tmp = t * (t + 1) &#x2F; 2;
-        if tmp &gt; 9999 {
-            break;
-        }
-        special_insert(&amp;mut num, tmp, 1);
-        special_insert(&amp;mut num, t*t, 1&lt;&lt;1);
-        special_insert(&amp;mut num, t*(3*t-1)&#x2F;2, 1&lt;&lt;2);
-        special_insert(&amp;mut num, t*(2*t-1), 1&lt;&lt;3);
-        special_insert(&amp;mut num, t*(5*t-3)&#x2F;2, 1&lt;&lt;4);
-        special_insert(&amp;mut num, t*(3*t-2), 1&lt;&lt;5);
-        t += 1;
-    }
-    for (n, bitmask) in &amp;num {
-        if n % 100 &lt; 10 {
-            continue;
-        }
-        ans[0] = *n;
-        if dfs(*n, *bitmask, 1, &amp;num, &amp;mut ans) {
-            break;
-        }
-    }
-    println!(&quot;Answer is {:?}&quot;, ans);
-    println!(&quot;Sum of it is {}&quot;, ans.iter().fold(0, |a, &amp;b| a + b));
-}
-
-fn special_insert(map: &amp;mut HashMap&lt;i32, u8&gt;, n: i32, bitmask: u8) {
-    if n &lt; 1000 || n &gt; 9999 {
-        return
-    }
-    if map.contains_key(&amp;n) {
-        let tmp = map.get(&amp;n).unwrap();
-        map.insert(n, tmp | bitmask);
-    } else {
-        map.insert(n, bitmask);
-    }
-}
-
-fn dfs(cur: i32, bitmask: u8, size: usize, map: &amp;HashMap&lt;i32, u8&gt;, mut ans: &amp;mut [i32]) -&gt; bool {
-    if size == 6 {
-        return ans[0] &#x2F; 100 == ans[5] % 100;
-    }
-    let tmp = cur % 100 * 100;
-    for i in 10..100 {
-        let tmp = tmp + i;
-        if map.contains_key(&amp;tmp) {
-            let mask = map.get(&amp;tmp).unwrap();
-            for i in 0..6 {
-                let tp = 1 &lt;&lt; i;
-                if bitmask &amp; tp == 0 &amp;&amp; mask &amp; tp != 0 {
-                    ans[size] = tmp;
-                    if dfs(tmp, bitmask | tp, size + 1, &amp;map, &amp;mut ans) {
-                        return true;
-                    }
-                }
-            }
-        }
-    }
-    false
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::collections::HashMap;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> num: HashMap&lt;</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">u8</span><span>&gt; = HashMap::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: [</span><span style="color:#b48ead;">i32</span><span>; </span><span style="color:#d08770;">6</span><span>] = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">6</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> t = </span><span style="color:#d08770;">10</span><span>;
+</span><span>    </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = t * (t + </span><span style="color:#d08770;">1</span><span>) / </span><span style="color:#d08770;">2</span><span>;
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp &gt; </span><span style="color:#d08770;">9999 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">break</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#96b5b4;">special_insert</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> num, tmp, </span><span style="color:#d08770;">1</span><span>);
+</span><span>        </span><span style="color:#96b5b4;">special_insert</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> num, t*t, </span><span style="color:#d08770;">1</span><span>&lt;&lt;</span><span style="color:#d08770;">1</span><span>);
+</span><span>        </span><span style="color:#96b5b4;">special_insert</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> num, t*(</span><span style="color:#d08770;">3</span><span>*t-</span><span style="color:#d08770;">1</span><span>)/</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">1</span><span>&lt;&lt;</span><span style="color:#d08770;">2</span><span>);
+</span><span>        </span><span style="color:#96b5b4;">special_insert</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> num, t*(</span><span style="color:#d08770;">2</span><span>*t-</span><span style="color:#d08770;">1</span><span>), </span><span style="color:#d08770;">1</span><span>&lt;&lt;</span><span style="color:#d08770;">3</span><span>);
+</span><span>        </span><span style="color:#96b5b4;">special_insert</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> num, t*(</span><span style="color:#d08770;">5</span><span>*t-</span><span style="color:#d08770;">3</span><span>)/</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">1</span><span>&lt;&lt;</span><span style="color:#d08770;">4</span><span>);
+</span><span>        </span><span style="color:#96b5b4;">special_insert</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> num, t*(</span><span style="color:#d08770;">3</span><span>*t-</span><span style="color:#d08770;">2</span><span>), </span><span style="color:#d08770;">1</span><span>&lt;&lt;</span><span style="color:#d08770;">5</span><span>);
+</span><span>        t += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(n, bitmask) in &amp;num {
+</span><span>        </span><span style="color:#b48ead;">if</span><span> n % </span><span style="color:#d08770;">100 </span><span>&lt; </span><span style="color:#d08770;">10 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>        }
+</span><span>        ans[</span><span style="color:#d08770;">0</span><span>] = *n;
+</span><span>        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">dfs</span><span>(*n, *bitmask, </span><span style="color:#d08770;">1</span><span>, &amp;num, &amp;</span><span style="color:#b48ead;">mut</span><span> ans) {
+</span><span>            </span><span style="color:#b48ead;">break</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{:?}</span><span>&quot;, ans);
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Sum of it is </span><span style="color:#d08770;">{}</span><span>&quot;, ans.</span><span style="color:#96b5b4;">iter</span><span>().</span><span style="color:#96b5b4;">fold</span><span>(</span><span style="color:#d08770;">0</span><span>, |</span><span style="color:#bf616a;">a</span><span>, &amp;</span><span style="color:#bf616a;">b</span><span>| a + b));
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">special_insert</span><span>(</span><span style="color:#bf616a;">map</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>HashMap&lt;</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">u8</span><span>&gt;, </span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#bf616a;">bitmask</span><span>: </span><span style="color:#b48ead;">u8</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span> n &lt; </span><span style="color:#d08770;">1000 </span><span>|| n &gt; </span><span style="color:#d08770;">9999 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">return
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">if</span><span> map.</span><span style="color:#96b5b4;">contains_key</span><span>(&amp;n) {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = map.</span><span style="color:#96b5b4;">get</span><span>(&amp;n).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>        map.</span><span style="color:#96b5b4;">insert</span><span>(n, tmp | bitmask);
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        map.</span><span style="color:#96b5b4;">insert</span><span>(n, bitmask);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">dfs</span><span>(</span><span style="color:#bf616a;">cur</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#bf616a;">bitmask</span><span>: </span><span style="color:#b48ead;">u8</span><span>, </span><span style="color:#bf616a;">size</span><span>: </span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#bf616a;">map</span><span>: &amp;HashMap&lt;</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">u8</span><span>&gt;, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">ans</span><span>: &amp;</span><span style="color:#b48ead;">mut</span><span> [</span><span style="color:#b48ead;">i32</span><span>]) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if</span><span> size == </span><span style="color:#d08770;">6 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">return</span><span> ans[</span><span style="color:#d08770;">0</span><span>] / </span><span style="color:#d08770;">100 </span><span>== ans[</span><span style="color:#d08770;">5</span><span>] % </span><span style="color:#d08770;">100</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tmp = cur % </span><span style="color:#d08770;">100 </span><span>* </span><span style="color:#d08770;">100</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">10</span><span>..</span><span style="color:#d08770;">100 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = tmp + i;
+</span><span>        </span><span style="color:#b48ead;">if</span><span> map.</span><span style="color:#96b5b4;">contains_key</span><span>(&amp;tmp) {
+</span><span>            </span><span style="color:#b48ead;">let</span><span> mask = map.</span><span style="color:#96b5b4;">get</span><span>(&amp;tmp).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>            </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">6 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">let</span><span> tp = </span><span style="color:#d08770;">1 </span><span>&lt;&lt; i;
+</span><span>                </span><span style="color:#b48ead;">if</span><span> bitmask &amp; tp == </span><span style="color:#d08770;">0 </span><span>&amp;&amp; mask &amp; tp != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>                    ans[size] = tmp;
+</span><span>                    </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">dfs</span><span>(tmp, bitmask | tp, size + </span><span style="color:#d08770;">1</span><span>, &amp;map, &amp;</span><span style="color:#b48ead;">mut</span><span> ans) {
+</span><span>                        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>                    }
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#d08770;">false
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="968-binary-tree-cameras">968. Binary Tree Cameras</h3>
@@ -214,16 +214,16 @@ fn dfs(cur: i32, bitmask: u8, size: usize, map: &amp;HashMap&lt;i32, u8&gt;, mut
 <p>Each camera at a node can monitor <strong>its parent, itself, and its immediate children</strong>.</p>
 <p>Calculate the minimum number of cameras needed to monitor all nodes of the tree.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [0,0,null,0,0]
-Output: 1
-Explanation: One camera is enough to monitor all nodes if placed as shown.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [0,0,null,0,0]
+</span><span>Output: 1
+</span><span>Explanation: One camera is enough to monitor all nodes if placed as shown.
+</span></code></pre>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/29/bst_cameras_01.png" alt="img" /></p>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [0,0,null,0,null,0,null,null,0]
-Output: 2
-Explanation: At least two cameras are needed to monitor all nodes of the tree. The above image shows one of the valid configurations of camera placement.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [0,0,null,0,null,0,null,null,0]
+</span><span>Output: 2
+</span><span>Explanation: At least two cameras are needed to monitor all nodes of the tree. The above image shows one of the valid configurations of camera placement.
+</span></code></pre>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/29/bst_cameras_02.png" alt="img" /></p>
 <p><strong>Note:</strong></p>
 <ol>
@@ -234,39 +234,39 @@ Explanation: At least two cameras are needed to monitor all nodes of the tree. T
 <p>Greedy algorithm is capable for this.</p>
 <p>We begin with bottom, where all children are <em>null</em>, we first mark <em>null</em> been monitored, if and only if the node's child is not monitored, or this node is root and is not monitored, we need to put a camera on it.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- *&#x2F;
-&#x2F;**
- * @param {TreeNode} root
- * @return {number}
- *&#x2F;
-var minCameraCover = function(root) {
-  let ans = 0;
-  let set = new Set();
-  set.add(null);
-  const dfs = (node, parent) =&gt; {
-    if (node !== null) {
-      dfs(node.left, node);
-      dfs(node.right, node);
-      if ((parent === null &amp;&amp; !set.has(node)) ||
-           !set.has(node.left) || !set.has(node.right)) {
-        ans += 1;
-        set.add(node);
-        set.add(parent);
-        set.add(node.left);
-        set.add(node.right);
-      }
-    }
-  };
-  dfs(root, null);
-  return ans;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * function TreeNode(val) {
+</span><span style="color:#65737e;"> *     this.val = val;
+</span><span style="color:#65737e;"> *     this.left = this.right = null;
+</span><span style="color:#65737e;"> * }
+</span><span style="color:#65737e;"> */
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{TreeNode} </span><span style="color:#bf616a;">root
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">minCameraCover </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">root</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">set </span><span>= new Set();
+</span><span>  </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#d08770;">null</span><span>);
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">dfs </span><span>= (</span><span style="color:#bf616a;">node</span><span>, </span><span style="color:#bf616a;">parent</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">node </span><span>!== </span><span style="color:#d08770;">null</span><span>) {
+</span><span>      </span><span style="color:#8fa1b3;">dfs</span><span>(</span><span style="color:#bf616a;">node</span><span>.left, </span><span style="color:#bf616a;">node</span><span>);
+</span><span>      </span><span style="color:#8fa1b3;">dfs</span><span>(</span><span style="color:#bf616a;">node</span><span>.right, </span><span style="color:#bf616a;">node</span><span>);
+</span><span>      </span><span style="color:#b48ead;">if </span><span>((</span><span style="color:#bf616a;">parent </span><span>=== </span><span style="color:#d08770;">null </span><span>&amp;&amp; !</span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">node</span><span>)) ||
+</span><span>           !</span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">node</span><span>.left) || !</span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">node</span><span>.right)) {
+</span><span>        </span><span style="color:#bf616a;">ans </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">node</span><span>);
+</span><span>        </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">parent</span><span>);
+</span><span>        </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">node</span><span>.left);
+</span><span>        </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">node</span><span>.right);
+</span><span>      }
+</span><span>    }
+</span><span>  };
+</span><span>  </span><span style="color:#8fa1b3;">dfs</span><span>(root, </span><span style="color:#d08770;">null</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

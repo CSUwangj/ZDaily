@@ -133,25 +133,25 @@ renderMathInElement(document.body, katex_config);
 <p>The judge will then create the linked structure based on these inputs and pass the two heads, <code>headA</code> and <code>headB</code> to your program. If you correctly return the intersected node, then your solution will be <strong>accepted</strong>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/03/05/160_example_1_1.png" alt="img" /></p>
-<pre><code>Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
-Output: Intersected at &#x27;8&#x27;
-Explanation: The intersected node&#x27;s value is 8 (note that this must not be 0 if the two lists intersect).
-From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+</span><span>Output: Intersected at &#39;8&#39;
+</span><span>Explanation: The intersected node&#39;s value is 8 (note that this must not be 0 if the two lists intersect).
+</span><span>From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/03/05/160_example_2.png" alt="img" /></p>
-<pre><code>Input: intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
-Output: Intersected at &#x27;2&#x27;
-Explanation: The intersected node&#x27;s value is 2 (note that this must not be 0 if the two lists intersect).
-From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+</span><span>Output: Intersected at &#39;2&#39;
+</span><span>Explanation: The intersected node&#39;s value is 2 (note that this must not be 0 if the two lists intersect).
+</span><span>From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/03/05/160_example_3.png" alt="img" /></p>
-<pre><code>Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
-Output: No intersection
-Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
-Explanation: The two lists do not intersect, so return null.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+</span><span>Output: No intersection
+</span><span>Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
+</span><span>Explanation: The two lists do not intersect, so return null.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes of <code>listA</code> is in the <code>m</code>.</li>
@@ -165,44 +165,44 @@ Explanation: The two lists do not intersect, so return null.
 </ul>
 <p><strong>Follow up:</strong> Could you write a solution that runs in <code>O(m + n)</code> time and use only <code>O(1)</code> memory?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  pair&lt;int, ListNode*&gt; getLengthAndTail(ListNode *head) {
-    ListNode *tail;
-    int len = 0;
-    while(head) {
-      len += 1;
-      tail = head;
-      head = head-&gt;next;
-    }
-    return make_pair(len, tail);
-  }
-  ListNode* advance(ListNode *head, int dis) {
-    while(head &amp;&amp; dis) {
-      head = head-&gt;next;
-      dis -= 1;
-    }
-    return head;
-  }
-public:
-  ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-    auto [lenA, tailA] = getLengthAndTail(headA);
-    auto [lenB, tailB] = getLengthAndTail(headB);
-    if(tailA != tailB) return nullptr;
-    if(lenA &gt; lenB) headA = advance(headA, lenA - lenB);
-    if(lenB &gt; lenA) headB = advance(headB, lenB - lenA);
-    while(headA != headB) {
-      headA = headA-&gt;next;
-      headB = headB-&gt;next;
-    }
-    return headA;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 39&#x2F;39 cases passed (116 ms)
-&#x2F;&#x2F; Your runtime beats 12.38 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 72.37 % of cpp submissions (14.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, ListNode</span><span>*</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">getLengthAndTail</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">tail;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">      len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      tail </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(len, tail);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">advance</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">dis</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> dis) {
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      dis </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode </span><span>*</span><span style="color:#8fa1b3;">getIntersectionNode</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">headA</span><span style="color:#eff1f5;">, ListNode </span><span>*</span><span style="color:#bf616a;">headB</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[lenA, tailA] </span><span>= </span><span style="color:#bf616a;">getLengthAndTail</span><span style="color:#eff1f5;">(headA);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[lenB, tailB] </span><span>= </span><span style="color:#bf616a;">getLengthAndTail</span><span style="color:#eff1f5;">(headB);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(tailA </span><span>!=</span><span style="color:#eff1f5;"> tailB) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lenA </span><span>&gt;</span><span style="color:#eff1f5;"> lenB) headA </span><span>= </span><span style="color:#bf616a;">advance</span><span style="color:#eff1f5;">(headA, lenA </span><span>-</span><span style="color:#eff1f5;"> lenB);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lenB </span><span>&gt;</span><span style="color:#eff1f5;"> lenA) headB </span><span>= </span><span style="color:#bf616a;">advance</span><span style="color:#eff1f5;">(headB, lenB </span><span>-</span><span style="color:#eff1f5;"> lenA);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(headA </span><span>!=</span><span style="color:#eff1f5;"> headB) {
+</span><span style="color:#eff1f5;">      headA </span><span>=</span><span style="color:#eff1f5;"> headA-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      headB </span><span>=</span><span style="color:#eff1f5;"> headB-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> headA;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 39/39 cases passed (116 ms)
+</span><span style="color:#65737e;">// Your runtime beats 12.38 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 72.37 % of cpp submissions (14.5 MB)
+</span></code></pre>
 
     </div>
   </div>

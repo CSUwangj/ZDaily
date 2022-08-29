@@ -115,113 +115,113 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Counting Sundays</em> in <em>Rust</em> and <em>N-Queens II</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Counting Sundays
-
-Problem 19 
-
-You are given the following information, but you may prefer to do some research for yourself.
-
-- 1 Jan 1900 was a Monday.
-- Thirty days has September,
-  April, June and November.
-  All the rest have thirty-one,
-  Saving February alone,
-  Which has twenty-eight, rain or shine.
-  And on leap years, twenty-nine.
-- A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
-
-How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Counting Sundays
+</span><span>
+</span><span>Problem 19 
+</span><span>
+</span><span>You are given the following information, but you may prefer to do some research for yourself.
+</span><span>
+</span><span>- 1 Jan 1900 was a Monday.
+</span><span>- Thirty days has September,
+</span><span>  April, June and November.
+</span><span>  All the rest have thirty-one,
+</span><span>  Saving February alone,
+</span><span>  Which has twenty-eight, rain or shine.
+</span><span>  And on leap years, twenty-nine.
+</span><span>- A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+</span><span>
+</span><span>How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>Simple simulation.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    assert!(is_leap_year(2016));
-    assert!(is_leap_year(1997) == false);
-    let days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    let mut day = 2;
-    let mut ans = 0;
-    for year in 1901..2001{
-        for month in 0..12 {
-            if day == 0 {
-                ans += 1;
-            }
-            if month == 1 {
-                day = if is_leap_year(year) { (day + 29) % 7 } else { (day + 28) % 7 };
-            } else {
-                day = (day + days[month]) % 7;
-            }
-        } 
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn is_leap_year(n: i32) -&gt; bool {
-    n % 400 == 0 || (n % 100 != 0 &amp;&amp; n % 4 == 0)
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    assert!(</span><span style="color:#96b5b4;">is_leap_year</span><span>(</span><span style="color:#d08770;">2016</span><span>));
+</span><span>    assert!(</span><span style="color:#96b5b4;">is_leap_year</span><span>(</span><span style="color:#d08770;">1997</span><span>) == </span><span style="color:#d08770;">false</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> days = [</span><span style="color:#d08770;">31</span><span>, </span><span style="color:#d08770;">28</span><span>, </span><span style="color:#d08770;">31</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">31</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">31</span><span>, </span><span style="color:#d08770;">31</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">31</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">31</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> day = </span><span style="color:#d08770;">2</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> year in </span><span style="color:#d08770;">1901</span><span>..</span><span style="color:#d08770;">2001</span><span>{
+</span><span>        </span><span style="color:#b48ead;">for</span><span> month in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">12 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">if</span><span> day == </span><span style="color:#d08770;">0 </span><span>{
+</span><span>                ans += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if</span><span> month == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>                day = </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">is_leap_year</span><span>(year) { (day + </span><span style="color:#d08770;">29</span><span>) % </span><span style="color:#d08770;">7 </span><span>} </span><span style="color:#b48ead;">else </span><span>{ (day + </span><span style="color:#d08770;">28</span><span>) % </span><span style="color:#d08770;">7 </span><span>};
+</span><span>            } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>                day = (day + days[month]) % </span><span style="color:#d08770;">7</span><span>;
+</span><span>            }
+</span><span>        } 
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">is_leap_year</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">i32</span><span>) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    n % </span><span style="color:#d08770;">400 </span><span>== </span><span style="color:#d08770;">0 </span><span>|| (n % </span><span style="color:#d08770;">100 </span><span>!= </span><span style="color:#d08770;">0 </span><span>&amp;&amp; n % </span><span style="color:#d08770;">4 </span><span>== </span><span style="color:#d08770;">0</span><span>)
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>52. N-Queens II
-
-The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
-
-
-
-Given an integer n, return the number of distinct solutions to the n-queens puzzle.
-
-Example:
-
-Input: 4
-Output: 2
-Explanation: There are two distinct solutions to the 4-queens puzzle as shown below.
-[
- [&quot;.Q..&quot;,  &#x2F;&#x2F; Solution 1
-  &quot;...Q&quot;,
-  &quot;Q...&quot;,
-  &quot;..Q.&quot;],
-
- [&quot;..Q.&quot;,  &#x2F;&#x2F; Solution 2
-  &quot;Q...&quot;,
-  &quot;...Q&quot;,
-  &quot;.Q..&quot;]
-]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>52. N-Queens II
+</span><span>
+</span><span>The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+</span><span>
+</span><span>
+</span><span>
+</span><span>Given an integer n, return the number of distinct solutions to the n-queens puzzle.
+</span><span>
+</span><span>Example:
+</span><span>
+</span><span>Input: 4
+</span><span>Output: 2
+</span><span>Explanation: There are two distinct solutions to the 4-queens puzzle as shown below.
+</span><span>[
+</span><span> [&quot;.Q..&quot;,  // Solution 1
+</span><span>  &quot;...Q&quot;,
+</span><span>  &quot;Q...&quot;,
+</span><span>  &quot;..Q.&quot;],
+</span><span>
+</span><span> [&quot;..Q.&quot;,  // Solution 2
+</span><span>  &quot;Q...&quot;,
+</span><span>  &quot;...Q&quot;,
+</span><span>  &quot;.Q..&quot;]
+</span><span>]
+</span></code></pre>
 <p><img src="https://assets.leetcode.com/uploads/2018/10/12/8-queens.png" alt="img" /></p>
 <h2 id="solution-1">Solution</h2>
 <p>Simple DFS.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number} n
- * @return {number}
- *&#x2F;
-var totalNQueens = function(n) {
-  let row = new Array(n);
-  let ans = 0;
-  let dfs = (r) =&gt; {
-    if(r == n){
-      ans++;
-      return;
-    }
-    for(let i = 0 ; i &lt; n; ++ i){
-      if(check(r, i)){
-        row[r] = i;
-        dfs(r + 1);
-      }
-    }
-  };
-  let check = (r, col) =&gt; {
-    for(let i = 0; i &lt; r; ++i){
-      if(row[i] == col || Math.abs(row[i] - col) == Math.abs(r - i)){
-        return false;
-      }
-    }
-    return true;
-  };
-  dfs(0);
-  return ans;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">n
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">totalNQueens </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">n</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">row </span><span>= new Array(</span><span style="color:#bf616a;">n</span><span>);
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">dfs </span><span>= (</span><span style="color:#bf616a;">r</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">r </span><span>== </span><span style="color:#bf616a;">n</span><span>){
+</span><span>      </span><span style="color:#bf616a;">ans</span><span>++;
+</span><span>      </span><span style="color:#b48ead;">return</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0 </span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">n</span><span>; ++ </span><span style="color:#bf616a;">i</span><span>){
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#8fa1b3;">check</span><span>(</span><span style="color:#bf616a;">r</span><span>, </span><span style="color:#bf616a;">i</span><span>)){
+</span><span>        </span><span style="color:#bf616a;">row</span><span>[</span><span style="color:#bf616a;">r</span><span>] = </span><span style="color:#bf616a;">i</span><span>;
+</span><span>        </span><span style="color:#8fa1b3;">dfs</span><span>(</span><span style="color:#bf616a;">r </span><span>+ </span><span style="color:#d08770;">1</span><span>);
+</span><span>      }
+</span><span>    }
+</span><span>  };
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">check </span><span>= (</span><span style="color:#bf616a;">r</span><span>, </span><span style="color:#bf616a;">col</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">r</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">row</span><span>[</span><span style="color:#bf616a;">i</span><span>] == </span><span style="color:#bf616a;">col </span><span>|| Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">row</span><span>[</span><span style="color:#bf616a;">i</span><span>] - </span><span style="color:#bf616a;">col</span><span>) == Math.</span><span style="color:#96b5b4;">abs</span><span>(</span><span style="color:#bf616a;">r </span><span>- </span><span style="color:#bf616a;">i</span><span>)){
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>      }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>  };
+</span><span>  </span><span style="color:#8fa1b3;">dfs</span><span>(</span><span style="color:#d08770;">0</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

@@ -123,48 +123,48 @@ renderMathInElement(document.body, katex_config);
 <p>I've tried to find some graceful solution which need no stack-based array to determine if two numbers are permutation of each other, and get nothing.</p>
 <p>So just brute force.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut down_bound = 100;
-    let mut up_bound = 1000&#x2F;6 + 1;
-    let mut found: bool = false;
-    let mut ans = 0;
-    while !found {
-        for i in down_bound..up_bound {
-            let mut is_ok = true;
-            for j in 2..7 {
-                if !is_permutation(i, i*j) {
-                    is_ok = false;
-                    break;
-                }
-            }
-            if is_ok {
-                ans = i;
-                found = true;
-            }
-        }
-        down_bound *= 10;
-        up_bound = down_bound*10&#x2F;6 + 1;
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn is_permutation(mut u: usize, mut v: usize) -&gt; bool {
-    let mut a1: [usize; 10] = [0; 10];
-    let mut a2: [usize; 10] = [0; 10];
-    while u &gt; 0 {
-        a1[u%10] += 1;
-        a2[v%10] += 1;
-        u &#x2F;= 10;
-        v &#x2F;= 10;
-    }
-    for i in 0..10 {
-        if a1[i] != a2[i] {
-            return false;
-        }
-    }
-    true
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> down_bound = </span><span style="color:#d08770;">100</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> up_bound = </span><span style="color:#d08770;">1000</span><span>/</span><span style="color:#d08770;">6 </span><span>+ </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> found: </span><span style="color:#b48ead;">bool </span><span>= </span><span style="color:#d08770;">false</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while </span><span>!found {
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in down_bound..up_bound {
+</span><span>            </span><span style="color:#b48ead;">let mut</span><span> is_ok = </span><span style="color:#d08770;">true</span><span>;
+</span><span>            </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">7 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">if </span><span>!</span><span style="color:#96b5b4;">is_permutation</span><span>(i, i*j) {
+</span><span>                    is_ok = </span><span style="color:#d08770;">false</span><span>;
+</span><span>                    </span><span style="color:#b48ead;">break</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if</span><span> is_ok {
+</span><span>                ans = i;
+</span><span>                found = </span><span style="color:#d08770;">true</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>        down_bound *= </span><span style="color:#d08770;">10</span><span>;
+</span><span>        up_bound = down_bound*</span><span style="color:#d08770;">10</span><span>/</span><span style="color:#d08770;">6 </span><span>+ </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">is_permutation</span><span>(</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">u</span><span>: </span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">v</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> a1: [</span><span style="color:#b48ead;">usize</span><span>; </span><span style="color:#d08770;">10</span><span>] = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">10</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> a2: [</span><span style="color:#b48ead;">usize</span><span>; </span><span style="color:#d08770;">10</span><span>] = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">10</span><span>];
+</span><span>    </span><span style="color:#b48ead;">while</span><span> u &gt; </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        a1[u%</span><span style="color:#d08770;">10</span><span>] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        a2[v%</span><span style="color:#d08770;">10</span><span>] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        u /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>        v /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">10 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span> a1[i] != a2[i] {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#d08770;">true
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="154-find-minimum-in-rotated-sorted-array-ii">154. Find Minimum in Rotated Sorted Array II</h3>
@@ -173,13 +173,13 @@ fn is_permutation(mut u: usize, mut v: usize) -&gt; bool {
 <p>Find the minimum element.</p>
 <p>The array may contain duplicates.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [1,3,5]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [1,3,5]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [2,2,2,0,1]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [2,2,2,0,1]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li>This is a follow up problem to <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/">Find Minimum in Rotated Sorted Array</a>.</li>
@@ -188,18 +188,18 @@ Output: 0
 <h2 id="solution-1">Solution</h2>
 <p>I guess worst case of time complexity of algorithms will be $O(N)$, because we can't use binary partition to deal with duplicates.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number[]} nums
- * @return {number}
- *&#x2F;
-var findMin = function(nums) {
-  if (nums[0] &lt; nums[nums.length-1]) return nums[0];
-  for (const val of nums) {
-    if (val &lt; nums[0]) return val;
-  }
-  return nums[0];
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">nums
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">findMin </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">nums</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#d08770;">0</span><span>] &lt; </span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#bf616a;">nums</span><span>.length-</span><span style="color:#d08770;">1</span><span>]) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#d08770;">0</span><span>];
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">val </span><span>of </span><span style="color:#bf616a;">nums</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">val </span><span>&lt; </span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#d08770;">0</span><span>]) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">val</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#d08770;">0</span><span>];
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

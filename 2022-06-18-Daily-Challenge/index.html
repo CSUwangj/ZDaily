@@ -123,16 +123,16 @@ renderMathInElement(document.body, katex_config);
 <li><code>f(string prefix, string suffix)</code> Returns <em>the index of the word in the dictionary,</em> which has the prefix <code>prefix</code> and the suffix <code>suffix</code>. If there is more than one valid index, return <strong>the largest</strong> of them. If there is no such word in the dictionary, return <code>-1</code>.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;WordFilter&quot;, &quot;f&quot;]
-[[[&quot;apple&quot;]], [&quot;a&quot;, &quot;e&quot;]]
-Output
-[null, 0]
-
-Explanation
-WordFilter wordFilter = new WordFilter([&quot;apple&quot;]);
-wordFilter.f(&quot;a&quot;, &quot;e&quot;); &#x2F;&#x2F; return 0, because the word at index 0 has prefix = &quot;a&quot; and suffix = &#x27;e&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;WordFilter&quot;, &quot;f&quot;]
+</span><span>[[[&quot;apple&quot;]], [&quot;a&quot;, &quot;e&quot;]]
+</span><span>Output
+</span><span>[null, 0]
+</span><span>
+</span><span>Explanation
+</span><span>WordFilter wordFilter = new WordFilter([&quot;apple&quot;]);
+</span><span>wordFilter.f(&quot;a&quot;, &quot;e&quot;); // return 0, because the word at index 0 has prefix = &quot;a&quot; and suffix = &#39;e&quot;.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= words.length &lt;= 15000</code></li>
@@ -142,38 +142,38 @@ wordFilter.f(&quot;a&quot;, &quot;e&quot;); &#x2F;&#x2F; return 0, because the w
 <li>At most <code>15000</code> calls will be made to the function <code>f</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class WordFilter {
-  map&lt;string, string&gt; idx;
-  unordered_map&lt;string, int&gt; ans;
-public:
-    WordFilter(vector&lt;string&gt;&amp; words) {
-      int cnt = 0;
-      for(auto &amp;word : words) {
-        ans[word] = cnt++;
-        int len = word.length();
-        for(int i = 1; i &lt;= len; ++i) {
-          idx[word.substr(len - i) + &quot;?&quot; + word] = word;
-        }
-      }
-    }
-    
-    int f(string prefix, string suffix) {
-      auto target = suffix + &quot;?&quot; + prefix;
-      auto it = idx.lower_bound(target);
-      int answer = -1;
-      while(it != idx.end() &amp;&amp; it-&gt;first.rfind(target, 0) == 0) {
-        answer = max(answer, ans[it-&gt;second]);
-        ++it;
-      }
-      return answer;
-    }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 13&#x2F;13 cases passed (713 ms)
-&#x2F;&#x2F; Your runtime beats 52.99 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 90.67 % of cpp submissions (108.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">WordFilter </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  map&lt;string, string&gt; idx;
+</span><span style="color:#eff1f5;">  unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; ans;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">WordFilter</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> words) {
+</span><span style="color:#eff1f5;">        ans[word] </span><span>=</span><span style="color:#eff1f5;"> cnt</span><span>++</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">          idx[word.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(len </span><span>-</span><span style="color:#eff1f5;"> i) </span><span>+ &quot;</span><span style="color:#a3be8c;">?</span><span>&quot; +</span><span style="color:#eff1f5;"> word] </span><span>=</span><span style="color:#eff1f5;"> word;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">f</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">prefix</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">suffix</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> target </span><span>=</span><span style="color:#eff1f5;"> suffix </span><span>+ &quot;</span><span style="color:#a3be8c;">?</span><span>&quot; +</span><span style="color:#eff1f5;"> prefix;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> idx.</span><span style="color:#bf616a;">lower_bound</span><span style="color:#eff1f5;">(target);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(it </span><span>!=</span><span style="color:#eff1f5;"> idx.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> it-&gt;</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">rfind</span><span style="color:#eff1f5;">(target, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, ans[it-&gt;</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">        </span><span>++</span><span style="color:#eff1f5;">it;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 13/13 cases passed (713 ms)
+</span><span style="color:#65737e;">// Your runtime beats 52.99 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 90.67 % of cpp submissions (108.8 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -124,68 +124,68 @@ renderMathInElement(document.body, katex_config);
 <p>Given a string <code>word</code> consisting of English vowels, return <em>the <strong>length of the longest beautiful substring</strong> of</em> <code>word</code><em>. If no such substring exists, return</em> <code>0</code>.</p>
 <p>A <strong>substring</strong> is a contiguous sequence of characters in a string.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: word = &quot;aeiaaioaaaaeiiiiouuuooaauuaeiu&quot;
-Output: 13
-Explanation: The longest beautiful substring in word is &quot;aaaaeiiiiouuu&quot; of length 13.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word = &quot;aeiaaioaaaaeiiiiouuuooaauuaeiu&quot;
+</span><span>Output: 13
+</span><span>Explanation: The longest beautiful substring in word is &quot;aaaaeiiiiouuu&quot; of length 13.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: word = &quot;aeeeiiiioooauuuaeiou&quot;
-Output: 5
-Explanation: The longest beautiful substring in word is &quot;aeiou&quot; of length 5.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word = &quot;aeeeiiiioooauuuaeiou&quot;
+</span><span>Output: 5
+</span><span>Explanation: The longest beautiful substring in word is &quot;aeiou&quot; of length 5.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: word = &quot;a&quot;
-Output: 0
-Explanation: There is no beautiful substring, so return 0.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word = &quot;a&quot;
+</span><span>Output: 0
+</span><span>Explanation: There is no beautiful substring, so return 0.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= word.length &lt;= 5 * 10^5</code></li>
 <li><code>word</code> consists of characters <code>'a'</code>, <code>'e'</code>, <code>'i'</code>, <code>'o'</code>, and <code>'u'</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-char vowels[5] = {&#x27;a&#x27;, &#x27;e&#x27;, &#x27;i&#x27;, &#x27;o&#x27;, &#x27;u&#x27;};
-class Solution {
-public:
-  int longestBeautifulSubstring(string word) {
-    int len = word.length();
-    int vPos = 0;
-    int answer = 0;
-    int cur = 0;
-    int pos = 0;
-    while(pos &lt; len) {
-      if(word[pos] != vowels[vPos]) {
-        if(vPos) vPos = 0;
-        else pos += 1;
-        cur = 0;
-      } else {
-        while(pos &lt; len &amp;&amp; word[pos] == vowels[vPos]) {
-          pos += 1;
-          cur += 1;
-        }
-        vPos += 1;
-        if(vPos == 5) {
-          answer = max(answer, cur);
-          vPos = 0;
-          cur = 0;
-        }
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 120&#x2F;120 cases passed (51 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 98.36 % of cpp submissions (26.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">char</span><span> vowels[</span><span style="color:#d08770;">5</span><span>] = {&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">e</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">i</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">o</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">u</span><span>&#39;};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">longestBeautifulSubstring</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">word</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> vPos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(word[pos] </span><span>!=</span><span style="color:#eff1f5;"> vowels[vPos]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vPos) vPos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> word[pos] </span><span>==</span><span style="color:#eff1f5;"> vowels[vPos]) {
+</span><span style="color:#eff1f5;">          pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          cur </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        vPos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vPos </span><span>== </span><span style="color:#d08770;">5</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, cur);
+</span><span style="color:#eff1f5;">          vPos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 120/120 cases passed (51 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 98.36 % of cpp submissions (26.7 MB)
+</span></code></pre>
 <h1 id="july-leetcoding-challenge-29">July LeetCoding Challenge 29</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>01 Matrix</strong></p>
@@ -193,14 +193,14 @@ public:
 <p>The distance between two adjacent cells is <code>1</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/24/01-1-grid.jpg" alt="img" /></p>
-<pre><code>Input: mat = [[0,0,0],[0,1,0],[0,0,0]]
-Output: [[0,0,0],[0,1,0],[0,0,0]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[0,0,0],[0,1,0],[0,0,0]]
+</span><span>Output: [[0,0,0],[0,1,0],[0,0,0]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/24/01-2-grid.jpg" alt="img" /></p>
-<pre><code>Input: mat = [[0,0,0],[0,1,0],[1,1,1]]
-Output: [[0,0,0],[0,1,0],[1,2,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[0,0,0],[0,1,0],[1,1,1]]
+</span><span>Output: [[0,0,0],[0,1,0],[1,2,1]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == mat.length</code></li>
@@ -212,93 +212,93 @@ Output: [[0,0,0],[0,1,0],[1,2,1]]
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>just construct it</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-int moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-class Solution {
-public:
-  vector&lt;vector&lt;int&gt;&gt; updateMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; mat) {
-    int rows = mat.size();
-    int cols = mat.front().size();
-    vector&lt;vector&lt;bool&gt;&gt; vis(rows, vector&lt;bool&gt;(cols));
-    queue&lt;pair&lt;int, int&gt;&gt; q;
-    for(int i = 0; i &lt; rows; ++i) {
-      for(int j = 0; j &lt; cols; ++j) {
-        if(!mat[i][j]) {
-          vis[i][j] = true;
-          q.push({i, j});
-        }
-      }
-    }
-    int cnt = 1;
-    while(q.size()) {
-      int sz = q.size();
-      for(int _ = 0; _ &lt; sz; ++_) {
-        auto [row, col] = q.front();
-        q.pop();
-        for(int i = 0; i &lt; 4; ++i) {
-          int newRow = row + moves[i][0];
-          int newCol = col + moves[i][1];
-          if(newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= rows || newCol &gt;= cols) continue;
-          if(vis[newRow][newCol]) continue;
-          &#x2F;&#x2F; cout &lt;&lt; newRow &lt;&lt; &#x27; &#x27; &lt;&lt; newCol &lt;&lt; &#x27; &#x27; &lt;&lt; cnt &lt;&lt; endl;
-          vis[newRow][newCol] = true;
-          mat[newRow][newCol] = cnt;
-          q.push({newRow, newCol});
-        }
-      }
-      cnt += 1;
-    }
-    return mat;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 49&#x2F;49 cases passed (60 ms)
-&#x2F;&#x2F; Your runtime beats 90.4 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 31.48 % of cpp submissions (30.8 MB)
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  vector&lt;vector&lt;int&gt;&gt; updateMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; mat) {
-    int rows = mat.size();
-    int cols = mat.front().size();
-    for(auto &amp;row : mat) {
-      for(auto &amp;i : row) if(i) i = 10000;
-    }
-    for(int i = 0; i &lt; rows; ++i) {
-      for(int j = 0; j &lt; cols; ++j) {
-        if(!mat[i][j]) continue;
-        if(i) mat[i][j] = min(mat[i][j], mat[i - 1][j] + 1);
-        if(j) mat[i][j] = min(mat[i][j], mat[i][j - 1] + 1);
-      }
-    }
-    for(int i = rows - 1; i &gt;= 0; --i) {
-      for(int j = cols - 1; j &gt;= 0; --j) {
-        if(!mat[i][j]) continue;
-        if(i != rows - 1) mat[i][j] = min(mat[i][j], mat[i + 1][j] + 1);
-        if(j != cols - 1) mat[i][j] = min(mat[i][j], mat[i][j + 1] + 1);
-      }
-    }
-    return mat;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 49&#x2F;49 cases passed (56 ms)
-&#x2F;&#x2F; Your runtime beats 95.88 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 96.98 % of cpp submissions (26.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">int</span><span> moves[</span><span style="color:#d08770;">4</span><span>][</span><span style="color:#d08770;">2</span><span>] = {{</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>}, {</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}, {</span><span style="color:#d08770;">0</span><span>, -</span><span style="color:#d08770;">1</span><span>}, {-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">updateMatrix</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">mat</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">vis</span><span style="color:#eff1f5;">(rows, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt;(cols));
+</span><span style="color:#eff1f5;">    queue&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; q;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> cols; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">mat[i][j]) {
+</span><span style="color:#eff1f5;">          vis[i][j] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({i, j});
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> _ </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; _ </span><span>&lt;</span><span style="color:#eff1f5;"> sz; </span><span>++</span><span style="color:#eff1f5;">_) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[row, col] </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> rows </span><span>||</span><span style="color:#eff1f5;"> newCol </span><span>&gt;=</span><span style="color:#eff1f5;"> cols) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(vis[newRow][newCol]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#65737e;">// cout &lt;&lt; newRow &lt;&lt; &#39; &#39; &lt;&lt; newCol &lt;&lt; &#39; &#39; &lt;&lt; cnt &lt;&lt; endl;
+</span><span style="color:#eff1f5;">          vis[newRow][newCol] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          mat[newRow][newCol] </span><span>=</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({newRow, newCol});
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> mat;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 49/49 cases passed (60 ms)
+</span><span style="color:#65737e;">// Your runtime beats 90.4 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 31.48 % of cpp submissions (30.8 MB)
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">updateMatrix</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">mat</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">row </span><span>:</span><span style="color:#eff1f5;"> mat) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">i </span><span>:</span><span style="color:#eff1f5;"> row) </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i) i </span><span>= </span><span style="color:#d08770;">10000</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> cols; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">mat[i][j]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i) mat[i][j] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(mat[i][j], mat[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(j) mat[i][j] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(mat[i][j], mat[i][j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> rows </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> cols </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">mat[i][j]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>!=</span><span style="color:#eff1f5;"> rows </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) mat[i][j] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(mat[i][j], mat[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(j </span><span>!=</span><span style="color:#eff1f5;"> cols </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) mat[i][j] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(mat[i][j], mat[i][j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> mat;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 49/49 cases passed (56 ms)
+</span><span style="color:#65737e;">// Your runtime beats 95.88 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 96.98 % of cpp submissions (26.1 MB)
+</span></code></pre>
 
     </div>
   </div>

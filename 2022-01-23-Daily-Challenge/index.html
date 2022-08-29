@@ -119,41 +119,41 @@ renderMathInElement(document.body, katex_config);
 <p>An integer has <em>sequential digits</em> if and only if each digit in the number is one more than the previous digit.</p>
 <p>Return a <strong>sorted</strong> list of all the integers in the range <code>[low, high]</code> inclusive that have sequential digits.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: low = 100, high = 300
-Output: [123,234]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: low = 100, high = 300
+</span><span>Output: [123,234]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: low = 1000, high = 13000
-Output: [1234,2345,3456,4567,5678,6789,12345]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: low = 1000, high = 13000
+</span><span>Output: [1234,2345,3456,4567,5678,6789,12345]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>10 &lt;= low &lt;= high &lt;= 10^9</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const vector&lt;int&gt; nums{1, 12, 123, 1234, 12345, 123456, 1234567, 12345678, 123456789};
-class Solution {
-public:
-  vector&lt;int&gt; sequentialDigits(int low, int high) {
-    int diff = 0;
-    vector&lt;int&gt; answer;
-    for(auto num : nums) {
-      diff = diff * 10 + 1;
-      if(num &gt; high) break;
-      while(num % 10 &amp;&amp; num &lt;= high) {
-        if(num &gt;= low) answer.push_back(num);
-        num += diff;
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 23&#x2F;23 cases passed (3 ms)
-&#x2F;&#x2F; Your runtime beats 18.21 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 76.43 % of cpp submissions (6.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const</span><span> vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">nums</span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">12</span><span>, </span><span style="color:#d08770;">123</span><span>, </span><span style="color:#d08770;">1234</span><span>, </span><span style="color:#d08770;">12345</span><span>, </span><span style="color:#d08770;">123456</span><span>, </span><span style="color:#d08770;">1234567</span><span>, </span><span style="color:#d08770;">12345678</span><span>, </span><span style="color:#d08770;">123456789</span><span>};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">sequentialDigits</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">low</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">high</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> num </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      diff </span><span>=</span><span style="color:#eff1f5;"> diff </span><span>* </span><span style="color:#d08770;">10 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&gt;</span><span style="color:#eff1f5;"> high) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(num </span><span>% </span><span style="color:#d08770;">10 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> num </span><span>&lt;=</span><span style="color:#eff1f5;"> high) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&gt;=</span><span style="color:#eff1f5;"> low) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(num);
+</span><span style="color:#eff1f5;">        num </span><span>+=</span><span style="color:#eff1f5;"> diff;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 23/23 cases passed (3 ms)
+</span><span style="color:#65737e;">// Your runtime beats 18.21 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 76.43 % of cpp submissions (6.2 MB)
+</span></code></pre>
 
     </div>
   </div>

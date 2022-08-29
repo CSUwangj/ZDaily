@@ -124,125 +124,125 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>If there is no such string <code>s</code> return the empty string <code>&quot;&quot;</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: a = 1, b = 1, c = 7
-Output: &quot;ccaccbcc&quot;
-Explanation: &quot;ccbccacc&quot; would also be a correct answer.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: a = 1, b = 1, c = 7
+</span><span>Output: &quot;ccaccbcc&quot;
+</span><span>Explanation: &quot;ccbccacc&quot; would also be a correct answer.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: a = 2, b = 2, c = 1
-Output: &quot;aabbc&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: a = 2, b = 2, c = 1
+</span><span>Output: &quot;aabbc&quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: a = 7, b = 1, c = 0
-Output: &quot;aabaa&quot;
-Explanation: It&#x27;s the only correct answer in this case.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: a = 7, b = 1, c = 0
+</span><span>Output: &quot;aabaa&quot;
+</span><span>Explanation: It&#39;s the only correct answer in this case.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= a, b, c &lt;= 100</code></li>
 <li><code>a + b + c &gt; 0</code></li>
 </ul>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  void pushRest(vector&lt;pair&lt;int, char&gt;&gt; &amp;container, string &amp;result) {
-    if(container[1].first) {
-      result.push_back(container[1].second);
-      container[1].first -= 1;
-    } else {
-      result.push_back(container[2].second);
-      container[2].first -= 1;
-    }
-  }
-  string enoughMost(vector&lt;pair&lt;int, char&gt;&gt; &amp;container, int max, int rest) {
-    string result;
-    while(max &amp;&amp; rest) {
-      if(max &gt; rest) {
-        result.push_back(container[0].second);
-        result.push_back(container[0].second);
-        pushRest(container, result);
-        max -= 2;
-        rest -= 1;
-      } else {
-        result.push_back(container[0].second);
-        pushRest(container, result);
-        max -= 1;
-        rest -= 1;
-      }
-    }
-    for(int i = 0; i &lt; min(max, 2); ++i) {
-      result.push_back(container[0].second);
-    }
-    return result;
-  }
-  string enoughRest(vector&lt;pair&lt;int, char&gt;&gt; &amp;container, int max, int rest) {
-    string result;
-    while(max &amp;&amp; rest) {
-      if(rest &gt; max) {
-        pushRest(container, result);
-        pushRest(container, result);
-        result.push_back(container[0].second);
-        rest -= 2;
-        max -= 1;
-      } else {
-        pushRest(container, result);
-        result.push_back(container[0].second);
-        max -= 1;
-        rest -= 1;
-      }
-    }
-    return result;
-  }
-public:
-  string longestDiverseString(int a, int b, int c) {
-    vector&lt;pair&lt;int, char&gt;&gt; container{{a, &#x27;a&#x27;}, {b, &#x27;b&#x27;}, {c, &#x27;c&#x27;}};
-    sort(container.begin(), container.end(), greater&lt;pair&lt;int, char&gt;&gt;());
-    int sum = a + b + c;
-    int max = container[0].first;
-    int rest = sum - max;
-    if(max &gt;= rest) {
-      return enoughMost(container, max, rest);
-    }
-    return enoughRest(container, max, rest);
-  }
-};
-
-&#x2F;&#x2F; max &gt; 2 * rest + 2
-&#x2F;&#x2F; mmrmmrmmrmmrmmrmm...
-
-&#x2F;&#x2F; 2 * rest + 2 &gt;= max &gt;= rest
-&#x2F;&#x2F; mmrmmrmmrmrmrmrm...
-
-&#x2F;&#x2F; rest &gt; max &gt; second &gt; third
-&#x2F;&#x2F; rrmrrmrrmrmrmrmr...
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">pushRest</span><span style="color:#eff1f5;">(vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">container</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(container[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(container[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      container[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">first </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(container[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      container[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">first </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">enoughMost</span><span style="color:#eff1f5;">(vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">container</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rest</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    string result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(max </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> rest) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(max </span><span>&gt;</span><span style="color:#eff1f5;"> rest) {
+</span><span style="color:#eff1f5;">        result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(container[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(container[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">pushRest</span><span style="color:#eff1f5;">(container, result);
+</span><span style="color:#eff1f5;">        max </span><span>-= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        rest </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(container[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">pushRest</span><span style="color:#eff1f5;">(container, result);
+</span><span style="color:#eff1f5;">        max </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        rest </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(max, </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(container[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">enoughRest</span><span style="color:#eff1f5;">(vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">container</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rest</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    string result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(max </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> rest) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rest </span><span>&gt;</span><span style="color:#eff1f5;"> max) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">pushRest</span><span style="color:#eff1f5;">(container, result);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">pushRest</span><span style="color:#eff1f5;">(container, result);
+</span><span style="color:#eff1f5;">        result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(container[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        rest </span><span>-= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        max </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">pushRest</span><span style="color:#eff1f5;">(container, result);
+</span><span style="color:#eff1f5;">        result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(container[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        max </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        rest </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">longestDiverseString</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">c</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">container</span><span style="color:#eff1f5;">{{a, </span><span>&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">}, {b, </span><span>&#39;</span><span style="color:#a3be8c;">b</span><span>&#39;</span><span style="color:#eff1f5;">}, {c, </span><span>&#39;</span><span style="color:#a3be8c;">c</span><span>&#39;</span><span style="color:#eff1f5;">}};
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(container.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), container.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#bf616a;">greater</span><span style="color:#eff1f5;">&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt;());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>=</span><span style="color:#eff1f5;"> a </span><span>+</span><span style="color:#eff1f5;"> b </span><span>+</span><span style="color:#eff1f5;"> c;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> max </span><span>=</span><span style="color:#eff1f5;"> container[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rest </span><span>=</span><span style="color:#eff1f5;"> sum </span><span>-</span><span style="color:#eff1f5;"> max;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(max </span><span>&gt;=</span><span style="color:#eff1f5;"> rest) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">enoughMost</span><span style="color:#eff1f5;">(container, max, rest);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">enoughRest</span><span style="color:#eff1f5;">(container, max, rest);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// max &gt; 2 * rest + 2
+</span><span style="color:#65737e;">// mmrmmrmmrmmrmmrmm...
+</span><span>
+</span><span style="color:#65737e;">// 2 * rest + 2 &gt;= max &gt;= rest
+</span><span style="color:#65737e;">// mmrmmrmmrmrmrmrm...
+</span><span>
+</span><span style="color:#65737e;">// rest &gt; max &gt; second &gt; third
+</span><span style="color:#65737e;">// rrmrrmrrmrmrmrmr...
+</span></code></pre>
 <h1 id="combination-sum">Combination Sum</h1>
 <h2 id="description-1">Description</h2>
 <p>Given an array of <strong>distinct</strong> integers <code>candidates</code> and a target integer <code>target</code>, return <em>a list of all <strong>unique combinations</strong> of</em> <code>candidates</code> <em>where the chosen numbers sum to</em> <code>target</code><em>.</em> You may return the combinations in <strong>any order</strong>.</p>
 <p>The <strong>same</strong> number may be chosen from <code>candidates</code> an <strong>unlimited number of times</strong>. Two combinations are unique if the frequency of at least one of the chosen numbers is different.</p>
 <p>It is <strong>guaranteed</strong> that the number of unique combinations that sum up to <code>target</code> is less than <code>150</code> combinations for the given input.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: candidates = [2,3,6,7], target = 7
-Output: [[2,2,3],[7]]
-Explanation:
-2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
-7 is a candidate, and 7 = 7.
-These are the only two combinations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [2,3,6,7], target = 7
+</span><span>Output: [[2,2,3],[7]]
+</span><span>Explanation:
+</span><span>2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
+</span><span>7 is a candidate, and 7 = 7.
+</span><span>These are the only two combinations.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: candidates = [2,3,5], target = 8
-Output: [[2,2,2,2],[2,3,3],[3,5]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [2,3,5], target = 8
+</span><span>Output: [[2,2,2,2],[2,3,3],[3,5]]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: candidates = [2], target = 1
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [2], target = 1
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: candidates = [1], target = 1
-Output: [[1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [1], target = 1
+</span><span>Output: [[1]]
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: candidates = [1], target = 2
-Output: [[1,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [1], target = 2
+</span><span>Output: [[1,1]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= candidates.length &lt;= 30</code></li>
@@ -251,59 +251,59 @@ Output: [[1,1]]
 <li><code>1 &lt;= target &lt;= 500</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  void solve(
-    vector&lt;vector&lt;int&gt;&gt; &amp;answer,
-    vector&lt;int&gt; &amp;tmp,
-    vector&lt;int&gt; &amp;candidates,
-    int index,
-    int rest
-  ) {
-    if(!rest) {
-      answer.push_back(tmp);
-      return;
-    }
-    if(index == candidates.size()) return;
-    int curSize = tmp.size();
-    while(rest &gt;= 0) {
-      solve(answer, tmp, candidates, index + 1, rest);
-      rest -= candidates[index];
-      tmp.push_back(candidates[index]);
-    }
-    while(curSize &lt; tmp.size()) tmp.pop_back();
-  }
-public:
-  vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) {
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    vector&lt;int&gt; tmp;
-    solve(answer, tmp, candidates, 0, target);
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">tmp</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">candidates</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rest
+</span><span style="color:#eff1f5;">  ) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">rest) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(tmp);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> candidates.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curSize </span><span>=</span><span style="color:#eff1f5;"> tmp.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(rest </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, candidates, index </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, rest);
+</span><span style="color:#eff1f5;">      rest </span><span>-=</span><span style="color:#eff1f5;"> candidates[index];
+</span><span style="color:#eff1f5;">      tmp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(candidates[index]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(curSize </span><span>&lt;</span><span style="color:#eff1f5;"> tmp.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) tmp.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">combinationSum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">candidates</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; tmp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, candidates, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, target);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="combination-sum-ii">Combination Sum II</h1>
 <h2 id="description-2">Description</h2>
 <p>Given a collection of candidate numbers (<code>candidates</code>) and a target number (<code>target</code>), find all unique combinations in <code>candidates</code> where the candidate numbers sum to <code>target</code>.</p>
 <p>Each number in <code>candidates</code> may only be used <strong>once</strong> in the combination.</p>
 <p><strong>Note:</strong> The solution set must not contain duplicate combinations.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: candidates = [10,1,2,7,6,1,5], target = 8
-Output: 
-[
-[1,1,6],
-[1,2,5],
-[1,7],
-[2,6]
-]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [10,1,2,7,6,1,5], target = 8
+</span><span>Output: 
+</span><span>[
+</span><span>[1,1,6],
+</span><span>[1,2,5],
+</span><span>[1,7],
+</span><span>[2,6]
+</span><span>]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: candidates = [2,5,2,1,2], target = 5
-Output: 
-[
-[1,2,2],
-[5]
-]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candidates = [2,5,2,1,2], target = 5
+</span><span>Output: 
+</span><span>[
+</span><span>[1,2,2],
+</span><span>[5]
+</span><span>]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= candidates.length &lt;= 100</code></li>
@@ -311,35 +311,35 @@ Output:
 <li><code>1 &lt;= target &lt;= 30</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  void solve(
-    set&lt;vector&lt;int&gt;&gt; &amp;answer,
-    vector&lt;int&gt; &amp;tmp,
-    vector&lt;int&gt; &amp;candidates,
-    int index,
-    int rest
-  ) {
-    if(!rest) {
-      answer.insert(tmp);
-      return;
-    }
-    if(index == candidates.size() || candidates[index] &gt; rest) return;
-    solve(answer, tmp, candidates, index + 1, rest);
-    rest -= candidates[index];
-    tmp.push_back(candidates[index]);
-    solve(answer, tmp, candidates, index + 1, rest);
-    tmp.pop_back();
-  }
-public:
-  vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) {
-    set&lt;vector&lt;int&gt;&gt; answer;
-    sort(candidates.begin(), candidates.end());
-    vector&lt;int&gt; tmp;
-    solve(answer, tmp, candidates, 0, target);
-    return vector&lt;vector&lt;int&gt;&gt;(answer.begin(), answer.end());
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(
+</span><span style="color:#eff1f5;">    set&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">tmp</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">candidates</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rest
+</span><span style="color:#eff1f5;">  ) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">rest) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(tmp);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> candidates.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> candidates[index] </span><span>&gt;</span><span style="color:#eff1f5;"> rest) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, candidates, index </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, rest);
+</span><span style="color:#eff1f5;">    rest </span><span>-=</span><span style="color:#eff1f5;"> candidates[index];
+</span><span style="color:#eff1f5;">    tmp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(candidates[index]);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, candidates, index </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, rest);
+</span><span style="color:#eff1f5;">    tmp.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">combinationSum2</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">candidates</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    set&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(candidates.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), candidates.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; tmp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, candidates, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, target);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="combination-sum-iii">Combination Sum III</h1>
 <h2 id="description-3">Description</h2>
 <p>Find all valid combinations of <code>k</code> numbers that sum up to <code>n</code> such that the following conditions are true:</p>
@@ -349,95 +349,95 @@ public:
 </ul>
 <p>Return <em>a list of all possible valid combinations</em>. The list must not contain the same combination twice, and the combinations may be returned in any order.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: k = 3, n = 7
-Output: [[1,2,4]]
-Explanation:
-1 + 2 + 4 = 7
-There are no other valid combinations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 3, n = 7
+</span><span>Output: [[1,2,4]]
+</span><span>Explanation:
+</span><span>1 + 2 + 4 = 7
+</span><span>There are no other valid combinations.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: k = 3, n = 9
-Output: [[1,2,6],[1,3,5],[2,3,4]]
-Explanation:
-1 + 2 + 6 = 9
-1 + 3 + 5 = 9
-2 + 3 + 4 = 9
-There are no other valid combinations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 3, n = 9
+</span><span>Output: [[1,2,6],[1,3,5],[2,3,4]]
+</span><span>Explanation:
+</span><span>1 + 2 + 6 = 9
+</span><span>1 + 3 + 5 = 9
+</span><span>2 + 3 + 4 = 9
+</span><span>There are no other valid combinations.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: k = 4, n = 1
-Output: []
-Explanation: There are no valid combinations. [1,2,1] is not valid because 1 is used twice.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 4, n = 1
+</span><span>Output: []
+</span><span>Explanation: There are no valid combinations. [1,2,1] is not valid because 1 is used twice.
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: k = 3, n = 2
-Output: []
-Explanation: There are no valid combinations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 3, n = 2
+</span><span>Output: []
+</span><span>Explanation: There are no valid combinations.
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: k = 9, n = 45
-Output: [[1,2,3,4,5,6,7,8,9]]
-Explanation:
-1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 = 45
-There are no other valid combinations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 9, n = 45
+</span><span>Output: [[1,2,3,4,5,6,7,8,9]]
+</span><span>Explanation:
+</span><span>1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 = 45
+</span><span>There are no other valid combinations.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= k &lt;= 9</code></li>
 <li><code>1 &lt;= n &lt;= 60</code></li>
 </ul>
 <h2 id="solution-2">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  void solve(
-    vector&lt;vector&lt;int&gt;&gt; &amp;answer,
-    vector&lt;int&gt; &amp;tmp,
-    int index,
-    int rest,
-    int k
-  ) {
-    if(rest == 0 &amp;&amp; tmp.size() == k) {
-      answer.push_back(tmp);
-      return;
-    }
-    if(tmp.size() &gt;= k || index &gt; 9 || index &gt; rest) return;
-    solve(answer, tmp, index + 1, rest, k);
-    rest -= index;
-    tmp.push_back(index);
-    solve(answer, tmp, index + 1, rest, k);
-    tmp.pop_back();
-  }
-public:
-  vector&lt;vector&lt;int&gt;&gt; combinationSum3(int k, int n) {
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    vector&lt;int&gt; tmp;
-    solve(answer, tmp, 1, n, k);
-    return vector&lt;vector&lt;int&gt;&gt;(answer.begin(), answer.end());
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">tmp</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">rest</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> k
+</span><span style="color:#eff1f5;">  ) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rest </span><span>== </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> tmp.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>==</span><span style="color:#eff1f5;"> k) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(tmp);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(tmp.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&gt;=</span><span style="color:#eff1f5;"> k </span><span>||</span><span style="color:#eff1f5;"> index </span><span>&gt; </span><span style="color:#d08770;">9 </span><span>||</span><span style="color:#eff1f5;"> index </span><span>&gt;</span><span style="color:#eff1f5;"> rest) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, index </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, rest, k);
+</span><span style="color:#eff1f5;">    rest </span><span>-=</span><span style="color:#eff1f5;"> index;
+</span><span style="color:#eff1f5;">    tmp.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(index);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, index </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, rest, k);
+</span><span style="color:#eff1f5;">    tmp.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">combinationSum3</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; tmp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, n, k);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="april-leetcoding-challenge-19">April LeetCoding challenge 19</h1>
 <h2 id="description-4">Description</h2>
 <p><strong>Combination Sum IV</strong></p>
 <p>Given an array of <strong>distinct</strong> integers <code>nums</code> and a target integer <code>target</code>, return <em>the number of possible combinations that add up to</em> <code>target</code>.</p>
 <p>The answer is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> integer.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,2,3], target = 4
-Output: 7
-Explanation:
-The possible combination ways are:
-(1, 1, 1, 1)
-(1, 1, 2)
-(1, 2, 1)
-(1, 3)
-(2, 1, 1)
-(2, 2)
-(3, 1)
-Note that different sequences are counted as different combinations.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3], target = 4
+</span><span>Output: 7
+</span><span>Explanation:
+</span><span>The possible combination ways are:
+</span><span>(1, 1, 1, 1)
+</span><span>(1, 1, 2)
+</span><span>(1, 2, 1)
+</span><span>(1, 3)
+</span><span>(2, 1, 1)
+</span><span>(2, 2)
+</span><span>(3, 1)
+</span><span>Note that different sequences are counted as different combinations.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [9], target = 3
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [9], target = 3
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 200</code></li>
@@ -447,20 +447,20 @@ Output: 0
 </ul>
 <p><strong>Follow up:</strong> What if negative numbers are allowed in the given array? How does it change the problem? What limitation we need to add to the question to allow negative numbers?</p>
 <h2 id="solution-3">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int combinationSum4(vector&lt;int&gt;&amp; nums, int target) {
-    vector&lt;int&gt; dp(target + 1);
-    dp[0] = 1;
-    for(int i = 1; i &lt;= target; ++i) {
-      for(auto num : nums) {
-        if(num &lt;= i &amp;&amp; INT_MAX - dp[i] &gt; dp[i - num]) dp[i] += dp[i - num];
-      }
-    }
-    return dp[target];
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">combinationSum4</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(target </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> target; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> num </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&lt;=</span><span style="color:#eff1f5;"> i </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> INT_MAX </span><span>-</span><span style="color:#eff1f5;"> dp[i] </span><span>&gt;</span><span style="color:#eff1f5;"> dp[i </span><span>-</span><span style="color:#eff1f5;"> num]) dp[i] </span><span>+=</span><span style="color:#eff1f5;"> dp[i </span><span>-</span><span style="color:#eff1f5;"> num];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[target];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

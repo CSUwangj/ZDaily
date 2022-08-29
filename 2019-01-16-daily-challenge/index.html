@@ -115,132 +115,132 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Quadratic primes</em> in <em>Rust</em> and <em>Longest Absolute File Path</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Quadratic primes
-
-Problem 27 
-
-Euler discovered the remarkable quadratic formula:
-
-n……2+n+41
-It turns out that the formula will produce 40 primes for the consecutive integer values 0≤n≤39. However, when n=40,40^2+40+41=40(40+1)+41 is divisible by 41, and certainly when n=41,41^2+41+41 is clearly divisible by 41.
-
-The incredible formula n^2−79n+1601 was discovered, which produces 80 primes for the consecutive values 0≤n≤79. The product of the coefficients, −79 and 1601, is −126479.
-
-Considering quadratics of the form:
-
-n^2+an+b, where |a|&lt;1000 and |b|≤1000
-
-where |n| is the modulus&#x2F;absolute value of n
-e.g. |11|=11 and |−4|=4
-Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n=0.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Quadratic primes
+</span><span>
+</span><span>Problem 27 
+</span><span>
+</span><span>Euler discovered the remarkable quadratic formula:
+</span><span>
+</span><span>n……2+n+41
+</span><span>It turns out that the formula will produce 40 primes for the consecutive integer values 0≤n≤39. However, when n=40,40^2+40+41=40(40+1)+41 is divisible by 41, and certainly when n=41,41^2+41+41 is clearly divisible by 41.
+</span><span>
+</span><span>The incredible formula n^2−79n+1601 was discovered, which produces 80 primes for the consecutive values 0≤n≤79. The product of the coefficients, −79 and 1601, is −126479.
+</span><span>
+</span><span>Considering quadratics of the form:
+</span><span>
+</span><span>n^2+an+b, where |a|&lt;1000 and |b|≤1000
+</span><span>
+</span><span>where |n| is the modulus/absolute value of n
+</span><span>e.g. |11|=11 and |−4|=4
+</span><span>Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n=0.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>Because n start from zero, so b must be a prime.</p>
 <p>Because maximum number of primes for consecutive values must be greater than one, so when n equals one, the expression will be a prime, which means $1 + a + b$ is prime, when $b$ equals two, $a$ must be even, otherwise $a$ must be odd. But I don't want to do it.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-use primal::Sieve;
-
-fn main() {
-    let sieve = Sieve::new(2_000_000);
-    let mut ansa = 0;
-    let mut ansb = 0;
-    let mut ansc = 0;
-    let count = sieve.prime_pi(1000) + 1usize;
-    for i in -999i32..1000 {
-        for j in 1..count {
-            let mut tmpc = 1;
-            loop {
-                let tmp = tmpc * tmpc + i * tmpc + (sieve.nth_prime(j) as i32);
-                if tmp &lt; 0 {
-                    break;
-                }
-                if !sieve.is_prime(tmp as usize) {
-                    break;
-                }
-                tmpc += 1;
-            }
-            if tmpc &gt; ansc {
-                ansa = i;
-                ansb = sieve.nth_prime(j);
-                ansc = tmpc;
-            }
-        }
-    }
-    println!(&quot;Answer is {}, {}, {}&quot;, ansa, ansb, ansc);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>primal::Sieve;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sieve = Sieve::new(</span><span style="color:#d08770;">2_000_000</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ansa = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ansb = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ansc = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> count = sieve.</span><span style="color:#96b5b4;">prime_pi</span><span>(</span><span style="color:#d08770;">1000</span><span>) + </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">usize</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in -</span><span style="color:#d08770;">999</span><span style="color:#b48ead;">i32</span><span>..</span><span style="color:#d08770;">1000 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">1</span><span>..count {
+</span><span>            </span><span style="color:#b48ead;">let mut</span><span> tmpc = </span><span style="color:#d08770;">1</span><span>;
+</span><span>            </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>                </span><span style="color:#b48ead;">let</span><span> tmp = tmpc * tmpc + i * tmpc + (sieve.</span><span style="color:#96b5b4;">nth_prime</span><span>(j) as </span><span style="color:#b48ead;">i32</span><span>);
+</span><span>                </span><span style="color:#b48ead;">if</span><span> tmp &lt; </span><span style="color:#d08770;">0 </span><span>{
+</span><span>                    </span><span style="color:#b48ead;">break</span><span>;
+</span><span>                }
+</span><span>                </span><span style="color:#b48ead;">if </span><span>!sieve.</span><span style="color:#96b5b4;">is_prime</span><span>(tmp as </span><span style="color:#b48ead;">usize</span><span>) {
+</span><span>                    </span><span style="color:#b48ead;">break</span><span>;
+</span><span>                }
+</span><span>                tmpc += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if</span><span> tmpc &gt; ansc {
+</span><span>                ansa = i;
+</span><span>                ansb = sieve.</span><span style="color:#96b5b4;">nth_prime</span><span>(j);
+</span><span>                ansc = tmpc;
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span>&quot;, ansa, ansb, ansc);
+</span><span>}
+</span></code></pre>
 <h1 id="alogorithm">Alogorithm</h1>
-<pre><code>388. Longest Absolute File Path
-
-
-Suppose we abstract our file system by a string in the following manner:
-
-The string &quot;dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext&quot; represents:
-
-dir
-    subdir1
-    subdir2
-        file.ext
-The directory dir contains an empty sub-directory subdir1 and a sub-directory subdir2 containing a file file.ext.
-
-The string &quot;dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext&quot; represents:
-
-dir
-    subdir1
-        file1.ext
-        subsubdir1
-    subdir2
-        subsubdir2
-            file2.ext
-The directory dir contains two sub-directories subdir1 and subdir2. subdir1 contains a file file1.ext and an empty second-level sub-directory subsubdir1. subdir2 contains a second-level sub-directory subsubdir2 containing a file file2.ext.
-
-We are interested in finding the longest (number of characters) absolute path to a file within our file system. For example, in the second example above, the longest absolute path is &quot;dir&#x2F;subdir2&#x2F;subsubdir2&#x2F;file2.ext&quot;, and its length is 32 (not including the double quotes).
-
-Given a string representing the file system in the above format, return the length of the longest absolute path to file in the abstracted file system. If there is no file in the system, return 0.
-
-Note:
-The name of a file contains at least a . and an extension.
-The name of a directory or sub-directory will not contain a ..
-Time complexity required: O(n) where n is the size of the input string.
-
-Notice that a&#x2F;aa&#x2F;aaa&#x2F;file1.txt is not the longest file path, if there is another path aaaaaaaaaaaaaaaaaaaaa&#x2F;sth.png.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>388. Longest Absolute File Path
+</span><span>
+</span><span>
+</span><span>Suppose we abstract our file system by a string in the following manner:
+</span><span>
+</span><span>The string &quot;dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext&quot; represents:
+</span><span>
+</span><span>dir
+</span><span>    subdir1
+</span><span>    subdir2
+</span><span>        file.ext
+</span><span>The directory dir contains an empty sub-directory subdir1 and a sub-directory subdir2 containing a file file.ext.
+</span><span>
+</span><span>The string &quot;dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext&quot; represents:
+</span><span>
+</span><span>dir
+</span><span>    subdir1
+</span><span>        file1.ext
+</span><span>        subsubdir1
+</span><span>    subdir2
+</span><span>        subsubdir2
+</span><span>            file2.ext
+</span><span>The directory dir contains two sub-directories subdir1 and subdir2. subdir1 contains a file file1.ext and an empty second-level sub-directory subsubdir1. subdir2 contains a second-level sub-directory subsubdir2 containing a file file2.ext.
+</span><span>
+</span><span>We are interested in finding the longest (number of characters) absolute path to a file within our file system. For example, in the second example above, the longest absolute path is &quot;dir/subdir2/subsubdir2/file2.ext&quot;, and its length is 32 (not including the double quotes).
+</span><span>
+</span><span>Given a string representing the file system in the above format, return the length of the longest absolute path to file in the abstracted file system. If there is no file in the system, return 0.
+</span><span>
+</span><span>Note:
+</span><span>The name of a file contains at least a . and an extension.
+</span><span>The name of a directory or sub-directory will not contain a ..
+</span><span>Time complexity required: O(n) where n is the size of the input string.
+</span><span>
+</span><span>Notice that a/aa/aaa/file1.txt is not the longest file path, if there is another path aaaaaaaaaaaaaaaaaaaaa/sth.png.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>This problem looks like real world problem happens on Windows.</p>
 <p>Solution is quite clear so I don't want to explain it.</p>
 <p>The point is that when you come cross one file, you can know its ancestor directories's length.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string} input
- * @return {number}
- *&#x2F;
-var lengthLongestPath = function(input) {
-  let sumArr = [];
-  let ans = 0;
-  const countTab = (str) =&gt; {
-    for(let i = 0; i &lt; str.length; ++i){
-      if(str[i] !== &quot;\t&quot;) return i;
-    }
-  };
-  for(const str of input.split(&#x27;\n&#x27;)) {
-    if(str.includes(&quot;.&quot;)){
-      let pos = countTab(str);
-      ans = Math.max(ans, pos?str.length - pos + sumArr[pos - 1]:str.length);
-    }else{
-      let pos = countTab(str);
-      sumArr[pos] = pos?sumArr[pos - 1] + str.length - pos + 1:str.length+1;
-    }
-  }
-  return ans;
-};
-
-&#x2F;&#x2F; console.log(lengthLongestPath(&quot;dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext&quot;));
-&#x2F;&#x2F; console.log(lengthLongestPath(&quot;dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext&quot;));
-&#x2F;&#x2F; console.log(lengthLongestPath(&quot;asdf.asdf&quot;));
-
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">input
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">lengthLongestPath </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">input</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">sumArr </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">countTab </span><span>= (</span><span style="color:#bf616a;">str</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">str</span><span>.length; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">str</span><span>[</span><span style="color:#bf616a;">i</span><span>] !== &quot;</span><span style="color:#96b5b4;">\t</span><span>&quot;) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">i</span><span>;
+</span><span>    }
+</span><span>  };
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">str </span><span>of </span><span style="color:#bf616a;">input</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&#39;</span><span style="color:#96b5b4;">\n</span><span>&#39;)) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">str</span><span>.</span><span style="color:#8fa1b3;">includes</span><span>(&quot;</span><span style="color:#a3be8c;">.</span><span>&quot;)){
+</span><span>      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">pos </span><span>= </span><span style="color:#8fa1b3;">countTab</span><span>(</span><span style="color:#bf616a;">str</span><span>);
+</span><span>      </span><span style="color:#bf616a;">ans </span><span>= Math.</span><span style="color:#96b5b4;">max</span><span>(</span><span style="color:#bf616a;">ans</span><span>, </span><span style="color:#bf616a;">pos</span><span>?</span><span style="color:#bf616a;">str</span><span>.length - </span><span style="color:#bf616a;">pos </span><span>+ </span><span style="color:#bf616a;">sumArr</span><span>[</span><span style="color:#bf616a;">pos </span><span>- </span><span style="color:#d08770;">1</span><span>]:</span><span style="color:#bf616a;">str</span><span>.length);
+</span><span>    }</span><span style="color:#b48ead;">else</span><span>{
+</span><span>      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">pos </span><span>= </span><span style="color:#8fa1b3;">countTab</span><span>(</span><span style="color:#bf616a;">str</span><span>);
+</span><span>      </span><span style="color:#bf616a;">sumArr</span><span>[</span><span style="color:#bf616a;">pos</span><span>] = </span><span style="color:#bf616a;">pos</span><span>?</span><span style="color:#bf616a;">sumArr</span><span>[</span><span style="color:#bf616a;">pos </span><span>- </span><span style="color:#d08770;">1</span><span>] + </span><span style="color:#bf616a;">str</span><span>.length - </span><span style="color:#bf616a;">pos </span><span>+ </span><span style="color:#d08770;">1</span><span>:</span><span style="color:#bf616a;">str</span><span>.length+</span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(lengthLongestPath(&quot;dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext&quot;));
+</span><span style="color:#65737e;">// console.log(lengthLongestPath(&quot;dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext&quot;));
+</span><span style="color:#65737e;">// console.log(lengthLongestPath(&quot;asdf.asdf&quot;));
+</span><span>
+</span></code></pre>
 
     </div>
   </div>

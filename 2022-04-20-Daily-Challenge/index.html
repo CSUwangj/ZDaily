@@ -126,24 +126,24 @@ renderMathInElement(document.body, katex_config);
 <p>You may assume that <code>next()</code> calls will always be valid. That is, there will be at least a next number in the in-order traversal when <code>next()</code> is called.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/25/bst-tree.png" alt="img" /></p>
-<pre><code>Input
-[&quot;BSTIterator&quot;, &quot;next&quot;, &quot;next&quot;, &quot;hasNext&quot;, &quot;next&quot;, &quot;hasNext&quot;, &quot;next&quot;, &quot;hasNext&quot;, &quot;next&quot;, &quot;hasNext&quot;]
-[[[7, 3, 15, null, null, 9, 20]], [], [], [], [], [], [], [], [], []]
-Output
-[null, 3, 7, true, 9, true, 15, true, 20, false]
-
-Explanation
-BSTIterator bSTIterator = new BSTIterator([7, 3, 15, null, null, 9, 20]);
-bSTIterator.next();    &#x2F;&#x2F; return 3
-bSTIterator.next();    &#x2F;&#x2F; return 7
-bSTIterator.hasNext(); &#x2F;&#x2F; return True
-bSTIterator.next();    &#x2F;&#x2F; return 9
-bSTIterator.hasNext(); &#x2F;&#x2F; return True
-bSTIterator.next();    &#x2F;&#x2F; return 15
-bSTIterator.hasNext(); &#x2F;&#x2F; return True
-bSTIterator.next();    &#x2F;&#x2F; return 20
-bSTIterator.hasNext(); &#x2F;&#x2F; return False
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;BSTIterator&quot;, &quot;next&quot;, &quot;next&quot;, &quot;hasNext&quot;, &quot;next&quot;, &quot;hasNext&quot;, &quot;next&quot;, &quot;hasNext&quot;, &quot;next&quot;, &quot;hasNext&quot;]
+</span><span>[[[7, 3, 15, null, null, 9, 20]], [], [], [], [], [], [], [], [], []]
+</span><span>Output
+</span><span>[null, 3, 7, true, 9, true, 15, true, 20, false]
+</span><span>
+</span><span>Explanation
+</span><span>BSTIterator bSTIterator = new BSTIterator([7, 3, 15, null, null, 9, 20]);
+</span><span>bSTIterator.next();    // return 3
+</span><span>bSTIterator.next();    // return 7
+</span><span>bSTIterator.hasNext(); // return True
+</span><span>bSTIterator.next();    // return 9
+</span><span>bSTIterator.hasNext(); // return True
+</span><span>bSTIterator.next();    // return 15
+</span><span>bSTIterator.hasNext(); // return True
+</span><span>bSTIterator.next();    // return 20
+</span><span>bSTIterator.hasNext(); // return False
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 10^5]</code>.</li>
@@ -155,53 +155,53 @@ bSTIterator.hasNext(); &#x2F;&#x2F; return False
 <li>Could you implement <code>next()</code> and <code>hasNext()</code> to run in average <code>O(1)</code> time and use <code>O(h)</code> memory, where <code>h</code> is the height of the tree?</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class BSTIterator {
-  TreeNode *cur;
-  TreeNode *prev;
-  TreeNode *pred;
-public:
-  BSTIterator(TreeNode* root): cur(root), prev(nullptr) {}
-  
-  int next() {
-    int result = -1;
-    while(result &lt; 0) {
-      if(!cur-&gt;left) {
-        result = cur-&gt;val;
-        prev = cur;
-        cur = cur-&gt;right;
-      } else {
-        pred = cur-&gt;left;
-        while(pred-&gt;right &amp;&amp; pred-&gt;right != cur) pred = pred-&gt;right;
-        if(pred-&gt;right) {
-          pred-&gt;right = nullptr;
-          result = cur-&gt;val;
-          prev = cur;
-          cur = cur-&gt;right;
-        } else {
-          pred-&gt;right = cur;
-          cur = cur-&gt;left;
-        }
-      }
-    }
-    return result;
-  }
-  
-  bool hasNext() {
-    return cur;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 61&#x2F;61 cases passed (28 ms)
-&#x2F;&#x2F; Your runtime beats 87.25 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 99.91 % of cpp submissions (23.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">BSTIterator </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#eff1f5;">cur;
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#eff1f5;">prev;
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#eff1f5;">pred;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">BSTIterator</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">): </span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">(root), </span><span style="color:#bf616a;">prev</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) {}
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">next</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(result </span><span>&lt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        result </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        pred </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pred-&gt;</span><span style="color:#bf616a;">right </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> pred-&gt;</span><span style="color:#bf616a;">right </span><span>!=</span><span style="color:#eff1f5;"> cur) pred </span><span>=</span><span style="color:#eff1f5;"> pred-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pred-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          pred-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          result </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">          cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          pred-&gt;</span><span style="color:#bf616a;">right </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">          cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">hasNext</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 61/61 cases passed (28 ms)
+</span><span style="color:#65737e;">// Your runtime beats 87.25 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 99.91 % of cpp submissions (23.9 MB)
+</span></code></pre>
 
     </div>
   </div>

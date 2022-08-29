@@ -125,23 +125,23 @@ renderMathInElement(document.body, katex_config);
 <p>A <strong>leaf</strong> node is a node with no children.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/num1tree.jpg" alt="img" /></p>
-<pre><code>Input: root = [1,2,3]
-Output: 25
-Explanation:
-The root-to-leaf path 1-&gt;2 represents the number 12.
-The root-to-leaf path 1-&gt;3 represents the number 13.
-Therefore, sum = 12 + 13 = 25.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3]
+</span><span>Output: 25
+</span><span>Explanation:
+</span><span>The root-to-leaf path 1-&gt;2 represents the number 12.
+</span><span>The root-to-leaf path 1-&gt;3 represents the number 13.
+</span><span>Therefore, sum = 12 + 13 = 25.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/num2tree.jpg" alt="img" /></p>
-<pre><code>Input: root = [4,9,0,5,1]
-Output: 1026
-Explanation:
-The root-to-leaf path 4-&gt;9-&gt;5 represents the number 495.
-The root-to-leaf path 4-&gt;9-&gt;1 represents the number 491.
-The root-to-leaf path 4-&gt;0 represents the number 40.
-Therefore, sum = 495 + 491 + 40 = 1026.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [4,9,0,5,1]
+</span><span>Output: 1026
+</span><span>Explanation:
+</span><span>The root-to-leaf path 4-&gt;9-&gt;5 represents the number 495.
+</span><span>The root-to-leaf path 4-&gt;9-&gt;1 represents the number 491.
+</span><span>The root-to-leaf path 4-&gt;0 represents the number 40.
+</span><span>Therefore, sum = 495 + 491 + 40 = 1026.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>
@@ -149,21 +149,21 @@ Therefore, sum = 495 + 491 + 40 = 1026.
 <li>The depth of the tree will not exceed <code>10</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int sumNumbers(TreeNode* root, int cur = 0) {
-      if(!root) return 0;
-      cur = cur * 10 + root-&gt;val;
-      if(root-&gt;left || root-&gt;right) return sumNumbers(root-&gt;left, cur) + sumNumbers(root-&gt;right, cur);
-      return cur;
-    }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 108&#x2F;108 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 80.09 % of cpp submissions (9.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sumNumbers</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur </span><span>* </span><span style="color:#d08770;">10 </span><span>+</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left </span><span>||</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">sumNumbers</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, cur) </span><span>+ </span><span style="color:#bf616a;">sumNumbers</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, cur);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 108/108 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 80.09 % of cpp submissions (9.1 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -118,9 +118,9 @@ renderMathInElement(document.body, katex_config);
 <p>Given an integer n, find the closest integer (not including itself), which is a palindrome.</p>
 <p>The 'closest' is defined as absolute difference minimized between two integers.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: &quot;123&quot;
-Output: &quot;121&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;123&quot;
+</span><span>Output: &quot;121&quot;
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>The input <strong>n</strong> is a positive integer represented by string, whose length will not exceed 18.</li>
@@ -130,60 +130,60 @@ Output: &quot;121&quot;
 <p>very ugly solution...</p>
 <p>first I cut the number into two parts and take the first part(which is not less than second part), make it a palindrome number, minus one and make result a palindrome number, add one and make result a palindrome number.</p>
 <p>I think this solution is kind of ugly because code looks terrible...</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  long long makePalindrom(long long n, bool odd) {
-    long long tmp = n;
-    if(odd) tmp &#x2F;= 10;
-    while(tmp) {
-      n *= 10;
-      n += tmp % 10;
-      tmp &#x2F;= 10;
-    }
-    return n;
-  }
-public:
-  string nearestPalindromic(string n) {
-    if(n == &quot;10&quot; || n == &quot;11&quot;) return &quot;9&quot;;
-    int len = n.length();
-    long long n_half = stoll(string(n.begin(), n.begin()+(len+1)&#x2F;2));
-    bool odd_length = len&amp;1;
-    long long middle = makePalindrom(n_half, odd_length);
-    long long n_num = stoll(n);
-    long long min_difference = LONG_LONG_MAX;
-    vector&lt;long long&gt; candidates;
-    long long less_num = makePalindrom(n_half-1, odd_length);
-    if(less_num &amp;&amp; LONG_LONG_MAX&#x2F;10 &gt; less_num &amp;&amp; less_num * 10 &lt; n_num) less_num = less_num*10+9;
-    candidates.push_back(less_num);
-    min_difference = min(min_difference, n_num-less_num);
-    if(middle != n_num) {
-      candidates.push_back(middle);
-      min_difference = min(min_difference, abs(middle - n_num));
-    }
-    long long more_num = makePalindrom(n_half+1, odd_length);
-    if(LONG_LONG_MAX&#x2F;10 &gt; n_num &amp;&amp; n_num * 10 &lt; more_num) more_num = more_num&#x2F;10+1;
-    candidates.push_back(more_num);
-    min_difference = min(min_difference, more_num-n_num);
-    for(auto candidate : candidates) {
-      if(abs(candidate - n_num) == min_difference) return to_string(candidate);
-    }
-    return &quot;WTF&quot;;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">long long </span><span style="color:#8fa1b3;">makePalindrom</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">long long </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">bool </span><span style="color:#bf616a;">odd</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> tmp </span><span>=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(odd) tmp </span><span>/= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(tmp) {
+</span><span style="color:#eff1f5;">      n </span><span>*= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      n </span><span>+=</span><span style="color:#eff1f5;"> tmp </span><span>% </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      tmp </span><span>/= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">nearestPalindromic</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>== &quot;</span><span style="color:#a3be8c;">10</span><span>&quot; ||</span><span style="color:#eff1f5;"> n </span><span>== &quot;</span><span style="color:#a3be8c;">11</span><span>&quot;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">9</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> n.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> n_half </span><span>= </span><span style="color:#bf616a;">stoll</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">string</span><span style="color:#eff1f5;">(n.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), n.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">()</span><span>+</span><span style="color:#eff1f5;">(len</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> odd_length </span><span>=</span><span style="color:#eff1f5;"> len</span><span>&amp;</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> middle </span><span>= </span><span style="color:#bf616a;">makePalindrom</span><span style="color:#eff1f5;">(n_half, odd_length);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> n_num </span><span>= </span><span style="color:#bf616a;">stoll</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> min_difference </span><span>=</span><span style="color:#eff1f5;"> LONG_LONG_MAX;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;">&gt; candidates;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> less_num </span><span>= </span><span style="color:#bf616a;">makePalindrom</span><span style="color:#eff1f5;">(n_half</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, odd_length);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(less_num </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> LONG_LONG_MAX</span><span>/</span><span style="color:#d08770;">10 </span><span>&gt;</span><span style="color:#eff1f5;"> less_num </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> less_num </span><span>* </span><span style="color:#d08770;">10 </span><span>&lt;</span><span style="color:#eff1f5;"> n_num) less_num </span><span>=</span><span style="color:#eff1f5;"> less_num</span><span>*</span><span style="color:#d08770;">10</span><span>+</span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    candidates.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(less_num);
+</span><span style="color:#eff1f5;">    min_difference </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(min_difference, n_num</span><span>-</span><span style="color:#eff1f5;">less_num);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(middle </span><span>!=</span><span style="color:#eff1f5;"> n_num) {
+</span><span style="color:#eff1f5;">      candidates.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(middle);
+</span><span style="color:#eff1f5;">      min_difference </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(min_difference, </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(middle </span><span>-</span><span style="color:#eff1f5;"> n_num));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> more_num </span><span>= </span><span style="color:#bf616a;">makePalindrom</span><span style="color:#eff1f5;">(n_half</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, odd_length);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(LONG_LONG_MAX</span><span>/</span><span style="color:#d08770;">10 </span><span>&gt;</span><span style="color:#eff1f5;"> n_num </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> n_num </span><span>* </span><span style="color:#d08770;">10 </span><span>&lt;</span><span style="color:#eff1f5;"> more_num) more_num </span><span>=</span><span style="color:#eff1f5;"> more_num</span><span>/</span><span style="color:#d08770;">10</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    candidates.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(more_num);
+</span><span style="color:#eff1f5;">    min_difference </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(min_difference, more_num</span><span>-</span><span style="color:#eff1f5;">n_num);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> candidate </span><span>:</span><span style="color:#eff1f5;"> candidates) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(candidate </span><span>-</span><span style="color:#eff1f5;"> n_num) </span><span>==</span><span style="color:#eff1f5;"> min_difference) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(candidate);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">WTF</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-30">October LeetCoding Challenge 30</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Number of Longest Increasing Subsequence</strong></p>
 <p>Given an integer array <code>nums</code>, return <em>the number of longest increasing subsequences.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,3,5,4,7]
-Output: 2
-Explanation: The two longest increasing subsequences are [1, 3, 4, 7] and [1, 3, 5, 7].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,3,5,4,7]
+</span><span>Output: 2
+</span><span>Explanation: The two longest increasing subsequences are [1, 3, 4, 7] and [1, 3, 5, 7].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [2,2,2,2,2]
-Output: 5
-Explanation: The length of longest continuous increasing subsequence is 1, and there are 5 subsequences&#x27; length is 1, so output 5.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,2,2,2,2]
+</span><span>Output: 5
+</span><span>Explanation: The length of longest continuous increasing subsequence is 1, and there are 5 subsequences&#39; length is 1, so output 5.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= nums.length &lt;= 2000</code></li>
@@ -191,31 +191,31 @@ Explanation: The length of longest continuous increasing subsequence is 1, and t
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>haven't find a way to solve this problem in O(nlogn) time complexity.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int findNumberOfLIS(vector&lt;int&gt;&amp; nums) {
-    if(nums.empty()) return 0;
-    vector&lt;int&gt; dp(nums.size(), 1), ways(nums.size(), 1);
-    for(int i = 1; i &lt; nums.size(); ++i) {
-      for(int j = 0; j &lt; i; ++j) {
-        if(nums[i] &gt; nums[j]) {
-          if(dp[j]+1 &gt; dp[i]) {
-            dp[i] = dp[j]+1;
-            ways[i] = ways[j];
-          } else if(dp[j]+1 == dp[i]) {
-            ways[i] += ways[j];
-          }
-        }
-      }
-    }
-    int LISLength = *max_element(dp.begin(), dp.end()), ans = 0;
-    for(int i = 0; i &lt; nums.size(); ++i) {
-      if(dp[i] == LISLength) ans += ways[i];
-    }
-    return ans;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findNumberOfLIS</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">ways</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> i; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> nums[j]) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dp[j]</span><span>+</span><span style="color:#d08770;">1 </span><span>&gt;</span><span style="color:#eff1f5;"> dp[i]) {
+</span><span style="color:#eff1f5;">            dp[i] </span><span>=</span><span style="color:#eff1f5;"> dp[j]</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            ways[i] </span><span>=</span><span style="color:#eff1f5;"> ways[j];
+</span><span style="color:#eff1f5;">          } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(dp[j]</span><span>+</span><span style="color:#d08770;">1 </span><span>==</span><span style="color:#eff1f5;"> dp[i]) {
+</span><span style="color:#eff1f5;">            ways[i] </span><span>+=</span><span style="color:#eff1f5;"> ways[j];
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> LISLength </span><span>= *</span><span style="color:#bf616a;">max_element</span><span style="color:#eff1f5;">(dp.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), dp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()), ans </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dp[i] </span><span>==</span><span style="color:#eff1f5;"> LISLength) ans </span><span>+=</span><span style="color:#eff1f5;"> ways[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

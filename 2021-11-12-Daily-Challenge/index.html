@@ -119,17 +119,17 @@ renderMathInElement(document.body, katex_config);
 <p>Given the <code>head</code> of a linked list and an integer <code>val</code>, remove all the nodes of the linked list that has <code>Node.val == val</code>, and return <em>the new head</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/03/06/removelinked-list.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,6,3,4,5,6], val = 6
-Output: [1,2,3,4,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,6,3,4,5,6], val = 6
+</span><span>Output: [1,2,3,4,5]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: head = [], val = 1
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [], val = 1
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: head = [7,7,7,7], val = 7
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [7,7,7,7], val = 7
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is in the range <code>[0, 10^4]</code>.</li>
@@ -137,28 +137,28 @@ Output: []
 <li><code>0 &lt;= val &lt;= 50</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  ListNode* removeElements(ListNode* head, int val) {
-    ListNode *newHead = new ListNode();
-    ListNode *cur = newHead;
-    while(head) {
-      if(head-&gt;val != val) {
-        cur-&gt;next = head;
-        cur = cur-&gt;next;
-      }
-      head = head-&gt;next;
-    }
-    cur-&gt;next = nullptr;
-    return newHead-&gt;next;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 66&#x2F;66 cases passed (20 ms)
-&#x2F;&#x2F; Your runtime beats 84.92 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 79.14 % of cpp submissions (15 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">removeElements</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(head-&gt;</span><span style="color:#bf616a;">val </span><span>!=</span><span style="color:#eff1f5;"> val) {
+</span><span style="color:#eff1f5;">        cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    cur-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 66/66 cases passed (20 ms)
+</span><span style="color:#65737e;">// Your runtime beats 84.92 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 79.14 % of cpp submissions (15 MB)
+</span></code></pre>
 
     </div>
   </div>

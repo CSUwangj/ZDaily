@@ -129,13 +129,13 @@ renderMathInElement(document.body, katex_config);
 <li><code>&quot;directory_path/file_name.txt&quot;</code></li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: paths = [&quot;root&#x2F;a 1.txt(abcd) 2.txt(efgh)&quot;,&quot;root&#x2F;c 3.txt(abcd)&quot;,&quot;root&#x2F;c&#x2F;d 4.txt(efgh)&quot;,&quot;root 4.txt(efgh)&quot;]
-Output: [[&quot;root&#x2F;a&#x2F;2.txt&quot;,&quot;root&#x2F;c&#x2F;d&#x2F;4.txt&quot;,&quot;root&#x2F;4.txt&quot;],[&quot;root&#x2F;a&#x2F;1.txt&quot;,&quot;root&#x2F;c&#x2F;3.txt&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: paths = [&quot;root/a 1.txt(abcd) 2.txt(efgh)&quot;,&quot;root/c 3.txt(abcd)&quot;,&quot;root/c/d 4.txt(efgh)&quot;,&quot;root 4.txt(efgh)&quot;]
+</span><span>Output: [[&quot;root/a/2.txt&quot;,&quot;root/c/d/4.txt&quot;,&quot;root/4.txt&quot;],[&quot;root/a/1.txt&quot;,&quot;root/c/3.txt&quot;]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: paths = [&quot;root&#x2F;a 1.txt(abcd) 2.txt(efgh)&quot;,&quot;root&#x2F;c 3.txt(abcd)&quot;,&quot;root&#x2F;c&#x2F;d 4.txt(efgh)&quot;]
-Output: [[&quot;root&#x2F;a&#x2F;2.txt&quot;,&quot;root&#x2F;c&#x2F;d&#x2F;4.txt&quot;],[&quot;root&#x2F;a&#x2F;1.txt&quot;,&quot;root&#x2F;c&#x2F;3.txt&quot;]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: paths = [&quot;root/a 1.txt(abcd) 2.txt(efgh)&quot;,&quot;root/c 3.txt(abcd)&quot;,&quot;root/c/d 4.txt(efgh)&quot;]
+</span><span>Output: [[&quot;root/a/2.txt&quot;,&quot;root/c/d/4.txt&quot;],[&quot;root/a/1.txt&quot;,&quot;root/c/3.txt&quot;]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= paths.length &lt;= 2 * 104</code></li>
@@ -154,45 +154,45 @@ Output: [[&quot;root&#x2F;a&#x2F;2.txt&quot;,&quot;root&#x2F;c&#x2F;d&#x2F;4.txt
 <li>How to make sure the duplicated files you find are not false positive?</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = []() {
-  std::ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  return nullptr;
-}();
-class Solution {
-  unordered_map&lt;string, vector&lt;string&gt;&gt; mapping;
-  void parsePath(string &amp;path) {
-    int pos = 0;
-    int len = path.length();
-    while(pos &lt; len &amp;&amp; path[pos] != &#x27; &#x27;) pos += 1;
-    string base = path.substr(0, pos);
-    pos += 1;
-    &#x2F;&#x2F; cout &lt;&lt; base &lt;&lt; endl;
-    while(pos &lt; len) {
-      int file = 0;
-      while(path[pos + file] != &#x27;(&#x27;) file += 1;
-      string fileName = path.substr(pos, file);
-      pos += file + 1;
-      int content = 0;
-      while(path[pos + content] != &#x27;)&#x27;) content += 1;
-      string contentString = path.substr(pos, content);
-      &#x2F;&#x2F; cout &lt;&lt; fileName &lt;&lt; &quot; &quot; &lt;&lt; contentString &lt;&lt; endl;
-      mapping[contentString].push_back(base + &quot;&#x2F;&quot; + fileName);
-      pos += content + 2;
-    }
-  }
-public:
-  vector&lt;vector&lt;string&gt;&gt; findDuplicate(vector&lt;string&gt;&amp; paths) {
-    for(auto &amp;path : paths) parsePath(path);
-    vector&lt;vector&lt;string&gt;&gt; answer;
-    for(auto &amp;[content, files] : mapping) {
-      if(files.size() &gt; 1) answer.push_back(files);
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = []() {
+</span><span>  std::ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  unordered_map&lt;string, vector&lt;string&gt;&gt; mapping;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">parsePath</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">path</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> path[pos] </span><span>!= &#39; &#39;</span><span style="color:#eff1f5;">) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    string base </span><span>=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, pos);
+</span><span style="color:#eff1f5;">    pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; base &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> file </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(path[pos </span><span>+</span><span style="color:#eff1f5;"> file] </span><span>!= &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;</span><span style="color:#eff1f5;">) file </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      string fileName </span><span>=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(pos, file);
+</span><span style="color:#eff1f5;">      pos </span><span>+=</span><span style="color:#eff1f5;"> file </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> content </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(path[pos </span><span>+</span><span style="color:#eff1f5;"> content] </span><span>!= &#39;</span><span style="color:#a3be8c;">)</span><span>&#39;</span><span style="color:#eff1f5;">) content </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      string contentString </span><span>=</span><span style="color:#eff1f5;"> path.</span><span style="color:#bf616a;">substr</span><span style="color:#eff1f5;">(pos, content);
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; fileName &lt;&lt; &quot; &quot; &lt;&lt; contentString &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      mapping[contentString].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(base </span><span>+ &quot;</span><span style="color:#a3be8c;">/</span><span>&quot; +</span><span style="color:#eff1f5;"> fileName);
+</span><span style="color:#eff1f5;">      pos </span><span>+=</span><span style="color:#eff1f5;"> content </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;string&gt;&gt; </span><span style="color:#8fa1b3;">findDuplicate</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">paths</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">path </span><span>:</span><span style="color:#eff1f5;"> paths) </span><span style="color:#bf616a;">parsePath</span><span style="color:#eff1f5;">(path);
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;string&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[content, files] </span><span>:</span><span style="color:#eff1f5;"> mapping) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(files.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(files);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

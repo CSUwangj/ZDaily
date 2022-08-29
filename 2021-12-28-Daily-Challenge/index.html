@@ -120,48 +120,48 @@ renderMathInElement(document.body, katex_config);
 <p>If there are two middle nodes, return <strong>the second middle</strong> node.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/07/23/lc-midlist1.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4,5]
-Output: [3,4,5]
-Explanation: The middle node of the list is node 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5]
+</span><span>Output: [3,4,5]
+</span><span>Explanation: The middle node of the list is node 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/07/23/lc-midlist2.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4,5,6]
-Output: [4,5,6]
-Explanation: Since the list has two middle nodes with values 3 and 4, we return the second one.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5,6]
+</span><span>Output: [4,5,6]
+</span><span>Explanation: Since the list has two middle nodes with values 3 and 4, we return the second one.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is in the range <code>[1, 100]</code>.</li>
 <li><code>1 &lt;= Node.val &lt;= 100</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int length(ListNode *head) {
-    int result = 0;
-    while(head) {
-      result += 1;
-      head = head-&gt;next;
-    }
-    return result;
-  }
-  ListNode *advance(ListNode *head, int count) {
-    while(count--) {
-      head = head-&gt;next;
-    }
-    return head;
-  }
-public:
-  ListNode* middleNode(ListNode* head) {
-    return advance(head, length(head) &#x2F; 2);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 36&#x2F;36 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 40.59 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 96.09 % of cpp submissions (7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">length</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">      result </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  ListNode </span><span>*</span><span style="color:#8fa1b3;">advance</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(count</span><span>--</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">middleNode</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">advance</span><span style="color:#eff1f5;">(head, </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(head) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 36/36 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 40.59 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 96.09 % of cpp submissions (7 MB)
+</span></code></pre>
 
     </div>
   </div>

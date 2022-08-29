@@ -118,72 +118,72 @@ renderMathInElement(document.body, katex_config);
 <h2 id="linked-list-cycle-ii">Linked List Cycle II</h2>
 <p>use two pointers which one pointer step two node at each time. the amount which faster pointer is ahead of the slower pointer is number of step time.</p>
 <p>if there is a cycle in list, we assume that the length before the cycle is <code>n</code>, then when the both pointers are in the cycle, the distance between them is <code>n</code>. and we assume that cycle length is <code>c</code>, when two pointers meet, there is <code>(c-n)%c</code> rounds gone. so we just use another pointer start from head, when it meets the slower pointer, meet point is where the cycle begins.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- *&#x2F;
-class Solution {
-public:
-    ListNode *detectCycle(ListNode *head) {
-        ListNode *quickPointer = head, *slowPointer = head;
-        bool hasCycle = false;
-        while(quickPointer &amp;&amp; quickPointer-&gt;next &amp;&amp; slowPointer) {
-            slowPointer = slowPointer-&gt;next;
-            quickPointer = quickPointer-&gt;next-&gt;next;
-            if(slowPointer == quickPointer) {
-                hasCycle = true;
-                break;
-            }
-        }
-        if(!hasCycle) return NULL;
-        while(head != slowPointer) {
-            head = head-&gt;next;
-            slowPointer = slowPointer-&gt;next;
-        }
-        return head;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(NULL) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#8fa1b3;">detectCycle</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">quickPointer </span><span>=</span><span style="color:#eff1f5;"> head, </span><span>*</span><span style="color:#eff1f5;">slowPointer </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> hasCycle </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(quickPointer </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> quickPointer-&gt;</span><span style="color:#bf616a;">next </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> slowPointer) {
+</span><span style="color:#eff1f5;">            slowPointer </span><span>=</span><span style="color:#eff1f5;"> slowPointer-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            quickPointer </span><span>=</span><span style="color:#eff1f5;"> quickPointer-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(slowPointer </span><span>==</span><span style="color:#eff1f5;"> quickPointer) {
+</span><span style="color:#eff1f5;">                hasCycle </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">hasCycle) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head </span><span>!=</span><span style="color:#eff1f5;"> slowPointer) {
+</span><span style="color:#eff1f5;">            head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            slowPointer </span><span>=</span><span style="color:#eff1f5;"> slowPointer-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="recover-binary-search-tree">Recover Binary Search Tree</h2>
 <p>morris traversal</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    vector&lt;TreeNode*&gt; wrongNodes;
-    void check(TreeNode* cur, TreeNode* prev) {
-        if(prev &amp;&amp; prev-&gt;val &gt;= cur-&gt;val) {
-            wrongNodes.push_back(prev);
-            wrongNodes.push_back(cur);
-        }
-    }
-public:
-    void recoverTree(TreeNode* root) {
-        TreeNode *cur = root, *prev = nullptr;
-        while(cur) {
-            if(!(cur-&gt;left)) {
-                check(cur, prev);
-                prev = cur;
-                cur = cur-&gt;right;
-            } else {
-                TreeNode *pred = cur-&gt;left;
-                while(pred-&gt;right &amp;&amp; pred-&gt;right != cur) pred = pred-&gt;right;
-                if(pred-&gt;right) {
-                    pred-&gt;right = nullptr;
-                    check(cur, prev);
-                    prev = cur;
-                    cur = cur-&gt;right;
-                } else {
-                    pred-&gt;right = cur;
-                    cur = cur-&gt;left;
-                }
-            }
-        }
-        swap(wrongNodes.front()-&gt;val, wrongNodes.back()-&gt;val);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    vector&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">&gt; wrongNodes;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">check</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">prev</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> prev-&gt;</span><span style="color:#bf616a;">val </span><span>&gt;=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            wrongNodes.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(prev);
+</span><span style="color:#eff1f5;">            wrongNodes.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">recoverTree</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        TreeNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> root, </span><span>*</span><span style="color:#eff1f5;">prev </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#bf616a;">check</span><span style="color:#eff1f5;">(cur, prev);
+</span><span style="color:#eff1f5;">                prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">                cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                TreeNode </span><span>*</span><span style="color:#eff1f5;">pred </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pred-&gt;</span><span style="color:#bf616a;">right </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> pred-&gt;</span><span style="color:#bf616a;">right </span><span>!=</span><span style="color:#eff1f5;"> cur) pred </span><span>=</span><span style="color:#eff1f5;"> pred-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pred-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    pred-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span style="color:#bf616a;">check</span><span style="color:#eff1f5;">(cur, prev);
+</span><span style="color:#eff1f5;">                    prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">                    cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                    pred-&gt;</span><span style="color:#bf616a;">right </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">                    cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(wrongNodes.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">()-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">, wrongNodes.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-1">November LeetCoding Challenge 1</h1>
 <h2 id="description">Description</h2>
 <p><strong>Convert Binary Number in a Linked List to Integer</strong></p>
@@ -191,26 +191,26 @@ public:
 <p>Return the <em>decimal value</em> of the number in the linked list.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/12/05/graph-1.png" alt="img" /></p>
-<pre><code>Input: head = [1,0,1]
-Output: 5
-Explanation: (101) in base 2 = (5) in base 10
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,0,1]
+</span><span>Output: 5
+</span><span>Explanation: (101) in base 2 = (5) in base 10
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: head = [0]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [0]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: head = [1]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: head = [1,0,0,1,0,0,1,1,1,0,0,0,0,0,0]
-Output: 18880
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,0,0,1,0,0,1,1,1,0,0,0,0,0,0]
+</span><span>Output: 18880
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: head = [0,0]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [0,0]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The Linked List is not empty.</li>
@@ -219,29 +219,29 @@ Output: 0
 </ul>
 <h2 id="solution">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- *&#x2F;
-class Solution {
-public:
-    int getDecimalValue(ListNode* head) {
-        int ans = 0;
-        while(head) {
-            ans &lt;&lt;= 1;
-            ans |= head-&gt;val;
-            head = head-&gt;next;
-        }
-        return ans;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode() : val(0), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">getDecimalValue</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">            ans </span><span>&lt;&lt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            ans </span><span>|=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

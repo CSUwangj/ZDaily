@@ -117,81 +117,81 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p>You are given an integer array <code>nums</code> and you have to return a new <code>counts</code> array. The <code>counts</code> array has the property where <code>counts[i]</code> is the number of smaller elements to the right of <code>nums[i]</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [5,2,6,1]
-Output: [2,1,1,0]
-Explanation:
-To the right of 5 there are 2 smaller elements (2 and 1).
-To the right of 2 there is only 1 smaller element (1).
-To the right of 6 there is 1 smaller element (1).
-To the right of 1 there is 0 smaller element.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [5,2,6,1]
+</span><span>Output: [2,1,1,0]
+</span><span>Explanation:
+</span><span>To the right of 5 there are 2 smaller elements (2 and 1).
+</span><span>To the right of 2 there is only 1 smaller element (1).
+</span><span>To the right of 6 there is 1 smaller element (1).
+</span><span>To the right of 1 there is 0 smaller element.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [-1]
-Output: [0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [-1]
+</span><span>Output: [0]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [-1,-1]
-Output: [0,0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [-1,-1]
+</span><span>Output: [0,0]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
 <li><code>-10^4 &lt;= nums[i] &lt;= 10^4</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">#define lowbit(x) (x &amp; (-x))
-
-const int SZ = 20001;
-const int OFFSET = 10001;
-class Solution {
-  int BITS[SZ + 1];
-
-  void add(int x) {
-    while(x &lt;= SZ) {
-      BITS[x] += 1;
-      x += lowbit(x);
-    }
-  }
-
-  int sum(int x) {
-    int result = 0;
-    while(x) {
-      result += BITS[x];
-      x -= lowbit(x);
-    }
-    return result;
-  }
-public:
-  vector&lt;int&gt; countSmaller(vector&lt;int&gt;&amp; nums) {
-    vector&lt;int&gt; answer;
-    for(int i = nums.size() - 1; i &gt;= 0; --i) {
-      int n = nums[i] + OFFSET;
-      answer.push_back(sum(n - 1));
-      add(n);
-    }
-    reverse(answer.begin(), answer.end());
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 65&#x2F;65 cases passed (116 ms)
-&#x2F;&#x2F; Your runtime beats 98.63 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 94.14 % of cpp submissions (73.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">#define </span><span style="color:#8fa1b3;">lowbit</span><span>(</span><span style="color:#bf616a;">x</span><span>) (x &amp; (-x))
+</span><span>
+</span><span style="color:#b48ead;">const int</span><span> SZ = </span><span style="color:#d08770;">20001</span><span>;
+</span><span style="color:#b48ead;">const int</span><span> OFFSET = </span><span style="color:#d08770;">10001</span><span>;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> BITS[SZ </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">add</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(x </span><span>&lt;=</span><span style="color:#eff1f5;"> SZ) {
+</span><span style="color:#eff1f5;">      BITS[x] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      x </span><span>+= </span><span style="color:#bf616a;">lowbit</span><span style="color:#eff1f5;">(x);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sum</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(x) {
+</span><span style="color:#eff1f5;">      result </span><span>+=</span><span style="color:#eff1f5;"> BITS[x];
+</span><span style="color:#eff1f5;">      x </span><span>-= </span><span style="color:#bf616a;">lowbit</span><span style="color:#eff1f5;">(x);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">countSmaller</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>=</span><span style="color:#eff1f5;"> nums[i] </span><span>+</span><span style="color:#eff1f5;"> OFFSET;
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">(n </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 65/65 cases passed (116 ms)
+</span><span style="color:#65737e;">// Your runtime beats 98.63 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 94.14 % of cpp submissions (73.3 MB)
+</span></code></pre>
 <h1 id="june-leetcoding-challenge-23">June LeetCoding Challenge 23</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Reverse Linked List II</strong></p>
 <p>Given the <code>head</code> of a singly linked list and two integers <code>left</code> and <code>right</code> where <code>left &lt;= right</code>, reverse the nodes of the list from position <code>left</code> to position <code>right</code>, and return <em>the reversed list</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/02/19/rev2ex2.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4,5], left = 2, right = 4
-Output: [1,4,3,2,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5], left = 2, right = 4
+</span><span>Output: [1,4,3,2,5]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: head = [5], left = 1, right = 1
-Output: [5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [5], left = 1, right = 1
+</span><span>Output: [5]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is <code>n</code>.</li>
@@ -201,41 +201,41 @@ Output: [5]
 </ul>
 <p><strong>Follow up:</strong> Could you do it in one pass?</p>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  ListNode* reverseBetween(ListNode* head, int left, int right) {
-    ListNode *newHead = new ListNode();
-    ListNode *newCur = newHead;
-    ListNode *cur = head;
-    int pos = 1;
-    while(pos &lt; left) {
-      newCur-&gt;next = cur;
-      cur = cur-&gt;next;
-      newCur = newCur-&gt;next;
-      pos += 1;
-    }
-    ListNode *midTail = cur;
-    ListNode *midCur = nullptr;
-    ListNode *next;
-    while(pos &lt;= right) {
-      next = cur-&gt;next;
-      cur-&gt;next = midCur;
-      midCur = cur;
-      cur = next;
-      pos += 1;
-    }
-    newCur-&gt;next = midCur;
-    newCur = midTail;
-    newCur-&gt;next = next;
-    return newHead-&gt;next;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 44&#x2F;44 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 56.86 % of cpp submissions (7.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  ListNode</span><span>* </span><span style="color:#8fa1b3;">reverseBetween</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newCur </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> left) {
+</span><span style="color:#eff1f5;">      newCur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      newCur </span><span>=</span><span style="color:#eff1f5;"> newCur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">midTail </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">midCur </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">next;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;=</span><span style="color:#eff1f5;"> right) {
+</span><span style="color:#eff1f5;">      next </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> midCur;
+</span><span style="color:#eff1f5;">      midCur </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> next;
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    newCur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> midCur;
+</span><span style="color:#eff1f5;">    newCur </span><span>=</span><span style="color:#eff1f5;"> midTail;
+</span><span style="color:#eff1f5;">    newCur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> next;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 44/44 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 56.86 % of cpp submissions (7.4 MB)
+</span></code></pre>
 
     </div>
   </div>

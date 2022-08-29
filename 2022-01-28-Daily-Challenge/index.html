@@ -124,22 +124,22 @@ renderMathInElement(document.body, katex_config);
 <li><code>bool search(word)</code> Returns <code>true</code> if there is any string in the data structure that matches <code>word</code> or <code>false</code> otherwise. <code>word</code> may contain dots <code>'.'</code> where dots can be matched with any letter.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code>Input
-[&quot;WordDictionary&quot;,&quot;addWord&quot;,&quot;addWord&quot;,&quot;addWord&quot;,&quot;search&quot;,&quot;search&quot;,&quot;search&quot;,&quot;search&quot;]
-[[],[&quot;bad&quot;],[&quot;dad&quot;],[&quot;mad&quot;],[&quot;pad&quot;],[&quot;bad&quot;],[&quot;.ad&quot;],[&quot;b..&quot;]]
-Output
-[null,null,null,null,false,true,true,true]
-
-Explanation
-WordDictionary wordDictionary = new WordDictionary();
-wordDictionary.addWord(&quot;bad&quot;);
-wordDictionary.addWord(&quot;dad&quot;);
-wordDictionary.addWord(&quot;mad&quot;);
-wordDictionary.search(&quot;pad&quot;); &#x2F;&#x2F; return False
-wordDictionary.search(&quot;bad&quot;); &#x2F;&#x2F; return True
-wordDictionary.search(&quot;.ad&quot;); &#x2F;&#x2F; return True
-wordDictionary.search(&quot;b..&quot;); &#x2F;&#x2F; return True
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;WordDictionary&quot;,&quot;addWord&quot;,&quot;addWord&quot;,&quot;addWord&quot;,&quot;search&quot;,&quot;search&quot;,&quot;search&quot;,&quot;search&quot;]
+</span><span>[[],[&quot;bad&quot;],[&quot;dad&quot;],[&quot;mad&quot;],[&quot;pad&quot;],[&quot;bad&quot;],[&quot;.ad&quot;],[&quot;b..&quot;]]
+</span><span>Output
+</span><span>[null,null,null,null,false,true,true,true]
+</span><span>
+</span><span>Explanation
+</span><span>WordDictionary wordDictionary = new WordDictionary();
+</span><span>wordDictionary.addWord(&quot;bad&quot;);
+</span><span>wordDictionary.addWord(&quot;dad&quot;);
+</span><span>wordDictionary.addWord(&quot;mad&quot;);
+</span><span>wordDictionary.search(&quot;pad&quot;); // return False
+</span><span>wordDictionary.search(&quot;bad&quot;); // return True
+</span><span>wordDictionary.search(&quot;.ad&quot;); // return True
+</span><span>wordDictionary.search(&quot;b..&quot;); // return True
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= word.length &lt;= 500</code></li>
@@ -148,69 +148,69 @@ wordDictionary.search(&quot;b..&quot;); &#x2F;&#x2F; return True
 <li>At most <code>50000</code> calls will be made to <code>addWord</code> and <code>search</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-struct TrieNode {
-  bool end = false;
-  TrieNode *children[26] = {};
-  ~TrieNode() {
-    for(auto child : children) delete child;
-  }
-};
-
-class WordDictionary {
-  TrieNode *root;
-
-  bool helper(const string &amp;word, TrieNode *cur, int pos = 0) {
-    int len = word.length();
-    for(int i = pos; i &lt; len; ++i) {
-      if(word[i] != &#x27;.&#x27;) {
-        if(!cur-&gt;children[word[i] - &#x27;a&#x27;]) return false;
-        cur = cur-&gt;children[word[i] - &#x27;a&#x27;];
-      } else {
-        for(auto child : cur-&gt;children) {
-          if(child &amp;&amp; helper(word, child, i + 1)) return true;
-        }
-        return false;
-      }
-    }
-    return cur-&gt;end;
-  }
-public:
-  WordDictionary() {
-    root = new TrieNode();
-  }
-
-  ~WordDictionary() {
-    delete root;
-  }
-  
-  void addWord(string word) {
-    TrieNode *cur = root;
-    for(auto c : word) {
-      c -= &#x27;a&#x27;;
-      if(!cur-&gt;children[c]) {
-        cur-&gt;children[c] = new TrieNode();
-      }
-      cur = cur-&gt;children[c];
-    }
-    cur-&gt;end = true;
-  }
-  
-  bool search(string word) {
-    return helper(word, root);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 13&#x2F;13 cases passed (84 ms)
-&#x2F;&#x2F; Your runtime beats 75.72 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 57.03 % of cpp submissions (43.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">struct </span><span>TrieNode {
+</span><span>  </span><span style="color:#b48ead;">bool</span><span> end = </span><span style="color:#d08770;">false</span><span>;
+</span><span>  TrieNode *children[</span><span style="color:#d08770;">26</span><span>] = {};
+</span><span>  </span><span style="color:#8fa1b3;">~TrieNode</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">auto</span><span> child : children) </span><span style="color:#b48ead;">delete</span><span> child;
+</span><span>  }
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">WordDictionary </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  TrieNode </span><span>*</span><span style="color:#eff1f5;">root;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">helper</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> string </span><span>&amp;</span><span style="color:#bf616a;">word</span><span style="color:#eff1f5;">, TrieNode </span><span>*</span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> pos; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(word[i] </span><span>!= &#39;</span><span style="color:#a3be8c;">.</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[word[i] </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[word[i] </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> child </span><span>:</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(child </span><span>&amp;&amp; </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(word, child, i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">WordDictionary</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    root </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">~WordDictionary</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">delete</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">addWord</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">word</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    TrieNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> word) {
+</span><span style="color:#eff1f5;">      c </span><span>-= &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[c]) {
+</span><span style="color:#eff1f5;">        cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[c] </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TrieNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">children</span><span style="color:#eff1f5;">[c];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    cur-&gt;</span><span style="color:#bf616a;">end </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">search</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">word</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(word, root);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 13/13 cases passed (84 ms)
+</span><span style="color:#65737e;">// Your runtime beats 75.72 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 57.03 % of cpp submissions (43.7 MB)
+</span></code></pre>
 
     </div>
   </div>

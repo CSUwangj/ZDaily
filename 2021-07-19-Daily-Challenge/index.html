@@ -123,19 +123,19 @@ renderMathInElement(document.body, katex_config);
 <li>Rank should be as small as possible.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: arr = [40,10,20,30]
-Output: [4,1,2,3]
-Explanation: 40 is the largest element. 10 is the smallest. 20 is the second smallest. 30 is the third smallest.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [40,10,20,30]
+</span><span>Output: [4,1,2,3]
+</span><span>Explanation: 40 is the largest element. 10 is the smallest. 20 is the second smallest. 30 is the third smallest.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: arr = [100,100,100]
-Output: [1,1,1]
-Explanation: Same elements share the same rank.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [100,100,100]
+</span><span>Output: [1,1,1]
+</span><span>Explanation: Same elements share the same rank.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: arr = [37,12,28,9,100,56,80,5,12]
-Output: [5,3,4,2,8,6,7,1,3]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [37,12,28,9,100,56,80,5,12]
+</span><span>Output: [5,3,4,2,8,6,7,1,3]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= arr.length &lt;= 10^5</code></li>
@@ -143,25 +143,25 @@ Output: [5,3,4,2,8,6,7,1,3]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>bad data, counting sort can be 44ms and beat 100%, but it's a fake solution.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; arrayRankTransform(vector&lt;int&gt;&amp; arr) {
-    vector&lt;int&gt; order(arr);
-    sort(order.begin(), order.end());
-    order.resize(unique(order.begin(), order.end()) - order.begin());
-    unordered_map&lt;int, int&gt; rk;
-    int count = 0;
-    for(auto i : order) rk[i] = ++count;
-    for(auto &amp;i : arr) i = rk[i];
-    return arr;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 37&#x2F;37 cases passed (84 ms)
-&#x2F;&#x2F; Your runtime beats 89.57 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 72.51 % of cpp submissions (39.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">arrayRankTransform</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">order</span><span style="color:#eff1f5;">(arr);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(order.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), order.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    order.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">unique</span><span style="color:#eff1f5;">(order.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), order.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()) </span><span>-</span><span style="color:#eff1f5;"> order.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; rk;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> order) rk[i] </span><span>= ++</span><span style="color:#eff1f5;">count;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">i </span><span>:</span><span style="color:#eff1f5;"> arr) i </span><span>=</span><span style="color:#eff1f5;"> rk[i];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> arr;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 37/37 cases passed (84 ms)
+</span><span style="color:#65737e;">// Your runtime beats 89.57 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 72.51 % of cpp submissions (39.1 MB)
+</span></code></pre>
 <h1 id="july-leetcoding-challenge-19">July LeetCoding Challenge 19</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Lowest Common Ancestor of a Binary Search Tree</strong></p>
@@ -169,20 +169,20 @@ public:
 <p>According to the <a href="https://en.wikipedia.org/wiki/Lowest_common_ancestor">definition of LCA on Wikipedia</a>: “The lowest common ancestor is defined between two nodes <code>p</code> and <code>q</code> as the lowest node in <code>T</code> that has both <code>p</code> and <code>q</code> as descendants (where we allow <strong>a node to be a descendant of itself</strong>).”</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/14/binarysearchtree_improved.png" alt="img" /></p>
-<pre><code>Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
-Output: 6
-Explanation: The LCA of nodes 2 and 8 is 6.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+</span><span>Output: 6
+</span><span>Explanation: The LCA of nodes 2 and 8 is 6.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/14/binarysearchtree_improved.png" alt="img" /></p>
-<pre><code>Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
-Output: 2
-Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
+</span><span>Output: 2
+</span><span>Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: root = [2,1], p = 2, q = 1
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [2,1], p = 2, q = 1
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[2, 10^5]</code>.</li>
@@ -192,46 +192,46 @@ Output: 2
 <li><code>p</code> and <code>q</code> will exist in the BST.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-    if(!root || root == p || root == q) return root;
-    TreeNode *left = lowestCommonAncestor(root-&gt;left, p, q);
-    TreeNode *right = lowestCommonAncestor(root-&gt;right, p, q);
-    if(left &amp;&amp; right) return root;
-    if(left) return left;
-    if(right) return right;
-    return nullptr;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 27&#x2F;27 cases passed (28 ms)
-&#x2F;&#x2F; Your runtime beats 79.85 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 9.47 % of cpp submissions (23.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">lowestCommonAncestor</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">p</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">q</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root </span><span>||</span><span style="color:#eff1f5;"> root </span><span>==</span><span style="color:#eff1f5;"> p </span><span>||</span><span style="color:#eff1f5;"> root </span><span>==</span><span style="color:#eff1f5;"> q) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">left </span><span>= </span><span style="color:#bf616a;">lowestCommonAncestor</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, p, q);
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">right </span><span>= </span><span style="color:#bf616a;">lowestCommonAncestor</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, p, q);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(left </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> right) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(left) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> left;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(right) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> right;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 27/27 cases passed (28 ms)
+</span><span style="color:#65737e;">// Your runtime beats 79.85 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 9.47 % of cpp submissions (23.3 MB)
+</span></code></pre>
 <p>ah ha, it's a BST</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-    if(!root) return root;
-    if(root-&gt;val &lt; p-&gt;val &amp;&amp; root-&gt;val &lt; q-&gt;val) return lowestCommonAncestor(root-&gt;right, p, q);
-    else if(root-&gt;val &gt; p-&gt;val &amp;&amp; root-&gt;val &gt; q-&gt;val) return lowestCommonAncestor(root-&gt;left, p, q);
-    return root;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 27&#x2F;27 cases passed (20 ms)
-&#x2F;&#x2F; Your runtime beats 99.02 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 57.6 % of cpp submissions (23.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">lowestCommonAncestor</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">p</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">q</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> p-&gt;</span><span style="color:#bf616a;">val </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> q-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">lowestCommonAncestor</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, p, q);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val </span><span>&gt;</span><span style="color:#eff1f5;"> p-&gt;</span><span style="color:#bf616a;">val </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val </span><span>&gt;</span><span style="color:#eff1f5;"> q-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">lowestCommonAncestor</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, p, q);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 27/27 cases passed (20 ms)
+</span><span style="color:#65737e;">// Your runtime beats 99.02 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 57.6 % of cpp submissions (23.3 MB)
+</span></code></pre>
 
     </div>
   </div>

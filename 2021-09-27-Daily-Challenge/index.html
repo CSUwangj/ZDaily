@@ -131,14 +131,14 @@ renderMathInElement(document.body, katex_config);
 <p>It is possible to use both of these rules at the same time.</p>
 <p>Given an array of strings <code>emails</code> where we send one email to each <code>email[i]</code>, return <em>the number of different addresses that actually receive mails</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: emails = [&quot;test.email+alex@leetcode.com&quot;,&quot;test.e.mail+bob.cathy@leetcode.com&quot;,&quot;testemail+david@lee.tcode.com&quot;]
-Output: 2
-Explanation: &quot;testemail@leetcode.com&quot; and &quot;testemail@lee.tcode.com&quot; actually receive mails.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: emails = [&quot;test.email+alex@leetcode.com&quot;,&quot;test.e.mail+bob.cathy@leetcode.com&quot;,&quot;testemail+david@lee.tcode.com&quot;]
+</span><span>Output: 2
+</span><span>Explanation: &quot;testemail@leetcode.com&quot; and &quot;testemail@lee.tcode.com&quot; actually receive mails.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: emails = [&quot;a@leetcode.com&quot;,&quot;b@leetcode.com&quot;,&quot;c@leetcode.com&quot;]
-Output: 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: emails = [&quot;a@leetcode.com&quot;,&quot;b@leetcode.com&quot;,&quot;c@leetcode.com&quot;]
+</span><span>Output: 3
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= emails.length &lt;= 100</code></li>
@@ -149,41 +149,41 @@ Output: 3
 <li>Local names do not start with a <code>'+'</code> character.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int numUniqueEmails(vector&lt;string&gt;&amp; emails) {
-    unordered_set&lt;string&gt; st;
-    for(auto &amp;email : emails) {
-      string result;
-      bool at = false;
-      bool plus = false;
-      for(auto c : email) {
-        at |= c == &#x27;@&#x27;;
-        if(at) {
-          result.push_back(c);
-        } else {
-          plus |= c == &#x27;+&#x27;;
-          if(plus || c == &#x27;.&#x27;) continue;
-          result.push_back(c);
-        }
-      }
-      st.insert(result);
-    }
-    return st.size();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 183&#x2F;183 cases passed (16 ms)
-&#x2F;&#x2F; Your runtime beats 98.73 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 74.59 % of cpp submissions (13.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numUniqueEmails</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">emails</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_set&lt;string&gt; st;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">email </span><span>:</span><span style="color:#eff1f5;"> emails) {
+</span><span style="color:#eff1f5;">      string result;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> at </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> plus </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> email) {
+</span><span style="color:#eff1f5;">        at </span><span>|=</span><span style="color:#eff1f5;"> c </span><span>== &#39;</span><span style="color:#a3be8c;">@</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(at) {
+</span><span style="color:#eff1f5;">          result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          plus </span><span>|=</span><span style="color:#eff1f5;"> c </span><span>== &#39;</span><span style="color:#a3be8c;">+</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(plus </span><span>||</span><span style="color:#eff1f5;"> c </span><span>== &#39;</span><span style="color:#a3be8c;">.</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          result.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      st.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(result);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 183/183 cases passed (16 ms)
+</span><span style="color:#65737e;">// Your runtime beats 98.73 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 74.59 % of cpp submissions (13.7 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -126,23 +126,23 @@ renderMathInElement(document.body, katex_config);
 <p><em>Return the furthest building index (0-indexed) you can reach if you use the given ladders and bricks optimally.</em></p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/27/q4.gif" alt="img" /></p>
-<pre><code>Input: heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1
-Output: 4
-Explanation: Starting at building 0, you can follow these steps:
-- Go to building 1 without using ladders nor bricks since 4 &gt;= 2.
-- Go to building 2 using 5 bricks. You must use either bricks or ladders because 2 &lt; 7.
-- Go to building 3 without using ladders nor bricks since 7 &gt;= 6.
-- Go to building 4 using your only ladder. You must use either bricks or ladders because 6 &lt; 9.
-It is impossible to go beyond building 4 because you do not have any more bricks or ladders.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1
+</span><span>Output: 4
+</span><span>Explanation: Starting at building 0, you can follow these steps:
+</span><span>- Go to building 1 without using ladders nor bricks since 4 &gt;= 2.
+</span><span>- Go to building 2 using 5 bricks. You must use either bricks or ladders because 2 &lt; 7.
+</span><span>- Go to building 3 without using ladders nor bricks since 7 &gt;= 6.
+</span><span>- Go to building 4 using your only ladder. You must use either bricks or ladders because 6 &lt; 9.
+</span><span>It is impossible to go beyond building 4 because you do not have any more bricks or ladders.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: heights = [4,12,2,7,3,18,20,3,19], bricks = 10, ladders = 2
-Output: 7
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: heights = [4,12,2,7,3,18,20,3,19], bricks = 10, ladders = 2
+</span><span>Output: 7
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: heights = [14,3,19,3], bricks = 17, ladders = 0
-Output: 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: heights = [14,3,19,3], bricks = 17, ladders = 0
+</span><span>Output: 3
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= heights.length &lt;= 10^5</code></li>
@@ -151,40 +151,40 @@ Output: 3
 <li><code>0 &lt;= ladders &lt;= heights.length</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int furthestBuilding(vector&lt;int&gt;&amp; heights, int bricks, int ladders) {
-    int len = heights.size();
-    int pos = 0;
-    priority_queue&lt;int&gt; q;
-    for(;pos &lt; len - 1; pos += 1) {
-      &#x2F;&#x2F; cout &lt;&lt; pos &lt;&lt; &#x27; &#x27; &lt;&lt; bricks &lt;&lt; &#x27; &#x27; &lt;&lt; ladders &lt;&lt; endl;
-      int diff = heights[pos + 1] - heights[pos];
-      if(diff &lt;= 0) {
-        continue;
-      }
-      if(diff &lt;= bricks) {
-        bricks -= diff;
-        q.push(diff);
-      } else {
-        if(!ladders) break;
-        if(q.size() &amp;&amp; q.top() &gt; diff) {
-          bricks += q.top() - diff;
-          q.pop();
-          q.push(diff);
-        }
-        ladders -= 1;
-      }
-    }
-    return pos;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 76&#x2F;76 cases passed (157 ms)
-&#x2F;&#x2F; Your runtime beats 47.53 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 27.49 % of cpp submissions (53.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">furthestBuilding</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">heights</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">bricks</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">ladders</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    priority_queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(;pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; pos &lt;&lt; &#39; &#39; &lt;&lt; bricks &lt;&lt; &#39; &#39; &lt;&lt; ladders &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span>=</span><span style="color:#eff1f5;"> heights[pos </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> heights[pos];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(diff </span><span>&lt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(diff </span><span>&lt;=</span><span style="color:#eff1f5;"> bricks) {
+</span><span style="color:#eff1f5;">        bricks </span><span>-=</span><span style="color:#eff1f5;"> diff;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(diff);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">ladders) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> diff) {
+</span><span style="color:#eff1f5;">          bricks </span><span>+=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">() </span><span>-</span><span style="color:#eff1f5;"> diff;
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(diff);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        ladders </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> pos;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 76/76 cases passed (157 ms)
+</span><span style="color:#65737e;">// Your runtime beats 47.53 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 27.49 % of cpp submissions (53.9 MB)
+</span></code></pre>
 
     </div>
   </div>

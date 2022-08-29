@@ -120,26 +120,26 @@ renderMathInElement(document.body, katex_config);
 <p>… a man was given directions to go from one point to another. The directions were &quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;WEST&quot;, &quot;EAST&quot;. Clearly &quot;NORTH&quot; and &quot;SOUTH&quot; are opposite, &quot;WEST&quot; and &quot;EAST&quot; too. Going to one direction and coming back the opposite direction is a needless effort. Since this is the wild west, with dreadfull weather and not much water, it's important to save yourself some energy, otherwise you might die of thirst!</p>
 <h5 id="how-i-crossed-the-desert-the-smart-way">How I crossed the desert the smart way.</h5>
 <p>The directions given to the man are, for example, the following:</p>
-<pre><code>[&quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;, &quot;NORTH&quot;, &quot;WEST&quot;].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[&quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;, &quot;NORTH&quot;, &quot;WEST&quot;].
+</span></code></pre>
 <p>or</p>
-<pre><code>{ &quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;, &quot;NORTH&quot;, &quot;WEST&quot; };
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>{ &quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;, &quot;NORTH&quot;, &quot;WEST&quot; };
+</span></code></pre>
 <p>or (haskell)</p>
-<pre><code>[North, South, South, East, West, North, West]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[North, South, South, East, West, North, West]
+</span></code></pre>
 <p>You can immediatly see that going &quot;NORTH&quot; and then &quot;SOUTH&quot; is not reasonable, better stay to the same place! So the task is to give to the man a simplified version of the plan. A better plan in this case is simply:</p>
-<pre><code>[&quot;WEST&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[&quot;WEST&quot;]
+</span></code></pre>
 <p>or</p>
-<pre><code>{ &quot;WEST&quot; }
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>{ &quot;WEST&quot; }
+</span></code></pre>
 <p>or (haskell)</p>
-<pre><code>[West]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[West]
+</span></code></pre>
 <p>or (rust)</p>
-<pre><code>[WEST];
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[WEST];
+</span></code></pre>
 <h4 id="other-examples">Other examples:</h4>
 <p>In <code>[&quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;]</code>, the direction <code>&quot;NORTH&quot; + &quot;SOUTH&quot;</code> is going north and coming back <em>right away</em>. What a waste of time! Better to do nothing.</p>
 <p>The path becomes <code>[&quot;EAST&quot;, &quot;WEST&quot;]</code>, now <code>&quot;EAST&quot;</code> and <code>&quot;WEST&quot;</code> annihilate each other, therefore, the final result is <code>[]</code> (nil in Clojure).</p>
@@ -148,38 +148,38 @@ renderMathInElement(document.body, katex_config);
 <p>Write a function <code>dirReduc</code> which will take an array of strings and returns an array of strings with the needless directions removed (W&lt;-&gt;E or S&lt;-&gt;N side by side).</p>
 <p>The Haskell version takes a list of directions with <code>data Direction = North | East | West | South</code>. The Clojure version returns nil when the path is reduced to nothing. The Rust version takes a slice of <code>enum Direction {NORTH, SOUTH, EAST, WEST}</code>.</p>
 <h4 id="examples">Examples</h4>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">dirReduc([&quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;, &quot;NORTH&quot;, &quot;WEST&quot;]) =&gt; [&quot;WEST&quot;]
-dirReduc([&quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;, &quot;NORTH&quot;]) =&gt; []
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#8fa1b3;">dirReduc</span><span>([&quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;]) </span><span style="color:#b48ead;">=&gt; </span><span>[&quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;]
+</span><span style="color:#8fa1b3;">dirReduc</span><span>([&quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;]) </span><span style="color:#b48ead;">=&gt; </span><span>[]
+</span></code></pre>
 <h4 id="see-more-examples-in-example-tests">See more examples in &quot;Example Tests&quot;</h4>
 <h4 id="note">Note</h4>
 <p>Not all paths can be made simpler. The path [&quot;NORTH&quot;, &quot;WEST&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;] is not reducible. &quot;NORTH&quot; and &quot;WEST&quot;, &quot;WEST&quot; and &quot;SOUTH&quot;, &quot;SOUTH&quot; and &quot;EAST&quot; are not directly opposite of each other and can't become such. Hence the result path is itself : [&quot;NORTH&quot;, &quot;WEST&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;].</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">function dirReduc(arr){
-  let match = {&quot;NORTH&quot;: &quot;SOUTH&quot;, &quot;EAST&quot;: &quot;WEST&quot;, &quot;SOUTH&quot;: &quot;NORTH&quot;, &quot;WEST&quot;: &quot;EAST&quot;};
-  let ans = [];
-  for (const dir of arr) {
-    if (!ans.length || match[dir] !== ans[ans.length-1]) ans.push(dir);
-    else ans.pop();
-  }
-  return ans;
-}
-
-function dirReduc(arr) {
-  let str = arr.join(&#x27;&#x27;), pattern = &#x2F;NORTHSOUTH|EASTWEST|SOUTHNORTH|WESTEAST&#x2F;;
-  while (pattern.test(str)) str = str.replace(pattern,&#x27;&#x27;);
-  return str.match(&#x2F;(NORTH|SOUTH|EAST|WEST)&#x2F;g)||[];
-}
-
-function dirReduc(arr){
-  let match = {&quot;NORTH&quot;: &quot;SOUTH&quot;, &quot;EAST&quot;: &quot;WEST&quot;, &quot;SOUTH&quot;: &quot;NORTH&quot;, &quot;WEST&quot;: &quot;EAST&quot;};
-  return arr.reduce((dirs, cur) =&gt; {
-    if (!dirs.length || match[cur] !== dirs[dirs.length-1]) dirs.push(cur);
-    else dirs.pop();
-    return dirs;
-  }, []);
-}
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">dirReduc</span><span>(</span><span style="color:#bf616a;">arr</span><span>){
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">match </span><span>= {&quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;};
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">dir </span><span>of </span><span style="color:#bf616a;">arr</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(!</span><span style="color:#bf616a;">ans</span><span>.length || </span><span style="color:#bf616a;">match</span><span>[</span><span style="color:#bf616a;">dir</span><span>] !== </span><span style="color:#bf616a;">ans</span><span>[</span><span style="color:#bf616a;">ans</span><span>.length-</span><span style="color:#d08770;">1</span><span>]) </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">dir</span><span>);
+</span><span>    </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">pop</span><span>();
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">dirReduc</span><span>(</span><span style="color:#bf616a;">arr</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">str </span><span>= </span><span style="color:#bf616a;">arr</span><span>.</span><span style="color:#96b5b4;">join</span><span>(&#39;&#39;), </span><span style="color:#bf616a;">pattern </span><span>= /</span><span style="color:#96b5b4;">NORTHSOUTH</span><span>|</span><span style="color:#96b5b4;">EASTWEST</span><span>|</span><span style="color:#96b5b4;">SOUTHNORTH</span><span>|</span><span style="color:#96b5b4;">WESTEAST</span><span>/;
+</span><span>  </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#bf616a;">pattern</span><span>.</span><span style="color:#96b5b4;">test</span><span>(</span><span style="color:#bf616a;">str</span><span>)) </span><span style="color:#bf616a;">str </span><span>= </span><span style="color:#bf616a;">str</span><span>.</span><span style="color:#96b5b4;">replace</span><span>(</span><span style="color:#bf616a;">pattern</span><span>,&#39;&#39;);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">str</span><span>.</span><span style="color:#96b5b4;">match</span><span>(/</span><span style="color:#96b5b4;">(NORTH</span><span>|</span><span style="color:#96b5b4;">SOUTH</span><span>|</span><span style="color:#96b5b4;">EAST</span><span>|</span><span style="color:#96b5b4;">WEST)</span><span>/</span><span style="color:#b48ead;">g</span><span>)||[];
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">dirReduc</span><span>(</span><span style="color:#bf616a;">arr</span><span>){
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">match </span><span>= {&quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;};
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">arr</span><span>.</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">dirs</span><span>, </span><span style="color:#bf616a;">cur</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(!</span><span style="color:#bf616a;">dirs</span><span>.length || </span><span style="color:#bf616a;">match</span><span>[</span><span style="color:#bf616a;">cur</span><span>] !== </span><span style="color:#bf616a;">dirs</span><span>[</span><span style="color:#bf616a;">dirs</span><span>.length-</span><span style="color:#d08770;">1</span><span>]) </span><span style="color:#bf616a;">dirs</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">cur</span><span>);
+</span><span>    </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">dirs</span><span>.</span><span style="color:#96b5b4;">pop</span><span>();
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dirs</span><span>;
+</span><span>  }, []);
+</span><span>}
+</span></code></pre>
 
     </div>
   </div>

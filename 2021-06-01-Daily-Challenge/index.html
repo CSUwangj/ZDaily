@@ -128,33 +128,33 @@ insert into cinema (id, movie, description, rating) values ('5', 'House card', '
 <p>X city opened a new cinema, many people would like to go to this cinema. The cinema also gives out a poster indicating the movies’ ratings and descriptions.</p>
 <p>Please write a SQL query to output movies with an odd numbered ID and a description that is not 'boring'. Order the result by rating.</p>
 <p>For example, table <code>cinema</code>:</p>
-<pre><code>+---------+-----------+--------------+-----------+
-|   id    | movie     |  description |  rating   |
-+---------+-----------+--------------+-----------+
-|   1     | War       |   great 3D   |   8.9     |
-|   2     | Science   |   fiction    |   8.5     |
-|   3     | irish     |   boring     |   6.2     |
-|   4     | Ice song  |   Fantacy    |   8.6     |
-|   5     | House card|   Interesting|   9.1     |
-+---------+-----------+--------------+-----------+
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>+---------+-----------+--------------+-----------+
+</span><span>|   id    | movie     |  description |  rating   |
+</span><span>+---------+-----------+--------------+-----------+
+</span><span>|   1     | War       |   great 3D   |   8.9     |
+</span><span>|   2     | Science   |   fiction    |   8.5     |
+</span><span>|   3     | irish     |   boring     |   6.2     |
+</span><span>|   4     | Ice song  |   Fantacy    |   8.6     |
+</span><span>|   5     | House card|   Interesting|   9.1     |
+</span><span>+---------+-----------+--------------+-----------+
+</span></code></pre>
 <p>For the example above, the output should be:</p>
-<pre><code>+---------+-----------+--------------+-----------+
-|   id    | movie     |  description |  rating   |
-+---------+-----------+--------------+-----------+
-|   5     | House card|   Interesting|   9.1     |
-|   1     | War       |   great 3D   |   8.9     |
-+---------+-----------+--------------+-----------+
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>+---------+-----------+--------------+-----------+
+</span><span>|   id    | movie     |  description |  rating   |
+</span><span>+---------+-----------+--------------+-----------+
+</span><span>|   5     | House card|   Interesting|   9.1     |
+</span><span>|   1     | War       |   great 3D   |   8.9     |
+</span><span>+---------+-----------+--------------+-----------+
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="sql" class="language-sql "><code class="language-sql" data-lang="sql"># Write your MySQL query statement below
-SELECT * FROM cinema
-WHERE (
-  id % 2 AND
-  description &lt;&gt; &#x27;boring&#x27;
-)
-ORDER BY rating DESC
-</code></pre>
+<pre data-lang="sql" style="background-color:#2b303b;color:#c0c5ce;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#65737e;"># Write your MySQL query statement below
+</span><span style="color:#b48ead;">SELECT </span><span style="color:#bf616a;">* </span><span style="color:#b48ead;">FROM</span><span> cinema
+</span><span style="color:#b48ead;">WHERE</span><span> (
+</span><span>  id % </span><span style="color:#d08770;">2 </span><span>AND
+</span><span>  description &lt;&gt; &#39;</span><span style="color:#a3be8c;">boring</span><span>&#39;
+</span><span>)
+</span><span style="color:#b48ead;">ORDER BY</span><span> rating </span><span style="color:#b48ead;">DESC
+</span></code></pre>
 <h1 id="next-greater-element-ii">Next Greater Element II</h1>
 <h2 id="description-1">Description</h2>
 <p>Given a circular integer array <code>nums</code> (i.e., the next element of <code>nums[nums.length - 1]</code> is <code>nums[0]</code>), return <em>the <strong>next greater number</strong> for every element in</em> <code>nums</code>.</p>
@@ -176,27 +176,27 @@ The second 1&#39;s next greater number needs to search circularly, which is also
 	<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; nextGreaterElements(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    vector&lt;int&gt; answer(len);
-    vector&lt;int&gt; monoStack;
-    for(int i = len - 1; i &gt;= 0; --i) {
-      int num = nums[i];
-      while(monoStack.size() &amp;&amp; monoStack.back() &lt;= num) monoStack.pop_back();
-      monoStack.push_back(num);
-    }
-    for(int i = len - 1; i &gt;= 0; --i) {
-      int num = nums[i];
-      while(monoStack.size() &amp;&amp; monoStack.back() &lt;= num) monoStack.pop_back();
-      answer[i] = monoStack.size() ? monoStack.back() : -1;
-      monoStack.push_back(num);
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">nextGreaterElements</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; monoStack;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> num </span><span>=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&lt;=</span><span style="color:#eff1f5;"> num) monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(num);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> num </span><span>=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&lt;=</span><span style="color:#eff1f5;"> num) monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      answer[i] </span><span>=</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>?</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>: -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(num);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="june-leetcoding-challenge-1">June LeetCoding Challenge 1</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Max Area of Island</strong></p>
@@ -205,14 +205,14 @@ public:
 <p>Return <em>the maximum <strong>area</strong> of an island in</em> <code>grid</code>. If there is no island, return <code>0</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/05/01/maxarea1-grid.jpg" alt="img" /></p>
-<pre><code>Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
-Output: 6
-Explanation: The answer is not 11, because the island must be connected 4-directionally.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+</span><span>Output: 6
+</span><span>Explanation: The answer is not 11, because the island must be connected 4-directionally.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: grid = [[0,0,0,0,0,0,0,0]]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: grid = [[0,0,0,0,0,0,0,0]]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == grid.length</code></li>
@@ -221,41 +221,41 @@ Output: 0
 <li><code>grid[i][j]</code> is either <code>0</code> or <code>1</code>.</li>
 </ul>
 <h2 id="solution-2">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-class Solution {
-  int current;
-  int rows;
-  int cols;
-  void dfs(vector&lt;vector&lt;int&gt;&gt;&amp; grid, int row, int col) {
-    grid[row][col] = 0;
-    current += 1;
-    for(int i = 0; i &lt; 4; ++i) {
-      int newRow = row + moves[i][0];
-      int newCol = col + moves[i][1];
-      if(newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= rows || newCol &gt;= cols) continue;
-      if(grid[newRow][newCol]) {
-        dfs(grid, newRow, newCol);
-      }
-    }
-  }
-public:
-  int maxAreaOfIsland(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
-    rows = grid.size();
-    cols = grid.front().size();
-    int answer = 0;
-    for(int i = 0; i &lt; rows; i++) {
-      for(int j = 0; j &lt; cols; j++) {
-        if(grid[i][j]) {
-          current = 0;
-          dfs(grid, i, j);
-          answer = max(answer, current);
-        }
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> moves[</span><span style="color:#d08770;">4</span><span>][</span><span style="color:#d08770;">2</span><span>] = {{</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>}, {</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}, {</span><span style="color:#d08770;">0</span><span>, -</span><span style="color:#d08770;">1</span><span>}, {-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>}};
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">row</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">col</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    grid[row][col] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    current </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+</span><span style="color:#eff1f5;"> moves[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(newRow </span><span>&lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newCol &lt; </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> newRow &gt;</span><span>=</span><span style="color:#eff1f5;"> rows </span><span>||</span><span style="color:#eff1f5;"> newCol </span><span>&gt;=</span><span style="color:#eff1f5;"> cols) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(grid[newRow][newCol]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(grid, newRow, newCol);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxAreaOfIsland</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">grid</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    rows </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    cols </span><span>=</span><span style="color:#eff1f5;"> grid.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; i</span><span>++</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> cols; j</span><span>++</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(grid[i][j]) {
+</span><span style="color:#eff1f5;">          current </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(grid, i, j);
+</span><span style="color:#eff1f5;">          answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, current);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

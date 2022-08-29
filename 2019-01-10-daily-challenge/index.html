@@ -115,17 +115,17 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Amicable number</em> in <em>Rust</em> and <em>Unique Morse Code Words</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Amicable numbers
-
-Problem 21 
-
-Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
-If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
-
-For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
-
-Evaluate the sum of all the amicable numbers under 10000.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Amicable numbers
+</span><span>
+</span><span>Problem 21 
+</span><span>
+</span><span>Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
+</span><span>If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
+</span><span>
+</span><span>For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+</span><span>
+</span><span>Evaluate the sum of all the amicable numbers under 10000.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>One way to do it is check the divisor in $O(\sqrt n)$ time complexity.</p>
 <p>One way to do it is get the primal factorial of number, and do it with DFS approach. I came up with this idea and don't checked its time complexity, nor implemented it.</p>
@@ -135,101 +135,101 @@ Evaluate the sum of all the amicable numbers under 10000.
 <p>$$\prod_{i=1}^{k}(p_i^0+p_i^1+...+p_i^{a_i})$$</p>
 <p>ref: https://mathschallenge.net/library/number/sum_of_divisors</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-use std::vec::Vec;
-use primal::Sieve;
-
-fn main() {
-    let sieve = Sieve::new(10000);
-    let mut ans = 0;
-    assert!(sum_of_divisor(284, &amp;sieve) == 220);
-    assert!(sum_of_divisor(220, &amp;sieve) == 284);
-    for num in 2..10000 {
-        let tmp = sum_of_divisor(num, &amp;sieve);
-        if tmp &lt; 10000 &amp;&amp; tmp != num &amp;&amp;sum_of_divisor(tmp, &amp;sieve) == num {
-            ans += tmp + num;
-        } 
-    }
-    ans &#x2F;= 2;
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn sum_of_divisor(n: i32, sieve: &amp;Sieve) -&gt; i32 {
-    let factors: Vec&lt;(usize, usize)&gt; = match sieve.factor(n as usize) {
-        Ok(v) =&gt; v,
-        Err(_) =&gt; Vec::new(),
-    };
-    let mut ans = 1;
-    for factor in factors {
-        let mut tmp = 1;
-        let mut sum = 1;
-        for _ in 0..factor.1 {
-            tmp *= factor.0;
-            sum += tmp;
-        }
-        ans *= sum;
-    }
-    ans as i32 - n
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>std::vec::Vec;
+</span><span style="color:#b48ead;">use </span><span>primal::Sieve;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sieve = Sieve::new(</span><span style="color:#d08770;">10000</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    assert!(</span><span style="color:#96b5b4;">sum_of_divisor</span><span>(</span><span style="color:#d08770;">284</span><span>, &amp;sieve) == </span><span style="color:#d08770;">220</span><span>);
+</span><span>    assert!(</span><span style="color:#96b5b4;">sum_of_divisor</span><span>(</span><span style="color:#d08770;">220</span><span>, &amp;sieve) == </span><span style="color:#d08770;">284</span><span>);
+</span><span>    </span><span style="color:#b48ead;">for</span><span> num in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">10000 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = </span><span style="color:#96b5b4;">sum_of_divisor</span><span>(num, &amp;sieve);
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp &lt; </span><span style="color:#d08770;">10000 </span><span>&amp;&amp; tmp != num &amp;&amp;</span><span style="color:#96b5b4;">sum_of_divisor</span><span>(tmp, &amp;sieve) == num {
+</span><span>            ans += tmp + num;
+</span><span>        } 
+</span><span>    }
+</span><span>    ans /= </span><span style="color:#d08770;">2</span><span>;
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">sum_of_divisor</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#bf616a;">sieve</span><span>: &amp;Sieve) -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let</span><span> factors: Vec&lt;(</span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#b48ead;">usize</span><span>)&gt; = </span><span style="color:#b48ead;">match</span><span> sieve.</span><span style="color:#96b5b4;">factor</span><span>(n as </span><span style="color:#b48ead;">usize</span><span>) {
+</span><span>        Ok(v) =&gt; v,
+</span><span>        Err(_) =&gt; Vec::new(),
+</span><span>    };
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> factor in factors {
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> tmp = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> sum = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for </span><span>_ in </span><span style="color:#d08770;">0</span><span>..factor.</span><span style="color:#d08770;">1 </span><span>{
+</span><span>            tmp *= factor.</span><span style="color:#d08770;">0</span><span>;
+</span><span>            sum += tmp;
+</span><span>        }
+</span><span>        ans *= sum;
+</span><span>    }
+</span><span>    ans as </span><span style="color:#b48ead;">i32 </span><span>- n
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>804. Unique Morse Code Words
-
-International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows: &quot;a&quot; maps to &quot;.-&quot;, &quot;b&quot; maps to &quot;-...&quot;, &quot;c&quot; maps to &quot;-.-.&quot;, and so on.
-
-For convenience, the full table for the 26 letters of the English alphabet is given below:
-
-[&quot;.-&quot;,&quot;-...&quot;,&quot;-.-.&quot;,&quot;-..&quot;,&quot;.&quot;,&quot;..-.&quot;,&quot;--.&quot;,&quot;....&quot;,&quot;..&quot;,&quot;.---&quot;,&quot;-.-&quot;,&quot;.-..&quot;,&quot;--&quot;,&quot;-.&quot;,&quot;---&quot;,&quot;.--.&quot;,&quot;--.-&quot;,&quot;.-.&quot;,&quot;...&quot;,&quot;-&quot;,&quot;..-&quot;,&quot;...-&quot;,&quot;.--&quot;,&quot;-..-&quot;,&quot;-.--&quot;,&quot;--..&quot;]
-Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter. For example, &quot;cba&quot; can be written as &quot;-.-..--...&quot;, (which is the concatenation &quot;-.-.&quot; + &quot;-...&quot; + &quot;.-&quot;). We&#x27;ll call such a concatenation, the transformation of a word.
-
-Return the number of different transformations among all words we have.
-
-Example:
-Input: words = [&quot;gin&quot;, &quot;zen&quot;, &quot;gig&quot;, &quot;msg&quot;]
-Output: 2
-Explanation: 
-The transformation of each word is:
-&quot;gin&quot; -&gt; &quot;--...-.&quot;
-&quot;zen&quot; -&gt; &quot;--...-.&quot;
-&quot;gig&quot; -&gt; &quot;--...--.&quot;
-&quot;msg&quot; -&gt; &quot;--...--.&quot;
-
-There are 2 different transformations, &quot;--...-.&quot; and &quot;--...--.&quot;.
-Note:
-
-The length of words will be at most 100.
-Each words[i] will have length in range [1, 12].
-words[i] will only consist of lowercase letters.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>804. Unique Morse Code Words
+</span><span>
+</span><span>International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows: &quot;a&quot; maps to &quot;.-&quot;, &quot;b&quot; maps to &quot;-...&quot;, &quot;c&quot; maps to &quot;-.-.&quot;, and so on.
+</span><span>
+</span><span>For convenience, the full table for the 26 letters of the English alphabet is given below:
+</span><span>
+</span><span>[&quot;.-&quot;,&quot;-...&quot;,&quot;-.-.&quot;,&quot;-..&quot;,&quot;.&quot;,&quot;..-.&quot;,&quot;--.&quot;,&quot;....&quot;,&quot;..&quot;,&quot;.---&quot;,&quot;-.-&quot;,&quot;.-..&quot;,&quot;--&quot;,&quot;-.&quot;,&quot;---&quot;,&quot;.--.&quot;,&quot;--.-&quot;,&quot;.-.&quot;,&quot;...&quot;,&quot;-&quot;,&quot;..-&quot;,&quot;...-&quot;,&quot;.--&quot;,&quot;-..-&quot;,&quot;-.--&quot;,&quot;--..&quot;]
+</span><span>Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter. For example, &quot;cba&quot; can be written as &quot;-.-..--...&quot;, (which is the concatenation &quot;-.-.&quot; + &quot;-...&quot; + &quot;.-&quot;). We&#39;ll call such a concatenation, the transformation of a word.
+</span><span>
+</span><span>Return the number of different transformations among all words we have.
+</span><span>
+</span><span>Example:
+</span><span>Input: words = [&quot;gin&quot;, &quot;zen&quot;, &quot;gig&quot;, &quot;msg&quot;]
+</span><span>Output: 2
+</span><span>Explanation: 
+</span><span>The transformation of each word is:
+</span><span>&quot;gin&quot; -&gt; &quot;--...-.&quot;
+</span><span>&quot;zen&quot; -&gt; &quot;--...-.&quot;
+</span><span>&quot;gig&quot; -&gt; &quot;--...--.&quot;
+</span><span>&quot;msg&quot; -&gt; &quot;--...--.&quot;
+</span><span>
+</span><span>There are 2 different transformations, &quot;--...-.&quot; and &quot;--...--.&quot;.
+</span><span>Note:
+</span><span>
+</span><span>The length of words will be at most 100.
+</span><span>Each words[i] will have length in range [1, 12].
+</span><span>words[i] will only consist of lowercase letters.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Use map to encode, set to record.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string[]} words
- * @return {number}
- *&#x2F;
-var uniqueMorseRepresentations = function(words) {
-  let map = new Map([
-    [&#x27;a&#x27;,&#x27;.-&#x27;], [&#x27;b&#x27;,&#x27;-...&#x27;], [&#x27;c&#x27;,&#x27;-.-.&#x27;], [&#x27;d&#x27;,&#x27;-..&#x27;],
-    [&#x27;e&#x27;,&#x27;.&#x27;], [&#x27;f&#x27;,&#x27;..-.&#x27;], [&#x27;g&#x27;,&#x27;--.&#x27;], [&#x27;h&#x27;,&#x27;....&#x27;],
-    [&#x27;i&#x27;,&#x27;..&#x27;], [&#x27;j&#x27;,&#x27;.---&#x27;], [&#x27;k&#x27;,&#x27;-.-&#x27;], [&#x27;l&#x27;,&#x27;.-..&#x27;],
-    [&#x27;m&#x27;,&#x27;--&#x27;], [&#x27;n&#x27;,&#x27;-.&#x27;], [&#x27;o&#x27;,&#x27;---&#x27;], [&#x27;p&#x27;,&#x27;.--.&#x27;],
-    [&#x27;q&#x27;,&#x27;--.-&#x27;], [&#x27;r&#x27;,&#x27;.-.&#x27;], [&#x27;s&#x27;,&#x27;...&#x27;], [&#x27;t&#x27;,&#x27;-&#x27;],
-    [&#x27;u&#x27;,&#x27;..-&#x27;], [&#x27;v&#x27;,&#x27;...-&#x27;], [&#x27;w&#x27;,&#x27;.--&#x27;], [&#x27;x&#x27;,&#x27;-..-&#x27;],
-    [&#x27;y&#x27;,&#x27;-.--&#x27;], [&#x27;z&#x27;,&#x27;--..&#x27;]]);
-  let set = new Set();
-  for(const word of words) {
-    let str = &quot;&quot;;
-    for(const c of word) {
-      str += map.get(c);
-    }
-    set.add(str);
-  }
-  return set.size;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string[]} </span><span style="color:#bf616a;">words
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">uniqueMorseRepresentations </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">words</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">map </span><span>= new Map([
+</span><span>    [&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">.-</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">b</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">-...</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">c</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">-.-.</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">d</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">-..</span><span>&#39;],
+</span><span>    [&#39;</span><span style="color:#a3be8c;">e</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">.</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">f</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">..-.</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">g</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">--.</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">h</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">....</span><span>&#39;],
+</span><span>    [&#39;</span><span style="color:#a3be8c;">i</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">..</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">j</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">.---</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">k</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">-.-</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">l</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">.-..</span><span>&#39;],
+</span><span>    [&#39;</span><span style="color:#a3be8c;">m</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">--</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">n</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">-.</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">o</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">---</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">p</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">.--.</span><span>&#39;],
+</span><span>    [&#39;</span><span style="color:#a3be8c;">q</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">--.-</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">r</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">.-.</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">s</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">...</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">t</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">-</span><span>&#39;],
+</span><span>    [&#39;</span><span style="color:#a3be8c;">u</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">..-</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">v</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">...-</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">w</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">.--</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">x</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">-..-</span><span>&#39;],
+</span><span>    [&#39;</span><span style="color:#a3be8c;">y</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">-.--</span><span>&#39;], [&#39;</span><span style="color:#a3be8c;">z</span><span>&#39;,&#39;</span><span style="color:#a3be8c;">--..</span><span>&#39;]]);
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">set </span><span>= new Set();
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">word </span><span>of </span><span style="color:#bf616a;">words</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">str </span><span>= &quot;&quot;;
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">c </span><span>of </span><span style="color:#bf616a;">word</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">str </span><span>+= </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">c</span><span>);
+</span><span>    }
+</span><span>    </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">str</span><span>);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">set</span><span>.size;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

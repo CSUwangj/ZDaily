@@ -123,18 +123,18 @@ renderMathInElement(document.body, katex_config);
 <p>You are given an array of strings <code>transaction</code> where <code>transactions[i]</code> consists of comma-separated values representing the name, time (in minutes), amount, and city of the transaction.</p>
 <p>Return a list of <code>transactions</code> that are possibly invalid. You may return the answer in <strong>any order</strong>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: transactions = [&quot;alice,20,800,mtv&quot;,&quot;alice,50,100,beijing&quot;]
-Output: [&quot;alice,20,800,mtv&quot;,&quot;alice,50,100,beijing&quot;]
-Explanation: The first transaction is invalid because the second transaction occurs within a difference of 60 minutes, have the same name and is in a different city. Similarly the second one is invalid too.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: transactions = [&quot;alice,20,800,mtv&quot;,&quot;alice,50,100,beijing&quot;]
+</span><span>Output: [&quot;alice,20,800,mtv&quot;,&quot;alice,50,100,beijing&quot;]
+</span><span>Explanation: The first transaction is invalid because the second transaction occurs within a difference of 60 minutes, have the same name and is in a different city. Similarly the second one is invalid too.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: transactions = [&quot;alice,20,800,mtv&quot;,&quot;alice,50,1200,mtv&quot;]
-Output: [&quot;alice,50,1200,mtv&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: transactions = [&quot;alice,20,800,mtv&quot;,&quot;alice,50,1200,mtv&quot;]
+</span><span>Output: [&quot;alice,50,1200,mtv&quot;]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: transactions = [&quot;alice,20,800,mtv&quot;,&quot;bob,50,1200,mtv&quot;]
-Output: [&quot;bob,50,1200,mtv&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: transactions = [&quot;alice,20,800,mtv&quot;,&quot;bob,50,1200,mtv&quot;]
+</span><span>Output: [&quot;bob,50,1200,mtv&quot;]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>transactions.length &lt;= 1000</code></li>
@@ -145,77 +145,77 @@ Output: [&quot;bob,50,1200,mtv&quot;]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>not elegant nor efficient</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">struct Transaction {
-  int amount;
-  int time;
-  string city;
-  string name;
-  Transaction(int _time = 0, int _amount = 0, string _city = &quot;&quot;) : amount(_amount), time(_time), city(_city) {}
-  Transaction(string trans) {
-    int len = trans.length();
-    int pos = 0;
-    while(trans[pos] != &#x27;,&#x27;) pos += 1;
-    name = trans.substr(0, pos);
-    time = 0;
-    pos += 1;
-    while(trans[pos] != &#x27;,&#x27;) {
-      time *= 10;
-      time += trans[pos] - &#x27;0&#x27;;
-      pos += 1;
-    }
-    amount = 0;
-    pos += 1;
-    while(trans[pos] != &#x27;,&#x27;) {
-      amount *= 10;
-      amount += trans[pos] - &#x27;0&#x27;;
-      pos += 1;
-    }
-    pos += 1;
-    city = trans.substr(pos);
-  }
-  string to_string() {
-    return name + &quot;,&quot; + ::to_string(time) + &quot;,&quot; + ::to_string(amount) + &quot;,&quot; + city;
-  }
-  bool operator&lt;(const Transaction&amp; another) const { return this-&gt;time &lt; another.time; }
-};
-
-class Solution {
-  unordered_map&lt;string, vector&lt;Transaction&gt;&gt; transactions;
-public:
-  vector&lt;string&gt; invalidTransactions(vector&lt;string&gt;&amp; transactionStrings) {
-    for(auto &amp;tx : transactionStrings) {
-      auto transaction = Transaction(tx);
-      transactions[transaction.name].push_back(transaction);
-    }
-    vector&lt;string&gt; answer;
-    for(auto &amp;[name, transactions] : transactions) {
-      int len = transactions.size();
-      sort(transactions.begin(), transactions.end());
-      vector&lt;bool&gt; invalid(len);
-      for(int i = 0; i &lt; len; ++i) {
-        &#x2F;&#x2F; cout &lt;&lt; transactions[i].to_string() &lt;&lt; endl;
-        bool ok = true;
-        for(int j = i - 1; j &gt;= 0 &amp;&amp; transactions[i].time - transactions[j].time &lt;= 60; --j) {
-          if(transactions[i].city != transactions[j].city) {
-            invalid[j] = true;
-            ok = false;
-          }
-        }
-        if(!ok || transactions[i].amount &gt; 1000) invalid[i] = true;
-      }
-      for(int i = 0; i &lt; len; ++i) {
-        if(invalid[i]) answer.push_back(transactions[i].to_string());
-      }
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 36&#x2F;36 cases passed (20 ms)
-&#x2F;&#x2F; Your runtime beats 87.55 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 75.97 % of cpp submissions (13.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">struct </span><span>Transaction {
+</span><span>  </span><span style="color:#b48ead;">int</span><span> amount;
+</span><span>  </span><span style="color:#b48ead;">int</span><span> time;
+</span><span>  string city;
+</span><span>  string name;
+</span><span>  </span><span style="color:#8fa1b3;">Transaction</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">_time </span><span>= </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">_amount </span><span>= </span><span style="color:#d08770;">0</span><span>, string </span><span style="color:#bf616a;">_city </span><span>= &quot;&quot;) : </span><span style="color:#bf616a;">amount</span><span>(_amount), </span><span style="color:#bf616a;">time</span><span>(_time), </span><span style="color:#bf616a;">city</span><span>(_city) {}
+</span><span>  </span><span style="color:#8fa1b3;">Transaction</span><span>(string </span><span style="color:#bf616a;">trans</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">int</span><span> len = trans.</span><span style="color:#bf616a;">length</span><span>();
+</span><span>    </span><span style="color:#b48ead;">int</span><span> pos = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span>(trans[pos] != &#39;</span><span style="color:#a3be8c;">,</span><span>&#39;) pos += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    name = trans.</span><span style="color:#bf616a;">substr</span><span>(</span><span style="color:#d08770;">0</span><span>, pos);
+</span><span>    time = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    pos += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span>(trans[pos] != &#39;</span><span style="color:#a3be8c;">,</span><span>&#39;) {
+</span><span>      time *= </span><span style="color:#d08770;">10</span><span>;
+</span><span>      time += trans[pos] - &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;;
+</span><span>      pos += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    amount = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    pos += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span>(trans[pos] != &#39;</span><span style="color:#a3be8c;">,</span><span>&#39;) {
+</span><span>      amount *= </span><span style="color:#d08770;">10</span><span>;
+</span><span>      amount += trans[pos] - &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;;
+</span><span>      pos += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    pos += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    city = trans.</span><span style="color:#bf616a;">substr</span><span>(pos);
+</span><span>  }
+</span><span>  string </span><span style="color:#8fa1b3;">to_string</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">return</span><span> name + &quot;</span><span style="color:#a3be8c;">,</span><span>&quot; + ::</span><span style="color:#bf616a;">to_string</span><span>(time) + &quot;</span><span style="color:#a3be8c;">,</span><span>&quot; + ::</span><span style="color:#bf616a;">to_string</span><span>(amount) + &quot;</span><span style="color:#a3be8c;">,</span><span>&quot; + city;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">operator&lt;</span><span>(</span><span style="color:#b48ead;">const</span><span> Transaction&amp; </span><span style="color:#bf616a;">another</span><span>) </span><span style="color:#b48ead;">const </span><span>{ </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span>-&gt;</span><span style="color:#bf616a;">time </span><span>&lt; another.</span><span style="color:#bf616a;">time</span><span>; }
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  unordered_map&lt;string, vector&lt;Transaction&gt;&gt; transactions;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#8fa1b3;">invalidTransactions</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">transactionStrings</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">tx </span><span>:</span><span style="color:#eff1f5;"> transactionStrings) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> transaction </span><span>= </span><span style="color:#bf616a;">Transaction</span><span style="color:#eff1f5;">(tx);
+</span><span style="color:#eff1f5;">      transactions[transaction.</span><span style="color:#bf616a;">name</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(transaction);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[name, transactions] </span><span>:</span><span style="color:#eff1f5;"> transactions) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> transactions.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(transactions.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), transactions.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">invalid</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// cout &lt;&lt; transactions[i].to_string() &lt;&lt; endl;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> ok </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> transactions[i].</span><span style="color:#bf616a;">time </span><span>-</span><span style="color:#eff1f5;"> transactions[j].</span><span style="color:#bf616a;">time </span><span>&lt;= </span><span style="color:#d08770;">60</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(transactions[i].</span><span style="color:#bf616a;">city </span><span>!=</span><span style="color:#eff1f5;"> transactions[j].</span><span style="color:#bf616a;">city</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            invalid[j] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            ok </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">ok </span><span>||</span><span style="color:#eff1f5;"> transactions[i].</span><span style="color:#bf616a;">amount </span><span>&gt; </span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">) invalid[i] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(invalid[i]) answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(transactions[i].</span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 36/36 cases passed (20 ms)
+</span><span style="color:#65737e;">// Your runtime beats 87.55 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 75.97 % of cpp submissions (13.3 MB)
+</span></code></pre>
 <h1 id="july-leetcoding-challenge-20">July LeetCoding Challenge 20</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Shuffle an Array</strong></p>
@@ -227,20 +227,20 @@ public:
 <li><code>int[] shuffle()</code> Returns a random shuffling of the array.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;Solution&quot;, &quot;shuffle&quot;, &quot;reset&quot;, &quot;shuffle&quot;]
-[[[1, 2, 3]], [], [], []]
-Output
-[null, [3, 1, 2], [1, 2, 3], [1, 3, 2]]
-
-Explanation
-Solution solution = new Solution([1, 2, 3]);
-solution.shuffle();    &#x2F;&#x2F; Shuffle the array [1,2,3] and return its result.
-                       &#x2F;&#x2F; Any permutation of [1,2,3] must be equally likely to be returned.
-                       &#x2F;&#x2F; Example: return [3, 1, 2]
-solution.reset();      &#x2F;&#x2F; Resets the array back to its original configuration [1,2,3]. Return [1, 2, 3]
-solution.shuffle();    &#x2F;&#x2F; Returns the random shuffling of array [1,2,3]. Example: return [1, 3, 2]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;Solution&quot;, &quot;shuffle&quot;, &quot;reset&quot;, &quot;shuffle&quot;]
+</span><span>[[[1, 2, 3]], [], [], []]
+</span><span>Output
+</span><span>[null, [3, 1, 2], [1, 2, 3], [1, 3, 2]]
+</span><span>
+</span><span>Explanation
+</span><span>Solution solution = new Solution([1, 2, 3]);
+</span><span>solution.shuffle();    // Shuffle the array [1,2,3] and return its result.
+</span><span>                       // Any permutation of [1,2,3] must be equally likely to be returned.
+</span><span>                       // Example: return [3, 1, 2]
+</span><span>solution.reset();      // Resets the array back to its original configuration [1,2,3]. Return [1, 2, 3]
+</span><span>solution.shuffle();    // Returns the random shuffling of array [1,2,3]. Example: return [1, 3, 2]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 200</code></li>
@@ -249,35 +249,35 @@ solution.shuffle();    &#x2F;&#x2F; Returns the random shuffling of array [1,2,3
 <li>At most <code>5 * 10^4</code> calls <strong>in total</strong> will be made to <code>reset</code> and <code>shuffle</code>.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">using random_param = uniform_int_distribution&lt;int&gt;::param_type;
-class Solution {
-  vector&lt;int&gt; arr;
-  int len;
-  random_device rd;
-  mt19937 gen{rd()};
-  uniform_int_distribution&lt;int&gt; distr;
-public:
-  Solution(vector&lt;int&gt;&amp; nums): arr(nums) {
-    len = nums.size();
-  }
-  
-  &#x2F;** Resets the array to its original configuration and return it. *&#x2F;
-  vector&lt;int&gt; reset() {
-    return arr;
-  }
-  
-  &#x2F;** Returns a random shuffling of the array. *&#x2F;
-  vector&lt;int&gt; shuffle() {
-    vector&lt;int&gt; result = arr;
-    for(int i = len - 1; i ; --i) {
-      distr.param(random_param(0, i));
-      int idx = distr(gen);
-      swap(result[idx], result[i]);
-    }
-    return result;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">using </span><span>random_param = uniform_int_distribution&lt;</span><span style="color:#b48ead;">int</span><span>&gt;::param_type;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; arr;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  random_device rd;
+</span><span style="color:#eff1f5;">  mt19937 </span><span style="color:#bf616a;">gen</span><span style="color:#eff1f5;">{</span><span style="color:#bf616a;">rd</span><span style="color:#eff1f5;">()};
+</span><span style="color:#eff1f5;">  uniform_int_distribution&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; distr;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">Solution</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">): </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">(nums) {
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Resets the array to its original configuration and return it. */
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">reset</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> arr;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Returns a random shuffling of the array. */
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">shuffle</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; result </span><span>=</span><span style="color:#eff1f5;"> arr;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i ; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      distr.</span><span style="color:#bf616a;">param</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">random_param</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i));
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> idx </span><span>= </span><span style="color:#bf616a;">distr</span><span style="color:#eff1f5;">(gen);
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(result[idx], result[i]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

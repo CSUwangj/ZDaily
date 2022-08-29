@@ -120,48 +120,48 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the <strong>maximum score</strong> you can get by erasing <strong>exactly one</strong> subarray.</em></p>
 <p>An array <code>b</code> is called to be a subarray of <code>a</code> if it forms a contiguous subsequence of <code>a</code>, that is, if it is equal to <code>a[l],a[l+1],...,a[r]</code> for some <code>(l,r)</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [4,2,4,5,6]
-Output: 17
-Explanation: The optimal subarray here is [2,4,5,6].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [4,2,4,5,6]
+</span><span>Output: 17
+</span><span>Explanation: The optimal subarray here is [2,4,5,6].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [5,2,1,2,5,2,1,2,5]
-Output: 8
-Explanation: The optimal subarray here is [5,2,1] or [1,2,5].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [5,2,1,2,5,2,1,2,5]
+</span><span>Output: 8
+</span><span>Explanation: The optimal subarray here is [5,2,1] or [1,2,5].
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
 <li><code>1 &lt;= nums[i] &lt;= 10^4</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maximumUniqueSubarray(vector&lt;int&gt;&amp; nums) {
-    bool vis[10001] = {};
-    int sum = 0;
-    int start = 0;
-    int len = nums.size();
-    int answer = 0;
-    for(int end = 0; end &lt; len; ++end) {
-      while(vis[nums[end]]) {
-        vis[nums[start]] = false;
-        sum -= nums[start];
-        start += 1;
-      }
-      vis[nums[end]] = true;
-      sum += nums[end];
-      answer = max(sum, answer);
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 62&#x2F;62 cases passed (338 ms)
-&#x2F;&#x2F; Your runtime beats 77.77 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 99.27 % of cpp submissions (89.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maximumUniqueSubarray</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> vis[</span><span style="color:#d08770;">10001</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> start </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; end </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">end) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(vis[nums[end]]) {
+</span><span style="color:#eff1f5;">        vis[nums[start]] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        sum </span><span>-=</span><span style="color:#eff1f5;"> nums[start];
+</span><span style="color:#eff1f5;">        start </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      vis[nums[end]] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      sum </span><span>+=</span><span style="color:#eff1f5;"> nums[end];
+</span><span style="color:#eff1f5;">      answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(sum, answer);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 62/62 cases passed (338 ms)
+</span><span style="color:#65737e;">// Your runtime beats 77.77 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 99.27 % of cpp submissions (89.1 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -123,53 +123,53 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>A <strong>common subsequence</strong> of two strings is a subsequence that is common to both strings.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: text1 = &quot;abcde&quot;, text2 = &quot;ace&quot; 
-Output: 3  
-Explanation: The longest common subsequence is &quot;ace&quot; and its length is 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: text1 = &quot;abcde&quot;, text2 = &quot;ace&quot; 
+</span><span>Output: 3  
+</span><span>Explanation: The longest common subsequence is &quot;ace&quot; and its length is 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: text1 = &quot;abc&quot;, text2 = &quot;abc&quot;
-Output: 3
-Explanation: The longest common subsequence is &quot;abc&quot; and its length is 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: text1 = &quot;abc&quot;, text2 = &quot;abc&quot;
+</span><span>Output: 3
+</span><span>Explanation: The longest common subsequence is &quot;abc&quot; and its length is 3.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: text1 = &quot;abc&quot;, text2 = &quot;def&quot;
-Output: 0
-Explanation: There is no such common subsequence, so the result is 0.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: text1 = &quot;abc&quot;, text2 = &quot;def&quot;
+</span><span>Output: 0
+</span><span>Explanation: There is no such common subsequence, so the result is 0.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= text1.length, text2.length &lt;= 1000</code></li>
 <li><code>text1</code> and <code>text2</code> consist of only lowercase English characters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  int dp[2][1001] = {};
-public:
-  int longestCommonSubsequence(string text1, string text2) {
-    int len1 = text1.length();
-    int len2 = text2.length();
-    for(int i = 0; i &lt; len1; ++i) {
-      int parity =  i &amp; 1;
-      for(int j = 0; j &lt; len2; ++j) {
-        dp[parity][j + 1] = max({dp[!parity][j + 1], dp[parity][j], dp[!parity][j] + (text1[i] == text2[j])});
-      }
-    }
-    return dp[~len1 &amp; 1][len2];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 44&#x2F;44 cases passed (35 ms)
-&#x2F;&#x2F; Your runtime beats 20.16 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 98.32 % of cpp submissions (6.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1001</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">longestCommonSubsequence</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">text1</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">text2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len1 </span><span>=</span><span style="color:#eff1f5;"> text1.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len2 </span><span>=</span><span style="color:#eff1f5;"> text2.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len1; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> parity </span><span>=</span><span style="color:#eff1f5;">  i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> len2; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        dp[parity][j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">({dp[</span><span>!</span><span style="color:#eff1f5;">parity][j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], dp[parity][j], dp[</span><span>!</span><span style="color:#eff1f5;">parity][j] </span><span>+ </span><span style="color:#eff1f5;">(text1[i] </span><span>==</span><span style="color:#eff1f5;"> text2[j])});
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[</span><span>~</span><span style="color:#eff1f5;">len1 </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][len2];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 44/44 cases passed (35 ms)
+</span><span style="color:#65737e;">// Your runtime beats 20.16 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 98.32 % of cpp submissions (6.4 MB)
+</span></code></pre>
 
     </div>
   </div>

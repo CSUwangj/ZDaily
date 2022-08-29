@@ -119,125 +119,125 @@ renderMathInElement(document.body, katex_config);
 <p>Now we have another string <code>p</code>. Your job is to find out how many unique non-empty substrings of <code>p</code> are present in <code>s</code>. In particular, your input is the string <code>p</code> and you need to output the number of different non-empty substrings of <code>p</code> in the string <code>s</code>.</p>
 <p><strong>Note:</strong> <code>p</code> consists of only lowercase English letters and the size of p might be over 10000.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: &quot;a&quot;
-Output: 1
-
-Explanation: Only the substring &quot;a&quot; of string &quot;a&quot; is in the string s.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;a&quot;
+</span><span>Output: 1
+</span><span>
+</span><span>Explanation: Only the substring &quot;a&quot; of string &quot;a&quot; is in the string s.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: &quot;cac&quot;
-Output: 2
-Explanation: There are two substrings &quot;a&quot;, &quot;c&quot; of string &quot;cac&quot; in the string s.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;cac&quot;
+</span><span>Output: 2
+</span><span>Explanation: There are two substrings &quot;a&quot;, &quot;c&quot; of string &quot;cac&quot; in the string s.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: &quot;zab&quot;
-Output: 6
-Explanation: There are six substrings &quot;z&quot;, &quot;a&quot;, &quot;b&quot;, &quot;za&quot;, &quot;ab&quot;, &quot;zab&quot; of string &quot;zab&quot; in the string s.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;zab&quot;
+</span><span>Output: 6
+</span><span>Explanation: There are six substrings &quot;z&quot;, &quot;a&quot;, &quot;b&quot;, &quot;za&quot;, &quot;ab&quot;, &quot;zab&quot; of string &quot;zab&quot; in the string s.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>when we have a contiguous substring like <code>abc</code>, consider substring end with <code>c</code>, we have <code>c</code>, <code>bc</code>, <code>abc</code>. so we can find that if length of longest substring end with some character $x$ is $n$, then amount of eligible substrings end with $x$ will be $n$. so we just need to find longest substring of every character.</p>
 <p>first, we can easily determine length of longest substring which ends with specified char in <code>p</code> by remember last character and length of it. then we can get length of at most 26 substrings. then we maintain a array which records the length of longest substring end with every letter, by update this array when iterator through string, we'll get the answer.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int findSubstringInWraproundString(string p) {
-        int length[26] = {0};
-        int pos = 0, len = p.length();
-        int currentLength = 0;
-        int lastChar = -1;
-        while(pos &lt; len) {
-            int currentChar = p[pos]-&#x27;a&#x27;;
-            int prevChar = (currentChar - 1 + 26) % 26;
-            if(lastChar != prevChar) {
-                currentLength = 0;
-            }
-            currentLength += 1;
-            length[currentChar] = max(length[currentChar], currentLength);
-            for(int i = 1; i &lt; min(26, currentLength); ++i) {
-                int c = (currentChar - 1 + 26) % 26;
-                length[c] = max(length[c], currentLength-i);
-            }
-            lastChar = currentChar;
-            pos += 1;
-        }
-        int answer = 0;
-        for(int i = 0; i &lt; 26; ++i) {
-            answer += length[i];
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findSubstringInWraproundString</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">p</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> length[</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>=</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> currentLength </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lastChar </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> currentChar </span><span>=</span><span style="color:#eff1f5;"> p[pos]</span><span>-&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> prevChar </span><span>= </span><span style="color:#eff1f5;">(currentChar </span><span>- </span><span style="color:#d08770;">1 </span><span>+ </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">) </span><span>% </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lastChar </span><span>!=</span><span style="color:#eff1f5;"> prevChar) {
+</span><span style="color:#eff1f5;">                currentLength </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            currentLength </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            length[currentChar] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(length[currentChar], currentLength);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">, currentLength); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> c </span><span>= </span><span style="color:#eff1f5;">(currentChar </span><span>- </span><span style="color:#d08770;">1 </span><span>+ </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">) </span><span>% </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                length[c] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(length[c], currentLength</span><span>-</span><span style="color:#eff1f5;">i);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            lastChar </span><span>=</span><span style="color:#eff1f5;"> currentChar;
+</span><span style="color:#eff1f5;">            pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            answer </span><span>+=</span><span style="color:#eff1f5;"> length[i];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>and we can break it when we update the array when we find a bigger value.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int findSubstringInWraproundString(string p) {
-        int length[26] = {0};
-        int pos = 0, len = p.length();
-        int currentLength = 0;
-        int lastChar = -1;
-        while(pos &lt; len) {
-            int currentChar = p[pos]-&#x27;a&#x27;;
-            int prevChar = (currentChar - 1 + 26) % 26;
-            if(lastChar != prevChar) {
-                currentLength = 0;
-            }
-            currentLength += 1;
-            if(length[currentChar] &lt; currentLength) {
-                length[currentChar] = currentLength;
-                for(int i = 1; i &lt; min(26, currentLength); ++i) {
-                    int c = (currentChar - 1 + 26) % 26;
-                    if(length[c] &gt;= currentLength-i) break;
-                    length[c] = max(length[c], currentLength-i);
-                }
-            }
-            lastChar = currentChar;
-            pos += 1;
-        }
-        int answer = 0;
-        for(int i = 0; i &lt; 26; ++i) {
-            answer += length[i];
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findSubstringInWraproundString</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">p</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> length[</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>=</span><span style="color:#eff1f5;"> p.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> currentLength </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lastChar </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> currentChar </span><span>=</span><span style="color:#eff1f5;"> p[pos]</span><span>-&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> prevChar </span><span>= </span><span style="color:#eff1f5;">(currentChar </span><span>- </span><span style="color:#d08770;">1 </span><span>+ </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">) </span><span>% </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lastChar </span><span>!=</span><span style="color:#eff1f5;"> prevChar) {
+</span><span style="color:#eff1f5;">                currentLength </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            currentLength </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(length[currentChar] </span><span>&lt;</span><span style="color:#eff1f5;"> currentLength) {
+</span><span style="color:#eff1f5;">                length[currentChar] </span><span>=</span><span style="color:#eff1f5;"> currentLength;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">, currentLength); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> c </span><span>= </span><span style="color:#eff1f5;">(currentChar </span><span>- </span><span style="color:#d08770;">1 </span><span>+ </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">) </span><span>% </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(length[c] </span><span>&gt;=</span><span style="color:#eff1f5;"> currentLength</span><span>-</span><span style="color:#eff1f5;">i) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    length[c] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(length[c], currentLength</span><span>-</span><span style="color:#eff1f5;">i);
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            lastChar </span><span>=</span><span style="color:#eff1f5;"> currentChar;
+</span><span style="color:#eff1f5;">            pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            answer </span><span>+=</span><span style="color:#eff1f5;"> length[i];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-23">December LeetCoding Challenge 23</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Next Greater Element III</strong></p>
 <p>Given a positive integer <code>n</code>, find <em>the smallest integer which has exactly the same digits existing in the integer</em> <code>n</code> <em>and is greater in value than</em> <code>n</code>. If no such positive integer exists, return <code>-1</code>.</p>
 <p><strong>Note</strong> that the returned integer should fit in <strong>32-bit integer</strong>, if there is a valid answer but it does not fit in <strong>32-bit integer</strong>, return <code>-1</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 12
-Output: 21
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 12
+</span><span>Output: 21
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 21
-Output: -1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 21
+</span><span>Output: -1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>$1 \le n \le 2^{31} - 1$</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int nextGreaterElement(int n) {
-        string answer = to_string(n);
-        int ans;
-        if(next_permutation(answer.begin(), answer.end())) {
-            if(stoll(answer) &gt; INT_MAX) {
-                ans = -1;
-            } else {
-                ans = stoi(answer);
-            }
-        } else {
-            ans = -1;
-        }
-        return ans;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">nextGreaterElement</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        string answer </span><span>= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">next_permutation</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">())) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">stoll</span><span style="color:#eff1f5;">(answer) </span><span>&gt;</span><span style="color:#eff1f5;"> INT_MAX) {
+</span><span style="color:#eff1f5;">                ans </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                ans </span><span>= </span><span style="color:#bf616a;">stoi</span><span style="color:#eff1f5;">(answer);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            ans </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

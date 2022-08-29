@@ -122,28 +122,28 @@ entirely comprised of odd integers or entirely comprised of even
 integers except for a single integer <code>N</code>. Write a method that takes 
 the array as an argument and returns this &quot;outlier&quot; <code>N</code>.</p>
 <h2 id="examples">Examples</h2>
-<pre data-lang="py" class="language-py "><code class="language-py" data-lang="py">[2, 4, 0, 100, 4, 11, 2602, 36]
-Should return: 11 (the only odd number)
-
-[160, 3, 1719, 19, 11, 13, -21]
-Should return: 160 (the only even number)
-</code></pre>
+<pre data-lang="py" style="background-color:#2b303b;color:#c0c5ce;" class="language-py "><code class="language-py" data-lang="py"><span>[</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">100</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">11</span><span>, </span><span style="color:#d08770;">2602</span><span>, </span><span style="color:#d08770;">36</span><span>]
+</span><span>Should </span><span style="color:#b48ead;">return</span><span>: </span><span style="color:#d08770;">11 </span><span>(the only odd number)
+</span><span>
+</span><span>[</span><span style="color:#d08770;">160</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">1719</span><span>, </span><span style="color:#d08770;">19</span><span>, </span><span style="color:#d08770;">11</span><span>, </span><span style="color:#d08770;">13</span><span>, -</span><span style="color:#d08770;">21</span><span>]
+</span><span>Should </span><span style="color:#b48ead;">return</span><span>: </span><span style="color:#d08770;">160 </span><span>(the only even number)
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">function findOutlier(integers){
-  odd = integers.filter(a =&gt; a&amp;1);
-  even = integers.filter(a =&gt; ~a&amp;1);
-  return odd.length===1?odd[0]:even[0];
-}
-
-function findOutlier(integers){
-  return integers
-    .slice(0, 3)
-    .filter(a =&gt; a&amp;1)
-    .length&lt;2?
-    integers.find(a =&gt; a&amp;1):
-    integers.find(a =&gt; ~a&amp;1);
-}
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">findOutlier</span><span>(</span><span style="color:#bf616a;">integers</span><span>){
+</span><span>  </span><span style="color:#bf616a;">odd </span><span>= </span><span style="color:#bf616a;">integers</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">a </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a</span><span>&amp;</span><span style="color:#d08770;">1</span><span>);
+</span><span>  </span><span style="color:#bf616a;">even </span><span>= </span><span style="color:#bf616a;">integers</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">a </span><span style="color:#b48ead;">=&gt; </span><span>~</span><span style="color:#bf616a;">a</span><span>&amp;</span><span style="color:#d08770;">1</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">odd</span><span>.length===</span><span style="color:#d08770;">1</span><span>?</span><span style="color:#bf616a;">odd</span><span>[</span><span style="color:#d08770;">0</span><span>]:</span><span style="color:#bf616a;">even</span><span>[</span><span style="color:#d08770;">0</span><span>];
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">findOutlier</span><span>(</span><span style="color:#bf616a;">integers</span><span>){
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">integers
+</span><span>    .</span><span style="color:#96b5b4;">slice</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">3</span><span>)
+</span><span>    .</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">a </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a</span><span>&amp;</span><span style="color:#d08770;">1</span><span>)
+</span><span>    .length&lt;</span><span style="color:#d08770;">2</span><span>?
+</span><span>    </span><span style="color:#bf616a;">integers</span><span>.</span><span style="color:#96b5b4;">find</span><span>(</span><span style="color:#bf616a;">a </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">a</span><span>&amp;</span><span style="color:#d08770;">1</span><span>):
+</span><span>    </span><span style="color:#bf616a;">integers</span><span>.</span><span style="color:#96b5b4;">find</span><span>(</span><span style="color:#bf616a;">a </span><span style="color:#b48ead;">=&gt; </span><span>~</span><span style="color:#bf616a;">a</span><span>&amp;</span><span style="color:#d08770;">1</span><span>);
+</span><span>}
+</span></code></pre>
 
     </div>
   </div>

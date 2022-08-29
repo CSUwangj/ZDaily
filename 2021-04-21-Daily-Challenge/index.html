@@ -124,15 +124,15 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return <em>the number of items that match the given rule</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: items = [[&quot;phone&quot;,&quot;blue&quot;,&quot;pixel&quot;],[&quot;computer&quot;,&quot;silver&quot;,&quot;lenovo&quot;],[&quot;phone&quot;,&quot;gold&quot;,&quot;iphone&quot;]], ruleKey = &quot;color&quot;, ruleValue = &quot;silver&quot;
-Output: 1
-Explanation: There is only one item matching the given rule, which is [&quot;computer&quot;,&quot;silver&quot;,&quot;lenovo&quot;].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: items = [[&quot;phone&quot;,&quot;blue&quot;,&quot;pixel&quot;],[&quot;computer&quot;,&quot;silver&quot;,&quot;lenovo&quot;],[&quot;phone&quot;,&quot;gold&quot;,&quot;iphone&quot;]], ruleKey = &quot;color&quot;, ruleValue = &quot;silver&quot;
+</span><span>Output: 1
+</span><span>Explanation: There is only one item matching the given rule, which is [&quot;computer&quot;,&quot;silver&quot;,&quot;lenovo&quot;].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: items = [[&quot;phone&quot;,&quot;blue&quot;,&quot;pixel&quot;],[&quot;computer&quot;,&quot;silver&quot;,&quot;phone&quot;],[&quot;phone&quot;,&quot;gold&quot;,&quot;iphone&quot;]], ruleKey = &quot;type&quot;, ruleValue = &quot;phone&quot;
-Output: 2
-Explanation: There are only two items matching the given rule, which are [&quot;phone&quot;,&quot;blue&quot;,&quot;pixel&quot;] and [&quot;phone&quot;,&quot;gold&quot;,&quot;iphone&quot;]. Note that the item [&quot;computer&quot;,&quot;silver&quot;,&quot;phone&quot;] does not match.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: items = [[&quot;phone&quot;,&quot;blue&quot;,&quot;pixel&quot;],[&quot;computer&quot;,&quot;silver&quot;,&quot;phone&quot;],[&quot;phone&quot;,&quot;gold&quot;,&quot;iphone&quot;]], ruleKey = &quot;type&quot;, ruleValue = &quot;phone&quot;
+</span><span>Output: 2
+</span><span>Explanation: There are only two items matching the given rule, which are [&quot;phone&quot;,&quot;blue&quot;,&quot;pixel&quot;] and [&quot;phone&quot;,&quot;gold&quot;,&quot;iphone&quot;]. Note that the item [&quot;computer&quot;,&quot;silver&quot;,&quot;phone&quot;] does not match.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= items.length &lt;= 10<sup>4</sup></code></li>
@@ -141,37 +141,37 @@ Explanation: There are only two items matching the given rule, which are [&quot;
 <li>All strings consist only of lowercase letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">static auto x = []() {ios_base::sync_with_stdio(false); cin.tie(NULL); return NULL; }();
-class Solution {
-public:
-  int countMatches(vector&lt;vector&lt;string&gt;&gt;&amp; items, string ruleKey, string ruleValue) {
-    int index = ruleKey[0] == &#x27;t&#x27; ? 0 :
-      ruleKey[0] == &#x27;c&#x27; ? 1 : 2;
-    return count_if(items.begin(), items.end(), [&amp;](const auto &amp;item){
-      return item[index] == ruleValue;
-    });
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">static auto</span><span> x = []() {ios_base::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>); cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">NULL</span><span>); </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">NULL</span><span>; }();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">countMatches</span><span style="color:#eff1f5;">(vector&lt;vector&lt;string&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">items</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">ruleKey</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">ruleValue</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> index </span><span>=</span><span style="color:#eff1f5;"> ruleKey[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">t</span><span>&#39; ? </span><span style="color:#d08770;">0 </span><span>:
+</span><span style="color:#eff1f5;">      ruleKey[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">c</span><span>&#39; ? </span><span style="color:#d08770;">1 </span><span>: </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">count_if</span><span style="color:#eff1f5;">(items.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), items.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">](</span><span style="color:#b48ead;">const auto </span><span>&amp;</span><span style="color:#eff1f5;">item){
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> item[index] </span><span>==</span><span style="color:#eff1f5;"> ruleValue;
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="april-leetcoding-challenge-21">April LeetCoding challenge 21</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Triangle</strong></p>
 <p>Given a <code>triangle</code> array, return <em>the minimum path sum from top to bottom</em>.</p>
 <p>For each step, you may move to an adjacent number of the row below. More formally, if you are on index <code>i</code> on the current row, you may move to either index <code>i</code> or index <code>i + 1</code> on the next row.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
-Output: 11
-Explanation: The triangle looks like:
-   2
-  3 4
- 6 5 7
-4 1 8 3
-The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+</span><span>Output: 11
+</span><span>Explanation: The triangle looks like:
+</span><span>   2
+</span><span>  3 4
+</span><span> 6 5 7
+</span><span>4 1 8 3
+</span><span>The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above).
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: triangle = [[-10]]
-Output: -10
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: triangle = [[-10]]
+</span><span>Output: -10
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= triangle.length &lt;= 200</code></li>
@@ -182,38 +182,38 @@ Output: -10
 <p><strong>Follow up:</strong> Could you do this using only <code>O(n)</code> extra space, where <code>n</code> is the total number of rows in the triangle?</p>
 <h2 id="solution-1">Solution</h2>
 <p>dp forward</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int minimumTotal(vector&lt;vector&lt;int&gt;&gt;&amp; triangle) {
-    int n = triangle.size();
-    vector&lt;int&gt; dp(n, INT_MAX);
-    dp[0] = triangle.front().front();
-    for(int i = 1; i &lt; n; ++i) {
-      for(int j = i; j &gt;= 0; --j) {
-        if(j == i) dp[j] = dp[j - 1];
-        else if(j) dp[j] = min(dp[j], dp[j - 1]);
-        dp[j] += triangle[i][j];
-      }
-    }
-    return *min_element(dp.begin(), dp.end());
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minimumTotal</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">triangle</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>=</span><span style="color:#eff1f5;"> triangle.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(n, INT_MAX);
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> triangle.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i; j </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(j </span><span>==</span><span style="color:#eff1f5;"> i) dp[j] </span><span>=</span><span style="color:#eff1f5;"> dp[j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(j) dp[j] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[j], dp[j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">        dp[j] </span><span>+=</span><span style="color:#eff1f5;"> triangle[i][j];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>*</span><span style="color:#bf616a;">min_element</span><span style="color:#eff1f5;">(dp.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), dp.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>dp backward</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int minimumTotal(vector&lt;vector&lt;int&gt;&gt;&amp; triangle) {
-    int n = triangle.size();
-    vector&lt;int&gt; dp(n + 1, 0);
-    for(int i = n - 1; i &gt;= 0; --i) {
-      for(int j = 0; j &lt;= i; ++j) {
-        dp[j] = min(dp[j], dp[j + 1]) + triangle[i][j];
-      }
-    }
-    return dp[0];
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minimumTotal</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">triangle</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>=</span><span style="color:#eff1f5;"> triangle.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(n </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> n </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;=</span><span style="color:#eff1f5;"> i; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        dp[j] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(dp[j], dp[j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span>+</span><span style="color:#eff1f5;"> triangle[i][j];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

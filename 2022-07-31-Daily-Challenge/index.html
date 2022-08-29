@@ -128,18 +128,18 @@ renderMathInElement(document.body, katex_config);
 <li><code>int sumRange(int left, int right)</code> Returns the <strong>sum</strong> of the elements of <code>nums</code> between indices <code>left</code> and <code>right</code> <strong>inclusive</strong> (i.e. <code>nums[left] + nums[left + 1] + ... + nums[right]</code>).</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;NumArray&quot;, &quot;sumRange&quot;, &quot;update&quot;, &quot;sumRange&quot;]
-[[[1, 3, 5]], [0, 2], [1, 2], [0, 2]]
-Output
-[null, 9, null, 8]
-
-Explanation
-NumArray numArray = new NumArray([1, 3, 5]);
-numArray.sumRange(0, 2); &#x2F;&#x2F; return 1 + 3 + 5 = 9
-numArray.update(1, 2);   &#x2F;&#x2F; nums = [1, 2, 5]
-numArray.sumRange(0, 2); &#x2F;&#x2F; return 1 + 2 + 5 = 8
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;NumArray&quot;, &quot;sumRange&quot;, &quot;update&quot;, &quot;sumRange&quot;]
+</span><span>[[[1, 3, 5]], [0, 2], [1, 2], [0, 2]]
+</span><span>Output
+</span><span>[null, 9, null, 8]
+</span><span>
+</span><span>Explanation
+</span><span>NumArray numArray = new NumArray([1, 3, 5]);
+</span><span>numArray.sumRange(0, 2); // return 1 + 3 + 5 = 9
+</span><span>numArray.update(1, 2);   // nums = [1, 2, 5]
+</span><span>numArray.sumRange(0, 2); // return 1 + 2 + 5 = 8
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 3 * 104</code></li>
@@ -150,82 +150,82 @@ numArray.sumRange(0, 2); &#x2F;&#x2F; return 1 + 2 + 5 = 8
 <li>At most <code>3 * 104</code> calls will be made to <code>update</code> and <code>sumRange</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class NumArray {
-  vector&lt;int&gt; &amp;_nums;
-  int len;
-  int lazy[30000 &lt;&lt; 2] = {};
-  int sum[30000 &lt;&lt; 2] = {};
-
-  int opL;
-  int opR;
-  void build(int l, int r, int o = 0) {
-    if(l == r) sum[o] = _nums[l];
-    else {
-      int m = (l + r) &gt;&gt; 1;
-      build(l, m, o * 2 + 1);
-      build(m + 1, r, o * 2 + 2);
-      sum[o] = sum[o * 2 + 1] + sum[o * 2 + 2];
-    }
-  }
-
-  void pushdown(int o, int c) {
-    if(lazy[o]) {
-      sum[o * 2 + 1] += c &#x2F; 2 * lazy[o];
-      sum[o * 2 + 2] += (c - c &#x2F; 2) * lazy[o];
-      lazy[o * 2 + 1] = lazy[o];
-      lazy[o * 2 + 2] = lazy[o];
-      lazy[o] = 0;
-    }
-  }
-
-  void update(int l, int r, int o, int v) {
-    if(l &gt;= opL &amp;&amp; r &lt;= opR) {
-      sum[o] += (r - l + 1) * v;
-      lazy[o] = v;
-      return;
-    }
-    pushdown(o, r - l + 1);
-    int m = (l + r) &gt;&gt; 1;
-    if(opL &lt;= m) update(l, m, o * 2 + 1, v);
-    if(opR &gt; m) update(m + 1, r, o * 2 + 2, v);
-    sum[o] = sum[o * 2 + 1] + sum[o * 2 + 2];
-  }
-
-  int sumRange(int l, int r, int o) {
-    if(l &gt;= opL &amp;&amp; r &lt;= opR) return sum[o];
-    pushdown(o, r - l + 1);
-    int answer = 0;
-    int m = (l + r) &gt;&gt; 1;
-    if(opL &lt;= m) answer += sumRange(l, m, o * 2 + 1);
-    if(opR &gt; m) answer += sumRange(m + 1, r, o * 2 + 2);
-    return answer;
-  }
-public:
-  NumArray(vector&lt;int&gt;&amp; nums): _nums(nums){
-    len = _nums.size();
-    build(0, len - 1);
-  }
-  
-  void update(int index, int val) {
-    int diff = val - _nums[index];
-    _nums[index] = val;
-    opL = index;
-    opR = index;
-    update(0, len - 1, 0, diff);
-  }
-  
-  int sumRange(int left, int right) {
-    opL = left;
-    opR = right;
-    return sumRange(0, len - 1, 0);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 15&#x2F;15 cases passed (600 ms)
-&#x2F;&#x2F; Your runtime beats 69.07 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 11 % of cpp submissions (165.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">NumArray </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">_nums;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lazy[</span><span style="color:#d08770;">30000 </span><span>&lt;&lt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum[</span><span style="color:#d08770;">30000 </span><span>&lt;&lt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> opL;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> opR;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">build</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">l</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">r</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">o </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(l </span><span>==</span><span style="color:#eff1f5;"> r) sum[o] </span><span>=</span><span style="color:#eff1f5;"> _nums[l];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> m </span><span>= </span><span style="color:#eff1f5;">(l </span><span>+</span><span style="color:#eff1f5;"> r) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(l, m, o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(m </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, r, o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      sum[o] </span><span>=</span><span style="color:#eff1f5;"> sum[o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> sum[o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">pushdown</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">o</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">c</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lazy[o]) {
+</span><span style="color:#eff1f5;">      sum[o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+=</span><span style="color:#eff1f5;"> c </span><span>/ </span><span style="color:#d08770;">2 </span><span>*</span><span style="color:#eff1f5;"> lazy[o];
+</span><span style="color:#eff1f5;">      sum[o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#eff1f5;">(c </span><span>-</span><span style="color:#eff1f5;"> c </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>*</span><span style="color:#eff1f5;"> lazy[o];
+</span><span style="color:#eff1f5;">      lazy[o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> lazy[o];
+</span><span style="color:#eff1f5;">      lazy[o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> lazy[o];
+</span><span style="color:#eff1f5;">      lazy[o] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">update</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">l</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">r</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">o</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">v</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(l </span><span>&gt;=</span><span style="color:#eff1f5;"> opL </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> r </span><span>&lt;=</span><span style="color:#eff1f5;"> opR) {
+</span><span style="color:#eff1f5;">      sum[o] </span><span>+= </span><span style="color:#eff1f5;">(r </span><span>-</span><span style="color:#eff1f5;"> l </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>*</span><span style="color:#eff1f5;"> v;
+</span><span style="color:#eff1f5;">      lazy[o] </span><span>=</span><span style="color:#eff1f5;"> v;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">pushdown</span><span style="color:#eff1f5;">(o, r </span><span>-</span><span style="color:#eff1f5;"> l </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> m </span><span>= </span><span style="color:#eff1f5;">(l </span><span>+</span><span style="color:#eff1f5;"> r) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(opL </span><span>&lt;=</span><span style="color:#eff1f5;"> m) </span><span style="color:#bf616a;">update</span><span style="color:#eff1f5;">(l, m, o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, v);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(opR </span><span>&gt;</span><span style="color:#eff1f5;"> m) </span><span style="color:#bf616a;">update</span><span style="color:#eff1f5;">(m </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, r, o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">, v);
+</span><span style="color:#eff1f5;">    sum[o] </span><span>=</span><span style="color:#eff1f5;"> sum[o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> sum[o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sumRange</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">l</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">r</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">o</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(l </span><span>&gt;=</span><span style="color:#eff1f5;"> opL </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> r </span><span>&lt;=</span><span style="color:#eff1f5;"> opR) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> sum[o];
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">pushdown</span><span style="color:#eff1f5;">(o, r </span><span>-</span><span style="color:#eff1f5;"> l </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> m </span><span>= </span><span style="color:#eff1f5;">(l </span><span>+</span><span style="color:#eff1f5;"> r) </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(opL </span><span>&lt;=</span><span style="color:#eff1f5;"> m) answer </span><span>+= </span><span style="color:#bf616a;">sumRange</span><span style="color:#eff1f5;">(l, m, o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(opR </span><span>&gt;</span><span style="color:#eff1f5;"> m) answer </span><span>+= </span><span style="color:#bf616a;">sumRange</span><span style="color:#eff1f5;">(m </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, r, o </span><span>* </span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">NumArray</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">): </span><span style="color:#bf616a;">_nums</span><span style="color:#eff1f5;">(nums){
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> _nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">update</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span>=</span><span style="color:#eff1f5;"> val </span><span>-</span><span style="color:#eff1f5;"> _nums[index];
+</span><span style="color:#eff1f5;">    _nums[index] </span><span>=</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">    opL </span><span>=</span><span style="color:#eff1f5;"> index;
+</span><span style="color:#eff1f5;">    opR </span><span>=</span><span style="color:#eff1f5;"> index;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">update</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, diff);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sumRange</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    opL </span><span>=</span><span style="color:#eff1f5;"> left;
+</span><span style="color:#eff1f5;">    opR </span><span>=</span><span style="color:#eff1f5;"> right;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">sumRange</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 15/15 cases passed (600 ms)
+</span><span style="color:#65737e;">// Your runtime beats 69.07 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 11 % of cpp submissions (165.2 MB)
+</span></code></pre>
 
     </div>
   </div>

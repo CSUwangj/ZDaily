@@ -119,62 +119,62 @@ renderMathInElement(document.body, katex_config);
 <p>You are given an array <code>people</code> where <code>people[i]</code> is the weight of the <code>ith</code> person, and an <strong>infinite number of boats</strong> where each boat can carry a maximum weight of <code>limit</code>. Each boat carries at most two people at the same time, provided the sum of the weight of those people is at most <code>limit</code>.</p>
 <p>Return <em>the minimum number of boats to carry every given person</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: people = [1,2], limit = 3
-Output: 1
-Explanation: 1 boat (1, 2)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: people = [1,2], limit = 3
+</span><span>Output: 1
+</span><span>Explanation: 1 boat (1, 2)
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: people = [3,2,2,1], limit = 3
-Output: 3
-Explanation: 3 boats (1, 2), (2) and (3)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: people = [3,2,2,1], limit = 3
+</span><span>Output: 3
+</span><span>Explanation: 3 boats (1, 2), (2) and (3)
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: people = [3,5,3,4], limit = 5
-Output: 4
-Explanation: 4 boats (3), (3), (4), (5)
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: people = [3,5,3,4], limit = 5
+</span><span>Output: 4
+</span><span>Explanation: 4 boats (3), (3), (4), (5)
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= people.length &lt;= 5 * 10^4</code></li>
 <li><code>1 &lt;= people[i] &lt;= limit &lt;= 3 * 10^4</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int numRescueBoats(vector&lt;int&gt;&amp; people, int limit) {
-    sort(people.begin(), people.end());
-    int len = people.size();
-    if(people.back() * 2 &lt;= limit) return (len + 1) &#x2F; 2;
-    if(people.front() * 2 &gt; limit) return len;
-    int ed = len - 1;
-    int st = 0;
-    int answer = 0;
-    while(st &lt; ed) {
-      if(people[st] + people[ed] &gt; limit) {
-        ed -= 1;
-      } else {
-        ed -= 1;
-        st += 1;
-      }
-      answer += 1;
-    }
-    answer += (st == ed);
-    return answer;
-  }
-};
-
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 78&#x2F;78 cases passed (68 ms)
-&#x2F;&#x2F; Your runtime beats 97.18 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 57.42 % of cpp submissions (42 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numRescueBoats</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">people</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">limit</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(people.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), people.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> people.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(people.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>* </span><span style="color:#d08770;">2 </span><span>&lt;=</span><span style="color:#eff1f5;"> limit) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(len </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(people.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">() </span><span>* </span><span style="color:#d08770;">2 </span><span>&gt;</span><span style="color:#eff1f5;"> limit) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ed </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> st </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(st </span><span>&lt;</span><span style="color:#eff1f5;"> ed) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(people[st] </span><span>+</span><span style="color:#eff1f5;"> people[ed] </span><span>&gt;</span><span style="color:#eff1f5;"> limit) {
+</span><span style="color:#eff1f5;">        ed </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        ed </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        st </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      answer </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    answer </span><span>+= </span><span style="color:#eff1f5;">(st </span><span>==</span><span style="color:#eff1f5;"> ed);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 78/78 cases passed (68 ms)
+</span><span style="color:#65737e;">// Your runtime beats 97.18 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 57.42 % of cpp submissions (42 MB)
+</span></code></pre>
 
     </div>
   </div>

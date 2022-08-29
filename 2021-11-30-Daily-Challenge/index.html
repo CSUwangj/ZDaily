@@ -119,26 +119,26 @@ renderMathInElement(document.body, katex_config);
 <p>Given a <code>rows x cols</code> binary <code>matrix</code> filled with <code>0</code>'s and <code>1</code>'s, find the largest rectangle containing only <code>1</code>'s and return <em>its area</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/14/maximal.jpg" alt="img" /></p>
-<pre><code>Input: matrix = [[&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;],[&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;],[&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;],[&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;]]
-Output: 6
-Explanation: The maximal rectangle is shown in the above picture.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;],[&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;],[&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;],[&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;]]
+</span><span>Output: 6
+</span><span>Explanation: The maximal rectangle is shown in the above picture.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: matrix = []
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = []
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: matrix = [[&quot;0&quot;]]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[&quot;0&quot;]]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: matrix = [[&quot;1&quot;]]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[&quot;1&quot;]]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: matrix = [[&quot;0&quot;,&quot;0&quot;]]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[&quot;0&quot;,&quot;0&quot;]]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>rows == matrix.length</code></li>
@@ -147,51 +147,51 @@ Output: 0
 <li><code>matrix[i][j]</code> is <code>'0'</code> or <code>'1'</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int largestRectangleArea(vector&lt;int&gt;&amp; heights, vector&lt;int&gt; &amp;st) {
-    heights.push_back(0);
-    int len = heights.size();
-    int answer = 0;
-    for(int i = 0; i &lt; len; ++i) {
-      while(st.back() != -1 &amp;&amp; heights[i] &lt; heights[st.back()]) {
-        int index = st.back();
-        st.pop_back();
-        int h = heights[index];
-        int w = i - st.back() - 1;
-        answer = max(answer, h*w);
-      }
-      st.push_back(i);
-    }
-    while(st.size() != 1) st.pop_back();
-    return answer;
-  }
-public:
-  int maximalRectangle(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) {
-    vector&lt;int&gt; st{-1};
-    int row = matrix.size();
-    if(!row) return 0;
-    int col = matrix.front().size();
-    vector&lt;int&gt; dp(col);
-    int answer = 0;
-    for(int i = 0; i &lt; row; ++i) {
-      for(int j = 0; j &lt; col; ++j) {
-        if(matrix[i][j] == &#x27;1&#x27;) {
-          dp[j] = dp[j] + 1;
-        } else {
-          dp[j] = 0;
-        }
-      }
-      answer = max(answer, largestRectangleArea(dp, st));
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 71&#x2F;71 cases passed (24 ms)
-&#x2F;&#x2F; Your runtime beats 95.14 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 90.31 % of cpp submissions (11 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">largestRectangleArea</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">heights</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">st</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    heights.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>!= -</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> heights[i] </span><span>&lt;</span><span style="color:#eff1f5;"> heights[st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> index </span><span>=</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> h </span><span>=</span><span style="color:#eff1f5;"> heights[index];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> w </span><span>=</span><span style="color:#eff1f5;"> i </span><span>-</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, h</span><span>*</span><span style="color:#eff1f5;">w);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      st.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>!= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maximalRectangle</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">matrix</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">st</span><span style="color:#eff1f5;">{</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> row </span><span>=</span><span style="color:#eff1f5;"> matrix.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">row) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> col </span><span>=</span><span style="color:#eff1f5;"> matrix.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">dp</span><span style="color:#eff1f5;">(col);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> row; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> col; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(matrix[i][j] </span><span>== &#39;</span><span style="color:#a3be8c;">1</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          dp[j] </span><span>=</span><span style="color:#eff1f5;"> dp[j] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          dp[j] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, </span><span style="color:#bf616a;">largestRectangleArea</span><span style="color:#eff1f5;">(dp, st));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 71/71 cases passed (24 ms)
+</span><span style="color:#65737e;">// Your runtime beats 95.14 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 90.31 % of cpp submissions (11 MB)
+</span></code></pre>
 
     </div>
   </div>

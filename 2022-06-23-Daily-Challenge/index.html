@@ -120,56 +120,56 @@ renderMathInElement(document.body, katex_config);
 <p>You will start on the <code>1st</code> day and you cannot take two or more courses simultaneously.</p>
 <p>Return <em>the maximum number of courses that you can take</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: courses = [[100,200],[200,1300],[1000,1250],[2000,3200]]
-Output: 3
-Explanation: 
-There are totally 4 courses, but you can take 3 courses at most:
-First, take the 1st course, it costs 100 days so you will finish it on the 100th day, and ready to take the next course on the 101st day.
-Second, take the 3rd course, it costs 1000 days so you will finish it on the 1100th day, and ready to take the next course on the 1101st day. 
-Third, take the 2nd course, it costs 200 days so you will finish it on the 1300th day. 
-The 4th course cannot be taken now, since you will finish it on the 3300th day, which exceeds the closed date.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: courses = [[100,200],[200,1300],[1000,1250],[2000,3200]]
+</span><span>Output: 3
+</span><span>Explanation: 
+</span><span>There are totally 4 courses, but you can take 3 courses at most:
+</span><span>First, take the 1st course, it costs 100 days so you will finish it on the 100th day, and ready to take the next course on the 101st day.
+</span><span>Second, take the 3rd course, it costs 1000 days so you will finish it on the 1100th day, and ready to take the next course on the 1101st day. 
+</span><span>Third, take the 2nd course, it costs 200 days so you will finish it on the 1300th day. 
+</span><span>The 4th course cannot be taken now, since you will finish it on the 3300th day, which exceeds the closed date.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: courses = [[1,2]]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: courses = [[1,2]]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: courses = [[3,2],[4,3]]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: courses = [[3,2],[4,3]]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= courses.length &lt;= 10^4</code></li>
 <li><code>1 &lt;= durationi, lastDayi &lt;= 10^4</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int scheduleCourse(vector&lt;vector&lt;int&gt;&gt; &amp;courses) {
-    vector&lt;pair&lt;int, int&gt;&gt; cr;
-    for(auto &amp;c : courses) cr.push_back(make_pair(c[1], c[0]));
-    sort(cr.begin(), cr.end());
-    priority_queue&lt;int&gt; q;
-    int cur = 0;
-    for(auto &amp;[ddl, duration] : cr) {
-      if(cur + duration &lt;= ddl) {
-        q.push(duration);
-        cur += duration;
-      } else if(q.size() &amp;&amp; q.top() &gt; duration) {
-        cur += duration - q.top();
-        q.pop();
-        q.push(duration);
-      }
-    }
-    return q.size();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 97&#x2F;97 cases passed (152 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 50.48 % of cpp submissions (60.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">scheduleCourse</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">courses</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; cr;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">c </span><span>:</span><span style="color:#eff1f5;"> courses) cr.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(c[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], c[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(cr.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), cr.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    priority_queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[ddl, duration] </span><span>:</span><span style="color:#eff1f5;"> cr) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>+</span><span style="color:#eff1f5;"> duration </span><span>&lt;=</span><span style="color:#eff1f5;"> ddl) {
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(duration);
+</span><span style="color:#eff1f5;">        cur </span><span>+=</span><span style="color:#eff1f5;"> duration;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> duration) {
+</span><span style="color:#eff1f5;">        cur </span><span>+=</span><span style="color:#eff1f5;"> duration </span><span>-</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(duration);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 97/97 cases passed (152 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 50.48 % of cpp submissions (60.7 MB)
+</span></code></pre>
 
     </div>
   </div>

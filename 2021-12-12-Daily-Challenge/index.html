@@ -118,42 +118,42 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Partition Equal Subset Sum</strong></p>
 <p>Given a <strong>non-empty</strong> array <code>nums</code> containing <strong>only positive integers</strong>, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,5,11,5]
-Output: true
-Explanation: The array can be partitioned as [1, 5, 5] and [11].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,5,11,5]
+</span><span>Output: true
+</span><span>Explanation: The array can be partitioned as [1, 5, 5] and [11].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1,2,3,5]
-Output: false
-Explanation: The array cannot be partitioned into equal sum subsets.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3,5]
+</span><span>Output: false
+</span><span>Explanation: The array cannot be partitioned into equal sum subsets.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 200</code></li>
 <li><code>1 &lt;= nums[i] &lt;= 100</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool canPartition(vector&lt;int&gt;&amp; nums) {
-    int sum = accumulate(nums.begin(), nums.end(), 0);
-    if((sum &amp; 1) || nums.empty()) return false;
-
-    int target = sum &gt;&gt; 1;
-    bitset&lt;10001&gt; dp;
-    dp[0] = 1;
-    for(auto i : nums) {
-      dp |= (dp &lt;&lt; i);
-    }
-    return dp[target];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 117&#x2F;117 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 99.79 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 97.1 % of cpp submissions (9.1 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">canPartition</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#bf616a;">accumulate</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((sum </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>||</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> target </span><span>=</span><span style="color:#eff1f5;"> sum </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    bitset&lt;</span><span style="color:#d08770;">10001</span><span style="color:#eff1f5;">&gt; dp;
+</span><span style="color:#eff1f5;">    dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      dp </span><span>|= </span><span style="color:#eff1f5;">(dp </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> i);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[target];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 117/117 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 99.79 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 97.1 % of cpp submissions (9.1 MB)
+</span></code></pre>
 
     </div>
   </div>

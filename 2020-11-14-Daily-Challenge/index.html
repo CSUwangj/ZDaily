@@ -116,149 +116,149 @@ renderMathInElement(document.body, katex_config);
 <span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
 <h2 id="powerful-integers">Powerful Integers</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;int&gt; powerfulIntegers(int x, int y, int bound) {
-        if(bound &lt; 2) return vector&lt;int&gt;();
-        unordered_set&lt;int&gt; answer;
-        for(int a = 1; a &lt; bound; a *= x) {
-            for(int b = 1; a + b &lt;= bound; b *= y) {
-                answer.insert(a+b);
-                if(y == 1) break;
-            }
-            if(x == 1) break;
-        }
-        return vector&lt;int&gt;{answer.begin(), answer.end()};
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">powerfulIntegers</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">y</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">bound</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(bound </span><span>&lt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;();
+</span><span style="color:#eff1f5;">        unordered_set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; a </span><span>&lt;</span><span style="color:#eff1f5;"> bound; a </span><span>*=</span><span style="color:#eff1f5;"> x) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> b </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; a </span><span>+</span><span style="color:#eff1f5;"> b </span><span>&lt;=</span><span style="color:#eff1f5;"> bound; b </span><span>*=</span><span style="color:#eff1f5;"> y) {
+</span><span style="color:#eff1f5;">                answer.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(a</span><span>+</span><span style="color:#eff1f5;">b);
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(y </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(x </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;{answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">()};
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="maximum-difference-between-node-and-ancestor">Maximum Difference Between Node and Ancestor</h2>
 <p>normal solution</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    int answer = 0;
-    void maxAncestorDiff(TreeNode* root, int minVal, int maxVal) {
-        if(!root) return;
-        minVal = min(root-&gt;val, minVal);
-        maxVal = max(root-&gt;val, maxVal);
-        answer = max(maxVal - minVal, answer);
-        maxAncestorDiff(root-&gt;left, minVal, maxVal);
-        maxAncestorDiff(root-&gt;right, minVal, maxVal);
-    }
-public:
-    int maxAncestorDiff(TreeNode* root) {
-        maxAncestorDiff(root, INT_MAX, INT_MIN);
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">maxAncestorDiff</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">minVal</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">maxVal</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        minVal </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">, minVal);
+</span><span style="color:#eff1f5;">        maxVal </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">, maxVal);
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(maxVal </span><span>-</span><span style="color:#eff1f5;"> minVal, answer);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">maxAncestorDiff</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, minVal, maxVal);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">maxAncestorDiff</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, minVal, maxVal);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxAncestorDiff</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">maxAncestorDiff</span><span style="color:#eff1f5;">(root, INT_MAX, INT_MIN);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="check-if-it-is-a-good-array">Check If It Is a Good Array</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    int gcd(int a, int b) {
-        return b ? gcd(b, a%b) : a;
-    }
-public:
-    bool isGoodArray(vector&lt;int&gt;&amp; nums) {
-        int current = nums[0];
-        for(int i = 0; i &lt; nums.size(); ++i) {
-            current = gcd(current, nums[i]);
-        }
-        return current == 1;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">gcd</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> b </span><span>? </span><span style="color:#bf616a;">gcd</span><span style="color:#eff1f5;">(b, a</span><span>%</span><span style="color:#eff1f5;">b) </span><span>:</span><span style="color:#eff1f5;"> a;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isGoodArray</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current </span><span>=</span><span style="color:#eff1f5;"> nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            current </span><span>= </span><span style="color:#bf616a;">gcd</span><span style="color:#eff1f5;">(current, nums[i]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> current </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="valid-square">Valid Square</h2>
 <p>not so elegant</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    double distance(vector&lt;int&gt;&amp; p1, vector&lt;double&gt;&amp; p2) {
-        return (p1[0]-p2[0])*(p1[0]-p2[0]) + (p1[1]-p2[1])*(p1[1]-p2[1]);
-    }
-    int distance(vector&lt;int&gt;&amp; p1, vector&lt;int&gt;&amp; p2) {
-        return (p1[0]-p2[0])*(p1[0]-p2[0]) + (p1[1]-p2[1])*(p1[1]-p2[1]);
-    }
-    bool equal(double a, double b) {
-        return abs(a-b) &lt; 1e-4;
-    }
-public:
-    bool validSquare(vector&lt;int&gt;&amp; p1, vector&lt;int&gt;&amp; p2, vector&lt;int&gt;&amp; p3, vector&lt;int&gt;&amp; p4) {
-        vector&lt;double&gt; center = {(p1[0]+p2[0]+p3[0]+p4[0])&#x2F;4.0, (p1[1]+p2[1]+p3[1]+p4[1])&#x2F;4.0};
-        
-        double d1 = distance(p1, center);
-        double d2 = distance(p2, center);
-        double d3 = distance(p3, center);
-        double d4 = distance(p4, center);
-        
-        int d5 = distance(p1, p2);
-        int d6 = distance(p1, p3);
-        int d7 = distance(p1, p4);
-        
-        if(d5 == 0 || d6 == 0 || d7 == 0) return false;
-        
-        if(equal(d1, d2) &amp;&amp; equal(d2, d3) &amp;&amp; equal(d3, d4)) {
-            &#x2F;&#x2F; is rectangle
-            if(d5 == d7 || d5 == d6 || d6 == d7) return true;
-        }
-        return false;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">double </span><span style="color:#8fa1b3;">distance</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p1</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(p1[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">])</span><span>*</span><span style="color:#eff1f5;">(p1[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) </span><span>+ </span><span style="color:#eff1f5;">(p1[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">])</span><span>*</span><span style="color:#eff1f5;">(p1[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">distance</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p1</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(p1[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">])</span><span>*</span><span style="color:#eff1f5;">(p1[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) </span><span>+ </span><span style="color:#eff1f5;">(p1[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">])</span><span>*</span><span style="color:#eff1f5;">(p1[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">equal</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">double </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">double </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(a</span><span>-</span><span style="color:#eff1f5;">b) </span><span>&lt; </span><span style="color:#d08770;">1e-4</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">validSquare</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p1</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p2</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p3</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p4</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt; center </span><span>= </span><span style="color:#eff1f5;">{(p1[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>+</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>+</span><span style="color:#eff1f5;">p3[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>+</span><span style="color:#eff1f5;">p4[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">])</span><span>/</span><span style="color:#d08770;">4.0</span><span style="color:#eff1f5;">, (p1[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]</span><span>+</span><span style="color:#eff1f5;">p2[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]</span><span>+</span><span style="color:#eff1f5;">p3[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]</span><span>+</span><span style="color:#eff1f5;">p4[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">])</span><span>/</span><span style="color:#d08770;">4.0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> d1 </span><span>= </span><span style="color:#bf616a;">distance</span><span style="color:#eff1f5;">(p1, center);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> d2 </span><span>= </span><span style="color:#bf616a;">distance</span><span style="color:#eff1f5;">(p2, center);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> d3 </span><span>= </span><span style="color:#bf616a;">distance</span><span style="color:#eff1f5;">(p3, center);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;"> d4 </span><span>= </span><span style="color:#bf616a;">distance</span><span style="color:#eff1f5;">(p4, center);
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> d5 </span><span>= </span><span style="color:#bf616a;">distance</span><span style="color:#eff1f5;">(p1, p2);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> d6 </span><span>= </span><span style="color:#bf616a;">distance</span><span style="color:#eff1f5;">(p1, p3);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> d7 </span><span>= </span><span style="color:#bf616a;">distance</span><span style="color:#eff1f5;">(p1, p4);
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(d5 </span><span>== </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> d6 </span><span>== </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> d7 </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">equal</span><span style="color:#eff1f5;">(d1, d2) </span><span>&amp;&amp; </span><span style="color:#bf616a;">equal</span><span style="color:#eff1f5;">(d2, d3) </span><span>&amp;&amp; </span><span style="color:#bf616a;">equal</span><span style="color:#eff1f5;">(d3, d4)) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#65737e;">// is rectangle
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(d5 </span><span>==</span><span style="color:#eff1f5;"> d7 </span><span>||</span><span style="color:#eff1f5;"> d5 </span><span>==</span><span style="color:#eff1f5;"> d6 </span><span>||</span><span style="color:#eff1f5;"> d6 </span><span>==</span><span style="color:#eff1f5;"> d7) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="student-attendance-record-i">Student Attendance Record I</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool checkRecord(string s) {
-        int lCnt = 0, aCnt = 0;
-        bool isL = false;
-        for(auto c : s) {
-            if(c == &#x27;L&#x27;) {
-                lCnt += 1;
-            } else {
-                lCnt = 0;
-            }
-            if(lCnt &gt; 2) return false;
-            if(c == &#x27;A&#x27;) {
-                aCnt += 1;
-            }
-            if(aCnt &gt; 1) return false;
-        }
-        return true;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">checkRecord</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lCnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, aCnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> isL </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">L</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                lCnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                lCnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lCnt </span><span>&gt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">A</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                aCnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(aCnt </span><span>&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="plus-one">Plus One</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;int&gt; plusOne(vector&lt;int&gt;&amp; digits) {
-        int carry = 1;
-        int curVal;
-        for(auto it = digits.rbegin(); carry &amp;&amp; it != digits.rend(); ++it) {
-            curVal = *it + carry;
-            *it = curVal % 10;
-            carry = curVal &#x2F; 10;
-        }
-        if(carry) digits.insert(digits.begin(), 1, 1);
-        return digits;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">plusOne</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">digits</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> carry </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curVal;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> digits.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); carry </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> it </span><span>!=</span><span style="color:#eff1f5;"> digits.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">            curVal </span><span>= *</span><span style="color:#eff1f5;">it </span><span>+</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">            </span><span>*</span><span style="color:#eff1f5;">it </span><span>=</span><span style="color:#eff1f5;"> curVal </span><span>% </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            carry </span><span>=</span><span style="color:#eff1f5;"> curVal </span><span>/ </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(carry) digits.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(digits.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> digits;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="flipping-an-image">Flipping an Image</h2>
 <p>just modify input image</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; flipAndInvertImage(vector&lt;vector&lt;int&gt;&gt;&amp; A) {
-        int len = A.size();
-        for(auto &amp;row : A) {
-            for(int i = 0; i*2 &lt;= len-1; ++i) {
-                int tmp = row[i]^1;
-                row[i] = row[len-1-i]^1;
-                row[len-i-1] = tmp;
-            }
-        }
-        return A;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">flipAndInvertImage</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">row </span><span>:</span><span style="color:#eff1f5;"> A) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i</span><span>*</span><span style="color:#d08770;">2 </span><span>&lt;=</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tmp </span><span>=</span><span style="color:#eff1f5;"> row[i]</span><span>^</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                row[i] </span><span>=</span><span style="color:#eff1f5;"> row[len</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">i]</span><span>^</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                row[len</span><span>-</span><span style="color:#eff1f5;">i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> tmp;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> A;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-14">November LeetCoding Challenge 14</h1>
 <h2 id="description">Description</h2>
 <p><strong>Poor Pigs</strong></p>
@@ -274,14 +274,14 @@ public:
 </ol>
 <h2 id="solution">Solution</h2>
 <p>check Zhihu for more explanation</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
-        int base = 1 + minutesToTest &#x2F; minutesToDie;
-        return ceil(log(buckets) &#x2F; log(base));
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">poorPigs</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">buckets</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">minutesToDie</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">minutesToTest</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> base </span><span>= </span><span style="color:#d08770;">1 </span><span>+</span><span style="color:#eff1f5;"> minutesToTest </span><span>/</span><span style="color:#eff1f5;"> minutesToDie;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">ceil</span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">log</span><span style="color:#eff1f5;">(buckets) </span><span>/ </span><span style="color:#96b5b4;">log</span><span style="color:#eff1f5;">(base));
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

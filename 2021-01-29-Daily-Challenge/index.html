@@ -122,19 +122,19 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return the size of the largest connected component in the graph.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [4,6,15,35]
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [4,6,15,35]
+</span><span>Output: 4
+</span></code></pre>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/01/ex1.png" alt="img" /></p>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [20,50,9,63]
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [20,50,9,63]
+</span><span>Output: 2
+</span></code></pre>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/01/ex2.png" alt="img" /></p>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: [2,3,6,7,4,12,21,39]
-Output: 8
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [2,3,6,7,4,12,21,39]
+</span><span>Output: 8
+</span></code></pre>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/01/ex3.png" alt="img" /></p>
 <p><strong>Note:</strong></p>
 <ol>
@@ -143,37 +143,37 @@ Output: 8
 </ol>
 <h2 id="solution">Solution</h2>
 <p>I remembered union set but failed to AC it</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    unordered_map&lt;int, int&gt; parent, count;
-
-    int find(int x) {
-        if(!parent.count(x)) parent[x] = x;
-        else if(x != parent[x]) parent[x] = find(parent[x]);
-        return parent[x];
-    }
-
-    void merge(int a, int b) {
-        a = find(a);
-        b = find(b);
-        parent[a] = b;
-    }
-public:
-    int largestComponentSize(vector&lt;int&gt;&amp; A) {
-        for(auto num : A) {
-            for(int i = 2; i*i &lt;= num; ++i) {
-                if(num % i == 0) {
-                    merge(num, i);
-                    merge(num, num &#x2F; i);
-                }
-            }
-        }
-        for(auto num : A) count[find(num)] += 1;
-        int answer = 0;
-        for(auto [_, cnt] : count) answer = max(answer, cnt);
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; parent, count;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">find</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">parent.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(x)) parent[x] </span><span>=</span><span style="color:#eff1f5;"> x;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(x </span><span>!=</span><span style="color:#eff1f5;"> parent[x]) parent[x] </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(parent[x]);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> parent[x];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">merge</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        a </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(a);
+</span><span style="color:#eff1f5;">        b </span><span>= </span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(b);
+</span><span style="color:#eff1f5;">        parent[a] </span><span>=</span><span style="color:#eff1f5;"> b;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">largestComponentSize</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> num </span><span>:</span><span style="color:#eff1f5;"> A) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i</span><span>*</span><span style="color:#eff1f5;">i </span><span>&lt;=</span><span style="color:#eff1f5;"> num; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>%</span><span style="color:#eff1f5;"> i </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    </span><span style="color:#bf616a;">merge</span><span style="color:#eff1f5;">(num, i);
+</span><span style="color:#eff1f5;">                    </span><span style="color:#bf616a;">merge</span><span style="color:#eff1f5;">(num, num </span><span>/</span><span style="color:#eff1f5;"> i);
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> num </span><span>:</span><span style="color:#eff1f5;"> A) count[</span><span style="color:#bf616a;">find</span><span style="color:#eff1f5;">(num)] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[_, cnt] </span><span>:</span><span style="color:#eff1f5;"> count) answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, cnt);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="possible-bipartition">Possible Bipartition</h1>
 <h2 id="description-1">Description</h2>
 <p>Design a data structure that is initialized with a list of <strong>different</strong> words. Provided a string, you should determine if you can change exactly one character in this string to match any word in the data structure.</p>
@@ -184,20 +184,20 @@ public:
 <li><code>bool search(String searchWord)</code> Returns <code>true</code> if you can change <strong>exactly one character</strong> in <code>searchWord</code> to match any string in the data structure, otherwise returns <code>false</code>.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;MagicDictionary&quot;, &quot;buildDict&quot;, &quot;search&quot;, &quot;search&quot;, &quot;search&quot;, &quot;search&quot;]
-[[], [[&quot;hello&quot;, &quot;leetcode&quot;]], [&quot;hello&quot;], [&quot;hhllo&quot;], [&quot;hell&quot;], [&quot;leetcoded&quot;]]
-Output
-[null, null, false, true, false, false]
-
-Explanation
-MagicDictionary magicDictionary = new MagicDictionary();
-magicDictionary.buildDict([&quot;hello&quot;, &quot;leetcode&quot;]);
-magicDictionary.search(&quot;hello&quot;); &#x2F;&#x2F; return False
-magicDictionary.search(&quot;hhllo&quot;); &#x2F;&#x2F; We can change the second &#x27;h&#x27; to &#x27;e&#x27; to match &quot;hello&quot; so we return True
-magicDictionary.search(&quot;hell&quot;); &#x2F;&#x2F; return False
-magicDictionary.search(&quot;leetcoded&quot;); &#x2F;&#x2F; return False
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;MagicDictionary&quot;, &quot;buildDict&quot;, &quot;search&quot;, &quot;search&quot;, &quot;search&quot;, &quot;search&quot;]
+</span><span>[[], [[&quot;hello&quot;, &quot;leetcode&quot;]], [&quot;hello&quot;], [&quot;hhllo&quot;], [&quot;hell&quot;], [&quot;leetcoded&quot;]]
+</span><span>Output
+</span><span>[null, null, false, true, false, false]
+</span><span>
+</span><span>Explanation
+</span><span>MagicDictionary magicDictionary = new MagicDictionary();
+</span><span>magicDictionary.buildDict([&quot;hello&quot;, &quot;leetcode&quot;]);
+</span><span>magicDictionary.search(&quot;hello&quot;); // return False
+</span><span>magicDictionary.search(&quot;hhllo&quot;); // We can change the second &#39;h&#39; to &#39;e&#39; to match &quot;hello&quot; so we return True
+</span><span>magicDictionary.search(&quot;hell&quot;); // return False
+</span><span>magicDictionary.search(&quot;leetcoded&quot;); // return False
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= dictionary.length &lt;= 100</code></li>
@@ -210,36 +210,36 @@ magicDictionary.search(&quot;leetcoded&quot;); &#x2F;&#x2F; return False
 <li>At most <code>100</code> calls will be made to <code>search</code>.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class MagicDictionary {
-    unordered_map&lt;int, vector&lt;string&gt;&gt; dict;
-public:
-    &#x2F;** Initialize your data structure here. *&#x2F;
-    MagicDictionary() {}
-    
-    void buildDict(vector&lt;string&gt; dictionary) {
-        for(auto &amp;s : dictionary) {
-            dict[s.length()].push_back(s);
-        }
-    }
-    
-    bool search(string searchWord) {
-        int len = searchWord.length();
-        for(auto &amp;s : dict[len]) {
-            int count = 0;
-            for(int i = 0; i &lt; len; ++i) count += s[i] != searchWord[i];
-            if(count == 1) return true;
-        }
-        return false;
-    }
-};
-
-&#x2F;**
- * Your MagicDictionary object will be instantiated and called as such:
- * MagicDictionary* obj = new MagicDictionary();
- * obj-&gt;buildDict(dictionary);
- * bool param_2 = obj-&gt;search(searchWord);
- *&#x2F;
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MagicDictionary </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, vector&lt;string&gt;&gt; dict;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">/** Initialize your data structure here. */
+</span><span style="color:#eff1f5;">    </span><span style="color:#8fa1b3;">MagicDictionary</span><span style="color:#eff1f5;">() {}
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">buildDict</span><span style="color:#eff1f5;">(vector&lt;string&gt; </span><span style="color:#bf616a;">dictionary</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">s </span><span>:</span><span style="color:#eff1f5;"> dictionary) {
+</span><span style="color:#eff1f5;">            dict[s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(s);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">search</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">searchWord</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> searchWord.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">s </span><span>:</span><span style="color:#eff1f5;"> dict[len]) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) count </span><span>+=</span><span style="color:#eff1f5;"> s[i] </span><span>!=</span><span style="color:#eff1f5;"> searchWord[i];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(count </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Your MagicDictionary object will be instantiated and called as such:
+</span><span style="color:#65737e;"> * MagicDictionary* obj = new MagicDictionary();
+</span><span style="color:#65737e;"> * obj-&gt;buildDict(dictionary);
+</span><span style="color:#65737e;"> * bool param_2 = obj-&gt;search(searchWord);
+</span><span style="color:#65737e;"> */
+</span></code></pre>
 <h1 id="implement-magic-dictionary">Implement Magic Dictionary</h1>
 <h2 id="description-2">Description</h2>
 <p>Given a set of <code>N</code> people (numbered <code>1, 2, ..., N</code>), we would like to split everyone into two groups of <strong>any</strong> size.</p>
@@ -247,18 +247,18 @@ public:
 <p>Formally, if <code>dislikes[i] = [a, b]</code>, it means it is not allowed to put the people numbered <code>a</code> and <code>b</code> into the same group.</p>
 <p>Return <code>true</code> if and only if it is possible to split everyone into two groups in this way.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: N = 4, dislikes = [[1,2],[1,3],[2,4]]
-Output: true
-Explanation: group1 [1,4], group2 [2,3]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: N = 4, dislikes = [[1,2],[1,3],[2,4]]
+</span><span>Output: true
+</span><span>Explanation: group1 [1,4], group2 [2,3]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: N = 3, dislikes = [[1,2],[1,3],[2,3]]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: N = 3, dislikes = [[1,2],[1,3],[2,3]]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: N = 5, dislikes = [[1,2],[2,3],[3,4],[4,5],[1,5]]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: N = 5, dislikes = [[1,2],[2,3],[3,4],[4,5],[1,5]]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= N &lt;= 2000</code></li>
@@ -270,49 +270,49 @@ Output: false
 </ul>
 <h2 id="solution-2">Solution</h2>
 <p>DFS find bipartite graph</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    vector&lt;vector&lt;int&gt;&gt; dislike;
-    vector&lt;int&gt; group;
-public:
-    bool possibleBipartition(int N, vector&lt;vector&lt;int&gt;&gt;&amp; dislikes) {
-        dislike.resize(N+1);
-        group.resize(N+1, -1);
-
-        for(auto &amp;dis : dislikes) {
-            dislike[dis[0]].push_back(dis[1]);
-            dislike[dis[1]].push_back(dis[0]);
-        }
-
-        int count = 0;
-        while(count &lt; N) {
-            queue&lt;int&gt; q;
-            for(int i = 1; i &lt;= N; ++i) {
-                if(group[i] == -1) {
-                    q.push(i);
-                    group[i] = 0;
-                    break;
-                }
-            }
-
-            count += 1;
-            while(!q.empty()) {
-                int current = q.front();
-                q.pop();
-                for(auto dis : dislike[current]) {
-                    &#x2F;&#x2F; cout &lt;&lt; current &lt;&lt; group[current] &lt;&lt; dis &lt;&lt; group[dis] &lt;&lt; endl;
-                    if(group[dis] != -1 &amp;&amp; group[dis] != (group[current]^1)) return false;
-                    if(group[dis] == -1) {
-                        q.push(dis);
-                        count += 1;
-                    }
-                    group[dis] = group[current]^1;
-                }
-            }
-        }
-        return count == N;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; dislike;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; group;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">possibleBipartition</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">N</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">dislikes</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        dislike.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(N</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        group.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(N</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">dis </span><span>:</span><span style="color:#eff1f5;"> dislikes) {
+</span><span style="color:#eff1f5;">            dislike[dis[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(dis[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">            dislike[dis[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(dis[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(count </span><span>&lt;</span><span style="color:#eff1f5;"> N) {
+</span><span style="color:#eff1f5;">            queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> N; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(group[i] </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">                    group[i] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">            count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">q.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">                q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> dis </span><span>:</span><span style="color:#eff1f5;"> dislike[current]) {
+</span><span style="color:#eff1f5;">                    </span><span style="color:#65737e;">// cout &lt;&lt; current &lt;&lt; group[current] &lt;&lt; dis &lt;&lt; group[dis] &lt;&lt; endl;
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(group[dis] </span><span>!= -</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> group[dis] </span><span>!= </span><span style="color:#eff1f5;">(group[current]</span><span>^</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(group[dis] </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(dis);
+</span><span style="color:#eff1f5;">                        count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    }
+</span><span style="color:#eff1f5;">                    group[dis] </span><span>=</span><span style="color:#eff1f5;"> group[current]</span><span>^</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> count </span><span>==</span><span style="color:#eff1f5;"> N;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-29">January LeetCoding Challenge 29</h1>
 <h2 id="description-3">Description</h2>
 <p><strong>Vertical Order Traversal of a Binary Tree</strong></p>
@@ -322,60 +322,60 @@ public:
 <p>Return <em>the <strong>vertical order traversal</strong> of the binary tree</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/01/31/1236_example_1.PNG" alt="img" /></p>
-<pre><code>Input: root = [3,9,20,null,null,15,7]
-Output: [[9],[3,15],[20],[7]]
-Explanation: Without loss of generality, we can assume the root node is at position (0, 0):
-The node with value 9 occurs at position (-1, -1).
-The nodes with values 3 and 15 occur at positions (0, 0) and (0, -2).
-The node with value 20 occurs at position (1, -1).
-The node with value 7 occurs at position (2, -2).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [3,9,20,null,null,15,7]
+</span><span>Output: [[9],[3,15],[20],[7]]
+</span><span>Explanation: Without loss of generality, we can assume the root node is at position (0, 0):
+</span><span>The node with value 9 occurs at position (-1, -1).
+</span><span>The nodes with values 3 and 15 occur at positions (0, 0) and (0, -2).
+</span><span>The node with value 20 occurs at position (1, -1).
+</span><span>The node with value 7 occurs at position (2, -2).
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/01/31/tree2.png" alt="img" /></p>
-<pre><code>Input: root = [1,2,3,4,5,6,7]
-Output: [[4],[2],[1,5,6],[3],[7]]
-Explanation: The node with value 5 and the node with value 6 have the same position according to the given scheme.
-However, in the report [1,5,6], the node with value 5 comes first since 5 is smaller than 6.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,2,3,4,5,6,7]
+</span><span>Output: [[4],[2],[1,5,6],[3],[7]]
+</span><span>Explanation: The node with value 5 and the node with value 6 have the same position according to the given scheme.
+</span><span>However, in the report [1,5,6], the node with value 5 comes first since 5 is smaller than 6.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>
 <li><code>0 &lt;= Node.val &lt;= 1000</code></li>
 </ul>
 <h2 id="solution-3">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    typedef struct _node {
-        int y;
-        int val;
-        _node(int y, int val): y(y), val(val) {}
-        bool operator&lt;(const _node &amp;a) {
-            return this-&gt;y &gt; a.y || (this-&gt;y == a.y &amp;&amp; this-&gt;val &lt; a.val);
-        }
-    } node;
-    map&lt;int, vector&lt;node&gt;&gt; result;
-    void traversal(TreeNode *root, int x, int y) {
-        if(!root) return;
-        result[x].push_back(node(y, root-&gt;val));
-        traversal(root-&gt;left, x-1, y-1);
-        traversal(root-&gt;right, x+1, y-1);
-    }
-public:
-    vector&lt;vector&lt;int&gt;&gt; verticalTraversal(TreeNode* root) {
-        traversal(root, 0, 0);
-        vector&lt;vector&lt;int&gt;&gt; answer;
-        for(auto &amp;[_, nodes] : result) {
-            answer.push_back(vector&lt;int&gt;());
-            if(nodes.size() == 1) {
-                answer.back().push_back(nodes.back().val);
-            } else {
-                sort(nodes.begin(), nodes.end());
-                for(auto &amp;node : nodes) answer.back().push_back(node.val);
-            }
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">typedef struct</span><span style="color:#eff1f5;"> _node {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> y;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">_node</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> y, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val)</span><span>: </span><span style="color:#bf616a;">y</span><span style="color:#eff1f5;">(y), </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">(val) {}
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">bool operator</span><span>&lt;</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> _node </span><span>&amp;</span><span style="color:#eff1f5;">a) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">y </span><span>&gt;</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">y </span><span>|| </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">y </span><span>==</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">y </span><span>&amp;&amp; </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    } node;
+</span><span style="color:#eff1f5;">    map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, vector&lt;node&gt;&gt; result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">traversal</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">y</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        result[x].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">node</span><span style="color:#eff1f5;">(y, root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, x</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, y</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, x</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, y</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">verticalTraversal</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[_, nodes] </span><span>:</span><span style="color:#eff1f5;"> result) {
+</span><span style="color:#eff1f5;">            answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;());
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nodes.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(nodes.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nodes.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nodes.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">node </span><span>:</span><span style="color:#eff1f5;"> nodes) answer.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(node.</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

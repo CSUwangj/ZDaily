@@ -123,27 +123,27 @@ renderMathInElement(document.body, katex_config);
 <li><code>'c'</code> maps to <code>&quot;-.-.&quot;</code>, and so on.</li>
 </ul>
 <p>For convenience, the full table for the <code>26</code> letters of the English alphabet is given below:</p>
-<pre><code>[&quot;.-&quot;,&quot;-...&quot;,&quot;-.-.&quot;,&quot;-..&quot;,&quot;.&quot;,&quot;..-.&quot;,&quot;--.&quot;,&quot;....&quot;,&quot;..&quot;,&quot;.---&quot;,&quot;-.-&quot;,&quot;.-..&quot;,&quot;--&quot;,&quot;-.&quot;,&quot;---&quot;,&quot;.--.&quot;,&quot;--.-&quot;,&quot;.-.&quot;,&quot;...&quot;,&quot;-&quot;,&quot;..-&quot;,&quot;...-&quot;,&quot;.--&quot;,&quot;-..-&quot;,&quot;-.--&quot;,&quot;--..&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[&quot;.-&quot;,&quot;-...&quot;,&quot;-.-.&quot;,&quot;-..&quot;,&quot;.&quot;,&quot;..-.&quot;,&quot;--.&quot;,&quot;....&quot;,&quot;..&quot;,&quot;.---&quot;,&quot;-.-&quot;,&quot;.-..&quot;,&quot;--&quot;,&quot;-.&quot;,&quot;---&quot;,&quot;.--.&quot;,&quot;--.-&quot;,&quot;.-.&quot;,&quot;...&quot;,&quot;-&quot;,&quot;..-&quot;,&quot;...-&quot;,&quot;.--&quot;,&quot;-..-&quot;,&quot;-.--&quot;,&quot;--..&quot;]
+</span></code></pre>
 <p>Given an array of strings <code>words</code> where each word can be written as a concatenation of the Morse code of each letter.</p>
 <ul>
 <li>For example, <code>&quot;cab&quot;</code> can be written as <code>&quot;-.-..--...&quot;</code>, which is the concatenation of <code>&quot;-.-.&quot;</code>, <code>&quot;.-&quot;</code>, and <code>&quot;-...&quot;</code>. We will call such a concatenation the <strong>transformation</strong> of a word.</li>
 </ul>
 <p>Return <em>the number of different <strong>transformations</strong> among all words we have</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: words = [&quot;gin&quot;,&quot;zen&quot;,&quot;gig&quot;,&quot;msg&quot;]
-Output: 2
-Explanation: The transformation of each word is:
-&quot;gin&quot; -&gt; &quot;--...-.&quot;
-&quot;zen&quot; -&gt; &quot;--...-.&quot;
-&quot;gig&quot; -&gt; &quot;--...--.&quot;
-&quot;msg&quot; -&gt; &quot;--...--.&quot;
-There are 2 different transformations: &quot;--...-.&quot; and &quot;--...--.&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;gin&quot;,&quot;zen&quot;,&quot;gig&quot;,&quot;msg&quot;]
+</span><span>Output: 2
+</span><span>Explanation: The transformation of each word is:
+</span><span>&quot;gin&quot; -&gt; &quot;--...-.&quot;
+</span><span>&quot;zen&quot; -&gt; &quot;--...-.&quot;
+</span><span>&quot;gig&quot; -&gt; &quot;--...--.&quot;
+</span><span>&quot;msg&quot; -&gt; &quot;--...--.&quot;
+</span><span>There are 2 different transformations: &quot;--...-.&quot; and &quot;--...--.&quot;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: words = [&quot;a&quot;]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;a&quot;]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= words.length &lt;= 100</code></li>
@@ -151,27 +151,27 @@ Output: 1
 <li><code>words[i]</code> consists of lowercase English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  vector&lt;string&gt; m{&quot;.-&quot;,&quot;-...&quot;,&quot;-.-.&quot;,&quot;-..&quot;,&quot;.&quot;,&quot;..-.&quot;,&quot;--.&quot;,&quot;....&quot;,&quot;..&quot;,&quot;.---&quot;,&quot;-.-&quot;,&quot;.-..&quot;,&quot;--&quot;,&quot;-.&quot;,&quot;---&quot;,&quot;.--.&quot;,&quot;--.-&quot;,&quot;.-.&quot;,&quot;...&quot;,&quot;-&quot;,&quot;..-&quot;,&quot;...-&quot;,&quot;.--&quot;,&quot;-..-&quot;,&quot;-.--&quot;,&quot;--..&quot;};
-public:
-  int uniqueMorseRepresentations(vector&lt;string&gt;&amp; words) {
-    unordered_set&lt;string&gt; answer;
-    for(auto &amp;word : words) {
-      string code = &quot;&quot;;
-      for(auto c : word) {
-        code += m[c-&#x27;a&#x27;];
-      }
-      answer.insert(code);
-    }
-    return answer.size();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 82&#x2F;82 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 71.25 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 61.19 % of cpp submissions (8.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">{</span><span>&quot;</span><span style="color:#a3be8c;">.-</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">-...</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">-.-.</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">-..</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">.</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">..-.</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">--.</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">....</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">..</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">.---</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">-.-</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">.-..</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">--</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">-.</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">---</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">.--.</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">--.-</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">.-.</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">...</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">-</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">..-</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">...-</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">.--</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">-..-</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">-.--</span><span>&quot;</span><span style="color:#eff1f5;">,</span><span>&quot;</span><span style="color:#a3be8c;">--..</span><span>&quot;</span><span style="color:#eff1f5;">};
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">uniqueMorseRepresentations</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_set&lt;string&gt; answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> words) {
+</span><span style="color:#eff1f5;">      string code </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> word) {
+</span><span style="color:#eff1f5;">        code </span><span>+=</span><span style="color:#eff1f5;"> m[c</span><span>-&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(code);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 82/82 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 71.25 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 61.19 % of cpp submissions (8.5 MB)
+</span></code></pre>
 
     </div>
   </div>

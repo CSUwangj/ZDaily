@@ -122,116 +122,116 @@ renderMathInElement(document.body, katex_config);
 <p>The first few elements of <code>s</code> is <code>s = &quot;1221121221221121122……&quot;</code>. If we group the consecutive <code>1</code>'s and <code>2</code>'s in s, it will be <code>&quot;1 22 11 2 1 22 1 22 11 2 11 22 ......&quot;</code> and the occurrences of <code>1</code>'s or <code>2</code>'s in each group are <code>&quot;1 2 2 1 1 2 1 2 2 1 2 2 ......&quot;</code>. You can see that the occurrence sequence is <code>s</code> itself.</p>
 <p>Given an integer <code>n</code>, return the number of <code>1</code>'s in the first <code>n</code> number in the magical string <code>s</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 6
-Output: 3
-Explanation: The first 6 elements of magical string s is &quot;12211&quot; and it contains three 1&#x27;s, so return 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 6
+</span><span>Output: 3
+</span><span>Explanation: The first 6 elements of magical string s is &quot;12211&quot; and it contains three 1&#39;s, so return 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 1
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 105</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">int result[100001] = {1};
-auto speedup = [](){
-  int n = 100000;
-  int pos = 2;
-  int end = 3;
-  bool isTwo = false;
-  while(end &lt; n) {
-    if(isTwo) {
-      end += 2 - result[pos];
-    } else {
-      result[end++] = true;
-      if(!result[pos]) result[end++] = true;
-    }
-    isTwo = !isTwo;
-    pos += 1;
-  }
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int magicalString(int n) {
-    return accumulate(result, result + n, 0);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 64&#x2F;64 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 82.78 % of cpp submissions (6.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">int</span><span> result[</span><span style="color:#d08770;">100001</span><span>] = {</span><span style="color:#d08770;">1</span><span>};
+</span><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  </span><span style="color:#b48ead;">int</span><span> n = </span><span style="color:#d08770;">100000</span><span>;
+</span><span>  </span><span style="color:#b48ead;">int</span><span> pos = </span><span style="color:#d08770;">2</span><span>;
+</span><span>  </span><span style="color:#b48ead;">int</span><span> end = </span><span style="color:#d08770;">3</span><span>;
+</span><span>  </span><span style="color:#b48ead;">bool</span><span> isTwo = </span><span style="color:#d08770;">false</span><span>;
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(end &lt; n) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(isTwo) {
+</span><span>      end += </span><span style="color:#d08770;">2 </span><span>- result[pos];
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>      result[end++] = </span><span style="color:#d08770;">true</span><span>;
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(!result[pos]) result[end++] = </span><span style="color:#d08770;">true</span><span>;
+</span><span>    }
+</span><span>    isTwo = !isTwo;
+</span><span>    pos += </span><span style="color:#d08770;">1</span><span>;
+</span><span>  }
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">magicalString</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">accumulate</span><span style="color:#eff1f5;">(result, result </span><span>+</span><span style="color:#eff1f5;"> n, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 64/64 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 82.78 % of cpp submissions (6.6 MB)
+</span></code></pre>
 <h1 id="august-leetcoding-challenge-3">August LeetCoding Challenge 3</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Subsets II</strong></p>
 <p>Given an integer array <code>nums</code> that may contain duplicates, return <em>all possible subsets (the power set)</em>.</p>
 <p>The solution set <strong>must not</strong> contain duplicate subsets. Return the solution in <strong>any order</strong>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,2,2]
-Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,2]
+</span><span>Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0]
-Output: [[],[0]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0]
+</span><span>Output: [[],[0]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10</code></li>
 <li><code>-10 &lt;= nums[i] &lt;= 10</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  int len;
-  void solve(
-    vector&lt;vector&lt;int&gt;&gt; &amp;answer,
-    vector&lt;int&gt; &amp;container,
-    vector&lt;int&gt;&amp; nums,
-    int begin
-  ) {
-    if(begin == len) {
-      answer.push_back(container);
-      return;
-    }
-    int end = begin + 1;
-    while(end &lt; len &amp;&amp; nums[end] == nums[end - 1]) end += 1;
-    solve(answer, container, nums, end);
-    for(int i = begin; i &lt; end; ++i) {
-      container.push_back(nums[begin]);
-      solve(answer, container, nums, end);
-    }
-    for(int i = begin; i &lt; end; ++i) {
-      container.pop_back();
-    }
-  }
-public:
-  vector&lt;vector&lt;int&gt;&gt; subsetsWithDup(vector&lt;int&gt;&amp; nums) {
-    sort(nums.begin(), nums.end());
-    len = nums.size();
-    vector&lt;vector&lt;int&gt;&gt; answer;
-    vector&lt;int&gt; tmp;
-    solve(answer, tmp, nums, 0);
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 19&#x2F;19 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 24.23 % of cpp submissions (11.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">container</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">,
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin
+</span><span style="color:#eff1f5;">  ) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span>==</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(container);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> begin </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(end </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[end] </span><span>==</span><span style="color:#eff1f5;"> nums[end </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) end </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, container, nums, end);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> begin; i </span><span>&lt;</span><span style="color:#eff1f5;"> end; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      container.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(nums[begin]);
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, container, nums, end);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> begin; i </span><span>&lt;</span><span style="color:#eff1f5;"> end; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      container.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">subsetsWithDup</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; answer;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; tmp;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(answer, tmp, nums, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 19/19 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 24.23 % of cpp submissions (11.6 MB)
+</span></code></pre>
 
     </div>
   </div>

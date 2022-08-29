@@ -140,17 +140,17 @@ renderMathInElement(document.body, katex_config);
 <p>Given a string <code>s</code> representing a valid expression, implement a basic calculator to evaluate it, and return <em>the result of the evaluation</em>.</p>
 <p><strong>Note:</strong> You are <strong>not</strong> allowed to use any built-in function which evaluates strings as mathematical expressions, such as <code>eval()</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;1 + 1&quot;
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;1 + 1&quot;
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot; 2-1 + 2 &quot;
-Output: 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot; 2-1 + 2 &quot;
+</span><span>Output: 3
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;(1+(4+5+2)-3)+(6+8)&quot;
-Output: 23
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;(1+(4+5+2)-3)+(6+8)&quot;
+</span><span>Output: 23
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 3 * 10^5</code></li>
@@ -162,86 +162,86 @@ Output: 23
 <li>Every number and running calculation will fit in a signed 32-bit integer.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  bool shouldCompute(char current, char last) {
-    if(current == &#x27;(&#x27;) return false;
-    if((current == &#x27;+&#x27; || current == &#x27;-&#x27;) &amp;&amp; last != &#x27;(&#x27;) return true;
-    if(last == &#x27;*&#x27; || last == &#x27;&#x2F;&#x27;) return true;
-    return false;
-  }
-  void compute(stack&lt;int&gt; &amp;n, stack&lt;char&gt; &amp;op) {
-    char o = op.top();
-    op.pop();
-    int op2 = n.top();
-    n.pop();
-    if(o == &#x27;u&#x27;) {
-      n.push(-op2);
-      return;
-    }
-    int op1 = n.top();
-    n.pop();
-    &#x2F;&#x2F; cout &lt;&lt; op1 &lt;&lt; &#x27; &#x27;&lt;&lt; o &lt;&lt; &quot; &quot; &lt;&lt; op2 &lt;&lt; endl;
-    switch(o){
-      case &#x27;+&#x27;:
-        n.push(op1+op2);
-        break;
-      case &#x27;-&#x27;:
-        n.push(op1-op2);
-        break;
-      case &#x27;*&#x27;:
-        n.push(op1*op2);
-        break;
-      case &#x27;&#x2F;&#x27;:
-        n.push(op1&#x2F;op2);
-        break;
-    }
-  }
-public:
-  int calculate(string s) {
-    int curNum = 0;
-    stack&lt;int&gt; n;
-    stack&lt;char&gt; op;
-    bool inNum = false;
-    bool inCompute = false;
-    bool negative = false;
-    &#x2F;&#x2F; cout &lt;&lt; &quot;$$$$$$$$$$$$$$$$$$$$&quot; &lt;&lt; endl;
-    for(auto c : s) {
-      if(c == &#x27; &#x27;) continue;
-      if(inNum &amp;&amp; !isdigit(c)) {
-        if(negative) curNum = -curNum;
-        &#x2F;&#x2F; cout &lt;&lt; curNum &lt;&lt; endl;
-        n.push(curNum);
-        curNum = 0;
-        inNum = false;
-        negative = false;
-      }
-      if(!inCompute &amp;&amp; !inNum &amp;&amp; c == &#x27;-&#x27;) {
-        op.push(&#x27;u&#x27;);
-      } else if(isdigit(c)) {
-        curNum *= 10;
-        curNum += c - &#x27;0&#x27;;
-        inNum = true;
-      } else if(c == &#x27;)&#x27;) {
-        while(op.size() &amp;&amp; op.top() != &#x27;(&#x27;) {
-          compute(n, op);
-        }
-        op.pop();
-      } else {
-        while(op.size() &amp;&amp; shouldCompute(c, op.top())) {
-          compute(n, op);
-        }
-        op.push(c);
-      }
-      inCompute = c != &#x27;(&#x27;;
-    }
-    if(inNum) n.push(curNum);
-    while(op.size()) {
-      compute(n, op);
-    }
-    return n.top();
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">shouldCompute</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">char </span><span style="color:#bf616a;">current</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char </span><span style="color:#bf616a;">last</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current </span><span>== &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((current </span><span>== &#39;</span><span style="color:#a3be8c;">+</span><span>&#39; ||</span><span style="color:#eff1f5;"> current </span><span>== &#39;</span><span style="color:#a3be8c;">-</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> last </span><span>!= &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(last </span><span>== &#39;</span><span style="color:#a3be8c;">*</span><span>&#39; ||</span><span style="color:#eff1f5;"> last </span><span>== &#39;</span><span style="color:#a3be8c;">/</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">compute</span><span style="color:#eff1f5;">(stack&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, stack&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">op</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> o </span><span>=</span><span style="color:#eff1f5;"> op.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    op.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> op2 </span><span>=</span><span style="color:#eff1f5;"> n.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    n.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(o </span><span>== &#39;</span><span style="color:#a3be8c;">u</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      n.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span>-</span><span style="color:#eff1f5;">op2);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> op1 </span><span>=</span><span style="color:#eff1f5;"> n.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    n.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; op1 &lt;&lt; &#39; &#39;&lt;&lt; o &lt;&lt; &quot; &quot; &lt;&lt; op2 &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">switch</span><span style="color:#eff1f5;">(o){
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">+</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">        n.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(op1</span><span>+</span><span style="color:#eff1f5;">op2);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">-</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">        n.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(op1</span><span>-</span><span style="color:#eff1f5;">op2);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">*</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">        n.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(op1</span><span>*</span><span style="color:#eff1f5;">op2);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">/</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">        n.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(op1</span><span>/</span><span style="color:#eff1f5;">op2);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">calculate</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curNum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    stack&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; n;
+</span><span style="color:#eff1f5;">    stack&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt; op;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> inNum </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> inCompute </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> negative </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;$$$$$$$$$$$$$$$$$$$$&quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>== &#39; &#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(inNum </span><span>&amp;&amp; !</span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(c)) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(negative) curNum </span><span>= -</span><span style="color:#eff1f5;">curNum;
+</span><span style="color:#eff1f5;">        </span><span style="color:#65737e;">// cout &lt;&lt; curNum &lt;&lt; endl;
+</span><span style="color:#eff1f5;">        n.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(curNum);
+</span><span style="color:#eff1f5;">        curNum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        inNum </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        negative </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">inCompute </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">inNum </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> c </span><span>== &#39;</span><span style="color:#a3be8c;">-</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        op.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">u</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(c)) {
+</span><span style="color:#eff1f5;">        curNum </span><span>*= </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        curNum </span><span>+=</span><span style="color:#eff1f5;"> c </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        inNum </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">)</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(op.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> op.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">() </span><span>!= &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#bf616a;">compute</span><span style="color:#eff1f5;">(n, op);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        op.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(op.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp; </span><span style="color:#bf616a;">shouldCompute</span><span style="color:#eff1f5;">(c, op.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">())) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#bf616a;">compute</span><span style="color:#eff1f5;">(n, op);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        op.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      inCompute </span><span>=</span><span style="color:#eff1f5;"> c </span><span>!= &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(inNum) n.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(curNum);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(op.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">compute</span><span style="color:#eff1f5;">(n, op);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> n.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

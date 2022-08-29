@@ -122,43 +122,43 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Given an integer <code>n</code>, return <em>its complement</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 5
-Output: 2
-Explanation: 5 is &quot;101&quot; in binary, with complement &quot;010&quot; in binary, which is 2 in base-10.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 5
+</span><span>Output: 2
+</span><span>Explanation: 5 is &quot;101&quot; in binary, with complement &quot;010&quot; in binary, which is 2 in base-10.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 7
-Output: 0
-Explanation: 7 is &quot;111&quot; in binary, with complement &quot;000&quot; in binary, which is 0 in base-10.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 7
+</span><span>Output: 0
+</span><span>Explanation: 7 is &quot;111&quot; in binary, with complement &quot;000&quot; in binary, which is 0 in base-10.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 10
-Output: 5
-Explanation: 10 is &quot;1010&quot; in binary, with complement &quot;0101&quot; in binary, which is 5 in base-10.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 10
+</span><span>Output: 5
+</span><span>Explanation: 10 is &quot;1010&quot; in binary, with complement &quot;0101&quot; in binary, which is 5 in base-10.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= n &lt; 10^9</code></li>
 </ul>
 <p><strong>Note:</strong> This question is the same as 476: https://leetcode.com/problems/number-complement/</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int bitwiseComplement(int n) {
-    if(n &gt; INT_MAX &#x2F; 2) return INT_MAX ^ n;
-    int bit = 1;
-    while(bit &lt;= n) {
-      bit &lt;&lt;= 1;
-    }
-    return (bit - 1 | 1) ^ n;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 128&#x2F;128 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 75.27 % of cpp submissions (5.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">bitwiseComplement</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>&gt;</span><span style="color:#eff1f5;"> INT_MAX </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> INT_MAX </span><span>^</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> bit </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(bit </span><span>&lt;=</span><span style="color:#eff1f5;"> n) {
+</span><span style="color:#eff1f5;">      bit </span><span>&lt;&lt;= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(bit </span><span>- </span><span style="color:#d08770;">1 </span><span>| </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>^</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 128/128 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 75.27 % of cpp submissions (5.9 MB)
+</span></code></pre>
 
     </div>
   </div>

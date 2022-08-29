@@ -126,34 +126,34 @@ renderMathInElement(document.body, katex_config);
 </ol>
 <p>Return <em>the sum of all the scores on the record</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: ops = [&quot;5&quot;,&quot;2&quot;,&quot;C&quot;,&quot;D&quot;,&quot;+&quot;]
-Output: 30
-Explanation:
-&quot;5&quot; - Add 5 to the record, record is now [5].
-&quot;2&quot; - Add 2 to the record, record is now [5, 2].
-&quot;C&quot; - Invalidate and remove the previous score, record is now [5].
-&quot;D&quot; - Add 2 * 5 = 10 to the record, record is now [5, 10].
-&quot;+&quot; - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].
-The total sum is 5 + 10 + 15 = 30.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: ops = [&quot;5&quot;,&quot;2&quot;,&quot;C&quot;,&quot;D&quot;,&quot;+&quot;]
+</span><span>Output: 30
+</span><span>Explanation:
+</span><span>&quot;5&quot; - Add 5 to the record, record is now [5].
+</span><span>&quot;2&quot; - Add 2 to the record, record is now [5, 2].
+</span><span>&quot;C&quot; - Invalidate and remove the previous score, record is now [5].
+</span><span>&quot;D&quot; - Add 2 * 5 = 10 to the record, record is now [5, 10].
+</span><span>&quot;+&quot; - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].
+</span><span>The total sum is 5 + 10 + 15 = 30.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: ops = [&quot;5&quot;,&quot;-2&quot;,&quot;4&quot;,&quot;C&quot;,&quot;D&quot;,&quot;9&quot;,&quot;+&quot;,&quot;+&quot;]
-Output: 27
-Explanation:
-&quot;5&quot; - Add 5 to the record, record is now [5].
-&quot;-2&quot; - Add -2 to the record, record is now [5, -2].
-&quot;4&quot; - Add 4 to the record, record is now [5, -2, 4].
-&quot;C&quot; - Invalidate and remove the previous score, record is now [5, -2].
-&quot;D&quot; - Add 2 * -2 = -4 to the record, record is now [5, -2, -4].
-&quot;9&quot; - Add 9 to the record, record is now [5, -2, -4, 9].
-&quot;+&quot; - Add -4 + 9 = 5 to the record, record is now [5, -2, -4, 9, 5].
-&quot;+&quot; - Add 9 + 5 = 14 to the record, record is now [5, -2, -4, 9, 5, 14].
-The total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: ops = [&quot;5&quot;,&quot;-2&quot;,&quot;4&quot;,&quot;C&quot;,&quot;D&quot;,&quot;9&quot;,&quot;+&quot;,&quot;+&quot;]
+</span><span>Output: 27
+</span><span>Explanation:
+</span><span>&quot;5&quot; - Add 5 to the record, record is now [5].
+</span><span>&quot;-2&quot; - Add -2 to the record, record is now [5, -2].
+</span><span>&quot;4&quot; - Add 4 to the record, record is now [5, -2, 4].
+</span><span>&quot;C&quot; - Invalidate and remove the previous score, record is now [5, -2].
+</span><span>&quot;D&quot; - Add 2 * -2 = -4 to the record, record is now [5, -2, -4].
+</span><span>&quot;9&quot; - Add 9 to the record, record is now [5, -2, -4, 9].
+</span><span>&quot;+&quot; - Add -4 + 9 = 5 to the record, record is now [5, -2, -4, 9, 5].
+</span><span>&quot;+&quot; - Add 9 + 5 = 14 to the record, record is now [5, -2, -4, 9, 5, 14].
+</span><span>The total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: ops = [&quot;1&quot;]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: ops = [&quot;1&quot;]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= ops.length &lt;= 1000</code></li>
@@ -162,30 +162,30 @@ Output: 1
 <li>For operations <code>&quot;C&quot;</code> and <code>&quot;D&quot;</code>, there will always be at least one previous score on the record.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int calPoints(vector&lt;string&gt;&amp; ops) {
-    vector&lt;int&gt; points;
-    for(const auto &amp;op : ops) {
-      if (op[0] == &#x27;C&#x27;) {
-        points.pop_back();
-      } else if (op[0] == &#x27;D&#x27;) {
-        points.push_back(points.back() * 2);
-      } else if (op[0] == &#x27;+&#x27;) {
-        points.push_back(points.back() + points[points.size() - 2]);
-      } else {
-        points.push_back(stoi(op));
-      }
-    }
-    return accumulate(points.begin(), points.end(), 0);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 39&#x2F;39 cases passed (7 ms)
-&#x2F;&#x2F; Your runtime beats 43.82 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 95.63 % of cpp submissions (8.3 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">calPoints</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">ops</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; points;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const auto </span><span>&amp;</span><span style="color:#eff1f5;">op </span><span>:</span><span style="color:#eff1f5;"> ops) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(op[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">C</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        points.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if </span><span style="color:#eff1f5;">(op[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">D</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        points.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(points.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if </span><span style="color:#eff1f5;">(op[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>== &#39;</span><span style="color:#a3be8c;">+</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        points.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(points.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>+</span><span style="color:#eff1f5;"> points[points.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        points.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">stoi</span><span style="color:#eff1f5;">(op));
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">accumulate</span><span style="color:#eff1f5;">(points.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), points.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 39/39 cases passed (7 ms)
+</span><span style="color:#65737e;">// Your runtime beats 43.82 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 95.63 % of cpp submissions (8.3 MB)
+</span></code></pre>
 
     </div>
   </div>

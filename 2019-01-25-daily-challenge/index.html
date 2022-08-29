@@ -125,38 +125,38 @@ renderMathInElement(document.body, katex_config);
 <p>There is quick way to find palindromes, but rewrite it in rust is a suffer.</p>
 <p>So I use brute force, which makes me happier :D</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    const LIMIT: usize = 1_000_000;
-    let mut ans: usize = 0;
-    for i in 1..LIMIT {
-        if double_base_palindrome(i) {
-            println!(&quot;{}, {}&quot;, i, format!(&quot;{:b}&quot;, i));
-            ans += i;
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn double_base_palindrome(n: usize) -&gt; bool {
-    let s = n.to_string();
-    &#x2F;&#x2F; println!(&quot;{}&quot;,s);
-    let s = s.as_bytes();
-    for i in 0..(s.len()&#x2F;2) {
-        if s[i] != s[s.len()-1-i] {
-            return false;
-        }
-    }
-    let s = format!(&quot;{:b}&quot;, n);
-    &#x2F;&#x2F; println!(&quot;{}&quot;,s);
-    let s = s.as_bytes();
-    for i in 0..(s.len()&#x2F;2) {
-        if s[i] != s[s.len()-1-i] {
-            return false;
-        }
-    }
-    true
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#d08770;">LIMIT</span><span>: </span><span style="color:#b48ead;">usize </span><span>= </span><span style="color:#d08770;">1_000_000</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: </span><span style="color:#b48ead;">usize </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">LIMIT </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">double_base_palindrome</span><span>(i) {
+</span><span>            println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span>&quot;, i, format!(&quot;</span><span style="color:#d08770;">{:b}</span><span>&quot;, i));
+</span><span>            ans += i;
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">double_base_palindrome</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let</span><span> s = n.</span><span style="color:#96b5b4;">to_string</span><span>();
+</span><span>    </span><span style="color:#65737e;">// println!(&quot;{}&quot;,s);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> s = s.</span><span style="color:#96b5b4;">as_bytes</span><span>();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..(s.</span><span style="color:#96b5b4;">len</span><span>()/</span><span style="color:#d08770;">2</span><span>) {
+</span><span>        </span><span style="color:#b48ead;">if</span><span> s[i] != s[s.</span><span style="color:#96b5b4;">len</span><span>()-</span><span style="color:#d08770;">1</span><span>-i] {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let</span><span> s = format!(&quot;</span><span style="color:#d08770;">{:b}</span><span>&quot;, n);
+</span><span>    </span><span style="color:#65737e;">// println!(&quot;{}&quot;,s);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> s = s.</span><span style="color:#96b5b4;">as_bytes</span><span>();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..(s.</span><span style="color:#96b5b4;">len</span><span>()/</span><span style="color:#d08770;">2</span><span>) {
+</span><span>        </span><span style="color:#b48ead;">if</span><span> s[i] != s[s.</span><span style="color:#96b5b4;">len</span><span>()-</span><span style="color:#d08770;">1</span><span>-i] {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#d08770;">true
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="501-find-mode-in-binary-search-tree">501. Find Mode in Binary Search Tree</h3>
@@ -169,12 +169,12 @@ fn double_base_palindrome(n: usize) -&gt; bool {
 </ul>
 <p>For example:
 Given BST <code>[1,null,2,2]</code>,</p>
-<pre><code>   1
-    \
-     2
-    &#x2F;
-   2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>   1
+</span><span>    \
+</span><span>     2
+</span><span>    /
+</span><span>   2
+</span></code></pre>
 <p>return <code>[2]</code>.</p>
 <p><strong>Note:</strong> If a tree has more than one mode, you can return them in any order.</p>
 <p><strong>Follow up:</strong> Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count).</p>
@@ -182,72 +182,72 @@ Given BST <code>[1,null,2,2]</code>,</p>
 <p>First I solve it by using a set, then rewrite it with another approach with less space usage.</p>
 <p>Because problem is easy, so I don't want to explain my solution, check the code~:D</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- *&#x2F;
-&#x2F;**
- * @param {TreeNode} root
- * @return {number[]}
- *&#x2F;
-var findMode = function(root) {
-  let map = new Map();
-  let ans = [];
-  const travel = (root) =&gt; {
-    if (!root) return;
-    if (map.has(root.val)) map.set(root.val, map.get(root.val) + 1);
-    else map.set(root.val, 1);
-    travel(root.left);
-    travel(root.right);
-  };
-  travel(root);
-  let mx = 0;
-  for (const [_key, value] of map.entries()) {
-    mx = mx &lt; value? value: mx;
-  }
-  for (const [key, value] of map.entries()) {
-    if (value === mx) ans.push(key);
-  }
-  return ans;
-};
-</code></pre>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {TreeNode} root
- * @return {number[]}
- *&#x2F;
-var findMode = function(root) {
-  let ans = [];
-  let cnt = 0;
-  let mxcnt = 0;
-  let cur = null;
-  const inorder_travel = (root) =&gt; {
-    if (!root) return;
-    inorder_travel(root.left);
-    handle_val(root.val);
-    inorder_travel(root.right);
-  };
-  const handle_val = (val) =&gt; {
-    if (val !== cur) {
-      cur = val;
-      cnt = 1;
-    } else {
-      cnt += 1;
-    }
-    if (cnt &gt; mxcnt) {
-      ans.splice(0, ans.length);
-      ans.push(val);
-      mxcnt = cnt;
-    } else if (cnt === mxcnt) {
-      ans.push(val);
-    }
-  };
-  inorder_travel(root);
-  return ans;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * function TreeNode(val) {
+</span><span style="color:#65737e;"> *     this.val = val;
+</span><span style="color:#65737e;"> *     this.left = this.right = null;
+</span><span style="color:#65737e;"> * }
+</span><span style="color:#65737e;"> */
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{TreeNode} </span><span style="color:#bf616a;">root
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">findMode </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">root</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">map </span><span>= new Map();
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">travel </span><span>= (</span><span style="color:#bf616a;">root</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(!root) </span><span style="color:#b48ead;">return</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">has</span><span>(root.</span><span style="color:#bf616a;">val</span><span>)) </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">set</span><span>(root.</span><span style="color:#bf616a;">val</span><span>, </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">get</span><span>(root.</span><span style="color:#bf616a;">val</span><span>) + </span><span style="color:#d08770;">1</span><span>);
+</span><span>    </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">set</span><span>(root.</span><span style="color:#bf616a;">val</span><span>, </span><span style="color:#d08770;">1</span><span>);
+</span><span>    </span><span style="color:#8fa1b3;">travel</span><span>(root.left);
+</span><span>    </span><span style="color:#8fa1b3;">travel</span><span>(root.right);
+</span><span>  };
+</span><span>  </span><span style="color:#8fa1b3;">travel</span><span>(root);
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">mx </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span>[</span><span style="color:#bf616a;">_key</span><span>, </span><span style="color:#bf616a;">value</span><span>] of </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">entries</span><span>()) {
+</span><span>    </span><span style="color:#bf616a;">mx </span><span>= </span><span style="color:#bf616a;">mx </span><span>&lt; </span><span style="color:#bf616a;">value</span><span>? </span><span style="color:#bf616a;">value</span><span>: </span><span style="color:#bf616a;">mx</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span>[</span><span style="color:#bf616a;">key</span><span>, </span><span style="color:#bf616a;">value</span><span>] of </span><span style="color:#bf616a;">map</span><span>.</span><span style="color:#96b5b4;">entries</span><span>()) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">value </span><span>=== </span><span style="color:#bf616a;">mx</span><span>) </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">key</span><span>);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{TreeNode} </span><span style="color:#bf616a;">root
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">findMode </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">root</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cnt </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">mxcnt </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#d08770;">null</span><span>;
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">inorder_travel </span><span>= (</span><span style="color:#bf616a;">root</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(!root) </span><span style="color:#b48ead;">return</span><span>;
+</span><span>    </span><span style="color:#8fa1b3;">inorder_travel</span><span>(root.left);
+</span><span>    </span><span style="color:#8fa1b3;">handle_val</span><span>(root.</span><span style="color:#bf616a;">val</span><span>);
+</span><span>    </span><span style="color:#8fa1b3;">inorder_travel</span><span>(root.right);
+</span><span>  };
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">handle_val </span><span>= (</span><span style="color:#bf616a;">val</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">val </span><span>!== </span><span style="color:#bf616a;">cur</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#bf616a;">val</span><span>;
+</span><span>      </span><span style="color:#bf616a;">cnt </span><span>= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>      </span><span style="color:#bf616a;">cnt </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">cnt </span><span>&gt; </span><span style="color:#bf616a;">mxcnt</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">splice</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#bf616a;">ans</span><span>.length);
+</span><span>      </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">val</span><span>);
+</span><span>      </span><span style="color:#bf616a;">mxcnt </span><span>= </span><span style="color:#bf616a;">cnt</span><span>;
+</span><span>    } </span><span style="color:#b48ead;">else if </span><span>(</span><span style="color:#bf616a;">cnt </span><span>=== </span><span style="color:#bf616a;">mxcnt</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">val</span><span>);
+</span><span>    }
+</span><span>  };
+</span><span>  </span><span style="color:#8fa1b3;">inorder_travel</span><span>(root);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

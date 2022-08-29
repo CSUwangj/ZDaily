@@ -125,25 +125,25 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return <code>True</code> if the equation is solvable otherwise return <code>False</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: words = [&quot;SEND&quot;,&quot;MORE&quot;], result = &quot;MONEY&quot;
-Output: true
-Explanation: Map &#x27;S&#x27;-&gt; 9, &#x27;E&#x27;-&gt;5, &#x27;N&#x27;-&gt;6, &#x27;D&#x27;-&gt;7, &#x27;M&#x27;-&gt;1, &#x27;O&#x27;-&gt;0, &#x27;R&#x27;-&gt;8, &#x27;Y&#x27;-&gt;&#x27;2&#x27;
-Such that: &quot;SEND&quot; + &quot;MORE&quot; = &quot;MONEY&quot; ,  9567 + 1085 = 10652
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;SEND&quot;,&quot;MORE&quot;], result = &quot;MONEY&quot;
+</span><span>Output: true
+</span><span>Explanation: Map &#39;S&#39;-&gt; 9, &#39;E&#39;-&gt;5, &#39;N&#39;-&gt;6, &#39;D&#39;-&gt;7, &#39;M&#39;-&gt;1, &#39;O&#39;-&gt;0, &#39;R&#39;-&gt;8, &#39;Y&#39;-&gt;&#39;2&#39;
+</span><span>Such that: &quot;SEND&quot; + &quot;MORE&quot; = &quot;MONEY&quot; ,  9567 + 1085 = 10652
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: words = [&quot;SIX&quot;,&quot;SEVEN&quot;,&quot;SEVEN&quot;], result = &quot;TWENTY&quot;
-Output: true
-Explanation: Map &#x27;S&#x27;-&gt; 6, &#x27;I&#x27;-&gt;5, &#x27;X&#x27;-&gt;0, &#x27;E&#x27;-&gt;8, &#x27;V&#x27;-&gt;7, &#x27;N&#x27;-&gt;2, &#x27;T&#x27;-&gt;1, &#x27;W&#x27;-&gt;&#x27;3&#x27;, &#x27;Y&#x27;-&gt;4
-Such that: &quot;SIX&quot; + &quot;SEVEN&quot; + &quot;SEVEN&quot; = &quot;TWENTY&quot; ,  650 + 68782 + 68782 = 138214
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;SIX&quot;,&quot;SEVEN&quot;,&quot;SEVEN&quot;], result = &quot;TWENTY&quot;
+</span><span>Output: true
+</span><span>Explanation: Map &#39;S&#39;-&gt; 6, &#39;I&#39;-&gt;5, &#39;X&#39;-&gt;0, &#39;E&#39;-&gt;8, &#39;V&#39;-&gt;7, &#39;N&#39;-&gt;2, &#39;T&#39;-&gt;1, &#39;W&#39;-&gt;&#39;3&#39;, &#39;Y&#39;-&gt;4
+</span><span>Such that: &quot;SIX&quot; + &quot;SEVEN&quot; + &quot;SEVEN&quot; = &quot;TWENTY&quot; ,  650 + 68782 + 68782 = 138214
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: words = [&quot;THIS&quot;,&quot;IS&quot;,&quot;TOO&quot;], result = &quot;FUNNY&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;THIS&quot;,&quot;IS&quot;,&quot;TOO&quot;], result = &quot;FUNNY&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: words = [&quot;LEET&quot;,&quot;CODE&quot;], result = &quot;POINT&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: words = [&quot;LEET&quot;,&quot;CODE&quot;], result = &quot;POINT&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= words.length &lt;= 5</code></li>
@@ -153,79 +153,79 @@ Output: false
 </ul>
 <h2 id="solution">Solution</h2>
 <p>reverse the numbers so we can determine if we need to go deeper earlier.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    int mp[128];
-    unordered_map&lt;char, bool&gt; leading;
-    bool used[10] = {false};
-    int maxLength = 0;
-    bool dfs(vector&lt;string&gt;&amp; words, string &amp;result, int index, int sIndex, int sum) {
-        if(sIndex &gt; maxLength) return true;
-        if(index == words.size()) {
-            if(mp[result[sIndex]] != -1 &amp;&amp; mp[result[sIndex]] != sum%10) return false;
-            if(mp[result[sIndex]] == -1 &amp;&amp; used[sum%10]) return false;
-            if(sum % 10 == 0 &amp;&amp; leading[result[sIndex]]) return false;
-            bool u = used[sum%10];
-            if(!u) {
-                mp[result[sIndex]] = sum%10;
-                used[sum%10] = true;
-            }
-            if(dfs(words, result, 0, sIndex+1, sum&#x2F;10)) return true;
-            if(!u){
-                used[sum%10] = false;
-                mp[result[sIndex]] = -1;
-            }
-            return false;
-        }
-        if(sIndex &gt;= words[index].length()) return dfs(words, result, index+1, sIndex, sum);
-        if(mp[words[index][sIndex]] != -1) return dfs(words, result, index+1, sIndex, sum+mp[words[index][sIndex]]);
-        for(int i = leading[words[index][sIndex]]; i &lt; 10; ++i) {
-            if(used[i]) continue;
-            used[i] = true;
-            mp[words[index][sIndex]] = i;
-            if(dfs(words, result, index+1, sIndex, sum+i)) return true;
-            used[i] = false;
-            mp[words[index][sIndex]] = -1;
-        }
-        return false;
-    }
-public:
-    bool isSolvable(vector&lt;string&gt;&amp; words, string result) {
-        for(auto &amp;word : words) {
-            if(word.length() &gt; 1) leading[word[0]] = true;
-            if(maxLength &lt; word.length()) maxLength = word.length();
-            for(auto c : word) {
-                mp[c] = -1;
-            }
-        }
-        if(result.length() &gt; 1) leading[result[0]] = true;
-        if(maxLength &gt; result.length()) return false;
-        maxLength = result.length();
-        for(auto c : result) {
-            mp[c] = -1;
-        }
-        reverse(result.begin(), result.end());
-        for(auto &amp;word : words) {
-            reverse(word.begin(), word.end());
-        }
-        return dfs(words, result, 0, 0, 0);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mp[</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; leading;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> used[</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxLength </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">dfs</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sIndex </span><span>&gt;</span><span style="color:#eff1f5;"> maxLength) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> words.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp[result[</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]] </span><span>!= -</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> mp[result[</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]] </span><span>!=</span><span style="color:#eff1f5;"> sum</span><span>%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp[result[</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]] </span><span>== -</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> used[sum</span><span>%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sum </span><span>% </span><span style="color:#d08770;">10 </span><span>== </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> leading[result[</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> u </span><span>=</span><span style="color:#eff1f5;"> used[sum</span><span>%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">u) {
+</span><span style="color:#eff1f5;">                mp[result[</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]] </span><span>=</span><span style="color:#eff1f5;"> sum</span><span>%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                used[sum</span><span>%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">sIndex</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, sum</span><span>/</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">u){
+</span><span style="color:#eff1f5;">                used[sum</span><span>%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                mp[result[</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]] </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">sIndex </span><span>&gt;=</span><span style="color:#eff1f5;"> words[index].</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, index</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">, sum);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp[words[index][</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]] </span><span>!= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, index</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">, sum</span><span>+</span><span style="color:#eff1f5;">mp[words[index][</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]]);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> leading[words[index][</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]]; i </span><span>&lt; </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(used[i]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            used[i] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            mp[words[index][</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, index</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">, sum</span><span>+</span><span style="color:#eff1f5;">i)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            used[i] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            mp[words[index][</span><span style="color:#bf616a;">sIndex</span><span style="color:#eff1f5;">]] </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isSolvable</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">words</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> words) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) leading[word[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(maxLength </span><span>&lt;</span><span style="color:#eff1f5;"> word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) maxLength </span><span>=</span><span style="color:#eff1f5;"> word.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> word) {
+</span><span style="color:#eff1f5;">                mp[c] </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>&gt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) leading[result[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(maxLength </span><span>&gt;</span><span style="color:#eff1f5;"> result.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        maxLength </span><span>=</span><span style="color:#eff1f5;"> result.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> result) {
+</span><span style="color:#eff1f5;">            mp[c] </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(result.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), result.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">word </span><span>:</span><span style="color:#eff1f5;"> words) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">reverse</span><span style="color:#eff1f5;">(word.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), word.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">dfs</span><span style="color:#eff1f5;">(words, result, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-6">January LeetCoding Challenge 6</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Kth Missing Positive Number</strong></p>
 <p>Given an array <code>arr</code> of positive integers sorted in a <strong>strictly increasing order</strong>, and an integer <code>k</code>.</p>
 <p><em>Find the</em> <code>kth</code> <em>positive integer that is missing from this array.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: arr = [2,3,4,7,11], k = 5
-Output: 9
-Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [2,3,4,7,11], k = 5
+</span><span>Output: 9
+</span><span>Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: arr = [1,2,3,4], k = 2
-Output: 6
-Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing positive integer is 6.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [1,2,3,4], k = 2
+</span><span>Output: 6
+</span><span>Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing positive integer is 6.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= arr.length &lt;= 1000</code></li>
@@ -234,28 +234,28 @@ Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing posi
 <li><code>arr[i] &lt; arr[j]</code> for <code>1 &lt;= i &lt; j &lt;= arr.length</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int findKthPositive(vector&lt;int&gt;&amp; arr, int k) {
-        int pos = 0;
-        int prev = 0;
-        arr.push_back(INT_MAX);
-        while(k) {
-            while(arr[pos] - prev == 1) {
-                prev = arr[pos];
-                pos += 1;
-            }
-            if(prev + k &lt; arr[pos]) return prev+k;
-            else {
-                k -= arr[pos] - prev - 1;
-                prev = arr[pos];
-                pos += 1;
-            }
-        }
-        return -1;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">findKthPositive</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> prev </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        arr.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(INT_MAX);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(k) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(arr[pos] </span><span>-</span><span style="color:#eff1f5;"> prev </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                prev </span><span>=</span><span style="color:#eff1f5;"> arr[pos];
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prev </span><span>+</span><span style="color:#eff1f5;"> k </span><span>&lt;</span><span style="color:#eff1f5;"> arr[pos]) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> prev</span><span>+</span><span style="color:#eff1f5;">k;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                k </span><span>-=</span><span style="color:#eff1f5;"> arr[pos] </span><span>-</span><span style="color:#eff1f5;"> prev </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                prev </span><span>=</span><span style="color:#eff1f5;"> arr[pos];
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

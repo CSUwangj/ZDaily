@@ -124,23 +124,23 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return True if it is possible to construct the <code>target</code> array from <code>A</code> otherwise return False.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: target = [9,3,5]
-Output: true
-Explanation: Start with [1, 1, 1] 
-[1, 1, 1], sum = 3 choose index 1
-[1, 3, 1], sum = 5 choose index 2
-[1, 3, 5], sum = 9 choose index 0
-[9, 3, 5] Done
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = [9,3,5]
+</span><span>Output: true
+</span><span>Explanation: Start with [1, 1, 1] 
+</span><span>[1, 1, 1], sum = 3 choose index 1
+</span><span>[1, 3, 1], sum = 5 choose index 2
+</span><span>[1, 3, 5], sum = 9 choose index 0
+</span><span>[9, 3, 5] Done
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: target = [1,1,1,2]
-Output: false
-Explanation: Impossible to create target array from [1,1,1,1].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = [1,1,1,2]
+</span><span>Output: false
+</span><span>Explanation: Impossible to create target array from [1,1,1,1].
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: target = [8,5]
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: target = [8,5]
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>N == target.length</code></li>
@@ -149,33 +149,33 @@ Output: true
 </ul>
 <h2 id="solution">Solution</h2>
 <p>I try to solve forward, but failed. it needs to be solved think reversely.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool isPossible(vector&lt;int&gt;&amp; target) {
-    if(target.size() == 1 &amp;&amp; target[0] != 1) return false;
-    priority_queue&lt;int&gt; q;
-    long long sum = 0;
-    for(auto i : target) {
-      q.push(i);
-      sum += i;
-    }
-    &#x2F;&#x2F; cout &lt;&lt; &quot;###########&quot; &lt;&lt; endl;
-    while(q.size() &amp;&amp; q.top() != 1) {
-      long long cur = q.top();
-      q.pop();
-      long long nxt = q.top();
-      long long diff = ceil(1.0 * (cur - nxt) &#x2F; (sum - cur)) * (sum - cur);
-      if(cur - diff == nxt &amp;&amp; nxt != 1) diff += (sum - cur); 
-      &#x2F;&#x2F; cout &lt;&lt; cur &lt;&lt; &#x27; &#x27; &lt;&lt; diff &lt;&lt; endl;
-      cur -= diff;
-      sum -= diff;
-      if(cur &lt; 1) return false;
-      q.push(cur);
-    }
-    return true;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isPossible</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(target.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>== </span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> target[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>!= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    priority_queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">      sum </span><span>+=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; &quot;###########&quot; &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">() </span><span>!= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> nxt </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> diff </span><span>= </span><span style="color:#96b5b4;">ceil</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1.0 </span><span>* </span><span style="color:#eff1f5;">(cur </span><span>-</span><span style="color:#eff1f5;"> nxt) </span><span>/ </span><span style="color:#eff1f5;">(sum </span><span>-</span><span style="color:#eff1f5;"> cur)) </span><span>* </span><span style="color:#eff1f5;">(sum </span><span>-</span><span style="color:#eff1f5;"> cur);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>-</span><span style="color:#eff1f5;"> diff </span><span>==</span><span style="color:#eff1f5;"> nxt </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nxt </span><span>!= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) diff </span><span>+= </span><span style="color:#eff1f5;">(sum </span><span>-</span><span style="color:#eff1f5;"> cur); 
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; cur &lt;&lt; &#39; &#39; &lt;&lt; diff &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      cur </span><span>-=</span><span style="color:#eff1f5;"> diff;
+</span><span style="color:#eff1f5;">      sum </span><span>-=</span><span style="color:#eff1f5;"> diff;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>&lt; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

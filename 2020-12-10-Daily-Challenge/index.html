@@ -120,21 +120,21 @@ renderMathInElement(document.body, katex_config);
 <p>If there is no path from <code>start</code> to <code>end</code>, <strong>return 0</strong>. Your answer will be accepted if it differs from the correct answer by at most <strong>1e-5</strong>.</p>
 <p><strong>Example 1:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/09/20/1558_ex1.png" alt="img" /></strong></p>
-<pre><code>Input: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2
-Output: 0.25000
-Explanation: There are two paths from start to end, one having a probability of success = 0.2 and the other has 0.5 * 0.5 = 0.25.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2
+</span><span>Output: 0.25000
+</span><span>Explanation: There are two paths from start to end, one having a probability of success = 0.2 and the other has 0.5 * 0.5 = 0.25.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/09/20/1558_ex2.png" alt="img" /></strong></p>
-<pre><code>Input: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2
-Output: 0.30000
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2
+</span><span>Output: 0.30000
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/09/20/1558_ex3.png" alt="img" /></strong></p>
-<pre><code>Input: n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2
-Output: 0.00000
-Explanation: There is no path between 0 and 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2
+</span><span>Output: 0.00000
+</span><span>Explanation: There is no path between 0 and 2.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= n &lt;= 10^4</code></li>
@@ -148,33 +148,33 @@ Explanation: There is no path between 0 and 2.
 </ul>
 <h2 id="solution">Solution</h2>
 <p>shortest path, using dijkstra algorithm.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    double maxProbability(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edges, vector&lt;double&gt;&amp; succProb, int start, int end) {
-        vector&lt;vector&lt;pair&lt;int, double&gt;&gt;&gt; neighbors(n);
-        int len = edges.size();
-        for(int i = 0; i &lt; len; ++i) {
-            neighbors[edges[i][0]].push_back(make_pair(edges[i][1], succProb[i]));
-            neighbors[edges[i][1]].push_back(make_pair(edges[i][0], succProb[i]));
-        }
-        priority_queue&lt;pair&lt;double, int&gt;&gt; q;
-        q.push(make_pair(1, start));
-        vector&lt;bool&gt; visited(n);
-        while(q.size()) {
-            auto [prob, cur] = q.top();
-            if(cur == end) return prob;
-            visited[cur] = true;
-            q.pop();
-            for(auto [nxt, nxtProb] : neighbors[cur]) {
-                if(!visited[nxt]) {
-                    q.push(make_pair(nxtProb*prob, nxt));
-                }
-            }
-        }
-        return 0;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">double </span><span style="color:#8fa1b3;">maxProbability</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">edges</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">succProb</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">start</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">&gt;&gt;&gt; </span><span style="color:#bf616a;">neighbors</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> edges.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            neighbors[edges[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(edges[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], succProb[i]));
+</span><span style="color:#eff1f5;">            neighbors[edges[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(edges[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], succProb[i]));
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        priority_queue&lt;pair&lt;</span><span style="color:#b48ead;">double</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; q;
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, start));
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">visited</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[prob, cur] </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>==</span><span style="color:#eff1f5;"> end) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> prob;
+</span><span style="color:#eff1f5;">            visited[cur] </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[nxt, nxtProb] </span><span>:</span><span style="color:#eff1f5;"> neighbors[cur]) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">visited[nxt]) {
+</span><span style="color:#eff1f5;">                    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(nxtProb</span><span>*</span><span style="color:#eff1f5;">prob, nxt));
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-10">December LeetCoding Challenge 10</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Valid Mountain Array</strong></p>
@@ -186,11 +186,11 @@ public:
 </li>
 <li>
 <p>There exists some</p>
-<pre><code>i
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>i
+</span></code></pre>
 <p>with </p>
-<pre><code>0 &lt; i &lt; arr.length - 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>0 &lt; i &lt; arr.length - 1
+</span></code></pre>
 <p>such that:</p>
 <ul>
 <li><code>arr[0] &lt; arr[1] &lt; ... &lt; arr[i - 1] &lt; A[i]</code></li>
@@ -200,17 +200,17 @@ public:
 </ul>
 <p><img src="https://assets.leetcode.com/uploads/2019/10/20/hint_valid_mountain_array.png" alt="img" /></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: arr = [2,1]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [2,1]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: arr = [3,5,5]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [3,5,5]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: arr = [0,3,2,1]
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [0,3,2,1]
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= arr.length &lt;= 104</code></li>
@@ -218,19 +218,19 @@ Output: true
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool validMountainArray(vector&lt;int&gt;&amp; arr) {
-        int len = arr.size();
-        if(len &lt; 3) return false;
-        int pos = 1;
-        while(pos &lt; len &amp;&amp; arr[pos] &gt; arr[pos-1]) pos += 1;
-        if(pos == len || pos == 1) return false;
-        while(pos &lt; len &amp;&amp; arr[pos] &lt; arr[pos-1]) pos += 1;
-        return pos == len;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">validMountainArray</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> arr[pos] </span><span>&gt;</span><span style="color:#eff1f5;"> arr[pos</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len </span><span>||</span><span style="color:#eff1f5;"> pos </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> arr[pos] </span><span>&lt;</span><span style="color:#eff1f5;"> arr[pos</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> pos </span><span>==</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

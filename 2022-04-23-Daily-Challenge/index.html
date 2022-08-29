@@ -128,46 +128,46 @@ renderMathInElement(document.body, katex_config);
 <li><code>String decode(String shortUrl)</code> Returns the original long URL for the given <code>shortUrl</code>. It is guaranteed that the given <code>shortUrl</code> was encoded by the same object.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: url = &quot;https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;design-tinyurl&quot;
-Output: &quot;https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;design-tinyurl&quot;
-
-Explanation:
-Solution obj = new Solution();
-string tiny = obj.encode(url); &#x2F;&#x2F; returns the encoded tiny url.
-string ans = obj.decode(tiny); &#x2F;&#x2F; returns the original url after deconding it.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: url = &quot;https://leetcode.com/problems/design-tinyurl&quot;
+</span><span>Output: &quot;https://leetcode.com/problems/design-tinyurl&quot;
+</span><span>
+</span><span>Explanation:
+</span><span>Solution obj = new Solution();
+</span><span>string tiny = obj.encode(url); // returns the encoded tiny url.
+</span><span>string ans = obj.decode(tiny); // returns the original url after deconding it.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= url.length &lt;= 104</code></li>
 <li><code>url</code> is guranteed to be a valid URL.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  unordered_map&lt;string, string&gt; mp;
-  unordered_map&lt;string, string&gt; rmp;
-  int count = 0;
-  &#x2F;&#x2F; Encodes a URL to a shortened URL.
-  string encode(string longUrl) {
-    if(!mp.count(longUrl)) {
-      string cnt = to_string(count++);
-      mp[longUrl] = cnt;
-      rmp[cnt] = longUrl;
-    }
-    return mp[longUrl];
-  }
-
-  &#x2F;&#x2F; Decodes a shortened URL to its original URL.
-  string decode(string shortUrl) {
-    return rmp[shortUrl];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 739&#x2F;739 cases passed (6 ms)
-&#x2F;&#x2F; Your runtime beats 44.57 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 16.54 % of cpp submissions (7.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  unordered_map&lt;string, string&gt; mp;
+</span><span style="color:#eff1f5;">  unordered_map&lt;string, string&gt; rmp;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">// Encodes a URL to a shortened URL.
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">encode</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">longUrl</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">mp.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(longUrl)) {
+</span><span style="color:#eff1f5;">      string cnt </span><span>= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(count</span><span>++</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      mp[longUrl] </span><span>=</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">      rmp[cnt] </span><span>=</span><span style="color:#eff1f5;"> longUrl;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> mp[longUrl];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">// Decodes a shortened URL to its original URL.
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">decode</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">shortUrl</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> rmp[shortUrl];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 739/739 cases passed (6 ms)
+</span><span style="color:#65737e;">// Your runtime beats 44.57 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 16.54 % of cpp submissions (7.4 MB)
+</span></code></pre>
 
     </div>
   </div>

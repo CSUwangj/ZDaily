@@ -124,20 +124,20 @@ renderMathInElement(document.body, katex_config);
 <p>A <strong>subsequence</strong> is obtained by deleting some elements  (possibly zero) from the original sequence, leaving the remaining  elements in their original order.</p>
 <p>Given an integer array <code>nums</code>, return <em>the length of the longest <strong>wiggle subsequence</strong> of</em> <code>nums</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,7,4,9,2,5]
-Output: 6
-Explanation: The entire sequence is a wiggle sequence with differences (6, -3, 5, -7, 3).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,7,4,9,2,5]
+</span><span>Output: 6
+</span><span>Explanation: The entire sequence is a wiggle sequence with differences (6, -3, 5, -7, 3).
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1,17,5,10,13,15,10,5,16,8]
-Output: 7
-Explanation: There are several subsequences that achieve this length.
-One is [1, 17, 10, 13, 10, 16, 8] with differences (16, -7, 3, -3, 6, -8).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,17,5,10,13,15,10,5,16,8]
+</span><span>Output: 7
+</span><span>Explanation: There are several subsequences that achieve this length.
+</span><span>One is [1, 17, 10, 13, 10, 16, 8] with differences (16, -7, 3, -3, 6, -8).
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [1,2,3,4,5,6,7,8,9]
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,3,4,5,6,7,8,9]
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 1000</code></li>
@@ -145,47 +145,47 @@ Output: 2
 </ul>
 <p><strong>Follow up:</strong> Could you solve this in <code>O(n)</code> time?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">template &lt;class T&gt;
-inline constexpr int sgn(const T &amp;a) {
-  return a &gt; 0 ? 1  :
-         a &lt; 0 ? -1 :
-         0;
-}
-class Solution {
-public:
-  int wiggleMaxLength(vector&lt;int&gt;&amp; nums) {
-    int len = nums.size();
-    if(len &lt; 2) return len;
-    
-    int pos = 1;
-    
-    &#x2F;&#x2F; all same
-    while(pos &lt; len &amp;&amp; nums[pos] == nums[pos - 1]) pos += 1;
-    if(pos == len) return 1;
-    
-    int answer = 2;
-    int sign = sgn(nums[pos] - nums[pos - 1]);
-    pos += 1;
-    while(pos &lt; len) {
-      while(pos &lt; len &amp;&amp; sgn(sign + sgn(nums[pos] - nums[pos - 1])) == sign) {
-        pos += 1;
-      }
-      if(pos &lt; len) {
-        sign = -sign;
-        pos += 1;
-        answer += 1;
-      }
-    }
-    
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 26&#x2F;26 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 75.45 % of cpp submissions (7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">template </span><span>&lt;</span><span style="color:#b48ead;">class</span><span> T&gt;
+</span><span style="color:#b48ead;">inline constexpr int </span><span style="color:#8fa1b3;">sgn</span><span>(</span><span style="color:#b48ead;">const</span><span> T &amp;</span><span style="color:#bf616a;">a</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return</span><span> a &gt; </span><span style="color:#d08770;">0 </span><span>? </span><span style="color:#d08770;">1  </span><span>:
+</span><span>         a &lt; </span><span style="color:#d08770;">0 </span><span>? -</span><span style="color:#d08770;">1 </span><span>:
+</span><span>         </span><span style="color:#d08770;">0</span><span>;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">wiggleMaxLength</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span>&lt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// all same
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[pos] </span><span>==</span><span style="color:#eff1f5;"> nums[pos </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sign </span><span>= </span><span style="color:#bf616a;">sgn</span><span style="color:#eff1f5;">(nums[pos] </span><span>-</span><span style="color:#eff1f5;"> nums[pos </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#bf616a;">sgn</span><span style="color:#eff1f5;">(sign </span><span>+ </span><span style="color:#bf616a;">sgn</span><span style="color:#eff1f5;">(nums[pos] </span><span>-</span><span style="color:#eff1f5;"> nums[pos </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">])) </span><span>==</span><span style="color:#eff1f5;"> sign) {
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">        sign </span><span>= -</span><span style="color:#eff1f5;">sign;
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        answer </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 26/26 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 75.45 % of cpp submissions (7 MB)
+</span></code></pre>
 
     </div>
   </div>

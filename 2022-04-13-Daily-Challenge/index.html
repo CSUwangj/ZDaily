@@ -135,39 +135,39 @@ renderMathInElement(document.body, katex_config);
 	<li><code>1 &lt;= n &lt;= 20</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int move[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-  int sat(vector&lt;vector&lt;int&gt;&gt; &amp;result, int newH, int newW, int n) {
-    return newH &gt;= 0 &amp;&amp; newW &gt;= 0 &amp;&amp; newH &lt; n &amp;&amp; newW &lt; n &amp;&amp; !result[newH][newW];
-  }
-public:
-  vector&lt;vector&lt;int&gt;&gt; generateMatrix(int n) {
-    auto result = vector&lt;vector&lt;int&gt;&gt;(n, vector&lt;int&gt;(n, 0));
-    result[0][0] = 1;
-    if(n == 1) return result;
-    int h = 0;
-    int w = 1;
-    int direction = 0;
-    while(true) {
-      result[h][w] = result[h-move[direction][0]][w-move[direction][1]] + 1;
-      int turn = 0;
-      while(turn &lt; 4 &amp;&amp; !sat(result, h + move[direction][0], w + move[direction][1], n)) {
-        direction = (direction + 1) % 4;
-        turn += 1;
-      }
-      if(turn == 4) break;
-      h += move[direction][0];
-      w += move[direction][1];
-    }
-    return result;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 20&#x2F;20 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 85.87 % of cpp submissions (6.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> move[</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}, {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}, {</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">}, {</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}};
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sat</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span>&amp;</span><span style="color:#bf616a;">result</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">newH</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">newW</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newH </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> newW </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> newH </span><span>&lt;</span><span style="color:#eff1f5;"> n </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> newW </span><span>&lt;</span><span style="color:#eff1f5;"> n </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">result[newH][newW];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">generateMatrix</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;(n, </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;(n, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">    result[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> h </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> w </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> direction </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      result[h][w] </span><span>=</span><span style="color:#eff1f5;"> result[h</span><span>-</span><span style="color:#eff1f5;">move[direction][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]][w</span><span>-</span><span style="color:#eff1f5;">move[direction][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> turn </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(turn </span><span>&lt; </span><span style="color:#d08770;">4 </span><span>&amp;&amp; !</span><span style="color:#bf616a;">sat</span><span style="color:#eff1f5;">(result, h </span><span>+</span><span style="color:#eff1f5;"> move[direction][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], w </span><span>+</span><span style="color:#eff1f5;"> move[direction][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], n)) {
+</span><span style="color:#eff1f5;">        direction </span><span>= </span><span style="color:#eff1f5;">(direction </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>% </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        turn </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(turn </span><span>== </span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      h </span><span>+=</span><span style="color:#eff1f5;"> move[direction][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">      w </span><span>+=</span><span style="color:#eff1f5;"> move[direction][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 20/20 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 85.87 % of cpp submissions (6.5 MB)
+</span></code></pre>
 
     </div>
   </div>

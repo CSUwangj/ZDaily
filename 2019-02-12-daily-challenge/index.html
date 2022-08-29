@@ -147,259 +147,259 @@ renderMathInElement(document.body, katex_config);
 <p>Big simulation......</p>
 <p>There must be more graceful implementation, but I'm so poor at Rust...</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::io;
-
-fn main() {
-    let reader = io::stdin();
-    let mut line = String::new();
-    let mut card1: [(i32, i32); 5] = [(0, 0); 5];
-    let mut card2: [(i32, i32); 5] = [(0, 0); 5];
-    let mut rank1: [i32; 6] = [0; 6];
-    let mut rank2: [i32; 6] = [0; 6];
-    let mut ans = 0;
-    &#x2F;&#x2F; let mut cnt = 0;
-    loop {
-        match reader.read_line(&amp;mut line) {
-            Ok(l) =&gt; {
-                if l == 0 {
-                    break;
-                } else {
-                    ();
-                }
-            }
-            Err(_) =&gt; break,
-        }
-        let mut iter = line.split_whitespace();
-        for i in 0..5 {
-            card1[i] = get_card(&amp;iter.next().unwrap());
-        }
-        for i in 0..5 {
-            card2[i] = get_card(&amp;iter.next().unwrap());
-        }
-        &#x2F;&#x2F; print!(&quot;{}&quot;, line);
-        &#x2F;&#x2F; println!(&quot;{:?}&quot;, card1);
-        &#x2F;&#x2F; println!(&quot;{:?}&quot;, card2);
-        get_rank(&amp;mut rank1, &amp;card1);
-        get_rank(&amp;mut rank2, &amp;card2);
-        &#x2F;&#x2F; println!(&quot;{:?}&quot;, rank1);
-        &#x2F;&#x2F; println!(&quot;{:?}&quot;, rank2);
-        if compare_rank(&amp;rank1, &amp;rank2) {
-            &#x2F;&#x2F; println!(&quot;Test {}: Player 1&quot;, cnt);
-            ans += 1;
-        } else {
-            &#x2F;&#x2F; println!(&quot;Test {}: Player 2&quot;, cnt);
-        }
-        &#x2F;&#x2F; cnt += 1;
-        &#x2F;&#x2F; println!(&quot;{}&quot;, ans);
-        line.clear();
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn get_card(s: &amp;str) -&gt; (i32, i32) {
-    let mut s = s.chars();
-    let number = get_number(s.next().unwrap());
-    let suit = get_suit(s.next().unwrap());
-    (number, suit)
-}
-
-fn get_number(c: char) -&gt; i32 {
-    match c {
-        &#x27;2&#x27; =&gt; return 2,
-        &#x27;3&#x27; =&gt; return 3,
-        &#x27;4&#x27; =&gt; return 4,
-        &#x27;5&#x27; =&gt; return 5,
-        &#x27;6&#x27; =&gt; return 6,
-        &#x27;7&#x27; =&gt; return 7,
-        &#x27;8&#x27; =&gt; return 8,
-        &#x27;9&#x27; =&gt; return 9,
-        &#x27;T&#x27; =&gt; return 10,
-        &#x27;J&#x27; =&gt; return 11,
-        &#x27;Q&#x27; =&gt; return 12,
-        &#x27;K&#x27; =&gt; return 13,
-        &#x27;A&#x27; =&gt; return 14,
-        _ =&gt; panic!(&quot;Unknown value {:?}&quot;, c),
-    }
-}
-
-fn get_suit(c: char) -&gt; i32 {
-    match c {
-        &#x27;S&#x27; =&gt; return 0,
-        &#x27;D&#x27; =&gt; return 1,
-        &#x27;C&#x27; =&gt; return 2,
-        &#x27;H&#x27; =&gt; return 3,
-        _ =&gt; panic!(&quot;Unknown value {:?}&quot;, c),
-    }
-}
-
-fn get_rank(rank: &amp;mut [i32; 6], card: &amp;[(i32, i32); 5]) {
-    let mut suits: [i32; 4] = [0; 4];
-    let mut numbers: [i32; 15] = [0; 15];
-    for (number, suit) in card.iter() {
-        suits[*suit as usize] += 1;
-        numbers[*number as usize] += 1;
-    }
-    if suits[0] == 5 || suits[1] == 5 || suits[2] == 5 || suits[3] == 5 {
-        let mut is_ok = true;
-        for i in 10..15 {
-            is_ok = numbers[i] == 1;
-        }
-        if is_ok {
-            rank[0] = 10;
-            return;
-        }
-        is_ok = true;
-        for i in 2..10 {
-            if numbers[i] == 1 {
-                for j in 1..5 {
-                    is_ok = is_ok &amp;&amp; numbers[i + j] == 1;
-                }
-            }
-        }
-        let mut cnt = 1;
-        for i in (2..10).rev() {
-            if numbers[i] == 1 {
-                rank[cnt] = i as i32;
-                cnt += 1;
-            }
-        }
-        rank[0] = if is_ok { 9 } else { 6 };
-        return;
-    }
-    for i in 2..15 {
-        if numbers[i] == 4 {
-            rank[0] = 8;
-            rank[1] = i as i32;
-            return;
-        }
-    }
-    for i in 2..15 {
-        if numbers[i] == 3 {
-            let mut is_ok = false;
-            for j in 2..15 {
-                if numbers[j] == 2 {
-                    is_ok = true;
-                }
-            }
-            rank[0] = if is_ok { 7 } else { 4 };
-            rank[1] = i as i32;
-            return;
-        }
-    }
-    for i in 2..15 {
-        if numbers[i] == 2 {
-            for j in i + 1..15 {
-                if numbers[j] == 2 {
-                    rank[1] = j as i32;
-                    rank[2] = i as i32;
-                    rank[0] = 3;
-                    for k in 2..15 {
-                        if numbers[k] == 1 {
-                            rank[3] = k as i32;
-                        }
-                    }
-                    return;
-                }
-            }
-            let mut cnt = 2;
-            for j in (2..15).rev() {
-                if numbers[j] == 1 {
-                    rank[cnt] = j as i32;
-                    cnt += 1;
-                }
-            }
-            rank[0] = 2;
-            rank[1] = i as i32;
-            return;
-        }
-    }
-    let mut is_ok = true;
-    for i in 2..10 {
-        if numbers[i] == 1 {
-            for j in 1..5 {
-                is_ok = is_ok &amp;&amp; numbers[i + j] == 1;
-            }
-            if is_ok {
-                break;
-            }
-        }
-    }
-    rank[0] = if is_ok { 5 } else { 1 };
-    let mut cnt = 1;
-    for i in (2..15).rev() {
-        if numbers[i] == 1 {
-            rank[cnt] = i as i32;
-            cnt += 1;
-        }
-    }
-}
-
-
-fn compare_rank(rank1: &amp;[i32; 6], rank2: &amp;[i32; 6]) -&gt; bool {
-    if rank1[0] != rank2[0] {
-        return rank1[0] &gt; rank2[0];
-    }
-    match rank1[0] {
-        9 | 8 | 7 | 5 | 4 =&gt; return rank1[1] &gt; rank2[1],
-        _ =&gt; (),
-    }
-    if rank1[0] == 6 || rank1[0] == 1 {
-        let mut cnt = 1;
-        while cnt &lt; 6 &amp;&amp; rank1[cnt] == rank2[cnt] {
-            cnt += 1;
-        }
-        return if cnt == 6 { false } else { rank1[cnt] &gt; rank2[cnt]};
-    }
-    if rank1[0] == 3 {
-        let mut cnt = 1;
-        while cnt &lt; 4 &amp;&amp; rank1[cnt] == rank2[cnt] {
-            cnt += 1;
-        }
-        return if cnt == 4 { false } else { rank1[cnt] &gt; rank2[cnt]};
-    }
-    if rank1[0] == 2 {
-        let mut cnt = 1;
-        while cnt &lt; 5 &amp;&amp; rank1[cnt] == rank2[cnt] {
-            cnt += 1;
-        }
-        return if cnt == 5 { false } else { rank1[cnt] &gt; rank2[cnt]};
-    }
-    false
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::io;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> reader = io::stdin();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> line = String::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> card1: [(</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">i32</span><span>); </span><span style="color:#d08770;">5</span><span>] = [(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>); </span><span style="color:#d08770;">5</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> card2: [(</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">i32</span><span>); </span><span style="color:#d08770;">5</span><span>] = [(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>); </span><span style="color:#d08770;">5</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> rank1: [</span><span style="color:#b48ead;">i32</span><span>; </span><span style="color:#d08770;">6</span><span>] = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">6</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> rank2: [</span><span style="color:#b48ead;">i32</span><span>; </span><span style="color:#d08770;">6</span><span>] = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">6</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#65737e;">// let mut cnt = 0;
+</span><span>    </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>        </span><span style="color:#b48ead;">match</span><span> reader.</span><span style="color:#96b5b4;">read_line</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> line) {
+</span><span>            Ok(l) =&gt; {
+</span><span>                </span><span style="color:#b48ead;">if</span><span> l == </span><span style="color:#d08770;">0 </span><span>{
+</span><span>                    </span><span style="color:#b48ead;">break</span><span>;
+</span><span>                } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>                    ();
+</span><span>                }
+</span><span>            }
+</span><span>            Err(_) =&gt; </span><span style="color:#b48ead;">break</span><span>,
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> iter = line.</span><span style="color:#96b5b4;">split_whitespace</span><span>();
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">5 </span><span>{
+</span><span>            card1[i] = </span><span style="color:#96b5b4;">get_card</span><span>(&amp;iter.</span><span style="color:#96b5b4;">next</span><span>().</span><span style="color:#96b5b4;">unwrap</span><span>());
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">5 </span><span>{
+</span><span>            card2[i] = </span><span style="color:#96b5b4;">get_card</span><span>(&amp;iter.</span><span style="color:#96b5b4;">next</span><span>().</span><span style="color:#96b5b4;">unwrap</span><span>());
+</span><span>        }
+</span><span>        </span><span style="color:#65737e;">// print!(&quot;{}&quot;, line);
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{:?}&quot;, card1);
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{:?}&quot;, card2);
+</span><span>        </span><span style="color:#96b5b4;">get_rank</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> rank1, &amp;card1);
+</span><span>        </span><span style="color:#96b5b4;">get_rank</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> rank2, &amp;card2);
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{:?}&quot;, rank1);
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{:?}&quot;, rank2);
+</span><span>        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">compare_rank</span><span>(&amp;rank1, &amp;rank2) {
+</span><span>            </span><span style="color:#65737e;">// println!(&quot;Test {}: Player 1&quot;, cnt);
+</span><span>            ans += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>            </span><span style="color:#65737e;">// println!(&quot;Test {}: Player 2&quot;, cnt);
+</span><span>        }
+</span><span>        </span><span style="color:#65737e;">// cnt += 1;
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{}&quot;, ans);
+</span><span>        line.</span><span style="color:#96b5b4;">clear</span><span>();
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">get_card</span><span>(</span><span style="color:#bf616a;">s</span><span>: &amp;</span><span style="color:#b48ead;">str</span><span>) -&gt; (</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">i32</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> s = s.</span><span style="color:#96b5b4;">chars</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let</span><span> number = </span><span style="color:#96b5b4;">get_number</span><span>(s.</span><span style="color:#96b5b4;">next</span><span>().</span><span style="color:#96b5b4;">unwrap</span><span>());
+</span><span>    </span><span style="color:#b48ead;">let</span><span> suit = </span><span style="color:#96b5b4;">get_suit</span><span>(s.</span><span style="color:#96b5b4;">next</span><span>().</span><span style="color:#96b5b4;">unwrap</span><span>());
+</span><span>    (number, suit)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">get_number</span><span>(</span><span style="color:#bf616a;">c</span><span>: </span><span style="color:#b48ead;">char</span><span>) -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">match</span><span> c {
+</span><span>        &#39;</span><span style="color:#a3be8c;">2</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">2</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">3</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">3</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">4</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">4</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">5</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">5</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">6</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">6</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">7</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">7</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">8</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">8</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">9</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">9</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">T</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">10</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">J</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">11</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">Q</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">12</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">K</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">13</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">A</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">14</span><span>,
+</span><span>        _ =&gt; panic!(&quot;</span><span style="color:#a3be8c;">Unknown value {:?}</span><span>&quot;, c),
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">get_suit</span><span>(</span><span style="color:#bf616a;">c</span><span>: </span><span style="color:#b48ead;">char</span><span>) -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">match</span><span> c {
+</span><span>        &#39;</span><span style="color:#a3be8c;">S</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">D</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">C</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">2</span><span>,
+</span><span>        &#39;</span><span style="color:#a3be8c;">H</span><span>&#39; =&gt; </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">3</span><span>,
+</span><span>        _ =&gt; panic!(&quot;</span><span style="color:#a3be8c;">Unknown value {:?}</span><span>&quot;, c),
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">get_rank</span><span>(</span><span style="color:#bf616a;">rank</span><span>: &amp;</span><span style="color:#b48ead;">mut</span><span> [</span><span style="color:#b48ead;">i32</span><span>; 6], </span><span style="color:#bf616a;">card</span><span>: &amp;[(</span><span style="color:#bf616a;">i32</span><span>, </span><span style="color:#bf616a;">i32</span><span>); 5]) {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> suits: [</span><span style="color:#b48ead;">i32</span><span>; </span><span style="color:#d08770;">4</span><span>] = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">4</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> numbers: [</span><span style="color:#b48ead;">i32</span><span>; </span><span style="color:#d08770;">15</span><span>] = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">15</span><span>];
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(number, suit) in card.</span><span style="color:#96b5b4;">iter</span><span>() {
+</span><span>        suits[*suit as </span><span style="color:#b48ead;">usize</span><span>] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        numbers[*number as </span><span style="color:#b48ead;">usize</span><span>] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">if</span><span> suits[</span><span style="color:#d08770;">0</span><span>] == </span><span style="color:#d08770;">5 </span><span>|| suits[</span><span style="color:#d08770;">1</span><span>] == </span><span style="color:#d08770;">5 </span><span>|| suits[</span><span style="color:#d08770;">2</span><span>] == </span><span style="color:#d08770;">5 </span><span>|| suits[</span><span style="color:#d08770;">3</span><span>] == </span><span style="color:#d08770;">5 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> is_ok = </span><span style="color:#d08770;">true</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">10</span><span>..</span><span style="color:#d08770;">15 </span><span>{
+</span><span>            is_ok = numbers[i] == </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if</span><span> is_ok {
+</span><span>            rank[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#d08770;">10</span><span>;
+</span><span>            </span><span style="color:#b48ead;">return</span><span>;
+</span><span>        }
+</span><span>        is_ok = </span><span style="color:#d08770;">true</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">10 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">if</span><span> numbers[i] == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">5 </span><span>{
+</span><span>                    is_ok = is_ok &amp;&amp; numbers[i + j] == </span><span style="color:#d08770;">1</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in (</span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">10</span><span>).</span><span style="color:#96b5b4;">rev</span><span>() {
+</span><span>            </span><span style="color:#b48ead;">if</span><span> numbers[i] == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>                rank[cnt] = i as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>                cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>        rank[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#b48ead;">if</span><span> is_ok { </span><span style="color:#d08770;">9 </span><span>} </span><span style="color:#b48ead;">else </span><span>{ </span><span style="color:#d08770;">6 </span><span>};
+</span><span>        </span><span style="color:#b48ead;">return</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">15 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span> numbers[i] == </span><span style="color:#d08770;">4 </span><span>{
+</span><span>            rank[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#d08770;">8</span><span>;
+</span><span>            rank[</span><span style="color:#d08770;">1</span><span>] = i as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>            </span><span style="color:#b48ead;">return</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">15 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span> numbers[i] == </span><span style="color:#d08770;">3 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">let mut</span><span> is_ok = </span><span style="color:#d08770;">false</span><span>;
+</span><span>            </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">15 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">if</span><span> numbers[j] == </span><span style="color:#d08770;">2 </span><span>{
+</span><span>                    is_ok = </span><span style="color:#d08770;">true</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>            rank[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#b48ead;">if</span><span> is_ok { </span><span style="color:#d08770;">7 </span><span>} </span><span style="color:#b48ead;">else </span><span>{ </span><span style="color:#d08770;">4 </span><span>};
+</span><span>            rank[</span><span style="color:#d08770;">1</span><span>] = i as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>            </span><span style="color:#b48ead;">return</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">15 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span> numbers[i] == </span><span style="color:#d08770;">2 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">for</span><span> j in i + </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">15 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">if</span><span> numbers[j] == </span><span style="color:#d08770;">2 </span><span>{
+</span><span>                    rank[</span><span style="color:#d08770;">1</span><span>] = j as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>                    rank[</span><span style="color:#d08770;">2</span><span>] = i as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>                    rank[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#d08770;">3</span><span>;
+</span><span>                    </span><span style="color:#b48ead;">for</span><span> k in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">15 </span><span>{
+</span><span>                        </span><span style="color:#b48ead;">if</span><span> numbers[k] == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>                            rank[</span><span style="color:#d08770;">3</span><span>] = k as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>                        }
+</span><span>                    }
+</span><span>                    </span><span style="color:#b48ead;">return</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">2</span><span>;
+</span><span>            </span><span style="color:#b48ead;">for</span><span> j in (</span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">15</span><span>).</span><span style="color:#96b5b4;">rev</span><span>() {
+</span><span>                </span><span style="color:#b48ead;">if</span><span> numbers[j] == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>                    rank[cnt] = j as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>                    cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>            rank[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#d08770;">2</span><span>;
+</span><span>            rank[</span><span style="color:#d08770;">1</span><span>] = i as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>            </span><span style="color:#b48ead;">return</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> is_ok = </span><span style="color:#d08770;">true</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">10 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span> numbers[i] == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">5 </span><span>{
+</span><span>                is_ok = is_ok &amp;&amp; numbers[i + j] == </span><span style="color:#d08770;">1</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if</span><span> is_ok {
+</span><span>                </span><span style="color:#b48ead;">break</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    rank[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#b48ead;">if</span><span> is_ok { </span><span style="color:#d08770;">5 </span><span>} </span><span style="color:#b48ead;">else </span><span>{ </span><span style="color:#d08770;">1 </span><span>};
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in (</span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">15</span><span>).</span><span style="color:#96b5b4;">rev</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">if</span><span> numbers[i] == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>            rank[cnt] = i as </span><span style="color:#b48ead;">i32</span><span>;
+</span><span>            cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">compare_rank</span><span>(</span><span style="color:#bf616a;">rank1</span><span>: &amp;[</span><span style="color:#b48ead;">i32</span><span>; 6], </span><span style="color:#bf616a;">rank2</span><span>: &amp;[</span><span style="color:#b48ead;">i32</span><span>; 6]) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if</span><span> rank1[</span><span style="color:#d08770;">0</span><span>] != rank2[</span><span style="color:#d08770;">0</span><span>] {
+</span><span>        </span><span style="color:#b48ead;">return</span><span> rank1[</span><span style="color:#d08770;">0</span><span>] &gt; rank2[</span><span style="color:#d08770;">0</span><span>];
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">match</span><span> rank1[</span><span style="color:#d08770;">0</span><span>] {
+</span><span>        </span><span style="color:#d08770;">9 </span><span>| </span><span style="color:#d08770;">8 </span><span>| </span><span style="color:#d08770;">7 </span><span>| </span><span style="color:#d08770;">5 </span><span>| </span><span style="color:#d08770;">4 </span><span>=&gt; </span><span style="color:#b48ead;">return</span><span> rank1[</span><span style="color:#d08770;">1</span><span>] &gt; rank2[</span><span style="color:#d08770;">1</span><span>],
+</span><span>        _ =&gt; (),
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">if</span><span> rank1[</span><span style="color:#d08770;">0</span><span>] == </span><span style="color:#d08770;">6 </span><span>|| rank1[</span><span style="color:#d08770;">0</span><span>] == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">while</span><span> cnt &lt; </span><span style="color:#d08770;">6 </span><span>&amp;&amp; rank1[cnt] == rank2[cnt] {
+</span><span>            cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">return if</span><span> cnt == </span><span style="color:#d08770;">6 </span><span>{ </span><span style="color:#d08770;">false </span><span>} </span><span style="color:#b48ead;">else </span><span>{ rank1[cnt] &gt; rank2[cnt]};
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">if</span><span> rank1[</span><span style="color:#d08770;">0</span><span>] == </span><span style="color:#d08770;">3 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">while</span><span> cnt &lt; </span><span style="color:#d08770;">4 </span><span>&amp;&amp; rank1[cnt] == rank2[cnt] {
+</span><span>            cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">return if</span><span> cnt == </span><span style="color:#d08770;">4 </span><span>{ </span><span style="color:#d08770;">false </span><span>} </span><span style="color:#b48ead;">else </span><span>{ rank1[cnt] &gt; rank2[cnt]};
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">if</span><span> rank1[</span><span style="color:#d08770;">0</span><span>] == </span><span style="color:#d08770;">2 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">while</span><span> cnt &lt; </span><span style="color:#d08770;">5 </span><span>&amp;&amp; rank1[cnt] == rank2[cnt] {
+</span><span>            cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">return if</span><span> cnt == </span><span style="color:#d08770;">5 </span><span>{ </span><span style="color:#d08770;">false </span><span>} </span><span style="color:#b48ead;">else </span><span>{ rank1[cnt] &gt; rank2[cnt]};
+</span><span>    }
+</span><span>    </span><span style="color:#d08770;">false
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="453-minimum-moves-to-equal-array-elements">453. Minimum Moves to Equal Array Elements</h3>
 <p>Given a <strong>non-empty</strong> integer array of size <em>n</em>, find the minimum number of moves required to make all array elements equal, where a move is incrementing <em>n</em> - 1 elements by 1.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input:
-[1,2,3]
-
-Output:
-3
-
-Explanation:
-Only three moves are needed (remember each move increments two elements):
-
-[1,2,3]  =&gt;  [2,3,3]  =&gt;  [3,4,3]  =&gt;  [4,4,4]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input:
+</span><span>[1,2,3]
+</span><span>
+</span><span>Output:
+</span><span>3
+</span><span>
+</span><span>Explanation:
+</span><span>Only three moves are needed (remember each move increments two elements):
+</span><span>
+</span><span>[1,2,3]  =&gt;  [2,3,3]  =&gt;  [3,4,3]  =&gt;  [4,4,4]
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Increment other n-1 element means decrement one element.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number[]} nums
- * @return {number}
- *&#x2F;
-var minMoves = function(nums) {
-  let min = number.MAX_SAFE_INTEGER;
-  let sum = 0;
-  for (const num of nums) {
-    min = min&lt;num?min:num;
-    sum += num;
-  }
-  return sum-min*nums.length;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">nums
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">minMoves </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">nums</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">min </span><span>= </span><span style="color:#bf616a;">number</span><span>.MAX_SAFE_INTEGER;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">sum </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">num </span><span>of </span><span style="color:#bf616a;">nums</span><span>) {
+</span><span>    </span><span style="color:#bf616a;">min </span><span>= </span><span style="color:#bf616a;">min</span><span>&lt;</span><span style="color:#bf616a;">num</span><span>?</span><span style="color:#bf616a;">min</span><span>:</span><span style="color:#bf616a;">num</span><span>;
+</span><span>    </span><span style="color:#bf616a;">sum </span><span>+= </span><span style="color:#bf616a;">num</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">sum</span><span>-</span><span style="color:#bf616a;">min</span><span>*</span><span style="color:#bf616a;">nums</span><span>.length;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

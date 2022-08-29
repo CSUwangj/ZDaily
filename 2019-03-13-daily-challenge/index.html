@@ -120,44 +120,44 @@ renderMathInElement(document.body, katex_config);
 <p>Complete the solution so that it strips all text that follows any of a set of comment markers passed in. Any whitespace at the end of the line should also be stripped out.</p>
 <p><strong>Example:</strong></p>
 <p>Given an input string of:</p>
-<pre><code>apples, pears # and bananas
-grapes
-bananas !apples
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>apples, pears # and bananas
+</span><span>grapes
+</span><span>bananas !apples
+</span></code></pre>
 <p>The output expected would be:</p>
-<pre><code>apples, pears
-grapes
-bananas
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>apples, pears
+</span><span>grapes
+</span><span>bananas
+</span></code></pre>
 <p>The code would be called like so:</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">var result = solution(&quot;apples, pears # and bananas\ngrapes\nbananas !apples&quot;, [&quot;#&quot;, &quot;!&quot;])
-&#x2F;&#x2F; result should == &quot;apples, pears\ngrapes\nbananas&quot;
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">var </span><span style="color:#bf616a;">result </span><span>= </span><span style="color:#8fa1b3;">solution</span><span>(&quot;</span><span style="color:#a3be8c;">apples, pears # and bananas</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">grapes</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">bananas !apples</span><span>&quot;, [&quot;</span><span style="color:#a3be8c;">#</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">!</span><span>&quot;])
+</span><span style="color:#65737e;">// result should == &quot;apples, pears\ngrapes\nbananas&quot;
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">const escape = (string) =&gt; string.replace(&#x2F;[-\&#x2F;\\^$*+?.()|[\]{}]&#x2F;g, &#x27;\\$&amp;&#x27;);
-
-function solution(input, markers) {
-  if (input[input.length-1] !== &quot;\n&quot;) input += &quot;\n&quot;;
-  markers.map(m =&gt; escape(m)).forEach(m =&gt; input = input.replace(RegExp(`\ *${m}.*?\n`), &quot;\n&quot;));
-  return input.slice(0,-1);
-};
-
-&#x2F;&#x2F;&#x2F;&#x2F;
-
-function solution(input, markers){
-  return input.replace(RegExp(&quot;\\s?[&quot; + markers.join(&quot;&quot;) + &quot;].*(\\n)?&quot;, &quot;gi&quot;), &quot;$1&quot;);
-}
-
-&#x2F;&#x2F;&#x2F;&#x2F;
-
-function solution(input, markers) {
-  return input.split(&#x27;\n&#x27;).map(
-    line =&gt; markers.reduce(
-      (line, marker) =&gt; line.split(marker)[0].trim(), line
-    )
-  ).join(&#x27;\n&#x27;)
-}
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">escape </span><span>= (</span><span style="color:#bf616a;">string</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">string</span><span>.</span><span style="color:#96b5b4;">replace</span><span>(/</span><span style="color:#d08770;">[-</span><span style="color:#96b5b4;">\/\\</span><span style="color:#d08770;">^$*+?.()|[</span><span style="color:#96b5b4;">\]</span><span style="color:#d08770;">{}]</span><span>/</span><span style="color:#b48ead;">g</span><span>, &#39;</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">$&amp;</span><span>&#39;);
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">solution</span><span>(</span><span style="color:#bf616a;">input</span><span>, </span><span style="color:#bf616a;">markers</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">input</span><span>[</span><span style="color:#bf616a;">input</span><span>.length-</span><span style="color:#d08770;">1</span><span>] !== &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;) </span><span style="color:#bf616a;">input </span><span>+= &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;;
+</span><span>  </span><span style="color:#bf616a;">markers</span><span>.</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">m </span><span style="color:#b48ead;">=&gt; </span><span style="color:#96b5b4;">escape</span><span>(</span><span style="color:#bf616a;">m</span><span>)).</span><span style="color:#96b5b4;">forEach</span><span>(</span><span style="color:#bf616a;">m </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">input </span><span>= </span><span style="color:#bf616a;">input</span><span>.</span><span style="color:#96b5b4;">replace</span><span>(</span><span style="color:#ebcb8b;">RegExp</span><span>(`</span><span style="color:#96b5b4;">\ </span><span style="color:#a3be8c;">*${</span><span style="color:#bf616a;">m</span><span style="color:#a3be8c;">}.*?</span><span style="color:#96b5b4;">\n</span><span>`), &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;));
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">input</span><span>.</span><span style="color:#96b5b4;">slice</span><span>(</span><span style="color:#d08770;">0</span><span>,-</span><span style="color:#d08770;">1</span><span>);
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">////
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">solution</span><span>(</span><span style="color:#bf616a;">input</span><span>, </span><span style="color:#bf616a;">markers</span><span>){
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">input</span><span>.</span><span style="color:#96b5b4;">replace</span><span>(</span><span style="color:#ebcb8b;">RegExp</span><span>(&quot;</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">s?[</span><span>&quot; + </span><span style="color:#bf616a;">markers</span><span>.</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;) + &quot;</span><span style="color:#a3be8c;">].*(</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">n)?</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">gi</span><span>&quot;), &quot;</span><span style="color:#a3be8c;">$1</span><span>&quot;);
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">////
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">solution</span><span>(</span><span style="color:#bf616a;">input</span><span>, </span><span style="color:#bf616a;">markers</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">input</span><span>.</span><span style="color:#96b5b4;">split</span><span>(&#39;</span><span style="color:#96b5b4;">\n</span><span>&#39;).</span><span style="color:#8fa1b3;">map</span><span>(
+</span><span>    </span><span style="color:#bf616a;">line </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">markers</span><span>.</span><span style="color:#8fa1b3;">reduce</span><span>(
+</span><span>      (</span><span style="color:#bf616a;">line</span><span>, </span><span style="color:#bf616a;">marker</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">line</span><span>.</span><span style="color:#96b5b4;">split</span><span>(</span><span style="color:#bf616a;">marker</span><span>)[</span><span style="color:#d08770;">0</span><span>].</span><span style="color:#8fa1b3;">trim</span><span>(), </span><span style="color:#bf616a;">line
+</span><span>    )
+</span><span>  ).</span><span style="color:#96b5b4;">join</span><span>(&#39;</span><span style="color:#96b5b4;">\n</span><span>&#39;)
+</span><span>}
+</span></code></pre>
 
     </div>
   </div>

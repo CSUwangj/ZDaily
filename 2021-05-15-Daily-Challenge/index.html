@@ -123,23 +123,23 @@ renderMathInElement(document.body, katex_config);
 <h2 id="count-primes">Count Primes</h2>
 <p>too easy to review</p>
 <h2 id="maximum-points-you-can-obtain-from-cards">Maximum Points You Can Obtain from Cards</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-	int maxScore(vector&lt;int&gt;&amp; cardPoints, int k) {
-		int len = cardPoints.size();
-		int sum = 0;
-    for(int i = 0; i &lt; k; ++i) {
-      sum += cardPoints[i];
-    }
-    int answer = sum;
-    for(int i = 0; i &lt; k; ++i) {
-      sum = sum - cardPoints[k - 1 - i] + cardPoints[len - 1 - i];
-      answer = max(sum, answer);
-    }
-		return answer;
-	}
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">	</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxScore</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">cardPoints</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> cardPoints.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> k; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      sum </span><span>+=</span><span style="color:#eff1f5;"> cardPoints[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> sum;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> k; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      sum </span><span>=</span><span style="color:#eff1f5;"> sum </span><span>-</span><span style="color:#eff1f5;"> cardPoints[k </span><span>- </span><span style="color:#d08770;">1 </span><span>-</span><span style="color:#eff1f5;"> i] </span><span>+</span><span style="color:#eff1f5;"> cardPoints[len </span><span>- </span><span style="color:#d08770;">1 </span><span>-</span><span style="color:#eff1f5;"> i];
+</span><span style="color:#eff1f5;">      answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(sum, answer);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">		</span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">	}
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="may-leetcoding-challenge-15">May LeetCoding Challenge 15</h1>
 <h2 id="description">Description</h2>
 <p><strong>Valid Number</strong></p>
@@ -167,21 +167,21 @@ public:
 <p>For example, all the following are valid numbers: <code>[&quot;2&quot;, &quot;0089&quot;, &quot;-0.1&quot;, &quot;+3.14&quot;, &quot;4.&quot;, &quot;-.9&quot;, &quot;2e10&quot;, &quot;-90E3&quot;, &quot;3e+7&quot;, &quot;+6e-1&quot;, &quot;53.5e93&quot;, &quot;-123.456e789&quot;]</code>, while the following are not valid numbers: <code>[&quot;abc&quot;, &quot;1a&quot;, &quot;1e&quot;, &quot;e3&quot;, &quot;99e2.5&quot;, &quot;--6&quot;, &quot;-+3&quot;, &quot;95a54e53&quot;]</code>.</p>
 <p>Given a string <code>s</code>, return <code>true</code> <em>if</em> <code>s</code> <em>is a <strong>valid number</strong></em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;0&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;0&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;e&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;e&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;.&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;.&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;.1&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;.1&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 20</code></li>
@@ -189,75 +189,75 @@ Output: true
 </ul>
 <h2 id="solution">Solution</h2>
 <p>1A, haha</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int len;
-  void checkSign(string &amp;s, int &amp;pos) {
-    if(s[pos] == &#x27;+&#x27; || s[pos] == &#x27;-&#x27;)
-    pos += 1;
-  }
-
-  bool checkInteger(string &amp;s, int &amp;pos) {
-    int initPos = pos;
-    checkSign(s, pos);
-    if(pos &lt; len &amp;&amp; isdigit(s[pos])) {
-      while(pos &lt; len &amp;&amp; isdigit(s[pos])) pos += 1;
-      return true;
-    } else {
-      pos = initPos;
-      return false;
-    }
-  }
-
-  bool checkDecimal(string &amp;s, int &amp;pos) {
-    int initPos = pos;
-    bool ok = true;
-    checkSign(s, pos);
-    bool hasFirst = false;
-    if(pos &lt; len &amp;&amp; isdigit(s[pos])) {
-      hasFirst = true;
-      while(pos &lt; len &amp;&amp; isdigit(s[pos])) pos += 1;
-    }
-    if(pos &lt; len &amp;&amp; s[pos] == &#x27;.&#x27;) {
-      pos += 1;
-    } else {
-      pos = initPos;
-      return false;
-    }
-    if(pos &lt; len &amp;&amp; isdigit(s[pos])) {
-      while(pos &lt; len &amp;&amp; isdigit(s[pos])) pos += 1;
-    } else if(!hasFirst) {
-      pos = initPos;
-      return false;
-    }
-    return true;
-  }  
-public:
-  bool isNumber(string s) {
-    int pos = 0;
-    len = s.length();
-    if(!(checkDecimal(s, pos) || checkInteger(s, pos))) {
-      return false;
-    }
-    if(pos &lt; len) {
-      if(s[pos] != &#x27;e&#x27; &amp;&amp; s[pos] != &#x27;E&#x27;) return false;
-      pos += 1;
-      if(!checkInteger(s, pos)) {
-        return false;
-      }
-    }
-    return pos == len;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">checkSign</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">+</span><span>&#39; ||</span><span style="color:#eff1f5;"> s[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">-</span><span>&#39;</span><span style="color:#eff1f5;">)
+</span><span style="color:#eff1f5;">    pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">checkInteger</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> initPos </span><span>=</span><span style="color:#eff1f5;"> pos;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">checkSign</span><span style="color:#eff1f5;">(s, pos);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(s[pos])) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(s[pos])) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      pos </span><span>=</span><span style="color:#eff1f5;"> initPos;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">checkDecimal</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> initPos </span><span>=</span><span style="color:#eff1f5;"> pos;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> ok </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">checkSign</span><span style="color:#eff1f5;">(s, pos);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> hasFirst </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(s[pos])) {
+</span><span style="color:#eff1f5;">      hasFirst </span><span>= </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(s[pos])) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> s[pos] </span><span>== &#39;</span><span style="color:#a3be8c;">.</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">      pos </span><span>=</span><span style="color:#eff1f5;"> initPos;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(s[pos])) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp; </span><span style="color:#96b5b4;">isdigit</span><span style="color:#eff1f5;">(s[pos])) pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">hasFirst) {
+</span><span style="color:#eff1f5;">      pos </span><span>=</span><span style="color:#eff1f5;"> initPos;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }  
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isNumber</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">checkDecimal</span><span style="color:#eff1f5;">(s, pos) </span><span>|| </span><span style="color:#bf616a;">checkInteger</span><span style="color:#eff1f5;">(s, pos))) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s[pos] </span><span>!= &#39;</span><span style="color:#a3be8c;">e</span><span>&#39; &amp;&amp;</span><span style="color:#eff1f5;"> s[pos] </span><span>!= &#39;</span><span style="color:#a3be8c;">E</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#bf616a;">checkInteger</span><span style="color:#eff1f5;">(s, pos)) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> pos </span><span>==</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>or use regular expression</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const regex re(&quot;^[-+]?((\\d+\\.\\d*)|(\\.\\d+)|\\d+)([eE][+-]?\\d+)?$&quot;);
-class Solution {
-public:
-  bool isNumber(string s) {
-    return regex_search(s, re);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const</span><span> regex </span><span style="color:#8fa1b3;">re</span><span>(&quot;</span><span style="color:#a3be8c;">^[-+]?((</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">d+</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">.</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">d*)|(</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">.</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">d+)|</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">d+)([eE][+-]?</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">d+)?$</span><span>&quot;);
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isNumber</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">regex_search</span><span style="color:#eff1f5;">(s, re);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

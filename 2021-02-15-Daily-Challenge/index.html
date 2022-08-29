@@ -119,39 +119,39 @@ renderMathInElement(document.body, katex_config);
 <p>Given a <code>m * n</code> matrix <code>mat</code> of <em>ones</em> (representing soldiers) and <em>zeros</em> (representing civilians), return the indexes of the <code>k</code> weakest rows in the matrix ordered from the weakest to the strongest.</p>
 <p>A row <em><strong>i</strong></em> is weaker than row <em><strong>j</strong></em>, if the number of soldiers in row <em><strong>i</strong></em> is less than the number of soldiers in row <em><strong>j</strong></em>, or they have the same number of soldiers but <em><strong>i</strong></em> is less than <em><strong>j</strong></em>. Soldiers are <strong>always</strong> stand in the frontier of a row, that is, always <em>ones</em> may appear first and then <em>zeros</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: mat = 
-[[1,1,0,0,0],
- [1,1,1,1,0],
- [1,0,0,0,0],
- [1,1,0,0,0],
- [1,1,1,1,1]], 
-k = 3
-Output: [2,0,3]
-Explanation: 
-The number of soldiers for each row is: 
-row 0 -&gt; 2 
-row 1 -&gt; 4 
-row 2 -&gt; 1 
-row 3 -&gt; 2 
-row 4 -&gt; 5 
-Rows ordered from the weakest to the strongest are [2,0,3,1,4]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = 
+</span><span>[[1,1,0,0,0],
+</span><span> [1,1,1,1,0],
+</span><span> [1,0,0,0,0],
+</span><span> [1,1,0,0,0],
+</span><span> [1,1,1,1,1]], 
+</span><span>k = 3
+</span><span>Output: [2,0,3]
+</span><span>Explanation: 
+</span><span>The number of soldiers for each row is: 
+</span><span>row 0 -&gt; 2 
+</span><span>row 1 -&gt; 4 
+</span><span>row 2 -&gt; 1 
+</span><span>row 3 -&gt; 2 
+</span><span>row 4 -&gt; 5 
+</span><span>Rows ordered from the weakest to the strongest are [2,0,3,1,4]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: mat = 
-[[1,0,0,0],
- [1,1,1,1],
- [1,0,0,0],
- [1,0,0,0]], 
-k = 2
-Output: [0,2]
-Explanation: 
-The number of soldiers for each row is: 
-row 0 -&gt; 1 
-row 1 -&gt; 4 
-row 2 -&gt; 1 
-row 3 -&gt; 1 
-Rows ordered from the weakest to the strongest are [0,2,3,1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = 
+</span><span>[[1,0,0,0],
+</span><span> [1,1,1,1],
+</span><span> [1,0,0,0],
+</span><span> [1,0,0,0]], 
+</span><span>k = 2
+</span><span>Output: [0,2]
+</span><span>Explanation: 
+</span><span>The number of soldiers for each row is: 
+</span><span>row 0 -&gt; 1 
+</span><span>row 1 -&gt; 4 
+</span><span>row 2 -&gt; 1 
+</span><span>row 3 -&gt; 1 
+</span><span>Rows ordered from the weakest to the strongest are [0,2,3,1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == mat.length</code></li>
@@ -161,28 +161,28 @@ Rows ordered from the weakest to the strongest are [0,2,3,1]
 <li><code>matrix[i][j]</code> is either 0 <strong>or</strong> 1.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;int&gt; kWeakestRows(vector&lt;vector&lt;int&gt;&gt;&amp; mat, int k) {
-        int rows = mat.size();
-        int cols = mat.front().size();
-        vector&lt;int&gt; rowCount(rows);
-        for(int i = 0; i &lt; rows; ++i) {
-            int cnt = 0;
-            for(auto i : mat[i]) cnt += i;
-            rowCount[i] = cnt;
-        }
-        vector&lt;int&gt; answer(rows);
-        for(int i = 0; i &lt; rows; ++i) answer[i] = i;
-        
-        stable_sort(answer.begin(), answer.end(), [&amp;](int a, int b){
-            return rowCount[a] &lt; rowCount[b];
-        });
-        answer.resize(k);
-        return move(answer);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">kWeakestRows</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">mat</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">rowCount</span><span style="color:#eff1f5;">(rows);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> mat[i]) cnt </span><span>+=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">            rowCount[i] </span><span>=</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(rows);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">i) answer[i] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">stable_sort</span><span style="color:#eff1f5;">(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">](</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> b){
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> rowCount[a] </span><span>&lt;</span><span style="color:#eff1f5;"> rowCount[b];
+</span><span style="color:#eff1f5;">        });
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(k);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(answer);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

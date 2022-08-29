@@ -118,21 +118,21 @@ renderMathInElement(document.body, katex_config);
 <p>Given an array <code>nums</code> of positive integers. Your task is to select some subset of <code>nums</code>, multiply each element by an integer and add all these numbers. The array is said to be <strong>good</strong> if you can obtain a sum of <code>1</code> from the array by any possible subset and multiplicand.</p>
 <p>Return <code>True</code> if the array is <strong>good</strong> otherwise return <code>False</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [12,5,7,23]
-Output: true
-Explanation: Pick numbers 5 and 7.
-5*3 + 7*(-2) = 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [12,5,7,23]
+</span><span>Output: true
+</span><span>Explanation: Pick numbers 5 and 7.
+</span><span>5*3 + 7*(-2) = 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [29,6,10]
-Output: true
-Explanation: Pick numbers 29, 6 and 10.
-29*1 + 6*(-3) + 10*(-1) = 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [29,6,10]
+</span><span>Output: true
+</span><span>Explanation: Pick numbers 29, 6 and 10.
+</span><span>29*1 + 6*(-3) + 10*(-1) = 1
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [3,6]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [3,6]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
@@ -140,48 +140,48 @@ Output: false
 </ul>
 <h2 id="solution">Solution</h2>
 <p>it's obvious that a array is good when it has a pair of elements which their greatest common divisor is 1.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  vector&lt;int&gt; primes;
-  vector&lt;bool&gt; isPrime;
-  void init(int maxNum) {
-    maxNum = ceil(sqrt(maxNum));
-    isPrime.resize(maxNum+1);
-    for(int i = 2; i &lt;= maxNum; ++i) {
-      if(isPrime[i]) {
-        primes.push_back(i);
-      }
-      for(int j = i*i; j &lt;= maxNum; j += i) {
-        isPrime[j] = false;
-      }
-    }
-  }
-public:
-  bool isGoodArray(vector&lt;int&gt;&amp; nums) {
-    int minNum = *min_element(nums.begin(), nums.end());
-    if(minNum == 1) return true;
-    int maxNum = *max_element(nums.begin(), nums.end());
-    init(maxNum);
-    unordered_map&lt;int, bool&gt; visited;
-    for(auto num : nums) {
-      
-      for(auto prime : primes) {
-        if(num % prime == 0) {
-          if(visited[num]) return
-        }
-      }
-    }
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; primes;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; isPrime;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">maxNum</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    maxNum </span><span>= </span><span style="color:#96b5b4;">ceil</span><span style="color:#eff1f5;">(</span><span style="color:#96b5b4;">sqrt</span><span style="color:#eff1f5;">(maxNum));
+</span><span style="color:#eff1f5;">    isPrime.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(maxNum</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> maxNum; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(isPrime[i]) {
+</span><span style="color:#eff1f5;">        primes.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i</span><span>*</span><span style="color:#eff1f5;">i; j </span><span>&lt;=</span><span style="color:#eff1f5;"> maxNum; j </span><span>+=</span><span style="color:#eff1f5;"> i) {
+</span><span style="color:#eff1f5;">        isPrime[j] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isGoodArray</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> minNum </span><span>= *</span><span style="color:#bf616a;">min_element</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(minNum </span><span>== </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maxNum </span><span>= *</span><span style="color:#bf616a;">max_element</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(maxNum);
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; visited;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> num </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> prime </span><span>:</span><span style="color:#eff1f5;"> primes) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>%</span><span style="color:#eff1f5;"> prime </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(visited[num]) </span><span style="color:#b48ead;">return
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-11">November LeetCoding Challenge 11</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Valid Square</strong></p>
 <p>Given the coordinates of four points in 2D space, return whether the four points could construct a square.</p>
 <p>The coordinate (x,y) of a point is represented by an integer array with two integers.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input: p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]
-Output: True
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]
+</span><span>Output: True
+</span></code></pre>
 <p>Note:</p>
 <ol>
 <li>All the input integers are in the range [-10000, 10000].</li>
@@ -190,23 +190,23 @@ Output: True
 </ol>
 <h2 id="solution-1">Solution</h2>
 <p>not so elegant.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool validSquare(vector&lt;int&gt;&amp; p1, vector&lt;int&gt;&amp; p2, vector&lt;int&gt;&amp; p3, vector&lt;int&gt;&amp; p4) {
-    vector&lt;vector&lt;int&gt;&gt; points{p1, p2, p3, p4};
-    sort(points.begin(), points.end(), [](vector&lt;int&gt; &amp;p1, vector&lt;int&gt; &amp;p2) {
-      return p1[0] &lt; p2[0] || (p1[0] == p2[0] &amp;&amp; p1[1] &lt; p2[1]);
-    });
-    int diffX1 = points[0][0] - points[3][0], diffX2 = points[1][0] - points[2][0];
-    int diffY1 = points[0][1] - points[3][1], diffY2 = points[1][1] - points[2][1];
-    int len1 = (diffX1*diffX1 + diffY1*diffY1), len2 = (diffX2*diffX2 + diffY2*diffY2);
-    int len3 = (points[0][0] - points[1][0])*(points[0][0] - points[1][0]) + (points[0][1] - points[1][1])*(points[0][1] - points[1][1]);
-    int len4 = (points[2][0] - points[3][0])*(points[2][0] - points[3][0]) + (points[2][1] - points[3][1])*(points[2][1] - points[3][1]);
-    if(len1 == len2 &amp;&amp; len3 == len4 &amp;&amp; len3 != 0 &amp;&amp; len1 != 0 &amp;&amp; diffX2*diffX1 + diffY1*diffY2 == 0) return true;
-    return false;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">validSquare</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p1</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p2</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p3</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">p4</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">points</span><span style="color:#eff1f5;">{p1, p2, p3, p4};
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(points.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), points.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [](vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">p1, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">p2) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> p1[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> p2[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>|| </span><span style="color:#eff1f5;">(p1[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> p2[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> p1[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> p2[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diffX1 </span><span>=</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], diffX2 </span><span>=</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diffY1 </span><span>=</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], diffY2 </span><span>=</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len1 </span><span>= </span><span style="color:#eff1f5;">(diffX1</span><span>*</span><span style="color:#eff1f5;">diffX1 </span><span>+</span><span style="color:#eff1f5;"> diffY1</span><span>*</span><span style="color:#eff1f5;">diffY1), len2 </span><span>= </span><span style="color:#eff1f5;">(diffX2</span><span>*</span><span style="color:#eff1f5;">diffX2 </span><span>+</span><span style="color:#eff1f5;"> diffY2</span><span>*</span><span style="color:#eff1f5;">diffY2);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len3 </span><span>= </span><span style="color:#eff1f5;">(points[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">])</span><span>*</span><span style="color:#eff1f5;">(points[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) </span><span>+ </span><span style="color:#eff1f5;">(points[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">])</span><span>*</span><span style="color:#eff1f5;">(points[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len4 </span><span>= </span><span style="color:#eff1f5;">(points[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">])</span><span>*</span><span style="color:#eff1f5;">(points[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) </span><span>+ </span><span style="color:#eff1f5;">(points[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">])</span><span>*</span><span style="color:#eff1f5;">(points[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> points[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len1 </span><span>==</span><span style="color:#eff1f5;"> len2 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> len3 </span><span>==</span><span style="color:#eff1f5;"> len4 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> len3 </span><span>!= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> len1 </span><span>!= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> diffX2</span><span>*</span><span style="color:#eff1f5;">diffX1 </span><span>+</span><span style="color:#eff1f5;"> diffY1</span><span>*</span><span style="color:#eff1f5;">diffY2 </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

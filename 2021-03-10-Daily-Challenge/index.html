@@ -126,66 +126,66 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return <em>the number that I picked</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 10, pick = 6
-Output: 6
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 10, pick = 6
+</span><span>Output: 6
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 1, pick = 1
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1, pick = 1
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 2, pick = 1
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2, pick = 1
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: n = 2, pick = 2
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 2, pick = 2
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 231 - 1</code></li>
 <li><code>1 &lt;= pick &lt;= n</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;** 
- * Forward declaration of guess API.
- * @param  num   your guess
- * @return 	     -1 if num is lower than the guess number
- *			      1 if num is higher than the guess number
- *               otherwise return 0
- * int guess(int num);
- *&#x2F;
-
-class Solution {
-public:
-    int guessNumber(int n) {
-        int begin = 1, end = n;
-        while(begin &lt; end) {
-            int mid = begin + (end - begin) &#x2F; 2;
-            int res = guess(mid);
-            if(res != 1) {
-                end = mid;
-            } else {
-                begin = mid + 1;
-            }
-        }
-        return begin;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/** 
+</span><span style="color:#65737e;"> * Forward declaration of guess API.
+</span><span style="color:#65737e;"> * @param  num   your guess
+</span><span style="color:#65737e;"> * @return 	     -1 if num is lower than the guess number
+</span><span style="color:#65737e;"> *			      1 if num is higher than the guess number
+</span><span style="color:#65737e;"> *               otherwise return 0
+</span><span style="color:#65737e;"> * int guess(int num);
+</span><span style="color:#65737e;"> */
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">guessNumber</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end </span><span>=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>=</span><span style="color:#eff1f5;"> begin </span><span>+ </span><span style="color:#eff1f5;">(end </span><span>-</span><span style="color:#eff1f5;"> begin) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> res </span><span>= </span><span style="color:#bf616a;">guess</span><span style="color:#eff1f5;">(mid);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(res </span><span>!= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                begin </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> begin;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="march-leetcoding-challenge-10">March LeetCoding Challenge 10</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Integer to Roman</strong></p>
 <p>Roman numerals are represented by seven different symbols: <code>I</code>, <code>V</code>, <code>X</code>, <code>L</code>, <code>C</code>, <code>D</code> and <code>M</code>.</p>
-<pre><code>Symbol       Value
-I             1
-V             5
-X             10
-L             50
-C             100
-D             500
-M             1000
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Symbol       Value
+</span><span>I             1
+</span><span>V             5
+</span><span>X             10
+</span><span>L             50
+</span><span>C             100
+</span><span>D             500
+</span><span>M             1000
+</span></code></pre>
 <p>For example, <code>2</code> is written as <code>II</code> in Roman numeral, just two one's added together. <code>12</code> is written as <code>XII</code>, which is simply <code>X + II</code>. The number <code>27</code> is written as <code>XXVII</code>, which is <code>XX + V + II</code>.</p>
 <p>Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not <code>IIII</code>. Instead, the number four is written as <code>IV</code>. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as <code>IX</code>. There are six instances where subtraction is used:</p>
 <ul>
@@ -195,69 +195,69 @@ M             1000
 </ul>
 <p>Given an integer, convert it to a roman numeral.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: num = 3
-Output: &quot;III&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num = 3
+</span><span>Output: &quot;III&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: num = 4
-Output: &quot;IV&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num = 4
+</span><span>Output: &quot;IV&quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: num = 9
-Output: &quot;IX&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num = 9
+</span><span>Output: &quot;IX&quot;
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: num = 58
-Output: &quot;LVIII&quot;
-Explanation: L = 50, V = 5, III = 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num = 58
+</span><span>Output: &quot;LVIII&quot;
+</span><span>Explanation: L = 50, V = 5, III = 3.
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: num = 1994
-Output: &quot;MCMXCIV&quot;
-Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: num = 1994
+</span><span>Output: &quot;MCMXCIV&quot;
+</span><span>Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= num &lt;= 3999</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    vector&lt;pair&lt;int, int&gt;&gt; p = {
-        {1000, 100},
-        {500, 100},
-        {100, 10},
-        {50, 10},
-        {10, 1},
-        {5, 1},
-        {1, 0}
-    };
-    unordered_map&lt;int, char&gt; mp = {
-        {1000, &#x27;M&#x27;},
-        {500, &#x27;D&#x27;},
-        {100, &#x27;C&#x27;},
-        {50, &#x27;L&#x27;},
-        {10, &#x27;X&#x27;},
-        {5, &#x27;V&#x27;},
-        {1, &#x27;I&#x27;}
-    };
-public:
-    string intToRoman(int num) {
-        string answer;
-        for(auto [larger, less] : p) {
-            while(num &gt;= larger) {
-                num -= larger;
-                answer.push_back(mp[larger]);
-            }
-            if(num &gt;= larger - less) {
-                num -= larger - less;
-                answer.push_back(mp[less]);
-                answer.push_back(mp[larger]);
-            }
-        }
-        return move(answer);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; p </span><span>= </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">500</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">50</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">5</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}
+</span><span style="color:#eff1f5;">    };
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt; mp </span><span>= </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1000</span><span style="color:#eff1f5;">, </span><span>&#39;</span><span style="color:#a3be8c;">M</span><span>&#39;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">500</span><span style="color:#eff1f5;">, </span><span>&#39;</span><span style="color:#a3be8c;">D</span><span>&#39;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">100</span><span style="color:#eff1f5;">, </span><span>&#39;</span><span style="color:#a3be8c;">C</span><span>&#39;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">50</span><span style="color:#eff1f5;">, </span><span>&#39;</span><span style="color:#a3be8c;">L</span><span>&#39;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">, </span><span>&#39;</span><span style="color:#a3be8c;">X</span><span>&#39;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">5</span><span style="color:#eff1f5;">, </span><span>&#39;</span><span style="color:#a3be8c;">V</span><span>&#39;</span><span style="color:#eff1f5;">},
+</span><span style="color:#eff1f5;">        {</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span>&#39;</span><span style="color:#a3be8c;">I</span><span>&#39;</span><span style="color:#eff1f5;">}
+</span><span style="color:#eff1f5;">    };
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">intToRoman</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        string answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[larger, less] </span><span>:</span><span style="color:#eff1f5;"> p) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(num </span><span>&gt;=</span><span style="color:#eff1f5;"> larger) {
+</span><span style="color:#eff1f5;">                num </span><span>-=</span><span style="color:#eff1f5;"> larger;
+</span><span style="color:#eff1f5;">                answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(mp[larger]);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(num </span><span>&gt;=</span><span style="color:#eff1f5;"> larger </span><span>-</span><span style="color:#eff1f5;"> less) {
+</span><span style="color:#eff1f5;">                num </span><span>-=</span><span style="color:#eff1f5;"> larger </span><span>-</span><span style="color:#eff1f5;"> less;
+</span><span style="color:#eff1f5;">                answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(mp[less]);
+</span><span style="color:#eff1f5;">                answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(mp[larger]);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(answer);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

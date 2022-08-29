@@ -129,44 +129,44 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-use primal::Sieve;
-
-fn main() {
-    const LIMIT: usize = 1_000_000;
-    let sieve: Sieve = Sieve::new(LIMIT);
-    let mut found = false;
-    let mut cur: usize = 9;
-    let mut ans: usize = 0;
-    while !found {
-        while sieve.is_prime(cur) {
-            cur += 2;
-        }
-        let bound = sieve.prime_pi(cur-1);
-        let mut ok = false;
-        for i in 1..(bound+1) {
-            if is_twice_a_square(cur - sieve.nth_prime(i)) {
-                ok = true;
-                break;
-            }
-        }
-        if !ok {
-            ans = cur;
-            found = true;
-        }
-        cur += 2;
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn is_twice_a_square(n: usize) -&gt; bool {
-    let tmp = (n&#x2F;2) as f64;
-    let tmp = tmp.sqrt();
-    let tmp = tmp as usize;
-    tmp*tmp == n&#x2F;2
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>primal::Sieve;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#d08770;">LIMIT</span><span>: </span><span style="color:#b48ead;">usize </span><span>= </span><span style="color:#d08770;">1_000_000</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sieve: Sieve = Sieve::new(</span><span style="color:#d08770;">LIMIT</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> found = </span><span style="color:#d08770;">false</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> cur: </span><span style="color:#b48ead;">usize </span><span>= </span><span style="color:#d08770;">9</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: </span><span style="color:#b48ead;">usize </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while </span><span>!found {
+</span><span>        </span><span style="color:#b48ead;">while</span><span> sieve.</span><span style="color:#96b5b4;">is_prime</span><span>(cur) {
+</span><span>            cur += </span><span style="color:#d08770;">2</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">let</span><span> bound = sieve.</span><span style="color:#96b5b4;">prime_pi</span><span>(cur-</span><span style="color:#d08770;">1</span><span>);
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> ok = </span><span style="color:#d08770;">false</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..(bound+</span><span style="color:#d08770;">1</span><span>) {
+</span><span>            </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">is_twice_a_square</span><span>(cur - sieve.</span><span style="color:#96b5b4;">nth_prime</span><span>(i)) {
+</span><span>                ok = </span><span style="color:#d08770;">true</span><span>;
+</span><span>                </span><span style="color:#b48ead;">break</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if </span><span>!ok {
+</span><span>            ans = cur;
+</span><span>            found = </span><span style="color:#d08770;">true</span><span>;
+</span><span>        }
+</span><span>        cur += </span><span style="color:#d08770;">2</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">is_twice_a_square</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tmp = (n/</span><span style="color:#d08770;">2</span><span>) as </span><span style="color:#b48ead;">f64</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tmp = tmp.</span><span style="color:#96b5b4;">sqrt</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tmp = tmp as </span><span style="color:#b48ead;">usize</span><span>;
+</span><span>    tmp*tmp == n/</span><span style="color:#d08770;">2
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="55-jump-game">55. Jump Game</h3>
@@ -175,32 +175,32 @@ fn is_twice_a_square(n: usize) -&gt; bool {
 <p>Each element in the array represents your maximum jump length at that position.</p>
 <p>Determine if you are able to reach the last index.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [2,3,1,1,4]
-Output: true
-Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [2,3,1,1,4]
+</span><span>Output: true
+</span><span>Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [3,2,1,0,4]
-Output: false
-Explanation: You will always arrive at index 3 no matter what. Its maximum
-             jump length is 0, which makes it impossible to reach the last index.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [3,2,1,0,4]
+</span><span>Output: false
+</span><span>Explanation: You will always arrive at index 3 no matter what. Its maximum
+</span><span>             jump length is 0, which makes it impossible to reach the last index.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Simple DP.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number[]} nums
- * @return {boolean}
- *&#x2F;
-var canJump = function(nums) {
-  let dp = 0;
-  for (let i = 0; i &lt;= Math.min(nums.length-1, dp); ++i) {
-    dp = Math.max(i+nums[i], dp);
-    if (dp &gt;= nums.length-1) return true;
-  }
-  return false;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">nums
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{boolean}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">canJump </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">nums</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">dp </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt;= Math.</span><span style="color:#96b5b4;">min</span><span>(</span><span style="color:#bf616a;">nums</span><span>.length-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">dp</span><span>); ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#bf616a;">dp </span><span>= Math.</span><span style="color:#96b5b4;">max</span><span>(</span><span style="color:#bf616a;">i</span><span>+</span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#bf616a;">i</span><span>], </span><span style="color:#bf616a;">dp</span><span>);
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">dp </span><span>&gt;= </span><span style="color:#bf616a;">nums</span><span>.length-</span><span style="color:#d08770;">1</span><span>) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

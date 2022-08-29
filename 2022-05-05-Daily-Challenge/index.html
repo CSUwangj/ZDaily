@@ -130,20 +130,20 @@ renderMathInElement(document.body, katex_config);
 <li>Depending on your language, the queue may not be supported  natively. You may simulate a queue using a list or deque (double-ended  queue) as long as you use only a queue's standard operations.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;MyStack&quot;, &quot;push&quot;, &quot;push&quot;, &quot;top&quot;, &quot;pop&quot;, &quot;empty&quot;]
-[[], [1], [2], [], [], []]
-Output
-[null, null, null, 2, 2, false]
-
-Explanation
-MyStack myStack = new MyStack();
-myStack.push(1);
-myStack.push(2);
-myStack.top(); &#x2F;&#x2F; return 2
-myStack.pop(); &#x2F;&#x2F; return 2
-myStack.empty(); &#x2F;&#x2F; return False
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;MyStack&quot;, &quot;push&quot;, &quot;push&quot;, &quot;top&quot;, &quot;pop&quot;, &quot;empty&quot;]
+</span><span>[[], [1], [2], [], [], []]
+</span><span>Output
+</span><span>[null, null, null, 2, 2, false]
+</span><span>
+</span><span>Explanation
+</span><span>MyStack myStack = new MyStack();
+</span><span>myStack.push(1);
+</span><span>myStack.push(2);
+</span><span>myStack.top(); // return 2
+</span><span>myStack.pop(); // return 2
+</span><span>myStack.empty(); // return False
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= x &lt;= 9</code></li>
@@ -152,45 +152,45 @@ myStack.empty(); &#x2F;&#x2F; return False
 </ul>
 <p><strong>Follow-up:</strong> Can you implement the stack using only one queue?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class MyStack {
-  queue&lt;int&gt; container;
-public:
-  &#x2F;** Initialize your data structure here. *&#x2F;
-  MyStack() { }
-  
-  &#x2F;** Push element x onto stack. *&#x2F;
-  void push(int x) {
-    int sz = container.size();
-    container.push(x);
-    while(sz--) {
-      container.push(container.front());
-      container.pop();
-    }
-  }
-  
-  &#x2F;** Removes the element on top of the stack and returns that element. *&#x2F;
-  int pop() {
-    int val = container.front();
-    container.pop();
-    return val;
-  }
-  
-  &#x2F;** Get the top element. *&#x2F;
-  int top() {
-    return container.front();
-  }
-  
-  &#x2F;** Returns whether the stack is empty. *&#x2F;
-  bool empty() {
-    return container.empty();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 16&#x2F;16 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 98.89 % of cpp submissions (6.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MyStack </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; container;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Initialize your data structure here. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">MyStack</span><span style="color:#eff1f5;">() { }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Push element x onto stack. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    container.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(x);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(sz</span><span>--</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      container.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(container.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      container.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Removes the element on top of the stack and returns that element. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    container.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Get the top element. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">top</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Returns whether the stack is empty. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">empty</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 16/16 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 98.89 % of cpp submissions (6.7 MB)
+</span></code></pre>
 
     </div>
   </div>

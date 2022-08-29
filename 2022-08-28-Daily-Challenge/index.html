@@ -120,13 +120,13 @@ renderMathInElement(document.body, katex_config);
 <p>Given an <code>m x n</code> matrix <code>mat</code> of integers, sort each <strong>matrix diagonal</strong> in ascending order and return <em>the resulting matrix</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/01/21/1482_example_1_2.png" alt="img" /></p>
-<pre><code>Input: mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]]
-Output: [[1,1,1,1],[1,2,2,2],[1,2,3,3]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]]
+</span><span>Output: [[1,1,1,1],[1,2,2,2],[1,2,3,3]]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: mat = [[11,25,66,1,69,7],[23,55,17,45,15,52],[75,31,36,44,58,8],[22,27,33,25,68,4],[84,28,14,11,5,50]]
-Output: [[5,17,4,1,52,7],[11,11,25,45,8,69],[14,23,25,44,58,15],[22,27,31,36,50,66],[84,28,75,33,55,68]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: mat = [[11,25,66,1,69,7],[23,55,17,45,15,52],[75,31,36,44,58,8],[22,27,33,25,68,4],[84,28,14,11,5,50]]
+</span><span>Output: [[5,17,4,1,52,7],[11,11,25,45,8,69],[14,23,25,44,58,15],[22,27,31,36,50,66],[84,28,75,33,55,68]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == mat.length</code></li>
@@ -135,33 +135,33 @@ Output: [[5,17,4,1,52,7],[11,11,25,45,8,69],[14,23,25,44,58,15],[22,27,31,36,50,
 <li><code>1 &lt;= mat[i][j] &lt;= 100</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;vector&lt;int&gt;&gt; diagonalSort(vector&lt;vector&lt;int&gt;&gt;&amp; mat) {
-    int rows = mat.size();
-    int cols = mat.front().size();
-    for(int i = 0; i &lt; rows+cols-1; ++i) {
-      int rowBegin = max(0, i+1-cols);
-      int colBegin = rowBegin == 0 ? cols - 1 - i : 0;
-      &#x2F;&#x2F; cout &lt;&lt; &#x27;#&#x27; &lt;&lt; rowBegin &lt;&lt; &#x27; &#x27; &lt;&lt; colBegin &lt;&lt; endl;
-      for(int index = 0; rowBegin + index &lt; rows-1 &amp;&amp; colBegin + index &lt; cols-1; ++index) {
-        for(int j = 1; rowBegin + j &lt; rows-index &amp;&amp; colBegin + j &lt; cols-index; ++j) {
-          &#x2F;&#x2F; cout &lt;&lt; rowBegin + j &lt;&lt; &#x27; &#x27; &lt;&lt; colBegin + j &lt;&lt; endl;
-          if(mat[rowBegin+j][colBegin+j] &lt; mat[rowBegin+j-1][colBegin+j-1]) {
-            swap(mat[rowBegin+j][colBegin+j], mat[rowBegin+j-1][colBegin+j-1]);
-          }
-        }
-      }
-    }
-    return move(mat);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 15&#x2F;15 cases passed (33 ms)
-&#x2F;&#x2F; Your runtime beats 10.63 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 99.93 % of cpp submissions (8.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">diagonalSort</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">mat</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols </span><span>=</span><span style="color:#eff1f5;"> mat.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> rows</span><span>+</span><span style="color:#eff1f5;">cols</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rowBegin </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, i</span><span>+</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#eff1f5;">cols);
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> colBegin </span><span>=</span><span style="color:#eff1f5;"> rowBegin </span><span>== </span><span style="color:#d08770;">0 </span><span>?</span><span style="color:#eff1f5;"> cols </span><span>- </span><span style="color:#d08770;">1 </span><span>-</span><span style="color:#eff1f5;"> i </span><span>: </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; &#39;#&#39; &lt;&lt; rowBegin &lt;&lt; &#39; &#39; &lt;&lt; colBegin &lt;&lt; endl;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> index </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; rowBegin </span><span>+</span><span style="color:#eff1f5;"> index </span><span>&lt;</span><span style="color:#eff1f5;"> rows</span><span>-</span><span style="color:#d08770;">1 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> colBegin </span><span>+</span><span style="color:#eff1f5;"> index </span><span>&lt;</span><span style="color:#eff1f5;"> cols</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">index) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; rowBegin </span><span>+</span><span style="color:#eff1f5;"> j </span><span>&lt;</span><span style="color:#eff1f5;"> rows</span><span>-</span><span style="color:#eff1f5;">index </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> colBegin </span><span>+</span><span style="color:#eff1f5;"> j </span><span>&lt;</span><span style="color:#eff1f5;"> cols</span><span>-</span><span style="color:#eff1f5;">index; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">          </span><span style="color:#65737e;">// cout &lt;&lt; rowBegin + j &lt;&lt; &#39; &#39; &lt;&lt; colBegin + j &lt;&lt; endl;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mat[rowBegin</span><span>+</span><span style="color:#eff1f5;">j][colBegin</span><span>+</span><span style="color:#eff1f5;">j] </span><span>&lt;</span><span style="color:#eff1f5;"> mat[rowBegin</span><span>+</span><span style="color:#eff1f5;">j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][colBegin</span><span>+</span><span style="color:#eff1f5;">j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(mat[rowBegin</span><span>+</span><span style="color:#eff1f5;">j][colBegin</span><span>+</span><span style="color:#eff1f5;">j], mat[rowBegin</span><span>+</span><span style="color:#eff1f5;">j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][colBegin</span><span>+</span><span style="color:#eff1f5;">j</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">move</span><span style="color:#eff1f5;">(mat);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 15/15 cases passed (33 ms)
+</span><span style="color:#65737e;">// Your runtime beats 10.63 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 99.93 % of cpp submissions (8.4 MB)
+</span></code></pre>
 
     </div>
   </div>

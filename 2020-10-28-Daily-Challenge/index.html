@@ -117,43 +117,43 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p>Count the number of prime numbers less than a non-negative number, <code>n</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 10
-Output: 4
-Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 10
+</span><span>Output: 4
+</span><span>Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 0
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 0
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 1
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 1
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= n &lt;= 5 * 106</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
 <p>sieve of Eratosthenes</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int countPrimes(int n) {
-    if(n &lt; 3) return 0;
-    int ans = 0;
-    vector&lt;bool&gt; isPrime(n, true);
-    for(int i = 2; i*i &lt; n; ++i) {
-      if(!isPrime[i]) continue;
-      for(int j = i*i; j &lt; n; j += i) {
-        isPrime[j] = false;
-      }
-    }
-    for(int i = 2; i &lt; n; ++i) {
-      ans += isPrime[i];
-    }
-    return ans;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">countPrimes</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">isPrime</span><span style="color:#eff1f5;">(n, </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i</span><span>*</span><span style="color:#eff1f5;">i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">isPrime[i]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i</span><span>*</span><span style="color:#eff1f5;">i; j </span><span>&lt;</span><span style="color:#eff1f5;"> n; j </span><span>+=</span><span style="color:#eff1f5;"> i) {
+</span><span style="color:#eff1f5;">        isPrime[j] </span><span>= </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      ans </span><span>+=</span><span style="color:#eff1f5;"> isPrime[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-28">October LeetCoding Challenge 28</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Summary Ranges</strong></p>
@@ -165,34 +165,34 @@ public:
 <li><code>&quot;a&quot;</code> if <code>a == b</code></li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [0,1,2,4,5,7]
-Output: [&quot;0-&gt;2&quot;,&quot;4-&gt;5&quot;,&quot;7&quot;]
-Explanation: The ranges are:
-[0,2] --&gt; &quot;0-&gt;2&quot;
-[4,5] --&gt; &quot;4-&gt;5&quot;
-[7,7] --&gt; &quot;7&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,1,2,4,5,7]
+</span><span>Output: [&quot;0-&gt;2&quot;,&quot;4-&gt;5&quot;,&quot;7&quot;]
+</span><span>Explanation: The ranges are:
+</span><span>[0,2] --&gt; &quot;0-&gt;2&quot;
+</span><span>[4,5] --&gt; &quot;4-&gt;5&quot;
+</span><span>[7,7] --&gt; &quot;7&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0,2,3,4,6,8,9]
-Output: [&quot;0&quot;,&quot;2-&gt;4&quot;,&quot;6&quot;,&quot;8-&gt;9&quot;]
-Explanation: The ranges are:
-[0,0] --&gt; &quot;0&quot;
-[2,4] --&gt; &quot;2-&gt;4&quot;
-[6,6] --&gt; &quot;6&quot;
-[8,9] --&gt; &quot;8-&gt;9&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,2,3,4,6,8,9]
+</span><span>Output: [&quot;0&quot;,&quot;2-&gt;4&quot;,&quot;6&quot;,&quot;8-&gt;9&quot;]
+</span><span>Explanation: The ranges are:
+</span><span>[0,0] --&gt; &quot;0&quot;
+</span><span>[2,4] --&gt; &quot;2-&gt;4&quot;
+</span><span>[6,6] --&gt; &quot;6&quot;
+</span><span>[8,9] --&gt; &quot;8-&gt;9&quot;
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: nums = [-1]
-Output: [&quot;-1&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [-1]
+</span><span>Output: [&quot;-1&quot;]
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: nums = [0]
-Output: [&quot;0&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0]
+</span><span>Output: [&quot;0&quot;]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= nums.length &lt;= 20</code></li>
@@ -201,30 +201,30 @@ Output: [&quot;0&quot;]
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;string&gt; summaryRanges(vector&lt;int&gt;&amp; nums) {
-    vector&lt;string&gt; ans;
-    if(nums.empty()) return ans;
-    int begin = nums[0], end = nums[0];
-    for(int i = 1; i &lt; nums.size(); ++i) {
-      if(nums[i]-1 != end) {
-        string tmp = to_string(begin);
-        if(end != begin) tmp += &quot;-&gt;&quot;+to_string(end);
-        ans.push_back(tmp);
-        begin = nums[i];
-        end = nums[i];
-      } else {
-        end = nums[i];
-      }
-    }
-    string tmp = to_string(begin);
-    if(end != begin) tmp += &quot;-&gt;&quot;+to_string(end);
-    ans.push_back(tmp);
-    return ans;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;string&gt; </span><span style="color:#8fa1b3;">summaryRanges</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; ans;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>=</span><span style="color:#eff1f5;"> nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">], end </span><span>=</span><span style="color:#eff1f5;"> nums[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i]</span><span>-</span><span style="color:#d08770;">1 </span><span>!=</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">        string tmp </span><span>= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(begin);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(end </span><span>!=</span><span style="color:#eff1f5;"> begin) tmp </span><span>+= &quot;</span><span style="color:#a3be8c;">-&gt;</span><span>&quot;+</span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(end);
+</span><span style="color:#eff1f5;">        ans.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(tmp);
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    string tmp </span><span>= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(begin);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(end </span><span>!=</span><span style="color:#eff1f5;"> begin) tmp </span><span>+= &quot;</span><span style="color:#a3be8c;">-&gt;</span><span>&quot;+</span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(end);
+</span><span style="color:#eff1f5;">    ans.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(tmp);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

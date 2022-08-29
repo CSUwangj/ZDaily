@@ -129,54 +129,54 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>When you check the sequence 1, 3, 5, 7, 9, 13, 17, 21, 25, you will find that the numbers of sequence except the first one, others can be grouped by each four number.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut ans: i64 = 1;
-    let mut tmp: i64 = 1;
-    for i in 1i64..501i64 {
-        for _j in 0..4 {
-            tmp += i*2;
-            ans += tmp;
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: </span><span style="color:#b48ead;">i64 </span><span>= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> tmp: </span><span style="color:#b48ead;">i64 </span><span>= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">i64</span><span>..</span><span style="color:#d08770;">501</span><span style="color:#b48ead;">i64 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">for</span><span> _j in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">4 </span><span>{
+</span><span>            tmp += i*</span><span style="color:#d08770;">2</span><span>;
+</span><span>            ans += tmp;
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="67-add-binary">67. Add Binary</h3>
 <p>Given two binary strings, return their sum (also a binary string).</p>
 <p>The input strings are both <strong>non-empty</strong> and contains only characters <code>1</code> or <code>0</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: a = &quot;11&quot;, b = &quot;1&quot;
-Output: &quot;100&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: a = &quot;11&quot;, b = &quot;1&quot;
+</span><span>Output: &quot;100&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: a = &quot;1010&quot;, b = &quot;1011&quot;
-Output: &quot;10101&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: a = &quot;1010&quot;, b = &quot;1011&quot;
+</span><span>Output: &quot;10101&quot;
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Because of large input, naive implementation will fail.</p>
 <h2 id="implementation-1">Implementation</h2>
 <p>Failed implementation:</p>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string} a
- * @param {string} b
- * @return {string}
- *&#x2F;
-var addBinary = function(a, b) {
-  return (parseInt(a,2)+parseInt(b,2)).toString(2);
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">a
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">b
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{string}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">addBinary </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span>(</span><span style="color:#96b5b4;">parseInt</span><span>(</span><span style="color:#bf616a;">a</span><span>,</span><span style="color:#d08770;">2</span><span>)+</span><span style="color:#96b5b4;">parseInt</span><span>(</span><span style="color:#bf616a;">b</span><span>,</span><span style="color:#d08770;">2</span><span>)).</span><span style="color:#96b5b4;">toString</span><span>(</span><span style="color:#d08770;">2</span><span>);
+</span><span>};
+</span></code></pre>
 <p>Successful submission:</p>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string} a
- * @param {string} b
- * @return {string}
- *&#x2F;
-var addBinary = function(a, b) {
-  return (BigInt(&quot;0b&quot;+a)+BigInt(&quot;0b&quot;+b)).toString(2);
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">a
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">b
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{string}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">addBinary </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">a</span><span>, </span><span style="color:#bf616a;">b</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span>(</span><span style="color:#ebcb8b;">BigInt</span><span>(&quot;</span><span style="color:#a3be8c;">0b</span><span>&quot;+</span><span style="color:#bf616a;">a</span><span>)+</span><span style="color:#ebcb8b;">BigInt</span><span>(&quot;</span><span style="color:#a3be8c;">0b</span><span>&quot;+</span><span style="color:#bf616a;">b</span><span>)).</span><span style="color:#96b5b4;">toString</span><span>(</span><span style="color:#d08770;">2</span><span>);
+</span><span>};
+</span></code></pre>
 <p>If I want to be more efficient, I should write a function do string binary add.</p>
 
     </div>

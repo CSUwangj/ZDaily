@@ -119,48 +119,48 @@ renderMathInElement(document.body, katex_config);
 <p>The <a href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p>
 <p>Given two integers <code>x</code> and <code>y</code>, return <em>the <strong>Hamming distance</strong> between them</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: x = 1, y = 4
-Output: 2
-Explanation:
-1   (0 0 0 1)
-4   (0 1 0 0)
-       ↑   ↑
-The above arrows point to positions where the corresponding bits are different.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: x = 1, y = 4
+</span><span>Output: 2
+</span><span>Explanation:
+</span><span>1   (0 0 0 1)
+</span><span>4   (0 1 0 0)
+</span><span>       ↑   ↑
+</span><span>The above arrows point to positions where the corresponding bits are different.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: x = 3, y = 1
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: x = 3, y = 1
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 	<li><code>0 &lt;=&nbsp;x, y &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int M1  = 0x55555555; &#x2F;&#x2F; 01010101
-const int M2  = 0x33333333; &#x2F;&#x2F; 00110011
-const int M4  = 0x0F0F0F0F; &#x2F;&#x2F; 00001111
-const int M8  = 0x00FF00FF; 
-const int M16 = 0x0000FFFF;
-constexpr int pop_count(int x) {
-  x = (x &amp; M1) + ((x &gt;&gt; 1) &amp; M1);
-  x = (x &amp; M2) + ((x &gt;&gt; 2) &amp; M2);
-  x = (x &amp; M4) + ((x &gt;&gt; 4) &amp; M4);
-  x = (x &amp; M8) + ((x &gt;&gt; 8) &amp; M8);
-  x = (x &amp; M16) + ((x &gt;&gt; 16) &amp; M16);
-  return x;
-}
-class Solution {
-public:
-  int hammingDistance(int x, int y) {
-    return pop_count(x ^ y);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 149&#x2F;149 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 72.54 % of cpp submissions (5.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> M1  = </span><span style="color:#d08770;">0x55555555</span><span>; </span><span style="color:#65737e;">// 01010101
+</span><span style="color:#b48ead;">const int</span><span> M2  = </span><span style="color:#d08770;">0x33333333</span><span>; </span><span style="color:#65737e;">// 00110011
+</span><span style="color:#b48ead;">const int</span><span> M4  = </span><span style="color:#d08770;">0x0F0F0F0F</span><span>; </span><span style="color:#65737e;">// 00001111
+</span><span style="color:#b48ead;">const int</span><span> M8  = </span><span style="color:#d08770;">0x00FF00FF</span><span>; 
+</span><span style="color:#b48ead;">const int</span><span> M16 = </span><span style="color:#d08770;">0x0000FFFF</span><span>;
+</span><span style="color:#b48ead;">constexpr int </span><span style="color:#8fa1b3;">pop_count</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>) {
+</span><span>  x = (x &amp; M1) + ((x &gt;&gt; </span><span style="color:#d08770;">1</span><span>) &amp; M1);
+</span><span>  x = (x &amp; M2) + ((x &gt;&gt; </span><span style="color:#d08770;">2</span><span>) &amp; M2);
+</span><span>  x = (x &amp; M4) + ((x &gt;&gt; </span><span style="color:#d08770;">4</span><span>) &amp; M4);
+</span><span>  x = (x &amp; M8) + ((x &gt;&gt; </span><span style="color:#d08770;">8</span><span>) &amp; M8);
+</span><span>  x = (x &amp; M16) + ((x &gt;&gt; </span><span style="color:#d08770;">16</span><span>) &amp; M16);
+</span><span>  </span><span style="color:#b48ead;">return</span><span> x;
+</span><span>}
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">hammingDistance</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">y</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">pop_count</span><span style="color:#eff1f5;">(x </span><span>^</span><span style="color:#eff1f5;"> y);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 149/149 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 72.54 % of cpp submissions (5.9 MB)
+</span></code></pre>
 
     </div>
   </div>

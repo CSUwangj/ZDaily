@@ -115,56 +115,56 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Power digit sum</em> in <em>Rust</em> and <em>Swap Adjacent in LR String</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Power digit sum
-
-Problem 16 
-
-2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
-
-What is the sum of the digits of the number 2^1000?
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Power digit sum
+</span><span>
+</span><span>Problem 16 
+</span><span>
+</span><span>2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+</span><span>
+</span><span>What is the sum of the digits of the number 2^1000?
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate num_bigint;
-
-use num_bigint::{BigInt};
-use std::ops::Shl;
-
-fn main() {
-    let mut num: BigInt = BigInt::from(1u32);
-    num = num.shl(1000 as usize);
-    let num = num.to_str_radix(10);
-    let mut ans = 0;
-    const MINES: i32 = 48;
-    for i in num.chars() {
-        ans += (i as i32) - MINES;
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> num_bigint;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>num_bigint::{BigInt};
+</span><span style="color:#b48ead;">use </span><span>std::ops::Shl;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> num: BigInt = BigInt::from(</span><span style="color:#d08770;">1</span><span style="color:#b48ead;">u32</span><span>);
+</span><span>    num = num.</span><span style="color:#96b5b4;">shl</span><span>(</span><span style="color:#d08770;">1000 </span><span>as </span><span style="color:#b48ead;">usize</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> num = num.</span><span style="color:#96b5b4;">to_str_radix</span><span>(</span><span style="color:#d08770;">10</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#d08770;">MINES</span><span>: </span><span style="color:#b48ead;">i32 </span><span>= </span><span style="color:#d08770;">48</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in num.</span><span style="color:#96b5b4;">chars</span><span>() {
+</span><span>        ans += (i as </span><span style="color:#b48ead;">i32</span><span>) - </span><span style="color:#d08770;">MINES</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>777. Swap Adjacent in LR String
-
-In a string composed of &#x27;L&#x27;, &#x27;R&#x27;, and &#x27;X&#x27; characters, like &quot;RXXLRXRXL&quot;, a move consists of either replacing one occurrence of &quot;XL&quot; with &quot;LX&quot;, or replacing one occurrence of &quot;RX&quot; with &quot;XR&quot;. Given the starting string start and the ending string end, return True if and only if there exists a sequence of moves to transform one string to the other.
-
-Example:
-
-Input: start = &quot;RXXLRXRXL&quot;, end = &quot;XRLXXRRLX&quot;
-Output: True
-Explanation:
-We can transform start to end following these steps:
-RXXLRXRXL -&gt;
-XRXLRXRXL -&gt;
-XRLXRXRXL -&gt;
-XRLXXRRXL -&gt;
-XRLXXRRLX
-Note:
-
-1 &lt;= len(start) = len(end) &lt;= 10000.
-Both start and end will only consist of characters in {&#x27;L&#x27;, &#x27;R&#x27;, &#x27;X&#x27;}.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>777. Swap Adjacent in LR String
+</span><span>
+</span><span>In a string composed of &#39;L&#39;, &#39;R&#39;, and &#39;X&#39; characters, like &quot;RXXLRXRXL&quot;, a move consists of either replacing one occurrence of &quot;XL&quot; with &quot;LX&quot;, or replacing one occurrence of &quot;RX&quot; with &quot;XR&quot;. Given the starting string start and the ending string end, return True if and only if there exists a sequence of moves to transform one string to the other.
+</span><span>
+</span><span>Example:
+</span><span>
+</span><span>Input: start = &quot;RXXLRXRXL&quot;, end = &quot;XRLXXRRLX&quot;
+</span><span>Output: True
+</span><span>Explanation:
+</span><span>We can transform start to end following these steps:
+</span><span>RXXLRXRXL -&gt;
+</span><span>XRXLRXRXL -&gt;
+</span><span>XRLXRXRXL -&gt;
+</span><span>XRLXXRRXL -&gt;
+</span><span>XRLXXRRLX
+</span><span>Note:
+</span><span>
+</span><span>1 &lt;= len(start) = len(end) &lt;= 10000.
+</span><span>Both start and end will only consist of characters in {&#39;L&#39;, &#39;R&#39;, &#39;X&#39;}.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>We could observe these pattern:</p>
 <ul>
@@ -172,39 +172,39 @@ Both start and end will only consist of characters in {&#x27;L&#x27;, &#x27;R&#x
 <li>Position of &quot;L&quot;s only can be more left, &quot;R&quot; only can be more right.</li>
 </ul>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string} start
- * @param {string} end
- * @return {boolean}
- *&#x2F;
-var canTransform = function(start, end) {
-  let fset = [];
-  let fpos = [];
-  let sset = [];
-  let spos = [];
-  for(let i = 0, l = start.length; i &lt; l; ++i){
-    if(start[i] != &quot;X&quot;){
-      fset.push(start[i]);
-      fpos.push(i);
-    }
-  }
-  for(let i = 0, l = start.length; i &lt; l; ++i){
-    if(end[i] != &quot;X&quot;){
-      sset.push(end[i]);
-      spos.push(i);
-    }
-  }
-  if(fset.length != sset.length) return false;
-  for(let i = 0, l = fset.length; i &lt; l; ++i){
-    if(fset[i] != sset[i]||
-      (fset[i] == &quot;L&quot; &amp;&amp; fpos[i] &lt; spos[i])||
-      (fset[i] == &quot;R&quot; &amp;&amp; fpos[i] &gt; spos[i])){
-      return false;
-    }
-  }
-  return true;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">start
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">end
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{boolean}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">canTransform </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">start</span><span>, </span><span style="color:#bf616a;">end</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">fset </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">fpos </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">sset </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">spos </span><span>= [];
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#bf616a;">l </span><span>= </span><span style="color:#bf616a;">start</span><span>.length; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">l</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">start</span><span>[</span><span style="color:#bf616a;">i</span><span>] != &quot;</span><span style="color:#a3be8c;">X</span><span>&quot;){
+</span><span>      </span><span style="color:#bf616a;">fset</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">start</span><span>[</span><span style="color:#bf616a;">i</span><span>]);
+</span><span>      </span><span style="color:#bf616a;">fpos</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">i</span><span>);
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#bf616a;">l </span><span>= </span><span style="color:#bf616a;">start</span><span>.length; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">l</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">end</span><span>[</span><span style="color:#bf616a;">i</span><span>] != &quot;</span><span style="color:#a3be8c;">X</span><span>&quot;){
+</span><span>      </span><span style="color:#bf616a;">sset</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">end</span><span>[</span><span style="color:#bf616a;">i</span><span>]);
+</span><span>      </span><span style="color:#bf616a;">spos</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">i</span><span>);
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">fset</span><span>.length != </span><span style="color:#bf616a;">sset</span><span>.length) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#bf616a;">l </span><span>= </span><span style="color:#bf616a;">fset</span><span>.length; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">l</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">fset</span><span>[</span><span style="color:#bf616a;">i</span><span>] != </span><span style="color:#bf616a;">sset</span><span>[</span><span style="color:#bf616a;">i</span><span>]||
+</span><span>      (</span><span style="color:#bf616a;">fset</span><span>[</span><span style="color:#bf616a;">i</span><span>] == &quot;</span><span style="color:#a3be8c;">L</span><span>&quot; &amp;&amp; </span><span style="color:#bf616a;">fpos</span><span>[</span><span style="color:#bf616a;">i</span><span>] &lt; </span><span style="color:#bf616a;">spos</span><span>[</span><span style="color:#bf616a;">i</span><span>])||
+</span><span>      (</span><span style="color:#bf616a;">fset</span><span>[</span><span style="color:#bf616a;">i</span><span>] == &quot;</span><span style="color:#a3be8c;">R</span><span>&quot; &amp;&amp; </span><span style="color:#bf616a;">fpos</span><span>[</span><span style="color:#bf616a;">i</span><span>] &gt; </span><span style="color:#bf616a;">spos</span><span>[</span><span style="color:#bf616a;">i</span><span>])){
+</span><span>      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

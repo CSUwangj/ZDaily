@@ -119,25 +119,25 @@ renderMathInElement(document.body, katex_config);
 <p>The array <code>nums</code> is <strong>complementary</strong> if for all indices <code>i</code> (<strong>0-indexed</strong>), <code>nums[i] + nums[n - 1 - i]</code> equals the same number. For example, the array <code>[1,2,3,4]</code> is complementary because for all indices <code>i</code>, <code>nums[i] + nums[n - 1 - i] = 5</code>.</p>
 <p>Return the <em><strong>minimum</strong> number of moves required to make</em> <code>nums</code> <em><strong>complementary</strong></em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,2,4,3], limit = 4
-Output: 1
-Explanation: In 1 move, you can change nums to [1,2,2,3] (underlined elements are changed).
-nums[0] + nums[3] = 1 + 3 = 4.
-nums[1] + nums[2] = 2 + 2 = 4.
-nums[2] + nums[1] = 2 + 2 = 4.
-nums[3] + nums[0] = 3 + 1 = 4.
-Therefore, nums[i] + nums[n-1-i] = 4 for every i, so nums is complementary.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,4,3], limit = 4
+</span><span>Output: 1
+</span><span>Explanation: In 1 move, you can change nums to [1,2,2,3] (underlined elements are changed).
+</span><span>nums[0] + nums[3] = 1 + 3 = 4.
+</span><span>nums[1] + nums[2] = 2 + 2 = 4.
+</span><span>nums[2] + nums[1] = 2 + 2 = 4.
+</span><span>nums[3] + nums[0] = 3 + 1 = 4.
+</span><span>Therefore, nums[i] + nums[n-1-i] = 4 for every i, so nums is complementary.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1,2,2,1], limit = 2
-Output: 2
-Explanation: In 2 moves, you can change nums to [2,2,2,2]. You cannot change any number to 3 since 3 &gt; limit.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,2,1], limit = 2
+</span><span>Output: 2
+</span><span>Explanation: In 2 moves, you can change nums to [2,2,2,2]. You cannot change any number to 3 since 3 &gt; limit.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [1,2,1,2], limit = 2
-Output: 0
-Explanation: nums is already complementary.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,1,2], limit = 2
+</span><span>Output: 0
+</span><span>Explanation: nums is already complementary.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == nums.length</code></li>
@@ -149,52 +149,52 @@ Explanation: nums is already complementary.
 <p>spent quite a time to understand how to translate this problem into a sweeping line problem</p>
 <p>but I didn't get why, so I'm not so confident if I can solve another similar problem.</p>
 <p>check <a href="https://leetcode.com/problems/minimum-moves-to-make-array-complementary/discuss/953078/Prefix-sum-O(n-%2B-limit)-with-detailed-examples-and-pseudocode">https://leetcode.com/problems/minimum-moves-to-make-array-complementary/discuss/953078/Prefix-sum-O(n-%2B-limit)-with-detailed-examples-and-pseudocode</a> for explanation</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int minMoves(vector&lt;int&gt;&amp; nums, int limit) {
-        vector&lt;int&gt; cnt(2*limit+3);
-        int len = nums.size();
-        for(int i = 0; i*2 &lt; len; ++i) {
-            int mmin = min(nums[i], nums[len-i-1]);
-            int mmax = max(nums[i], nums[len-i-1]);
-            cnt[mmin+1] -= 1;
-            cnt[mmin+mmax] -= 1;
-            cnt[mmin+mmax+1] += 1;
-            cnt[mmax+limit+1] += 1;
-        }
-        int answer = INT_MAX;
-        int current = len;
-        for(auto cnt : cnt) {
-            current += cnt;
-            answer = min(answer, current);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minMoves</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">limit</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">cnt</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">2</span><span>*</span><span style="color:#eff1f5;">limit</span><span>+</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i</span><span>*</span><span style="color:#d08770;">2 </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mmin </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(nums[i], nums[len</span><span>-</span><span style="color:#eff1f5;">i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mmax </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(nums[i], nums[len</span><span>-</span><span style="color:#eff1f5;">i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">            cnt[mmin</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cnt[mmin</span><span>+</span><span style="color:#eff1f5;">mmax] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cnt[mmin</span><span>+</span><span style="color:#eff1f5;">mmax</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cnt[mmax</span><span>+</span><span style="color:#eff1f5;">limit</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current </span><span>=</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> cnt </span><span>:</span><span style="color:#eff1f5;"> cnt) {
+</span><span style="color:#eff1f5;">            current </span><span>+=</span><span style="color:#eff1f5;"> cnt;
+</span><span style="color:#eff1f5;">            answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, current);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="smallest-rotation-with-highest-score">Smallest Rotation with Highest Score</h1>
 <h2 id="description-1">Description</h2>
 <p>Given an array <code>A</code>, we may rotate it by a non-negative integer <code>K</code> so that the array becomes <code>A[K], A[K+1], A{K+2], ... A[A.length - 1], A[0], A[1], ..., A[K-1]</code>. Afterward, any entries that are less than or equal to their index are worth 1 point. </p>
 <p>For example, if we have <code>[2, 4, 1, 3, 0]</code>, and we rotate by <code>K = 2</code>, it becomes <code>[1, 3, 0, 2, 4]</code>. This is worth 3 points because 1 &gt; 0 [no points], 3 &gt; 1 [no points], 0 &lt;= 2 [one point], 2 &lt;= 3 [one point], 4 &lt;= 4 [one point].</p>
 <p>Over all possible rotations, return the rotation index K that corresponds to the highest score we could receive. If there are multiple answers, return the smallest such index K.</p>
-<pre><code>Example 1:
-Input: [2, 3, 1, 4, 0]
-Output: 3
-Explanation:  
-Scores for each K are listed below: 
-K = 0,  A = [2,3,1,4,0],    score 2
-K = 1,  A = [3,1,4,0,2],    score 3
-K = 2,  A = [1,4,0,2,3],    score 3
-K = 3,  A = [4,0,2,3,1],    score 4
-K = 4,  A = [0,2,3,1,4],    score 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Example 1:
+</span><span>Input: [2, 3, 1, 4, 0]
+</span><span>Output: 3
+</span><span>Explanation:  
+</span><span>Scores for each K are listed below: 
+</span><span>K = 0,  A = [2,3,1,4,0],    score 2
+</span><span>K = 1,  A = [3,1,4,0,2],    score 3
+</span><span>K = 2,  A = [1,4,0,2,3],    score 3
+</span><span>K = 3,  A = [4,0,2,3,1],    score 4
+</span><span>K = 4,  A = [0,2,3,1,4],    score 3
+</span></code></pre>
 <p>So we should choose K = 3, which has the highest score.</p>
-<pre><code>Example 2:
-Input: [1, 3, 0, 2, 4]
-Output: 0
-Explanation:  A will always have 3 points no matter how it shifts.
-So we will choose the smallest K, which is 0.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Example 2:
+</span><span>Input: [1, 3, 0, 2, 4]
+</span><span>Output: 0
+</span><span>Explanation:  A will always have 3 points no matter how it shifts.
+</span><span>So we will choose the smallest K, which is 0.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>A</code> will have length at most <code>20000</code>.</li>
@@ -205,51 +205,51 @@ So we will choose the smallest K, which is 0.
 <p>I think this problem is easier.</p>
 <p>I think the point is that we can choose some moves to get a maximum result, but we can use brute
 force to determine how many we need, with the scoring moves for a element is a range.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp"> class Solution {
-public:
-    int bestRotation(vector&lt;int&gt;&amp; A) {
-        int len = A.size();
-        vector&lt;int&gt; offset(len);
-        for(int i = 0; i &lt; len; ++i) {
-            int beginPos = A[i];
-            int endPos = len - 1;
-            int leastTurn = (i - endPos + len) % len;
-            int mostTurn = (i - beginPos + len) % len;
-            offset[leastTurn] += 1;
-            if(leastTurn &gt; mostTurn) offset[0] += 1;
-            offset[(mostTurn + 1) % len] -= 1;
-        }
-        int answer = offset.front();
-        int turns = 0;
-        for(int i = 1; i &lt; len; ++i) {
-            offset[i] += offset[i-1];
-            if(answer &lt; offset[i]) {
-                answer = offset[i];
-                turns = i;
-            }
-        }
-        return turns;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span> </span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">bestRotation</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">offset</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> beginPos </span><span>=</span><span style="color:#eff1f5;"> A[i];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> endPos </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> leastTurn </span><span>= </span><span style="color:#eff1f5;">(i </span><span>-</span><span style="color:#eff1f5;"> endPos </span><span>+</span><span style="color:#eff1f5;"> len) </span><span>%</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mostTurn </span><span>= </span><span style="color:#eff1f5;">(i </span><span>-</span><span style="color:#eff1f5;"> beginPos </span><span>+</span><span style="color:#eff1f5;"> len) </span><span>%</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">            offset[leastTurn] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(leastTurn </span><span>&gt;</span><span style="color:#eff1f5;"> mostTurn) offset[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            offset[(mostTurn </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>%</span><span style="color:#eff1f5;"> len] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> offset.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> turns </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            offset[i] </span><span>+=</span><span style="color:#eff1f5;"> offset[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(answer </span><span>&lt;</span><span style="color:#eff1f5;"> offset[i]) {
+</span><span style="color:#eff1f5;">                answer </span><span>=</span><span style="color:#eff1f5;"> offset[i];
+</span><span style="color:#eff1f5;">                turns </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> turns;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-8">December LeetCoding Challenge 8</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Pairs of Songs With Total Durations Divisible by 60</strong></p>
 <p>You are given a list of songs where the ith song has a duration of <code>time[i]</code> seconds.</p>
 <p>Return <em>the number of pairs of songs for which their total duration in seconds is divisible by</em> <code>60</code>. Formally, we want the number of indices <code>i</code>, <code>j</code> such that <code>i &lt; j</code> with <code>(time[i] + time[j]) % 60 == 0</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: time = [30,20,150,100,40]
-Output: 3
-Explanation: Three pairs have a total duration divisible by 60:
-(time[0] = 30, time[2] = 150): total duration 180
-(time[1] = 20, time[3] = 100): total duration 120
-(time[1] = 20, time[4] = 40): total duration 60
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: time = [30,20,150,100,40]
+</span><span>Output: 3
+</span><span>Explanation: Three pairs have a total duration divisible by 60:
+</span><span>(time[0] = 30, time[2] = 150): total duration 180
+</span><span>(time[1] = 20, time[3] = 100): total duration 120
+</span><span>(time[1] = 20, time[4] = 40): total duration 60
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: time = [60,60,60]
-Output: 3
-Explanation: All three pairs have a total duration of 120, which is divisible by 60.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: time = [60,60,60]
+</span><span>Output: 3
+</span><span>Explanation: All three pairs have a total duration of 120, which is divisible by 60.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>$1 \le time.length \le 6 \times 10^4$</li>
@@ -257,21 +257,21 @@ Explanation: All three pairs have a total duration of 120, which is divisible by
 </ul>
 <h2 id="solution-2">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int numPairsDivisibleBy60(vector&lt;int&gt;&amp; time) {
-        vector&lt;int&gt; cnt(60);
-        for(auto t : time) {
-            cnt[t%60] += 1;
-        }
-        int answer = cnt[0] * (cnt[0]-1) &#x2F; 2 + cnt[30] * (cnt[30]-1) &#x2F; 2;
-        for(int i = 1; i &lt; 30; ++i) {
-            answer += cnt[i] * cnt[60-i];
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numPairsDivisibleBy60</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">time</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">cnt</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">60</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> t </span><span>:</span><span style="color:#eff1f5;"> time) {
+</span><span style="color:#eff1f5;">            cnt[t</span><span>%</span><span style="color:#d08770;">60</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>* </span><span style="color:#eff1f5;">(cnt[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2 </span><span>+</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">30</span><span style="color:#eff1f5;">] </span><span>* </span><span style="color:#eff1f5;">(cnt[</span><span style="color:#d08770;">30</span><span style="color:#eff1f5;">]</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">30</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            answer </span><span>+=</span><span style="color:#eff1f5;"> cnt[i] </span><span>*</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">60</span><span>-</span><span style="color:#eff1f5;">i];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

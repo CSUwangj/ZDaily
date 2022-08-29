@@ -118,14 +118,14 @@ renderMathInElement(document.body, katex_config);
 <p>Given <code>n</code> non-negative integers representing an elevation map where the width of each bar is <code>1</code>, compute how much water it can trap after raining.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png" alt="img" /></p>
-<pre><code>Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
-Output: 6
-Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+</span><span>Output: 6
+</span><span>Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: height = [4,2,0,3,2,5]
-Output: 9
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: height = [4,2,0,3,2,5]
+</span><span>Output: 9
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == height.length</code></li>
@@ -135,53 +135,53 @@ Output: 9
 <h2 id="solution">Solution</h2>
 <p>we just need to find which heights are trapping the water, then find next greater height, if there is not next greater height, we solve it backward.</p>
 <p>I use monotonic stack to keep track of both conditions, but seems dp will be more elegant ;)</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int trap(vector&lt;int&gt;&amp; height) {
-    int len = height.size();
-    vector&lt;int&gt; nextEqualGreater(len);
-    vector&lt;int&gt; lastEqualGreater(len);
-    vector&lt;int&gt; monoStack;
-    for(int i = len-1; i &gt;= 0; --i) {
-      while(monoStack.size() &amp;&amp; height[monoStack.back()] &lt; height[i]) monoStack.pop_back();
-      nextEqualGreater[i] = monoStack.empty() ? -1 : monoStack.back();
-      monoStack.push_back(i);
-    }
-    while(monoStack.size()) monoStack.pop_back();
-    for(int i = 0; i &lt; len; ++i) {
-      while(monoStack.size() &amp;&amp; height[monoStack.back()] &lt; height[i]) monoStack.pop_back();
-      lastEqualGreater[i] = monoStack.empty() ? -1 : monoStack.back();
-      monoStack.push_back(i);
-    }
-    int leftPos = 1;
-    while(leftPos &lt; len &amp;&amp; height[leftPos] &gt;= height[leftPos-1]) leftPos += 1;
-    if(leftPos == len) return 0;
-    int rightPos = len - 2;
-    while(rightPos &gt;= 0 &amp;&amp; height[rightPos] &gt;= height[rightPos+1]) rightPos -= 1;
-    if(rightPos == -1) return 0;
-
-    leftPos -= 1;
-    rightPos += 1;
-    int answer = 0;
-    while(leftPos &lt; rightPos) {
-      if(nextEqualGreater[leftPos] != -1) {
-        int waterHeight = min(height[leftPos], height[nextEqualGreater[leftPos]]);
-        for(int current = leftPos + 1, end = nextEqualGreater[leftPos] -1; current &lt;= end; ++current) {
-          answer += waterHeight - height[current];
-        }
-        leftPos = nextEqualGreater[leftPos];
-      } else if (lastEqualGreater[rightPos] != -1) {
-        int waterHeight = min(height[rightPos], height[lastEqualGreater[rightPos]]);
-        for(int current = lastEqualGreater[rightPos] + 1, end = rightPos -1; current &lt;= end; ++current) {
-          answer += waterHeight - height[current];
-        }
-        rightPos = lastEqualGreater[rightPos];
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">trap</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">height</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> height.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">nextEqualGreater</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">lastEqualGreater</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; monoStack;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> height[monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span>&lt;</span><span style="color:#eff1f5;"> height[i]) monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      nextEqualGreater[i] </span><span>=</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span>? -</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> height[monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span>&lt;</span><span style="color:#eff1f5;"> height[i]) monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      lastEqualGreater[i] </span><span>=</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span>? -</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> leftPos </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(leftPos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> height[leftPos] </span><span>&gt;=</span><span style="color:#eff1f5;"> height[leftPos</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) leftPos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(leftPos </span><span>==</span><span style="color:#eff1f5;"> len) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rightPos </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(rightPos </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> height[rightPos] </span><span>&gt;=</span><span style="color:#eff1f5;"> height[rightPos</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) rightPos </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(rightPos </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    leftPos </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    rightPos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(leftPos </span><span>&lt;</span><span style="color:#eff1f5;"> rightPos) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nextEqualGreater[leftPos] </span><span>!= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> waterHeight </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(height[leftPos], height[nextEqualGreater[leftPos]]);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current </span><span>=</span><span style="color:#eff1f5;"> leftPos </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end </span><span>=</span><span style="color:#eff1f5;"> nextEqualGreater[leftPos] </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; current </span><span>&lt;=</span><span style="color:#eff1f5;"> end; </span><span>++</span><span style="color:#eff1f5;">current) {
+</span><span style="color:#eff1f5;">          answer </span><span>+=</span><span style="color:#eff1f5;"> waterHeight </span><span>-</span><span style="color:#eff1f5;"> height[current];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        leftPos </span><span>=</span><span style="color:#eff1f5;"> nextEqualGreater[leftPos];
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if </span><span style="color:#eff1f5;">(lastEqualGreater[rightPos] </span><span>!= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> waterHeight </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(height[rightPos], height[lastEqualGreater[rightPos]]);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current </span><span>=</span><span style="color:#eff1f5;"> lastEqualGreater[rightPos] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end </span><span>=</span><span style="color:#eff1f5;"> rightPos </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; current </span><span>&lt;=</span><span style="color:#eff1f5;"> end; </span><span>++</span><span style="color:#eff1f5;">current) {
+</span><span style="color:#eff1f5;">          answer </span><span>+=</span><span style="color:#eff1f5;"> waterHeight </span><span>-</span><span style="color:#eff1f5;"> height[current];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        rightPos </span><span>=</span><span style="color:#eff1f5;"> lastEqualGreater[rightPos];
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-17">November LeetCoding Challenge 17</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Mirror Reflection</strong></p>
@@ -189,10 +189,10 @@ public:
 <p>The square room has walls of length <code>p</code>, and a laser ray from the southwest corner first meets the east wall at a distance <code>q</code> from the <code>0</code>th receptor.</p>
 <p>Return the number of the receptor that the ray meets first. (It is guaranteed that the ray will meet a receptor eventually.)</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: p = 2, q = 1
-Output: 2
-Explanation: The ray meets receptor 2 the first time it gets reflected back to the left wall.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: p = 2, q = 1
+</span><span>Output: 2
+</span><span>Explanation: The ray meets receptor 2 the first time it gets reflected back to the left wall.
+</span></code></pre>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/06/18/reflection.png" alt="img" /></p>
 <p><strong>Note:</strong></p>
 <ol>
@@ -201,32 +201,32 @@ Explanation: The ray meets receptor 2 the first time it gets reflected back to t
 </ol>
 <h2 id="solution-1">Solution</h2>
 <p>just imagine that the ray reflected by mirrors is crossing the wall and hits further corners, where we just expand room by flip to top over and over again.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int mirrorReflection(int p, int q) {
-    if(q == 0) return 0;
-    int answer = -1;
-    int minRound = INT_MAX;
-    for(int i = 0; i &lt; q; ++i) {
-      if((i*2+1)*p % q == 0) {
-        minRound = i*2 + 1;
-        answer = 2 - (((i*2+1)*p&#x2F;q) &amp; 1);
-        break;
-      }
-    }
-    int end = q &#x2F; gcd(p, q);
-    for(int i = 0; i &lt; end; ++i) {
-      if((2*i+2)*p % q == 0) {
-        if((i*2+2) &lt; minRound) {
-          answer = 0;
-        }
-        break;
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">mirrorReflection</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">p</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">q</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(q </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> minRound </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> q; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((i</span><span>*</span><span style="color:#d08770;">2</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>*</span><span style="color:#eff1f5;">p </span><span>%</span><span style="color:#eff1f5;"> q </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        minRound </span><span>=</span><span style="color:#eff1f5;"> i</span><span>*</span><span style="color:#d08770;">2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#d08770;">2 </span><span>- </span><span style="color:#eff1f5;">(((i</span><span>*</span><span style="color:#d08770;">2</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>*</span><span style="color:#eff1f5;">p</span><span>/</span><span style="color:#eff1f5;">q) </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> q </span><span>/ </span><span style="color:#bf616a;">gcd</span><span style="color:#eff1f5;">(p, q);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> end; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((</span><span style="color:#d08770;">2</span><span>*</span><span style="color:#eff1f5;">i</span><span>+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">)</span><span>*</span><span style="color:#eff1f5;">p </span><span>%</span><span style="color:#eff1f5;"> q </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((i</span><span>*</span><span style="color:#d08770;">2</span><span>+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span>&lt;</span><span style="color:#eff1f5;"> minRound) {
+</span><span style="color:#eff1f5;">          answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

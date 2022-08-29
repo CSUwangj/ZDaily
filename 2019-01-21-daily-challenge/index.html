@@ -125,69 +125,69 @@ renderMathInElement(document.body, katex_config);
 <p>Because there are nine digits, so multiplication will be $a\times bcde=fghi$ or $ab\times cde=fghi$.</p>
 <p>But apart from brute force approach, I can't find another solution.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashSet;
-
-fn main() {
-    let mut set: HashSet&lt;i32&gt; = HashSet::new();
-    let mut ans = 0;
-    for i in 1..10 {
-        for j in 1234..9877 {
-            if i*j &gt; 9999 {
-                break;
-            }
-            if check(i, j, i*j) {
-                println!(&quot;{} * {} = {}&quot;, i, j, i*j);
-                set.insert(i*j);
-            }
-        }
-    }
-    for i in 12..99 {
-        for j in 123..988{
-            if i*j &gt; 9999 {
-                break;
-            }
-            if check(i, j, i*j) {
-                println!(&quot;{} * {} = {}&quot;, i, j, i*j);
-                set.insert(i*j);
-            }
-        }
-    }
-    for num in set {
-        ans += num;
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn check(mut multiplicand: i32, mut multiplier: i32, mut product: i32) -&gt; bool {
-    let mut ok: [bool; 10] = [false; 10];
-    while multiplicand &gt; 0 {
-        let tmp = multiplicand % 10;
-        multiplicand &#x2F;= 10;
-        if tmp == 0 || ok[tmp as usize] {
-            return false;
-        }
-        ok[tmp as usize] = true;
-    }
-    while multiplier &gt; 0 {
-        let tmp = multiplier % 10;
-        multiplier &#x2F;= 10;
-        if tmp == 0 || ok[tmp as usize] {
-            return false;
-        }
-        ok[tmp as usize] = true;
-    }
-    while product &gt; 0 {
-        let tmp = product % 10;
-        product &#x2F;= 10;
-        if tmp == 0 || ok[tmp as usize] {
-            return false;
-        }
-        ok[tmp as usize] = true;
-    }
-    return true;
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::collections::HashSet;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> set: HashSet&lt;</span><span style="color:#b48ead;">i32</span><span>&gt; = HashSet::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">10 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">1234</span><span>..</span><span style="color:#d08770;">9877 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">if</span><span> i*j &gt; </span><span style="color:#d08770;">9999 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">break</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">check</span><span>(i, j, i*j) {
+</span><span>                println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> * </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> = </span><span style="color:#d08770;">{}</span><span>&quot;, i, j, i*j);
+</span><span>                set.</span><span style="color:#96b5b4;">insert</span><span>(i*j);
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">12</span><span>..</span><span style="color:#d08770;">99 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">123</span><span>..</span><span style="color:#d08770;">988</span><span>{
+</span><span>            </span><span style="color:#b48ead;">if</span><span> i*j &gt; </span><span style="color:#d08770;">9999 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">break</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">check</span><span>(i, j, i*j) {
+</span><span>                println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> * </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> = </span><span style="color:#d08770;">{}</span><span>&quot;, i, j, i*j);
+</span><span>                set.</span><span style="color:#96b5b4;">insert</span><span>(i*j);
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">for</span><span> num in set {
+</span><span>        ans += num;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">check</span><span>(</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">multiplicand</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">multiplier</span><span>: </span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">product</span><span>: </span><span style="color:#b48ead;">i32</span><span>) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ok: [</span><span style="color:#b48ead;">bool</span><span>; </span><span style="color:#d08770;">10</span><span>] = [</span><span style="color:#d08770;">false</span><span>; </span><span style="color:#d08770;">10</span><span>];
+</span><span>    </span><span style="color:#b48ead;">while</span><span> multiplicand &gt; </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = multiplicand % </span><span style="color:#d08770;">10</span><span>;
+</span><span>        multiplicand /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp == </span><span style="color:#d08770;">0 </span><span>|| ok[tmp as </span><span style="color:#b48ead;">usize</span><span>] {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        }
+</span><span>        ok[tmp as </span><span style="color:#b48ead;">usize</span><span>] = </span><span style="color:#d08770;">true</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">while</span><span> multiplier &gt; </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = multiplier % </span><span style="color:#d08770;">10</span><span>;
+</span><span>        multiplier /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp == </span><span style="color:#d08770;">0 </span><span>|| ok[tmp as </span><span style="color:#b48ead;">usize</span><span>] {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        }
+</span><span>        ok[tmp as </span><span style="color:#b48ead;">usize</span><span>] = </span><span style="color:#d08770;">true</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">while</span><span> product &gt; </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = product % </span><span style="color:#d08770;">10</span><span>;
+</span><span>        product /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp == </span><span style="color:#d08770;">0 </span><span>|| ok[tmp as </span><span style="color:#b48ead;">usize</span><span>] {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        }
+</span><span>        ok[tmp as </span><span style="color:#b48ead;">usize</span><span>] = </span><span style="color:#d08770;">true</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>}
+</span><span>
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="135-candy">135. Candy</h3>
@@ -199,43 +199,43 @@ fn check(mut multiplicand: i32, mut multiplier: i32, mut product: i32) -&gt; boo
 </ul>
 <p>What is the minimum candies you must give?</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [1,0,2]
-Output: 5
-Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [1,0,2]
+</span><span>Output: 5
+</span><span>Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [1,2,2]
-Output: 4
-Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.
-             The third child gets 1 candy because it satisfies the above two conditions.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [1,2,2]
+</span><span>Output: 4
+</span><span>Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.
+</span><span>             The third child gets 1 candy because it satisfies the above two conditions.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>If ultimate answer is arr[n], consider one position k, arr[k] can only be arr[k-1] + 1, 1, or arr[k+1] + 1, which means all we need is scanning ratings from left, and scanning ratings from right.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number[]} ratings
- * @return {number}
- *&#x2F;
-var candy = function(ratings) {
-  let n = ratings.length;
-  let ans = 0;
-  let left = new Array(n);
-  let right = new Array(n);
-  left[0] = 1;
-  right[n-1] = 1;
-  for(let i = 1; i &lt; n; ++i){
-    left[i] = ratings[i] &gt; ratings[i-1]? left[i-1] + 1: 1;
-    right[n-1-i] = ratings[n-1-i] &gt; ratings[n-i]? right[n-i] + 1: 1;
-  }
-  for(let i = 0; i &lt; n; ++i){
-    ans += Math.max(left[i], right[i]);
-  }
-  return ans;
-};
-
-&#x2F;&#x2F; console.log(candy([1,0,2]));
-&#x2F;&#x2F; console.log(candy([1,2,2]));
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">ratings
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">candy </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">ratings</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">n </span><span>= </span><span style="color:#bf616a;">ratings</span><span>.length;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">left </span><span>= new Array(</span><span style="color:#bf616a;">n</span><span>);
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">right </span><span>= new Array(</span><span style="color:#bf616a;">n</span><span>);
+</span><span>  </span><span style="color:#bf616a;">left</span><span>[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#bf616a;">right</span><span>[</span><span style="color:#bf616a;">n</span><span>-</span><span style="color:#d08770;">1</span><span>] = </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">1</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">n</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>    </span><span style="color:#bf616a;">left</span><span>[</span><span style="color:#bf616a;">i</span><span>] = </span><span style="color:#bf616a;">ratings</span><span>[</span><span style="color:#bf616a;">i</span><span>] &gt; </span><span style="color:#bf616a;">ratings</span><span>[</span><span style="color:#bf616a;">i</span><span>-</span><span style="color:#d08770;">1</span><span>]? </span><span style="color:#bf616a;">left</span><span>[</span><span style="color:#bf616a;">i</span><span>-</span><span style="color:#d08770;">1</span><span>] + </span><span style="color:#d08770;">1</span><span>: </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#bf616a;">right</span><span>[</span><span style="color:#bf616a;">n</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#bf616a;">i</span><span>] = </span><span style="color:#bf616a;">ratings</span><span>[</span><span style="color:#bf616a;">n</span><span>-</span><span style="color:#d08770;">1</span><span>-</span><span style="color:#bf616a;">i</span><span>] &gt; </span><span style="color:#bf616a;">ratings</span><span>[</span><span style="color:#bf616a;">n</span><span>-</span><span style="color:#bf616a;">i</span><span>]? </span><span style="color:#bf616a;">right</span><span>[</span><span style="color:#bf616a;">n</span><span>-</span><span style="color:#bf616a;">i</span><span>] + </span><span style="color:#d08770;">1</span><span>: </span><span style="color:#d08770;">1</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt; </span><span style="color:#bf616a;">n</span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>    </span><span style="color:#bf616a;">ans </span><span>+= Math.</span><span style="color:#96b5b4;">max</span><span>(</span><span style="color:#bf616a;">left</span><span>[</span><span style="color:#bf616a;">i</span><span>], </span><span style="color:#bf616a;">right</span><span>[</span><span style="color:#bf616a;">i</span><span>]);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(candy([1,0,2]));
+</span><span style="color:#65737e;">// console.log(candy([1,2,2]));
+</span></code></pre>
 
     </div>
   </div>

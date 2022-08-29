@@ -134,23 +134,23 @@ renderMathInElement(document.body, katex_config);
 <p>This process repeats (with us giving one more candy each time, and moving to the start of the row after we reach the end) until we run out of candies. The last person will receive all of our remaining candies (not necessarily one more than the previous gift).</p>
 <p>Return an array (of length <code>num_people</code> and sum <code>candies</code>) that represents the final distribution of candies.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: candies = 7, num_people = 4
-Output: [1,2,3,1]
-Explanation:
-On the first turn, ans[0] += 1, and the array is [1,0,0,0].
-On the second turn, ans[1] += 2, and the array is [1,2,0,0].
-On the third turn, ans[2] += 3, and the array is [1,2,3,0].
-On the fourth turn, ans[3] += 1 (because there is only one candy left), and the final array is [1,2,3,1].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candies = 7, num_people = 4
+</span><span>Output: [1,2,3,1]
+</span><span>Explanation:
+</span><span>On the first turn, ans[0] += 1, and the array is [1,0,0,0].
+</span><span>On the second turn, ans[1] += 2, and the array is [1,2,0,0].
+</span><span>On the third turn, ans[2] += 3, and the array is [1,2,3,0].
+</span><span>On the fourth turn, ans[3] += 1 (because there is only one candy left), and the final array is [1,2,3,1].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: candies = 10, num_people = 3
-Output: [5,2,3]
-Explanation: 
-On the first turn, ans[0] += 1, and the array is [1,0,0].
-On the second turn, ans[1] += 2, and the array is [1,2,0].
-On the third turn, ans[2] += 3, and the array is [1,2,3].
-On the fourth turn, ans[0] += 4, and the final array is [5,2,3].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: candies = 10, num_people = 3
+</span><span>Output: [5,2,3]
+</span><span>Explanation: 
+</span><span>On the first turn, ans[0] += 1, and the array is [1,0,0].
+</span><span>On the second turn, ans[1] += 2, and the array is [1,2,0].
+</span><span>On the third turn, ans[2] += 3, and the array is [1,2,3].
+</span><span>On the fourth turn, ans[0] += 4, and the final array is [5,2,3].
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>1 &lt;= candies &lt;= 10^9</li>
@@ -158,32 +158,32 @@ On the fourth turn, ans[0] += 4, and the final array is [5,2,3].
 </ul>
 <h2 id="solution">Solution</h2>
 <p>using binary search to find after which turn candies is over, then distribute these turns to people.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; distributeCandies(int candies, int num_people) {
-    vector&lt;int&gt; answer(num_people);
-    int begin = 0, end=sqrt(candies)*1.6;
-    while (begin &lt; end) {
-      int mid = (begin + end)&#x2F;2;
-      if(1LL*mid*(mid+1)&#x2F;2 &gt; candies) {
-        end = mid;
-      } else {
-        begin = mid + 1;
-      }
-    }
-    int turns = end - 1;
-    int rounds = turns &#x2F; num_people, remainder = turns % num_people, last = candies - 1LL*turns*(turns+1)&#x2F;2;
-    for(int i = 0; i &lt; num_people; ++i) {
-      answer[i] = (i+1) * rounds + 1LL*(rounds-1)*rounds*num_people&#x2F;2;
-      if(i &lt; remainder) {
-        answer[i] += rounds*num_people + i+1;
-      }
-    }
-    answer[remainder] += last;
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">distributeCandies</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">candies</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">num_people</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(num_people);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, end</span><span>=</span><span style="color:#96b5b4;">sqrt</span><span style="color:#eff1f5;">(candies)</span><span>*</span><span style="color:#d08770;">1.6</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while </span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(begin </span><span>+</span><span style="color:#eff1f5;"> end)</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span style="color:#b48ead;">LL</span><span>*</span><span style="color:#eff1f5;">mid</span><span>*</span><span style="color:#eff1f5;">(mid</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>/</span><span style="color:#d08770;">2 </span><span>&gt;</span><span style="color:#eff1f5;"> candies) {
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> turns </span><span>=</span><span style="color:#eff1f5;"> end </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rounds </span><span>=</span><span style="color:#eff1f5;"> turns </span><span>/</span><span style="color:#eff1f5;"> num_people, remainder </span><span>=</span><span style="color:#eff1f5;"> turns </span><span>%</span><span style="color:#eff1f5;"> num_people, last </span><span>=</span><span style="color:#eff1f5;"> candies </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">LL</span><span>*</span><span style="color:#eff1f5;">turns</span><span>*</span><span style="color:#eff1f5;">(turns</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> num_people; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      answer[i] </span><span>= </span><span style="color:#eff1f5;">(i</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>*</span><span style="color:#eff1f5;"> rounds </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">LL</span><span>*</span><span style="color:#eff1f5;">(rounds</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)</span><span>*</span><span style="color:#eff1f5;">rounds</span><span>*</span><span style="color:#eff1f5;">num_people</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(i </span><span>&lt;</span><span style="color:#eff1f5;"> remainder) {
+</span><span style="color:#eff1f5;">        answer[i] </span><span>+=</span><span style="color:#eff1f5;"> rounds</span><span>*</span><span style="color:#eff1f5;">num_people </span><span>+</span><span style="color:#eff1f5;"> i</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    answer[remainder] </span><span>+=</span><span style="color:#eff1f5;"> last;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-6">October LeetCoding Challenge 6</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Insert into a Binary Search Tree</strong></p>
@@ -191,18 +191,18 @@ public:
 <p><strong>Notice</strong> that there may exist multiple valid ways for the insertion, as long as the tree remains a BST after insertion. You can return <strong>any of them</strong>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/05/insertbst.jpg" alt="img" /></p>
-<pre><code>Input: root = [4,2,7,1,3], val = 5
-Output: [4,2,7,1,3,5]
-Explanation: Another accepted tree is:
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [4,2,7,1,3], val = 5
+</span><span>Output: [4,2,7,1,3,5]
+</span><span>Explanation: Another accepted tree is:
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: root = [40,20,60,10,30,50,70], val = 25
-Output: [40,20,60,10,30,50,70,null,null,25]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [40,20,60,10,30,50,70], val = 25
+</span><span>Output: [40,20,60,10,30,50,70,null,null,25]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: root = [4,2,7,1,3,null,null,null,null,null,null], val = 5
-Output: [4,2,7,1,3,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [4,2,7,1,3,null,null,null,null,null,null], val = 5
+</span><span>Output: [4,2,7,1,3,5]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree will be in the range <code>[0, 104]</code>.</li>
@@ -213,29 +213,29 @@ Output: [4,2,7,1,3,5]
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>my code is somewhat ugly, rewrite it later.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  TreeNode* insertIntoBST(TreeNode* root, int val) {
-    if(!root) {
-      root = new TreeNode(val);
-    }
-    if(val &lt; root-&gt;val) {
-      if(root-&gt;left) {
-        insertIntoBST(root-&gt;left, val);
-      } else {
-        root-&gt;left = new TreeNode(val);
-      }
-    } else if(val &gt; root-&gt;val) {
-      if(root-&gt;right) {
-        insertIntoBST(root-&gt;right, val);
-      } else {
-        root-&gt;right = new TreeNode(val);
-      }
-    }
-    return root;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">insertIntoBST</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) {
+</span><span style="color:#eff1f5;">      root </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(val);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(val </span><span>&lt;</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">insertIntoBST</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, val);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(val);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(val </span><span>&gt;</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">insertIntoBST</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, val);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        root-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(val);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

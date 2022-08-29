@@ -127,23 +127,23 @@ $C^n_r=\frac{n!}{r!(n-r)!},where r ≤ n, n! = n×(n−1)×...×3×2×1, and\ 0!
 <h2 id="solution">Solution</h2>
 <p>By definition you could find that $C^n_r=C^n_{(n-r)}$, and more, $C_r^n\ meet\ its\ maximum\ when\ r=n/2$.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut ans = 0;
-    for i in 2..101 {
-        let mut tmp = 1;
-        for j in 1..i&#x2F;2 {
-            tmp *= i-j+1;
-            tmp &#x2F;= j;
-            if tmp &gt; 1_000_000 {
-                println!(&quot;C({}, {})&quot;, i, j);
-                ans += i-j-j+1;
-                break;
-            }
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">2</span><span>..</span><span style="color:#d08770;">101 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> tmp = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">1</span><span>..i/</span><span style="color:#d08770;">2 </span><span>{
+</span><span>            tmp *= i-j+</span><span style="color:#d08770;">1</span><span>;
+</span><span>            tmp /= j;
+</span><span>            </span><span style="color:#b48ead;">if</span><span> tmp &gt; </span><span style="color:#d08770;">1_000_000 </span><span>{
+</span><span>                println!(&quot;</span><span style="color:#a3be8c;">C(</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">)</span><span>&quot;, i, j);
+</span><span>                ans += i-j-j+</span><span style="color:#d08770;">1</span><span>;
+</span><span>                </span><span style="color:#b48ead;">break</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="33-search-in-rotated-sorted-array">33. Search in Rotated Sorted Array</h3>
@@ -153,45 +153,45 @@ $C^n_r=\frac{n!}{r!(n-r)!},where r ≤ n, n! = n×(n−1)×...×3×2×1, and\ 0!
 <p>You may assume no duplicate exists in the array.</p>
 <p>Your algorithm's runtime complexity must be in the order of <em>O</em>(log <em>n</em>).</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [4,5,6,7,0,1,2], target = 0
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [4,5,6,7,0,1,2], target = 0
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [4,5,6,7,0,1,2], target = 3
-Output: -1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [4,5,6,7,0,1,2], target = 3
+</span><span>Output: -1
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>All you need to do is use what we done at the day before yesterday to find pivot, and add it into normal binary search.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- *&#x2F;
-var search = function(nums, target) {
-    let begin = 0;
-    let end = nums.length - 1;
-    let mid;
-    while (nums[begin] &gt; nums[end]) {
-      mid = Math.floor((begin + end) &#x2F; 2);
-      if (nums[mid] &gt;= nums[begin]) {
-        begin = mid + 1;
-      } else {
-        end = mid;
-      }
-    }
-    let pivot = begin;
-    begin = 0;
-    end = nums.length;
-    &#x2F;&#x2F; console.log(begin, end);
-    while (begin &lt; end) {
-      mid = (Math.floor((begin + end) &#x2F; 2));
-      if (nums[(mid+pivot)%nums.length] &lt; target) begin = mid + 1;
-      else end = mid;
-    }
-    return nums[(begin+pivot)%nums.length]===target?(begin+pivot)%nums.length:-1;
-  };
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">nums
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">target
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">search </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">nums</span><span>, </span><span style="color:#bf616a;">target</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">begin </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">end </span><span>= </span><span style="color:#bf616a;">nums</span><span>.length - </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">mid</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#bf616a;">begin</span><span>] &gt; </span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#bf616a;">end</span><span>]) {
+</span><span>      </span><span style="color:#bf616a;">mid </span><span>= Math.</span><span style="color:#96b5b4;">floor</span><span>((</span><span style="color:#bf616a;">begin </span><span>+ </span><span style="color:#bf616a;">end</span><span>) / </span><span style="color:#d08770;">2</span><span>);
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#bf616a;">mid</span><span>] &gt;= </span><span style="color:#bf616a;">nums</span><span>[</span><span style="color:#bf616a;">begin</span><span>]) {
+</span><span>        </span><span style="color:#bf616a;">begin </span><span>= </span><span style="color:#bf616a;">mid </span><span>+ </span><span style="color:#d08770;">1</span><span>;
+</span><span>      } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        </span><span style="color:#bf616a;">end </span><span>= </span><span style="color:#bf616a;">mid</span><span>;
+</span><span>      }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">pivot </span><span>= </span><span style="color:#bf616a;">begin</span><span>;
+</span><span>    </span><span style="color:#bf616a;">begin </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#bf616a;">end </span><span>= </span><span style="color:#bf616a;">nums</span><span>.length;
+</span><span>    </span><span style="color:#65737e;">// console.log(begin, end);
+</span><span>    </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#bf616a;">begin </span><span>&lt; </span><span style="color:#bf616a;">end</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">mid </span><span>= (Math.</span><span style="color:#96b5b4;">floor</span><span>((</span><span style="color:#bf616a;">begin </span><span>+ </span><span style="color:#bf616a;">end</span><span>) / </span><span style="color:#d08770;">2</span><span>));
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">nums</span><span>[(</span><span style="color:#bf616a;">mid</span><span>+</span><span style="color:#bf616a;">pivot</span><span>)%</span><span style="color:#bf616a;">nums</span><span>.length] &lt; </span><span style="color:#bf616a;">target</span><span>) </span><span style="color:#bf616a;">begin </span><span>= </span><span style="color:#bf616a;">mid </span><span>+ </span><span style="color:#d08770;">1</span><span>;
+</span><span>      </span><span style="color:#b48ead;">else </span><span style="color:#bf616a;">end </span><span>= </span><span style="color:#bf616a;">mid</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">nums</span><span>[(</span><span style="color:#bf616a;">begin</span><span>+</span><span style="color:#bf616a;">pivot</span><span>)%</span><span style="color:#bf616a;">nums</span><span>.length]===</span><span style="color:#bf616a;">target</span><span>?(</span><span style="color:#bf616a;">begin</span><span>+</span><span style="color:#bf616a;">pivot</span><span>)%</span><span style="color:#bf616a;">nums</span><span>.length:-</span><span style="color:#d08770;">1</span><span>;
+</span><span>  };
+</span></code></pre>
 
     </div>
   </div>

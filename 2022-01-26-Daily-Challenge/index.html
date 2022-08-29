@@ -119,100 +119,100 @@ renderMathInElement(document.body, katex_config);
 <p>Given two binary search trees <code>root1</code> and <code>root2</code>, return <em>a list containing all the integers from both trees sorted in <strong>ascending</strong> order</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/12/18/q2-e1.png" alt="img" /></p>
-<pre><code>Input: root1 = [2,1,4], root2 = [1,0,3]
-Output: [0,1,1,2,3,4]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root1 = [2,1,4], root2 = [1,0,3]
+</span><span>Output: [0,1,1,2,3,4]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2019/12/18/q2-e5-.png" alt="img" /></p>
-<pre><code>Input: root1 = [1,null,8], root2 = [8,1]
-Output: [1,1,8,8]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root1 = [1,null,8], root2 = [8,1]
+</span><span>Output: [1,1,8,8]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in each tree is in the range <code>[0, 5000]</code>.</li>
 <li><code>-10^5 &lt;= Node.val &lt;= 10^5</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Stream {
-  TreeNode *root;
-  TreeNode *cur = root;
-  int current;
-public:
-  Stream(TreeNode *r) : root(r) {
-    iterate();
-  }
-  int getNum() {
-    return current;
-  }
-  bool hasNum() {
-    return current != INT_MAX;
-  }
-  void iterate() {
-    if(!cur) {
-      current = INT_MAX;
-      return;
-    }
-    while(cur) {
-      if(cur-&gt;left) {
-        TreeNode *left = cur-&gt;left;
-        while(left-&gt;right &amp;&amp; left-&gt;right != cur) {
-          left = left-&gt;right;
-        }
-        if(left-&gt;right == cur) {
-          left-&gt;right = nullptr;
-          current = cur-&gt;val;
-          cur = cur-&gt;right;
-          return;
-        } else {
-          left-&gt;right = cur;
-          cur = cur-&gt;left;
-        }
-      } else {
-        current = cur-&gt;val;
-        cur = cur-&gt;right;
-        return;
-      }
-    }
-  }
-};
-class Solution {
-public:
-  vector&lt;int&gt; getAllElements(TreeNode* root1, TreeNode* root2) {
-    vector&lt;int&gt; answer;
-    Stream stream1(root1);
-    Stream stream2(root2);
-    while(stream1.hasNum() &amp;&amp; stream2.hasNum()) {
-      if(stream1.getNum() &lt;= stream2.getNum()) {
-        answer.push_back(stream1.getNum());
-        stream1.iterate();
-      } else {
-        answer.push_back(stream2.getNum());
-        stream2.iterate();
-      }
-    }
-    while(stream1.hasNum()) {
-      answer.push_back(stream1.getNum());
-      stream1.iterate();
-    }
-    while(stream2.hasNum()) {
-      answer.push_back(stream2.getNum());
-      stream2.iterate();
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 48&#x2F;48 cases passed (211 ms)
-&#x2F;&#x2F; Your runtime beats 35.95 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 67.43 % of cpp submissions (84.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Stream </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#eff1f5;">root;
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">Stream</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">r</span><span style="color:#eff1f5;">) : </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">(r) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">iterate</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">getNum</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> current;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">hasNum</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> current </span><span>!=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">iterate</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur) {
+</span><span style="color:#eff1f5;">      current </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        TreeNode </span><span>*</span><span style="color:#eff1f5;">left </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(left-&gt;</span><span style="color:#bf616a;">right </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> left-&gt;</span><span style="color:#bf616a;">right </span><span>!=</span><span style="color:#eff1f5;"> cur) {
+</span><span style="color:#eff1f5;">          left </span><span>=</span><span style="color:#eff1f5;"> left-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(left-&gt;</span><span style="color:#bf616a;">right </span><span>==</span><span style="color:#eff1f5;"> cur) {
+</span><span style="color:#eff1f5;">          left-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          current </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          left-&gt;</span><span style="color:#bf616a;">right </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">          cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        current </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">getAllElements</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root1</span><span style="color:#eff1f5;">, TreeNode</span><span>* </span><span style="color:#bf616a;">root2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    Stream </span><span style="color:#bf616a;">stream1</span><span style="color:#eff1f5;">(root1);
+</span><span style="color:#eff1f5;">    Stream </span><span style="color:#bf616a;">stream2</span><span style="color:#eff1f5;">(root2);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(stream1.</span><span style="color:#bf616a;">hasNum</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> stream2.</span><span style="color:#bf616a;">hasNum</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(stream1.</span><span style="color:#bf616a;">getNum</span><span style="color:#eff1f5;">() </span><span>&lt;=</span><span style="color:#eff1f5;"> stream2.</span><span style="color:#bf616a;">getNum</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(stream1.</span><span style="color:#bf616a;">getNum</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        stream1.</span><span style="color:#bf616a;">iterate</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(stream2.</span><span style="color:#bf616a;">getNum</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        stream2.</span><span style="color:#bf616a;">iterate</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(stream1.</span><span style="color:#bf616a;">hasNum</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(stream1.</span><span style="color:#bf616a;">getNum</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      stream1.</span><span style="color:#bf616a;">iterate</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(stream2.</span><span style="color:#bf616a;">hasNum</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(stream2.</span><span style="color:#bf616a;">getNum</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      stream2.</span><span style="color:#bf616a;">iterate</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 48/48 cases passed (211 ms)
+</span><span style="color:#65737e;">// Your runtime beats 35.95 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 67.43 % of cpp submissions (84.5 MB)
+</span></code></pre>
 
     </div>
   </div>

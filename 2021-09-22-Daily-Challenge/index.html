@@ -119,20 +119,20 @@ renderMathInElement(document.body, katex_config);
 <p>Given an array of strings <code>arr</code>. String <code>s</code> is a concatenation of a sub-sequence of <code>arr</code> which have <strong>unique characters</strong>.</p>
 <p>Return <em>the maximum possible length</em> of <code>s</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: arr = [&quot;un&quot;,&quot;iq&quot;,&quot;ue&quot;]
-Output: 4
-Explanation: All possible concatenations are &quot;&quot;,&quot;un&quot;,&quot;iq&quot;,&quot;ue&quot;,&quot;uniq&quot; and &quot;ique&quot;.
-Maximum length is 4.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [&quot;un&quot;,&quot;iq&quot;,&quot;ue&quot;]
+</span><span>Output: 4
+</span><span>Explanation: All possible concatenations are &quot;&quot;,&quot;un&quot;,&quot;iq&quot;,&quot;ue&quot;,&quot;uniq&quot; and &quot;ique&quot;.
+</span><span>Maximum length is 4.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: arr = [&quot;cha&quot;,&quot;r&quot;,&quot;act&quot;,&quot;ers&quot;]
-Output: 6
-Explanation: Possible solutions are &quot;chaers&quot; and &quot;acters&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [&quot;cha&quot;,&quot;r&quot;,&quot;act&quot;,&quot;ers&quot;]
+</span><span>Output: 6
+</span><span>Explanation: Possible solutions are &quot;chaers&quot; and &quot;acters&quot;.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: arr = [&quot;abcdefghijklmnopqrstuvwxyz&quot;]
-Output: 26
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: arr = [&quot;abcdefghijklmnopqrstuvwxyz&quot;]
+</span><span>Output: 26
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= arr.length &lt;= 16</code></li>
@@ -140,53 +140,53 @@ Output: 26
 <li><code>arr[i]</code> contains only lower case English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int answer = 0;
-  int len;
-  vector&lt;int&gt; masks;
-  vector&lt;int&gt; lens;
-  void init(vector&lt;string&gt;&amp; arr) {
-    len = arr.size();
-    masks.resize(len);
-    lens.resize(len);
-
-    for(int i = 0; i &lt; len; ++i) {
-      lens[i] = arr[i].length();
-      for(auto c : arr[i]) {
-        int m = (1 &lt;&lt; (c - &#x27;a&#x27;));
-        if(m &amp; masks[i]) {
-          masks[i] = 0;
-          lens[i] = 0;
-          break;
-        }
-        masks[i] |= m;
-      }
-    }
-  }
-
-  void solve(int index = 0, int mask = 0, int length = 0) {
-    if(index == len) {
-      if(length &gt; answer) answer = length;
-      return;
-    }
-    solve(index + 1, mask, length);
-    if(lens[index] &amp;&amp; (masks[index] &amp; mask) == 0) {
-      solve(index + 1, mask | masks[index], length + lens[index]);
-    }
-  }
-public:
-  int maxLength(vector&lt;string&gt;&amp; arr) {
-    init(arr);
-    solve();
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 85&#x2F;85 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 95.24 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 93.33 % of cpp submissions (8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; masks;
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; lens;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">init</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    len </span><span>=</span><span style="color:#eff1f5;"> arr.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    masks.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    lens.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      lens[i] </span><span>=</span><span style="color:#eff1f5;"> arr[i].</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> arr[i]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> m </span><span>= </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span>&lt;&lt; </span><span style="color:#eff1f5;">(c </span><span>- &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(m </span><span>&amp;</span><span style="color:#eff1f5;"> masks[i]) {
+</span><span style="color:#eff1f5;">          masks[i] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          lens[i] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        masks[i] </span><span>|=</span><span style="color:#eff1f5;"> m;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">index </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">mask </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">length </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(length </span><span>&gt;</span><span style="color:#eff1f5;"> answer) answer </span><span>=</span><span style="color:#eff1f5;"> length;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(index </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, mask, length);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lens[index] </span><span>&amp;&amp; </span><span style="color:#eff1f5;">(masks[index] </span><span>&amp;</span><span style="color:#eff1f5;"> mask) </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(index </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, mask </span><span>|</span><span style="color:#eff1f5;"> masks[index], length </span><span>+</span><span style="color:#eff1f5;"> lens[index]);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxLength</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">arr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">init</span><span style="color:#eff1f5;">(arr);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 85/85 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 95.24 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 93.33 % of cpp submissions (8 MB)
+</span></code></pre>
 
     </div>
   </div>

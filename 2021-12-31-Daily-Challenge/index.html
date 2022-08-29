@@ -120,42 +120,42 @@ renderMathInElement(document.body, katex_config);
 <p>A node <code>a</code> is an ancestor of <code>b</code> if either: any child of <code>a</code> is equal to <code>b</code> or any child of <code>a</code> is an ancestor of <code>b</code>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/09/tmp-tree.jpg" alt="img" /></p>
-<pre><code>Input: root = [8,3,10,1,6,null,14,null,null,4,7,13]
-Output: 7
-Explanation: We have various ancestor-node differences, some of which are given below :
-|8 - 3| = 5
-|3 - 7| = 4
-|8 - 1| = 7
-|10 - 13| = 3
-Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 7.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [8,3,10,1,6,null,14,null,null,4,7,13]
+</span><span>Output: 7
+</span><span>Explanation: We have various ancestor-node differences, some of which are given below :
+</span><span>|8 - 3| = 5
+</span><span>|3 - 7| = 4
+</span><span>|8 - 1| = 7
+</span><span>|10 - 13| = 3
+</span><span>Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 7.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/09/tmp-tree-1.jpg" alt="img" /></p>
-<pre><code>Input: root = [1,null,2,null,0,3]
-Output: 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1,null,2,null,0,3]
+</span><span>Output: 3
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[2, 5000]</code>.</li>
 <li><code>0 &lt;= Node.val &lt;= 10^5</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int maxAncestorDiff(TreeNode* root, int mmin = INT_MAX, int mmax = INT_MIN) {
-    &#x2F;&#x2F; root node will not be nullptr by constraints
-    if(!root) return mmax - mmin;
-    mmin = min(mmin, root-&gt;val);
-    mmax = max(mmax, root-&gt;val);
-    return max(maxAncestorDiff(root-&gt;left, mmin, mmax), maxAncestorDiff(root-&gt;right, mmin, mmax));
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 27&#x2F;27 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 81.69 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 74.27 % of cpp submissions (9.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxAncestorDiff</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">mmin </span><span>=</span><span style="color:#eff1f5;"> INT_MAX, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">mmax </span><span>=</span><span style="color:#eff1f5;"> INT_MIN) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// root node will not be nullptr by constraints
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> mmax </span><span>-</span><span style="color:#eff1f5;"> mmin;
+</span><span style="color:#eff1f5;">    mmin </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(mmin, root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    mmax </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(mmax, root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">maxAncestorDiff</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, mmin, mmax), </span><span style="color:#bf616a;">maxAncestorDiff</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, mmin, mmax));
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 27/27 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 81.69 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 74.27 % of cpp submissions (9.7 MB)
+</span></code></pre>
 
     </div>
   </div>

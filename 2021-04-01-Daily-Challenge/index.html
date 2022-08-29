@@ -118,17 +118,17 @@ renderMathInElement(document.body, katex_config);
 <p>Given a <strong>non-empty</strong> array of integers <code>nums</code>, every element appears <em>twice</em> except for one. Find that single one.</p>
 <p><strong>Follow up:</strong> Could you implement a solution with a linear runtime complexity and without using extra memory?</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [2,2,1]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,2,1]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [4,1,2,1,2]
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [4,1,2,1,2]
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [1]
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1]
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 3 * 104</code></li>
@@ -136,26 +136,26 @@ Output: 1
 <li>Each element in the array appears twice except for one element which appears only once.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int singleNumber(vector&lt;int&gt;&amp; nums) {
-    int answer = 0;
-    for(auto n : nums) answer ^= n;
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">singleNumber</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> n </span><span>:</span><span style="color:#eff1f5;"> nums) answer </span><span>^=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="single-number-ii">Single Number II</h1>
 <h2 id="description-1">Description</h2>
 <p>Given an integer array <code>nums</code> where every element appears <strong>three times</strong> except for one, which appears <strong>exactly once</strong>. <em>Find the single element and return it</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [2,2,3,2]
-Output: 3
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [2,2,3,2]
+</span><span>Output: 3
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [0,1,0,1,0,1,99]
-Output: 99
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,1,0,1,0,1,99]
+</span><span>Output: 99
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 3 * 104</code></li>
@@ -167,46 +167,46 @@ Output: 99
 <p>use two integer representation ternary number for every bit.</p>
 <p>let's draw a Karnaugh map</p>
 <p>a is low bit, b is high bit, because is ternary, so there is no <code>11</code></p>
-<pre><code>a	00	01	11	10
-0	 0	 1	 X	 0
-1	 1	 0	 X	 0
-				
-b	00	01	11	10
-0	 0	 0	 X	 1
-1	 0	 1	 X	 0
-
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int singleNumber(vector&lt;int&gt;&amp; nums) {
-    int a = 0;
-    int b = 0;
-    for(auto n : nums) {
-      int tmp = (a&amp;(~b)&amp;(~n)) | ((~b)&amp;(~a)&amp;n);
-      b = (b&amp;(~a)&amp;(~n)) | (a&amp;n&amp;(~b));
-      a = tmp;
-    }
-    return a;
-  }
-};
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>a	00	01	11	10
+</span><span>0	 0	 1	 X	 0
+</span><span>1	 1	 0	 X	 0
+</span><span>				
+</span><span>b	00	01	11	10
+</span><span>0	 0	 0	 X	 1
+</span><span>1	 0	 1	 X	 0
+</span><span>
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">singleNumber</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> b </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> n </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tmp </span><span>= </span><span style="color:#eff1f5;">(a</span><span>&amp;</span><span style="color:#eff1f5;">(</span><span>~</span><span style="color:#eff1f5;">b)</span><span>&amp;</span><span style="color:#eff1f5;">(</span><span>~</span><span style="color:#eff1f5;">n)) </span><span>| </span><span style="color:#eff1f5;">((</span><span>~</span><span style="color:#eff1f5;">b)</span><span>&amp;</span><span style="color:#eff1f5;">(</span><span>~</span><span style="color:#eff1f5;">a)</span><span>&amp;</span><span style="color:#eff1f5;">n);
+</span><span style="color:#eff1f5;">      b </span><span>= </span><span style="color:#eff1f5;">(b</span><span>&amp;</span><span style="color:#eff1f5;">(</span><span>~</span><span style="color:#eff1f5;">a)</span><span>&amp;</span><span style="color:#eff1f5;">(</span><span>~</span><span style="color:#eff1f5;">n)) </span><span>| </span><span style="color:#eff1f5;">(a</span><span>&amp;</span><span style="color:#eff1f5;">n</span><span>&amp;</span><span style="color:#eff1f5;">(</span><span>~</span><span style="color:#eff1f5;">b));
+</span><span style="color:#eff1f5;">      a </span><span>=</span><span style="color:#eff1f5;"> tmp;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="single-number-iii">Single Number III</h1>
 <h2 id="description-2">Description</h2>
 <p>Given an integer array <code>nums</code>, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once. You can return the answer in <strong>any order</strong>.</p>
 <p><strong>Follow up:</strong> Your algorithm should run in linear runtime complexity. Could you implement it using only constant space complexity?</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,2,1,3,2,5]
-Output: [3,5]
-Explanation:  [5, 3] is also a valid answer.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,2,1,3,2,5]
+</span><span>Output: [3,5]
+</span><span>Explanation:  [5, 3] is also a valid answer.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [-1,0]
-Output: [-1,0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [-1,0]
+</span><span>Output: [-1,0]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [0,1]
-Output: [1,0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [0,1]
+</span><span>Output: [1,0]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>$2 \le nums.length \le 3 * 10^4$</li>
@@ -215,41 +215,41 @@ Output: [1,0]
 </ul>
 <h2 id="solution-2">Solution</h2>
 <p>find different bit and use it to separate two numbers</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;int&gt; singleNumber(vector&lt;int&gt;&amp; nums) {
-    int lowbit = 0;
-    for(auto n : nums) lowbit ^= n;
-    
-    if(lowbit == INT_MIN) lowbit = 1;
-    else lowbit &amp;= -lowbit;
-    vector&lt;int&gt; answer{0, 0};
-    for(auto n : nums) {
-      if(n &amp; lowbit) {
-        answer[0] ^= n;
-      } else {
-        answer[1] ^= n;
-      }
-    }
-    return answer;
-  }
-};
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">singleNumber</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lowbit </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> n </span><span>:</span><span style="color:#eff1f5;"> nums) lowbit </span><span>^=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(lowbit </span><span>==</span><span style="color:#eff1f5;"> INT_MIN) lowbit </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> lowbit </span><span>&amp;= -</span><span style="color:#eff1f5;">lowbit;
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> n </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>&amp;</span><span style="color:#eff1f5;"> lowbit) {
+</span><span style="color:#eff1f5;">        answer[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>^=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        answer[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>^=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span></code></pre>
 <h1 id="april-leetcoding-challenge-1">April LeetCoding challenge 1</h1>
 <h2 id="description-3">Description</h2>
 <p><strong>Palindrome Linked List</strong></p>
 <p>Given the <code>head</code> of a singly linked list, return <code>true</code> if it is a palindrome.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/03/03/pal1linked-list.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,2,1]
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,2,1]
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/03/03/pal2linked-list.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is in the range <code>[1, 105]</code>.</li>
@@ -259,37 +259,37 @@ Output: false
 <h2 id="solution-3">Solution</h2>
 <p>I found previous solution is wrong before I go to sleep, what a ...</p>
 <p>reverse half of the list</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int length(ListNode *head) {
-    int len = 0;
-    while(head) {
-      len += 1;
-      head = head-&gt;next;
-    }
-    return len;
-  }
-public:
-  bool isPalindrome(ListNode* head) {
-    int len = length(head);
-    ListNode *newHead = nullptr;
-    ListNode *cur = head;
-    ListNode *prev = nullptr;
-    for(int i = 0; i &lt; len &#x2F; 2; ++i) {
-      prev = cur;
-      cur = cur-&gt;next;
-      prev-&gt;next = newHead;
-      newHead = prev;
-    }
-    if(len &amp; 1) cur = cur-&gt;next;
-    for(int i = 0; i &lt; len &#x2F; 2; ++i) {
-      if(cur-&gt;val != newHead-&gt;val) return false;
-      cur = cur-&gt;next;
-      newHead = newHead-&gt;next;
-    }
-    return true;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">length</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">      len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isPalindrome</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(head);
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">prev </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      prev-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">      newHead </span><span>=</span><span style="color:#eff1f5;"> prev;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">val </span><span>!=</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      newHead </span><span>=</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

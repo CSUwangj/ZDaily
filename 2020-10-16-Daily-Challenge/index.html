@@ -122,31 +122,31 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the maximum number of achievable requests</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/10/move1.jpg" alt="img" /></p>
-<pre><code>Input: n = 5, requests = [[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]
-Output: 5
-Explantion: Let&#x27;s see the requests:
-From building 0 we have employees x and y and both want to move to building 1.
-From building 1 we have employees a and b and they want to move to buildings 2 and 0 respectively.
-From building 2 we have employee z and they want to move to building 0.
-From building 3 we have employee c and they want to move to building 4.
-From building 4 we don&#x27;t have any requests.
-We can achieve the requests of users x and b by swapping their places.
-We can achieve the requests of users y, a and z by swapping the places in the 3 buildings.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 5, requests = [[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]
+</span><span>Output: 5
+</span><span>Explantion: Let&#39;s see the requests:
+</span><span>From building 0 we have employees x and y and both want to move to building 1.
+</span><span>From building 1 we have employees a and b and they want to move to buildings 2 and 0 respectively.
+</span><span>From building 2 we have employee z and they want to move to building 0.
+</span><span>From building 3 we have employee c and they want to move to building 4.
+</span><span>From building 4 we don&#39;t have any requests.
+</span><span>We can achieve the requests of users x and b by swapping their places.
+</span><span>We can achieve the requests of users y, a and z by swapping the places in the 3 buildings.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/10/move2.jpg" alt="img" /></p>
-<pre><code>Input: n = 3, requests = [[0,0],[1,2],[2,1]]
-Output: 3
-Explantion: Let&#x27;s see the requests:
-From building 0 we have employee x and they want to stay in the same building 0.
-From building 1 we have employee y and they want to move to building 2.
-From building 2 we have employee z and they want to move to building 1.
-We can achieve all the requests. 
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 3, requests = [[0,0],[1,2],[2,1]]
+</span><span>Output: 3
+</span><span>Explantion: Let&#39;s see the requests:
+</span><span>From building 0 we have employee x and they want to stay in the same building 0.
+</span><span>From building 1 we have employee y and they want to move to building 2.
+</span><span>From building 2 we have employee z and they want to move to building 1.
+</span><span>We can achieve all the requests. 
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 4, requests = [[0,3],[3,1],[1,2],[2,0]]
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 4, requests = [[0,3],[3,1],[1,2],[2,0]]
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 20</code></li>
@@ -156,35 +156,35 @@ Output: 4
 </ul>
 <h2 id="solution">Solution</h2>
 <p>simple enumeration</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    bool isOk(vector&lt;vector&lt;int&gt;&gt;&amp; requests, vector&lt;int&gt;&amp; trans, int bitmask) {
-      for(int i = 0; i &lt; requests.size(); ++i) {
-        if(bitmask &amp; (1 &lt;&lt; i)) {
-          trans[requests[i][0]] += 1;
-          trans[requests[i][1]] -= 1;
-        }
-      }
-      for(int i = 0; i &lt; trans.size(); ++i) {
-        if(trans[i] != 0) return false;
-      }
-      return true;
-    }
- public:
-  int maximumRequests(int n, vector&lt;vector&lt;int&gt;&gt;&amp; requests) {
-    int cur = requests.size();
-    vector&lt;int&gt; trans(n+1);
-    while(cur) {
-      for (int mask = (1&lt;&lt;cur) - 1, t; mask &lt; 1 &lt;&lt; requests.size(); mask = (t + 1) | (((~t &amp; -~t) - 1) &gt;&gt; (__builtin_ctz(mask) + 1)) ) {
-        if(isOk(requests, trans, mask)) return cur;
-        fill(trans.begin(), trans.end(), 0);
-        t = mask | (mask - 1);
-      }
-      cur -= 1;
-    }
-    return 0;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isOk</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">requests</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">trans</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">bitmask</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> requests.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(bitmask </span><span>&amp; </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1 </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> i)) {
+</span><span style="color:#eff1f5;">          trans[requests[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          trans[requests[i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> trans.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(trans[i] </span><span>!= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maximumRequests</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">requests</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> requests.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">trans</span><span style="color:#eff1f5;">(n</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mask </span><span>= </span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">1</span><span>&lt;&lt;</span><span style="color:#eff1f5;">cur) </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, t; mask </span><span>&lt; </span><span style="color:#d08770;">1 </span><span>&lt;&lt;</span><span style="color:#eff1f5;"> requests.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); mask </span><span>= </span><span style="color:#eff1f5;">(t </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>| </span><span style="color:#eff1f5;">(((</span><span>~</span><span style="color:#eff1f5;">t </span><span>&amp; -~</span><span style="color:#eff1f5;">t) </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>&gt;&gt; </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">__builtin_ctz</span><span style="color:#eff1f5;">(mask) </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) ) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">isOk</span><span style="color:#eff1f5;">(requests, trans, mask)) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">fill</span><span style="color:#eff1f5;">(trans.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), trans.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        t </span><span>=</span><span style="color:#eff1f5;"> mask </span><span>| </span><span style="color:#eff1f5;">(mask </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      cur </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="october-leetcoding-challenge-16">October LeetCoding Challenge 16</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Search a 2D Matrix</strong></p>
@@ -195,18 +195,18 @@ Output: 4
 </ul>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/05/mat.jpg" alt="img" /></p>
-<pre><code>Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,50]], target = 3
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,50]], target = 3
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/05/mat2.jpg" alt="img" /></p>
-<pre><code>Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,50]], target = 13
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,50]], target = 13
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: matrix = [], target = 0
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: matrix = [], target = 0
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>m == matrix.length</code></li>
@@ -216,23 +216,23 @@ Output: false
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>binary search with some additional operation</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {
-    if(!matrix.size() || !matrix[0].size()) return false;
-    int begin = 0, end = matrix[0].size()*matrix.size()-1, l=matrix[0].size();
-    while(begin &lt; end) {
-      int mid = (begin + end)&#x2F;2;
-      if(matrix[mid&#x2F;l][mid%l] &gt;= target) {
-        end = mid;
-      } else {
-        begin = mid+1;
-      }
-    }
-    return matrix[end&#x2F;l][end%l]==target;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">searchMatrix</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">matrix</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">matrix.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>|| !</span><span style="color:#eff1f5;">matrix[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, end </span><span>=</span><span style="color:#eff1f5;"> matrix[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()</span><span>*</span><span style="color:#eff1f5;">matrix.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, l</span><span>=</span><span style="color:#eff1f5;">matrix[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(begin </span><span>+</span><span style="color:#eff1f5;"> end)</span><span>/</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(matrix[mid</span><span>/</span><span style="color:#eff1f5;">l][mid</span><span>%</span><span style="color:#eff1f5;">l] </span><span>&gt;=</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">        end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        begin </span><span>=</span><span style="color:#eff1f5;"> mid</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> matrix[end</span><span>/</span><span style="color:#eff1f5;">l][end</span><span>%</span><span style="color:#eff1f5;">l]</span><span>==</span><span style="color:#eff1f5;">target;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

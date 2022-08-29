@@ -117,184 +117,184 @@ renderMathInElement(document.body, katex_config);
 <span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
 <h2 id="2-keys-keyboard">2 Keys Keyboard</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int minSteps(int n) {
-        int ans = 0;
-        for(int i = 2; i*i &lt;= n; ++i) {
-            if(n % i != 0) continue;
-            while(n % i == 0) {
-                n &#x2F;= i;
-                ans += i;
-            }
-        }
-        if(n != 1) ans += n;
-        return ans;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minSteps</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i</span><span>*</span><span style="color:#eff1f5;">i </span><span>&lt;=</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>%</span><span style="color:#eff1f5;"> i </span><span>!= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(n </span><span>%</span><span style="color:#eff1f5;"> i </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                n </span><span>/=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">                ans </span><span>+=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(n </span><span>!= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) ans </span><span>+=</span><span style="color:#eff1f5;"> n;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="next-greater-element-i">Next Greater Element I</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    vector&lt;int&gt; nextGreaterElement(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
-        unordered_map&lt;int, int&gt; nextGreater;
-        vector&lt;int&gt; monoStack;
-        for(auto it = nums2.rbegin(); it != nums2.rend(); ++it) {
-            while(monoStack.size() &amp;&amp; monoStack.back() &lt;= *it) monoStack.pop_back();
-            nextGreater[*it] = monoStack.size() ? monoStack.back() : -1;
-            monoStack.push_back(*it);
-        }
-        vector&lt;int&gt; answer(nums1.size());
-        for(int i = 0; i &lt; nums1.size(); ++i) {
-            answer[i] = nextGreater[nums1[i]];
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">nextGreaterElement</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums1</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; nextGreater;
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; monoStack;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> it </span><span>=</span><span style="color:#eff1f5;"> nums2.</span><span style="color:#bf616a;">rbegin</span><span style="color:#eff1f5;">(); it </span><span>!=</span><span style="color:#eff1f5;"> nums2.</span><span style="color:#bf616a;">rend</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">it) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>&lt;= *</span><span style="color:#eff1f5;">it) monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            nextGreater[</span><span>*</span><span style="color:#eff1f5;">it] </span><span>=</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>?</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>: -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span>*</span><span style="color:#eff1f5;">it);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(nums1.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> nums1.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            answer[i] </span><span>=</span><span style="color:#eff1f5;"> nextGreater[nums1[i]];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="flip-columns-for-maximum-number-of-equal-rows">Flip Columns For Maximum Number of Equal Rows</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int maxEqualRowsAfterFlips(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
-        unordered_map&lt;string, int&gt; cnt;
-        for(auto &amp;row : matrix) {
-            bool flipped = row[0];
-            string cur = &quot;&quot;;
-            for(auto i : row) {
-                cur += to_string(i^flipped);
-            }
-            cnt[cur] += 1;
-        }
-        return max_element(cnt.begin(), cnt.end(), [](const pair&lt;string, int&gt; &amp;p1, const pair&lt;string, int&gt; &amp;p2){
-            return p1.second &lt; p2.second;
-        })-&gt;second;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxEqualRowsAfterFlips</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">matrix</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cnt;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">row </span><span>:</span><span style="color:#eff1f5;"> matrix) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> flipped </span><span>=</span><span style="color:#eff1f5;"> row[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            string cur </span><span>= &quot;&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> row) {
+</span><span style="color:#eff1f5;">                cur </span><span>+= </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(i</span><span>^</span><span style="color:#eff1f5;">flipped);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            cnt[cur] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">max_element</span><span style="color:#eff1f5;">(cnt.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), cnt.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [](</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">p1, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> pair&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">p2){
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> p1.</span><span style="color:#bf616a;">second </span><span>&lt;</span><span style="color:#eff1f5;"> p2.</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        })-&gt;</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="bulls-and-cows">Bulls and Cows</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    string getHint(string secret, string guess) {
-        int secret_cnt[10] = {0}, guess_cnt[10] = {0};
-        int bulls = 0, cows = 0;
-        for(int i = 0; i &lt; secret.size(); ++i) {
-            if(secret[i] == guess[i]) bulls += 1;
-            else {
-                secret_cnt[secret[i]^&#x27;0&#x27;] += 1;
-                guess_cnt[guess[i]^&#x27;0&#x27;] += 1;
-            }
-        }
-        for(int i = 0; i &lt; 10; ++i) {
-            cows += min(secret_cnt[i], guess_cnt[i]);
-        }
-        return to_string(bulls) + &#x27;A&#x27; + to_string(cows) + &#x27;B&#x27;;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    string </span><span style="color:#8fa1b3;">getHint</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">secret</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">guess</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> secret_cnt[</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">}, guess_cnt[</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> bulls </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, cows </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> secret.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(secret[i] </span><span>==</span><span style="color:#eff1f5;"> guess[i]) bulls </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                secret_cnt[secret[i]</span><span>^&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                guess_cnt[guess[i]</span><span>^&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            cows </span><span>+= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(secret_cnt[i], guess_cnt[i]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(bulls) </span><span>+ &#39;</span><span style="color:#a3be8c;">A</span><span>&#39; + </span><span style="color:#bf616a;">to_string</span><span style="color:#eff1f5;">(cows) </span><span>+ &#39;</span><span style="color:#a3be8c;">B</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="bitwise-ors-of-subarrays">Bitwise ORs of Subarrays</h2>
 <p>brute force runs quicker...</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int subarrayBitwiseORs(vector&lt;int&gt;&amp; A) {
-        unordered_set&lt;int&gt; cnt;
-        for(int i = 0; i &lt; A.size(); ++i) {
-            int pre = 0;
-            cnt.insert(A[i]);
-            for(int j = i-1; j &gt;= 0 &amp;&amp; (pre|A[i]) != pre; --j) {
-                pre |= A[j];
-                cnt.insert(pre|A[i]);
-            }
-        }
-        return cnt.size();
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">subarrayBitwiseORs</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        unordered_set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; cnt;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pre </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cnt.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(A[i]);
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>=</span><span style="color:#eff1f5;"> i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp; </span><span style="color:#eff1f5;">(pre</span><span>|</span><span style="color:#eff1f5;">A[i]) </span><span>!=</span><span style="color:#eff1f5;"> pre; </span><span>--</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                pre </span><span>|=</span><span style="color:#eff1f5;"> A[j];
+</span><span style="color:#eff1f5;">                cnt.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(pre</span><span>|</span><span style="color:#eff1f5;">A[i]);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> cnt.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="find-the-smallest-divisor-given-a-threshold">Find the Smallest Divisor Given a Threshold</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    bool satisfied(vector&lt;int&gt; &amp;nums, int threshold, double k) {
-        int sum = 0;
-        for(auto i : nums) {
-            sum += ceil(i&#x2F;k);
-        }
-        return sum &lt;= threshold;
-    }
-public:
-    int smallestDivisor(vector&lt;int&gt;&amp; nums, int threshold) {
-        int start = 1, end = INT_MAX-1;
-        while(start &lt; end) {
-            int mid = (start+end) &#x2F; 2;
-            if(satisfied(nums, threshold, mid)) end = mid;
-            else start = mid+1;
-        }
-        return start;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">satisfied</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">threshold</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">double </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> i </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">            sum </span><span>+= </span><span style="color:#96b5b4;">ceil</span><span style="color:#eff1f5;">(i</span><span>/</span><span style="color:#eff1f5;">k);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> sum </span><span>&lt;=</span><span style="color:#eff1f5;"> threshold;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">smallestDivisor</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">threshold</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> start </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end </span><span>=</span><span style="color:#eff1f5;"> INT_MAX</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(start </span><span>&lt;</span><span style="color:#eff1f5;"> end) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(start</span><span>+</span><span style="color:#eff1f5;">end) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">satisfied</span><span style="color:#eff1f5;">(nums, threshold, mid)) end </span><span>=</span><span style="color:#eff1f5;"> mid;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> start </span><span>=</span><span style="color:#eff1f5;"> mid</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> start;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="minimum-cost-to-move-chips-to-the-same-position">Minimum Cost to Move Chips to The Same Position</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int minCostToMoveChips(vector&lt;int&gt;&amp; position) {
-        int parity[2] = {0};
-        for(auto p : position) {
-            parity[p&amp;1] += 1;
-        }
-        return parity[0] &lt; parity[1] ? parity[0] : parity[1];
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minCostToMoveChips</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">position</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> parity[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> p </span><span>:</span><span style="color:#eff1f5;"> position) {
+</span><span style="color:#eff1f5;">            parity[p</span><span>&amp;</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> parity[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> parity[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>?</span><span style="color:#eff1f5;"> parity[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>:</span><span style="color:#eff1f5;"> parity[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="consecutive-characters">Consecutive Characters</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int maxPower(string s) {
-        int ans = 0, cnt = 0;
-        char cur;
-        for(auto c : s) {
-            if(c != cur) {
-                cur = c;
-                cnt = 0;
-            }
-            cnt += 1;
-            ans = max(cnt, ans);
-        }
-        return ans;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxPower</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ans </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>!=</span><span style="color:#eff1f5;"> cur) {
+</span><span style="color:#eff1f5;">                cur </span><span>=</span><span style="color:#eff1f5;"> c;
+</span><span style="color:#eff1f5;">                cnt </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            cnt </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            ans </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(cnt, ans);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="insertion-sort-list">Insertion Sort List</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- *&#x2F;
-class Solution {
-public:
-    ListNode* insertionSortList(ListNode* head) {
-        ListNode *newHead = new ListNode(INT_MIN);
-        ListNode *cur = head;
-        while(cur) {
-            ListNode *insertPoint = newHead;
-            while(insertPoint-&gt;next &amp;&amp; insertPoint-&gt;next-&gt;val &lt; cur-&gt;val) insertPoint = insertPoint-&gt;next;
-            ListNode *tmp = cur-&gt;next;
-            cur-&gt;next = insertPoint-&gt;next;
-            insertPoint-&gt;next = cur;
-            cur = tmp;
-        }
-        return newHead-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode() : val(0), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">insertionSortList</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(INT_MIN);
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">            ListNode </span><span>*</span><span style="color:#eff1f5;">insertPoint </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(insertPoint-&gt;</span><span style="color:#bf616a;">next </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> insertPoint-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">) insertPoint </span><span>=</span><span style="color:#eff1f5;"> insertPoint-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            ListNode </span><span>*</span><span style="color:#eff1f5;">tmp </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> insertPoint-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            insertPoint-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">            cur </span><span>=</span><span style="color:#eff1f5;"> tmp;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-7">November LeetCoding Challenge 7</h1>
 <h2 id="description">Description</h2>
 <p><strong>Add Two Numbers II</strong></p>
@@ -303,58 +303,58 @@ public:
 <p><strong>Follow up:</strong>
 What if you cannot modify the input lists? In other words, reversing the lists is not allowed.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input: (7 -&gt; 2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
-Output: 7 -&gt; 8 -&gt; 0 -&gt; 7
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: (7 -&gt; 2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+</span><span>Output: 7 -&gt; 8 -&gt; 0 -&gt; 7
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- *&#x2F;
-class Solution {
-    pair&lt;ListNode*, int&gt; addTwoNumber(ListNode* l1, int len1, ListNode* l2, int len2) {
-        if(!len1 || !len2) return len1 ? make_pair(l1, 0) : make_pair(l2, 0);
-        ListNode *nextNode;
-        int carry, curVal;
-        if(len1 &gt; len2) {
-            tie(nextNode, carry) = addTwoNumber(l1-&gt;next, len1-1, l2, len2);
-            curVal = l1-&gt;val + carry;
-        } else if(len1 &lt; len2) {
-            tie(nextNode, carry) = addTwoNumber(l1, len1, l2-&gt;next, len2-1);
-            curVal = l2-&gt;val + carry;
-        } else {
-            tie(nextNode, carry) = addTwoNumber(l1-&gt;next, len1-1, l2-&gt;next, len2-1);
-            curVal = l1-&gt;val +l2-&gt;val + carry;
-        }
-        ListNode *node = new ListNode(curVal%10, nextNode);
-        return make_pair(node, curVal&#x2F;10);
-    }
-    
-    int length(ListNode* l) {
-        int len = 0;
-        while(l) {
-            len += 1;
-            l = l-&gt;next;
-        }
-        return len;
-    }
-public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        int len1 = length(l1);
-        int len2 = length(l2);
-        auto [head, carry] = addTwoNumber(l1, len1, l2, len2);
-        if(!carry) return head;
-        return new ListNode(carry, head);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for singly-linked list.
+</span><span style="color:#65737e;"> * struct ListNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     ListNode *next;
+</span><span style="color:#65737e;"> *     ListNode() : val(0), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span><span style="color:#65737e;"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    pair&lt;ListNode</span><span>*</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">addTwoNumber</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">l1</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">len1</span><span style="color:#eff1f5;">, ListNode</span><span>* </span><span style="color:#bf616a;">l2</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">len2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">len1 </span><span>|| !</span><span style="color:#eff1f5;">len2) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len1 </span><span>? </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(l1, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span>: </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(l2, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">nextNode;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> carry, curVal;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len1 </span><span>&gt;</span><span style="color:#eff1f5;"> len2) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">tie</span><span style="color:#eff1f5;">(nextNode, carry) </span><span>= </span><span style="color:#bf616a;">addTwoNumber</span><span style="color:#eff1f5;">(l1-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">, len1</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, l2, len2);
+</span><span style="color:#eff1f5;">            curVal </span><span>=</span><span style="color:#eff1f5;"> l1-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(len1 </span><span>&lt;</span><span style="color:#eff1f5;"> len2) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">tie</span><span style="color:#eff1f5;">(nextNode, carry) </span><span>= </span><span style="color:#bf616a;">addTwoNumber</span><span style="color:#eff1f5;">(l1, len1, l2-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">, len2</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            curVal </span><span>=</span><span style="color:#eff1f5;"> l2-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">tie</span><span style="color:#eff1f5;">(nextNode, carry) </span><span>= </span><span style="color:#bf616a;">addTwoNumber</span><span style="color:#eff1f5;">(l1-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">, len1</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, l2-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">, len2</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            curVal </span><span>=</span><span style="color:#eff1f5;"> l1-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;">l2-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;"> carry;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">node </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(curVal</span><span>%</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">, nextNode);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(node, curVal</span><span>/</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">length</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">l</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(l) {
+</span><span style="color:#eff1f5;">            len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            l </span><span>=</span><span style="color:#eff1f5;"> l-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">addTwoNumbers</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">l1</span><span style="color:#eff1f5;">, ListNode</span><span>* </span><span style="color:#bf616a;">l2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len1 </span><span>= </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(l1);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len2 </span><span>= </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(l2);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[head, carry] </span><span>= </span><span style="color:#bf616a;">addTwoNumber</span><span style="color:#eff1f5;">(l1, len1, l2, len2);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">carry) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">(carry, head);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

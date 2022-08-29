@@ -150,26 +150,26 @@ The total minimum cost is 10 + 30 + 50 + 20 = 110 to have half the people interv
 	<li><code>1 &lt;= aCost<sub>i</sub>, bCost<sub>i</sub> &lt;= 1000</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int twoCitySchedCost(vector&lt;vector&lt;int&gt;&gt;&amp; costs) {
-    sort(costs.begin(), costs.end(), [](const vector&lt;int&gt; &amp;a, const vector&lt;int&gt; &amp;b) {
-      return a[0] - a[1] &lt; b[0] - b[1];
-    });
-    int len = costs.size();
-    int answer = 0;
-    for(int i = 0; i * 2 &lt; len; ++i) {
-      answer += costs[i][0] + costs[len - 1 - i][1];
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 50&#x2F;50 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 78.71 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 78.35 % of cpp submissions (7.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">twoCitySchedCost</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">costs</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(costs.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), costs.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [](</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">a, </span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#eff1f5;">b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> a[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> a[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&lt;</span><span style="color:#eff1f5;"> b[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> b[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> costs.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>* </span><span style="color:#d08770;">2 </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      answer </span><span>+=</span><span style="color:#eff1f5;"> costs[i][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> costs[len </span><span>- </span><span style="color:#d08770;">1 </span><span>-</span><span style="color:#eff1f5;"> i][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 50/50 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 78.71 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 78.35 % of cpp submissions (7.9 MB)
+</span></code></pre>
 
     </div>
   </div>

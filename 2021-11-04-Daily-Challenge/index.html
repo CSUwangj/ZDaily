@@ -119,37 +119,37 @@ renderMathInElement(document.body, katex_config);
 <p>Given the <code>root</code> of a binary tree, return the sum of all left leaves.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/04/08/leftsum-tree.jpg" alt="img" /></p>
-<pre><code>Input: root = [3,9,20,null,null,15,7]
-Output: 24
-Explanation: There are two left leaves in the binary tree, with values 9 and 15 respectively.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [3,9,20,null,null,15,7]
+</span><span>Output: 24
+</span><span>Explanation: There are two left leaves in the binary tree, with values 9 and 15 respectively.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: root = [1]
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [1]
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>
 <li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int sumOfLeftLeaves(TreeNode* root) {
-    if(!root) return 0;
-    int val = 0;
-    if(root-&gt;left &amp;&amp; !root-&gt;left-&gt;left &amp;&amp; !root-&gt;left-&gt;right) {
-      return root-&gt;left-&gt;val + sumOfLeftLeaves(root-&gt;right);
-    }
-    return sumOfLeftLeaves(root-&gt;left) + sumOfLeftLeaves(root-&gt;right);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 100&#x2F;100 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 71.52 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 44.54 % of cpp submissions (13.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">sumOfLeftLeaves</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">left </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">val </span><span>+ </span><span style="color:#bf616a;">sumOfLeftLeaves</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">sumOfLeftLeaves</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) </span><span>+ </span><span style="color:#bf616a;">sumOfLeftLeaves</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 100/100 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 71.52 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 44.54 % of cpp submissions (13.5 MB)
+</span></code></pre>
 
     </div>
   </div>

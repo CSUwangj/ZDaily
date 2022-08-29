@@ -118,16 +118,16 @@ renderMathInElement(document.body, katex_config);
 <h3 id="find-the-divisors">Find the divisors!</h3>
 <p>Create a function named <code>divisors</code>/<code>Divisors</code> that takes an integer <code>n &gt; 1</code> and returns an array with all of the integer's divisors(except for 1 and the number itself), from smallest to largest. If the number is prime return the string '(integer) is prime' (<code>null</code> in C#) (use <code>Either String a</code> in Haskell and <code>Result&lt;Vec&lt;u32&gt;, String&gt;</code> in Rust).</p>
 <h4 id="example">Example:</h4>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">divisors(12); &#x2F;&#x2F; should return [2,3,4,6]
-divisors(25); &#x2F;&#x2F; should return [5]
-divisors(13); &#x2F;&#x2F; should return &quot;13 is prime&quot;
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#8fa1b3;">divisors</span><span>(</span><span style="color:#d08770;">12</span><span>); </span><span style="color:#65737e;">// should return [2,3,4,6]
+</span><span style="color:#8fa1b3;">divisors</span><span>(</span><span style="color:#d08770;">25</span><span>); </span><span style="color:#65737e;">// should return [5]
+</span><span style="color:#8fa1b3;">divisors</span><span>(</span><span style="color:#d08770;">13</span><span>); </span><span style="color:#65737e;">// should return &quot;13 is prime&quot;
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">function divisors(integer) {
-  s = Array.apply(null, {length: Math.ceil((integer+1)&#x2F;2)}).map(Number.call, Number).slice(2).filter(x =&gt; integer % x===0);
-  return s.length?s:`${integer} is prime`;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">divisors</span><span>(</span><span style="color:#bf616a;">integer</span><span>) {
+</span><span>  </span><span style="color:#bf616a;">s </span><span>= </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#96b5b4;">apply</span><span>(</span><span style="color:#d08770;">null</span><span>, {length: Math.</span><span style="color:#96b5b4;">ceil</span><span>((</span><span style="color:#bf616a;">integer</span><span>+</span><span style="color:#d08770;">1</span><span>)/</span><span style="color:#d08770;">2</span><span>)}).</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#ebcb8b;">Number</span><span>.</span><span style="color:#bf616a;">call</span><span>, </span><span style="color:#ebcb8b;">Number</span><span>).</span><span style="color:#96b5b4;">slice</span><span>(</span><span style="color:#d08770;">2</span><span>).</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">x </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">integer </span><span>% </span><span style="color:#bf616a;">x</span><span>===</span><span style="color:#d08770;">0</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">s</span><span>.length?</span><span style="color:#bf616a;">s</span><span>:`</span><span style="color:#a3be8c;">${</span><span style="color:#bf616a;">integer</span><span style="color:#a3be8c;">} is prime</span><span>`;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

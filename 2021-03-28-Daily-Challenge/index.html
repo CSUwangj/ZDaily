@@ -124,71 +124,71 @@ renderMathInElement(document.body, katex_config);
 <li>Input length is less than 50,000.</li>
 </ol>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: &quot;owoztneoer&quot;
-
-Output: &quot;012&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;owoztneoer&quot;
+</span><span>
+</span><span>Output: &quot;012&quot;
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: &quot;fviefuro&quot;
-
-Output: &quot;45&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: &quot;fviefuro&quot;
+</span><span>
+</span><span>Output: &quot;45&quot;
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int cnt[10];
-public:
-  string originalDigits(string s) {
-    for(int i = 0; i &lt; s.length(); ++i) {
-      switch(s[i]){
-        case &#x27;z&#x27;:
-          cnt[0] += 1;
-          break;
-        case &#x27;w&#x27;:
-          cnt[2] += 1;
-          break;
-        case &#x27;x&#x27;:
-          cnt[6] += 1;
-          break;
-        case &#x27;g&#x27;:
-          cnt[8] += 1;
-          break;
-        case &#x27;s&#x27;:
-          cnt[7] += 1;
-          break;
-        case &#x27;v&#x27;:
-          cnt[5] += 1;
-          break;
-        case &#x27;f&#x27;:
-          cnt[4] += 1;
-          break;
-        case &#x27;t&#x27;:
-          cnt[3] += 1;
-          break;
-        case &#x27;o&#x27;:
-          cnt[1] += 1;
-          break;
-        case &#x27;i&#x27;:
-          cnt[9] += 1;
-          break;
-      }
-    }
-    cnt[7] -= cnt[6];
-    cnt[5] -= cnt[7];
-    cnt[4] -= cnt[5];
-    cnt[3] -= cnt[2] + cnt[8];
-    cnt[1] -= cnt[0] + cnt[2] + cnt[4];
-    cnt[9] -= cnt[6] + cnt[8] + cnt[5];
-    string answer;
-    for(int i = 0; i &lt; 10; ++i) {
-      while(cnt[i]) {
-        answer.push_back(i + &#x27;0&#x27;);
-        cnt[i] -= 1;
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">];
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">originalDigits</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> s.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">switch</span><span style="color:#eff1f5;">(s[i]){
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">z</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">w</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">x</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">g</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">8</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">s</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">7</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">v</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">5</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">f</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">t</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">o</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">case </span><span>&#39;</span><span style="color:#a3be8c;">i</span><span>&#39;</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">          cnt[</span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    cnt[</span><span style="color:#d08770;">7</span><span style="color:#eff1f5;">] </span><span>-=</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    cnt[</span><span style="color:#d08770;">5</span><span style="color:#eff1f5;">] </span><span>-=</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">7</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    cnt[</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">] </span><span>-=</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">5</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    cnt[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">] </span><span>-=</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">8</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    cnt[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-=</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    cnt[</span><span style="color:#d08770;">9</span><span style="color:#eff1f5;">] </span><span>-=</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">6</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">8</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">5</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    string answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt; </span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cnt[i]) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i </span><span>+ &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        cnt[i] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

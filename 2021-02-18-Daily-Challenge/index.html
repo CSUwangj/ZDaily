@@ -118,50 +118,50 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Arithmetic Slices</strong></p>
 <p>A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.</p>
 <p>For example, these are arithmetic sequences:</p>
-<pre><code>1, 3, 5, 7, 9
-7, 7, 7, 7
-3, -1, -5, -9
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>1, 3, 5, 7, 9
+</span><span>7, 7, 7, 7
+</span><span>3, -1, -5, -9
+</span></code></pre>
 <p>The following sequence is not arithmetic.</p>
-<pre><code>1, 1, 2, 5, 7
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>1, 1, 2, 5, 7
+</span></code></pre>
 <p>A zero-indexed array A consisting of N numbers is given. A slice of that array is any pair of integers (P, Q) such that 0 &lt;= P &lt; Q &lt; N.</p>
 <p>A slice (P, Q) of the array A is called arithmetic if the sequence:
 A[P], A[P + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this means that P + 1 &lt; Q.</p>
 <p>The function should return the number of arithmetic slices in the array A.</p>
 <p><strong>Example:</strong></p>
-<pre><code>A = [1, 2, 3, 4]
-
-return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>A = [1, 2, 3, 4]
+</span><span>
+</span><span>return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int numberOfArithmeticSlices(vector&lt;int&gt;&amp; A) {
-        int len = A.size();
-        if(len &lt; 3) return 0;
-        
-        int answer = 0;
-        int curLen = 1;
-        int diff = A[1] - A[0];
-        int pos = 2;
-        while(pos &lt; len) {
-            while(pos &lt; len &amp;&amp; A[pos] - A[pos-1] == diff) {
-                pos += 1;
-                curLen += 1;
-            }
-            answer += curLen * (curLen - 1) &#x2F; 2;
-            if(pos &lt; len) {
-                diff = A[pos] - A[pos - 1];
-                curLen = 1;
-                pos += 1;
-            }
-        }
-        
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">numberOfArithmeticSlices</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len </span><span>&lt; </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curLen </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> diff </span><span>=</span><span style="color:#eff1f5;"> A[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> A[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> A[pos] </span><span>-</span><span style="color:#eff1f5;"> A[pos</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> diff) {
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                curLen </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            answer </span><span>+=</span><span style="color:#eff1f5;"> curLen </span><span>* </span><span style="color:#eff1f5;">(curLen </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">                diff </span><span>=</span><span style="color:#eff1f5;"> A[pos] </span><span>-</span><span style="color:#eff1f5;"> A[pos </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                curLen </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

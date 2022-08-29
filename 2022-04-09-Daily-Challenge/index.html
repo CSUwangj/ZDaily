@@ -118,13 +118,13 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Top K Frequent Elements</strong></p>
 <p>Given an integer array <code>nums</code> and an integer <code>k</code>, return <em>the</em> <code>k</code> <em>most frequent elements</em>. You may return the answer in <strong>any order</strong>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [1,1,1,2,2,3], k = 2
-Output: [1,2]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1,1,1,2,2,3], k = 2
+</span><span>Output: [1,2]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [1], k = 1
-Output: [1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums = [1], k = 1
+</span><span>Output: [1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
@@ -133,40 +133,40 @@ Output: [1]
 </ul>
 <p><strong>Follow up:</strong> Your algorithm's time complexity must be better than <code>O(n log n)</code>, where n is the array's size.</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  using pi = pair&lt;int, int&gt;;
-public:
-  vector&lt;int&gt; topKFrequent(vector&lt;int&gt;&amp; nums, int k) {
-    unordered_map&lt;int, int&gt; count;
-    for(auto n : nums) {
-      count[n] += 1;
-    }
-    priority_queue&lt;pi, vector&lt;pi&gt;, greater&lt;pi&gt;&gt; pq;
-    for(auto [n, c] : count) {
-      pq.push({c, n});
-      if(pq.size() &gt; k) pq.pop();
-    }
-    vector&lt;int&gt; answer;
-    answer.reserve(k);
-    while(pq.size()) {
-      answer.push_back(pq.top().second);
-      pq.pop();
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 21&#x2F;21 cases passed (12 ms)
-&#x2F;&#x2F; Your runtime beats 95.02 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 41.62 % of cpp submissions (13.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">using </span><span style="color:#eff1f5;">pi </span><span>=</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">topKFrequent</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; count;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> n </span><span>:</span><span style="color:#eff1f5;"> nums) {
+</span><span style="color:#eff1f5;">      count[n] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    priority_queue</span><span>&lt;</span><span style="color:#eff1f5;">pi, vector&lt;pi&gt;, greater&lt;pi&gt;</span><span>&gt;</span><span style="color:#eff1f5;"> pq;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[n, c] </span><span>:</span><span style="color:#eff1f5;"> count) {
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({c, n});
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&gt;</span><span style="color:#eff1f5;"> k) pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    answer.</span><span style="color:#bf616a;">reserve</span><span style="color:#eff1f5;">(k);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 21/21 cases passed (12 ms)
+</span><span style="color:#65737e;">// Your runtime beats 95.02 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 41.62 % of cpp submissions (13.7 MB)
+</span></code></pre>
 
     </div>
   </div>

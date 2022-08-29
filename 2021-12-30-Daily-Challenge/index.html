@@ -120,44 +120,44 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the <strong>length</strong> of</em> <code>n</code>. If there is no such <code>n</code>, return -1.</p>
 <p><strong>Note:</strong> <code>n</code> may not fit in a 64-bit signed integer.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: k = 1
-Output: 1
-Explanation: The smallest answer is n = 1, which has length 1.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 1
+</span><span>Output: 1
+</span><span>Explanation: The smallest answer is n = 1, which has length 1.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: k = 2
-Output: -1
-Explanation: There is no such positive integer n divisible by 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 2
+</span><span>Output: -1
+</span><span>Explanation: There is no such positive integer n divisible by 2.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: k = 3
-Output: 3
-Explanation: The smallest answer is n = 111, which has length 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: k = 3
+</span><span>Output: 3
+</span><span>Explanation: The smallest answer is n = 111, which has length 3.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= k &lt;= 10^5</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int smallestRepunitDivByK(int k) {
-      if(k % 2 == 0 || k % 5 == 0) return -1;
-      int cur = 0;
-      for(int i = 1; i &lt;= k; ++i) {
-          cur = (cur * 10 + 1) % k;
-          if(cur == 0) return i;
-      }
-      &#x2F;&#x2F; actually won&#x27;t go to here
-      return INT_MAX;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 70&#x2F;70 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 46.22 % of cpp submissions (6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">smallestRepunitDivByK</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>% </span><span style="color:#d08770;">2 </span><span>== </span><span style="color:#d08770;">0 </span><span>||</span><span style="color:#eff1f5;"> k </span><span>% </span><span style="color:#d08770;">5 </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> k; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">          cur </span><span>= </span><span style="color:#eff1f5;">(cur </span><span>* </span><span style="color:#d08770;">10 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>%</span><span style="color:#eff1f5;"> k;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// actually won&#39;t go to here
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 70/70 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 46.22 % of cpp submissions (6 MB)
+</span></code></pre>
 
     </div>
   </div>

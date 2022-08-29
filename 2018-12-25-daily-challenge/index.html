@@ -115,146 +115,146 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Smallest multiple</em> in <em>Rust</em> and <em>Remove Duplicates from Sorted Array</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Smallest multiple
-
-Problem 5 
-
-2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-
-What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Smallest multiple
+</span><span>
+</span><span>Problem 5 
+</span><span>
+</span><span>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+</span><span>
+</span><span>What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>On the one hand I can compute the LCM with Euclidean Algorithm, one the other hand I can compute the contribution of each prime, and then, get the right answer.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="Rust" class="language-Rust "><code class="language-Rust" data-lang="Rust">extern crate primal;
-
-use primal::Primes;
-
-fn main() {
-    let mut ans = lcm(1,2);
-    for i in 3..21 {
-        ans = lcm(ans, i);
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-    
-    ans = 1;
-    let twenty: f64 = 20f64;
-    let mut tmp: u64;
-    for p in Primes::all().take(20) {
-        if p &gt; 19 {
-            break;
-        }
-        let q = twenty.log(p as f64) as u32;
-        tmp = p as u64;
-        ans *= tmp.pow(q);
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn lcm(a: u64, b: u64) -&gt; u64 {
-    a&#x2F; gcd(a, b) * b
-}
-
-fn gcd(mut a: u64, mut b: u64) -&gt; u64 {
-    let mut tmp: u64;
-    while b!= 0 {
-        tmp = a;
-        a = b;
-        b = tmp % b;
-    }
-    a
-}
-</code></pre>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>primal::Primes;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#96b5b4;">lcm</span><span>(</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>);
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">3</span><span>..</span><span style="color:#d08770;">21 </span><span>{
+</span><span>        ans = </span><span style="color:#96b5b4;">lcm</span><span>(ans, i);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>    
+</span><span>    ans = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> twenty: </span><span style="color:#b48ead;">f64 </span><span>= </span><span style="color:#d08770;">20</span><span style="color:#b48ead;">f64</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> tmp: </span><span style="color:#b48ead;">u64</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> p in Primes::all().</span><span style="color:#96b5b4;">take</span><span>(</span><span style="color:#d08770;">20</span><span>) {
+</span><span>        </span><span style="color:#b48ead;">if</span><span> p &gt; </span><span style="color:#d08770;">19 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">break</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">let</span><span> q = twenty.</span><span style="color:#96b5b4;">log</span><span>(p as </span><span style="color:#b48ead;">f64</span><span>) as </span><span style="color:#b48ead;">u32</span><span>;
+</span><span>        tmp = p as </span><span style="color:#b48ead;">u64</span><span>;
+</span><span>        ans *= tmp.</span><span style="color:#96b5b4;">pow</span><span>(q);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">lcm</span><span>(</span><span style="color:#bf616a;">a</span><span>: </span><span style="color:#b48ead;">u64</span><span>, </span><span style="color:#bf616a;">b</span><span>: </span><span style="color:#b48ead;">u64</span><span>) -&gt; </span><span style="color:#b48ead;">u64 </span><span>{
+</span><span>    a/ </span><span style="color:#96b5b4;">gcd</span><span>(a, b) * b
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">gcd</span><span>(</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">a</span><span>: </span><span style="color:#b48ead;">u64</span><span>, </span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">b</span><span>: </span><span style="color:#b48ead;">u64</span><span>) -&gt; </span><span style="color:#b48ead;">u64 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> tmp: </span><span style="color:#b48ead;">u64</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while</span><span> b!= </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        tmp = a;
+</span><span>        a = b;
+</span><span>        b = tmp % b;
+</span><span>    }
+</span><span>    a
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>866. Prime Palindrome
-
-Find the smallest prime palindrome greater than or equal to N.
-
-Recall that a number is prime if it&#x27;s only divisors are 1 and itself, and it is greater than 1. 
-
-For example, 2,3,5,7,11 and 13 are primes.
-
-Recall that a number is a palindrome if it reads the same from left to right as it does from right to left. 
-
-For example, 12321 is a palindrome.
-
- 
-
-Example 1:
-
-Input: 6
-Output: 7
-Example 2:
-
-Input: 8
-Output: 11
-Example 3:
-
-Input: 13
-Output: 101
- 
-
-Note:
-
-1 &lt;= N &lt;= 10^8
-The answer is guaranteed to exist and be less than 2 * 10^8.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>866. Prime Palindrome
+</span><span>
+</span><span>Find the smallest prime palindrome greater than or equal to N.
+</span><span>
+</span><span>Recall that a number is prime if it&#39;s only divisors are 1 and itself, and it is greater than 1. 
+</span><span>
+</span><span>For example, 2,3,5,7,11 and 13 are primes.
+</span><span>
+</span><span>Recall that a number is a palindrome if it reads the same from left to right as it does from right to left. 
+</span><span>
+</span><span>For example, 12321 is a palindrome.
+</span><span>
+</span><span> 
+</span><span>
+</span><span>Example 1:
+</span><span>
+</span><span>Input: 6
+</span><span>Output: 7
+</span><span>Example 2:
+</span><span>
+</span><span>Input: 8
+</span><span>Output: 11
+</span><span>Example 3:
+</span><span>
+</span><span>Input: 13
+</span><span>Output: 101
+</span><span> 
+</span><span>
+</span><span>Note:
+</span><span>
+</span><span>1 &lt;= N &lt;= 10^8
+</span><span>The answer is guaranteed to exist and be less than 2 * 10^8.
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>First, according to the math problem I've done yesterday, every even-lengthed palindrome number is a multiple of eleven. So we can just skip them.</p>
 <p>To check if a number is a prime, there is a lot of ways to do it. I once want use Miller-Rabin, but find it is so difficult to implicate it in JavaScript.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;**
- * @param {number} N
- * @return {number}
- *&#x2F;
-let primePalindrome = function(N) {
-  let cur = N;
-  if (N &lt; 12){
-    while(!isPrime(cur)) ++cur;
-    return cur;
-  }
-  while(!isPal(cur)) cur++;
-  while (true){
-    if(isPrime(cur)) return cur;
-    cur = nextPal(cur);
-  }
-};
-
-let isPal = (n) =&gt;{
-  return (&quot;&quot; + n) == (&quot;&quot; + n).split(&quot;&quot;).reverse().join(&quot;&quot;);
-};
-
-let nextPal = (n) =&gt; {
-  let s = (&quot;&quot; + n);
-  let len = s.length;
-  if(len % 2 == 0){
-    return &quot;1&quot;+ &quot;0&quot;.repeat(len-1) + &quot;1&quot;;
-  }else{
-    let half = Math.ceil(len &#x2F; 2);
-    let left = s.slice(0, half);
-    let plus1 = (+left + 1) + &quot;&quot;;
-    return +(plus1 + plus1.slice(0, plus1.length - 1).split(&quot;&quot;).reverse().join(&quot;&quot;));
-  }
-};
-
-let isPrime = (n) =&gt; {
-  if(n%2 == 0) return n==2;
-  for(let i=3; i*i&lt;=n; i+=2){
-    if(n%i===0) return false;
-  }
-  return n!=1;
-};
-
-&#x2F;&#x2F; console.log(primePalindrome(1));
-&#x2F;&#x2F; console.log(primePalindrome(2));
-&#x2F;&#x2F; console.log(primePalindrome(3));
-&#x2F;&#x2F; console.log(primePalindrome(6));
-&#x2F;&#x2F; console.log(primePalindrome(8));
-&#x2F;&#x2F; console.log(primePalindrome(13));
-&#x2F;&#x2F; console.log(primePalindrome(11));
-&#x2F;&#x2F; console.log(primePalindrome(1234));
-</code></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">N
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">primePalindrome </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">N</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#bf616a;">N</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">N </span><span>&lt; </span><span style="color:#d08770;">12</span><span>){
+</span><span>    </span><span style="color:#b48ead;">while</span><span>(!</span><span style="color:#8fa1b3;">isPrime</span><span>(</span><span style="color:#bf616a;">cur</span><span>)) ++</span><span style="color:#bf616a;">cur</span><span>;
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">cur</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(!</span><span style="color:#8fa1b3;">isPal</span><span>(</span><span style="color:#bf616a;">cur</span><span>)) </span><span style="color:#bf616a;">cur</span><span>++;
+</span><span>  </span><span style="color:#b48ead;">while </span><span>(</span><span style="color:#d08770;">true</span><span>){
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#8fa1b3;">isPrime</span><span>(</span><span style="color:#bf616a;">cur</span><span>)) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">cur</span><span>;
+</span><span>    </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#8fa1b3;">nextPal</span><span>(</span><span style="color:#bf616a;">cur</span><span>);
+</span><span>  }
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">isPal </span><span>= (</span><span style="color:#bf616a;">n</span><span>) </span><span style="color:#b48ead;">=&gt;</span><span>{
+</span><span>  </span><span style="color:#b48ead;">return </span><span>(&quot;&quot; + </span><span style="color:#bf616a;">n</span><span>) == (&quot;&quot; + </span><span style="color:#bf616a;">n</span><span>).</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#96b5b4;">reverse</span><span>().</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;);
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">nextPal </span><span>= (</span><span style="color:#bf616a;">n</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">s </span><span>= (&quot;&quot; + </span><span style="color:#bf616a;">n</span><span>);
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">len </span><span>= </span><span style="color:#bf616a;">s</span><span>.length;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">len </span><span>% </span><span style="color:#d08770;">2 </span><span>== </span><span style="color:#d08770;">0</span><span>){
+</span><span>    </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">1</span><span>&quot;+ &quot;</span><span style="color:#a3be8c;">0</span><span>&quot;.</span><span style="color:#8fa1b3;">repeat</span><span>(</span><span style="color:#bf616a;">len</span><span>-</span><span style="color:#d08770;">1</span><span>) + &quot;</span><span style="color:#a3be8c;">1</span><span>&quot;;
+</span><span>  }</span><span style="color:#b48ead;">else</span><span>{
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">half </span><span>= Math.</span><span style="color:#96b5b4;">ceil</span><span>(</span><span style="color:#bf616a;">len </span><span>/ </span><span style="color:#d08770;">2</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">slice</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#bf616a;">half</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">plus1 </span><span>= (+</span><span style="color:#bf616a;">left </span><span>+ </span><span style="color:#d08770;">1</span><span>) + &quot;&quot;;
+</span><span>    </span><span style="color:#b48ead;">return </span><span>+(</span><span style="color:#bf616a;">plus1 </span><span>+ </span><span style="color:#bf616a;">plus1</span><span>.</span><span style="color:#96b5b4;">slice</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#bf616a;">plus1</span><span>.length - </span><span style="color:#d08770;">1</span><span>).</span><span style="color:#96b5b4;">split</span><span>(&quot;&quot;).</span><span style="color:#96b5b4;">reverse</span><span>().</span><span style="color:#96b5b4;">join</span><span>(&quot;&quot;));
+</span><span>  }
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">isPrime </span><span>= (</span><span style="color:#bf616a;">n</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">n</span><span>%</span><span style="color:#d08770;">2 </span><span>== </span><span style="color:#d08770;">0</span><span>) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">n</span><span>==</span><span style="color:#d08770;">2</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i</span><span>=</span><span style="color:#d08770;">3</span><span>; </span><span style="color:#bf616a;">i</span><span>*</span><span style="color:#bf616a;">i</span><span>&lt;=</span><span style="color:#bf616a;">n</span><span>; </span><span style="color:#bf616a;">i</span><span>+=</span><span style="color:#d08770;">2</span><span>){
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">n</span><span>%</span><span style="color:#bf616a;">i</span><span>===</span><span style="color:#d08770;">0</span><span>) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">n</span><span>!=</span><span style="color:#d08770;">1</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(primePalindrome(1));
+</span><span style="color:#65737e;">// console.log(primePalindrome(2));
+</span><span style="color:#65737e;">// console.log(primePalindrome(3));
+</span><span style="color:#65737e;">// console.log(primePalindrome(6));
+</span><span style="color:#65737e;">// console.log(primePalindrome(8));
+</span><span style="color:#65737e;">// console.log(primePalindrome(13));
+</span><span style="color:#65737e;">// console.log(primePalindrome(11));
+</span><span style="color:#65737e;">// console.log(primePalindrome(1234));
+</span></code></pre>
 
     </div>
   </div>

@@ -121,16 +121,16 @@ renderMathInElement(document.body, katex_config);
 <p>Calculate the minimum number of cameras needed to monitor all nodes of the tree.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/29/bst_cameras_01.png" alt="img" /></p>
-<pre><code>Input: [0,0,null,0,0]
-Output: 1
-Explanation: One camera is enough to monitor all nodes if placed as shown.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [0,0,null,0,0]
+</span><span>Output: 1
+</span><span>Explanation: One camera is enough to monitor all nodes if placed as shown.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2018/12/29/bst_cameras_02.png" alt="img" /></p>
-<pre><code>Input: [0,0,null,0,null,0,null,null,0]
-Output: 2
-Explanation: At least two cameras are needed to monitor all nodes of the tree. The above image shows one of the valid configurations of camera placement.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [0,0,null,0,null,0,null,null,0]
+</span><span>Output: 2
+</span><span>Explanation: At least two cameras are needed to monitor all nodes of the tree. The above image shows one of the valid configurations of camera placement.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li>The number of nodes in the given tree will be in the range <code>[1, 1000]</code>.</li>
@@ -139,70 +139,70 @@ Explanation: At least two cameras are needed to monitor all nodes of the tree. T
 <h2 id="solution">Solution</h2>
 <p>another 1A, haha!</p>
 <p>it's a tree DP?</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- *&#x2F;
-class Solution {
-  unordered_map&lt;TreeNode*, int&gt; put;
-  unordered_map&lt;TreeNode*, int&gt; covered;
-  unordered_map&lt;TreeNode*, int&gt; blank;
-  void solve(TreeNode *root) {
-    if(!root) return;
-    solve(root-&gt;left);
-    solve(root-&gt;right);
-    put[root] = 1 + min({
-                    covered[root-&gt;left],
-                    put[root-&gt;left],
-                    blank[root-&gt;left]
-                  }) + min({
-                    covered[root-&gt;right],
-                    put[root-&gt;right],
-                    blank[root-&gt;right]
-                  });
-    covered[root] = min({put[root-&gt;left] + covered[root-&gt;right],
-                         put[root-&gt;right] + covered[root-&gt;left],
-                         put[root-&gt;left] + put[root-&gt;right]});
-    blank[root] = covered[root-&gt;left] + covered[root-&gt;right];
-  }
-public:
-  int minCameraCover(TreeNode* root) {
-    put[nullptr] = 10000;
-    solve(root);
-    return min(put[root], covered[root]);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * struct TreeNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     TreeNode *left;
+</span><span style="color:#65737e;"> *     TreeNode *right;
+</span><span style="color:#65737e;"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  unordered_map&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; put;
+</span><span style="color:#eff1f5;">  unordered_map&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; covered;
+</span><span style="color:#eff1f5;">  unordered_map&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; blank;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    put[root] </span><span>= </span><span style="color:#d08770;">1 </span><span>+ </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">({
+</span><span style="color:#eff1f5;">                    covered[root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">],
+</span><span style="color:#eff1f5;">                    put[root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">],
+</span><span style="color:#eff1f5;">                    blank[root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">]
+</span><span style="color:#eff1f5;">                  }) </span><span>+ </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">({
+</span><span style="color:#eff1f5;">                    covered[root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">],
+</span><span style="color:#eff1f5;">                    put[root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">],
+</span><span style="color:#eff1f5;">                    blank[root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">]
+</span><span style="color:#eff1f5;">                  });
+</span><span style="color:#eff1f5;">    covered[root] </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">({put[root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> covered[root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">],
+</span><span style="color:#eff1f5;">                         put[root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> covered[root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">],
+</span><span style="color:#eff1f5;">                         put[root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> put[root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">]});
+</span><span style="color:#eff1f5;">    blank[root] </span><span>=</span><span style="color:#eff1f5;"> covered[root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> covered[root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minCameraCover</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    put[</span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">10000</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(put[root], covered[root]);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>check <a href="https://leetcode.com/problems/binary-tree-cameras/solution/">solution</a> and learned greedy solution</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  unordered_set&lt;TreeNode*&gt; covered{nullptr};
-  int answer = 0;
-  void solve(TreeNode *cur, TreeNode *par = nullptr) {
-    if(!cur) return;
-    solve(cur-&gt;left, cur);
-    solve(cur-&gt;right, cur);
-    if((par == nullptr &amp;&amp; !covered.count(cur)) || !covered.count(cur-&gt;left) || !covered.count(cur-&gt;right)) {
-      answer += 1;
-      covered.insert(cur);
-      covered.insert(par);
-      covered.insert(cur-&gt;left);
-      covered.insert(cur-&gt;right);
-    }
-  }
-public:
-  int minCameraCover(TreeNode* root) {
-    solve(root);
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  unordered_set&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">covered</span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">cur</span><span style="color:#eff1f5;">, TreeNode </span><span>*</span><span style="color:#bf616a;">par </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">cur) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, cur);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, cur);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">((par </span><span>== </span><span style="color:#d08770;">nullptr </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">covered.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(cur)) </span><span>|| !</span><span style="color:#eff1f5;">covered.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) </span><span>|| !</span><span style="color:#eff1f5;">covered.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">)) {
+</span><span style="color:#eff1f5;">      answer </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      covered.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(cur);
+</span><span style="color:#eff1f5;">      covered.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(par);
+</span><span style="color:#eff1f5;">      covered.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      covered.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minCameraCover</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

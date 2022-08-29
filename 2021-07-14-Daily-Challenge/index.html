@@ -117,31 +117,31 @@ renderMathInElement(document.body, katex_config);
 <h2 id="description">Description</h2>
 <p>Given a string <code>columnTitle</code> that represents the column title as appear in an Excel sheet, return <em>its corresponding column number</em>.</p>
 <p>For example:</p>
-<pre><code>A -&gt; 1
-B -&gt; 2
-C -&gt; 3
-...
-Z -&gt; 26
-AA -&gt; 27
-AB -&gt; 28 
-...
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>A -&gt; 1
+</span><span>B -&gt; 2
+</span><span>C -&gt; 3
+</span><span>...
+</span><span>Z -&gt; 26
+</span><span>AA -&gt; 27
+</span><span>AB -&gt; 28 
+</span><span>...
+</span></code></pre>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: columnTitle = &quot;A&quot;
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: columnTitle = &quot;A&quot;
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: columnTitle = &quot;AB&quot;
-Output: 28
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: columnTitle = &quot;AB&quot;
+</span><span>Output: 28
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: columnTitle = &quot;ZY&quot;
-Output: 701
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: columnTitle = &quot;ZY&quot;
+</span><span>Output: 701
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: columnTitle = &quot;FXSHRXW&quot;
-Output: 2147483647
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: columnTitle = &quot;FXSHRXW&quot;
+</span><span>Output: 2147483647
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= columnTitle.length &lt;= 7</code></li>
@@ -149,32 +149,32 @@ Output: 2147483647
 <li><code>columnTitle</code> is in the range <code>[&quot;A&quot;, &quot;FXSHRXW&quot;]</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int titleToNumber(string columnTitle) {
-    int result = 0;
-    for(auto c : columnTitle) {
-      result *= 26;
-      result += c - &#x27;A&#x27; + 1;
-    }
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">titleToNumber</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">columnTitle</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> columnTitle) {
+</span><span style="color:#eff1f5;">      result </span><span>*= </span><span style="color:#d08770;">26</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      result </span><span>+=</span><span style="color:#eff1f5;"> c </span><span>- &#39;</span><span style="color:#a3be8c;">A</span><span>&#39; + </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="july-leetcoding-challenge-14">July LeetCoding Challenge 14</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Custom Sort String</strong></p>
 <p><code>order</code> and <code>str</code> are strings composed of lowercase letters. In <code>order</code>, no letter occurs more than once.</p>
 <p><code>order</code> was sorted in some custom order previously. We want to permute the characters of <code>str</code> so that they match the order that <code>order</code> was sorted. More specifically, if <code>x</code> occurs before <code>y</code> in <code>order</code>, then <code>x</code> should occur before <code>y</code> in the returned string.</p>
 <p>Return any permutation of <code>str</code> (as a string) that satisfies this property.</p>
-<pre><code>Example:
-Input: 
-order = &quot;cba&quot;
-str = &quot;abcd&quot;
-Output: &quot;cbad&quot;
-Explanation: 
-&quot;a&quot;, &quot;b&quot;, &quot;c&quot; appear in order, so the order of &quot;a&quot;, &quot;b&quot;, &quot;c&quot; should be &quot;c&quot;, &quot;b&quot;, and &quot;a&quot;. 
-Since &quot;d&quot; does not appear in order, it can be at any position in the returned string. &quot;dcba&quot;, &quot;cdba&quot;, &quot;cbda&quot; are also valid outputs.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Example:
+</span><span>Input: 
+</span><span>order = &quot;cba&quot;
+</span><span>str = &quot;abcd&quot;
+</span><span>Output: &quot;cbad&quot;
+</span><span>Explanation: 
+</span><span>&quot;a&quot;, &quot;b&quot;, &quot;c&quot; appear in order, so the order of &quot;a&quot;, &quot;b&quot;, &quot;c&quot; should be &quot;c&quot;, &quot;b&quot;, and &quot;a&quot;. 
+</span><span>Since &quot;d&quot; does not appear in order, it can be at any position in the returned string. &quot;dcba&quot;, &quot;cdba&quot;, &quot;cbda&quot; are also valid outputs.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>order</code> has length at most <code>26</code>, and no character is repeated in <code>order</code>.</li>
@@ -182,40 +182,40 @@ Since &quot;d&quot; does not appear in order, it can be at any position in the r
 <li><code>order</code> and <code>str</code> consist of lowercase letters only.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  string customSortString(string order, string str) {
-    int pos[128] = {};
-    for(int i = 0; i &lt; order.length(); ++i) pos[order[i]] = i + 1;
-    sort(str.begin(), str.end(), [&amp;](const char &amp;a, const char &amp;b) {
-      return pos[a] &lt; pos[b];
-    });
-    return str;
-  }
-};
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  string customSortString(string order, string str) {
-    int cnt[128] = {};
-    for(auto c : str) cnt[c] += 1;
-    string answer;
-    for(auto c : order) {
-      while(cnt[c]) {
-        answer.push_back(c);
-        cnt[c] -= 1;
-      }
-    }
-    for(char i = &#x27;a&#x27;; i &lt;= &#x27;z&#x27;; ++i) {
-      while(cnt[i]) {
-        answer.push_back(i);
-        cnt[i] -= 1;
-      }
-    }
-    return answer;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">customSortString</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">order</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">str</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos[</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> order.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) pos[order[i]] </span><span>=</span><span style="color:#eff1f5;"> i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(str.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), str.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">](</span><span style="color:#b48ead;">const char </span><span>&amp;</span><span style="color:#eff1f5;">a, </span><span style="color:#b48ead;">const char </span><span>&amp;</span><span style="color:#eff1f5;">b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> pos[a] </span><span>&lt;</span><span style="color:#eff1f5;"> pos[b];
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> str;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  string </span><span style="color:#8fa1b3;">customSortString</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">order</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">str</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> str) cnt[c] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    string answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> order) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cnt[c]) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">        cnt[c] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;"> i </span><span>= &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">; i </span><span>&lt;= &#39;</span><span style="color:#a3be8c;">z</span><span>&#39;</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cnt[i]) {
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">        cnt[i] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

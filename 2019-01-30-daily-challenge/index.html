@@ -122,73 +122,73 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>So many pandigital problems...</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate primal;
-
-use primal::StreamingSieve;
-use primal::Primes;
-
-fn main() {
-    let mut ans = 0;
-    let up_bd = StreamingSieve::prime_pi(1_000_000_000usize);
-    for i in Primes::all().take(up_bd) {
-        if is_pandigital(i) {
-            println!(&quot;{}&quot;, i);
-            ans = i;
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn is_pandigital(n: usize) -&gt; bool {
-    &#x2F;&#x2F; println!(&quot;n = {}&quot;, n);
-    let l = n.to_string().len();
-    for i in 1..(l+1) {
-        let mut tmp = n;
-        let mut is_ok = false;
-        while tmp != 0 {
-            if tmp % 10 == i &amp;&amp; is_ok == false {
-                is_ok = true
-            } else if tmp % 10 == i &amp;&amp; is_ok == true {
-                return false;
-            }
-            &#x2F;&#x2F; println!(&quot;{}&quot;, tmp);
-            tmp &#x2F;= 10;
-        }
-        if !is_ok {
-            return false;
-        }
-    }
-    true
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> primal;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>primal::StreamingSieve;
+</span><span style="color:#b48ead;">use </span><span>primal::Primes;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> up_bd = StreamingSieve::prime_pi(</span><span style="color:#d08770;">1_000_000_000</span><span style="color:#b48ead;">usize</span><span>);
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in Primes::all().</span><span style="color:#96b5b4;">take</span><span>(up_bd) {
+</span><span>        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">is_pandigital</span><span>(i) {
+</span><span>            println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, i);
+</span><span>            ans = i;
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">is_pandigital</span><span>(</span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    </span><span style="color:#65737e;">// println!(&quot;n = {}&quot;, n);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> l = n.</span><span style="color:#96b5b4;">to_string</span><span>().</span><span style="color:#96b5b4;">len</span><span>();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..(l+</span><span style="color:#d08770;">1</span><span>) {
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> tmp = n;
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> is_ok = </span><span style="color:#d08770;">false</span><span>;
+</span><span>        </span><span style="color:#b48ead;">while</span><span> tmp != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">if</span><span> tmp % </span><span style="color:#d08770;">10 </span><span>== i &amp;&amp; is_ok == </span><span style="color:#d08770;">false </span><span>{
+</span><span>                is_ok = </span><span style="color:#d08770;">true
+</span><span>            } </span><span style="color:#b48ead;">else if</span><span> tmp % </span><span style="color:#d08770;">10 </span><span>== i &amp;&amp; is_ok == </span><span style="color:#d08770;">true </span><span>{
+</span><span>                </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#65737e;">// println!(&quot;{}&quot;, tmp);
+</span><span>            tmp /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if </span><span>!is_ok {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#d08770;">true
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="187-repeated-dna-sequences">187. Repeated DNA Sequences</h3>
 <p>All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: &quot;ACGAATTCCG&quot;. When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.</p>
 <p>Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input: s = &quot;AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT&quot;
-
-Output: [&quot;AAAAACCCCC&quot;, &quot;CCCCCAAAAA&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT&quot;
+</span><span>
+</span><span>Output: [&quot;AAAAACCCCC&quot;, &quot;CCCCCAAAAA&quot;]
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {string} s
- * @return {string[]}
- *&#x2F;
-var findRepeatedDnaSequences = function(s) {
-  let set = new Set();
-  let ans = new Set();
-  for (let i = 0; i &lt;= s.length-10; ++i) {
-    let tmp = s.substr(i, 10);
-    if (set.has(tmp)) ans.add(tmp);
-    set.add(tmp);
-  }
-  return Array.from(ans);
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{string} </span><span style="color:#bf616a;">s
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{string[]}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">findRepeatedDnaSequences </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">s</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">set </span><span>= new Set();
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= new Set();
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">0</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt;= </span><span style="color:#bf616a;">s</span><span>.length-</span><span style="color:#d08770;">10</span><span>; ++</span><span style="color:#bf616a;">i</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">tmp </span><span>= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">substr</span><span>(</span><span style="color:#bf616a;">i</span><span>, </span><span style="color:#d08770;">10</span><span>);
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">tmp</span><span>)) </span><span style="color:#bf616a;">ans</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">tmp</span><span>);
+</span><span>    </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">tmp</span><span>);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">ans</span><span>);
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

@@ -119,18 +119,18 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>the indices of the two numbers (<strong>1-indexed</strong>) as an integer array</em> <code>answer</code> <em>of size</em> <code>2</code><em>, where</em> <code>1 &lt;= answer[0] &lt; answer[1] &lt;= numbers.length</code>.</p>
 <p>The tests are generated such that there is <strong>exactly one solution</strong>. You <strong>may not</strong> use the same element twice.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: numbers = [2,7,11,15], target = 9
-Output: [1,2]
-Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: numbers = [2,7,11,15], target = 9
+</span><span>Output: [1,2]
+</span><span>Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: numbers = [2,3,4], target = 6
-Output: [1,3]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: numbers = [2,3,4], target = 6
+</span><span>Output: [1,3]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: numbers = [-1,0], target = -1
-Output: [1,2]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: numbers = [-1,0], target = -1
+</span><span>Output: [1,2]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>2 &lt;= numbers.length &lt;= 3 * 10^4</code></li>
@@ -140,58 +140,58 @@ Output: [1,2]
 <li>The tests are generated such that there is <strong>exactly one solution</strong>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; numbers, int target) {
-    int begin = 0;
-    int end = numbers.size() - 1;
-    while(begin &lt; end &amp;&amp; numbers[begin] + numbers[end] != target) {
-      if(numbers[begin] + numbers[end] &lt; target) {
-        begin += 1;
-      } else {
-        end -= 1;
-      }
-    }
-    return {begin + 1, end + 1};
-  }
-};
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 19&#x2F;19 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 88.71 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 75.51 % of cpp submissions (9.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">twoSum</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">numbers</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">target</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> begin </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> end </span><span>=</span><span style="color:#eff1f5;"> numbers.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(begin </span><span>&lt;</span><span style="color:#eff1f5;"> end </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> numbers[begin] </span><span>+</span><span style="color:#eff1f5;"> numbers[end] </span><span>!=</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(numbers[begin] </span><span>+</span><span style="color:#eff1f5;"> numbers[end] </span><span>&lt;</span><span style="color:#eff1f5;"> target) {
+</span><span style="color:#eff1f5;">        begin </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        end </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{begin </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 19/19 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 88.71 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 75.51 % of cpp submissions (9.6 MB)
+</span></code></pre>
 <h1 id="august-leetcoding-challenge-23">August LeetCoding Challenge 23</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Two Sum IV - Input is a BST</strong></p>
 <p>Given the <code>root</code> of a Binary Search Tree and a target number <code>k</code>, return <em><code>true</code> if there exist two elements in the BST such that their sum is equal to the given target</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/21/sum_tree_1.jpg" alt="img" /></p>
-<pre><code>Input: root = [5,3,6,2,4,null,7], k = 9
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [5,3,6,2,4,null,7], k = 9
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/21/sum_tree_2.jpg" alt="img" /></p>
-<pre><code>Input: root = [5,3,6,2,4,null,7], k = 28
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [5,3,6,2,4,null,7], k = 28
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: root = [2,1,3], k = 4
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [2,1,3], k = 4
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: root = [2,1,3], k = 1
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [2,1,3], k = 1
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: root = [2,1,3], k = 3
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [2,1,3], k = 3
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 10^4]</code>.</li>
@@ -202,99 +202,99 @@ Output: true
 <h2 id="solution-1">Solution</h2>
 <p>morris traversal always got RE, maybe because I modified the tree?</p>
 <p>FUCK LEETCODE.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-  unordered_set&lt;int&gt; st;
-public:
-  bool findTarget(TreeNode* root, int k) {
-    if(!root) return false;
-    if(st.count(k - root-&gt;val)) return true;
-    st.insert(root-&gt;val);
-    return findTarget(root-&gt;left, k) || findTarget(root-&gt;right, k);
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 422&#x2F;422 cases passed (40 ms)
-&#x2F;&#x2F; Your runtime beats 60.78 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 28.45 % of cpp submissions (39 MB)
-</code></pre>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  TreeNode *leftTravel(TreeNode *root, int min) {
-    if(!root) return root;
-    TreeNode *left = root-&gt;left;
-    while(left &amp;&amp; left-&gt;val &gt; min) {
-      while(left-&gt;right &amp;&amp; left-&gt;right != root) {
-        left = left-&gt;right;
-      }
-      if(left-&gt;right == root) {
-        left-&gt;right = nullptr;
-        return root;
-      } 
-      left-&gt;right = root;
-      root = root-&gt;left;
-      left = root-&gt;left;
-    }
-    return root;
-  }
-
-  TreeNode *rightTravel(TreeNode *root, int max) {
-    if(!root) return root;
-    TreeNode *right = root-&gt;right;
-    while(right &amp;&amp; right-&gt;val &lt; max) {
-      while(right-&gt;left &amp;&amp; right-&gt;left != root) {
-        right = right-&gt;left;
-      }
-      if(right-&gt;left == root) {
-        right-&gt;left = nullptr;
-        return root;
-      } 
-      right-&gt;left = root;
-      root = root-&gt;right;
-      right = root-&gt;right;
-    }
-    return root;
-  }
-  TreeNode *copy(TreeNode *root) {
-    if(!root) return root;
-    TreeNode *newRoot = new TreeNode(root-&gt;val);
-    newRoot-&gt;left = copy(root-&gt;left);
-    newRoot-&gt;right = copy(root-&gt;right);
-    return newRoot;
-  }
-public:
-  bool findTarget(TreeNode* root, int k) {
-    if(!root) return false;
-    &#x2F;&#x2F; comment line below, dump leetcode will RE
-    root = copy(root);
-    TreeNode *leftCur = leftTravel(root, INT_MIN);
-    TreeNode *rightCur = rightTravel(root, INT_MAX);
-    while(leftCur &amp;&amp; rightCur &amp;&amp; leftCur != rightCur) {
-    int leftMin = leftCur-&gt;val;
-    int rightMost = rightCur-&gt;val;
-      int sum = leftCur-&gt;val + rightCur-&gt;val;
-      if(sum == k) {
-        return true;
-      } else if (sum &lt; k) {
-        leftCur = leftTravel(leftCur-&gt;right, leftMin);
-      } else {
-        rightCur = rightTravel(rightCur-&gt;left, rightMost);
-      }
-    }
-    return false;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 422&#x2F;422 cases passed (52 ms)
-&#x2F;&#x2F; Your runtime beats 22.62 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 12.33 % of cpp submissions (40.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  unordered_set&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; st;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">findTarget</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(k </span><span>-</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    st.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">findTarget</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, k) </span><span>|| </span><span style="color:#bf616a;">findTarget</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, k);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 422/422 cases passed (40 ms)
+</span><span style="color:#65737e;">// Your runtime beats 60.78 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 28.45 % of cpp submissions (39 MB)
+</span></code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#8fa1b3;">leftTravel</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">left </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(left </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> left-&gt;</span><span style="color:#bf616a;">val </span><span>&gt;</span><span style="color:#eff1f5;"> min) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(left-&gt;</span><span style="color:#bf616a;">right </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> left-&gt;</span><span style="color:#bf616a;">right </span><span>!=</span><span style="color:#eff1f5;"> root) {
+</span><span style="color:#eff1f5;">        left </span><span>=</span><span style="color:#eff1f5;"> left-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(left-&gt;</span><span style="color:#bf616a;">right </span><span>==</span><span style="color:#eff1f5;"> root) {
+</span><span style="color:#eff1f5;">        left-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">      } 
+</span><span style="color:#eff1f5;">      left-&gt;</span><span style="color:#bf616a;">right </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">      root </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      left </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#8fa1b3;">rightTravel</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">right </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(right </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> right-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> max) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(right-&gt;</span><span style="color:#bf616a;">left </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> right-&gt;</span><span style="color:#bf616a;">left </span><span>!=</span><span style="color:#eff1f5;"> root) {
+</span><span style="color:#eff1f5;">        right </span><span>=</span><span style="color:#eff1f5;"> right-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(right-&gt;</span><span style="color:#bf616a;">left </span><span>==</span><span style="color:#eff1f5;"> root) {
+</span><span style="color:#eff1f5;">        right-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">      } 
+</span><span style="color:#eff1f5;">      right-&gt;</span><span style="color:#bf616a;">left </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">      root </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      right </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  TreeNode </span><span>*</span><span style="color:#8fa1b3;">copy</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">newRoot </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    newRoot-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">copy</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    newRoot-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">copy</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newRoot;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">findTarget</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// comment line below, dump leetcode will RE
+</span><span style="color:#eff1f5;">    root </span><span>= </span><span style="color:#bf616a;">copy</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">leftCur </span><span>= </span><span style="color:#bf616a;">leftTravel</span><span style="color:#eff1f5;">(root, INT_MIN);
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#eff1f5;">rightCur </span><span>= </span><span style="color:#bf616a;">rightTravel</span><span style="color:#eff1f5;">(root, INT_MAX);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(leftCur </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> rightCur </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> leftCur </span><span>!=</span><span style="color:#eff1f5;"> rightCur) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> leftMin </span><span>=</span><span style="color:#eff1f5;"> leftCur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rightMost </span><span>=</span><span style="color:#eff1f5;"> rightCur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sum </span><span>=</span><span style="color:#eff1f5;"> leftCur-&gt;</span><span style="color:#bf616a;">val </span><span>+</span><span style="color:#eff1f5;"> rightCur-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(sum </span><span>==</span><span style="color:#eff1f5;"> k) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else if </span><span style="color:#eff1f5;">(sum </span><span>&lt;</span><span style="color:#eff1f5;"> k) {
+</span><span style="color:#eff1f5;">        leftCur </span><span>= </span><span style="color:#bf616a;">leftTravel</span><span style="color:#eff1f5;">(leftCur-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, leftMin);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        rightCur </span><span>= </span><span style="color:#bf616a;">rightTravel</span><span style="color:#eff1f5;">(rightCur-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, rightMost);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 422/422 cases passed (52 ms)
+</span><span style="color:#65737e;">// Your runtime beats 22.62 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 12.33 % of cpp submissions (40.9 MB)
+</span></code></pre>
 
     </div>
   </div>

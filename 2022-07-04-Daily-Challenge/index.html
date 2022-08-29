@@ -124,16 +124,16 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Return <em>the minimum number of candies you need to have to distribute the candies to the children</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: ratings = [1,0,2]
-Output: 5
-Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: ratings = [1,0,2]
+</span><span>Output: 5
+</span><span>Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: ratings = [1,2,2]
-Output: 4
-Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.
-The third child gets 1 candy because it satisfies the above two conditions.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: ratings = [1,2,2]
+</span><span>Output: 4
+</span><span>Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.
+</span><span>The third child gets 1 candy because it satisfies the above two conditions.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == ratings.length</code></li>
@@ -141,48 +141,48 @@ The third child gets 1 candy because it satisfies the above two conditions.
 <li><code>0 &lt;= ratings[i] &lt;= 2 * 10^4</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">using pi = pair&lt;int, int&gt;;
-int cd[20000];
-class Solution {
-public:
-  int candy(vector&lt;int&gt;&amp; ratings) {
-    priority_queue&lt;pi, vector&lt;pi&gt;, greater&lt;pi&gt;&gt; pq;
-    int len = ratings.size();
-    for(int i = 0; i &lt; len; ++i) {
-      pq.push({ratings[i], i});
-      cd[i] = 0;
-    }
-    while(pq.size()) {
-      auto [rating, pos] = pq.top();
-      pq.pop();
-      if(cd[pos]) continue;
-      cd[pos] = 1;
-      for(int i = pos + 1; i &lt; len; ++i) {
-        if(ratings[i] &lt;= ratings[i - 1]) break;
-        if(cd[i] &gt; cd[i - 1] + 1) break;
-        cd[i] = cd[i - 1] + 1;
-      }
-      for(int i = pos - 1; i &gt;= 0; --i) {
-        if(ratings[i] &lt;= ratings[i + 1]) break;
-        if(cd[i] &gt; cd[i + 1] + 1) break;
-        cd[i] = cd[i + 1] + 1;
-      }
-    }
-    int answer = 0;
-    for(int i = 0; i &lt; len; ++i) {
-      &#x2F;&#x2F; cout &lt;&lt; cd[i] &lt;&lt; &#x27; &#x27;;
-      answer += cd[i];
-    }
-    &#x2F;&#x2F; cout &lt;&lt; endl;
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 48&#x2F;48 cases passed (56 ms)
-&#x2F;&#x2F; Your runtime beats 12.87 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 8.43 % of cpp submissions (19.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">using </span><span>pi = pair&lt;</span><span style="color:#b48ead;">int</span><span>, </span><span style="color:#b48ead;">int</span><span>&gt;;
+</span><span style="color:#b48ead;">int</span><span> cd[</span><span style="color:#d08770;">20000</span><span>];
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">candy</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">ratings</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    priority_queue</span><span>&lt;</span><span style="color:#eff1f5;">pi, vector&lt;pi&gt;, greater&lt;pi&gt;</span><span>&gt;</span><span style="color:#eff1f5;"> pq;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> ratings.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({ratings[i], i});
+</span><span style="color:#eff1f5;">      cd[i] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[rating, pos] </span><span>=</span><span style="color:#eff1f5;"> pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cd[pos]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      cd[pos] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> pos </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(ratings[i] </span><span>&lt;=</span><span style="color:#eff1f5;"> ratings[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cd[i] </span><span>&gt;</span><span style="color:#eff1f5;"> cd[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cd[i] </span><span>=</span><span style="color:#eff1f5;"> cd[i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> pos </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(ratings[i] </span><span>&lt;=</span><span style="color:#eff1f5;"> ratings[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cd[i] </span><span>&gt;</span><span style="color:#eff1f5;"> cd[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">break</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cd[i] </span><span>=</span><span style="color:#eff1f5;"> cd[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#65737e;">// cout &lt;&lt; cd[i] &lt;&lt; &#39; &#39;;
+</span><span style="color:#eff1f5;">      answer </span><span>+=</span><span style="color:#eff1f5;"> cd[i];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#65737e;">// cout &lt;&lt; endl;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 48/48 cases passed (56 ms)
+</span><span style="color:#65737e;">// Your runtime beats 12.87 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 8.43 % of cpp submissions (19.8 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -119,48 +119,48 @@ renderMathInElement(document.body, katex_config);
 <p>Given two strings <code>word1</code> and <code>word2</code>, return <em>the minimum number of <strong>steps</strong> required to make</em> <code>word1</code> <em>and</em> <code>word2</code> <em>the same</em>.</p>
 <p>In one <strong>step</strong>, you can delete exactly one character in either string.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: word1 = &quot;sea&quot;, word2 = &quot;eat&quot;
-Output: 2
-Explanation: You need one step to make &quot;sea&quot; to &quot;ea&quot; and another step to make &quot;eat&quot; to &quot;ea&quot;.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word1 = &quot;sea&quot;, word2 = &quot;eat&quot;
+</span><span>Output: 2
+</span><span>Explanation: You need one step to make &quot;sea&quot; to &quot;ea&quot; and another step to make &quot;eat&quot; to &quot;ea&quot;.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: word1 = &quot;leetcode&quot;, word2 = &quot;etco&quot;
-Output: 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: word1 = &quot;leetcode&quot;, word2 = &quot;etco&quot;
+</span><span>Output: 4
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= word1.length, word2.length &lt;= 500</code></li>
 <li><code>word1</code> and <code>word2</code> consist of only lowercase English letters.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int LCS(string &amp;s1, string &amp;s2) {
-    int len1 = s1.length();
-    int len2 = s2.length();
-    int dp[2][len2 + 1];
-    memset(dp, 0, sizeof(dp));
-    for(int i = 0; i &lt; len1; ++i) {
-      for(int j = 1; j &lt;= len2; ++j) {
-        int parity = i &amp; 1;
-        dp[parity][j] = max(dp[!parity][j], dp[parity][j - 1]);
-        if(s2[j - 1] == s1[i]) {
-          dp[parity][j] = max(dp[parity][j], dp[!parity][j - 1] + 1);
-        }
-      }
-    }
-    return dp[!(len1 &amp; 1)][len2];
-  }
-public:
-  int minDistance(string s1, string s2) {
-    return s1.length() + s2.length() - LCS(s1, s2) * 2;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 1306&#x2F;1306 cases passed (17 ms)
-&#x2F;&#x2F; Your runtime beats 77.81 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 99.74 % of cpp submissions (6.4 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">LCS</span><span style="color:#eff1f5;">(string </span><span>&amp;</span><span style="color:#bf616a;">s1</span><span style="color:#eff1f5;">, string </span><span>&amp;</span><span style="color:#bf616a;">s2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len1 </span><span>=</span><span style="color:#eff1f5;"> s1.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len2 </span><span>=</span><span style="color:#eff1f5;"> s2.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">][len2 </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(dp, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(dp));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len1; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; j </span><span>&lt;=</span><span style="color:#eff1f5;"> len2; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> parity </span><span>=</span><span style="color:#eff1f5;"> i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        dp[parity][j] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[</span><span>!</span><span style="color:#eff1f5;">parity][j], dp[parity][j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s2[j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>==</span><span style="color:#eff1f5;"> s1[i]) {
+</span><span style="color:#eff1f5;">          dp[parity][j] </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(dp[parity][j], dp[</span><span>!</span><span style="color:#eff1f5;">parity][j </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[</span><span>!</span><span style="color:#eff1f5;">(len1 </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)][len2];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">minDistance</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s1</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">s2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> s1.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>+</span><span style="color:#eff1f5;"> s2.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#bf616a;">LCS</span><span style="color:#eff1f5;">(s1, s2) </span><span>* </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 1306/1306 cases passed (17 ms)
+</span><span style="color:#65737e;">// Your runtime beats 77.81 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 99.74 % of cpp submissions (6.4 MB)
+</span></code></pre>
 
     </div>
   </div>

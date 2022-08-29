@@ -139,65 +139,65 @@ $8^2 – 7×3^2 = 1$</p>
 <li><a href="https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Continued_fraction_expansion">Methods of computing square roots</a></li>
 </ul>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">extern crate num_bigint;
-extern crate num_traits;
-extern crate num_integer;
-
-use num_bigint::BigInt;
-use num_traits::{Zero, One, FromPrimitive};
-use num_integer::Roots;
-use std::vec::Vec;
-use std::mem::{replace, swap};
-
-fn main() {
-    let mut ans: BigInt = Zero::zero();
-    let mut index = 0;
-    for i in 1u64..1001 {
-        let tmp = pell_equation(i);
-        if tmp &gt; ans {
-            replace(&amp;mut ans, tmp);
-            index = i;
-        }
-    }
-    println!(&quot;Answer is {}&quot;, index);
-}
-
-
-fn pell_equation(d: u64) -&gt; BigInt {
-    let root = d.sqrt();
-    if root * root == d {
-        return Zero::zero();
-    }
-    let dd: BigInt = FromPrimitive::from_u64(d).unwrap();
-    let mut extra = root;
-    let mut extras: Vec&lt;u64&gt; = vec![];
-    let mut numerator = 0;
-    let mut denominator = 1;
-    loop {
-        extras.push(extra);
-        numerator = denominator * extra - numerator;
-        if (d - numerator * numerator) % denominator != 0 &amp;&amp; (root + numerator) % denominator != 0 {
-            panic!(&quot;???&quot;);
-        }
-        denominator = (d - numerator * numerator) &#x2F; denominator;
-        extra = (root + numerator) &#x2F; denominator;
-        let mut denominator: BigInt = Zero::zero();
-        let mut numerator: BigInt = One::one();
-        &#x2F;&#x2F; println!(&quot;{:?}&quot;, extras);
-        for i in (0..extras.len()).rev() {
-            let mul: BigInt = FromPrimitive::from_u64(extras[i]).unwrap();
-            denominator = mul * &amp;numerator + &amp;denominator;
-            swap(&amp;mut numerator, &amp;mut denominator);
-        }
-        &#x2F;&#x2F; println!(&quot;{}&#x2F;{}&quot;, numerator.to_str_radix(10), denominator.to_str_radix(10));
-        let tmp = &amp;numerator * &amp;numerator - &amp;dd * &amp;denominator * &amp;denominator;
-        if tmp == One::one() {
-            println!(&quot;{}, {}, {}&quot;,d, numerator, denominator);
-            return numerator;
-        }
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">extern crate</span><span> num_bigint;
+</span><span style="color:#b48ead;">extern crate</span><span> num_traits;
+</span><span style="color:#b48ead;">extern crate</span><span> num_integer;
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>num_bigint::BigInt;
+</span><span style="color:#b48ead;">use </span><span>num_traits::{Zero, One, FromPrimitive};
+</span><span style="color:#b48ead;">use </span><span>num_integer::Roots;
+</span><span style="color:#b48ead;">use </span><span>std::vec::Vec;
+</span><span style="color:#b48ead;">use </span><span>std::mem::{replace, swap};
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans: BigInt = Zero::zero();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> index = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">u64</span><span>..</span><span style="color:#d08770;">1001 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = </span><span style="color:#96b5b4;">pell_equation</span><span>(i);
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp &gt; ans {
+</span><span>            </span><span style="color:#96b5b4;">replace</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> ans, tmp);
+</span><span>            index = i;
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, index);
+</span><span>}
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">pell_equation</span><span>(</span><span style="color:#bf616a;">d</span><span>: </span><span style="color:#b48ead;">u64</span><span>) -&gt; BigInt {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> root = d.</span><span style="color:#96b5b4;">sqrt</span><span>();
+</span><span>    </span><span style="color:#b48ead;">if</span><span> root * root == d {
+</span><span>        </span><span style="color:#b48ead;">return </span><span>Zero::zero();
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let</span><span> dd: BigInt = FromPrimitive::from_u64(d).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> extra = root;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> extras: Vec&lt;</span><span style="color:#b48ead;">u64</span><span>&gt; = vec![];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> numerator = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> denominator = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>        extras.</span><span style="color:#96b5b4;">push</span><span>(extra);
+</span><span>        numerator = denominator * extra - numerator;
+</span><span>        </span><span style="color:#b48ead;">if </span><span>(d - numerator * numerator) % denominator != </span><span style="color:#d08770;">0 </span><span>&amp;&amp; (root + numerator) % denominator != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>            panic!(&quot;</span><span style="color:#a3be8c;">???</span><span>&quot;);
+</span><span>        }
+</span><span>        denominator = (d - numerator * numerator) / denominator;
+</span><span>        extra = (root + numerator) / denominator;
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> denominator: BigInt = Zero::zero();
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> numerator: BigInt = One::one();
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{:?}&quot;, extras);
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in (</span><span style="color:#d08770;">0</span><span>..extras.</span><span style="color:#96b5b4;">len</span><span>()).</span><span style="color:#96b5b4;">rev</span><span>() {
+</span><span>            </span><span style="color:#b48ead;">let</span><span> mul: BigInt = FromPrimitive::from_u64(extras[i]).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>            denominator = mul * &amp;numerator + &amp;denominator;
+</span><span>            </span><span style="color:#96b5b4;">swap</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> numerator, &amp;</span><span style="color:#b48ead;">mut</span><span> denominator);
+</span><span>        }
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{}/{}&quot;, numerator.to_str_radix(10), denominator.to_str_radix(10));
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = &amp;numerator * &amp;numerator - &amp;dd * &amp;denominator * &amp;denominator;
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp == One::one() {
+</span><span>            println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span>&quot;,d, numerator, denominator);
+</span><span>            </span><span style="color:#b48ead;">return</span><span> numerator;
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h1 id="codewars">CodeWars</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="printer-errors">Printer Errors</h3>
@@ -207,25 +207,25 @@ fn pell_equation(d: u64) -&gt; BigInt {
 <p>You have to write a function <code>printer_error</code> which given a string will output the error rate of the printer as a <strong>string</strong> representing a rational whose numerator is the number of errors and the denominator the length of the control string. Don't reduce this fraction to a simpler expression.</p>
 <p>The string has a length greater or equal to one and contains only letters from <code>a</code>to <code>z</code>.</p>
 <p>#Examples:</p>
-<pre><code>s=&quot;aaabbbbhaijjjm&quot;
-error_printer(s) =&gt; &quot;0&#x2F;14&quot;
-
-s=&quot;aaaxbbbbyyhwawiwjjjwwm&quot;
-error_printer(s) =&gt; &quot;8&#x2F;22&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>s=&quot;aaabbbbhaijjjm&quot;
+</span><span>error_printer(s) =&gt; &quot;0/14&quot;
+</span><span>
+</span><span>s=&quot;aaaxbbbbyyhwawiwjjjwwm&quot;
+</span><span>error_printer(s) =&gt; &quot;8/22&quot;
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">function printerError(s) {
-  return `${[...s].map(a=&gt;a.charCodeAt(0)&gt;109).reduce((a, b)=&gt;a+b)}&#x2F;${s.length}`;
-}
-
-function printerError(s) {
-  return `${[...s].filter(a=&gt;a.charCodeAt(0)&gt;109).length}&#x2F;${s.length}`;
-}
-
-function printerError(s) {
-  return `${s.replace(&#x2F;[a-m]&#x2F;gi, &quot;&quot;).length}&#x2F;${s.length}`;
-}
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">printerError</span><span>(</span><span style="color:#bf616a;">s</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span>`</span><span style="color:#a3be8c;">${[</span><span>...</span><span style="color:#bf616a;">s</span><span style="color:#a3be8c;">].</span><span style="color:#8fa1b3;">map</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">a</span><span style="color:#b48ead;">=&gt;</span><span style="color:#bf616a;">a</span><span style="color:#a3be8c;">.</span><span style="color:#96b5b4;">charCodeAt</span><span style="color:#a3be8c;">(</span><span style="color:#d08770;">0</span><span style="color:#a3be8c;">)</span><span>&gt;</span><span style="color:#d08770;">109</span><span style="color:#a3be8c;">).</span><span style="color:#8fa1b3;">reduce</span><span style="color:#a3be8c;">(</span><span>(</span><span style="color:#bf616a;">a</span><span style="color:#a3be8c;">, </span><span style="color:#bf616a;">b</span><span>)</span><span style="color:#b48ead;">=&gt;</span><span style="color:#bf616a;">a</span><span>+</span><span style="color:#bf616a;">b</span><span style="color:#a3be8c;">)}/${</span><span style="color:#bf616a;">s</span><span style="color:#a3be8c;">.length}</span><span>`;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">printerError</span><span>(</span><span style="color:#bf616a;">s</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span>`</span><span style="color:#a3be8c;">${[</span><span>...</span><span style="color:#bf616a;">s</span><span style="color:#a3be8c;">].</span><span style="color:#8fa1b3;">filter</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">a</span><span style="color:#b48ead;">=&gt;</span><span style="color:#bf616a;">a</span><span style="color:#a3be8c;">.</span><span style="color:#96b5b4;">charCodeAt</span><span style="color:#a3be8c;">(</span><span style="color:#d08770;">0</span><span style="color:#a3be8c;">)</span><span>&gt;</span><span style="color:#d08770;">109</span><span style="color:#a3be8c;">).length}/${</span><span style="color:#bf616a;">s</span><span style="color:#a3be8c;">.length}</span><span>`;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">printerError</span><span>(</span><span style="color:#bf616a;">s</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span>`</span><span style="color:#a3be8c;">${</span><span style="color:#bf616a;">s</span><span style="color:#a3be8c;">.</span><span style="color:#96b5b4;">replace</span><span style="color:#a3be8c;">(</span><span>/</span><span style="color:#d08770;">[a-m]</span><span>/</span><span style="color:#b48ead;">gi</span><span style="color:#a3be8c;">, </span><span>&quot;&quot;</span><span style="color:#a3be8c;">).length}/${</span><span style="color:#bf616a;">s</span><span style="color:#a3be8c;">.length}</span><span>`;
+</span><span>}
+</span></code></pre>
 
     </div>
   </div>

@@ -124,58 +124,58 @@ is the smallest cube which has exactly three permutations of its digits which ar
 <h2 id="solution">Solution</h2>
 <p>I used a simple function to mapping number to another number to determine if they are of same digits.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap;
-
-fn main() {
-    let mut map: HashMap&lt;u64, usize&gt; = HashMap::new();
-    let mut first_num: HashMap&lt;u64, u64&gt; = HashMap::new();
-    let mut found = false;
-    let mut ans = 0;
-    let mut cur = 1;
-    while !found {
-        let cube = cur * cur * cur;
-        let tmp = special_f(cube);
-        let it = map.entry(tmp).or_insert(0);
-        *it += 1;
-        match map.get(&amp;tmp) {
-            Some(n) =&gt; {
-                if *n == 1 {
-                    first_num.insert(tmp, cube);
-                }
-                if *n == 5 {
-                    found = true;
-                    ans = *first_num.get(&amp;tmp).unwrap();
-                }
-            }
-            None =&gt; (),
-        }
-        cur += 1;
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn special_f(mut n: u64) -&gt; u64 {
-    let mut arr: [u64; 10] = [0; 10];
-    while n &gt; 0 {
-        let tmp = (n % 10) as usize;
-        arr[tmp] += 1;
-        n &#x2F;= 10;
-    }
-    let mut tmp = 0;
-    for i in 1..10 {
-        while arr[i] &gt; 0 {
-            tmp *= 10;
-            tmp += i;
-            arr[i] -= 1;
-        }
-    }
-    while arr[0] &gt; 0 {
-        tmp *= 10;
-        arr[0] -= 1;
-    }
-    tmp as u64
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::collections::HashMap;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> map: HashMap&lt;</span><span style="color:#b48ead;">u64</span><span>, </span><span style="color:#b48ead;">usize</span><span>&gt; = HashMap::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> first_num: HashMap&lt;</span><span style="color:#b48ead;">u64</span><span>, </span><span style="color:#b48ead;">u64</span><span>&gt; = HashMap::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> found = </span><span style="color:#d08770;">false</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> cur = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">while </span><span>!found {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> cube = cur * cur * cur;
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = </span><span style="color:#96b5b4;">special_f</span><span>(cube);
+</span><span>        </span><span style="color:#b48ead;">let</span><span> it = map.</span><span style="color:#96b5b4;">entry</span><span>(tmp).</span><span style="color:#96b5b4;">or_insert</span><span>(</span><span style="color:#d08770;">0</span><span>);
+</span><span>        *it += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">match</span><span> map.</span><span style="color:#96b5b4;">get</span><span>(&amp;tmp) {
+</span><span>            Some(n) =&gt; {
+</span><span>                </span><span style="color:#b48ead;">if </span><span>*n == </span><span style="color:#d08770;">1 </span><span>{
+</span><span>                    first_num.</span><span style="color:#96b5b4;">insert</span><span>(tmp, cube);
+</span><span>                }
+</span><span>                </span><span style="color:#b48ead;">if </span><span>*n == </span><span style="color:#d08770;">5 </span><span>{
+</span><span>                    found = </span><span style="color:#d08770;">true</span><span>;
+</span><span>                    ans = *first_num.</span><span style="color:#96b5b4;">get</span><span>(&amp;tmp).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>                }
+</span><span>            }
+</span><span>            None =&gt; (),
+</span><span>        }
+</span><span>        cur += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">special_f</span><span>(</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">n</span><span>: </span><span style="color:#b48ead;">u64</span><span>) -&gt; </span><span style="color:#b48ead;">u64 </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> arr: [</span><span style="color:#b48ead;">u64</span><span>; </span><span style="color:#d08770;">10</span><span>] = [</span><span style="color:#d08770;">0</span><span>; </span><span style="color:#d08770;">10</span><span>];
+</span><span>    </span><span style="color:#b48ead;">while</span><span> n &gt; </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp = (n % </span><span style="color:#d08770;">10</span><span>) as </span><span style="color:#b48ead;">usize</span><span>;
+</span><span>        arr[tmp] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        n /= </span><span style="color:#d08770;">10</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> tmp = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">10 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">while</span><span> arr[i] &gt; </span><span style="color:#d08770;">0 </span><span>{
+</span><span>            tmp *= </span><span style="color:#d08770;">10</span><span>;
+</span><span>            tmp += i;
+</span><span>            arr[i] -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">while</span><span> arr[</span><span style="color:#d08770;">0</span><span>] &gt; </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        tmp *= </span><span style="color:#d08770;">10</span><span>;
+</span><span>        arr[</span><span style="color:#d08770;">0</span><span>] -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    tmp as </span><span style="color:#b48ead;">u64
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="860-lemonade-change">860. Lemonade Change</h3>
@@ -185,31 +185,31 @@ fn special_f(mut n: u64) -&gt; u64 {
 <p>Note that you don't have any change in hand at first.</p>
 <p>Return <code>true</code> if and only if you can provide every customer with correct change.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [5,5,5,10,20]
-Output: true
-Explanation: 
-From the first 3 customers, we collect three $5 bills in order.
-From the fourth customer, we collect a $10 bill and give back a $5.
-From the fifth customer, we give a $10 bill and a $5 bill.
-Since all customers got correct change, we output true.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [5,5,5,10,20]
+</span><span>Output: true
+</span><span>Explanation: 
+</span><span>From the first 3 customers, we collect three $5 bills in order.
+</span><span>From the fourth customer, we collect a $10 bill and give back a $5.
+</span><span>From the fifth customer, we give a $10 bill and a $5 bill.
+</span><span>Since all customers got correct change, we output true.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [5,5,10]
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [5,5,10]
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: [10,10]
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [10,10]
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: [5,5,10,10,20]
-Output: false
-Explanation: 
-From the first two customers in order, we collect two $5 bills.
-For the next two customers in order, we collect a $10 bill and give back a $5 bill.
-For the last customer, we can&#x27;t give change of $15 back because we only have two $10 bills.
-Since not every customer received correct change, the answer is false.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [5,5,10,10,20]
+</span><span>Output: false
+</span><span>Explanation: 
+</span><span>From the first two customers in order, we collect two $5 bills.
+</span><span>For the next two customers in order, we collect a $10 bill and give back a $5 bill.
+</span><span>For the last customer, we can&#39;t give change of $15 back because we only have two $10 bills.
+</span><span>Since not every customer received correct change, the answer is false.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>0 &lt;= bills.length &lt;= 10000</code></li>
@@ -218,34 +218,34 @@ Since not every customer received correct change, the answer is false.
 <h2 id="solution-1">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number[]} bills
- * @return {boolean}
- *&#x2F;
-var lemonadeChange = function(bills) {
-  let five = 0;
-  let ten = 0;
-  for (const bill of bills) {
-    if (bill === 5) {
-      five += 1;
-    } else if (bill === 10) {
-      if (five === 0) return false;
-      five -= 1;
-      ten += 1;
-    } else {
-      if (ten === 0) {
-        if (five &lt; 3) return false;
-        five -= 3;
-      } else {
-        if (five === 0) return false;
-        five -= 1;
-        ten -= 1;
-      }
-    }
-  }
-  return true;
-};
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number[]} </span><span style="color:#bf616a;">bills
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{boolean}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">lemonadeChange </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">bills</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">five </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ten </span><span>= </span><span style="color:#d08770;">0</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">bill </span><span>of </span><span style="color:#bf616a;">bills</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">bill </span><span>=== </span><span style="color:#d08770;">5</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">five </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    } </span><span style="color:#b48ead;">else if </span><span>(</span><span style="color:#bf616a;">bill </span><span>=== </span><span style="color:#d08770;">10</span><span>) {
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">five </span><span>=== </span><span style="color:#d08770;">0</span><span>) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>      </span><span style="color:#bf616a;">five </span><span>-= </span><span style="color:#d08770;">1</span><span>;
+</span><span>      </span><span style="color:#bf616a;">ten </span><span>+= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>      </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">ten </span><span>=== </span><span style="color:#d08770;">0</span><span>) {
+</span><span>        </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">five </span><span>&lt; </span><span style="color:#d08770;">3</span><span>) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        </span><span style="color:#bf616a;">five </span><span>-= </span><span style="color:#d08770;">3</span><span>;
+</span><span>      } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">five </span><span>=== </span><span style="color:#d08770;">0</span><span>) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        </span><span style="color:#bf616a;">five </span><span>-= </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#bf616a;">ten </span><span>-= </span><span style="color:#d08770;">1</span><span>;
+</span><span>      }
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>};
+</span></code></pre>
 
     </div>
   </div>

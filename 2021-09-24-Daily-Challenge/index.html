@@ -120,46 +120,46 @@ renderMathInElement(document.body, katex_config);
 <p>T0 = 0, T1 = 1, T2 = 1, and Tn+3 = Tn + Tn+1 + Tn+2 for n &gt;= 0.</p>
 <p>Given <code>n</code>, return the value of Tn.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 4
-Output: 4
-Explanation:
-T_3 = 0 + 1 + 1 = 2
-T_4 = 1 + 1 + 2 = 4
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 4
+</span><span>Output: 4
+</span><span>Explanation:
+</span><span>T_3 = 0 + 1 + 1 = 2
+</span><span>T_4 = 1 + 1 + 2 = 4
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 25
-Output: 1389537
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 25
+</span><span>Output: 1389537
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= n &lt;= 37</code></li>
 <li>The answer is guaranteed to fit within a 32-bit integer, ie. <code>answer &lt;= 2^31 - 1</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">struct Table{
-  constexpr Table() : values() {
-    values[0] = 0;
-    values[1] = 1;
-    values[2] = 1;
-    for(int i = 3; i &lt; 38; ++i) {
-      values[i] = values[i - 1] + values[i - 2] + values[i - 3];
-    }
-  }
-  int values[38] = {};
-};
-constexpr auto table = Table();
-class Solution {
-public:
-  int tribonacci(int n) {
-    return table.values[n];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 39&#x2F;39 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 47.39 % of cpp submissions (5.9 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">struct </span><span>Table{
+</span><span>  </span><span style="color:#b48ead;">constexpr </span><span style="color:#8fa1b3;">Table</span><span>() : </span><span style="color:#bf616a;">values</span><span>() {
+</span><span>    values[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    values[</span><span style="color:#d08770;">1</span><span>] = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    values[</span><span style="color:#d08770;">2</span><span>] = </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">3</span><span>; i &lt; </span><span style="color:#d08770;">38</span><span>; ++i) {
+</span><span>      values[i] = values[i - </span><span style="color:#d08770;">1</span><span>] + values[i - </span><span style="color:#d08770;">2</span><span>] + values[i - </span><span style="color:#d08770;">3</span><span>];
+</span><span>    }
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">int</span><span> values[</span><span style="color:#d08770;">38</span><span>] = {};
+</span><span>};
+</span><span style="color:#b48ead;">constexpr auto</span><span> table = </span><span style="color:#bf616a;">Table</span><span>();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">tribonacci</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> table.</span><span style="color:#bf616a;">values</span><span style="color:#eff1f5;">[n];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 39/39 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 47.39 % of cpp submissions (5.9 MB)
+</span></code></pre>
 
     </div>
   </div>

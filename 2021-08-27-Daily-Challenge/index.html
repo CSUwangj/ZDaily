@@ -129,20 +129,20 @@ renderMathInElement(document.body, katex_config);
 <li>Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.</li>
 </ul>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input
-[&quot;MyStack&quot;, &quot;push&quot;, &quot;push&quot;, &quot;top&quot;, &quot;pop&quot;, &quot;empty&quot;]
-[[], [1], [2], [], [], []]
-Output
-[null, null, null, 2, 2, false]
-
-Explanation
-MyStack myStack = new MyStack();
-myStack.push(1);
-myStack.push(2);
-myStack.top(); &#x2F;&#x2F; return 2
-myStack.pop(); &#x2F;&#x2F; return 2
-myStack.empty(); &#x2F;&#x2F; return False
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input
+</span><span>[&quot;MyStack&quot;, &quot;push&quot;, &quot;push&quot;, &quot;top&quot;, &quot;pop&quot;, &quot;empty&quot;]
+</span><span>[[], [1], [2], [], [], []]
+</span><span>Output
+</span><span>[null, null, null, 2, 2, false]
+</span><span>
+</span><span>Explanation
+</span><span>MyStack myStack = new MyStack();
+</span><span>myStack.push(1);
+</span><span>myStack.push(2);
+</span><span>myStack.top(); // return 2
+</span><span>myStack.pop(); // return 2
+</span><span>myStack.empty(); // return False
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= x &lt;= 9</code></li>
@@ -151,45 +151,45 @@ myStack.empty(); &#x2F;&#x2F; return False
 </ul>
 <p><strong>Follow-up:</strong> Can you implement the stack using only one queue?</p>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class MyStack {
-  queue&lt;int&gt; container;
-public:
-  &#x2F;** Initialize your data structure here. *&#x2F;
-  MyStack() { }
-  
-  &#x2F;** Push element x onto stack. *&#x2F;
-  void push(int x) {
-    int sz = container.size();
-    container.push(x);
-    while(sz--) {
-      container.push(container.front());
-      container.pop();
-    }
-  }
-  
-  &#x2F;** Removes the element on top of the stack and returns that element. *&#x2F;
-  int pop() {
-    int val = container.front();
-    container.pop();
-    return val;
-  }
-  
-  &#x2F;** Get the top element. *&#x2F;
-  int top() {
-    return container.front();
-  }
-  
-  &#x2F;** Returns whether the stack is empty. *&#x2F;
-  bool empty() {
-    return container.empty();
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 16&#x2F;16 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 98.89 % of cpp submissions (6.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MyStack </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; container;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Initialize your data structure here. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">MyStack</span><span style="color:#eff1f5;">() { }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Push element x onto stack. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">push</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> sz </span><span>=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    container.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(x);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(sz</span><span>--</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">      container.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(container.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">      container.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Removes the element on top of the stack and returns that element. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">pop</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> val </span><span>=</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    container.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> val;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Get the top element. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">top</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#65737e;">/** Returns whether the stack is empty. */
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">empty</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> container.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 16/16 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 98.89 % of cpp submissions (6.7 MB)
+</span></code></pre>
 <h1 id="august-leetcoding-challenge-27">August LeetCoding Challenge 27</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Verify Preorder Serialization of a Binary Tree</strong></p>
@@ -204,55 +204,55 @@ public:
 </ul>
 <p><strong>Note:</strong> You are not allowed to reconstruct the tree.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: preorder = &quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: preorder = &quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: preorder = &quot;1,#&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: preorder = &quot;1,#&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: preorder = &quot;9,#,#,1&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: preorder = &quot;9,#,#,1&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= preorder.length &lt;= 10^4</code></li>
 <li><code>preoder</code> consist of integers in the range <code>[0, 100]</code> and <code>'#'</code> separated by commas <code>','</code>.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  bool isValidSerialization(string preorder) {
-    int count = 1;
-    int len = preorder.length();
-    for (int i = 0; i &lt; len; ++i) {
-      if(preorder[i] == &#x27;#&#x27;) {
-        count -= 1;
-        i += 1;
-        if(count == 0 &amp;&amp; i != len) return false;
-      } else {
-        while(i &lt; len &amp;&amp; preorder[i] != &#x27;,&#x27;) {
-          i += 1;
-        }
-        count += 1;
-      }
-    }
-    return !count;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 151&#x2F;151 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 66.91 % of cpp submissions (6.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isValidSerialization</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">preorder</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> count </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> preorder.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(preorder[i] </span><span>== &#39;</span><span style="color:#a3be8c;">#</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        count </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        i </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(count </span><span>== </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> i </span><span>!=</span><span style="color:#eff1f5;"> len) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(i </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> preorder[i] </span><span>!= &#39;</span><span style="color:#a3be8c;">,</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          i </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>!</span><span style="color:#eff1f5;">count;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 151/151 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 66.91 % of cpp submissions (6.8 MB)
+</span></code></pre>
 
     </div>
   </div>

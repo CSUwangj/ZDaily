@@ -121,23 +121,23 @@ renderMathInElement(document.body, katex_config);
 <p>Return a <em>list of unique worker names who received an alert for frequent keycard use</em>. Sort the names in <strong>ascending order alphabetically</strong>.</p>
 <p>Notice that <code>&quot;10:00&quot;</code> - <code>&quot;11:00&quot;</code> is considered to be within a one-hour period, while <code>&quot;22:51&quot;</code> - <code>&quot;23:52&quot;</code> is not considered to be within a one-hour period.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: keyName = [&quot;daniel&quot;,&quot;daniel&quot;,&quot;daniel&quot;,&quot;luis&quot;,&quot;luis&quot;,&quot;luis&quot;,&quot;luis&quot;], keyTime = [&quot;10:00&quot;,&quot;10:40&quot;,&quot;11:00&quot;,&quot;09:00&quot;,&quot;11:00&quot;,&quot;13:00&quot;,&quot;15:00&quot;]
-Output: [&quot;daniel&quot;]
-Explanation: &quot;daniel&quot; used the keycard 3 times in a one-hour period (&quot;10:00&quot;,&quot;10:40&quot;, &quot;11:00&quot;).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: keyName = [&quot;daniel&quot;,&quot;daniel&quot;,&quot;daniel&quot;,&quot;luis&quot;,&quot;luis&quot;,&quot;luis&quot;,&quot;luis&quot;], keyTime = [&quot;10:00&quot;,&quot;10:40&quot;,&quot;11:00&quot;,&quot;09:00&quot;,&quot;11:00&quot;,&quot;13:00&quot;,&quot;15:00&quot;]
+</span><span>Output: [&quot;daniel&quot;]
+</span><span>Explanation: &quot;daniel&quot; used the keycard 3 times in a one-hour period (&quot;10:00&quot;,&quot;10:40&quot;, &quot;11:00&quot;).
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: keyName = [&quot;alice&quot;,&quot;alice&quot;,&quot;alice&quot;,&quot;bob&quot;,&quot;bob&quot;,&quot;bob&quot;,&quot;bob&quot;], keyTime = [&quot;12:01&quot;,&quot;12:00&quot;,&quot;18:00&quot;,&quot;21:00&quot;,&quot;21:20&quot;,&quot;21:30&quot;,&quot;23:00&quot;]
-Output: [&quot;bob&quot;]
-Explanation: &quot;bob&quot; used the keycard 3 times in a one-hour period (&quot;21:00&quot;,&quot;21:20&quot;, &quot;21:30&quot;).
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: keyName = [&quot;alice&quot;,&quot;alice&quot;,&quot;alice&quot;,&quot;bob&quot;,&quot;bob&quot;,&quot;bob&quot;,&quot;bob&quot;], keyTime = [&quot;12:01&quot;,&quot;12:00&quot;,&quot;18:00&quot;,&quot;21:00&quot;,&quot;21:20&quot;,&quot;21:30&quot;,&quot;23:00&quot;]
+</span><span>Output: [&quot;bob&quot;]
+</span><span>Explanation: &quot;bob&quot; used the keycard 3 times in a one-hour period (&quot;21:00&quot;,&quot;21:20&quot;, &quot;21:30&quot;).
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: keyName = [&quot;john&quot;,&quot;john&quot;,&quot;john&quot;], keyTime = [&quot;23:58&quot;,&quot;23:59&quot;,&quot;00:01&quot;]
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: keyName = [&quot;john&quot;,&quot;john&quot;,&quot;john&quot;], keyTime = [&quot;23:58&quot;,&quot;23:59&quot;,&quot;00:01&quot;]
+</span><span>Output: []
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: keyName = [&quot;leslie&quot;,&quot;leslie&quot;,&quot;leslie&quot;,&quot;clare&quot;,&quot;clare&quot;,&quot;clare&quot;,&quot;clare&quot;], keyTime = [&quot;13:00&quot;,&quot;13:20&quot;,&quot;14:00&quot;,&quot;18:00&quot;,&quot;18:51&quot;,&quot;19:30&quot;,&quot;19:49&quot;]
-Output: [&quot;clare&quot;,&quot;leslie&quot;]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: keyName = [&quot;leslie&quot;,&quot;leslie&quot;,&quot;leslie&quot;,&quot;clare&quot;,&quot;clare&quot;,&quot;clare&quot;,&quot;clare&quot;], keyTime = [&quot;13:00&quot;,&quot;13:20&quot;,&quot;14:00&quot;,&quot;18:00&quot;,&quot;18:51&quot;,&quot;19:30&quot;,&quot;19:49&quot;]
+</span><span>Output: [&quot;clare&quot;,&quot;leslie&quot;]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= keyName.length, keyTime.length &lt;= 105</code></li>
@@ -149,33 +149,33 @@ Output: [&quot;clare&quot;,&quot;leslie&quot;]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>sliding window, but could be more elegant</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    int timeToMinutes(string time) {
-        return ((time[0]-&#x27;0&#x27;)*10 + time[1] - &#x27;0&#x27;)*60 + (time[3]-&#x27;0&#x27;)*10 + time[4]-&#x27;0&#x27;;
-    }
-public:
-    vector&lt;string&gt; alertNames(vector&lt;string&gt;&amp; keyName, vector&lt;string&gt;&amp; keyTime) {
-        vector&lt;pair&lt;int, string&gt;&gt; key;
-        for(int i = 0; i &lt; keyName.size(); ++i) {
-            key.push_back(make_pair(timeToMinutes(keyTime[i]), keyName[i]));
-        }
-        sort(key.begin(), key.end());
-        unordered_map&lt;string, int&gt; count;
-        queue&lt;pair&lt;int, string&gt;&gt; q;
-        set&lt;string&gt; answer;
-        for(auto &amp;[time, name] : key) {
-            while(q.size() &amp;&amp; q.front().first+60 &lt; time) {
-                count[q.front().second] -= 1;
-                q.pop();
-            }
-            q.push(make_pair(time, name));
-            count[name] += 1;
-            if(count[name] &gt; 2) answer.insert(name);
-        }
-        return vector&lt;string&gt;(answer.begin(), answer.end());
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">timeToMinutes</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">time</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">((time[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]</span><span>-&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">)</span><span>*</span><span style="color:#d08770;">10 </span><span>+</span><span style="color:#eff1f5;"> time[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>- &#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">)</span><span>*</span><span style="color:#d08770;">60 </span><span>+ </span><span style="color:#eff1f5;">(time[</span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">]</span><span>-&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">)</span><span>*</span><span style="color:#d08770;">10 </span><span>+</span><span style="color:#eff1f5;"> time[</span><span style="color:#d08770;">4</span><span style="color:#eff1f5;">]</span><span>-&#39;</span><span style="color:#a3be8c;">0</span><span>&#39;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;string&gt; </span><span style="color:#8fa1b3;">alertNames</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">keyName</span><span style="color:#eff1f5;">, vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">keyTime</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, string&gt;&gt; key;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> keyName.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            key.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">timeToMinutes</span><span style="color:#eff1f5;">(keyTime[i]), keyName[i]));
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(key.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), key.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; count;
+</span><span style="color:#eff1f5;">        queue&lt;pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, string&gt;&gt; q;
+</span><span style="color:#eff1f5;">        set&lt;string&gt; answer;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">[time, name] </span><span>:</span><span style="color:#eff1f5;"> key) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">first</span><span>+</span><span style="color:#d08770;">60 </span><span>&lt;</span><span style="color:#eff1f5;"> time) {
+</span><span style="color:#eff1f5;">                count[q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">second</span><span style="color:#eff1f5;">] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">make_pair</span><span style="color:#eff1f5;">(time, name));
+</span><span style="color:#eff1f5;">            count[name] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(count[name] </span><span>&gt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) answer.</span><span style="color:#bf616a;">insert</span><span style="color:#eff1f5;">(name);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">vector</span><span style="color:#eff1f5;">&lt;string&gt;(answer.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), answer.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="november-leetcoding-challenge-16">November LeetCoding Challenge 16</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Longest Mountain in Array</strong></p>
@@ -188,15 +188,15 @@ public:
 <p>Given an array <code>A</code> of integers, return the length of the longest <em>mountain</em>. </p>
 <p>Return <code>0</code> if there is no mountain.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [2,1,4,7,3,2,5]
-Output: 5
-Explanation: The largest mountain is [1,4,7,3,2] which has length 5.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [2,1,4,7,3,2,5]
+</span><span>Output: 5
+</span><span>Explanation: The largest mountain is [1,4,7,3,2] which has length 5.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: [2,2,2]
-Output: 0
-Explanation: There is no mountain.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [2,2,2]
+</span><span>Output: 0
+</span><span>Explanation: There is no mountain.
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>0 &lt;= A.length &lt;= 10000</code></li>
@@ -209,30 +209,30 @@ Explanation: There is no mountain.
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    int checkMountain(vector&lt;int&gt; &amp;A, int &amp;pos) {
-        int len = A.size();
-        int start = pos;
-        while(pos &lt; len &amp;&amp; A[pos] &gt; A[pos-1]) ++pos;
-        if(pos == len || A[pos] == A[pos-1]) return 1;
-        int top = pos-1;
-        while(pos &lt; len &amp;&amp; A[pos] &lt; A[pos-1]) ++pos;
-        pos -= 1; &#x2F;&#x2F; end point could be a start point of another mountain
-        return pos-start+2;
-    }
-public:
-    int longestMountain(vector&lt;int&gt;&amp; A) {
-        int answer = 1;
-        int curLength = 1;
-        for(int i = 1; i &lt; A.size(); ++i) {
-            if(A[i] &gt; A[i-1]) {
-                answer = max(answer, checkMountain(A, i));
-            }
-        }
-        return answer &gt; 2 ? answer : 0;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">checkMountain</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">pos</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> start </span><span>=</span><span style="color:#eff1f5;"> pos;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> A[pos] </span><span>&gt;</span><span style="color:#eff1f5;"> A[pos</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span>++</span><span style="color:#eff1f5;">pos;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pos </span><span>==</span><span style="color:#eff1f5;"> len </span><span>||</span><span style="color:#eff1f5;"> A[pos] </span><span>==</span><span style="color:#eff1f5;"> A[pos</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> top </span><span>=</span><span style="color:#eff1f5;"> pos</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> A[pos] </span><span>&lt;</span><span style="color:#eff1f5;"> A[pos</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) </span><span>++</span><span style="color:#eff1f5;">pos;
+</span><span style="color:#eff1f5;">        pos </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; </span><span style="color:#65737e;">// end point could be a start point of another mountain
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> pos</span><span>-</span><span style="color:#eff1f5;">start</span><span>+</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">longestMountain</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">A</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curLength </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> A.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">(); </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(A[i] </span><span>&gt;</span><span style="color:#eff1f5;"> A[i</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, </span><span style="color:#bf616a;">checkMountain</span><span style="color:#eff1f5;">(A, i));
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer </span><span>&gt; </span><span style="color:#d08770;">2 </span><span>?</span><span style="color:#eff1f5;"> answer </span><span>: </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

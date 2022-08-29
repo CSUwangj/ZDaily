@@ -115,115 +115,115 @@ renderMathInElement(document.body, katex_config);
       <p>What I've done today is <em>Longest Collatz sequence</em> in <em>Rust</em> and <em>Permutation Sequence</em> in <em>JavaScript</em>.</p>
 <span id="continue-reading"></span><h1 id="math">Math</h1>
 <h2 id="problem">Problem</h2>
-<pre><code>Longest Collatz sequence
-
-Problem 14 
-
-The following iterative sequence is defined for the set of positive integers:
-
-n → n&#x2F;2 (n is even)
-n → 3n + 1 (n is odd)
-
-Using the rule above and starting with 13, we generate the following sequence:
-
-13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
-It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
-
-Which starting number, under one million, produces the longest chain?
-
-NOTE: Once the chain starts the terms are allowed to go above one million.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Longest Collatz sequence
+</span><span>
+</span><span>Problem 14 
+</span><span>
+</span><span>The following iterative sequence is defined for the set of positive integers:
+</span><span>
+</span><span>n → n/2 (n is even)
+</span><span>n → 3n + 1 (n is odd)
+</span><span>
+</span><span>Using the rule above and starting with 13, we generate the following sequence:
+</span><span>
+</span><span>13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+</span><span>It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+</span><span>
+</span><span>Which starting number, under one million, produces the longest chain?
+</span><span>
+</span><span>NOTE: Once the chain starts the terms are allowed to go above one million.
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>Brute force, and you'll find that every number less than half a million can be get with its double, and therefore in a definitely longer chain.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut ans = 0;
-    let mut cnt = 0;
-    for i in 500_000u64..1_000_000u64 {
-        let mut tmp = i;
-        let mut tcnt = 0;
-        while tmp != 1 {
-            if tmp%2 == 0 {
-                tmp &#x2F;=2;
-            } else {
-                tmp = tmp * 3 + 1;
-            }
-            tcnt += 1;
-        }
-        if tcnt &gt; cnt {
-            ans = i;
-            cnt = tcnt;
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">500_000</span><span style="color:#b48ead;">u64</span><span>..</span><span style="color:#d08770;">1_000_000</span><span style="color:#b48ead;">u64 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> tmp = i;
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> tcnt = </span><span style="color:#d08770;">0</span><span>;
+</span><span>        </span><span style="color:#b48ead;">while</span><span> tmp != </span><span style="color:#d08770;">1 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">if</span><span> tmp%</span><span style="color:#d08770;">2 </span><span>== </span><span style="color:#d08770;">0 </span><span>{
+</span><span>                tmp /=</span><span style="color:#d08770;">2</span><span>;
+</span><span>            } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>                tmp = tmp * </span><span style="color:#d08770;">3 </span><span>+ </span><span style="color:#d08770;">1</span><span>;
+</span><span>            }
+</span><span>            tcnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tcnt &gt; cnt {
+</span><span>            ans = i;
+</span><span>            cnt = tcnt;
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
-<pre><code>60. Permutation Sequence
-
-The set [1,2,3,...,n] contains a total of n! unique permutations.
-
-By listing and labeling all of the permutations in order, we get the following sequence for n = 3:
-
-&quot;123&quot;
-&quot;132&quot;
-&quot;213&quot;
-&quot;231&quot;
-&quot;312&quot;
-&quot;321&quot;
-Given n and k, return the kth permutation sequence.
-
-Note:
-
-Given n will be between 1 and 9 inclusive.
-Given k will be between 1 and n! inclusive.
-Example 1:
-
-Input: n = 3, k = 3
-Output: &quot;213&quot;
-Example 2:
-
-Input: n = 4, k = 9
-Output: &quot;2314&quot;
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>60. Permutation Sequence
+</span><span>
+</span><span>The set [1,2,3,...,n] contains a total of n! unique permutations.
+</span><span>
+</span><span>By listing and labeling all of the permutations in order, we get the following sequence for n = 3:
+</span><span>
+</span><span>&quot;123&quot;
+</span><span>&quot;132&quot;
+</span><span>&quot;213&quot;
+</span><span>&quot;231&quot;
+</span><span>&quot;312&quot;
+</span><span>&quot;321&quot;
+</span><span>Given n and k, return the kth permutation sequence.
+</span><span>
+</span><span>Note:
+</span><span>
+</span><span>Given n will be between 1 and 9 inclusive.
+</span><span>Given k will be between 1 and n! inclusive.
+</span><span>Example 1:
+</span><span>
+</span><span>Input: n = 3, k = 3
+</span><span>Output: &quot;213&quot;
+</span><span>Example 2:
+</span><span>
+</span><span>Input: n = 4, k = 9
+</span><span>Output: &quot;2314&quot;
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>I'm too tired doing my project to explain it...</p>
 <p>Sry for delay.</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number} n
- * @param {number} k
- * @return {string}
- *&#x2F;
-var getPermutation = function(n, k) {
-  k -= 1;
-  let fac = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 369880];
-  let used = new Array(n);
-  let nums = new Array();
-  let ans = &quot;&quot;;
-  for(let i = 1; i &lt;= n ; ++i){
-    nums.push(i);
-  }
-  let cur = n - 1;
-  while(cur &gt;= 0) {
-    let index = Math.floor(k&#x2F;fac[cur]);
-    k %= fac[cur];
-    for(const [i, v] of nums.entries()){
-      if(used[i] === undefined){
-        if(index) --index;
-        else {ans += v; used[i] = 1; break;}
-      }
-    }
-    --cur;
-  }
-  return ans;
-};
-
-&#x2F;&#x2F; console.log(getPermutation(3,3));
-&#x2F;&#x2F; console.log(getPermutation(4,9));
-
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">n
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">k
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{string}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">getPermutation </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">n</span><span>, </span><span style="color:#bf616a;">k</span><span>) {
+</span><span>  </span><span style="color:#bf616a;">k </span><span>-= </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">fac </span><span>= [</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">6</span><span>, </span><span style="color:#d08770;">24</span><span>, </span><span style="color:#d08770;">120</span><span>, </span><span style="color:#d08770;">720</span><span>, </span><span style="color:#d08770;">5040</span><span>, </span><span style="color:#d08770;">40320</span><span>, </span><span style="color:#d08770;">369880</span><span>];
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">used </span><span>= new Array(</span><span style="color:#bf616a;">n</span><span>);
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">nums </span><span>= new Array();
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ans </span><span>= &quot;&quot;;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>= </span><span style="color:#d08770;">1</span><span>; </span><span style="color:#bf616a;">i </span><span>&lt;= </span><span style="color:#bf616a;">n </span><span>; ++</span><span style="color:#bf616a;">i</span><span>){
+</span><span>    </span><span style="color:#bf616a;">nums</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">i</span><span>);
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">cur </span><span>= </span><span style="color:#bf616a;">n </span><span>- </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">while</span><span>(</span><span style="color:#bf616a;">cur </span><span>&gt;= </span><span style="color:#d08770;">0</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">index </span><span>= Math.</span><span style="color:#96b5b4;">floor</span><span>(</span><span style="color:#bf616a;">k</span><span>/</span><span style="color:#bf616a;">fac</span><span>[</span><span style="color:#bf616a;">cur</span><span>]);
+</span><span>    </span><span style="color:#bf616a;">k </span><span>%= </span><span style="color:#bf616a;">fac</span><span>[</span><span style="color:#bf616a;">cur</span><span>];
+</span><span>    </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">const </span><span>[</span><span style="color:#bf616a;">i</span><span>, </span><span style="color:#bf616a;">v</span><span>] of </span><span style="color:#bf616a;">nums</span><span>.</span><span style="color:#96b5b4;">entries</span><span>()){
+</span><span>      </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">used</span><span>[</span><span style="color:#bf616a;">i</span><span>] === </span><span style="color:#d08770;">undefined</span><span>){
+</span><span>        </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">index</span><span>) --</span><span style="color:#bf616a;">index</span><span>;
+</span><span>        </span><span style="color:#b48ead;">else </span><span>{</span><span style="color:#bf616a;">ans </span><span>+= </span><span style="color:#bf616a;">v</span><span>; </span><span style="color:#bf616a;">used</span><span>[</span><span style="color:#bf616a;">i</span><span>] = </span><span style="color:#d08770;">1</span><span>; </span><span style="color:#b48ead;">break</span><span>;}
+</span><span>      }
+</span><span>    }
+</span><span>    --</span><span style="color:#bf616a;">cur</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">ans</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">// console.log(getPermutation(3,3));
+</span><span style="color:#65737e;">// console.log(getPermutation(4,9));
+</span><span>
+</span></code></pre>
 
     </div>
   </div>

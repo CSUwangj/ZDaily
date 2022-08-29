@@ -129,68 +129,68 @@ renderMathInElement(document.body, katex_config);
 <h2 id="solution">Solution</h2>
 <p>Nothing to say.</p>
 <h2 id="implementation">Implementation</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut ans = 918273645;
-    for i in 1..10000 {
-        let mut tmp: String = String::new();
-        let mut j = 1;
-        while tmp.len() &lt; 9 {
-            tmp = format!(&quot;{}{}&quot;, tmp, i*j);
-            j += 1;
-        }
-        if tmp.len() != 9 {
-            continue;
-        }
-        let tmp_n = tmp.parse::&lt;i32&gt;().unwrap();
-        if tmp_n &gt; ans &amp;&amp; is_pandigital(&amp;tmp) {
-            ans = tmp_n;
-            println!(&quot;{}, {}&quot;, i, tmp);
-        }
-    }
-    println!(&quot;Answer is {}&quot;, ans);
-}
-
-fn is_pandigital(s: &amp;String) -&gt; bool {
-    static NUMS: [char; 9] = [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;, &#x27;5&#x27;, &#x27;6&#x27;, &#x27;7&#x27;, &#x27;8&#x27;, &#x27;9&#x27;];
-    for c in &amp;NUMS {
-        let mut cnt = 0;
-        for i in s.chars() {
-            if i == *c {
-                cnt += 1;
-            }
-        }
-        if cnt != 1 {
-            return false;
-        }
-    }
-    return true;
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> ans = </span><span style="color:#d08770;">918273645</span><span>;
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">10000 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> tmp: String = String::new();
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> j = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">while</span><span> tmp.</span><span style="color:#96b5b4;">len</span><span>() &lt; </span><span style="color:#d08770;">9 </span><span>{
+</span><span>            tmp = format!(&quot;</span><span style="color:#d08770;">{}{}</span><span>&quot;, tmp, i*j);
+</span><span>            j += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp.</span><span style="color:#96b5b4;">len</span><span>() != </span><span style="color:#d08770;">9 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">let</span><span> tmp_n = tmp.parse::&lt;</span><span style="color:#b48ead;">i32</span><span>&gt;().</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>        </span><span style="color:#b48ead;">if</span><span> tmp_n &gt; ans &amp;&amp; </span><span style="color:#96b5b4;">is_pandigital</span><span>(&amp;tmp) {
+</span><span>            ans = tmp_n;
+</span><span>            println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span>&quot;, i, tmp);
+</span><span>        }
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Answer is </span><span style="color:#d08770;">{}</span><span>&quot;, ans);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">is_pandigital</span><span>(</span><span style="color:#bf616a;">s</span><span>: &amp;String) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>    </span><span style="color:#b48ead;">static </span><span style="color:#d08770;">NUMS</span><span>: [</span><span style="color:#b48ead;">char</span><span>; </span><span style="color:#d08770;">9</span><span>] = [&#39;</span><span style="color:#a3be8c;">1</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">2</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">3</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">4</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">5</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">6</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">7</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">8</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">9</span><span>&#39;];
+</span><span>    </span><span style="color:#b48ead;">for</span><span> c in &amp;</span><span style="color:#d08770;">NUMS </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> cnt = </span><span style="color:#d08770;">0</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in s.</span><span style="color:#96b5b4;">chars</span><span>() {
+</span><span>            </span><span style="color:#b48ead;">if</span><span> i == *c {
+</span><span>                cnt += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if</span><span> cnt != </span><span style="color:#d08770;">1 </span><span>{
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>}
+</span><span>
+</span></code></pre>
 <h1 id="algorithm">Algorithm</h1>
 <h2 id="problem-1">Problem</h2>
 <h3 id="779-k-th-symbol-in-grammar">779. K-th Symbol in Grammar</h3>
 <p>On the first row, we write a <code>0</code>. Now in every subsequent row, we look at the previous row and replace each occurrence of <code>0</code> with <code>01</code>, and each occurrence of <code>1</code> with <code>10</code>.</p>
 <p>Given row <code>N</code> and index <code>K</code>, return the <code>K</code>-th indexed symbol in row <code>N</code>. (The values of <code>K</code> are 1-indexed.) (1 indexed).</p>
-<pre><code>Examples:
-Input: N = 1, K = 1
-Output: 0
-
-Input: N = 2, K = 1
-Output: 0
-
-Input: N = 2, K = 2
-Output: 1
-
-Input: N = 4, K = 5
-Output: 1
-
-Explanation:
-row 1: 0
-row 2: 01
-row 3: 0110
-row 4: 01101001
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Examples:
+</span><span>Input: N = 1, K = 1
+</span><span>Output: 0
+</span><span>
+</span><span>Input: N = 2, K = 1
+</span><span>Output: 0
+</span><span>
+</span><span>Input: N = 2, K = 2
+</span><span>Output: 1
+</span><span>
+</span><span>Input: N = 4, K = 5
+</span><span>Output: 1
+</span><span>
+</span><span>Explanation:
+</span><span>row 1: 0
+</span><span>row 2: 01
+</span><span>row 3: 0110
+</span><span>row 4: 01101001
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>N</code> will be an integer in the range <code>[1, 30]</code>.</li>
@@ -203,26 +203,26 @@ row 4: 01101001
 <p>And what's more? We would find that because &quot;0&quot; -&gt; &quot;01&quot;, &quot;1&quot; -&gt; &quot;10&quot;, 1^1 = 0, 0 ^ 1 = 1.</p>
 <p>So you would find that what's important is how many 1s in K's binary expression!</p>
 <h2 id="implementation-1">Implementation</h2>
-<pre data-lang="js" class="language-js "><code class="language-js" data-lang="js">&#x2F;**
- * @param {number} N
- * @param {number} K
- * @return {number}
- *&#x2F;
-var kthGrammar = function(N, K) {
-  return bitCount(K-1) &amp; 1;
-};
-
-function bitCount (n) {
-  n = n - ((n &gt;&gt; 1) &amp; 0x55555555);
-  n = (n &amp; 0x33333333) + ((n &gt;&gt; 2) &amp; 0x33333333);
-  return ((n + (n &gt;&gt; 4) &amp; 0xF0F0F0F) * 0x1010101) &gt;&gt; 24;
-}
-
-&#x2F;&#x2F; console.log(kthGrammar(1, 1));
-&#x2F;&#x2F; console.log(kthGrammar(2, 1));
-&#x2F;&#x2F; console.log(kthGrammar(2, 2));
-&#x2F;&#x2F; console.log(kthGrammar(4, 5));
-</code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">N
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@param </span><span style="color:#65737e;">{number} </span><span style="color:#bf616a;">K
+</span><span style="color:#65737e;"> * </span><span style="color:#b48ead;">@return </span><span style="color:#65737e;">{number}
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">var </span><span style="color:#8fa1b3;">kthGrammar </span><span>= </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">N</span><span>, </span><span style="color:#bf616a;">K</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#8fa1b3;">bitCount</span><span>(</span><span style="color:#bf616a;">K</span><span>-</span><span style="color:#d08770;">1</span><span>) &amp; </span><span style="color:#d08770;">1</span><span>;
+</span><span>};
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">bitCount </span><span>(</span><span style="color:#bf616a;">n</span><span>) {
+</span><span>  </span><span style="color:#bf616a;">n </span><span>= </span><span style="color:#bf616a;">n </span><span>- ((</span><span style="color:#bf616a;">n </span><span>&gt;&gt; </span><span style="color:#d08770;">1</span><span>) &amp; </span><span style="color:#d08770;">0x55555555</span><span>);
+</span><span>  </span><span style="color:#bf616a;">n </span><span>= (</span><span style="color:#bf616a;">n </span><span>&amp; </span><span style="color:#d08770;">0x33333333</span><span>) + ((</span><span style="color:#bf616a;">n </span><span>&gt;&gt; </span><span style="color:#d08770;">2</span><span>) &amp; </span><span style="color:#d08770;">0x33333333</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span>((</span><span style="color:#bf616a;">n </span><span>+ (</span><span style="color:#bf616a;">n </span><span>&gt;&gt; </span><span style="color:#d08770;">4</span><span>) &amp; </span><span style="color:#d08770;">0xF0F0F0F</span><span>) * </span><span style="color:#d08770;">0x1010101</span><span>) &gt;&gt; </span><span style="color:#d08770;">24</span><span>;
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">// console.log(kthGrammar(1, 1));
+</span><span style="color:#65737e;">// console.log(kthGrammar(2, 1));
+</span><span style="color:#65737e;">// console.log(kthGrammar(2, 2));
+</span><span style="color:#65737e;">// console.log(kthGrammar(4, 5));
+</span></code></pre>
 
     </div>
   </div>

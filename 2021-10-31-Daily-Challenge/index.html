@@ -119,92 +119,92 @@ renderMathInElement(document.body, katex_config);
 <p>You are given a doubly linked list which in addition to the next and previous pointers, it could have a child pointer, which may or may not point to a separate doubly linked list. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure, as shown in the example below.</p>
 <p>Flatten the list so that all the nodes appear in a single-level, doubly linked list. You are given the head of the first level of the list.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
-Output: [1,2,3,7,8,11,12,9,10,4,5,6]
-Explanation:
-
-The multilevel linked list in the input is as follows:
-
-
-
-After flattening the multilevel linked list it becomes:
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
+</span><span>Output: [1,2,3,7,8,11,12,9,10,4,5,6]
+</span><span>Explanation:
+</span><span>
+</span><span>The multilevel linked list in the input is as follows:
+</span><span>
+</span><span>
+</span><span>
+</span><span>After flattening the multilevel linked list it becomes:
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: head = [1,2,null,3]
-Output: [1,3,2]
-Explanation:
-
-The input multilevel linked list is as follows:
-
-  1---2---NULL
-  |
-  3---NULL
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,null,3]
+</span><span>Output: [1,3,2]
+</span><span>Explanation:
+</span><span>
+</span><span>The input multilevel linked list is as follows:
+</span><span>
+</span><span>  1---2---NULL
+</span><span>  |
+</span><span>  3---NULL
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: head = []
-Output: []
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = []
+</span><span>Output: []
+</span></code></pre>
 <p><strong>How multilevel linked list is represented in test case:</strong></p>
 <p>We use the multilevel linked list from <strong>Example 1</strong> above:</p>
-<pre><code> 1---2---3---4---5---6--NULL
-         |
-         7---8---9---10--NULL
-             |
-             11--12--NULL
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span> 1---2---3---4---5---6--NULL
+</span><span>         |
+</span><span>         7---8---9---10--NULL
+</span><span>             |
+</span><span>             11--12--NULL
+</span></code></pre>
 <p>The serialization of each level is as follows:</p>
-<pre><code>[1,2,3,4,5,6,null]
-[7,8,9,10,null]
-[11,12,null]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[1,2,3,4,5,6,null]
+</span><span>[7,8,9,10,null]
+</span><span>[11,12,null]
+</span></code></pre>
 <p>To serialize all levels together we will add nulls in each level to signify no node connects to the upper node of the previous level. The serialization becomes:</p>
-<pre><code>[1,2,3,4,5,6,null]
-[null,null,7,8,9,10,null]
-[null,11,12,null]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[1,2,3,4,5,6,null]
+</span><span>[null,null,7,8,9,10,null]
+</span><span>[null,11,12,null]
+</span></code></pre>
 <p>Merging the serialization of each level and removing trailing nulls we obtain:</p>
-<pre><code>[1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of Nodes will not exceed <code>1000</code>.</li>
 <li><code>1 &lt;= Node.val &lt;= 10^5</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  pair&lt;Node*, Node*&gt; _flatten(Node *head) {
-    if(!head) return {nullptr, nullptr};
-    Node *resultHead = head;
-    Node *resultTail = nullptr;
-    Node *cur = head;
-    while (cur) {
-      if (cur-&gt;child) {
-        auto [h, t] = _flatten(cur-&gt;child);
-        t-&gt;next = cur-&gt;next;
-        if(cur-&gt;next) {
-          cur-&gt;next-&gt;prev = t;
-        }
-        cur-&gt;next = h;
-        h-&gt;prev = cur;
-        cur-&gt;child = nullptr;
-        cur = t;
-      }
-      resultTail = cur;
-      cur = cur-&gt;next;
-    }
-    return {resultHead, resultTail};
-  }
-public:
-  Node* flatten(Node* head) {
-    return _flatten(head).first;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 26&#x2F;26 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 75.52 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 20.82 % of cpp submissions (7.5 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  pair&lt;Node</span><span>*</span><span style="color:#eff1f5;">, Node</span><span>*</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">_flatten</span><span style="color:#eff1f5;">(Node </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">head) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{</span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">};
+</span><span style="color:#eff1f5;">    Node </span><span>*</span><span style="color:#eff1f5;">resultHead </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    Node </span><span>*</span><span style="color:#eff1f5;">resultTail </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    Node </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while </span><span style="color:#eff1f5;">(cur) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if </span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">child</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[h, t] </span><span>= </span><span style="color:#bf616a;">_flatten</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">child</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        t-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">          cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">prev </span><span>=</span><span style="color:#eff1f5;"> t;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> h;
+</span><span style="color:#eff1f5;">        h-&gt;</span><span style="color:#bf616a;">prev </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">        cur-&gt;</span><span style="color:#bf616a;">child </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        cur </span><span>=</span><span style="color:#eff1f5;"> t;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      resultTail </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      cur </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{resultHead, resultTail};
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  Node</span><span>* </span><span style="color:#8fa1b3;">flatten</span><span style="color:#eff1f5;">(Node</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">_flatten</span><span style="color:#eff1f5;">(head).</span><span style="color:#bf616a;">first</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 26/26 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 75.52 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 20.82 % of cpp submissions (7.5 MB)
+</span></code></pre>
 
     </div>
   </div>

@@ -119,29 +119,29 @@ renderMathInElement(document.body, katex_config);
 <p>However, there is a non-negative integer <code>n</code> that represents the cooldown period between two <strong>same tasks</strong> (the same letter in the array), that is that there must be at least <code>n</code> units of time between any two same tasks.</p>
 <p>Return <em>the least number of units of times that the CPU will take to finish all the given tasks</em>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: tasks = [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;], n = 2
-Output: 8
-Explanation: 
-A -&gt; B -&gt; idle -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B
-There is at least 2 units of time between any two same tasks.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tasks = [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;], n = 2
+</span><span>Output: 8
+</span><span>Explanation: 
+</span><span>A -&gt; B -&gt; idle -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B
+</span><span>There is at least 2 units of time between any two same tasks.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: tasks = [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;], n = 0
-Output: 6
-Explanation: On this case any permutation of size 6 would work since n = 0.
-[&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;]
-[&quot;A&quot;,&quot;B&quot;,&quot;A&quot;,&quot;B&quot;,&quot;A&quot;,&quot;B&quot;]
-[&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;]
-...
-And so on.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tasks = [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;], n = 0
+</span><span>Output: 6
+</span><span>Explanation: On this case any permutation of size 6 would work since n = 0.
+</span><span>[&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;]
+</span><span>[&quot;A&quot;,&quot;B&quot;,&quot;A&quot;,&quot;B&quot;,&quot;A&quot;,&quot;B&quot;]
+</span><span>[&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;]
+</span><span>...
+</span><span>And so on.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: tasks = [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;,&quot;F&quot;,&quot;G&quot;], n = 2
-Output: 16
-Explanation: 
-One possible solution is
-A -&gt; B -&gt; C -&gt; A -&gt; D -&gt; E -&gt; A -&gt; F -&gt; G -&gt; A -&gt; idle -&gt; idle -&gt; A -&gt; idle -&gt; idle -&gt; A
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: tasks = [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;,&quot;F&quot;,&quot;G&quot;], n = 2
+</span><span>Output: 16
+</span><span>Explanation: 
+</span><span>One possible solution is
+</span><span>A -&gt; B -&gt; C -&gt; A -&gt; D -&gt; E -&gt; A -&gt; F -&gt; G -&gt; A -&gt; idle -&gt; idle -&gt; A -&gt; idle -&gt; idle -&gt; A
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= task.length &lt;= 104</code></li>
@@ -152,31 +152,31 @@ A -&gt; B -&gt; C -&gt; A -&gt; D -&gt; E -&gt; A -&gt; F -&gt; G -&gt; A -&gt; 
 <p>we only need to care about letters that are of maximum appearance, to get the answer we need to determine if it is possible that we can find a way not to use idle schedule tasks or how many idles we need to schedule tasks.</p>
 <p>take an example, [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;,&quot;F&quot;,&quot;G&quot;], n = 2, where <code>A</code> has maximum appearance, so we put <code>A</code> at front, and check conditions we mentioned above. we will find the best we can do is &quot;fill the space&quot; between <code>A</code>, and leave rest for idles. we can find that answer is <code>appearance of A</code> times <code>n+1</code> minus <code>n</code>(because we don't need to idle after the last task).</p>
 <p>what if there are multiple letters of the maximum appearance? image every time we run the task of maximum appearance is a round, we need to put them together at every round. take an example, [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;], n = 2. best we can do is</p>
-<pre><code>A -&gt; B -&gt; C -&gt; A -&gt; B -&gt; D -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>A -&gt; B -&gt; C -&gt; A -&gt; B -&gt; D -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B -&gt; idle -&gt; A -&gt; B
+</span></code></pre>
 <p>answer is (<code>appearance of A</code> × <code>n+1</code>) - <code>n</code> + <code>1</code>.</p>
 <p>we could assume that answer is maximum appearance minus 1, then times n+1, and plus the amount of letters of maximum appearance. although the result might less than the amount of tasks, which is impossible, so we need to choose a higher value as the final answer.</p>
 <p>we could verify this assumption by category discussion and induction.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int leastInterval(vector&lt;char&gt;&amp; tasks, int n) {
-        unordered_map&lt;char, int&gt; mp;
-        int all = tasks.size();
-        int maximum = 0;
-        for(auto c : tasks) {
-            mp[c] += 1;
-            if(mp[c] &gt; maximum) {
-                maximum = mp[c];
-            }
-        }
-        int answer = (maximum-1) * (n+1);
-        for(auto [_, cnt] : mp) {
-            if(cnt == maximum) answer += 1;
-        }
-        return max(answer, all);
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">leastInterval</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">tasks</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        unordered_map&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; mp;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> all </span><span>=</span><span style="color:#eff1f5;"> tasks.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> maximum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> tasks) {
+</span><span style="color:#eff1f5;">            mp[c] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(mp[c] </span><span>&gt;</span><span style="color:#eff1f5;"> maximum) {
+</span><span style="color:#eff1f5;">                maximum </span><span>=</span><span style="color:#eff1f5;"> mp[c];
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#eff1f5;">(maximum</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span>* </span><span style="color:#eff1f5;">(n</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[_, cnt] </span><span>:</span><span style="color:#eff1f5;"> mp) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cnt </span><span>==</span><span style="color:#eff1f5;"> maximum) answer </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, all);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="december-leetcoding-challenge-31">December LeetCoding Challenge 31</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Largest Rectangle in Histogram</strong></p>
@@ -186,40 +186,40 @@ Above is a histogram where width of each bar is 1, given height = <code>[2,1,5,6
 <p><img src="https://assets.leetcode.com/uploads/2018/10/12/histogram_area.png" alt="img" />
 The largest rectangle is shown in the shaded area, which has area = <code>10</code> unit.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input: [2,1,5,6,2,3]
-Output: 10
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: [2,1,5,6,2,3]
+</span><span>Output: 10
+</span></code></pre>
 <h2 id="solution-1">Solution</h2>
 <p>another way of next great element.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int largestRectangleArea(vector&lt;int&gt;&amp; heights) {
-        int len = heights.size();
-        vector&lt;int&gt; monoStack;
-        vector&lt;int&gt; lastLess(len);
-        for(int i = 0; i &lt; len; ++i) {
-            while(monoStack.size() &amp;&amp; heights[monoStack.back()] &gt;= heights[i]) monoStack.pop_back();
-            lastLess[i] = monoStack.empty() ? -1 : monoStack.back();
-            monoStack.push_back(i);
-        }
-        monoStack.clear();
-        vector&lt;int&gt; nextLess(len);
-        for(int i = len-1; i &gt;= 0; --i) {
-            while(monoStack.size() &amp;&amp; heights[monoStack.back()] &gt;= heights[i]) monoStack.pop_back();
-            nextLess[i] = monoStack.size() ? monoStack.back() : -1;
-            monoStack.push_back(i);
-        }
-        int answer = 0;
-        for(int i = 0; i &lt; len; ++i) {
-            int length = lastLess[i] == -1 ? i+1 : i-lastLess[i];
-            length += nextLess[i] == -1 ? len-i : nextLess[i]-i;
-            length -= 1;
-            answer = max(answer, length*heights[i]);
-        }
-        return answer;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">largestRectangleArea</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">heights</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> heights.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; monoStack;
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">lastLess</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> heights[monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span>&gt;=</span><span style="color:#eff1f5;"> heights[i]) monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            lastLess[i] </span><span>=</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span>? -</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        monoStack.</span><span style="color:#bf616a;">clear</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">nextLess</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> heights[monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span>&gt;=</span><span style="color:#eff1f5;"> heights[i]) monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            nextLess[i] </span><span>=</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>?</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>: -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> length </span><span>=</span><span style="color:#eff1f5;"> lastLess[i] </span><span>== -</span><span style="color:#d08770;">1 </span><span>?</span><span style="color:#eff1f5;"> i</span><span>+</span><span style="color:#d08770;">1 </span><span>:</span><span style="color:#eff1f5;"> i</span><span>-</span><span style="color:#eff1f5;">lastLess[i];
+</span><span style="color:#eff1f5;">            length </span><span>+=</span><span style="color:#eff1f5;"> nextLess[i] </span><span>== -</span><span style="color:#d08770;">1 </span><span>?</span><span style="color:#eff1f5;"> len</span><span>-</span><span style="color:#eff1f5;">i </span><span>:</span><span style="color:#eff1f5;"> nextLess[i]</span><span>-</span><span style="color:#eff1f5;">i;
+</span><span style="color:#eff1f5;">            length </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, length</span><span>*</span><span style="color:#eff1f5;">heights[i]);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

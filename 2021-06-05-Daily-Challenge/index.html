@@ -140,21 +140,21 @@ renderMathInElement(document.body, katex_config);
 <p>The performance of a team is the sum of their engineers' speeds multiplied by the minimum efficiency among their engineers.</p>
 <p>Return <em>the maximum performance of this team</em>. Since the answer can be a huge number, return it <strong>modulo</strong> <code>109 + 7</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 2
-Output: 60
-Explanation: 
-We have the maximum performance of the team by selecting engineer 2 (with speed=10 and efficiency=4) and engineer 5 (with speed=5 and efficiency=7). That is, performance = (10 + 5) * min(4, 7) = 60.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 2
+</span><span>Output: 60
+</span><span>Explanation: 
+</span><span>We have the maximum performance of the team by selecting engineer 2 (with speed=10 and efficiency=4) and engineer 5 (with speed=5 and efficiency=7). That is, performance = (10 + 5) * min(4, 7) = 60.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 3
-Output: 68
-Explanation:
-This is the same example as the first but k = 3. We can select engineer 1, engineer 2 and engineer 5 to get the maximum performance of the team. That is, performance = (2 + 10 + 5) * min(5, 4, 7) = 68.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 3
+</span><span>Output: 68
+</span><span>Explanation:
+</span><span>This is the same example as the first but k = 3. We can select engineer 1, engineer 2 and engineer 5 to get the maximum performance of the team. That is, performance = (2 + 10 + 5) * min(5, 4, 7) = 68.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 4
-Output: 72
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 4
+</span><span>Output: 72
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= &lt;= k &lt;= n &lt;= 10^5</code></li>
@@ -164,39 +164,39 @@ Output: 72
 <li><code>1 &lt;= efficiency[i] &lt;= 10^8</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">const int MOD = 1e9 + 7;
-class Solution {
-public:
-  int maxPerformance(int n, vector&lt;int&gt;&amp; speed, vector&lt;int&gt;&amp; efficiency, int k) {
-    vector&lt;int&gt; index(n);
-    for (int i = 0; i &lt; n; ++i) index[i] = i;
-    sort(index.begin(), index.end(), [&amp;](int a, int b) { 
-      return efficiency[a] &gt; efficiency[b] || (efficiency[a] == efficiency[b] &amp;&amp; speed[a] &gt; speed[b]);
-    });
-    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; q;
-    int ef = INT_MAX;
-    long long sum = 0;
-    long long answer = 0;
-    for(int i = 0; i &lt; n; ++i) {
-      int idx = index[i];
-      if(q.size() &lt; k) {
-        sum += speed[idx];
-        ef = min(ef, efficiency[idx]);
-        answer = max(answer, sum * ef);
-        q.push(speed[idx]);
-      } else {
-        if(q.top() &gt;= speed[idx]) continue;
-        sum += speed[idx] - q.top();
-        q.pop();
-        q.push(speed[idx]);
-        ef = min(ef, efficiency[idx]);
-        answer = max(answer, sum * ef);
-      }
-    }
-    return answer % MOD;
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">const int</span><span> MOD = </span><span style="color:#d08770;">1e9 </span><span>+ </span><span style="color:#d08770;">7</span><span>;
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxPerformance</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">speed</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">efficiency</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">index</span><span style="color:#eff1f5;">(n);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) index[i] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(index.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), index.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">](</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> b) { 
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> efficiency[a] </span><span>&gt;</span><span style="color:#eff1f5;"> efficiency[b] </span><span>|| </span><span style="color:#eff1f5;">(efficiency[a] </span><span>==</span><span style="color:#eff1f5;"> efficiency[b] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> speed[a] </span><span>&gt;</span><span style="color:#eff1f5;"> speed[b]);
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    priority_queue</span><span>&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;, greater&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&gt;</span><span style="color:#eff1f5;"> q;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> ef </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> sum </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">long long</span><span style="color:#eff1f5;"> answer </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> idx </span><span>=</span><span style="color:#eff1f5;"> index[i];
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt;</span><span style="color:#eff1f5;"> k) {
+</span><span style="color:#eff1f5;">        sum </span><span>+=</span><span style="color:#eff1f5;"> speed[idx];
+</span><span style="color:#eff1f5;">        ef </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(ef, efficiency[idx]);
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, sum </span><span>*</span><span style="color:#eff1f5;"> ef);
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(speed[idx]);
+</span><span style="color:#eff1f5;">      } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">() </span><span>&gt;=</span><span style="color:#eff1f5;"> speed[idx]) </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        sum </span><span>+=</span><span style="color:#eff1f5;"> speed[idx] </span><span>-</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(speed[idx]);
+</span><span style="color:#eff1f5;">        ef </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(ef, efficiency[idx]);
+</span><span style="color:#eff1f5;">        answer </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">(answer, sum </span><span>*</span><span style="color:#eff1f5;"> ef);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer </span><span>%</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

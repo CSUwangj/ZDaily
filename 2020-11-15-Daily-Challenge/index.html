@@ -116,64 +116,64 @@ renderMathInElement(document.body, katex_config);
 <span id="continue-reading"></span><h1 id="leetcode-review">LeetCode Review</h1>
 <h2 id="populating-next-right-pointers-in-each-node">Populating Next Right Pointers in Each Node</h2>
 <p>use <code>next</code> pointer we built to achieve the goal</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    Node* connect(Node* root) {
-        Node* curLevel = root;
-        while(curLevel) {
-            Node* nextLevel = curLevel-&gt;left;
-            Node* curNode = curLevel;
-            while(curNode) {
-                if(curNode-&gt;left) curNode-&gt;left-&gt;next = curNode-&gt;right;
-                if(curNode-&gt;right) {
-                    if(curNode-&gt;next) curNode-&gt;right-&gt;next = curNode-&gt;next-&gt;left;
-                    else curNode-&gt;right-&gt;next = nullptr;
-                }
-                curNode = curNode-&gt;next;
-            }
-            curLevel = nextLevel;
-        }
-        return root;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    Node</span><span>* </span><span style="color:#8fa1b3;">connect</span><span style="color:#eff1f5;">(Node</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        Node</span><span>*</span><span style="color:#eff1f5;"> curLevel </span><span>=</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(curLevel) {
+</span><span style="color:#eff1f5;">            Node</span><span>*</span><span style="color:#eff1f5;"> nextLevel </span><span>=</span><span style="color:#eff1f5;"> curLevel-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            Node</span><span>*</span><span style="color:#eff1f5;"> curNode </span><span>=</span><span style="color:#eff1f5;"> curLevel;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(curNode) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(curNode-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">) curNode-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> curNode-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(curNode-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(curNode-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) curNode-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> curNode-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">else</span><span style="color:#eff1f5;"> curNode-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                curNode </span><span>=</span><span style="color:#eff1f5;"> curNode-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            curLevel </span><span>=</span><span style="color:#eff1f5;"> nextLevel;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h2 id="permutations-ii">Permutations II</h2>
 <p>handwritting next_permutation</p>
 <p>but without optimization</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    bool next_permutation(vector&lt;int&gt;&amp; nums) {
-        if(nums.size() &lt; 2) return false;
-        int len = nums.size();
-        int a = len - 2;
-        
-        while(a &gt;= 0 &amp;&amp; nums[a] &gt;= nums[a+1]) a -= 1;
-        if(a == -1) return false;
-        
-        int minGreater = INT_MAX, b = -1;
-        int i = a+1;
-        while(i &lt; len) {
-            if(nums[i] &gt; nums[a] &amp;&amp; nums[i] &lt; minGreater) {
-                b = i;
-                minGreater = nums[i];
-            }
-            i += 1;
-        }
-        
-        swap(nums[a], nums[b]);
-        sort(nums.begin()+a+1, nums.end());
-        return true;
-    }
-public:
-    vector&lt;vector&lt;int&gt;&gt; permuteUnique(vector&lt;int&gt;&amp; nums) {
-        sort(nums.begin(), nums.end());
-        vector&lt;vector&lt;int&gt;&gt; ans{nums};
-        while(next_permutation(nums)) {
-            ans.push_back(nums);
-        }
-        return ans;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">next_permutation</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&lt; </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(a </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[a] </span><span>&gt;=</span><span style="color:#eff1f5;"> nums[a</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) a </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(a </span><span>== -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> minGreater </span><span>=</span><span style="color:#eff1f5;"> INT_MAX, b </span><span>= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> a</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(i </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums[i] </span><span>&gt;</span><span style="color:#eff1f5;"> nums[a] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> nums[i] </span><span>&lt;</span><span style="color:#eff1f5;"> minGreater) {
+</span><span style="color:#eff1f5;">                b </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">                minGreater </span><span>=</span><span style="color:#eff1f5;"> nums[i];
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            i </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">swap</span><span style="color:#eff1f5;">(nums[a], nums[b]);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">()</span><span>+</span><span style="color:#eff1f5;">a</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">permuteUnique</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(nums.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), nums.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">        vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#bf616a;">ans</span><span style="color:#eff1f5;">{nums};
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">next_permutation</span><span style="color:#eff1f5;">(nums)) {
+</span><span style="color:#eff1f5;">            ans.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(nums);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> ans;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <p>rest one hard problem is great question which need no review(actually my laptop is running out of battery ;P)</p>
 <h1 id="november-leetcoding-challenge-15">November LeetCoding Challenge 15</h1>
 <h2 id="description">Description</h2>
@@ -181,14 +181,14 @@ public:
 <p>Given the <code>root</code> node of a binary search tree, return <em>the sum of values of all nodes with a value in the range <code>[low, high]</code></em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/05/bst1.jpg" alt="img" /></p>
-<pre><code>Input: root = [10,5,15,3,7,null,18], low = 7, high = 15
-Output: 32
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [10,5,15,3,7,null,18], low = 7, high = 15
+</span><span>Output: 32
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/11/05/bst2.jpg" alt="img" /></p>
-<pre><code>Input: root = [10,5,15,3,7,13,18,1,null,6], low = 6, high = 10
-Output: 23
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: root = [10,5,15,3,7,13,18,1,null,6], low = 6, high = 10
+</span><span>Output: 23
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the tree is in the range <code>[1, 2 * 104]</code>.</li>
@@ -198,36 +198,36 @@ Output: 23
 </ul>
 <h2 id="solution">Solution</h2>
 <p>nothing to say</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- *&#x2F;
-class Solution {
-    int result = 0;
-    int high;
-    int low;
-    void helper(TreeNode* root) {
-        if(!root) return;
-        if(root-&gt;val &gt;= low &amp;&amp; root-&gt;val &lt;= high) result += root-&gt;val;
-        if(root-&gt;val &gt; low) helper(root-&gt;left);
-        if(root-&gt;val &lt; high) helper(root-&gt;right);
-    }
-public:
-    int rangeSumBST(TreeNode* root, int low, int high) {
-        this-&gt;low = low;
-        this-&gt;high = high;
-        helper(root);
-        return result;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * struct TreeNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     TreeNode *left;
+</span><span style="color:#65737e;"> *     TreeNode *right;
+</span><span style="color:#65737e;"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span><span style="color:#65737e;"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> high;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> low;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">helper</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val </span><span>&gt;=</span><span style="color:#eff1f5;"> low </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;=</span><span style="color:#eff1f5;"> high) result </span><span>+=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val </span><span>&gt;</span><span style="color:#eff1f5;"> low) </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val </span><span>&lt;</span><span style="color:#eff1f5;"> high) </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">rangeSumBST</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">low</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">high</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">low </span><span>=</span><span style="color:#eff1f5;"> low;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">-&gt;</span><span style="color:#bf616a;">high </span><span>=</span><span style="color:#eff1f5;"> high;
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(root);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

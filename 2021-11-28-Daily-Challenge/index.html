@@ -120,27 +120,27 @@ renderMathInElement(document.body, katex_config);
 <p>The graph is given as follows: <code>graph[i]</code> is a list of all nodes you can visit from node <code>i</code> (i.e., there is a directed edge from node <code>i</code> to node <code>graph[i][j]</code>).</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/28/all_1.jpg" alt="img" /></p>
-<pre><code>Input: graph = [[1,2],[3],[3],[]]
-Output: [[0,1,3],[0,2,3]]
-Explanation: There are two paths: 0 -&gt; 1 -&gt; 3 and 0 -&gt; 2 -&gt; 3.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: graph = [[1,2],[3],[3],[]]
+</span><span>Output: [[0,1,3],[0,2,3]]
+</span><span>Explanation: There are two paths: 0 -&gt; 1 -&gt; 3 and 0 -&gt; 2 -&gt; 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/09/28/all_2.jpg" alt="img" /></p>
-<pre><code>Input: graph = [[4,3,1],[3,2,4],[3],[4],[]]
-Output: [[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: graph = [[4,3,1],[3,2,4],[3],[4],[]]
+</span><span>Output: [[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: graph = [[1],[]]
-Output: [[0,1]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: graph = [[1],[]]
+</span><span>Output: [[0,1]]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: graph = [[1,2,3],[2],[3],[]]
-Output: [[0,1,2,3],[0,2,3],[0,3]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: graph = [[1,2,3],[2],[3],[]]
+</span><span>Output: [[0,1,2,3],[0,2,3],[0,3]]
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: graph = [[1,3],[2],[3],[]]
-Output: [[0,1,2,3],[0,3]]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: graph = [[1,3],[2],[3],[]]
+</span><span>Output: [[0,1,2,3],[0,3]]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == graph.length</code></li>
@@ -151,46 +151,46 @@ Output: [[0,1,2,3],[0,3]]
 <li>The input graph is <strong>guaranteed</strong> to be a <strong>DAG</strong>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  vector&lt;vector&lt;int&gt;&gt; allPathsSourceTarget(vector&lt;vector&lt;int&gt;&gt;&amp; graph) {
-    int degree[15] = {};
-    int n = graph.size();
-    for(auto &amp;nexts : graph) {
-      for(auto next : nexts) {
-        degree[next] += 1;
-      }
-    }
-    if(degree[0]) return {};
-
-    queue&lt;int&gt; q;
-    vector&lt;vector&lt;int&gt;&gt; result[n];
-    q.push(0);
-    result[0].push_back({0});
-
-    while(q.size()) {
-      int cur = q.front();
-      q.pop();
-      for(auto next : graph[cur]) {
-        for(auto path : result[cur]) {
-          path.push_back(next);
-          result[next].emplace_back(path);
-        }
-        degree[next] -= 1;
-        if(!degree[next]) {
-          q.push(next);
-        }
-      }
-    }
-    return result[n - 1];
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 30&#x2F;30 cases passed (28 ms)
-&#x2F;&#x2F; Your runtime beats 33.13 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 15.98 % of cpp submissions (18.2 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; </span><span style="color:#8fa1b3;">allPathsSourceTarget</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">graph</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> degree[</span><span style="color:#d08770;">15</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>=</span><span style="color:#eff1f5;"> graph.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">nexts </span><span>:</span><span style="color:#eff1f5;"> graph) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> next </span><span>:</span><span style="color:#eff1f5;"> nexts) {
+</span><span style="color:#eff1f5;">        degree[next] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(degree[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    queue&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; q;
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt; result[n];
+</span><span style="color:#eff1f5;">    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    result[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">({</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">});
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> next </span><span>:</span><span style="color:#eff1f5;"> graph[cur]) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> path </span><span>:</span><span style="color:#eff1f5;"> result[cur]) {
+</span><span style="color:#eff1f5;">          path.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(next);
+</span><span style="color:#eff1f5;">          result[next].</span><span style="color:#bf616a;">emplace_back</span><span style="color:#eff1f5;">(path);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        degree[next] </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">degree[next]) {
+</span><span style="color:#eff1f5;">          q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(next);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result[n </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 30/30 cases passed (28 ms)
+</span><span style="color:#65737e;">// Your runtime beats 33.13 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 15.98 % of cpp submissions (18.2 MB)
+</span></code></pre>
 
     </div>
   </div>

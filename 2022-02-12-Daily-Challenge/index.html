@@ -124,15 +124,15 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p>Given two words, <code>beginWord</code> and <code>endWord</code>, and a dictionary <code>wordList</code>, return <em>the <strong>number of words</strong> in the <strong>shortest transformation sequence</strong> from</em> <code>beginWord</code> <em>to</em> <code>endWord</code><em>, or</em> <code>0</code> <em>if no such sequence exists.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]
-Output: 5
-Explanation: One shortest transformation sequence is &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; cog&quot;, which is 5 words long.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]
+</span><span>Output: 5
+</span><span>Explanation: One shortest transformation sequence is &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; cog&quot;, which is 5 words long.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]
-Output: 0
-Explanation: The endWord &quot;cog&quot; is not in wordList, therefore there is no valid transformation sequence.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]
+</span><span>Output: 0
+</span><span>Explanation: The endWord &quot;cog&quot; is not in wordList, therefore there is no valid transformation sequence.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= beginWord.length &lt;= 10</code></li>
@@ -144,49 +144,49 @@ Explanation: The endWord &quot;cog&quot; is not in wordList, therefore there is 
 <li>All the words in <code>wordList</code> are <strong>unique</strong>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int ladderLength(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList) {
-    unordered_map&lt;string, int&gt; words;
-    for(auto word : wordList) {
-      words[word] = 0;
-    }
-    words[beginWord] = 1;
-    if(!words.count(endWord)) return 0;
-    queue&lt;string&gt; q;
-    q.push(beginWord);
-    while(q.size()) {
-      auto cur = q.front();
-      q.pop();
-      if(cur == endWord) return words[endWord];
-      string nxt = cur;
-      for(auto &amp;c : nxt) {
-        int curChar = c;
-        for(int i = &#x27;a&#x27;; i &lt;= &#x27;z&#x27;; ++i) {
-          c = i;
-          if(words.count(nxt) &amp;&amp; !words[nxt]) {
-            words[nxt] = words[cur] + 1;
-            q.push(nxt);
-          }
-        }
-        c = curChar;
-      }
-    }
-    return 0;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 50&#x2F;50 cases passed (121 ms)
-&#x2F;&#x2F; Your runtime beats 75.11 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 54.46 % of cpp submissions (14.7 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">ladderLength</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">beginWord</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">endWord</span><span style="color:#eff1f5;">, vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">wordList</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    unordered_map&lt;string, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; words;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> word </span><span>:</span><span style="color:#eff1f5;"> wordList) {
+</span><span style="color:#eff1f5;">      words[word] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    words[beginWord] </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">words.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(endWord)) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    queue&lt;string&gt; q;
+</span><span style="color:#eff1f5;">    q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(beginWord);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(q.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> cur </span><span>=</span><span style="color:#eff1f5;"> q.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      q.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(cur </span><span>==</span><span style="color:#eff1f5;"> endWord) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> words[endWord];
+</span><span style="color:#eff1f5;">      string nxt </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto </span><span>&amp;</span><span style="color:#eff1f5;">c </span><span>:</span><span style="color:#eff1f5;"> nxt) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> curChar </span><span>=</span><span style="color:#eff1f5;"> c;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">; i </span><span>&lt;= &#39;</span><span style="color:#a3be8c;">z</span><span>&#39;</span><span style="color:#eff1f5;">; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">          c </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">          </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(words.</span><span style="color:#bf616a;">count</span><span style="color:#eff1f5;">(nxt) </span><span>&amp;&amp; !</span><span style="color:#eff1f5;">words[nxt]) {
+</span><span style="color:#eff1f5;">            words[nxt] </span><span>=</span><span style="color:#eff1f5;"> words[cur] </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            q.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">(nxt);
+</span><span style="color:#eff1f5;">          }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        c </span><span>=</span><span style="color:#eff1f5;"> curChar;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 50/50 cases passed (121 ms)
+</span><span style="color:#65737e;">// Your runtime beats 75.11 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 54.46 % of cpp submissions (14.7 MB)
+</span></code></pre>
 
     </div>
   </div>

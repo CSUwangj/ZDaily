@@ -119,50 +119,50 @@ renderMathInElement(document.body, katex_config);
 <p>On the other hand, we define that string s1 can be obtained from string s2 if we can remove some characters from s2 such that it becomes s1. For example, “abc” can be obtained from “abdbec” based on our definition, but it can not be obtained from “acbbe”.</p>
 <p>You are given two non-empty strings s1 and s2 (each at most 100 characters long) and two integers $0 \le n1 \le10^6$ and $1 \le n2 \le 10^6$. Now consider the strings S1 and S2, where <code>S1=[s1,n1]</code> and <code>S2=[s2,n2]</code>. Find the maximum integer M such that <code>[S2,M]</code> can be obtained from <code>S1</code>.</p>
 <p><strong>Example:</strong></p>
-<pre><code>Input:
-s1=&quot;acb&quot;, n1=4
-s2=&quot;ab&quot;, n2=2
-
-Return:
-2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input:
+</span><span>s1=&quot;acb&quot;, n1=4
+</span><span>s2=&quot;ab&quot;, n2=2
+</span><span>
+</span><span>Return:
+</span><span>2
+</span></code></pre>
 <h2 id="solution">Solution</h2>
 <p>write elegant code is not easy</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    int getMaxRepetitions(string s1, int n1, string s2, int n2) {
-        int len1 = s1.length();
-        int len2 = s2.length();
-        if(len1 * n1 &lt; len2 * n2) return 0;
-        vector&lt;int&gt; indexr(len2+1);
-        vector&lt;int&gt; countr(len2+1);
-        int index = 0, count = 0;
-        for(int i = 0; i &lt; n1; ++i) {
-            for(int j = 0; j &lt; len1; ++j) {
-                if(s1[j] == s2[index]) {
-                    index += 1;
-                }
-                if(index == len2) {
-                    count += 1;
-                    index = 0;
-                }
-            }
-            countr[i] = count;
-            indexr[i] = index;
-            for(int j = 0; j &lt; i; ++j) {
-                if(indexr[j] == index) {
-                    int prevCount = countr[j];
-                    int patternCount = (countr[i] - countr[j]) * ((n1 - 1 - j) &#x2F; (i - j));
-                    int remainCount = countr[j + (n1 - 1 - j) % (i - j)] - countr[j];
-                    return (prevCount + patternCount + remainCount) &#x2F; n2;
-                }
-            }
-        }
-        return countr[n1-1] &#x2F; n2;
-    }
-};
-
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">getMaxRepetitions</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s1</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n1</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">s2</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len1 </span><span>=</span><span style="color:#eff1f5;"> s1.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len2 </span><span>=</span><span style="color:#eff1f5;"> s2.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len1 </span><span>*</span><span style="color:#eff1f5;"> n1 </span><span>&lt;</span><span style="color:#eff1f5;"> len2 </span><span>*</span><span style="color:#eff1f5;"> n2) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">indexr</span><span style="color:#eff1f5;">(len2</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">countr</span><span style="color:#eff1f5;">(len2</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> index </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, count </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n1; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> len1; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(s1[j] </span><span>==</span><span style="color:#eff1f5;"> s2[index]) {
+</span><span style="color:#eff1f5;">                    index </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(index </span><span>==</span><span style="color:#eff1f5;"> len2) {
+</span><span style="color:#eff1f5;">                    count </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                    index </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            countr[i] </span><span>=</span><span style="color:#eff1f5;"> count;
+</span><span style="color:#eff1f5;">            indexr[i] </span><span>=</span><span style="color:#eff1f5;"> index;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>&lt;</span><span style="color:#eff1f5;"> i; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(indexr[j] </span><span>==</span><span style="color:#eff1f5;"> index) {
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> prevCount </span><span>=</span><span style="color:#eff1f5;"> countr[j];
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> patternCount </span><span>= </span><span style="color:#eff1f5;">(countr[i] </span><span>-</span><span style="color:#eff1f5;"> countr[j]) </span><span>* </span><span style="color:#eff1f5;">((n1 </span><span>- </span><span style="color:#d08770;">1 </span><span>-</span><span style="color:#eff1f5;"> j) </span><span>/ </span><span style="color:#eff1f5;">(i </span><span>-</span><span style="color:#eff1f5;"> j));
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> remainCount </span><span>=</span><span style="color:#eff1f5;"> countr[j </span><span>+ </span><span style="color:#eff1f5;">(n1 </span><span>- </span><span style="color:#d08770;">1 </span><span>-</span><span style="color:#eff1f5;"> j) </span><span>% </span><span style="color:#eff1f5;">(i </span><span>-</span><span style="color:#eff1f5;"> j)] </span><span>-</span><span style="color:#eff1f5;"> countr[j];
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(prevCount </span><span>+</span><span style="color:#eff1f5;"> patternCount </span><span>+</span><span style="color:#eff1f5;"> remainCount) </span><span>/</span><span style="color:#eff1f5;"> n2;
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> countr[n1</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>/</span><span style="color:#eff1f5;"> n2;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span></code></pre>
 <h1 id="all-possible-full-binary-trees">All Possible Full Binary Trees</h1>
 <h2 id="description-1">Description</h2>
 <p>A <em>full binary tree</em> is a binary tree where each node has exactly 0 or 2 children.</p>
@@ -170,58 +170,58 @@ public:
 <p>Each <code>node</code> of each tree in the answer <strong>must</strong> have <code>node.val = 0</code>.</p>
 <p>You may return the final list of trees in any order.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: 7
-Output: [[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]
-Explanation:
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: 7
+</span><span>Output: [[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]
+</span><span>Explanation:
+</span></code></pre>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>1 &lt;= N &lt;= 20</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
 <p>it's obviously that there is no possible full binary trees with even number of nodes. And we can generate them by recursively combine subtrees with odd-number-node.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">&#x2F;**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- *&#x2F;
-class Solution {
-    vector&lt;vector&lt;TreeNode*&gt;&gt; PossibleFBTs;
-    TreeNode *deepcopy(TreeNode *root) {
-        if(!root) return root;
-        TreeNode *newRoot = new TreeNode(0);
-        newRoot-&gt;left = deepcopy(root-&gt;left);
-        newRoot-&gt;right = deepcopy(root-&gt;right);
-        return newRoot;
-    }
-    void helper(int N) {
-        PossibleFBTs[1].push_back(new TreeNode(0));
-        for(int n = 3; n &lt;= N; n += 2) {
-            for(int i = 1; i &lt; n; i += 2) {
-                for(auto leftNode : PossibleFBTs[i]) {
-                    for(auto rightNode : PossibleFBTs[n - i - 1]) {
-                        TreeNode *newRoot = new TreeNode(0);
-                        newRoot-&gt;left = deepcopy(leftNode);
-                        newRoot-&gt;right = deepcopy(rightNode);
-                        PossibleFBTs[n].push_back(newRoot);
-                    }
-                }
-            }
-        }
-    }
-public:
-    vector&lt;TreeNode*&gt; allPossibleFBT(int N) {
-        if(!(N&amp;1)) return vector&lt;TreeNode*&gt;();
-        PossibleFBTs.resize(N+1);
-        helper(N);
-        return PossibleFBTs[N];
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#65737e;">/**
+</span><span style="color:#65737e;"> * Definition for a binary tree node.
+</span><span style="color:#65737e;"> * struct TreeNode {
+</span><span style="color:#65737e;"> *     int val;
+</span><span style="color:#65737e;"> *     TreeNode *left;
+</span><span style="color:#65737e;"> *     TreeNode *right;
+</span><span style="color:#65737e;"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+</span><span style="color:#65737e;"> * };
+</span><span style="color:#65737e;"> */
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    vector&lt;vector&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">&gt;&gt; PossibleFBTs;
+</span><span style="color:#eff1f5;">    TreeNode </span><span>*</span><span style="color:#8fa1b3;">deepcopy</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">        TreeNode </span><span>*</span><span style="color:#eff1f5;">newRoot </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        newRoot-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">deepcopy</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        newRoot-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">deepcopy</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newRoot;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">helper</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">N</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        PossibleFBTs[</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">));
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> n </span><span>= </span><span style="color:#d08770;">3</span><span style="color:#eff1f5;">; n </span><span>&lt;=</span><span style="color:#eff1f5;"> N; n </span><span>+= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> n; i </span><span>+= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> leftNode </span><span>:</span><span style="color:#eff1f5;"> PossibleFBTs[i]) {
+</span><span style="color:#eff1f5;">                    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> rightNode </span><span>:</span><span style="color:#eff1f5;"> PossibleFBTs[n </span><span>-</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                        TreeNode </span><span>*</span><span style="color:#eff1f5;">newRoot </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">                        newRoot-&gt;</span><span style="color:#bf616a;">left </span><span>= </span><span style="color:#bf616a;">deepcopy</span><span style="color:#eff1f5;">(leftNode);
+</span><span style="color:#eff1f5;">                        newRoot-&gt;</span><span style="color:#bf616a;">right </span><span>= </span><span style="color:#bf616a;">deepcopy</span><span style="color:#eff1f5;">(rightNode);
+</span><span style="color:#eff1f5;">                        PossibleFBTs[n].</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(newRoot);
+</span><span style="color:#eff1f5;">                    }
+</span><span style="color:#eff1f5;">                }
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    vector&lt;TreeNode</span><span>*</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">allPossibleFBT</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">N</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">(N</span><span>&amp;</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">)) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> vector</span><span>&lt;</span><span style="color:#eff1f5;">TreeNode</span><span>*&gt;</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        PossibleFBTs.</span><span style="color:#bf616a;">resize</span><span style="color:#eff1f5;">(N</span><span>+</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">helper</span><span style="color:#eff1f5;">(N);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> PossibleFBTs[N];
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-20">January LeetCoding Challenge 20</h1>
 <h2 id="description-2">Description</h2>
 <p><strong>Valid Parentheses</strong></p>
@@ -232,53 +232,53 @@ public:
 <li>Open brackets must be closed in the correct order.</li>
 </ol>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;()&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;()&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;()[]{}&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;()[]{}&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;(]&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;(]&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: s = &quot;([)]&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;([)]&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 5:</strong></p>
-<pre><code>Input: s = &quot;{[]}&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s = &quot;{[]}&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 104</code></li>
 <li><code>s</code> consists of parentheses only <code>'()[]{}'</code>.</li>
 </ul>
 <h2 id="solution-2">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    bool isValid(string s) {
-        vector&lt;char&gt; st;
-        for(auto c : s) {
-            if(c == &#x27;]&#x27;) {
-                if(st.empty() || st.back() != &#x27;[&#x27;) return false;
-                st.pop_back();
-            } else if(c == &#x27;}&#x27;) {
-                if(st.empty() || st.back() != &#x27;{&#x27;) return false;
-                st.pop_back();
-            } else if(c == &#x27;)&#x27;) {
-                if(st.empty() || st.back() != &#x27;(&#x27;) return false;
-                st.pop_back();
-            } else {
-                st.push_back(c);
-            }
-        }
-        return st.empty();
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isValid</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">s</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        vector&lt;</span><span style="color:#b48ead;">char</span><span style="color:#eff1f5;">&gt; st;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> s) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">]</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>!= &#39;</span><span style="color:#a3be8c;">[</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">}</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>!= &#39;</span><span style="color:#a3be8c;">{</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else if</span><span style="color:#eff1f5;">(c </span><span>== &#39;</span><span style="color:#a3be8c;">)</span><span>&#39;</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">() </span><span>||</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>!= &#39;</span><span style="color:#a3be8c;">(</span><span>&#39;</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                st.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                st.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(c);
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> st.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

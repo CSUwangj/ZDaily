@@ -118,17 +118,17 @@ renderMathInElement(document.body, katex_config);
 <p><strong>Remove Linked List Elements</strong></p>
 <p>Given an array of integers <code>temperatures</code> represents the daily temperatures, return <em>an array</em> <code>answer</code> <em>such that</em> <code>answer[i]</code> <em>is the number of days you have to wait after the</em> <code>ith</code> <em>day to get a warmer temperature</em>. If there is no future day for which this is possible, keep <code>answer[i] == 0</code> instead.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: temperatures = [73,74,75,71,69,72,76,73]
-Output: [1,1,4,2,1,1,0,0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: temperatures = [73,74,75,71,69,72,76,73]
+</span><span>Output: [1,1,4,2,1,1,0,0]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: temperatures = [30,40,50,60]
-Output: [1,1,1,0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: temperatures = [30,40,50,60]
+</span><span>Output: [1,1,1,0]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: temperatures = [30,60,90]
-Output: [1,1,0]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: temperatures = [30,60,90]
+</span><span>Output: [1,1,0]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= temperatures.length &lt;= 105</code></li>
@@ -136,32 +136,32 @@ Output: [1,1,0]
 </ul>
 <h2 id="solution">Solution</h2>
 <p>crab leetcode extension...</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  vector&lt;int&gt; dailyTemperatures(vector&lt;int&gt;&amp; temperatures) {
-    vector&lt;int&gt; monoStack;
-    int len = temperatures.size();
-    vector&lt;int&gt; answer(len);
-    for(int i = len - 1; i &gt;= 0; --i) {
-      while(monoStack.size() &amp;&amp; temperatures[monoStack.back()] &lt;= temperatures[i]) {
-        monoStack.pop_back();
-      }
-      if(monoStack.size()) answer[i] = monoStack.back() - i;
-      monoStack.push_back(i);
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Runtime: 96 ms, faster than 99.78% of C++ online submissions for Daily Temperatures.
-&#x2F;&#x2F; Memory Usage: 85 MB, less than 95.98% of C++ online submissions for Daily Temperatures.
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">dailyTemperatures</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">temperatures</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; monoStack;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> temperatures.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">answer</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>=</span><span style="color:#eff1f5;"> len </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; i </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> temperatures[monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">()] </span><span>&lt;=</span><span style="color:#eff1f5;"> temperatures[i]) {
+</span><span style="color:#eff1f5;">        monoStack.</span><span style="color:#bf616a;">pop_back</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(monoStack.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) answer[i] </span><span>=</span><span style="color:#eff1f5;"> monoStack.</span><span style="color:#bf616a;">back</span><span style="color:#eff1f5;">() </span><span>-</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">      monoStack.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(i);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Runtime: 96 ms, faster than 99.78% of C++ online submissions for Daily Temperatures.
+</span><span style="color:#65737e;">// Memory Usage: 85 MB, less than 95.98% of C++ online submissions for Daily Temperatures.
+</span></code></pre>
 
     </div>
   </div>

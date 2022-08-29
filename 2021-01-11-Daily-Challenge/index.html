@@ -124,22 +124,22 @@ renderMathInElement(document.body, katex_config);
 </ul>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/03/reverse_ex1.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4,5], k = 2
-Output: [2,1,4,3,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5], k = 2
+</span><span>Output: [2,1,4,3,5]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2020/10/03/reverse_ex2.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4,5], k = 3
-Output: [3,2,1,4,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5], k = 3
+</span><span>Output: [3,2,1,4,5]
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: head = [1,2,3,4,5], k = 1
-Output: [1,2,3,4,5]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5], k = 1
+</span><span>Output: [1,2,3,4,5]
+</span></code></pre>
 <p><strong>Example 4:</strong></p>
-<pre><code>Input: head = [1], k = 1
-Output: [1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1], k = 1
+</span><span>Output: [1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is in the range <code>sz</code>.</li>
@@ -150,53 +150,53 @@ Output: [1]
 <h2 id="solution">Solution</h2>
 <p>why this problem is a hard?</p>
 <p>maybe I should continue to improve solution?</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-    int length(ListNode *head) {
-        int len = 0;
-        while(head) {
-            len += 1;
-            head = head-&gt;next;
-        }
-        return len;
-    }
-public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
-        ListNode *newHead = new ListNode();
-        ListNode *cur = head, *tail = newHead;
-        int len = length(head);
-        if(k == 1 || len &lt; k) return head;
-        while(len &gt;= k) {
-            int cnt = k;
-            ListNode *partHead = nullptr;
-            ListNode *next;
-            while(cnt--) {
-                next = cur-&gt;next;
-                tail-&gt;next = cur;
-                cur-&gt;next = partHead;
-                partHead = cur;
-                cur = next;
-            }
-            while(tail-&gt;next) tail = tail-&gt;next;
-            len -= k;
-        }
-        tail-&gt;next = cur;
-        return newHead-&gt;next;
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">length</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">            len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    ListNode</span><span>* </span><span style="color:#8fa1b3;">reverseKGroup</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#bf616a;">ListNode</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        ListNode </span><span>*</span><span style="color:#eff1f5;">cur </span><span>=</span><span style="color:#eff1f5;"> head, </span><span>*</span><span style="color:#eff1f5;">tail </span><span>=</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(head);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>== </span><span style="color:#d08770;">1 </span><span>||</span><span style="color:#eff1f5;"> len </span><span>&lt;</span><span style="color:#eff1f5;"> k) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(len </span><span>&gt;=</span><span style="color:#eff1f5;"> k) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt </span><span>=</span><span style="color:#eff1f5;"> k;
+</span><span style="color:#eff1f5;">            ListNode </span><span>*</span><span style="color:#eff1f5;">partHead </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            ListNode </span><span>*</span><span style="color:#eff1f5;">next;
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(cnt</span><span>--</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">                next </span><span>=</span><span style="color:#eff1f5;"> cur-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">                tail-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">                cur-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> partHead;
+</span><span style="color:#eff1f5;">                partHead </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">                cur </span><span>=</span><span style="color:#eff1f5;"> next;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(tail-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">) tail </span><span>=</span><span style="color:#eff1f5;"> tail-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            len </span><span>-=</span><span style="color:#eff1f5;"> k;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        tail-&gt;</span><span style="color:#bf616a;">next </span><span>=</span><span style="color:#eff1f5;"> cur;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="january-leetcoding-challenge-11">January LeetCoding Challenge 11</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Merge Sorted Array</strong></p>
 <p>Given two sorted integer arrays <code>nums1</code> and <code>nums2</code>, merge <code>nums2</code> into <code>nums1</code> as one sorted array.</p>
 <p>The number of elements initialized in <code>nums1</code> and <code>nums2</code> are <code>m</code> and <code>n</code> respectively. You may assume that <code>nums1</code> has enough space (size that is equal to <code>m + n</code>) to hold additional elements from <code>nums2</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
-Output: [1,2,2,3,5,6]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+</span><span>Output: [1,2,2,3,5,6]
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums1 = [1], m = 1, nums2 = [], n = 0
-Output: [1]
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: nums1 = [1], m = 1, nums2 = [], n = 0
+</span><span>Output: [1]
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>0 &lt;= n, m &lt;= 200</code></li>
@@ -206,25 +206,25 @@ Output: [1]
 <li><code>-109 &lt;= nums1[i], nums2[i] &lt;= 109</code></li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-    void merge(vector&lt;int&gt;&amp; nums1, int m, vector&lt;int&gt;&amp; nums2, int n) {
-        while(n &amp;&amp; m) {
-            if(nums1[m-1] &gt; nums2[n-1]) {
-                nums1[n+m-1] = nums1[m-1];
-                --m;
-            } else {
-                nums1[n+m-1] = nums2[n-1];
-                --n;
-            }
-        }
-        while(n) {
-            nums1[n-1] = nums2[n-1];
-            --n;
-        }
-    }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">merge</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums1</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span style="color:#eff1f5;">, vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">nums2</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(n </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> m) {
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(nums1[m</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>&gt;</span><span style="color:#eff1f5;"> nums2[n</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">                nums1[n</span><span>+</span><span style="color:#eff1f5;">m</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> nums1[m</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                </span><span>--</span><span style="color:#eff1f5;">m;
+</span><span style="color:#eff1f5;">            } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">                nums1[n</span><span>+</span><span style="color:#eff1f5;">m</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> nums2[n</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">                </span><span>--</span><span style="color:#eff1f5;">n;
+</span><span style="color:#eff1f5;">            }
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(n) {
+</span><span style="color:#eff1f5;">            nums1[n</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> nums2[n</span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">            </span><span>--</span><span style="color:#eff1f5;">n;
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

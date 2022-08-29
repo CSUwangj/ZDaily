@@ -122,19 +122,19 @@ renderMathInElement(document.body, katex_config);
 <p>Return <em>an array of the</em> <code>k</code> <em>parts</em>.</p>
 <p><strong>Example 1:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/06/13/split1-lc.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3], k = 5
-Output: [[1],[2],[3],[],[]]
-Explanation:
-The first element output[0] has output[0].val = 1, output[0].next = null.
-The last element output[4] is null, but its string representation as a ListNode is [].
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3], k = 5
+</span><span>Output: [[1],[2],[3],[],[]]
+</span><span>Explanation:
+</span><span>The first element output[0] has output[0].val = 1, output[0].next = null.
+</span><span>The last element output[4] is null, but its string representation as a ListNode is [].
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><img src="https://assets.leetcode.com/uploads/2021/06/13/split2-lc.jpg" alt="img" /></p>
-<pre><code>Input: head = [1,2,3,4,5,6,7,8,9,10], k = 3
-Output: [[1,2,3,4],[5,6,7],[8,9,10]]
-Explanation:
-The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: head = [1,2,3,4,5,6,7,8,9,10], k = 3
+</span><span>Output: [[1,2,3,4],[5,6,7],[8,9,10]]
+</span><span>Explanation:
+</span><span>The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>The number of nodes in the list is in the range <code>[0, 1000]</code>.</li>
@@ -142,48 +142,48 @@ The input has been split into consecutive parts with size difference at most 1, 
 <li><code>1 &lt;= k &lt;= 50</code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-  int length(ListNode *head) {
-    int len = 0;
-    while(head) {
-      len += 1;
-      head = head-&gt;next;
-    }
-    return len;
-  }
-  ListNode *getNNode(ListNode *&amp;head, int n) {
-    if(!head || !n) return nullptr;
-    ListNode *newHead = head;
-    while(--n &amp;&amp; head) {
-      head = head-&gt;next;
-    }
-    if(head) {
-      ListNode *newCur = head-&gt;next;
-      head-&gt;next = nullptr;
-      head = newCur;
-    }
-    return newHead;
-  }
-public:
-  vector&lt;ListNode*&gt; splitListToParts(ListNode* head, int k) {
-    int len = length(head);
-    int lenOfPart = len &#x2F; k;
-    vector&lt;ListNode*&gt; answer;
-    while(k) {
-      int partLen = lenOfPart + (lenOfPart * k &lt; len);
-      answer.push_back(getNNode(head, partLen));
-      len -= partLen;
-      k -= 1;
-    }
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 43&#x2F;43 cases passed (4 ms)
-&#x2F;&#x2F; Your runtime beats 96.39 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 91.57 % of cpp submissions (8.8 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">length</span><span style="color:#eff1f5;">(ListNode </span><span>*</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">      len </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> len;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  ListNode </span><span>*</span><span style="color:#8fa1b3;">getNNode</span><span style="color:#eff1f5;">(ListNode </span><span>*&amp;</span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">head </span><span>|| !</span><span style="color:#eff1f5;">n) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    ListNode </span><span>*</span><span style="color:#eff1f5;">newHead </span><span>=</span><span style="color:#eff1f5;"> head;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(</span><span>--</span><span style="color:#eff1f5;">n </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> head) {
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(head) {
+</span><span style="color:#eff1f5;">      ListNode </span><span>*</span><span style="color:#eff1f5;">newCur </span><span>=</span><span style="color:#eff1f5;"> head-&gt;</span><span style="color:#bf616a;">next</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      head-&gt;</span><span style="color:#bf616a;">next </span><span>= </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      head </span><span>=</span><span style="color:#eff1f5;"> newCur;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> newHead;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;ListNode</span><span>*</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">splitListToParts</span><span style="color:#eff1f5;">(ListNode</span><span>* </span><span style="color:#bf616a;">head</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>= </span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">(head);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> lenOfPart </span><span>=</span><span style="color:#eff1f5;"> len </span><span>/</span><span style="color:#eff1f5;"> k;
+</span><span style="color:#eff1f5;">    vector</span><span>&lt;</span><span style="color:#eff1f5;">ListNode</span><span>*&gt;</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(k) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> partLen </span><span>=</span><span style="color:#eff1f5;"> lenOfPart </span><span>+ </span><span style="color:#eff1f5;">(lenOfPart </span><span>*</span><span style="color:#eff1f5;"> k </span><span>&lt;</span><span style="color:#eff1f5;"> len);
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">getNNode</span><span style="color:#eff1f5;">(head, partLen));
+</span><span style="color:#eff1f5;">      len </span><span>-=</span><span style="color:#eff1f5;"> partLen;
+</span><span style="color:#eff1f5;">      k </span><span>-= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 43/43 cases passed (4 ms)
+</span><span style="color:#65737e;">// Your runtime beats 96.39 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 91.57 % of cpp submissions (8.8 MB)
+</span></code></pre>
 
     </div>
   </div>

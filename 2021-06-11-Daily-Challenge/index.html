@@ -128,26 +128,26 @@ renderMathInElement(document.body, katex_config);
 </ol>
 <p>Given two strings <code>s1</code> and <code>s2</code> of <strong>the same length</strong>, return <code>true</code> if <code>s2</code> is a scrambled string of <code>s1</code>, otherwise, return <code>false</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s1 = &quot;great&quot;, s2 = &quot;rgeat&quot;
-Output: true
-Explanation: One possible scenario applied on s1 is:
-&quot;great&quot; --&gt; &quot;gr&#x2F;eat&quot; &#x2F;&#x2F; divide at random index.
-&quot;gr&#x2F;eat&quot; --&gt; &quot;gr&#x2F;eat&quot; &#x2F;&#x2F; random decision is not to swap the two substrings and keep them in order.
-&quot;gr&#x2F;eat&quot; --&gt; &quot;g&#x2F;r &#x2F; e&#x2F;at&quot; &#x2F;&#x2F; apply the same algorithm recursively on both substrings. divide at ranom index each of them.
-&quot;g&#x2F;r &#x2F; e&#x2F;at&quot; --&gt; &quot;r&#x2F;g &#x2F; e&#x2F;at&quot; &#x2F;&#x2F; random decision was to swap the first substring and to keep the second substring in the same order.
-&quot;r&#x2F;g &#x2F; e&#x2F;at&quot; --&gt; &quot;r&#x2F;g &#x2F; e&#x2F; a&#x2F;t&quot; &#x2F;&#x2F; again apply the algorithm recursively, divide &quot;at&quot; to &quot;a&#x2F;t&quot;.
-&quot;r&#x2F;g &#x2F; e&#x2F; a&#x2F;t&quot; --&gt; &quot;r&#x2F;g &#x2F; e&#x2F; a&#x2F;t&quot; &#x2F;&#x2F; random decision is to keep both substrings in the same order.
-The algorithm stops now and the result string is &quot;rgeat&quot; which is s2.
-As there is one possible scenario that led s1 to be scrambled to s2, we return true.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s1 = &quot;great&quot;, s2 = &quot;rgeat&quot;
+</span><span>Output: true
+</span><span>Explanation: One possible scenario applied on s1 is:
+</span><span>&quot;great&quot; --&gt; &quot;gr/eat&quot; // divide at random index.
+</span><span>&quot;gr/eat&quot; --&gt; &quot;gr/eat&quot; // random decision is not to swap the two substrings and keep them in order.
+</span><span>&quot;gr/eat&quot; --&gt; &quot;g/r / e/at&quot; // apply the same algorithm recursively on both substrings. divide at ranom index each of them.
+</span><span>&quot;g/r / e/at&quot; --&gt; &quot;r/g / e/at&quot; // random decision was to swap the first substring and to keep the second substring in the same order.
+</span><span>&quot;r/g / e/at&quot; --&gt; &quot;r/g / e/ a/t&quot; // again apply the algorithm recursively, divide &quot;at&quot; to &quot;a/t&quot;.
+</span><span>&quot;r/g / e/ a/t&quot; --&gt; &quot;r/g / e/ a/t&quot; // random decision is to keep both substrings in the same order.
+</span><span>The algorithm stops now and the result string is &quot;rgeat&quot; which is s2.
+</span><span>As there is one possible scenario that led s1 to be scrambled to s2, we return true.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s1 = &quot;abcde&quot;, s2 = &quot;caebd&quot;
-Output: false
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s1 = &quot;abcde&quot;, s2 = &quot;caebd&quot;
+</span><span>Output: false
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s1 = &quot;a&quot;, s2 = &quot;a&quot;
-Output: true
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: s1 = &quot;a&quot;, s2 = &quot;a&quot;
+</span><span>Output: true
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>s1.length == s2.length</code></li>
@@ -156,54 +156,54 @@ Output: true
 </ul>
 <h2 id="solution">Solution</h2>
 <p>just try divide strings into four parts where front part of s1 have the same characters as front part of s2 or back part of s2 and recursively check.</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">unordered_map&lt;char, int&gt; cnta;
-unordered_map&lt;char, int&gt; cntb;
-bool test(string &amp;a, string &amp;b, int sa, int ea, int sb, int eb) {
-  &#x2F;&#x2F; cout &lt;&lt; a &lt;&lt; &#x27; &#x27; &lt;&lt; b &lt;&lt; &#x27; &#x27; &lt;&lt; sa &lt;&lt; &#x27; &#x27; &lt;&lt; ea &lt;&lt; &#x27; &#x27; &lt;&lt; sb &lt;&lt; &#x27; &#x27; &lt;&lt; eb &lt;&lt; endl;
-  cnta.clear();
-  cntb.clear();
-  int len = ea - sa;
-  bool ok = true;
-  for(int i = 0; i &lt; len; ++i) {
-    ok &amp;= a[sa + i] == b[sb + i];
-    cnta[a[sa + i]] += 1;
-    cntb[b[sb + i]] += 1;
-  }
-  if(ok) return true;
-  if(cnta != cntb) return false;
-  cnta.clear();
-  cntb.clear();
-  int begin = -1;
-  for(int i = 0; i &lt; len - 1; ++i) {
-    cnta[a[sa + i]] += 1;
-    cntb[b[sb + i]] += 1;
-    if(cnta == cntb) begin = i;
-  }
-  begin += 1;
-  if(begin) return test(a, b, sa, sa + begin, sb, sb + begin) &amp;&amp; test(a, b, sa + begin, ea, sb + begin, eb);
-  int end = -1;
-  cnta.clear();
-  cntb.clear();
-  for(int i = 0; i &lt; len - 1; ++i) {
-    cnta[a[sa + i]] += 1;
-    cntb[b[eb - 1 - i]] += 1;
-    if(cnta == cntb) end = i;
-  }
-  end += 1;
-  if(end) return test(a, b, sa, sa + end, eb - end, eb) &amp;&amp; test(a, b, sa + end, ea, sb, sb + len - end);
-  return false;
-}
-
-class Solution {
-public:
-  bool isScramble(string a, string b) {
-    int len1 = a.length();
-    int len2 = b.length();
-    if(len1 != len2) return false;
-    return test(a, b, 0, len1, 0, len2);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span>unordered_map&lt;</span><span style="color:#b48ead;">char</span><span>, </span><span style="color:#b48ead;">int</span><span>&gt; cnta;
+</span><span>unordered_map&lt;</span><span style="color:#b48ead;">char</span><span>, </span><span style="color:#b48ead;">int</span><span>&gt; cntb;
+</span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">test</span><span>(string &amp;</span><span style="color:#bf616a;">a</span><span>, string &amp;</span><span style="color:#bf616a;">b</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sa</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">ea</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">sb</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">eb</span><span>) {
+</span><span>  </span><span style="color:#65737e;">// cout &lt;&lt; a &lt;&lt; &#39; &#39; &lt;&lt; b &lt;&lt; &#39; &#39; &lt;&lt; sa &lt;&lt; &#39; &#39; &lt;&lt; ea &lt;&lt; &#39; &#39; &lt;&lt; sb &lt;&lt; &#39; &#39; &lt;&lt; eb &lt;&lt; endl;
+</span><span>  cnta.</span><span style="color:#bf616a;">clear</span><span>();
+</span><span>  cntb.</span><span style="color:#bf616a;">clear</span><span>();
+</span><span>  </span><span style="color:#b48ead;">int</span><span> len = ea - sa;
+</span><span>  </span><span style="color:#b48ead;">bool</span><span> ok = </span><span style="color:#d08770;">true</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; len; ++i) {
+</span><span>    ok &amp;= a[sa + i] == b[sb + i];
+</span><span>    cnta[a[sa + i]] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    cntb[b[sb + i]] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>  }
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(ok) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(cnta != cntb) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>  cnta.</span><span style="color:#bf616a;">clear</span><span>();
+</span><span>  cntb.</span><span style="color:#bf616a;">clear</span><span>();
+</span><span>  </span><span style="color:#b48ead;">int</span><span> begin = -</span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; len - </span><span style="color:#d08770;">1</span><span>; ++i) {
+</span><span>    cnta[a[sa + i]] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    cntb[b[sb + i]] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(cnta == cntb) begin = i;
+</span><span>  }
+</span><span>  begin += </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(begin) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">test</span><span>(a, b, sa, sa + begin, sb, sb + begin) &amp;&amp; </span><span style="color:#bf616a;">test</span><span>(a, b, sa + begin, ea, sb + begin, eb);
+</span><span>  </span><span style="color:#b48ead;">int</span><span> end = -</span><span style="color:#d08770;">1</span><span>;
+</span><span>  cnta.</span><span style="color:#bf616a;">clear</span><span>();
+</span><span>  cntb.</span><span style="color:#bf616a;">clear</span><span>();
+</span><span>  </span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; len - </span><span style="color:#d08770;">1</span><span>; ++i) {
+</span><span>    cnta[a[sa + i]] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    cntb[b[eb - </span><span style="color:#d08770;">1 </span><span>- i]] += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(cnta == cntb) end = i;
+</span><span>  }
+</span><span>  end += </span><span style="color:#d08770;">1</span><span>;
+</span><span>  </span><span style="color:#b48ead;">if</span><span>(end) </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">test</span><span>(a, b, sa, sa + end, eb - end, eb) &amp;&amp; </span><span style="color:#bf616a;">test</span><span>(a, b, sa + end, ea, sb, sb + len - end);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">bool </span><span style="color:#8fa1b3;">isScramble</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">a</span><span style="color:#eff1f5;">, string </span><span style="color:#bf616a;">b</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len1 </span><span>=</span><span style="color:#eff1f5;"> a.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len2 </span><span>=</span><span style="color:#eff1f5;"> b.</span><span style="color:#bf616a;">length</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(len1 </span><span>!=</span><span style="color:#eff1f5;"> len2) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">test</span><span style="color:#eff1f5;">(a, b, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len1, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, len2);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 <h1 id="june-leetcoding-challenge-11">June LeetCoding Challenge 11</h1>
 <h2 id="description-1">Description</h2>
 <p><strong>Stone Game VII</strong></p>
@@ -212,20 +212,20 @@ public:
 <p>Bob found that he will always lose this game (poor Bob, he always loses), so he decided to <strong>minimize the score's difference</strong>. Alice's goal is to <strong>maximize the difference</strong> in the score.</p>
 <p>Given an array of integers <code>stones</code> where <code>stones[i]</code> represents the value of the <code>ith</code> stone <strong>from the left</strong>, return <em>the <strong>difference</strong> in Alice and Bob's score if they both play <strong>optimally</strong>.</em></p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: stones = [5,3,1,4,2]
-Output: 6
-Explanation: 
-- Alice removes 2 and gets 5 + 3 + 1 + 4 = 13 points. Alice = 13, Bob = 0, stones = [5,3,1,4].
-- Bob removes 5 and gets 3 + 1 + 4 = 8 points. Alice = 13, Bob = 8, stones = [3,1,4].
-- Alice removes 3 and gets 1 + 4 = 5 points. Alice = 18, Bob = 8, stones = [1,4].
-- Bob removes 1 and gets 4 points. Alice = 18, Bob = 12, stones = [4].
-- Alice removes 4 and gets 0 points. Alice = 18, Bob = 12, stones = [].
-The score difference is 18 - 12 = 6.
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: stones = [5,3,1,4,2]
+</span><span>Output: 6
+</span><span>Explanation: 
+</span><span>- Alice removes 2 and gets 5 + 3 + 1 + 4 = 13 points. Alice = 13, Bob = 0, stones = [5,3,1,4].
+</span><span>- Bob removes 5 and gets 3 + 1 + 4 = 8 points. Alice = 13, Bob = 8, stones = [3,1,4].
+</span><span>- Alice removes 3 and gets 1 + 4 = 5 points. Alice = 18, Bob = 8, stones = [1,4].
+</span><span>- Bob removes 1 and gets 4 points. Alice = 18, Bob = 12, stones = [4].
+</span><span>- Alice removes 4 and gets 0 points. Alice = 18, Bob = 12, stones = [].
+</span><span>The score difference is 18 - 12 = 6.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: stones = [7,90,5,1,100,10,10,2]
-Output: 122
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: stones = [7,90,5,1,100,10,10,2]
+</span><span>Output: 122
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>n == stones.length</code></li>
@@ -235,32 +235,32 @@ Output: 122
 <h2 id="solution-1">Solution</h2>
 <p>I thought it was <code>Hard</code></p>
 <p>follow strategy towards <code>Game Theory</code> type, start from scratch and choose optimal steps. because we don't know where to start, so we use two-dimension dynamic programming enumerate all path</p>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">class Solution {
-public:
-  int stoneGameVII(vector&lt;int&gt;&amp; stones) {
-    int len = stones.size();
-    int prefix[len + 1];
-    prefix[0] = 0;
-    for (int i = 0; i &lt; len; ++i) prefix[i + 1] = prefix[i] + stones[i];
-    int dp[len + 1][len + 1][2];
-    memset(dp, 0, sizeof(dp));
-    for (int i = 2; i &lt;= len; ++i) {
-      bool parity = i &amp; 1;
-      for(int j = 0; j + i &lt;= len; ++j) {
-        if(prefix[j + i] - prefix[j + 1] + dp[j + 1][j + i][parity] - dp[j + 1][j + i][!parity] &gt;
-           prefix[j + i - 1] - prefix[j] + dp[j][j + i - 1][parity] - dp[j][j + i - 1][!parity]) {
-          dp[j][j + i][parity] = prefix[j + i] - prefix[j + 1] + dp[j + 1][j + i][parity];
-          dp[j][j + i][!parity] = dp[j + 1][j + i][!parity];
-        } else {
-          dp[j][j + i][parity] = prefix[j + i - 1] - prefix[j] + dp[j][j + i - 1][parity];
-          dp[j][j + i][!parity] = dp[j][j + i - 1][!parity];
-        }
-      }
-    }
-    return abs(dp[0][len][0] - dp[0][len][1]);
-  }
-};
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">stoneGameVII</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;</span><span>&amp; </span><span style="color:#bf616a;">stones</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> stones.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> prefix[len </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    prefix[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) prefix[i </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>=</span><span style="color:#eff1f5;"> prefix[i] </span><span>+</span><span style="color:#eff1f5;"> stones[i];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[len </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][len </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(dp, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span>sizeof</span><span style="color:#eff1f5;">(dp));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for </span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">; i </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">bool</span><span style="color:#eff1f5;"> parity </span><span>=</span><span style="color:#eff1f5;"> i </span><span>&amp; </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> j </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>&lt;=</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">j) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prefix[j </span><span>+</span><span style="color:#eff1f5;"> i] </span><span>-</span><span style="color:#eff1f5;"> prefix[j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> dp[j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span>+</span><span style="color:#eff1f5;"> i][parity] </span><span>-</span><span style="color:#eff1f5;"> dp[j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span>+</span><span style="color:#eff1f5;"> i][</span><span>!</span><span style="color:#eff1f5;">parity] </span><span>&gt;
+</span><span style="color:#eff1f5;">           prefix[j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> prefix[j] </span><span>+</span><span style="color:#eff1f5;"> dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][parity] </span><span>-</span><span style="color:#eff1f5;"> dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span>!</span><span style="color:#eff1f5;">parity]) {
+</span><span style="color:#eff1f5;">          dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i][parity] </span><span>=</span><span style="color:#eff1f5;"> prefix[j </span><span>+</span><span style="color:#eff1f5;"> i] </span><span>-</span><span style="color:#eff1f5;"> prefix[j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> dp[j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span>+</span><span style="color:#eff1f5;"> i][parity];
+</span><span style="color:#eff1f5;">          dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i][</span><span>!</span><span style="color:#eff1f5;">parity] </span><span>=</span><span style="color:#eff1f5;"> dp[j </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][j </span><span>+</span><span style="color:#eff1f5;"> i][</span><span>!</span><span style="color:#eff1f5;">parity];
+</span><span style="color:#eff1f5;">        } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">          dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i][parity] </span><span>=</span><span style="color:#eff1f5;"> prefix[j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> prefix[j] </span><span>+</span><span style="color:#eff1f5;"> dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][parity];
+</span><span style="color:#eff1f5;">          dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i][</span><span>!</span><span style="color:#eff1f5;">parity] </span><span>=</span><span style="color:#eff1f5;"> dp[j][j </span><span>+</span><span style="color:#eff1f5;"> i </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][</span><span>!</span><span style="color:#eff1f5;">parity];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">abs</span><span style="color:#eff1f5;">(dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][len][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>-</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">][len][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span></code></pre>
 
     </div>
   </div>

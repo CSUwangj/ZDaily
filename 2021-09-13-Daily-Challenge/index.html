@@ -120,54 +120,54 @@ renderMathInElement(document.body, katex_config);
 <p>You can use each character in <code>text</code> <strong>at most once</strong>. Return the maximum number of instances that can be formed.</p>
 <p><strong>Example 1:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/09/05/1536_ex1_upd.JPG" alt="img" /></strong></p>
-<pre><code>Input: text = &quot;nlaebolko&quot;
-Output: 1
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: text = &quot;nlaebolko&quot;
+</span><span>Output: 1
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
 <p><strong><img src="https://assets.leetcode.com/uploads/2019/09/05/1536_ex2_upd.JPG" alt="img" /></strong></p>
-<pre><code>Input: text = &quot;loonbalxballpoon&quot;
-Output: 2
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: text = &quot;loonbalxballpoon&quot;
+</span><span>Output: 2
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: text = &quot;leetcode&quot;
-Output: 0
-</code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Input: text = &quot;leetcode&quot;
+</span><span>Output: 0
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= text.length &lt;= 10^4</code></li>
 <li><code>text</code> consists of lower case English letters only.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" class="language-cpp "><code class="language-cpp" data-lang="cpp">auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
-class Solution {
-public:
-  int maxNumberOfBalloons(string text) {
-    int cnt[128] = {};
-    for(auto c : text) {
-      cnt[c] += 1;
-    }
-
-    int answer = INT_MAX;
-    answer = min(answer, cnt[&#x27;b&#x27;]);
-    answer = min(answer, cnt[&#x27;a&#x27;]);
-    answer = min(answer, cnt[&#x27;n&#x27;]);
-    answer = min(answer, cnt[&#x27;l&#x27;] &#x2F; 2);
-    answer = min(answer, cnt[&#x27;o&#x27;] &#x2F; 2);
-
-    return answer;
-  }
-};
-
-&#x2F;&#x2F; Accepted
-&#x2F;&#x2F; 24&#x2F;24 cases passed (0 ms)
-&#x2F;&#x2F; Your runtime beats 100 % of cpp submissions
-&#x2F;&#x2F; Your memory usage beats 85.28 % of cpp submissions (6.6 MB)
-</code></pre>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
+</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
+</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}();
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">maxNumberOfBalloons</span><span style="color:#eff1f5;">(string </span><span style="color:#bf616a;">text</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cnt[</span><span style="color:#d08770;">128</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">auto</span><span style="color:#eff1f5;"> c </span><span>:</span><span style="color:#eff1f5;"> text) {
+</span><span style="color:#eff1f5;">      cnt[c] </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> answer </span><span>=</span><span style="color:#eff1f5;"> INT_MAX;
+</span><span style="color:#eff1f5;">    answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, cnt[</span><span>&#39;</span><span style="color:#a3be8c;">b</span><span>&#39;</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, cnt[</span><span>&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, cnt[</span><span>&#39;</span><span style="color:#a3be8c;">n</span><span>&#39;</span><span style="color:#eff1f5;">]);
+</span><span style="color:#eff1f5;">    answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, cnt[</span><span>&#39;</span><span style="color:#a3be8c;">l</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    answer </span><span>= </span><span style="color:#bf616a;">min</span><span style="color:#eff1f5;">(answer, cnt[</span><span>&#39;</span><span style="color:#a3be8c;">o</span><span>&#39;</span><span style="color:#eff1f5;">] </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 24/24 cases passed (0 ms)
+</span><span style="color:#65737e;">// Your runtime beats 100 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 85.28 % of cpp submissions (6.6 MB)
+</span></code></pre>
 
     </div>
   </div>
