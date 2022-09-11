@@ -11,7 +11,7 @@ categories = [ "DailyChallenge",]
 archives = [ "archive",]
 +++
 
-Today I have done leetcode's [September LeetCoding Challenge](https://leetcode.com/problemset/database/) with `cpp`.
+Today I have done leetcode's [September LeetCoding Challenge](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/) with `cpp`.
 
 <!-- more -->
 
