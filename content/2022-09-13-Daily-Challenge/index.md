@@ -114,5 +114,5 @@ public:
 // Accepted
 // 49/49 cases passed (8 ms)
 // Your runtime beats 92.07 % of cpp submissions
-  // Your memory usage beats 7.65 % of cpp submissions (14.1 MB)
+// Your memory usage beats 7.65 % of cpp submissions (14.1 MB)
 ```
