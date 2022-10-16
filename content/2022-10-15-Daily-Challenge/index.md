@@ -2,13 +2,12 @@
 updated = 2022-10-15 18:14:00+08:00
 title = "2022-10-15 Daily-Challenge"
 path = "2022-10-15-Daily-Challenge"
-date = 2022-10-14 18:12:00+08:00
-in_search_index = true
+date = 2022-10-15 18:12:00+08:00
 
 [taxonomies]
 tags = ["Algorithm"]
-categories = [ "DailyChallenge",]
-archives = [ "archive",]
+categories = [ "DailyChallenge"]
+archives = [ "archive"]
 +++
 
 Today I have done leetcode's [October LeetCoding Challenge](https://leetcode.com/problems/string-compression-ii/submissions/) with `cpp`.

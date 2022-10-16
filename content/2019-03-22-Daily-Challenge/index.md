@@ -3,7 +3,6 @@ title = "2019-03-22 Daily Challenge"
 path = "2019-03-22-daily-challenge"
 date = 2019-03-22T00:06:05+00:00
 updated = 2019-03-23T00:40:49+00:00
-in_search_index = true
 
 [taxonomies]
 tags = ["Cryptography",]

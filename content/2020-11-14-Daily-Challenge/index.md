@@ -3,7 +3,6 @@ title = "2020-11-14 Daily-Challenge"
 path = "2020-11-14-Daily-Challenge"
 date = 2020-11-14 20:59:21+08:00
 updated = 2020-11-15 00:22:00+08:00
-in_search_index = true
 
 [taxonomies]
 tags = ["Algorithm"]

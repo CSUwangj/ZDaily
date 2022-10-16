@@ -4,7 +4,6 @@ path = "2019-03-18-daily-challenge"
 date = 2019-03-18T19:18:45+00:00
 updated = 2020-09-19T20:01:27.638299+00:00
 description = "DailyChallenge"
-in_search_index = true
 
 [taxonomies]
 tags = [ "CodeWars",]

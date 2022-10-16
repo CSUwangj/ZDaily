@@ -4,7 +4,6 @@ path = "2018-12-21-daily-challenge"
 date = 2018-12-21T00:00:46+00:00
 updated = 2020-09-19T20:01:27.624335+00:00
 description = "Daily Challenge"
-in_search_index = true
 
 [taxonomies]
 tags = [ "Math", "ProjectEuler", "Division", "Inclusion–exclusionPrinciple", "Algorithm", "LeetCode",]

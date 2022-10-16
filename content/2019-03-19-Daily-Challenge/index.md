@@ -3,7 +3,6 @@ title = "2019-03-19 Daily Challenge"
 path = "2019-03-19-daily-challenge"
 date = 2019-03-19T19:11:02+00:00
 updated = 2019-03-19T19:33:31+00:00
-in_search_index = true
 
 [taxonomies]
 tags = ["NumberTheory",]
