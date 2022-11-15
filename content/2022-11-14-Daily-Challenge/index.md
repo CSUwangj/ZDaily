@@ -97,7 +97,7 @@ class Solution {
 public:
   int removeStones(vector<vector<int>>& stones) {
     for(const auto &stone : stones) {
-      merge(stone[0], ~pystone[1]);
+      merge(stone[0], ~stone[1]);
     }
     return stones.size() - sz;
   }
