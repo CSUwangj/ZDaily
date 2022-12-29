@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/css/lib/font-awesome.min.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https://csuwangj.github.io/ZDaily/js/sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/rss.xml">
+      
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+      <header name="header" class="left_sidebar">
+        <div>
+          <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+          <nav class="menu">
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+              <span><i class="fa-solid fa-house"></i> Home</span>
+            </a>
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;about" class="nav-item-about unselectable">
+              <span><i class="fa-solid fa-user-circle"></i> About</span>
+            </a>
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories" class="nav-item-categories unselectable">
+              <span><i class="fa-solid fa-book"></i> Categories</span>
+            </a>
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;tags" class="nav-item-tags unselectable">
+              <span><i class="fa-solid fa-tags"></i> Tags</span>
+            </a>
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;archives" class="nav-item-archives unselectable">
+              <span><i class="fa-solid fa-inbox"></i> Archives</span>
+            </a>
+            
+          </nav>
+        </div>
+      </header>
+      
+
+      <main class="content container left_sidebar" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2022-12-29 Daily Challenge</h1>
+    <div class="post-meta">
+      
+      <div class="post-meta-item">
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2022-12-29T14:29:21+08:00 title="post created at 2022-12-29T14:29:21+08:00">2022-12-29</time>
+      </div>
+      
+      
+      <div class="post-meta-item">
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar-check"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2022-12-29T14:29:21+08:00 title="post modified at 2022-12-29T14:29:21+08:00">2022-12-29</time>
+      </div>
+      
+      
+      <div class="post-meta-item">
+          <span class="post-meta-item-icon"><i class="fa-solid fa-book"></i></span>
+          <span class="in-category">In: </span>
+        
+        <a class="category" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/categories/DailyChallenge">
+          DailyChallenge
+        </a>
+      
+      </div>
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today I have done leetcode's <a href="https://leetcode.com/problems/single-threaded-cpu/">December LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span><h1 id="december-leetcoding-challenge-29">December LeetCoding Challenge 29</h1>
+<h2 id="description">Description</h2>
+<p><strong>Single-Threaded CPU</strong></p>
+<p>You are given <code>n</code>​​​​​​ tasks labeled from <code>0</code> to <code>n - 1</code> represented by a 2D integer array <code>tasks</code>, where <code>tasks[i] = [enqueueTime<sub>i</sub>, processingTime<sub>i</sub>]</code> means that the <code>i<sup>​​​​​​th</sup></code>​​​​ task will be available to process at <code>enqueueTime<sub>i</sub></code> and will take <code>processingTime<sub>i</sub></code><sub> </sub>to finish processing.</p>
+<p>You have a single-threaded CPU that can process <strong>at most one</strong> task at a time and will act in the following way:</p>
+<ul>
+	<li>If the CPU is idle and there are no available tasks to process, the CPU remains idle.</li>
+	<li>If the CPU is idle and there are available tasks, the CPU will choose the one with the <strong>shortest processing time</strong>. If multiple tasks have the same shortest processing time, it will choose the task with the smallest index.</li>
+	<li>Once a task is started, the CPU will <strong>process the entire task</strong> without stopping.</li>
+	<li>The CPU can finish a task then start a new one instantly.</li>
+</ul>
+<p>Return <em>the order in which the CPU will process the tasks.</em></p>
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<pre>
+<strong>Input:</strong> tasks = [[1,2],[2,4],[3,2],[4,1]]
+<strong>Output:</strong> [0,2,3,1]
+<strong>Explanation: </strong>The events go as follows: 
+- At time = 1, task 0 is available to process. Available tasks = {0}.
+- Also at time = 1, the idle CPU starts processing task 0. Available tasks = {}.
+- At time = 2, task 1 is available to process. Available tasks = {1}.
+- At time = 3, task 2 is available to process. Available tasks = {1, 2}.
+- Also at time = 3, the CPU finishes task 0 and starts processing task 2 as it is the shortest. Available tasks = {1}.
+- At time = 4, task 3 is available to process. Available tasks = {1, 3}.
+- At time = 5, the CPU finishes task 2 and starts processing task 3 as it is the shortest. Available tasks = {1}.
+- At time = 6, the CPU finishes task 3 and starts processing task 1. Available tasks = {}.
+- At time = 10, the CPU finishes task 1 and becomes idle.
+</pre>
+<p><strong class="example">Example 2:</strong></p>
+<pre>
+<strong>Input:</strong> tasks = [[7,10],[7,12],[7,5],[7,4],[7,2]]
+<strong>Output:</strong> [4,3,2,0,1]
+<strong>Explanation</strong><strong>: </strong>The events go as follows:
+- At time = 7, all the tasks become available. Available tasks = {0,1,2,3,4}.
+- Also at time = 7, the idle CPU starts processing task 4. Available tasks = {0,1,2,3}.
+- At time = 9, the CPU finishes task 4 and starts processing task 3. Available tasks = {0,1,2}.
+- At time = 13, the CPU finishes task 3 and starts processing task 2. Available tasks = {0,1}.
+- At time = 18, the CPU finishes task 2 and starts processing task 0. Available tasks = {1}.
+- At time = 28, the CPU finishes task 0 and starts processing task 1. Available tasks = {}.
+- At time = 40, the CPU finishes task 1 and becomes idle.
+</pre>
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+<ul>
+	<li><code>tasks.length == n</code></li>
+	<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= enqueueTime<sub>i</sub>, processingTime<sub>i</sub> &lt;= 10<sup>9</sup></code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">using </span><span style="color:#eff1f5;">pi </span><span>=</span><span style="color:#eff1f5;"> pair&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">getOrder</span><span style="color:#eff1f5;">(vector&lt;vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt;&gt;</span><span>&amp; </span><span style="color:#bf616a;">tasks</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> len </span><span>=</span><span style="color:#eff1f5;"> tasks.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span style="color:#bf616a;">indice</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> i </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; i </span><span>&lt;</span><span style="color:#eff1f5;"> len; </span><span>++</span><span style="color:#eff1f5;">i) {
+</span><span style="color:#eff1f5;">      indice[i] </span><span>=</span><span style="color:#eff1f5;"> i;
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">sort</span><span style="color:#eff1f5;">(indice.</span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">(), indice.</span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">(), [</span><span>&amp;</span><span style="color:#eff1f5;">](</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> a, </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> b) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> tasks[a] </span><span>&lt;</span><span style="color:#eff1f5;"> tasks[b];
+</span><span style="color:#eff1f5;">    });
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; answer;
+</span><span style="color:#eff1f5;">    answer.</span><span style="color:#bf616a;">reserve</span><span style="color:#eff1f5;">(len);
+</span><span style="color:#eff1f5;">    priority_queue</span><span>&lt;</span><span style="color:#eff1f5;">pi, vector&lt;pi&gt;, greater&lt;pi&gt;</span><span>&gt;</span><span style="color:#eff1f5;"> pq;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">unsigned int</span><span style="color:#eff1f5;"> current </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> pos </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[processing, index] </span><span>=</span><span style="color:#eff1f5;"> pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        current </span><span>= </span><span style="color:#bf616a;">max</span><span style="color:#eff1f5;">&lt;</span><span style="color:#b48ead;">unsigned int</span><span style="color:#eff1f5;">&gt;(current, tasks[index][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) </span><span>+</span><span style="color:#eff1f5;"> processing;
+</span><span style="color:#eff1f5;">        answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(index);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(current </span><span>&lt;</span><span style="color:#eff1f5;"> tasks[indice[pos]][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">] </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> pq.</span><span style="color:#bf616a;">empty</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">        pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({tasks[indice[pos]][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], indice[pos]});
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">continue</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pos </span><span>&lt;</span><span style="color:#eff1f5;"> len </span><span>&amp;&amp;</span><span style="color:#eff1f5;"> current </span><span>&gt;=</span><span style="color:#eff1f5;"> tasks[indice[pos]][</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]) {
+</span><span style="color:#eff1f5;">        pq.</span><span style="color:#bf616a;">push</span><span style="color:#eff1f5;">({tasks[indice[pos]][</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">], indice[pos]});
+</span><span style="color:#eff1f5;">        pos </span><span>+= </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">while</span><span style="color:#eff1f5;">(pq.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">()) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">auto </span><span style="color:#eff1f5;">[_processing, index] </span><span>=</span><span style="color:#eff1f5;"> pq.</span><span style="color:#bf616a;">top</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      pq.</span><span style="color:#bf616a;">pop</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">      answer.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(index);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> answer;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 39/39 cases passed (596 ms)
+</span><span style="color:#65737e;">// Your runtime beats 94.18 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 97.88 % of cpp submissions (114.8 MB)
+</span></code></pre>
+
+    </div>
+    
+    <div class="post-tags">
+      
+      <a class="tag" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/tags/Algorithm">
+        <i class="fa-solid fa-tag"></i>
+        Algorithm
+      </a>
+      
+    </div>
+    
+  </div>
+  <nav class="pagination">
+    
+    <div class="empty"></div>
+    
+    
+    <a class="right unselectable" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;2022-12-28-Daily-Challenge&#x2F;">
+      2022-12-28 Daily Challenge
+      <i class="fa-solid fa-caret-right"></i>
+    </a>
+    
+  </nav>
+
+        </div>
+      </main>
+
+      
+      <footer name="footer" class="left_sidebar">
+        <div class="copyright">
+          <span item="copyrightYear">© 2018-2022</span>
+          <span class="author">CSUwangj</span>
+        </div>
+        <div class="powered-by">
+          Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+        </div>
+      </footer>
+      
+
+
+      
+      
+      
+      
+      
+      <button class="sidebar-toggle left_sidebar-sidebar-toggle" onclick="openSidebar()">O</button>
+      <aside class="sidebar left_sidebar" name="sidebar">
+        
+        <div class="sidebar-content-toggle">
+          <a name="swith-to-toc-button" class="actived" onclick="switchToTOC()">Table of Content</>
+          <a name="swith-to-about-authour-button" onclick="switchToAboutAuthor()">About Author</a>
+        </div>
+        
+        <div class="sidebar-overview"  style="opacity:0;display:none" >
+          <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+            
+            <img class="site-author-image" itemprop="image"
+              src="https://csuwangj.github.io/ZDaily/img/avatar.png"
+              alt="CSUwangj" />
+            
+            <p class="site-author-name unselectable">CSUwangj</p>
+            <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+          </div>
+          <div class="sidebar-post-overview">
+            
+            <a class="sidebar-post-overview-item" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/categories">
+              <span class="sidebar-post-overview-amount unselectable">1</span>
+              <span class="sidebar-post-overview-type unselectable">
+                <i class="fa-solid fa-book"></i>
+                categories
+              </span>
+            </a>
+            
+            
+            <a class="sidebar-post-overview-item" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/tags">
+              <span class="sidebar-post-overview-amount unselectable">13</span>
+              <span class="sidebar-post-overview-type unselectable">
+                <i class="fa-solid fa-tags"></i>
+                tags
+              </span>
+            </a>
+            
+            
+            <a class="sidebar-post-overview-item" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/archives">
+              <span class="sidebar-post-overview-amount unselectable">927</span>
+              <span class="sidebar-post-overview-type unselectable">
+                <i class="fa-solid fa-inbox"></i>
+                posts
+              </span>
+            </a>
+            
+          </div>
+          <div class="feed-link">
+            
+            <a rel="alternate" type="application/rss+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/rss.xml">
+              RSS
+            </a>
+            
+          </div>
+          <div class="links-of-author">
+            
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            
+            <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            
+          </div>
+          <div class="links-of-blogroll">
+            
+            <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+            
+          </div>
+        </div>
+        <div class="sidebar-toc">
+        
+        <ul>
+        
+        <li>
+        <a class="toc-link" href="https://csuwangj.github.io/ZDaily/2022-12-29-Daily-Challenge/#december-leetcoding-challenge-29">December LeetCoding Challenge 29</a>
+          
+          <ul>
+          
+          <li>
+          <a class="toc-link" href="https://csuwangj.github.io/ZDaily/2022-12-29-Daily-Challenge/#description">Description</a>
+            
+          </li>
+          
+          <li>
+          <a class="toc-link" href="https://csuwangj.github.io/ZDaily/2022-12-29-Daily-Challenge/#solution">Solution</a>
+            
+          </li>
+          
+          </ul>
+          
+        </li>
+        
+        </ul>
+        
+        </div>
+      </aside>
+      
+      
+    </body>
+
+</html>
