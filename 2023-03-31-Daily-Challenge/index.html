@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10, viewport-fit=cover">
+
+      <title>CSUwangj&#x27;s daily challenge</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/css/lib/font-awesome.min.css">
+      <link rel="stylesheet" href="https://csuwangj.github.io/ZDaily/site.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif+SC">
+      
+      <!-- js -->
+      <script type="text/javascript" charset="utf-8" src="https://csuwangj.github.io/ZDaily/js/sidebar.js"></script>
+      
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" crossorigin="anonymous">
+<script type="module">
+import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.mjs";
+const katex_config = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  macros: {
+    // Functions
+    arccot: '\\operatorname{arccot}',
+    arcsec: '\\operatorname{arcsec}',
+    arccsc: '\\operatorname{arccsc}',
+  }
+}
+renderMathInElement(document.body, katex_config);
+</script>
+
+
+      
+
+      
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/rss.xml">
+      
+      
+
+      
+      
+    </head>
+
+    <body>
+      
+      
+      <header name="header" class="left_sidebar">
+        <div>
+          <div class="logo"><a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;">ZDaily</a></div>
+          <nav class="menu">
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;" class="nav-item-home unselectable">
+              <span><i class="fa-solid fa-house"></i> Home</span>
+            </a>
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;about" class="nav-item-about unselectable">
+              <span><i class="fa-solid fa-user-circle"></i> About</span>
+            </a>
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;categories" class="nav-item-categories unselectable">
+              <span><i class="fa-solid fa-book"></i> Categories</span>
+            </a>
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;tags" class="nav-item-tags unselectable">
+              <span><i class="fa-solid fa-tags"></i> Tags</span>
+            </a>
+            
+            <a href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;archives" class="nav-item-archives unselectable">
+              <span><i class="fa-solid fa-inbox"></i> Archives</span>
+            </a>
+            
+          </nav>
+        </div>
+      </header>
+      
+
+      <main class="content container left_sidebar" name="main">
+        <div class="content-wrapper">
+          
+  <div class="post">
+    <h1 class="post-title">2023-03-31 Daily Challenge</h1>
+    <div class="post-meta">
+      
+      <div class="post-meta-item">
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar"></i></span>
+        <span class="post-date">Posted on: </span>
+        <time datetime=2023-03-31T13:07:06+08:00 title="post created at 2023-03-31T13:07:06+08:00">2023-03-31</time>
+      </div>
+      
+      
+      <div class="post-meta-item">
+        <span class="post-meta-item-icon"><i class="fa-solid fa-calendar-check"></i></span>
+        <span class="modify-date">Posted modified: </span>
+        <time datetime=2023-03-31T13:07:06+08:00 title="post modified at 2023-03-31T13:07:06+08:00">2023-03-31</time>
+      </div>
+      
+      
+      <div class="post-meta-item">
+          <span class="post-meta-item-icon"><i class="fa-solid fa-book"></i></span>
+          <span class="in-category">In: </span>
+        
+        <a class="category" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/categories/DailyChallenge">
+          DailyChallenge
+        </a>
+      
+      </div>
+      
+      <span class="post-meta-divider">|</span>
+    </div>
+    <div class="post-body">
+      <p>Today I have done leetcode's <a href="https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/">March LeetCoding Challenge</a> with <code>cpp</code>.</p>
+<span id="continue-reading"></span>
+<h1 id="march-leetcoding-challenge-31">March LeetCoding Challenge 31</h1>
+<h2 id="description">Description</h2>
+<p><strong>Number of Ways of Cutting a Pizza</strong></p>
+<p>Given a rectangular pizza represented as a <code>rows x cols</code>&nbsp;matrix containing the following characters: <code>&#39;A&#39;</code> (an apple) and <code>&#39;.&#39;</code> (empty cell) and given the integer <code>k</code>. You have to cut the pizza into <code>k</code> pieces using <code>k-1</code> cuts.&nbsp;</p>
+<p>For each cut you choose the direction: vertical or horizontal, then you choose a cut position at the cell boundary and cut the pizza into two pieces. If you cut the pizza vertically, give the left part of the pizza to a person. If you cut the pizza horizontally, give the upper part of the pizza to a person. Give the last piece of pizza to the last person.</p>
+<p><em>Return the number of ways of cutting the pizza such that each piece contains <strong>at least</strong> one apple.&nbsp;</em>Since the answer can be a huge number, return this modulo 10^9 + 7.</p>
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<p><strong><img alt="" src="https://assets.leetcode.com/uploads/2020/04/23/ways_to_cut_apple_1.png" style="width: 500px; height: 378px;" /></strong></p>
+<pre>
+<strong>Input:</strong> pizza = [&quot;A..&quot;,&quot;AAA&quot;,&quot;...&quot;], k = 3
+<strong>Output:</strong> 3 
+<strong>Explanation:</strong> The figure above shows the three ways to cut the pizza. Note that pieces must contain at least one apple.
+</pre>
+<p><strong class="example">Example 2:</strong></p>
+<pre>
+<strong>Input:</strong> pizza = [&quot;A..&quot;,&quot;AA.&quot;,&quot;...&quot;], k = 3
+<strong>Output:</strong> 1
+</pre>
+<p><strong class="example">Example 3:</strong></p>
+<pre>
+<strong>Input:</strong> pizza = [&quot;A..&quot;,&quot;A..&quot;,&quot;...&quot;], k = 1
+<strong>Output:</strong> 1
+</pre>
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+<ul>
+	<li><code>1 &lt;= rows, cols &lt;= 50</code></li>
+	<li><code>rows ==&nbsp;pizza.length</code></li>
+	<li><code>cols ==&nbsp;pizza[i].length</code></li>
+	<li><code>1 &lt;= k &lt;= 10</code></li>
+	<li><code>pizza</code> consists of characters <code>&#39;A&#39;</code>&nbsp;and <code>&#39;.&#39;</code> only.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> dp[</span><span style="color:#d08770;">10</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">50</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">50</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> prefixSum[</span><span style="color:#d08770;">51</span><span style="color:#eff1f5;">][</span><span style="color:#d08770;">51</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> rows;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> cols;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">const int</span><span style="color:#eff1f5;"> MOD </span><span>= </span><span style="color:#d08770;">1e9 </span><span>+ </span><span style="color:#d08770;">7</span><span style="color:#eff1f5;">;
+</span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">ways</span><span style="color:#eff1f5;">(vector&lt;string&gt;</span><span>&amp; </span><span style="color:#bf616a;">pizza</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    rows </span><span>=</span><span style="color:#eff1f5;"> pizza.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    cols </span><span>=</span><span style="color:#eff1f5;"> pizza.</span><span style="color:#bf616a;">front</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    </span><span style="color:#96b5b4;">memset</span><span style="color:#eff1f5;">(dp, </span><span>-</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, k </span><span>* sizeof</span><span style="color:#eff1f5;">(dp[</span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">]));
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> row </span><span>=</span><span style="color:#eff1f5;"> rows </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; row </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">row) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> col </span><span>=</span><span style="color:#eff1f5;"> cols </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; col </span><span>&gt;= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">; </span><span>--</span><span style="color:#eff1f5;">col) {
+</span><span style="color:#eff1f5;">        prefixSum[row][col] </span><span>=</span><span style="color:#eff1f5;"> prefixSum[row][col </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+</span><span style="color:#eff1f5;"> prefixSum[row </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][col] </span><span>-</span><span style="color:#eff1f5;"> prefixSum[row </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">][col </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">] </span><span>+ </span><span style="color:#eff1f5;">(pizza[row][col] </span><span>== &#39;</span><span style="color:#a3be8c;">A</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(k </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">solve</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">k</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">row</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">col</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">prefixSum[row][col]) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(k </span><span>== </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(dp[k][row][col] </span><span>!= -</span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> dp[k][row][col];
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> result </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newRow </span><span>=</span><span style="color:#eff1f5;"> row </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; newRow </span><span>&lt;</span><span style="color:#eff1f5;"> rows; </span><span>++</span><span style="color:#eff1f5;">newRow) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prefixSum[row][col] </span><span>-</span><span style="color:#eff1f5;"> prefixSum[newRow][col] </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">        result </span><span>+= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(k </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, newRow, col);
+</span><span style="color:#eff1f5;">        result </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">for</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> newCol </span><span>=</span><span style="color:#eff1f5;"> col </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">; newCol </span><span>&lt;</span><span style="color:#eff1f5;"> cols; </span><span>++</span><span style="color:#eff1f5;">newCol) {
+</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(prefixSum[row][col] </span><span>-</span><span style="color:#eff1f5;"> prefixSum[row][newCol] </span><span>&gt; </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">        result </span><span>+= </span><span style="color:#bf616a;">solve</span><span style="color:#eff1f5;">(k </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, row, newCol);
+</span><span style="color:#eff1f5;">        result </span><span>%=</span><span style="color:#eff1f5;"> MOD;
+</span><span style="color:#eff1f5;">      }
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    dp[k][row][col] </span><span>=</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> result;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// Accepted
+</span><span style="color:#65737e;">// 53/53 cases passed (7 ms)
+</span><span style="color:#65737e;">// Your runtime beats 98.95 % of cpp submissions
+</span><span style="color:#65737e;">// Your memory usage beats 94.5 % of cpp submissions (7.6 MB)
+</span></code></pre>
+
+    </div>
+    
+    <div class="post-tags">
+      
+      <a class="tag" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/tags/Algorithm">
+        <i class="fa-solid fa-tag"></i>
+        Algorithm
+      </a>
+      
+    </div>
+    
+  </div>
+  <nav class="pagination">
+    
+    <div class="empty"></div>
+    
+    
+    <a class="right unselectable" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;2023-03-30-Daily-Challenge&#x2F;">
+      2023-03-30 Daily Challenge
+      <i class="fa-solid fa-caret-right"></i>
+    </a>
+    
+  </nav>
+
+        </div>
+      </main>
+
+      
+      <footer name="footer" class="left_sidebar">
+        <div class="copyright">
+          <span item="copyrightYear">© 2018-2022</span>
+          <span class="author">CSUwangj</span>
+        </div>
+        <div class="powered-by">
+          Powered by <a href="https://www.getzola.org/">Zola</a> Theme <a href="https://github.com/CSUwangj/DogFood">DogFood</a>
+        </div>
+      </footer>
+      
+
+
+      
+      
+      
+      
+      
+      <button class="sidebar-toggle left_sidebar-sidebar-toggle" onclick="openSidebar()">O</button>
+      <aside class="sidebar left_sidebar" name="sidebar">
+        
+        <div class="sidebar-content-toggle">
+          <a name="swith-to-toc-button" class="actived" onclick="switchToTOC()">Table of Content</>
+          <a name="swith-to-about-authour-button" onclick="switchToAboutAuthor()">About Author</a>
+        </div>
+        
+        <div class="sidebar-overview"  style="opacity:0;display:none" >
+          <div class="site-author" itemprop="author" itemtype="https://schema.org/Person">
+            
+            <img class="site-author-image" itemprop="image"
+              src="https://csuwangj.github.io/ZDaily/img/avatar.png"
+              alt="CSUwangj" />
+            
+            <p class="site-author-name unselectable">CSUwangj</p>
+            <p class="site-author-quote">Just keep in mind that hacking is very rarely in a sequence.</p>
+          </div>
+          <div class="sidebar-post-overview">
+            
+            <a class="sidebar-post-overview-item" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/categories">
+              <span class="sidebar-post-overview-amount unselectable">1</span>
+              <span class="sidebar-post-overview-type unselectable">
+                <i class="fa-solid fa-book"></i>
+                categories
+              </span>
+            </a>
+            
+            
+            <a class="sidebar-post-overview-item" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/tags">
+              <span class="sidebar-post-overview-amount unselectable">13</span>
+              <span class="sidebar-post-overview-type unselectable">
+                <i class="fa-solid fa-tags"></i>
+                tags
+              </span>
+            </a>
+            
+            
+            <a class="sidebar-post-overview-item" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/archives">
+              <span class="sidebar-post-overview-amount unselectable">1019</span>
+              <span class="sidebar-post-overview-type unselectable">
+                <i class="fa-solid fa-inbox"></i>
+                posts
+              </span>
+            </a>
+            
+          </div>
+          <div class="feed-link">
+            
+            <a rel="alternate" type="application/rss+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/rss.xml">
+              RSS
+            </a>
+            
+          </div>
+          <div class="links-of-author">
+            
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;CSUwangj" title="Github" class="author-link">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            
+            <a href="mailto:CSUwangj@protonmail.com" title="EMail" class="author-link">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            
+          </div>
+          <div class="links-of-blogroll">
+            
+            <a href="https:&#x2F;&#x2F;CSUwangj.github.io&#x2F;">blog</a>
+            
+          </div>
+        </div>
+        <div class="sidebar-toc">
+        
+        <ul>
+        
+        <li>
+        <a class="toc-link" href="https://csuwangj.github.io/ZDaily/2023-03-31-Daily-Challenge/#march-leetcoding-challenge-31">March LeetCoding Challenge 31</a>
+          
+          <ul>
+          
+          <li>
+          <a class="toc-link" href="https://csuwangj.github.io/ZDaily/2023-03-31-Daily-Challenge/#description">Description</a>
+            
+          </li>
+          
+          <li>
+          <a class="toc-link" href="https://csuwangj.github.io/ZDaily/2023-03-31-Daily-Challenge/#solution">Solution</a>
+            
+          </li>
+          
+          </ul>
+          
+        </li>
+        
+        </ul>
+        
+        </div>
+      </aside>
+      
+      
+    </body>
+
+</html>
