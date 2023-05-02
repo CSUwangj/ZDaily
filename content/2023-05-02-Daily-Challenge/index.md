@@ -1,0 +1,91 @@
++++
+updated = 2023-05-02T12:07:45+08:00
+title = "2023-05-02 Daily Challenge"
+path = "2023-05-02-Daily-Challenge"
+date = 2023-05-02T12:07:45+08:00
+
+[taxonomies]
+tags = ["Algorithm"]
+categories = ["DailyChallenge"]
+archives = ["archive"]
++++
+
+Today I have done leetcode's [May LeetCoding Challenge](https://leetcode.com/problems/sign-of-the-product-of-an-array/) with `cpp`.
+
+<!-- more -->
+
+# May LeetCoding Challenge 2
+
+## Description
+
+**Sign of the Product of an Array**
+
+<p>There is a function <code>signFunc(x)</code> that returns:</p>
+
+<ul>
+	<li><code>1</code> if <code>x</code> is positive.</li>
+	<li><code>-1</code> if <code>x</code> is negative.</li>
+	<li><code>0</code> if <code>x</code> is equal to <code>0</code>.</li>
+</ul>
+
+<p>You are given an integer array <code>nums</code>. Let <code>product</code> be the product of all values in the array <code>nums</code>.</p>
+
+<p>Return <code>signFunc(product)</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre>
+<strong>Input:</strong> nums = [-1,-2,-3,-4,3,2,1]
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> The product of all values in the array is 144, and signFunc(144) = 1
+</pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre>
+<strong>Input:</strong> nums = [1,5,0,2,-3]
+<strong>Output:</strong> 0
+<strong>Explanation:</strong> The product of all values in the array is 0, and signFunc(0) = 0
+</pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre>
+<strong>Input:</strong> nums = [-1,1,-1,1,-1]
+<strong>Output:</strong> -1
+<strong>Explanation:</strong> The product of all values in the array is -1, and signFunc(-1) = -1
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+	<li><code>-100 &lt;= nums[i] &lt;= 100</code></li>
+</ul>
+
+
+## Solution
+
+``` cpp
+template <typename T> int sgn(T val) {
+  return (T(0) < val) - (val < T(0));
+}
+class Solution {
+public:
+  int arraySign(vector<int>& nums) {
+    int answer = 1;
+    for(auto n : nums) {
+      answer *= sgn(n);
+    }
+
+    return answer;
+  }
+};
+
+// Accepted
+// 76/76 cases passed (8 ms)
+// Your runtime beats 27.4 % of cpp submissions
+// Your memory usage beats 86.28 % of cpp submissions (10.1 MB)
+```
