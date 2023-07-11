@@ -74,7 +74,7 @@ public:
         Q.pop();
         if (rt->left) Q.push(rt->left);
         if (rt->right) Q.push(rt->right);
-        if (rt->left==NULL && rt->right==NULL) return i;
+        if (rt->left == NULL && rt->right == NULL) return i;
       }
     }
     return -1; //For the compiler thing. The code never runs here.
