@@ -1,8 +1,8 @@
 +++
-updated = 2023-10-26T12:37:58+08:00
-title = "2023-10-26 Daily Challenge"
-path = "2023-10-26-Daily-Challenge"
-date = 2023-10-26T12:37:58+08:00
+updated = 2023-10-27T12:37:58+08:00
+title = "2023-10-27 Daily Challenge"
+path = "2023-10-27-Daily-Challenge"
+date = 2023-10-27T12:37:58+08:00
 
 [taxonomies]
 tags = ["Algorithm"]
