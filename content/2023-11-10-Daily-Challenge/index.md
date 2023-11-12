@@ -10,7 +10,7 @@ categories = ["DailyChallenge"]
 archives = ["archive"]
 +++
 
-Today I have done leetcode's [November LeetCoding Challenge](restore-the-array-from-adjacent-pairs) with `cpp`.
+Today I have done leetcode's [November LeetCoding Challenge](https://leetcode.com/problems/restore-the-array-from-adjacent-pairs) with `cpp`.
 
 <!-- more -->
 
