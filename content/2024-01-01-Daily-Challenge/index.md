@@ -58,30 +58,27 @@ You need to output 2.
 ## Solution
 
 ``` cpp
-int front[26];
-int back[26];
 class Solution {
 public:
-  int maxLengthBetweenEqualCharacters(string s) {
-    for(int i = 0; i < 26; ++i) {
-      front[i] = 1000;
-      back[i] = -1000;
-    }
-    for(int i = 0; i < s.length(); ++i) {
-      int c = s[i] - 'a';
-      front[c] = min(front[c], i);
-      back[c] = max(back[c], i);
-    }
-    int answer = -1;
-    for(int i = 0; i < 26; ++i) {
-      answer = max(answer, back[i] - 1 - front[i]);
+  int findContentChildren(vector<int>& g, vector<int>& s) {
+    sort(g.begin(), g.end());
+    sort(s.begin(), s.end());
+    int posG = g.size() - 1;
+    int posS = s.size() - 1;
+    int answer = 0;
+    while(posG >= 0 && posS >= 0) {
+      while(posG >= 0 && s[posS] < g[posG]) posG -= 1;
+      if(posG < 0) break;
+      answer += 1;
+      posS -= 1;
+      posG -= 1; 
     }
     return answer;
   }
 };
 
 // Accepted
-// 54/54 cases passed (0 ms)
-// Your runtime beats 100 % of cpp submissions
-// Your memory usage beats 97.01 % of cpp submissions (6.6 MB)
+// 21/21 cases passed (18 ms)
+// Your runtime beats 96.56 % of cpp submissions
+// Your memory usage beats 6.24 % of cpp submissions (18 MB)
 ```
