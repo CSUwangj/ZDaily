@@ -80,6 +80,12 @@ Today I have done leetcode's [June LeetCoding Challenge](https://leetcode.com/pr
 ## Solution
 
 ``` cpp
+auto speedup = [](){
+  cin.tie(nullptr);
+  cout.tie(nullptr);
+  ios::sync_with_stdio(false);
+  return 0;
+}();
 struct UnionSet {
   vector<int> parent;
 public:
@@ -129,10 +135,10 @@ public:
     int ag0 = alice.find(0);
     int bg0 = bob.find(0);
     for(int i = 1; i < n; ++i) {
-      cout << ag0 << ' '<< alice.find(i) << endl;
-      cout << bg0 << ' ' << bob.find(i) << endl;
-      // if(alice.find(i) != ag0) return -1;
-      // if(bob.find(i) != bg0) return -1;
+      // cout << ag0 << ' '<< alice.find(i) << endl;
+      // cout << bg0 << ' ' << bob.find(i) << endl;
+      if(alice.find(i) != ag0) return -1;
+      if(bob.find(i) != bg0) return -1;
     }
 
     return answer;
