@@ -143,25 +143,23 @@ renderMathInElement(document.body, katex_config);
 	<li><code>1 &lt;= Node.val &lt;= 10<sup>5</sup></code></li>
 </ul>
 <h2 id="solution">Solution</h2>
-<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">auto</span><span> speedup = [](){
-</span><span>  cin.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
-</span><span>  cout.</span><span style="color:#bf616a;">tie</span><span>(</span><span style="color:#d08770;">nullptr</span><span>);
-</span><span>  ios::</span><span style="color:#bf616a;">sync_with_stdio</span><span>(</span><span style="color:#d08770;">false</span><span>);
-</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
-</span><span>}();
-</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">traversal</span><span style="color:#eff1f5;">(TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span>&amp;</span><span style="color:#bf616a;">sum</span><span style="color:#eff1f5;">) {
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Solution </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">visit</span><span style="color:#eff1f5;">(vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, TreeNode </span><span>*</span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
 </span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">root) </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">, sum);
-</span><span style="color:#eff1f5;">    root-&gt;</span><span style="color:#bf616a;">val </span><span>+=</span><span style="color:#eff1f5;"> sum;
-</span><span style="color:#eff1f5;">    sum </span><span>=</span><span style="color:#eff1f5;"> root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">, sum);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">visit</span><span style="color:#eff1f5;">(nums, root-&gt;</span><span style="color:#bf616a;">left</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    nums.</span><span style="color:#bf616a;">push_back</span><span style="color:#eff1f5;">(root-&gt;</span><span style="color:#bf616a;">val</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">visit</span><span style="color:#eff1f5;">(nums, root-&gt;</span><span style="color:#bf616a;">right</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">build</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">const</span><span style="color:#eff1f5;"> vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; </span><span>&amp;</span><span style="color:#bf616a;">nums</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">begin</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">end</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(begin </span><span>&gt;</span><span style="color:#eff1f5;"> end) </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">nullptr</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> mid </span><span>= </span><span style="color:#eff1f5;">(begin </span><span>+</span><span style="color:#eff1f5;"> end) </span><span>/ </span><span style="color:#d08770;">2</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return new </span><span style="color:#bf616a;">TreeNode</span><span style="color:#eff1f5;">(nums[mid], </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(nums, begin, mid </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">), </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(nums, mid </span><span>+ </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">, end));
 </span><span style="color:#eff1f5;">  }
 </span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
-</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">bstToGst</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;"> tmp </span><span>= </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">traversal</span><span style="color:#eff1f5;">(root, tmp);
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> root;
+</span><span style="color:#eff1f5;">  TreeNode</span><span>* </span><span style="color:#8fa1b3;">balanceBST</span><span style="color:#eff1f5;">(TreeNode</span><span>* </span><span style="color:#bf616a;">root</span><span style="color:#eff1f5;">) {
+</span><span style="color:#eff1f5;">    vector&lt;</span><span style="color:#b48ead;">int</span><span style="color:#eff1f5;">&gt; nums;
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">visit</span><span style="color:#eff1f5;">(nums, root);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">build</span><span style="color:#eff1f5;">(nums, </span><span style="color:#d08770;">0</span><span style="color:#eff1f5;">, nums.</span><span style="color:#bf616a;">size</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#d08770;">1</span><span style="color:#eff1f5;">);
 </span><span style="color:#eff1f5;">  }
 </span><span style="color:#eff1f5;">}</span><span>;
 </span></code></pre>
@@ -253,7 +251,7 @@ renderMathInElement(document.body, katex_config);
             
             
             <a class="sidebar-post-overview-item" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/archives">
-              <span class="sidebar-post-overview-amount unselectable">1477</span>
+              <span class="sidebar-post-overview-amount unselectable">1478</span>
               <span class="sidebar-post-overview-type unselectable">
                 <i class="fa-solid fa-inbox"></i>
                 posts
