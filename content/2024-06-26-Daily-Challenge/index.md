@@ -52,25 +52,23 @@ Today I have done leetcode's [June LeetCoding Challenge](https://leetcode.com/pr
 ## Solution
 
 ``` cpp
-auto speedup = [](){
-  cin.tie(nullptr);
-  cout.tie(nullptr);
-  ios::sync_with_stdio(false);
-  return 0;
-}();
 class Solution {
-  void traversal(TreeNode *root, int &sum) {
+  void visit(vector<int> &nums, TreeNode *root) {
     if(!root) return;
-    traversal(root->right, sum);
-    root->val += sum;
-    sum = root->val;
-    traversal(root->left, sum);
+    visit(nums, root->left);
+    nums.push_back(root->val);
+    visit(nums, root->right);
+  }
+  TreeNode* build(const vector<int> &nums, int begin, int end) {
+    if(begin > end) return nullptr;
+    int mid = (begin + end) / 2;
+    return new TreeNode(nums[mid], build(nums, begin, mid - 1), build(nums, mid + 1, end));
   }
 public:
-  TreeNode* bstToGst(TreeNode* root) {
-    int tmp = 0;
-    traversal(root, tmp);
-    return root;
+  TreeNode* balanceBST(TreeNode* root) {
+    vector<int> nums;
+    visit(nums, root);
+    return build(nums, 0, nums.size() - 1);
   }
 };
 ```
