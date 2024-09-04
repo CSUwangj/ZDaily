@@ -89,7 +89,7 @@ public:
     for(auto n : num) {
       answer += n - '0';
     }
-    while(--k && answer >= 10) {
+    while(--k && answer > 9) {
       int current = 0;
       while(answer) {
         current += answer % 10;
