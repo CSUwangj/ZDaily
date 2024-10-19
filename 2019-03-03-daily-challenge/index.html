@@ -40,8 +40,17 @@ renderMathInElement(document.body, katex_config);
 
       
 
+
       
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/rss.xml">
+         
+          
+            <link rel="alternate" type="application/rss+xml" title="Feed (RSS)" href="https://csuwangj.github.io/ZDaily/rss.xml">
+          
+         
+          
+            <link rel="alternate" type="application/atom+xml" title="Feed (Atom)" href="https://csuwangj.github.io/ZDaily/atom.xml">
+          
+        
       
       
 
@@ -113,7 +122,6 @@ renderMathInElement(document.body, katex_config);
       
       </div>
       
-      <span class="post-meta-divider">|</span>
     </div>
     <div class="post-body">
       <p>What I've done today is <em>Directions Reduction</em> in <em>JavaScript</em>.</p>
@@ -121,7 +129,7 @@ renderMathInElement(document.body, katex_config);
 <h2 id="problem">Problem</h2>
 <h3 id="directions-reduction">Directions Reduction</h3>
 <h5 id="once-upon-a-time-on-a-way-through-the-old-wild-west">Once upon a time, on a way through the old wild west,…</h5>
-<p>… a man was given directions to go from one point to another. The directions were &quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;WEST&quot;, &quot;EAST&quot;. Clearly &quot;NORTH&quot; and &quot;SOUTH&quot; are opposite, &quot;WEST&quot; and &quot;EAST&quot; too. Going to one direction and coming back the opposite direction is a needless effort. Since this is the wild west, with dreadfull weather and not much water, it's important to save yourself some energy, otherwise you might die of thirst!</p>
+<p>… a man was given directions to go from one point to another. The directions were "NORTH", "SOUTH", "WEST", "EAST". Clearly "NORTH" and "SOUTH" are opposite, "WEST" and "EAST" too. Going to one direction and coming back the opposite direction is a needless effort. Since this is the wild west, with dreadfull weather and not much water, it's important to save yourself some energy, otherwise you might die of thirst!</p>
 <h5 id="how-i-crossed-the-desert-the-smart-way">How I crossed the desert the smart way.</h5>
 <p>The directions given to the man are, for example, the following:</p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[&quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;, &quot;NORTH&quot;, &quot;WEST&quot;].
@@ -132,7 +140,7 @@ renderMathInElement(document.body, katex_config);
 <p>or (haskell)</p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[North, South, South, East, West, North, West]
 </span></code></pre>
-<p>You can immediatly see that going &quot;NORTH&quot; and then &quot;SOUTH&quot; is not reasonable, better stay to the same place! So the task is to give to the man a simplified version of the plan. A better plan in this case is simply:</p>
+<p>You can immediatly see that going "NORTH" and then "SOUTH" is not reasonable, better stay to the same place! So the task is to give to the man a simplified version of the plan. A better plan in this case is simply:</p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[&quot;WEST&quot;]
 </span></code></pre>
 <p>or</p>
@@ -145,9 +153,9 @@ renderMathInElement(document.body, katex_config);
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[WEST];
 </span></code></pre>
 <h4 id="other-examples">Other examples:</h4>
-<p>In <code>[&quot;NORTH&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;]</code>, the direction <code>&quot;NORTH&quot; + &quot;SOUTH&quot;</code> is going north and coming back <em>right away</em>. What a waste of time! Better to do nothing.</p>
-<p>The path becomes <code>[&quot;EAST&quot;, &quot;WEST&quot;]</code>, now <code>&quot;EAST&quot;</code> and <code>&quot;WEST&quot;</code> annihilate each other, therefore, the final result is <code>[]</code> (nil in Clojure).</p>
-<p>In [&quot;NORTH&quot;, &quot;EAST&quot;, &quot;WEST&quot;, &quot;SOUTH&quot;, &quot;WEST&quot;, &quot;WEST&quot;], &quot;NORTH&quot; and &quot;SOUTH&quot; are not directly opposite but they become directly opposite after the reduction of &quot;EAST&quot; and &quot;WEST&quot; so the whole path is reducible to [&quot;WEST&quot;, &quot;WEST&quot;].</p>
+<p>In <code>["NORTH", "SOUTH", "EAST", "WEST"]</code>, the direction <code>"NORTH" + "SOUTH"</code> is going north and coming back <em>right away</em>. What a waste of time! Better to do nothing.</p>
+<p>The path becomes <code>["EAST", "WEST"]</code>, now <code>"EAST"</code> and <code>"WEST"</code> annihilate each other, therefore, the final result is <code>[]</code> (nil in Clojure).</p>
+<p>In ["NORTH", "EAST", "WEST", "SOUTH", "WEST", "WEST"], "NORTH" and "SOUTH" are not directly opposite but they become directly opposite after the reduction of "EAST" and "WEST" so the whole path is reducible to ["WEST", "WEST"].</p>
 <h4 id="task">Task</h4>
 <p>Write a function <code>dirReduc</code> which will take an array of strings and returns an array of strings with the needless directions removed (W&lt;-&gt;E or S&lt;-&gt;N side by side).</p>
 <p>The Haskell version takes a list of directions with <code>data Direction = North | East | West | South</code>. The Clojure version returns nil when the path is reduced to nothing. The Rust version takes a slice of <code>enum Direction {NORTH, SOUTH, EAST, WEST}</code>.</p>
@@ -155,9 +163,9 @@ renderMathInElement(document.body, katex_config);
 <pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#8fa1b3;">dirReduc</span><span>([&quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;]) </span><span style="color:#b48ead;">=&gt; </span><span>[&quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;]
 </span><span style="color:#8fa1b3;">dirReduc</span><span>([&quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;]) </span><span style="color:#b48ead;">=&gt; </span><span>[]
 </span></code></pre>
-<h4 id="see-more-examples-in-example-tests">See more examples in &quot;Example Tests&quot;</h4>
+<h4 id="see-more-examples-in-example-tests">See more examples in "Example Tests"</h4>
 <h4 id="note">Note</h4>
-<p>Not all paths can be made simpler. The path [&quot;NORTH&quot;, &quot;WEST&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;] is not reducible. &quot;NORTH&quot; and &quot;WEST&quot;, &quot;WEST&quot; and &quot;SOUTH&quot;, &quot;SOUTH&quot; and &quot;EAST&quot; are not directly opposite of each other and can't become such. Hence the result path is itself : [&quot;NORTH&quot;, &quot;WEST&quot;, &quot;SOUTH&quot;, &quot;EAST&quot;].</p>
+<p>Not all paths can be made simpler. The path ["NORTH", "WEST", "SOUTH", "EAST"] is not reducible. "NORTH" and "WEST", "WEST" and "SOUTH", "SOUTH" and "EAST" are not directly opposite of each other and can't become such. Hence the result path is itself : ["NORTH", "WEST", "SOUTH", "EAST"].</p>
 <h2 id="solution">Solution</h2>
 <pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">dirReduc</span><span>(</span><span style="color:#bf616a;">arr</span><span>){
 </span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">match </span><span>= {&quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">SOUTH</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">NORTH</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">WEST</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">EAST</span><span>&quot;};
@@ -272,7 +280,7 @@ renderMathInElement(document.body, katex_config);
             
             
             <a class="sidebar-post-overview-item" href="https:&#x2F;&#x2F;csuwangj.github.io&#x2F;ZDaily&#x2F;/archives">
-              <span class="sidebar-post-overview-amount unselectable">1549</span>
+              <span class="sidebar-post-overview-amount unselectable">1587</span>
               <span class="sidebar-post-overview-type unselectable">
                 <i class="fa-solid fa-inbox"></i>
                 posts
@@ -282,9 +290,19 @@ renderMathInElement(document.body, katex_config);
           </div>
           <div class="feed-link">
             
-            <a rel="alternate" type="application/rss+xml" title="RSS" href="https://csuwangj.github.io/ZDaily/rss.xml">
-              RSS
-            </a>
+               
+                
+                  <a rel="alternate" type="application/rss+xml" title="Feed (RSS)" href="https://csuwangj.github.io/ZDaily/rss.xml">
+                    Feed (RSS)
+                  </a>
+                
+               
+                
+                  <a rel="alternate" type="application/atom+xml" title="Feed (Atom)" href="https://csuwangj.github.io/ZDaily/atom.xml">
+                    Feed (Atom)
+                  </a>
+                
+              
             
           </div>
           <div class="links-of-author">
