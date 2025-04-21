@@ -57,5 +57,24 @@ The smallest possible number of rabbits in the forest is therefore 5: 3 that ans
 ## Solution
 
 ``` cpp
+class Solution {
+public:
+  int numRabbits(vector<int>& answers) {
+    map<int, int> count;
+    for(auto a : answers) {
+      count[a] += 1;
+    }
+    int answer = 0;
+    for(auto [answerGroup, answerCount] : count) {
+      int groupSize = answerGroup + 1;
+      answer += (answerCount + groupSize - 1) / groupSize * groupSize;
+    }
+    return answer;
+  }
+};
 
+// Accepted
+// 56/56 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 42.46 % of cpp submissions (12.3 MB)
 ```
