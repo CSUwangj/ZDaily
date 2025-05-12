@@ -106,3 +106,48 @@ public:
 // Your runtime beats 100 % of cpp submissions
 // Your memory usage beats 87.12 % of cpp submissions (12.5 MB)
 ```
+
+or recursion way to solve it
+
+``` cpp
+class Solution {
+  void getEvenNumber(
+    vector<int> &digits,
+    vector<int> &answer,
+    int restLen,
+    int current = 0,
+    bool isFirst = true
+  ) {
+    if(!restLen) {
+      answer.push_back(current);
+      return;
+    }
+    int step = 1;
+    int start = 0;
+    if(restLen == 1) step += 1;
+    if(isFirst && restLen != 1) start = 1;
+    for(int d = start; d < 10; d += step) {
+      if(!digits[d]) continue;
+      digits[d] -= 1;
+      getEvenNumber(digits, answer, restLen - 1, current * 10 + d, false);
+      digits[d] += 1;
+    }
+  }
+public:
+  vector<int> findEvenNumbers(vector<int>& digits) {
+    vector<int> count(10);
+    for(auto d : digits) {
+      count[d] += 1;
+    }
+    vector<int> answer;
+    getEvenNumber(count, answer, 3);
+    sort(answer.begin(), answer.end());
+    return answer;
+  }
+};
+
+// Accepted
+// 79/79 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 87.12 % of cpp submissions (12.5 MB)
+```
