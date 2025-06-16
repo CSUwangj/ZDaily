@@ -66,5 +66,43 @@ We have now a = 9 and b = 1 and max difference = 8
 ## Solution
 
 ``` cpp
+class Solution {
+public:
+  int maxDiff(int num) {
+    string n = to_string(num);
+    string maxN = n;
+    int len = n.length();
+    int start = 0;
+    while(start < len && maxN[start] == '9') start += 1;
+    for(int i = start + 1; i < len; ++i) {
+      if(maxN[i] == maxN[start]) maxN[i] = '9';
+    }
+    if(start < len) maxN[start] = '9';
 
+    string minN = n;
+    bool changed = false;
+    for(int i = 0; i < len && !changed; ++i) {
+      char target = minN[i];
+      if(!i) {
+        if(target == '1') continue;
+        changed = true;
+        for(int j = 0; j < len; ++j) {
+          if(minN[j] == target) minN[j] = '1';
+        }
+      } else {
+        if(target == '0' || target == minN[0]) continue;
+        changed = true;
+        for(int j = 0; j < len; ++j) {
+          if(minN[j] == target) minN[j] = '0';
+        }
+      }
+    }
+    return stoi(maxN) - stoi(minN);
+  }
+};
+
+// Accepted
+// 211/211 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 66.9 % of cpp submissions (8.2 MB)
 ```
