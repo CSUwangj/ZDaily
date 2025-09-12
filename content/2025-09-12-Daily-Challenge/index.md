@@ -1,0 +1,107 @@
++++
+updated = 2025-09-12T18:55:03+02:00
+title = "2025-09-12 Daily Challenge"
+path = "2025-09-12-Daily-Challenge"
+date = 2025-09-12T18:55:03+02:00
+
+[taxonomies]
+tags = ["Algorithm"]
+categories = ["DailyChallenge"]
+archives = ["archive"]
++++
+
+Today I have done leetcode's [September LeetCoding Challenge](https://leetcode.com/problems/vowels-game-in-a-string/) with `cpp`.
+
+<!-- more -->
+
+# September LeetCoding Challenge 12
+
+## Description
+
+**Vowels Game in a String**
+
+<p>Alice and Bob are playing a game on a string.</p>
+
+<p>You are given a string <code>s</code>, Alice and Bob will take turns playing the following game where Alice starts <strong>first</strong>:</p>
+
+<ul>
+	<li>On Alice&#39;s turn, she has to remove any <strong>non-empty</strong> <span data-keyword="substring">substring</span> from <code>s</code> that contains an <strong>odd</strong> number of vowels.</li>
+	<li>On Bob&#39;s turn, he has to remove any <strong>non-empty</strong> <span data-keyword="substring">substring</span> from <code>s</code> that contains an <strong>even</strong> number of vowels.</li>
+</ul>
+
+<p>The first player who cannot make a move on their turn loses the game. We assume that both Alice and Bob play <strong>optimally</strong>.</p>
+
+<p>Return <code>true</code> if Alice wins the game, and <code>false</code> otherwise.</p>
+
+<p>The English vowels are: <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, and <code>u</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">s = &quot;leetcoder&quot;</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">true</span></p>
+
+<p><strong>Explanation:</strong><br />
+Alice can win the game as follows:</p>
+
+<ul>
+	<li>Alice plays first, she can delete the underlined substring in <code>s = &quot;<u><strong>leetco</strong></u>der&quot;</code> which contains 3 vowels. The resulting string is <code>s = &quot;der&quot;</code>.</li>
+	<li>Bob plays second, he can delete the underlined substring in <code>s = &quot;<u><strong>d</strong></u>er&quot;</code> which contains 0 vowels. The resulting string is <code>s = &quot;er&quot;</code>.</li>
+	<li>Alice plays third, she can delete the whole string <code>s = &quot;<strong><u>er</u></strong>&quot;</code> which contains 1 vowel.</li>
+	<li>Bob plays fourth, since the string is empty, there is no valid play for Bob. So Alice wins the game.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">s = &quot;bbcd&quot;</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">false</span></p>
+
+<p><strong>Explanation:</strong><br />
+There is no valid play for Alice in her first turn, so Alice loses the game.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>s</code> consists only of lowercase English letters.</li>
+</ul>
+
+
+## Solution
+
+``` cpp
+class Solution {
+  bool isVowel(char c) {
+    switch(c) {
+      case 'a':
+      case 'e':
+      case 'i':
+      case 'o':
+      case 'u':
+        return true;
+      default:
+    }
+    return false;
+  }
+public:
+  bool doesAliceWin(string s) {
+    int count = 0;
+    for(auto c : s) {
+      if(isVowel(c)) return true;
+    }
+    return false;
+  }
+};
+
+// Accepted
+// 697/697 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 53.73 % of cpp submissions (19.1 MB)
+```
