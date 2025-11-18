@@ -60,5 +60,25 @@ So the last character is not one-bit character.
 ## Solution
 
 ``` cpp
+class Solution {
+public:
+  bool isOneBitCharacter(vector<int>& bits) {
+    int len = bits.size();
+    for(int i = 0; i < len;) {
+      if(bits[i]) {
+        i += 2;
+        if(i == len) return false;
+      } else {
+        i += 1;
+        if(i == len) return true;
+      }
+    }
+    return false;
+  }
+};
 
+// Accepted
+// 93/93 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 8.09 % of cpp submissions (13.2 MB)
 ```
