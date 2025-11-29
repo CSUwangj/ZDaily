@@ -86,5 +86,16 @@ Today I have done leetcode's [November LeetCoding Challenge](https://leetcode.co
 ## Solution
 
 ``` cpp
+class Solution {
+public:
+  int minOperations(vector<int>& nums, int k) {
+    int sum = accumulate(nums.begin(), nums.end(), 0);
+    return sum % k;
+  }
+};
 
+// Accepted
+// 855/855 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 3.18 % of cpp submissions (45.4 MB)
 ```
