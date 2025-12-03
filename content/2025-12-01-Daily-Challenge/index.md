@@ -10,7 +10,7 @@ categories = ["DailyChallenge"]
 archives = ["archive"]
 +++
 
-Today I have done leetcode's [December LeetCoding Challenge](https://leetcode.com/problems/count-number-of-trapezoids-i/) with `cpp`.
+Today I have done leetcode's [December LeetCoding Challenge](https://leetcode.com/problems/maximum-running-time-of-n-computers/) with `cpp`.
 
 <!-- more -->
 
