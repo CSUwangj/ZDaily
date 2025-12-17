@@ -84,5 +84,32 @@ We can make $36 of profit through 3 transactions:
 ## Solution
 
 ``` cpp
+class Solution {
+public:
+  long long maximumProfit(vector<int>& prices, int k) {
+    int len = prices.size();
+    vector<vector<vector<long long>>> dp(len, vector<vector<long long>>(k + 1, vector<long long>({0, -prices[0], prices[0]})));
+    for(int i = 1; i < len; ++i) {
+      int x = prices[i];
+      for(int t = 1; t <= k; ++t) {
+        long long profit = dp[i - 1][t][0];
+        long long buy = dp[i - 1][t][1];
+        long long sell = dp[i - 1][t][2];
+        long long prevProfit = dp[i - 1][t - 1][0];
+        profit = max({profit, buy + x, sell - x});
+        buy = max(buy, prevProfit - x);
+        sell = max(sell, prevProfit + x);
+        dp[i][t][0] = profit;
+        dp[i][t][1] = buy;
+        dp[i][t][2] = sell;
+      }
+    }
+    return dp[len - 1][k][0];
+  }
+};
 
+// Accepted
+// 776/776 cases passed (703 ms)
+// Your runtime beats 37.53 % of cpp submissions
+// Your memory usage beats 21.77 % of cpp submissions (344.9 MB)
 ```
