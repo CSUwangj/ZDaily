@@ -60,5 +60,22 @@ It is possible to distribute the apples as the total capacity is greater than or
 ## Solution
 
 ``` cpp
+class Solution {
+public:
+  int minimumBoxes(vector<int>& apple, vector<int>& capacity) {
+    int sum = accumulate(apple.begin(), apple.end(), 0);
+    sort(capacity.begin(), capacity.end(), greater<int>());
+    int pos = 0;
+    while(sum > 0) {
+      sum -= capacity[pos];
+      pos += 1;
+    }
+    return pos;
+  }
+};
 
+// Accepted
+// 565/565 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 46.29 % of cpp submissions (33.2 MB)
 ```
