@@ -52,5 +52,25 @@ Today I have done leetcode's [January LeetCoding Challenge](https://leetcode.com
 ## Solution
 
 ``` cpp
+class Solution {
+  const int MOD = 1000000007;
+public:
+  int numOfWays(int n) {
+    long long A = 6, B = 6;
 
+    for (int i = 2; i <= n; i++) {
+      long long newA = (2 * A + 2 * B) % MOD;
+      long long newB = (2 * A + 3 * B) % MOD;
+      A = newA;
+      B = newB;
+    }
+
+    return (A + B) % MOD;
+  }
+};
+
+// Accepted
+// 50/50 cases passed (2 ms)
+// Your runtime beats 49.33 % of cpp submissions
+// Your memory usage beats 70.13 % of cpp submissions (7.8 MB)
 ```
