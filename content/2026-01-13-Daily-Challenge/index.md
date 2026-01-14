@@ -81,7 +81,7 @@ Today I have done leetcode's [January LeetCoding Challenge](https://leetcode.com
 
 ``` cpp
 class Solution {
-  double eps = 1e - 5;
+  double eps = 1e-5;
   bool check(double line, double area, const vector<vector<int>>& squares) {
     double sum = 0;
     for(const auto &s : squares) {
