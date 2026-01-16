@@ -89,5 +89,31 @@ Today I have done leetcode's [January LeetCoding Challenge](https://leetcode.com
 ## Solution
 
 ``` cpp
+class Solution {
+  int findLen(vector<int>& bars){
+    sort(bars.begin(), bars.end());
+    int sz = bars.size();
+    int current = 1;
+    int mmax = 1;
+    for(int i = 0; i < sz - 1; i++){
+      if(bars[i] + 1 == bars[i + 1]) {
+        current += 1;
+      } else {
+        current = 1;
+      }
+      mmax = max(current, mmax);
+    }
+    return mmax;
+  }
+public:
+  int maximizeSquareHoleArea(int n, int m, vector<int>& hBars, vector<int>& vBars) {
+    int len = 1 + min(findLen(hBars), findLen(vBars));
+    return len * len;
+  }
+};
 
+// Accepted
+// 524/524 cases passed (0 ms)
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 47.58 % of cpp submissions (32 MB)
 ```
